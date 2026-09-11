@@ -1,21 +1,16 @@
 import type { Metadata, Viewport } from "next";
-import localFont from "next/font/local";
+import { Archivo, Syne } from "next/font/google";
 import "./globals.css";
 
-const soehne = localFont({
-  src: [
-    { path: "./fonts/soehne_buch-s.p.2faoiug7xav04.woff2", weight: "400", style: "normal" },
-    { path: "./fonts/soehne_buch_kursiv-s.p.2olvm13bchd_3.woff2", weight: "400", style: "italic" },
-    { path: "./fonts/soehne_halbfett-s.p.0cjwyfhpx35x7.woff2", weight: "600", style: "normal" },
-    { path: "./fonts/soehne_dreiviertelfett-s.p.3afamixnanxop.woff2", weight: "700", style: "normal" },
-    { path: "./fonts/soehne_extrafett-s.p.237as54tdb2in.woff2", weight: "800", style: "normal" },
-  ],
+const archivo = Archivo({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-soehne",
 });
 
-const soehneBreit = localFont({
-  src: "./fonts/soehne_breit_extrafett-s.p.3us7o9sn4w6yj.woff2",
-  weight: "800",
+const syne = Syne({
+  subsets: ["latin"],
+  weight: ["700", "800"],
   variable: "--font-soehne-breit",
 });
 
@@ -43,7 +38,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="es-AR" className="scroll-smooth">
-      <body className={`${soehne.className} ${soehneBreit.variable} bg-black text-slate-300 antialiased`}>
+      <body className={`${archivo.className} ${syne.variable} bg-black text-slate-300 antialiased`}>
         {children}
       </body>
     </html>

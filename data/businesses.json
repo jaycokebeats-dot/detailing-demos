@@ -14,5 +14,21 @@
       "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1600&q=80"
     ],
     "maps_url": null
+  },
+  {
+    "slug": "zenith-car-detailing",
+    "nombre": "Zenith Car Detailing",
+    "telefono": "0223 342-3166",
+    "whatsapp": "5492233423166",
+    "instagram": "zenithcardetailing",
+    "direccion": "Arana y Goiri 2085",
+    "ciudad": "Mar del Plata",
+    "rating": 4.9,
+    "reviews_count": 15,
+    "fotos": [
+      "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=1600&q=80",
+      "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1600&q=80"
+    ],
+    "maps_url": "https://maps.google.com/?q=Zenith+Car+Detailing+Arana+y+Goiri+2085+Mar+del+Plata"
   }
 ]
