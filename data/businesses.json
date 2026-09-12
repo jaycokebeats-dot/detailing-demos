@@ -9,10 +9,7 @@
     "ciudad": "Buenos Aires",
     "rating": 4.9,
     "reviews_count": 120,
-    "fotos": [
-      "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=1600&q=80",
-      "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1600&q=80"
-    ],
+    "fotos": [],
     "maps_url": null
   },
   {
@@ -25,10 +22,7 @@
     "ciudad": "Mar del Plata",
     "rating": 4.9,
     "reviews_count": 15,
-    "fotos": [
-      "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=1600&q=80",
-      "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1600&q=80"
-    ],
+    "fotos": [],
     "maps_url": "https://maps.google.com/?q=Zenith+Car+Detailing+Arana+y+Goiri+2085+Mar+del+Plata"
   },
   {
@@ -41,10 +35,7 @@
     "ciudad": "Benavídez",
     "rating": 4.9,
     "reviews_count": 18,
-    "fotos": [
-      "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=1600&q=80",
-      "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1600&q=80"
-    ],
+    "fotos": [],
     "maps_url": "https://www.google.com/maps/search/?api=1&query=Box+One+Detailing+Benavidez"
   },
   {
@@ -57,10 +48,7 @@
     "ciudad": "Benavídez",
     "rating": 4.9,
     "reviews_count": 18,
-    "fotos": [
-      "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=1600&q=80",
-      "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1600&q=80"
-    ],
+    "fotos": [],
     "maps_url": "https://www.google.com/maps/search/?api=1&query=Lavado+al+Detalle+Benavidez"
   },
   {
@@ -73,10 +61,7 @@
     "ciudad": "Benavídez",
     "rating": 4.9,
     "reviews_count": 18,
-    "fotos": [
-      "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=1600&q=80",
-      "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1600&q=80"
-    ],
+    "fotos": [],
     "maps_url": "https://www.google.com/maps/search/?api=1&query=Lagodetail+Benavidez"
   },
   {
@@ -89,10 +74,7 @@
     "ciudad": "Benavídez",
     "rating": 4.9,
     "reviews_count": 18,
-    "fotos": [
-      "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=1600&q=80",
-      "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1600&q=80"
-    ],
+    "fotos": [],
     "maps_url": "https://www.google.com/maps/search/?api=1&query=Crisistelli+detailing+Benavidez"
   },
   {
@@ -105,10 +87,7 @@
     "ciudad": "Benavídez",
     "rating": 4.9,
     "reviews_count": 18,
-    "fotos": [
-      "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=1600&q=80",
-      "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1600&q=80"
-    ],
+    "fotos": [],
     "maps_url": "https://www.google.com/maps/search/?api=1&query=Nimara+Detailing+Benavidez"
   },
   {
@@ -121,10 +100,7 @@
     "ciudad": "Benavídez",
     "rating": 4.9,
     "reviews_count": 18,
-    "fotos": [
-      "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=1600&q=80",
-      "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1600&q=80"
-    ],
+    "fotos": [],
     "maps_url": "https://www.google.com/maps/search/?api=1&query=Carscaredetailing+Benavidez"
   },
   {
@@ -137,10 +113,7 @@
     "ciudad": "Garín",
     "rating": 4.9,
     "reviews_count": 18,
-    "fotos": [
-      "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=1600&q=80",
-      "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1600&q=80"
-    ],
+    "fotos": [],
     "maps_url": "https://www.google.com/maps/search/?api=1&query=FzDetails+Garin"
   },
   {
@@ -153,10 +126,7 @@
     "ciudad": "Garín",
     "rating": 4.9,
     "reviews_count": 18,
-    "fotos": [
-      "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=1600&q=80",
-      "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1600&q=80"
-    ],
+    "fotos": [],
     "maps_url": "https://www.google.com/maps/search/?api=1&query=kingsdetailing.sacabollos+Garin"
   },
   {
@@ -169,10 +139,7 @@
     "ciudad": "Garín",
     "rating": 4.9,
     "reviews_count": 18,
-    "fotos": [
-      "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=1600&q=80",
-      "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1600&q=80"
-    ],
+    "fotos": [],
     "maps_url": "https://www.google.com/maps/search/?api=1&query=HD+Car+Detailng+Garin"
   },
   {
@@ -185,10 +152,7 @@
     "ciudad": "Garín",
     "rating": 4.9,
     "reviews_count": 18,
-    "fotos": [
-      "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=1600&q=80",
-      "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1600&q=80"
-    ],
+    "fotos": [],
     "maps_url": "https://www.google.com/maps/search/?api=1&query=Toxic+Shine+Kaizen+Garin"
   },
   {
@@ -201,10 +165,7 @@
     "ciudad": "Garín",
     "rating": 4.9,
     "reviews_count": 18,
-    "fotos": [
-      "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=1600&q=80",
-      "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1600&q=80"
-    ],
+    "fotos": [],
     "maps_url": "https://www.google.com/maps/search/?api=1&query=Elite+Automotores+Taller+Garin"
   }
 ]
