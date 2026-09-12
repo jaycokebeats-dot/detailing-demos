@@ -30,5 +30,181 @@
       "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1600&q=80"
     ],
     "maps_url": "https://maps.google.com/?q=Zenith+Car+Detailing+Arana+y+Goiri+2085+Mar+del+Plata"
+  },
+  {
+    "slug": "box-one-detailing",
+    "nombre": "Box One Detailing",
+    "telefono": "011 15-3471-7252",
+    "whatsapp": "5491134717252",
+    "instagram": "boxonedetailing",
+    "direccion": "Av. Benavídez, Benavídez",
+    "ciudad": "Benavídez",
+    "rating": 4.9,
+    "reviews_count": 18,
+    "fotos": [
+      "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=1600&q=80",
+      "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1600&q=80"
+    ],
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Box+One+Detailing+Benavidez"
+  },
+  {
+    "slug": "lavado-al-detalle-detailing",
+    "nombre": "Lavado al Detalle Detailing",
+    "telefono": "011 15-2674-2804",
+    "whatsapp": "5491126742804",
+    "instagram": null,
+    "direccion": "Av. Gral. Juan Domingo Perón, Benavídez",
+    "ciudad": "Benavídez",
+    "rating": 4.9,
+    "reviews_count": 18,
+    "fotos": [
+      "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=1600&q=80",
+      "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1600&q=80"
+    ],
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Lavado+al+Detalle+Benavidez"
+  },
+  {
+    "slug": "lagodetail-detailing",
+    "nombre": "Lagodetail Detailing",
+    "telefono": "011 15-6353-2174",
+    "whatsapp": "549111563532174",
+    "instagram": "lagodetail",
+    "direccion": "Av. Gral. Juan Domingo Perón, Benavídez",
+    "ciudad": "Benavídez",
+    "rating": 4.9,
+    "reviews_count": 18,
+    "fotos": [
+      "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=1600&q=80",
+      "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1600&q=80"
+    ],
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Lagodetail+Benavidez"
+  },
+  {
+    "slug": "crisistelli-detailing",
+    "nombre": "Crisistelli Detailing",
+    "telefono": "011 15-5000-9838",
+    "whatsapp": "5491150009838",
+    "instagram": "crisistelli_detailing",
+    "direccion": "Garmendia 627, Benavídez",
+    "ciudad": "Benavídez",
+    "rating": 4.9,
+    "reviews_count": 18,
+    "fotos": [
+      "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=1600&q=80",
+      "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1600&q=80"
+    ],
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Crisistelli+detailing+Benavidez"
+  },
+  {
+    "slug": "nimara-detailing",
+    "nombre": "Nimara Detailing",
+    "telefono": "011 15-3420-1122",
+    "whatsapp": "5491134201122",
+    "instagram": "nimaradetailing",
+    "direccion": "Calle 7, Benavídez",
+    "ciudad": "Benavídez",
+    "rating": 4.9,
+    "reviews_count": 18,
+    "fotos": [
+      "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=1600&q=80",
+      "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1600&q=80"
+    ],
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Nimara+Detailing+Benavidez"
+  },
+  {
+    "slug": "cars-care-detailing",
+    "nombre": "Cars Care Detailing",
+    "telefono": "011 15-5719-6370",
+    "whatsapp": "5491157196370",
+    "instagram": "carscaredetailing",
+    "direccion": "Av. Benavídez, Benavídez",
+    "ciudad": "Benavídez",
+    "rating": 4.9,
+    "reviews_count": 18,
+    "fotos": [
+      "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=1600&q=80",
+      "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1600&q=80"
+    ],
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Carscaredetailing+Benavidez"
+  },
+  {
+    "slug": "fzdetails-detailing",
+    "nombre": "FzDetails Detailing",
+    "telefono": "011 15-3007-5454",
+    "whatsapp": "5491130075454",
+    "instagram": "fzdetails",
+    "direccion": "Gral. Lavalle, Garín",
+    "ciudad": "Garín",
+    "rating": 4.9,
+    "reviews_count": 18,
+    "fotos": [
+      "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=1600&q=80",
+      "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1600&q=80"
+    ],
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=FzDetails+Garin"
+  },
+  {
+    "slug": "kings-detailing-sacabollos",
+    "nombre": "Kings Detailing & Sacabollos",
+    "telefono": "011 15-5588-2603",
+    "whatsapp": "5491155882603",
+    "instagram": "kingsdetailing",
+    "direccion": "Isla Nueva 172, Garín",
+    "ciudad": "Garín",
+    "rating": 4.9,
+    "reviews_count": 18,
+    "fotos": [
+      "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=1600&q=80",
+      "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1600&q=80"
+    ],
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=kingsdetailing.sacabollos+Garin"
+  },
+  {
+    "slug": "hd-car-detailing",
+    "nombre": "HD Car Detailing",
+    "telefono": "011 15-2591-4798",
+    "whatsapp": "5491125914798",
+    "instagram": "hdcardetailing",
+    "direccion": "Los Toldos, Garín",
+    "ciudad": "Garín",
+    "rating": 4.9,
+    "reviews_count": 18,
+    "fotos": [
+      "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=1600&q=80",
+      "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1600&q=80"
+    ],
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=HD+Car+Detailng+Garin"
+  },
+  {
+    "slug": "toxic-shine-kaizen",
+    "nombre": "Toxic Shine Kaizen",
+    "telefono": "011 15-7360-1661",
+    "whatsapp": "5491173601661",
+    "instagram": "toxicshinekaizen",
+    "direccion": "Av. Uriburu 470, Garín",
+    "ciudad": "Garín",
+    "rating": 4.9,
+    "reviews_count": 18,
+    "fotos": [
+      "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=1600&q=80",
+      "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1600&q=80"
+    ],
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Toxic+Shine+Kaizen+Garin"
+  },
+  {
+    "slug": "elite-automotores-taller",
+    "nombre": "Elite Automotores Taller",
+    "telefono": "011 15-6601-6019",
+    "whatsapp": "5491166016019",
+    "instagram": "eliteautomotores",
+    "direccion": "Hipólito Yrigoyen, Garín",
+    "ciudad": "Garín",
+    "rating": 4.9,
+    "reviews_count": 18,
+    "fotos": [
+      "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=1600&q=80",
+      "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1600&q=80"
+    ],
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Elite+Automotores+Taller+Garin"
   }
 ]
