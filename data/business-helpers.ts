@@ -35,5 +35,5 @@ export function instagramHref(handle: string): string {
 }
 
 export function heroFoto(biz: Business): string | null {
-  return biz.fotos[0] ?? null;
+  return biz.fotos?.[0] ?? null;
 }
