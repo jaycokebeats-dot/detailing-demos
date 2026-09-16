@@ -1,11 +1,44 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { FaWhatsapp } from "react-icons/fa";
 import { HiOutlineCheckCircle, HiOutlineSparkles } from "react-icons/hi2";
 import { type Business, MSG_PRESUPUESTO, heroFoto, waHref } from "@/data/business-helpers";
 
 export default function Hero({ biz }: { biz: Business }) {
   const foto = heroFoto(biz);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.defaultMuted = true;
+    video.muted = true;
+
+    const attemptPlay = () => {
+      video.play().catch(() => {
+        // Autoplay prevented by browser policy / battery saver
+      });
+    };
+
+    attemptPlay();
+
+    const handleInteraction = () => {
+      attemptPlay();
+      window.removeEventListener("touchstart", handleInteraction);
+      window.removeEventListener("scroll", handleInteraction);
+    };
+
+    window.addEventListener("touchstart", handleInteraction, { passive: true });
+    window.addEventListener("scroll", handleInteraction, { passive: true });
+
+    return () => {
+      window.removeEventListener("touchstart", handleInteraction);
+      window.removeEventListener("scroll", handleInteraction);
+    };
+  }, []);
+
   const stats = [
     biz.rating != null
       ? `★ ${biz.rating.toFixed(1)} en Google${biz.reviews_count != null ? ` (${biz.reviews_count} reseñas)` : ""}`
@@ -26,11 +59,15 @@ export default function Hero({ biz }: { biz: Business }) {
         />
       ) : (
         <video
+          ref={videoRef}
           autoPlay
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-55 contrast-110"
+          preload="auto"
+          disablePictureInPicture
+          controls={false}
+          className="absolute inset-0 w-full h-full object-cover opacity-55 contrast-110 pointer-events-none"
           src="https://storage.googleapis.com/webild/default/templates/detailing/hero/hero.mp4"
         />
       )}
