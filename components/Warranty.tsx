@@ -3,8 +3,8 @@ import SectionDivider from "./SectionDivider";
 
 const PUNTOS = [
   { icon: HiOutlineSparkles, titulo: "Productos de grado profesional", texto: "Nada de túnel. Trabajamos a mano, con productos que no dañan la pintura." },
-  { icon: HiOutlineShieldCheck, titulo: "Garantía por escrito", texto: "Cerámico y correcciones de pintura, con garantía firmada." },
-  { icon: HiOutlineChatBubbleLeftRight, titulo: "Te acompañamos después", texto: "Si algo no te cierra, nos escribís y lo resolvemos." },
+  { icon: HiOutlineShieldCheck, titulo: "Trabajos al Detalle", texto: "Cerámico y correcciones de pintura aplicados con máximo rigor técnico." },
+  { icon: HiOutlineChatBubbleLeftRight, titulo: "Te acompañamos después", texto: "Si tenés cualquier consulta sobre el mantenimiento, nos escribís." },
 ];
 
 export default function Warranty() {

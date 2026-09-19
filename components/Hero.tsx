@@ -44,33 +44,23 @@ export default function Hero({ biz }: { biz: Business }) {
       ? `★ ${biz.rating.toFixed(1)} en Google${biz.reviews_count != null ? ` (${biz.reviews_count} reseñas)` : ""}`
       : "+800 autos detailed",
     "8 años en el rubro",
-    "Garantía por escrito",
+    "Atención personalizada",
   ];
 
   return (
     <section id="hero" className="relative lg:h-dvh pt-24 pb-12 lg:pb-0 px-4 sm:px-6 overflow-x-clip">
-      {foto ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={foto}
-          alt=""
-          aria-hidden
-          className="absolute inset-0 w-full h-full object-cover opacity-40 contrast-110"
-        />
-      ) : (
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          disablePictureInPicture
-          controls={false}
-          className="absolute inset-0 w-full h-full object-cover opacity-55 contrast-110 pointer-events-none"
-          src="https://storage.googleapis.com/webild/default/templates/detailing/hero/hero.mp4"
-        />
-      )}
+      <video
+        ref={videoRef}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        disablePictureInPicture
+        controls={false}
+        className="absolute inset-0 w-full h-full object-cover opacity-55 contrast-110 pointer-events-none"
+        src="https://storage.googleapis.com/webild/default/templates/detailing/hero/hero.mp4"
+      />
       <div className="absolute inset-0" style={{ background: "linear-gradient(100deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 45%, rgba(0,0,0,0.35) 100%)" }} />
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full pointer-events-none"

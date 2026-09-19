@@ -6197,7 +6197,23 @@
     "ciudad": "Luján",
     "rating": 4.9,
     "reviews_count": 18,
-    "fotos": [],
+    "fotos": [
+      "/ec-detail/foto-1.jpg",
+      "/ec-detail/foto-2.jpg",
+      "/ec-detail/foto-3.jpg",
+      "/ec-detail/foto-4.jpg",
+      "/ec-detail/foto-5.jpg",
+      "/ec-detail/foto-6.jpg",
+      "/ec-detail/foto-7.jpg",
+      "/ec-detail/foto-8.jpg",
+      "/ec-detail/foto-9.jpg",
+      "/ec-detail/foto-10.jpg",
+      "/ec-detail/foto-11.jpg",
+      "/ec-detail/foto-12.jpg",
+      "/ec-detail/foto-13.jpg",
+      "/ec-detail/foto-14.jpg",
+      "/ec-detail/foto-15.jpg"
+    ],
     "maps_url": "https://www.google.com/maps/place/Ec+Detail+(est%C3%A9tica+vehicular)/@-34.5574635,-59.4139584,11z/data=!4m11!1m3!2m2!1scar+detailing+lujan+buenos+aires!6e2!3m6!1s0x95bc870078728c41:0xc4a792ba6d07844f!8m2!3d-34.566342!4d-59.10388!15sCiBjYXIgZGV0YWlsaW5nIGx1amFuIGJ1ZW5vcyBhaXJlc5IBCGNhcl93YXNo4AEA!16s%2Fg%2F11yfq8nmd9?entry=ttu&g_ep=EgoyMDI2MDkxNi4wIKXMDSoASAFQAw%3D%3D",
     "servicios": [
       {
@@ -6215,7 +6231,7 @@
             "precio": "$50.000"
           }
         ],
-        "img": "/servicios/interior.jpg"
+        "img": "/ec-detail/foto-1.jpg"
       },
       {
         "nombre": "Lavado Premium",
@@ -6234,7 +6250,7 @@
             "precio": "$120.000"
           }
         ],
-        "img": "/servicios/exterior.jpg"
+        "img": "/ec-detail/foto-2.jpg"
       },
       {
         "nombre": "Limpieza de Tapizados Integral",
@@ -6251,7 +6267,7 @@
             "precio": "$350.000"
           }
         ],
-        "img": "/servicios/interior.jpg"
+        "img": "/ec-detail/foto-3.jpg"
       },
       {
         "nombre": "Abrillantado en 1 Paso + Sellador Híbrido",
@@ -6276,14 +6292,14 @@
             "precio": "$420.000"
           }
         ],
-        "img": "/servicios/acrilico.jpg"
+        "img": "/ec-detail/foto-4.jpg"
       },
       {
         "nombre": "Tratamiento Acrílico SONAX (Media Corrección)",
         "descripcion": "Media corrección de barniz/laca con tecnología alemana SONAX. Elimina micro-rayones (swirls) y marca de lavado, sellando la superficie.",
         "ideal_si": "Querés eliminar defectos moderados y proteger tu auto por medio año.",
         "precio": "Desde $400.000",
-        "proteccion": "🛡️ 6 meses de protección",
+        "proteccion": "🛡️ 6 meses de duración",
         "precios_detalle": [
           {
             "categoria": "Auto Chico",
@@ -6302,14 +6318,14 @@
             "precio": "$550.000"
           }
         ],
-        "img": "/servicios/acrilico.jpg"
+        "img": "/ec-detail/foto-5.jpg"
       },
       {
         "nombre": "Tratamiento Acrílico SONAX (Full Corrección)",
         "descripcion": "Corrección completa e intensiva de barniz/laca con la línea alemana SONAX. Elimina la máxima cantidad de defectos en la pintura dejando un acabado espejo con sellado acrílico.",
         "ideal_si": "Buscás una restauración profunda de pintura.",
         "precio": "Desde $450.000",
-        "proteccion": "🛡️ 6 meses de protección",
+        "proteccion": "🛡️ 6 meses de duración",
         "precios_detalle": [
           {
             "categoria": "Auto Chico",
@@ -6328,7 +6344,7 @@
             "precio": "$600.000"
           }
         ],
-        "img": "/servicios/acrilico.jpg"
+        "img": "/ec-detail/foto-6.jpg"
       },
       {
         "nombre": "Tratamiento Cerámico SOFT99 (Full Corrección)",
@@ -6336,7 +6352,7 @@
         "ideal_si": "Querés protección cerámica de alta dureza y máxima reflectividad por 1 año.",
         "precio": "Desde $500.000",
         "destacado": true,
-        "proteccion": "🛡️ 12 meses (1 año) de protección",
+        "proteccion": "🛡️ 12 meses (1 año) de duración",
         "precios_detalle": [
           {
             "categoria": "Auto Chico",
@@ -6355,14 +6371,14 @@
             "precio": "$650.000"
           }
         ],
-        "img": "/servicios/ceramico-real.jpg"
+        "img": "/ec-detail/foto-7.jpg"
       },
       {
         "nombre": "Vidrio Líquido CARPRO CQuartz 3.0 (Full Corrección)",
         "descripcion": "Full corrección de laca + recubrimiento cerámico de nanotecnología CARPRO CQuartz 3.0 (tecnología líder mundial). Máxima dureza SiO2, brillo cristalino y repelencia absoluta.",
         "ideal_si": "Exigís el estándar internacional más elevado en protección de pintura duradera.",
         "precio": "Desde $550.000",
-        "proteccion": "🛡️ 2 años de protección",
+        "proteccion": "🛡️ 2 años de duración",
         "precios_detalle": [
           {
             "categoria": "Auto Chico",
@@ -6381,7 +6397,7 @@
             "precio": "$720.000"
           }
         ],
-        "img": "/servicios/ceramico-real.jpg"
+        "img": "/ec-detail/foto-8.jpg"
       },
       {
         "nombre": "Vidrio Líquido CARPRO DQUARTZ GO (Full Corrección)",
@@ -6389,7 +6405,7 @@
         "ideal_si": "Buscás la máxima protección y exclusividad absoluta para tu vehículo con durabilidad de 2 a 3 años.",
         "precio": "Desde $600.000",
         "destacado": true,
-        "proteccion": "🛡️ 2 a 3 años de protección",
+        "proteccion": "🛡️ 2 a 3 años de duración",
         "precios_detalle": [
           {
             "categoria": "Auto Chico",
@@ -6408,7 +6424,7 @@
             "precio": "$900.000"
           }
         ],
-        "img": "/servicios/ceramico-real.jpg"
+        "img": "/ec-detail/foto-9.jpg"
       }
     ]
   },
