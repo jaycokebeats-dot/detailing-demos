@@ -1,3 +1,14 @@
+export type ServiceItem = {
+  nombre: string;
+  descripcion: string;
+  ideal_si?: string;
+  precio: string;
+  precios_detalle?: { categoria: string; precio: string }[];
+  destacado?: boolean;
+  img?: string;
+  proteccion?: string;
+};
+
 export type Business = {
   slug: string;
   nombre: string;
@@ -13,6 +24,7 @@ export type Business = {
   // campos opcionales que no vienen del scraper
   nombreCorto?: string;
   horario?: string;
+  servicios?: ServiceItem[];
 };
 
 export const MSG_PRESUPUESTO = "Hola! Quiero pedir un presupuesto para mi auto.";

@@ -6198,7 +6198,219 @@
     "rating": 4.9,
     "reviews_count": 18,
     "fotos": [],
-    "maps_url": "https://www.google.com/maps/place/Ec+Detail+(est%C3%A9tica+vehicular)/@-34.5574635,-59.4139584,11z/data=!4m11!1m3!2m2!1scar+detailing+lujan+buenos+aires!6e2!3m6!1s0x95bc870078728c41:0xc4a792ba6d07844f!8m2!3d-34.566342!4d-59.10388!15sCiBjYXIgZGV0YWlsaW5nIGx1amFuIGJ1ZW5vcyBhaXJlc5IBCGNhcl93YXNo4AEA!16s%2Fg%2F11yfq8nmd9?entry=ttu&g_ep=EgoyMDI2MDkxNi4wIKXMDSoASAFQAw%3D%3D"
+    "maps_url": "https://www.google.com/maps/place/Ec+Detail+(est%C3%A9tica+vehicular)/@-34.5574635,-59.4139584,11z/data=!4m11!1m3!2m2!1scar+detailing+lujan+buenos+aires!6e2!3m6!1s0x95bc870078728c41:0xc4a792ba6d07844f!8m2!3d-34.566342!4d-59.10388!15sCiBjYXIgZGV0YWlsaW5nIGx1amFuIGJ1ZW5vcyBhaXJlc5IBCGNhcl93YXNo4AEA!16s%2Fg%2F11yfq8nmd9?entry=ttu&g_ep=EgoyMDI2MDkxNi4wIKXMDSoASAFQAw%3D%3D",
+    "servicios": [
+      {
+        "nombre": "Lavado Clásico",
+        "descripcion": "Lavado seguro a mano con champú pH neutro, limpieza integral de llantas y guardabarros.",
+        "ideal_si": "Buscás mantener tu vehículo limpio sin rayar la laca ni la pintura.",
+        "precio": "Desde $40.000",
+        "precios_detalle": [
+          {
+            "categoria": "Auto",
+            "precio": "$40.000"
+          },
+          {
+            "categoria": "Camioneta",
+            "precio": "$50.000"
+          }
+        ],
+        "img": "/servicios/interior.jpg"
+      },
+      {
+        "nombre": "Lavado Premium",
+        "descripcion": "Lavado completo exterior al detalle, lavado de pasaruedas, aspirado profundo de habitáculo, nutrición de plásticos interiores/exteriores y aplicación de cera de alta duración.",
+        "ideal_si": "Querés una estética impecable con brillo espejo y repelencia extrema por 4 meses.",
+        "precio": "Desde $80.000",
+        "destacado": true,
+        "proteccion": "🛡️ 4 meses de duración",
+        "precios_detalle": [
+          {
+            "categoria": "Auto",
+            "precio": "$80.000"
+          },
+          {
+            "categoria": "Camioneta",
+            "precio": "$120.000"
+          }
+        ],
+        "img": "/servicios/exterior.jpg"
+      },
+      {
+        "nombre": "Limpieza de Tapizados Integral",
+        "descripcion": "Desarmado técnico de butacas, aplicación de APC con cepillado a máquina, inyección y extracción profunda de tapizados con lava-tapizados profesional. Limpieza al detalle de paneles de puerta, techo completo y cinturones de seguridad a vapor. Acondicionado y protección UV de todos los plásticos interiores.",
+        "ideal_si": "Querés desinfectar, eliminar manchas u olores e higienizar el interior al 100%.",
+        "precio": "Desde $250.000",
+        "precios_detalle": [
+          {
+            "categoria": "Auto",
+            "precio": "$250.000"
+          },
+          {
+            "categoria": "Camioneta",
+            "precio": "$350.000"
+          }
+        ],
+        "img": "/servicios/interior.jpg"
+      },
+      {
+        "nombre": "Abrillantado en 1 Paso + Sellador Híbrido",
+        "descripcion": "Abrillantado a máquina en 1 paso de pulido para devolver la viveza al color y restaurar el resplandor, finalizado con sellador híbrido de alta hidrofobia.",
+        "ideal_si": "Buscás revivir el brillo de la pintura de forma rápida y efectiva.",
+        "precio": "Desde $350.000",
+        "precios_detalle": [
+          {
+            "categoria": "Auto Chico",
+            "precio": "$350.000"
+          },
+          {
+            "categoria": "Auto Intermedio / Grande",
+            "precio": "$370.000"
+          },
+          {
+            "categoria": "Camioneta Intermedia",
+            "precio": "$390.000"
+          },
+          {
+            "categoria": "Camioneta Grande",
+            "precio": "$420.000"
+          }
+        ],
+        "img": "/servicios/acrilico.jpg"
+      },
+      {
+        "nombre": "Tratamiento Acrílico SONAX (Media Corrección)",
+        "descripcion": "Media corrección de barniz/laca con tecnología alemana SONAX. Elimina micro-rayones (swirls) y marca de lavado, sellando la superficie.",
+        "ideal_si": "Querés eliminar defectos moderados y proteger tu auto por medio año.",
+        "precio": "Desde $400.000",
+        "proteccion": "🛡️ 6 meses de protección",
+        "precios_detalle": [
+          {
+            "categoria": "Auto Chico",
+            "precio": "$400.000"
+          },
+          {
+            "categoria": "Auto Intermedio / Grande",
+            "precio": "$440.000"
+          },
+          {
+            "categoria": "Camioneta Intermedia",
+            "precio": "$480.000"
+          },
+          {
+            "categoria": "Camioneta Grande",
+            "precio": "$550.000"
+          }
+        ],
+        "img": "/servicios/acrilico.jpg"
+      },
+      {
+        "nombre": "Tratamiento Acrílico SONAX (Full Corrección)",
+        "descripcion": "Corrección completa e intensiva de barniz/laca con la línea alemana SONAX. Elimina la máxima cantidad de defectos en la pintura dejando un acabado espejo con sellado acrílico.",
+        "ideal_si": "Buscás una restauración profunda de pintura.",
+        "precio": "Desde $450.000",
+        "proteccion": "🛡️ 6 meses de protección",
+        "precios_detalle": [
+          {
+            "categoria": "Auto Chico",
+            "precio": "$450.000"
+          },
+          {
+            "categoria": "Auto Intermedio / Grande",
+            "precio": "$490.000"
+          },
+          {
+            "categoria": "Camioneta Intermedia",
+            "precio": "$530.000"
+          },
+          {
+            "categoria": "Camioneta Grande",
+            "precio": "$600.000"
+          }
+        ],
+        "img": "/servicios/acrilico.jpg"
+      },
+      {
+        "nombre": "Tratamiento Cerámico SOFT99 (Full Corrección)",
+        "descripcion": "Full corrección de pintura + recubrimiento cerámico japonés SOFT99. Aporta extrema hidrofobia, brillo vitrificado y protección contra agentes químicos y rayos UV.",
+        "ideal_si": "Querés protección cerámica de alta dureza y máxima reflectividad por 1 año.",
+        "precio": "Desde $500.000",
+        "destacado": true,
+        "proteccion": "🛡️ 12 meses (1 año) de protección",
+        "precios_detalle": [
+          {
+            "categoria": "Auto Chico",
+            "precio": "$500.000"
+          },
+          {
+            "categoria": "Auto Intermedio / Grande",
+            "precio": "$540.000"
+          },
+          {
+            "categoria": "Camioneta Intermedia",
+            "precio": "$580.000"
+          },
+          {
+            "categoria": "Camioneta Grande",
+            "precio": "$650.000"
+          }
+        ],
+        "img": "/servicios/ceramico-real.jpg"
+      },
+      {
+        "nombre": "Vidrio Líquido CARPRO CQuartz 3.0 (Full Corrección)",
+        "descripcion": "Full corrección de laca + recubrimiento cerámico de nanotecnología CARPRO CQuartz 3.0 (tecnología líder mundial). Máxima dureza SiO2, brillo cristalino y repelencia absoluta.",
+        "ideal_si": "Exigís el estándar internacional más elevado en protección de pintura duradera.",
+        "precio": "Desde $550.000",
+        "proteccion": "🛡️ 2 años de protección",
+        "precios_detalle": [
+          {
+            "categoria": "Auto Chico",
+            "precio": "$550.000"
+          },
+          {
+            "categoria": "Auto Intermedio / Grande",
+            "precio": "$600.000"
+          },
+          {
+            "categoria": "Camioneta Intermedia",
+            "precio": "$650.000"
+          },
+          {
+            "categoria": "Camioneta Grande",
+            "precio": "$720.000"
+          }
+        ],
+        "img": "/servicios/ceramico-real.jpg"
+      },
+      {
+        "nombre": "Vidrio Líquido CARPRO DQUARTZ GO (Full Corrección)",
+        "descripcion": "El tratamiento de protección más avanzado del mercado mundial. Full corrección de laca + recubrimiento con nanotecnología de cuarzo reforzado CARPRO DQUARTZ GO, otorgando resistencia extrema a rayones, químicos y desgaste ambiental.",
+        "ideal_si": "Buscás la máxima protección y exclusividad absoluta para tu vehículo con durabilidad de 2 a 3 años.",
+        "precio": "Desde $600.000",
+        "destacado": true,
+        "proteccion": "🛡️ 2 a 3 años de protección",
+        "precios_detalle": [
+          {
+            "categoria": "Auto Chico",
+            "precio": "$600.000"
+          },
+          {
+            "categoria": "Auto Intermedio / Grande",
+            "precio": "$750.000"
+          },
+          {
+            "categoria": "Camioneta Intermedia",
+            "precio": "$800.000"
+          },
+          {
+            "categoria": "Camioneta Grande",
+            "precio": "$900.000"
+          }
+        ],
+        "img": "/servicios/ceramico-real.jpg"
+      }
+    ]
   },
   {
     "slug": "bulls-detailing",
