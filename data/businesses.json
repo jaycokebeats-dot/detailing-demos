@@ -6231,7 +6231,7 @@
             "precio": "$50.000"
           }
         ],
-        "img": "/ec-detail/foto-1.jpg"
+        "img": "/ec-detail/lavadoclasico.jpg"
       },
       {
         "nombre": "Lavado Premium",
@@ -6267,7 +6267,7 @@
             "precio": "$350.000"
           }
         ],
-        "img": "/ec-detail/foto-3.jpg"
+        "img": "/ec-detail/tapizado.jpg"
       },
       {
         "nombre": "Abrillantado en 1 Paso + Sellador Híbrido",
@@ -6292,7 +6292,7 @@
             "precio": "$420.000"
           }
         ],
-        "img": "/ec-detail/foto-4.jpg"
+        "img": "/ec-detail/logo.jpg"
       },
       {
         "nombre": "Tratamiento Acrílico SONAX (Media Corrección)",
@@ -6318,7 +6318,7 @@
             "precio": "$550.000"
           }
         ],
-        "img": "/ec-detail/foto-5.jpg"
+        "img": "/ec-detail/logo.jpg"
       },
       {
         "nombre": "Tratamiento Acrílico SONAX (Full Corrección)",
@@ -6344,7 +6344,7 @@
             "precio": "$600.000"
           }
         ],
-        "img": "/ec-detail/foto-6.jpg"
+        "img": "/ec-detail/logo.jpg"
       },
       {
         "nombre": "Tratamiento Cerámico SOFT99 (Full Corrección)",
@@ -6371,7 +6371,7 @@
             "precio": "$650.000"
           }
         ],
-        "img": "/ec-detail/foto-7.jpg"
+        "img": "/ec-detail/logo.jpg"
       },
       {
         "nombre": "Vidrio Líquido CARPRO CQuartz 3.0 (Full Corrección)",
@@ -6397,7 +6397,7 @@
             "precio": "$720.000"
           }
         ],
-        "img": "/ec-detail/foto-8.jpg"
+        "img": "/ec-detail/logo.jpg"
       },
       {
         "nombre": "Vidrio Líquido CARPRO DQUARTZ GO (Full Corrección)",
@@ -6424,7 +6424,7 @@
             "precio": "$900.000"
           }
         ],
-        "img": "/ec-detail/foto-9.jpg"
+        "img": "/ec-detail/logo.jpg"
       }
     ]
   },
