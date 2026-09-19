@@ -6283,8 +6283,8 @@
         "descripcion": "Lijado de ópticas en tres pasos, pulido de alta definición y sellado protector para mayor durabilidad.",
         "ideal_si": "Tenés las ópticas amarillentas u opacas y querés recuperar potencia de iluminación y estética.",
         "precio": "$150.000",
-        "antes_img": "/ec-detail/opti_antes.jpg",
-        "despues_img": "/ec-detail/opti_despues.jpg"
+        "antes_img": "/ec-detail/opti_new_antes.jpg",
+        "despues_img": "/ec-detail/opti_new_despues.jpg"
       },
       {
         "nombre": "Abrillantado en 1 Paso + Sellador Híbrido",
@@ -6309,7 +6309,7 @@
             "precio": "$420.000"
           }
         ],
-        "img": "/ec-detail/logo.jpg"
+        "img": "/ec-detail/abrillantado.jpg"
       },
       {
         "nombre": "Tratamiento Acrílico SONAX (Media Corrección)",
@@ -6414,8 +6414,7 @@
             "precio": "$720.000"
           }
         ],
-        "antes_img": "/ec-detail/cquartz_antes.jpg",
-        "despues_img": "/ec-detail/cquartz_despues.jpg"
+        "img": "/ec-detail/cquartz_full.jpg"
       },
       {
         "nombre": "Vidrio Líquido CARPRO DQUARTZ GO (Full Corrección)",
@@ -6442,8 +6441,7 @@
             "precio": "$900.000"
           }
         ],
-        "antes_img": "/ec-detail/dquartz_antes.jpg",
-        "despues_img": "/ec-detail/dquartz_despues.jpg"
+        "img": "/ec-detail/dquartz_full.jpg"
       }
     ],
     "nombreCorto": "EC DETAIL"
