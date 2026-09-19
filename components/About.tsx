@@ -65,7 +65,7 @@ export default function About({ biz }: { biz: Business }) {
             {[
               { k: "Trabajo", v: "A mano" },
               { k: "Turnos", v: "Acotados" },
-              { k: "Garantía", v: "Por escrito" },
+              { k: "Atención", v: "Personalizada" },
             ].map((d) => (
               <div key={d.k}>
                 <dt className="text-[11px] uppercase tracking-widest text-slate-500 mb-1">{d.k}</dt>

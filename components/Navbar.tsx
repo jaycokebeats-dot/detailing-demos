@@ -53,7 +53,7 @@ export default function Navbar({ biz }: { biz: Business }) {
           <div className="hidden md:flex items-center gap-8 text-xs uppercase tracking-widest text-slate-400">
             <a href="#resultados" className="hover:text-white transition-colors">Resultados</a>
             <a href="#servicios" className="hover:text-white transition-colors">Servicios</a>
-            <a href="#garantia" className="hover:text-white transition-colors">Por qué nosotros</a>
+            <a href="#nosotros" className="hover:text-white transition-colors">Por qué nosotros</a>
             <a href="#ubicacion" className="hover:text-white transition-colors">Ubicación</a>
           </div>
           <a
