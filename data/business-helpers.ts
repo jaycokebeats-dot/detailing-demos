@@ -6,6 +6,8 @@ export type ServiceItem = {
   precios_detalle?: { categoria: string; precio: string }[];
   destacado?: boolean;
   img?: string;
+  antes_img?: string;
+  despues_img?: string;
   proteccion?: string;
 };
 

@@ -1,5 +1,6 @@
 import { FaWhatsapp } from "react-icons/fa";
 import { type Business, type ServiceItem, MSG_FOTOS, MSG_PRESUPUESTO, waHref } from "@/data/businesses";
+import CompareSlider from "./CompareSlider";
 
 const SERVICIOS: ServiceItem[] = [
   {
@@ -89,10 +90,14 @@ export default function Inventory({ biz }: { biz: Business }) {
                   </span>
                 )}
                 <div className="aspect-[4/3] overflow-hidden relative" style={{ background: "#141414" }}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={imgSource} alt={s.nombre} className="w-full h-full object-cover" />
+                  {s.antes_img && s.despues_img ? (
+                    <CompareSlider before={s.antes_img} after={s.despues_img} alt={s.nombre} real />
+                  ) : (
+                    /* eslint-disable-next-line @next/next/no-img-element */
+                    <img src={imgSource} alt={s.nombre} className="w-full h-full object-cover" />
+                  )}
                   {s.proteccion && (
-                    <div className="absolute bottom-2 left-2 right-2 bg-slate-950/85 backdrop-blur-md px-2.5 py-1 rounded-lg border border-emerald-500/40 text-[11px] font-semibold text-emerald-400 flex items-center gap-1.5 shadow-lg">
+                    <div className="absolute bottom-2 left-2 right-2 bg-slate-950/85 backdrop-blur-md px-2.5 py-1 rounded-lg border border-emerald-500/40 text-[11px] font-semibold text-emerald-400 flex items-center gap-1.5 shadow-lg z-20 pointer-events-none">
                       <span>{s.proteccion}</span>
                     </div>
                   )}

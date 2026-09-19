@@ -6189,7 +6189,7 @@
   },
   {
     "slug": "ec-detail-estetica-vehicular",
-    "nombre": "Ec Detail (estética vehicular)",
+    "nombre": "EC DETAIL",
     "telefono": "0232 3519497",
     "whatsapp": "5492323519497",
     "instagram": "ec.detail_",
@@ -6218,7 +6218,7 @@
     "servicios": [
       {
         "nombre": "Lavado Clásico",
-        "descripcion": "Lavado seguro a mano con champú pH neutro, limpieza integral de llantas y guardabarros.",
+        "descripcion": "Lavado seguro a mano con shampoo pH neutro, limpieza integral de llantas y guardabarros.",
         "ideal_si": "Buscás mantener tu vehículo limpio sin rayar la laca ni la pintura.",
         "precio": "Desde $40.000",
         "precios_detalle": [
@@ -6267,7 +6267,22 @@
             "precio": "$350.000"
           }
         ],
-        "img": "/ec-detail/tapizado.jpg"
+        "antes_img": "/ec-detail/tapi_antes.jpg",
+        "despues_img": "/ec-detail/tapi_despues.jpg"
+      },
+      {
+        "nombre": "Lavado de Motor al Detalle",
+        "descripcion": "Lavado técnico de motor al detalle con vapor de alta presión más acondicionado y protección UV de plásticos y mangueras.",
+        "ideal_si": "Buscás mantener el vano motor impecable e higienizado sin riesgos de humedad o agua.",
+        "precio": "$100.000",
+        "img": "/ec-detail/foto-4.jpg"
+      },
+      {
+        "nombre": "Pulido de Ópticas",
+        "descripcion": "Lijado de ópticas en tres pasos, pulido de alta definición y sellado protector para mayor durabilidad.",
+        "ideal_si": "Tenés las ópticas amarillentas u opacas y querés recuperar potencia de iluminación y estética.",
+        "precio": "$150.000",
+        "img": "/ec-detail/foto-5.jpg"
       },
       {
         "nombre": "Abrillantado en 1 Paso + Sellador Híbrido",
@@ -6426,7 +6441,8 @@
         ],
         "img": "/ec-detail/logo.jpg"
       }
-    ]
+    ],
+    "nombreCorto": "EC DETAIL"
   },
   {
     "slug": "bulls-detailing",
