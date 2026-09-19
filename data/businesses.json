@@ -6250,7 +6250,8 @@
             "precio": "$120.000"
           }
         ],
-        "img": "/ec-detail/foto-2.jpg"
+        "antes_img": "/ec-detail/lavadopremium_antes.jpg",
+        "despues_img": "/ec-detail/lavadopremium_despues.jpg"
       },
       {
         "nombre": "Limpieza de Tapizados Integral",
@@ -6283,8 +6284,7 @@
         "descripcion": "Lijado de ópticas en tres pasos, pulido de alta definición y sellado protector para mayor durabilidad.",
         "ideal_si": "Tenés las ópticas amarillentas u opacas y querés recuperar potencia de iluminación y estética.",
         "precio": "$150.000",
-        "antes_img": "/ec-detail/opti_new_antes.jpg",
-        "despues_img": "/ec-detail/opti_new_despues.jpg"
+        "img": "/ec-detail/opticas_full.jpg"
       },
       {
         "nombre": "Abrillantado en 1 Paso + Sellador Híbrido",
@@ -6335,7 +6335,8 @@
             "precio": "$550.000"
           }
         ],
-        "img": "/ec-detail/logo.jpg"
+        "antes_img": "/ec-detail/sonax_antes.jpg",
+        "despues_img": "/ec-detail/sonax_despues.jpg"
       },
       {
         "nombre": "Tratamiento Acrílico SONAX (Full Corrección)",
@@ -6361,7 +6362,8 @@
             "precio": "$600.000"
           }
         ],
-        "img": "/ec-detail/logo.jpg"
+        "antes_img": "/ec-detail/sonax_antes.jpg",
+        "despues_img": "/ec-detail/sonax_despues.jpg"
       },
       {
         "nombre": "Tratamiento Cerámico SOFT99 (Full Corrección)",
