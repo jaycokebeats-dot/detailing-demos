@@ -1,7 +1,7 @@
 import { FaWhatsapp } from "react-icons/fa";
-import { type Business, MSG_FOTOS, MSG_PRESUPUESTO, waHref } from "@/data/businesses";
+import { type Business, type ServiceItem, MSG_FOTOS, MSG_PRESUPUESTO, waHref } from "@/data/businesses";
 
-const SERVICIOS = [
+const SERVICIOS: ServiceItem[] = [
   {
     nombre: "Detail de Interior",
     descripcion: "Aspirado profundo, manchas en tapizados, cuero tratado y desinfección completa.",
