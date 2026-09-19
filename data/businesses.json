@@ -6414,7 +6414,8 @@
             "precio": "$720.000"
           }
         ],
-        "img": "/ec-detail/logo.jpg"
+        "antes_img": "/ec-detail/cquartz_antes.jpg",
+        "despues_img": "/ec-detail/cquartz_despues.jpg"
       },
       {
         "nombre": "Vidrio Líquido CARPRO DQUARTZ GO (Full Corrección)",
@@ -6441,7 +6442,8 @@
             "precio": "$900.000"
           }
         ],
-        "img": "/ec-detail/logo.jpg"
+        "antes_img": "/ec-detail/dquartz_antes.jpg",
+        "despues_img": "/ec-detail/dquartz_despues.jpg"
       }
     ],
     "nombreCorto": "EC DETAIL"
