@@ -41,7 +41,7 @@ export default function Hero({ biz }: { biz: Business }) {
 
   const stats = [
     biz.rating != null
-      ? `★ ${biz.rating.toFixed(1)} en Google${biz.reviews_count != null ? ` (${biz.reviews_count} reseñas)` : ""}`
+      ? `★ ${biz.rating === 5 ? "5 estrellas" : biz.rating.toFixed(1)} en Google${biz.reviews_count != null ? ` (${biz.reviews_count} reseñas)` : ""}`
       : "+800 autos detailed",
     "8 años en el rubro",
     "Atención personalizada",
