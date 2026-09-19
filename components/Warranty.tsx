@@ -9,7 +9,7 @@ const PUNTOS = [
 
 export default function Warranty() {
   return (
-    <section id="garantia" className="relative px-5 sm:px-8 pt-24 pb-32 sm:pb-36" style={{ background: "#101010" }}>
+    <section id="nosotros" className="relative px-5 sm:px-8 pt-24 pb-32 sm:pb-36" style={{ background: "#101010" }}>
       <SectionDivider edge="top" shape="asymmetric" mirror />
       <SectionDivider edge="bottom" />
       <div className="max-w-4xl mx-auto text-center">
