@@ -3,8 +3,12 @@ import { HiOutlineMapPin, HiOutlineClock, HiOutlinePhone, HiOutlineCamera } from
 import { type Business, MSG_PRESUPUESTO, instagramHref, mapsHref, waHref } from "@/data/businesses";
 
 export default function Location({ biz }: { biz: Business }) {
+  const direccionTexto = biz.direccion.toLowerCase().includes(biz.ciudad.toLowerCase())
+    ? biz.direccion
+    : `${biz.direccion}, ${biz.ciudad}`;
+
   const datos = [
-    { icon: HiOutlineMapPin, label: "Dirección", valor: `${biz.direccion}, ${biz.ciudad}`, href: mapsHref(biz) },
+    { icon: HiOutlineMapPin, label: "Dirección", valor: direccionTexto, href: mapsHref(biz) },
     { icon: HiOutlineClock, label: "Horario", valor: biz.horario ?? "Consultá por WhatsApp", href: null },
     { icon: HiOutlinePhone, label: "Teléfono", valor: biz.telefono, href: null },
     ...(biz.instagram

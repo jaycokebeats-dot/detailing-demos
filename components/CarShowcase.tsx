@@ -89,9 +89,6 @@ export default function CarShowcase() {
         </Suspense>
       </Canvas>
 
-      <p className="absolute bottom-[8%] inset-x-0 text-center text-[11px] uppercase tracking-widest text-slate-600 pointer-events-none">
-        Arrastrá para girarlo
-      </p>
     </div>
   );
 }

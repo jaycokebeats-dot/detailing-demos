@@ -11,12 +11,14 @@ import Footer from "./Footer";
 import WhatsAppFloat from "./WhatsAppFloat";
 
 export default function Landing({ biz }: { biz: Business }) {
+  const isCustom = Boolean(biz.servicios && biz.servicios.length > 0);
+
   return (
     <>
       <Navbar biz={biz} />
       <Hero biz={biz} />
       <QualityGallery biz={biz} />
-      <BeforeAfter />
+      {!isCustom && <BeforeAfter />}
       <Inventory biz={biz} />
       <Warranty />
       <Location biz={biz} />

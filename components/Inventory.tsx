@@ -141,26 +141,28 @@ export default function Inventory({ biz }: { biz: Business }) {
           })}
         </div>
 
-        <div className="glass-panel rounded-[28px] mt-10 p-8 md:p-10 flex flex-col md:flex-row items-center gap-6 justify-between border border-slate-800">
-          <div>
-            <span className="section-badge mb-3">¿No sabés qué necesita tu auto?</span>
-            <h3 className="font-semibold text-xl md:text-2xl mb-2 text-white" style={{ textTransform: "none", fontFamily: "inherit" }}>
-              Mandanos 3 Fotos y Te Decimos Qué Hacerle
-            </h3>
-            <p className="text-sm text-slate-400 max-w-xl">
-              Sacale fotos del techo, capot e interior. Te orientamos en {biz.nombre} para elegir el tratamiento ideal.
-            </p>
+        {!isCustomList && (
+          <div className="glass-panel rounded-[28px] mt-10 p-8 md:p-10 flex flex-col md:flex-row items-center gap-6 justify-between border border-slate-800">
+            <div>
+              <span className="section-badge mb-3">¿No sabés qué necesita tu auto?</span>
+              <h3 className="font-semibold text-xl md:text-2xl mb-2 text-white" style={{ textTransform: "none", fontFamily: "inherit" }}>
+                Mandanos 3 Fotos y Te Decimos Qué Hacerle
+              </h3>
+              <p className="text-sm text-slate-400 max-w-xl">
+                Sacale fotos del techo, capot e interior. Te orientamos en {biz.nombre} para elegir el tratamiento ideal.
+              </p>
+            </div>
+            <a
+              href={waHref(biz, MSG_FOTOS)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-gold shrink-0 inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold uppercase tracking-wide whitespace-nowrap"
+            >
+              <FaWhatsapp aria-hidden className="size-4" />
+              Mandar fotos por WhatsApp
+            </a>
           </div>
-          <a
-            href={waHref(biz, MSG_FOTOS)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-gold shrink-0 inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold uppercase tracking-wide whitespace-nowrap"
-          >
-            <FaWhatsapp aria-hidden className="size-4" />
-            Mandar fotos por WhatsApp
-          </a>
-        </div>
+        )}
       </div>
     </section>
   );
