@@ -6283,7 +6283,8 @@
         "descripcion": "Lijado de ópticas en tres pasos, pulido de alta definición y sellado protector para mayor durabilidad.",
         "ideal_si": "Tenés las ópticas amarillentas u opacas y querés recuperar potencia de iluminación y estética.",
         "precio": "$150.000",
-        "img": "/ec-detail/opticas.jpg"
+        "antes_img": "/ec-detail/opti_antes.jpg",
+        "despues_img": "/ec-detail/opti_despues.jpg"
       },
       {
         "nombre": "Abrillantado en 1 Paso + Sellador Híbrido",
