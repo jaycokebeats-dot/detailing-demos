@@ -6275,8 +6275,8 @@
         "descripcion": "Lavado técnico de motor al detalle con vapor de alta presión más acondicionado y protección UV de plásticos y mangueras.",
         "ideal_si": "Buscás mantener el vano motor impecable e higienizado sin riesgos de humedad o agua.",
         "precio": "$100.000",
-        "antes_img": "/ec-detail/motor_antes.jpg",
-        "despues_img": "/ec-detail/motor_despues.jpg"
+        "antes_img": "/before-after/motor-antes.jpg",
+        "despues_img": "/before-after/motor-despues.jpg"
       },
       {
         "nombre": "Pulido de Ópticas",
