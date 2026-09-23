@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Landing from "@/components/Landing";
 import { getAllBusinesses, getBusiness } from "@/data/businesses";
 
-export const dynamicParams = false;
+export const dynamicParams = true;
 
 export function generateStaticParams() {
   return getAllBusinesses().map((b) => ({ slug: b.slug }));
