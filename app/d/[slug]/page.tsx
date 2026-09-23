@@ -3,16 +3,23 @@ import { notFound } from "next/navigation";
 import Landing from "@/components/Landing";
 import { getAllBusinesses, getBusiness } from "@/data/businesses";
 
-export const dynamicParams = true;
+const HIDDEN_SLUGS = new Set([
+  "ec-detail-estetica-vehicular",
+]);
+
+export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return getAllBusinesses().map((b) => ({ slug: b.slug }));
+  return getAllBusinesses()
+    .filter((b) => !HIDDEN_SLUGS.has(b.slug))
+    .map((b) => ({ slug: b.slug }));
 }
 
 type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
+  if (HIDDEN_SLUGS.has(slug)) return {};
   const biz = getBusiness(slug);
   if (!biz) return {};
   const titulo = `${biz.nombre} — Detailing en ${biz.ciudad}`;
@@ -39,6 +46,7 @@ function pixelScript(slug: string): string {
 
 export default async function BusinessPage({ params }: Props) {
   const { slug } = await params;
+  if (HIDDEN_SLUGS.has(slug)) notFound();
   const biz = getBusiness(slug);
   if (!biz) notFound();
   return (
