@@ -5,10 +5,19 @@ import type { Business } from "./business-helpers";
 
 export * from "./business-helpers";
 
-// data/businesses.local.json (gitignored) tiene el dataset real scrapeado.
-// Si no existe (ej: clon público del repo), se usa el placeholder ficticio.
+// data/businesses.local.json (gitignored) tiene el dataset local opcional.
 const localPath = path.join(process.cwd(), "data", "businesses.local.json");
-const raw = fs.existsSync(localPath) ? JSON.parse(fs.readFileSync(localPath, "utf-8")) : placeholder;
+let raw: Business[] = placeholder as Business[];
+if (fs.existsSync(localPath)) {
+  try {
+    const localData = JSON.parse(fs.readFileSync(localPath, "utf-8"));
+    if (Array.isArray(localData) && localData.length >= placeholder.length) {
+      raw = localData as Business[];
+    }
+  } catch (e) {
+    raw = placeholder as Business[];
+  }
+}
 
 const businesses: Business[] = raw;
 
@@ -19,3 +28,4 @@ export function getAllBusinesses(): Business[] {
 export function getBusiness(slug: string): Business | undefined {
   return businesses.find((b) => b.slug === slug);
 }
+
