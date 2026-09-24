@@ -19,13 +19,17 @@ if (fs.existsSync(localPath)) {
   }
 }
 
-const businesses: Business[] = raw;
+import { DEFAULT_DEMO_BUSINESS } from "./demo-business";
+
+const businesses: Business[] = [DEFAULT_DEMO_BUSINESS, ...raw];
 
 export function getAllBusinesses(): Business[] {
   return businesses;
 }
 
 export function getBusiness(slug: string): Business | undefined {
+  if (slug === "demo") return DEFAULT_DEMO_BUSINESS;
   return businesses.find((b) => b.slug === slug);
 }
+
 

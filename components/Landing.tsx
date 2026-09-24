@@ -1,4 +1,4 @@
-import type { Business } from "@/data/businesses";
+import type { Business } from "@/data/business-helpers";
 import Navbar from "./Navbar";
 import Hero from "./Hero";
 import QualityGallery from "./QualityGallery";

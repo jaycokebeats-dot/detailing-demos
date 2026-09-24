@@ -1,6 +1,6 @@
 import { FaWhatsapp } from "react-icons/fa";
 import { HiOutlineMapPin, HiOutlineClock, HiOutlinePhone, HiOutlineCamera } from "react-icons/hi2";
-import { type Business, MSG_PRESUPUESTO, instagramHref, mapsHref, waHref } from "@/data/businesses";
+import { type Business, MSG_PRESUPUESTO, instagramHref, mapsHref, waHref } from "@/data/business-helpers";
 
 export default function Location({ biz }: { biz: Business }) {
   const direccionTexto = biz.direccion.toLowerCase().includes(biz.ciudad.toLowerCase())

@@ -1,4 +1,4 @@
-import type { Business } from "@/data/businesses";
+import type { Business } from "@/data/business-helpers";
 
 export default function Footer({ biz }: { biz: Business }) {
   return (

@@ -44,6 +44,8 @@ function pixelScript(slug: string): string {
   return `try{fetch(${JSON.stringify(url)},{method:"POST",keepalive:true,mode:"no-cors"}).catch(function(){})}catch(e){}`;
 }
 
+import DemoClientLanding from "@/components/DemoClientLanding";
+
 export default async function BusinessPage({ params }: Props) {
   const { slug } = await params;
   if (HIDDEN_SLUGS.has(slug)) notFound();
@@ -51,8 +53,9 @@ export default async function BusinessPage({ params }: Props) {
   if (!biz) notFound();
   return (
     <>
-      <Landing biz={biz} />
+      <DemoClientLanding initialBiz={biz} />
       <script dangerouslySetInnerHTML={{ __html: pixelScript(biz.slug) }} />
     </>
   );
 }
+

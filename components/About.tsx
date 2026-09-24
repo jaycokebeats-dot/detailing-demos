@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
-import type { Business } from "@/data/businesses";
+import type { Business } from "@/data/business-helpers";
 import SectionDivider from "./SectionDivider";
 
 // El visor 3D pesa (three + el modelo), asi que no entra en el bundle inicial

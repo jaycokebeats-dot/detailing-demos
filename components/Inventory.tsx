@@ -1,5 +1,5 @@
 import { FaWhatsapp } from "react-icons/fa";
-import { type Business, type ServiceItem, MSG_FOTOS, MSG_PRESUPUESTO, waHref } from "@/data/businesses";
+import { type Business, type ServiceItem, MSG_FOTOS, MSG_PRESUPUESTO, waHref } from "@/data/business-helpers";
 import CompareSlider from "./CompareSlider";
 
 const SERVICIOS: ServiceItem[] = [

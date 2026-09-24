@@ -1,4 +1,4 @@
-import type { Business } from "@/data/businesses";
+import type { Business } from "@/data/business-helpers";
 import SectionDivider from "./SectionDivider";
 
 const ITEMS = [
