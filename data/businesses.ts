@@ -21,7 +21,16 @@ if (fs.existsSync(localPath)) {
 
 import { DEFAULT_DEMO_BUSINESS } from "./demo-business";
 
-const businesses: Business[] = [DEFAULT_DEMO_BUSINESS, ...raw];
+const rawList: Business[] = [DEFAULT_DEMO_BUSINESS, ...raw];
+const businessesMap = new Map<string, Business>();
+
+for (const b of rawList) {
+  if (b && b.slug && !businessesMap.has(b.slug)) {
+    businessesMap.set(b.slug, b);
+  }
+}
+
+const businesses: Business[] = Array.from(businessesMap.values());
 
 export function getAllBusinesses(): Business[] {
   return businesses;
@@ -29,7 +38,7 @@ export function getAllBusinesses(): Business[] {
 
 export function getBusiness(slug: string): Business | undefined {
   if (slug === "demo") return DEFAULT_DEMO_BUSINESS;
-  return businesses.find((b) => b.slug === slug);
+  return businessesMap.get(slug);
 }
 
 
