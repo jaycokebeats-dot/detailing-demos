@@ -1,5 +1,18 @@
 [
   {
+    "slug": "demo",
+    "nombre": "Demo Detail Studio",
+    "telefono": "+54 9 11 5555-8888",
+    "whatsapp": "5491155558888",
+    "instagram": "demodetailstudio",
+    "direccion": "Av. Del Libertador 4500",
+    "ciudad": "Buenos Aires",
+    "rating": 4.9,
+    "reviews_count": 128,
+    "fotos": [],
+    "maps_url": "https://maps.google.com"
+  },
+  {
     "slug": "ejemplo-detailing",
     "nombre": "Ejemplo Detailing",
     "telefono": "011 15-0000-0000",
