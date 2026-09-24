@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Landing from "@/components/Landing";
+import DemoClientLanding from "@/components/DemoClientLanding";
 import { getAllBusinesses, getBusiness } from "@/data/businesses";
 
 const HIDDEN_SLUGS = new Set([
@@ -43,8 +44,6 @@ function pixelScript(slug: string): string {
   const url = `https://demos-site-liart.vercel.app/api/track?s=${encodeURIComponent(slug)}`;
   return `try{fetch(${JSON.stringify(url)},{method:"POST",keepalive:true,mode:"no-cors"}).catch(function(){})}catch(e){}`;
 }
-
-import DemoClientLanding from "@/components/DemoClientLanding";
 
 export default async function BusinessPage({ params }: Props) {
   const { slug } = await params;
