@@ -8,7 +8,7 @@ const HIDDEN_SLUGS = new Set([
   "ec-detail-estetica-vehicular",
 ]);
 
-export const dynamicParams = false;
+export const dynamicParams = true;
 
 export function generateStaticParams() {
   return getAllBusinesses()
