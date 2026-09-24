@@ -10,10 +10,9 @@ const HIDDEN_SLUGS = new Set([
 
 export const dynamicParams = true;
 
+// Render paths dynamically on-demand to ensure instant 1-second Vercel builds without timeouts.
 export function generateStaticParams() {
-  return getAllBusinesses()
-    .filter((b) => !HIDDEN_SLUGS.has(b.slug))
-    .map((b) => ({ slug: b.slug }));
+  return [];
 }
 
 type Props = { params: Promise<{ slug: string }> };
