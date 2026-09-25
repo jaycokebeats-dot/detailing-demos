@@ -4,9 +4,7 @@ import Landing from "@/components/Landing";
 import DemoClientLanding from "@/components/DemoClientLanding";
 import { getAllBusinesses, getBusiness } from "@/data/businesses";
 
-const HIDDEN_SLUGS = new Set([
-  "ec-detail-estetica-vehicular",
-]);
+const HIDDEN_SLUGS = new Set<string>([]);
 
 export const dynamicParams = true;
 
