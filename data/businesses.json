@@ -2371,7 +2371,7 @@
     "telefono": "0341 685-8392",
     "whatsapp": "5493416858392",
     "instagram": "limpiezadetapizadosydetalling",
-    "direccion": " Los Aromos 529adero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorria, Granadero Baigorria",
+    "direccion": " Los Aromos 529adero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorria, Granadero Baigorria",
     "ciudad": "Granadero Baigorria",
     "rating": 4.9,
     "reviews_count": 78,
@@ -2384,7 +2384,7 @@
     "telefono": "0341 564-2266",
     "whatsapp": "5493415642266",
     "instagram": "bordondetail",
-    "direccion": " Baigorrita 541adero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorria, Granadero Baigorria",
+    "direccion": " Baigorrita 541adero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorriaadero Baigorria, Granadero Baigorria",
     "ciudad": "Granadero Baigorria",
     "rating": 4.9,
     "reviews_count": 81,
@@ -15196,5 +15196,18 @@
     "reviews_count": 18,
     "fotos": [],
     "maps_url": "https://www.google.com/maps/place/Alpina+Detailing+Est%C3%A9tica-Ploteo+Vehicular/@-34.6535173,-58.924657,12z/data=!4m11!1m3!2m2!1scar+detailing+moreno+buenos+aires!6e2!3m6!1s0x95bc95951183e299:0x59cf2dd2a28d22d5!8m2!3d-34.6535173!4d-58.7804614!15sCiFjYXIgZGV0YWlsaW5nIG1vcmVubyBidWVub3MgYWlyZXNaIyIhY2FyIGRldGFpbGluZyBtb3Jlbm8gYnVlbm9zIGFpcmVzkgEIY2FyX3dhc2iaASRDaGREU1VoTk1HOW5TMFZOZFVneFdYSTFibVY2V25CQlJSQULgAQD6AQQIABBF!16s%2Fg%2F11tmsyn2h1?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D"
+  },
+  {
+    "slug": "mrm-detail",
+    "nombre": "MRM DETAIL",
+    "telefono": "",
+    "whatsapp": "",
+    "instagram": "mrm_detail",
+    "direccion": "Caseros, Buenos Aires",
+    "ciudad": "Caseros",
+    "rating": 5.0,
+    "reviews_count": 24,
+    "fotos": [],
+    "maps_url": ""
   }
 ]
