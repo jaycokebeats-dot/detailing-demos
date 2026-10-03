@@ -4,13 +4,13 @@ import "./globals.css";
 
 const archivo = Archivo({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  display: "swap",
   variable: "--font-soehne",
 });
 
 const syne = Syne({
   subsets: ["latin"],
-  weight: ["700", "800"],
+  display: "swap",
   variable: "--font-soehne-breit",
 });
 
