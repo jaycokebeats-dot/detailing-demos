@@ -24241,18 +24241,6 @@
     "maps_url": "https://www.google.com/maps/place/Dm+Estetica+Vehicular/data=!4m7!3m6!1s0x95bcd1363f9418a3:0x8a6f6f13222d4d1f!8m2!3d-34.8187735!4d-58.4760811!16s%2Fg%2F11mhymy37w!19sChIJoxiUPzbRvJURH00tIhNvb4o?authuser=0&hl=es-419&g_ep=EgoyMDI2MTAwNC4wIJJjKgBIAVAD&rclk=1"
   },
   {
-    "slug": "taller-mecanico-y-detailing-pilar-garage",
-    "nombre": "Taller mecánico y detailing pilar garage",
-    "ciudad": "Pilar",
-    "telefono": "011 15-2311-9045",
-    "whatsapp": "5491123119045",
-    "direccion": "J.e uriburu 366, Pilar",
-    "rating": 5.0,
-    "reviews": 20,
-    "fotos": [],
-    "maps_url": "https://www.google.com/maps/place/Taller+mec%C3%A1nico+y+detailing+pilar+garage/data=!4m7!3m6!1s0x95bc9d14cc44feb7:0xf527baeded92ceae!8m2!3d-34.45567!4d-58.900921!16s%2Fg%2F11xh4bwth9!19sChIJt_5EzBSdvJURrs6S7e26J_U?authuser=0&hl=es-419&g_ep=EgoyMDI2MTAwNC4wIJJjKgBIAVAD&rclk=1"
-  },
-  {
     "slug": "insanos-custom",
     "nombre": "Insanos Custom",
     "ciudad": "La Lonja",
@@ -24277,15 +24265,63 @@
     "maps_url": "https://www.google.com/maps/place/cardetailing_hb+detailing+y+polarizados/data=!4m7!3m6!1s0x95bc9f0af89e0503:0x97caa512ce849109!8m2!3d-38.45155!4d-63.5989752!16s%2Fg%2F11w29hsxzw!19sChIJAwWe-AqfvJURCZGEzhKlypc?authuser=0&hl=es-419&g_ep=EgoyMDI2MTAwNC4wIJJjKgBIAVAD&rclk=1"
   },
   {
-    "slug": "josi",
-    "nombre": "Josi",
-    "ciudad": "Adrogué",
-    "telefono": "011 15-4293-2881",
-    "whatsapp": "5491142932881",
-    "direccion": "Av. Hipólito Yrigoyen 13908, Adrogué",
+    "slug": "roosters-detail",
+    "nombre": "Rooster’s Detail",
+    "ciudad": "San Isidro",
+    "telefono": "011 15-6250-1507",
+    "whatsapp": "549111562501507",
+    "direccion": "Jacinto Díaz 930, San Isidro",
     "rating": 5.0,
     "reviews": 20,
     "fotos": [],
-    "maps_url": "https://www.google.com/maps/place/Josi/data=!4m7!3m6!1s0x95bcd360ca257bcb:0xda1c6e5d3d3c5c4d!8m2!3d-34.8158584!4d-58.3961502!16s%2Fg%2F11b7qx_h3b!19sChIJy3slymDTvJURTVw8PV1uHNo?authuser=0&hl=es-419&g_ep=EgoyMDI2MTAwNC4wIJJjKgBIAVAD&rclk=1"
+    "maps_url": "https://www.google.com/maps/place/Rooster%E2%80%99s+Detail/data=!4m7!3m6!1s0x95bcb1c5e761e429:0x25a2ab7653cd6658!8m2!3d-34.4737444!4d-58.5299066!16s%2Fg%2F11kbw5psbg!19sChIJKeRh58WxvJURWGbNU3aroiU?authuser=0&hl=es-419&g_ep=EgoyMDI2MTAwNS4wIJJjKgBIAVAD&rclk=1"
+  },
+  {
+    "slug": "centro-de-estetica-automotriz-cea",
+    "nombre": "Centro de Estética Automotriz \"CEA\"",
+    "ciudad": "San Fernando",
+    "telefono": "011 15-5658-1836",
+    "whatsapp": "5491156581836",
+    "direccion": "Av. Sucre, San Fernando",
+    "rating": 5.0,
+    "reviews": 20,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Centro+de+Est%C3%A9tica+Automotriz+%22CEA%22/data=!4m7!3m6!1s0x95bcbba68f46389d:0xd555cafc03a799fe!8m2!3d-34.4697109!4d-58.5550392!16s%2Fg%2F11n095qqzd!19sChIJnThGj6a7vJUR_pmnA_zKVdU?authuser=0&hl=es-419&g_ep=EgoyMDI2MTAwNS4wIJJjKgBIAVAD&rclk=1"
+  },
+  {
+    "slug": "venta-de-estetica-automotriz-y-productos-para-el-auto",
+    "nombre": "Venta de estética automotriz y productos para el auto",
+    "ciudad": "Escobar",
+    "telefono": "011 15-5339-0293",
+    "whatsapp": "5491153390293",
+    "direccion": "Julio Arístides, Escobar",
+    "rating": 5.0,
+    "reviews": 20,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Venta+de+est%C3%A9tica+automotriz+y+productos+para+el+auto/data=!4m7!3m6!1s0x95bcb70047e40565:0x2b6c882d56f28767!8m2!3d-34.5612422!4d-58.5528812!16s%2Fg%2F11zxkc6rk_!19sChIJZQXkRwC3vJURZ4fyVi2IbCs?authuser=0&hl=es-419&g_ep=EgoyMDI2MTAwNS4wIJJjKgBIAVAD&rclk=1"
+  },
+  {
+    "slug": "detailing-el-garage",
+    "nombre": "Detailing El Garage",
+    "ciudad": "Quilmes",
+    "telefono": "011 15-4025-0037",
+    "whatsapp": "5491140250037",
+    "direccion": "C. 330 Bis n°, Quilmes",
+    "rating": 5.0,
+    "reviews": 20,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Detailing+El+Garage/data=!4m7!3m6!1s0x95a32d2ae7d0ff4b:0xfe262d8bd63f0272!8m2!3d-34.7563139!4d-58.2892257!16s%2Fg%2F11p5nfrlmv!19sChIJS__Q5yoto5URcgI_1ostJv4?authuser=0&hl=es-419&g_ep=EgoyMDI2MTAwNS4wIJJjKgBIAVAD&rclk=1"
+  },
+  {
+    "slug": "dmcarsdetail",
+    "nombre": "Dmcars.detail",
+    "ciudad": "Quilmes",
+    "telefono": "0298 15-330-5241",
+    "whatsapp": "5492983305241",
+    "direccion": "Madres de Pl. de Mayo, Quilmes",
+    "rating": 5.0,
+    "reviews": 20,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Dmcars.detail/data=!4m7!3m6!1s0x95a32f1bd8a3f6f1:0x7ce38af367885bea!8m2!3d-34.7408467!4d-58.2738782!16s%2Fg%2F11yf5glp2_!19sChIJ8faj2Bsvo5UR6luIZ_OK43w?authuser=0&hl=es-419&g_ep=EgoyMDI2MTAwNS4wIJJjKgBIAVAD&rclk=1"
   }
 ]
