@@ -23399,5 +23399,113 @@
     "reviews": 20,
     "fotos": [],
     "maps_url": "https://www.google.com/maps/place/Aurum+Est%C3%A9tica+Vehicular/data=!4m7!3m6!1s0x95b7abcb5c3e62d7:0x44b0787484425931!8m2!3d-32.9481499!4d-60.6709044!16s%2Fg%2F11w9p18q9y!19sChIJ12I-XMurt5URMVlChHR4sEQ?authuser=0&hl=es-419&g_ep=EgoyMDI2MTAwNC4wIJJjKgBIAVAD&rclk=1"
+  },
+  {
+    "nombre": "Citrino Detailing",
+    "slug": "citrino-detailing",
+    "telefono": "011 15-3297-4013",
+    "whatsapp": "5491132974013",
+    "direccion": "Av. José E. Uriburu 355, Pilar",
+    "ciudad": "Pilar",
+    "rating": 5.0,
+    "reviews": 20,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Citrino+Detailing/data=!4m7!3m6!1s0x95bc9f334230b033:0xfce93cbe2afba688!8m2!3d-34.4515046!4d-58.8268227!16s%2Fg%2F11vl8k_yt6!19sChIJM7AwQjOfvJURiKb7Kr486fw?authuser=0&hl=es-419&g_ep=EgoyMDI2MTAwNC4wIJJjKgBIAVAD&rclk=1"
+  },
+  {
+    "nombre": "LRS_estética vehicular",
+    "slug": "lrs_estetica-vehicular",
+    "telefono": "011 15-3113-3342",
+    "whatsapp": "5491131133342",
+    "direccion": "Del Trabajo, Ingeniero Maschwitz",
+    "ciudad": "Ingeniero Maschwitz",
+    "rating": 5.0,
+    "reviews": 20,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/LRS_est%C3%A9tica+vehicular/data=!4m7!3m6!1s0x95bc9fcd64c7ae71:0x1e76d9e4d68ea29f!8m2!3d-34.4003194!4d-58.7374438!16s%2Fg%2F11jy8p8r8h!19sChIJca7HZM2fvJURn6KO1uTZdh4?authuser=0&hl=es-419&g_ep=EgoyMDI2MTAwNC4wIJJjKgBIAVAD&rclk=1"
+  },
+  {
+    "nombre": "The Window Film Company",
+    "slug": "the-window-film-company",
+    "telefono": "011 15-5275-7075",
+    "whatsapp": "5491152757075",
+    "direccion": "Av. Agustín M. García, Parque Leloir",
+    "ciudad": "Parque Leloir",
+    "rating": 5.0,
+    "reviews": 20,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/The+Window+Film+Company/data=!4m7!3m6!1s0x95bca7f0d09b13a3:0x9af3c2d5ab5b48a7!8m2!3d-34.402039!4d-58.635557!16s%2Fg%2F11g0j0rd8w!19sChIJoxOb0PCnvJURp0hbq9XC85o?authuser=0&hl=es-419&g_ep=EgoyMDI2MTAwNC4wIJJjKgBIAVAD&rclk=1"
+  },
+  {
+    "nombre": "Wolf Detailing TOXIC SHINE",
+    "slug": "wolf-detailing-toxic-shine",
+    "telefono": "0341 15-227-2779",
+    "whatsapp": "5493412272779",
+    "direccion": "Juan José Paso, Rosario",
+    "ciudad": "Rosario",
+    "rating": 5.0,
+    "reviews": 20,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Wolf+Detailing+TOXIC+SHINE/data=!4m7!3m6!1s0x95b653017c249eef:0x4086ae0a8cf63f60!8m2!3d-32.920988!4d-60.7309373!16s%2Fg%2F11t4d_s69q!19sChIJ754kfAFTtpURYD_2jAquhkA?authuser=0&hl=es-419&g_ep=EgoyMDI2MTAwNC4wIJJjKgBIAVAD&rclk=1"
+  },
+  {
+    "nombre": "Studio Detailers",
+    "slug": "studio-detailers",
+    "telefono": "0341 15-644-8777",
+    "whatsapp": "5493416448777",
+    "direccion": "Av. Jorge Newbery, Rosario",
+    "ciudad": "Rosario",
+    "rating": 5.0,
+    "reviews": 20,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Studio+Detailers/data=!4m7!3m6!1s0x95b64d37c82c807d:0xb2079797c6ba0ef!8m2!3d-32.9092419!4d-60.7680867!16s%2Fg%2F11vbtqpmfy!19sChIJfYAsyDdNtpUR76BrfHl5IAs?authuser=0&hl=es-419&g_ep=EgoyMDI2MTAwNC4wIJJjKgBIAVAD&rclk=1"
+  },
+  {
+    "nombre": "GT Pro Detail",
+    "slug": "gt-pro-detail",
+    "telefono": "0351 15-272-8987",
+    "whatsapp": "5493512728987",
+    "direccion": "Av. Rafael Núñez, Córdoba",
+    "ciudad": "Córdoba",
+    "rating": 5.0,
+    "reviews": 20,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/GT+Pro+Detail/data=!4m7!3m6!1s0x94329f0047fc3aef:0x1637db1b7a3cfc91!8m2!3d-31.3457921!4d-64.2511066!16s%2Fg%2F11md0wk1yw!19sChIJ7zr8RwCfMpQRkfw8ehvbNxY?authuser=0&hl=es-419&g_ep=EgoyMDI2MTAwNC4wIJJjKgBIAVAD&rclk=1"
+  },
+  {
+    "nombre": "Doc Hudson Detailing",
+    "slug": "doc-hudson-detailing",
+    "telefono": "0351 15-684-7083",
+    "whatsapp": "5493516847083",
+    "direccion": "Av. Recta Martinolli, Córdoba",
+    "ciudad": "Córdoba",
+    "rating": 5.0,
+    "reviews": 20,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Doc+Hudson+Detailing/data=!4m7!3m6!1s0x94329fad51ec735d:0x16c28ba69f7944a6!8m2!3d-31.3474531!4d-64.2726455!16s%2Fg%2F11y_pv0vmf!19sChIJXXPsUa2fMpQRpkR5n6aLwhY?authuser=0&hl=es-419&g_ep=EgoyMDI2MTAwNC4wIJJjKgBIAVAD&rclk=1"
+  },
+  {
+    "nombre": "Lavadero/Detailling FARM DETAIL",
+    "slug": "lavaderodetailling-farm-detail",
+    "telefono": "0261 15-776-4679",
+    "whatsapp": "5492617764679",
+    "direccion": "Massera, Mendoza",
+    "ciudad": "Mendoza",
+    "rating": 5.0,
+    "reviews": 20,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Lavadero%2FDetailling+FARM+DETAIL/data=!4m7!3m6!1s0x967e0bd13e875ec7:0x9644b88e05774396!8m2!3d-32.9616205!4d-68.8312332!16s%2Fg%2F11r8bphll_!19sChIJx16HPtELfpYRlkN3BY64RJY?authuser=0&hl=es-419&g_ep=EgoyMDI2MTAwNC4wIJJjKgBIAVAD&rclk=1"
+  },
+  {
+    "nombre": "Al piso detailing",
+    "slug": "al-piso-detailing",
+    "telefono": "0261 15-556-1750",
+    "whatsapp": "5492615561750",
+    "direccion": "Villa Mercedes, Mendoza",
+    "ciudad": "Mendoza",
+    "rating": 5.0,
+    "reviews": 20,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Al+piso+detailing/data=!4m7!3m6!1s0x967e096f7f5ea133:0x613af3f193aa5e20!8m2!3d-32.9142334!4d-68.8793773!16s%2Fg%2F11xrspq52h!19sChIJM6Fef28JfpYRIF6qk_HzOmE?authuser=0&hl=es-419&g_ep=EgoyMDI2MTAwNC4wIJJjKgBIAVAD&rclk=1"
   }
 ]
