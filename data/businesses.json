@@ -23783,5 +23783,101 @@
     "reviews": 20,
     "fotos": [],
     "maps_url": "https://www.google.com/maps/place/Marcos+Detail/data=!4m7!3m6!1s0x960a330b885e847d:0xbcd2b096d5031d7a!8m2!3d-38.9609939!4d-68.079794!16s%2Fg%2F11zynjlv_5!19sChIJfYReiAszCpYReh0D1Zaw0rw?authuser=0&hl=es-419&g_ep=EgoyMDI2MTAwNC4wIJJjKgBIAVAD&rclk=1"
+  },
+  {
+    "nombre": "Smart detailing Garage & Lavadero",
+    "slug": "smart-detailing-garage-lavadero",
+    "telefono": "0381 15-609-4095",
+    "whatsapp": "5493816094095",
+    "direccion": "Yerba Buena, Argentina",
+    "ciudad": "Yerba Buena",
+    "rating": 4.5,
+    "reviews": 20,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Smart+detailing+Garage+%26+Lavadero/data=!4m7!3m6!1s0x94225de1979cb6d3:0xec2ddd2a7055e37f!8m2!3d-26.8153398!4d-65.2740615!16s%2Fg%2F11hxnx4gmw!19sChIJ07acl-FdIpQRf-NVcCrdLew?authuser=0&hl=es-419&g_ep=EgoyMDI2MTAwNC4wIJJjKgBIAVAD&rclk=1"
+  },
+  {
+    "nombre": "Yerba Buena Car Detail",
+    "slug": "yerba-buena-car-detail",
+    "telefono": "0381 15-555-9826",
+    "whatsapp": "5493815559826",
+    "direccion": "HIPOLITO IRIGOYEN 50, Yerba Buena",
+    "ciudad": "Yerba Buena",
+    "rating": 5.0,
+    "reviews": 20,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Yerba+Buena+Car+Detail/data=!4m7!3m6!1s0x942243ed6c3fe8cb:0x270338b00f4806b1!8m2!3d-26.8122953!4d-65.3059728!16s%2Fg%2F11lgn2w03p!19sChIJy-g_bO1DIpQRsQZID7A4Ayc?authuser=0&hl=es-419&g_ep=EgoyMDI2MTAwNC4wIJJjKgBIAVAD&rclk=1"
+  },
+  {
+    "nombre": "ZannierDetailing & Carshop",
+    "slug": "zannierdetailing-carshop",
+    "telefono": "0387 15-579-5040",
+    "whatsapp": "5493875795040",
+    "direccion": "10 de Octubre 230, Salta",
+    "ciudad": "Salta",
+    "rating": 5.0,
+    "reviews": 20,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/ZannierDetailing+%26+Carshop/data=!4m7!3m6!1s0x941bddf8d5af4a45:0x815a7833da6072e9!8m2!3d-24.7918222!4d-65.4237443!16s%2Fg%2F11p12wg1b7!19sChIJRUqv1fjdG5QR6XJg2jN4WoE?authuser=0&hl=es-419&g_ep=EgoyMDI2MTAwNC4wIJJjKgBIAVAD&rclk=1"
+  },
+  {
+    "nombre": "Lavadero Detail Wash",
+    "slug": "lavadero-detail-wash",
+    "telefono": "0387 15-406-9688",
+    "whatsapp": "5493874069688",
+    "direccion": "Córdoba 412, Salta",
+    "ciudad": "Salta",
+    "rating": 5.0,
+    "reviews": 20,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Lavadero+Detail+Wash/data=!4m7!3m6!1s0x941bc3a160c304a5:0xf11922d781f5ff8b!8m2!3d-24.795243!4d-65.4088454!16s%2Fg%2F11g8wy4j8v!19sChIJpQTDYKHDG5QRi__1gdciGfE?authuser=0&hl=es-419&g_ep=EgoyMDI2MTAwNC4wIJJjKgBIAVAD&rclk=1"
+  },
+  {
+    "nombre": "Facu Pulidos",
+    "slug": "facu-pulidos",
+    "telefono": "0294 15-420-8850",
+    "whatsapp": "5492944208850",
+    "direccion": "Carlos Ruiz, Bariloche",
+    "ciudad": "Bariloche",
+    "rating": 5.0,
+    "reviews": 20,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Facu+Pulidos/data=!4m7!3m6!1s0x961a7d75ee3ceeb9:0x8f3ba248a89bdbb6!8m2!3d-41.1366981!4d-71.2869709!16s%2Fg%2F11yx29m89h!19sChIJue487nV9GpYRttubqEiiO48?authuser=0&hl=es-419&g_ep=EgoyMDI2MTAwNC4wIJJjKgBIAVAD&rclk=1"
+  },
+  {
+    "nombre": "MitShine Estética Vehicular",
+    "slug": "mitshine-estetica-vehicular",
+    "telefono": "0291 15-508-5905",
+    "whatsapp": "5492915085905",
+    "direccion": "Malvinas, Bahía Blanca",
+    "ciudad": "Bahía Blanca",
+    "rating": 5.0,
+    "reviews": 20,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/MitShine+Est%C3%A9tica+Vehicular/data=!4m7!3m6!1s0x95edbd00300c4125:0x2c253ad3e59a69cb!8m2!3d-38.7173614!4d-62.2938581!16s%2Fg%2F11nqsby0rc!19sChIJJUEMMAC97ZURy2ma5dM6JSw?authuser=0&hl=es-419&g_ep=EgoyMDI2MTAwNC4wIJJjKgBIAVAD&rclk=1"
+  },
+  {
+    "nombre": "CARNAGHI CAR DETAILING",
+    "slug": "carnaghi-car-detailing",
+    "telefono": "0249 15-458-9847",
+    "whatsapp": "5492494589847",
+    "direccion": "Francisco Vistalli, Tandil",
+    "ciudad": "Tandil",
+    "rating": 5.0,
+    "reviews": 20,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/CARNAGHI+CAR+DETAILING/data=!4m7!3m6!1s0x9590e1872af93c11:0xdd149f577e07f932!8m2!3d-37.3137678!4d-59.1005293!16s%2Fg%2F11p0hfbjy6!19sChIJETz5KofhkJURMvkHflefFN0?authuser=0&hl=es-419&g_ep=EgoyMDI2MTAwNC4wIJJjKgBIAVAD&rclk=1"
+  },
+  {
+    "nombre": "Black Car Detail",
+    "slug": "black-car-detail",
+    "telefono": "0358 15-411-1473",
+    "whatsapp": "5493584111473",
+    "direccion": "Av. Marcelo T. de Alvear, Río Cuarto",
+    "ciudad": "Río Cuarto",
+    "rating": 5.0,
+    "reviews": 20,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Black+Car+Detail/data=!4m7!3m6!1s0x95cdff9d6743945d:0x34beb0632dac7899!8m2!3d-33.0935273!4d-64.3237885!16s%2Fg%2F11qnk82v3n!19sChIJXZRDZ53_zZURmXisLWOwvjQ?authuser=0&hl=es-419&g_ep=EgoyMDI2MTAwNC4wIJJjKgBIAVAD&rclk=1"
   }
 ]
