@@ -24289,18 +24289,6 @@
     "maps_url": "https://www.google.com/maps/place/Centro+de+Est%C3%A9tica+Automotriz+%22CEA%22/data=!4m7!3m6!1s0x95bcbba68f46389d:0xd555cafc03a799fe!8m2!3d-34.4697109!4d-58.5550392!16s%2Fg%2F11n095qqzd!19sChIJnThGj6a7vJUR_pmnA_zKVdU?authuser=0&hl=es-419&g_ep=EgoyMDI2MTAwNS4wIJJjKgBIAVAD&rclk=1"
   },
   {
-    "slug": "venta-de-estetica-automotriz-y-productos-para-el-auto",
-    "nombre": "Venta de estética automotriz y productos para el auto",
-    "ciudad": "Escobar",
-    "telefono": "011 15-5339-0293",
-    "whatsapp": "5491153390293",
-    "direccion": "Julio Arístides, Escobar",
-    "rating": 5.0,
-    "reviews": 20,
-    "fotos": [],
-    "maps_url": "https://www.google.com/maps/place/Venta+de+est%C3%A9tica+automotriz+y+productos+para+el+auto/data=!4m7!3m6!1s0x95bcb70047e40565:0x2b6c882d56f28767!8m2!3d-34.5612422!4d-58.5528812!16s%2Fg%2F11zxkc6rk_!19sChIJZQXkRwC3vJURZ4fyVi2IbCs?authuser=0&hl=es-419&g_ep=EgoyMDI2MTAwNS4wIJJjKgBIAVAD&rclk=1"
-  },
-  {
     "slug": "detailing-el-garage",
     "nombre": "Detailing El Garage",
     "ciudad": "Quilmes",
@@ -24323,5 +24311,41 @@
     "reviews": 20,
     "fotos": [],
     "maps_url": "https://www.google.com/maps/place/Dmcars.detail/data=!4m7!3m6!1s0x95a32f1bd8a3f6f1:0x7ce38af367885bea!8m2!3d-34.7408467!4d-58.2738782!16s%2Fg%2F11yf5glp2_!19sChIJ8faj2Bsvo5UR6luIZ_OK43w?authuser=0&hl=es-419&g_ep=EgoyMDI2MTAwNS4wIJJjKgBIAVAD&rclk=1"
+  },
+  {
+    "slug": "ie-detailing",
+    "nombre": "IE Detailing",
+    "ciudad": "Tigre",
+    "telefono": "011 15-3395-6976",
+    "whatsapp": "5491133956976",
+    "direccion": "Vértiz 225, Tigre",
+    "rating": 5.0,
+    "reviews": 20,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/IE+Detailing/data=!4m7!3m6!1s0x95bca59c7bb7dc65:0x811277f5e1f53c31!8m2!3d-34.4373937!4d-58.5983229!16s%2Fg%2F11y3w36l7c!19sChIJZdy3e5ylvJURMTz14fV3EoE?authuser=0&hl=es-419&g_ep=EgoyMDI2MTAwNC4wIJJjKgBIAVAD&rclk=1"
+  },
+  {
+    "slug": "brothers-detail",
+    "nombre": "Brothers detail",
+    "ciudad": "Parque Leloir",
+    "telefono": "011 15-3343-5912",
+    "whatsapp": "5491133435912",
+    "direccion": "Lucio V. Mansilla, Parque Leloir",
+    "rating": 5.0,
+    "reviews": 20,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Brothers+detail/data=!4m7!3m6!1s0x95bcc7a978f06d7f:0xe1f84fe08274a03d!8m2!3d-34.6119336!4d-58.7102099!16s%2Fg%2F11w2613tlk!19sChIJf23weKnHvJURPaB0guBP-OE?authuser=0&hl=es-419&g_ep=EgoyMDI2MTAwNC4wIJJjKgBIAVAD&rclk=1"
+  },
+  {
+    "slug": "nico-car-details-mdp",
+    "nombre": "Nico Car Details - MDP",
+    "ciudad": "Hudson",
+    "telefono": "0223 15-681-3635",
+    "whatsapp": "5492236813635",
+    "direccion": "11 de Septiembre, Hudson",
+    "rating": 5.0,
+    "reviews": 20,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Nico+Car+Details+-+MDP/data=!4m7!3m6!1s0x9584d9050822b7b3:0x464898f5531fca82!8m2!3d-37.9722884!4d-57.5892831!16s%2Fg%2F11c575jzw3!19sChIJs7ciCAXZhJURgsofU_WYSEY?authuser=0&hl=es-419&g_ep=EgoyMDI2MTAwNC4wIJJjKgBIAVAD&rclk=1"
   }
 ]
