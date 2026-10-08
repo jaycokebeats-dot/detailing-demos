@@ -31,7 +31,7 @@ export default function QualityGallery({ biz }: { biz: Business }) {
       </div>
 
       {/* fotos reales del negocio; en "/" no hay y no se renderiza */}
-      {biz.fotos.length > 0 && (
+      {biz.fotos && biz.fotos.length > 0 && (
         <div className="max-w-6xl mx-auto mt-16">
           <div className="text-center mb-8">
             <span className="section-badge mb-4">Nuestro trabajo</span>

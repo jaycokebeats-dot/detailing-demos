@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: descripcion,
       locale: "es_AR",
       type: "website",
-      ...(biz.fotos[0] ? { images: [{ url: biz.fotos[0] }] } : {}),
+      ...(biz.fotos?.[0] ? { images: [{ url: biz.fotos[0] }] } : {}),
     },
   };
 }
