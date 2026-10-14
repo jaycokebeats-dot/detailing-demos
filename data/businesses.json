@@ -47076,5 +47076,2980 @@
         "respuesta": "Podes escribirnos directo por WhatsApp al 0351 15-916-4910 y coordinamos la inspección técnica de tu unidad."
       }
     ]
+  },
+  {
+    "slug": "specchio-estetica-vehicular",
+    "nombre": "Specchio Estética Vehicular",
+    "ciudad": "Córdoba",
+    "direccion": "Tte. Gral. Donato Alvarez 7273, Córdoba",
+    "telefono": "0351 15-300-2343",
+    "whatsapp": "5493513002343",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 25,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Specchio+Est%C3%A9tica+Vehicular/@-31.3643363,-68.8499786,7z/data=!4m10!1m2!2m1!1sestetica+vehicular+cerro+de+las+rosas+cordoba!3m6!1s0x94329d73a6a44f29:0x36e7d2b1a8dce876!8m2!3d-31.3376681!4d-64.2588703!15sCi1lc3RldGljYSB2ZWhpY3VsYXIgY2Vycm8gZGUgbGFzIHJvc2FzIGNvcmRvYmFaLyItZXN0ZXRpY2EgdmVoaWN1bGFyIGNlcnJvIGRlIGxhcyByb3NhcyBjb3Jkb2JhkgEVY2FyX2RldGFpbGluZ19zZXJ2aWNlmgEkQ2hkRFNVaE5NRzluUzBWSlEwRm5TVU5JYlV4dFVYTlJSUkFC4AEA-gEECGsQOQ!16s%2Fg%2F11wbzn6c8j?entry=ttu&g_ep=EgoyMDI2MTAxMS4wIKXMDSoASAFQAw%3D%3D",
+    "hero_titulo": "Detailing de Alta Gama en Córdoba",
+    "hero_subtitulo": "Tratamientos cerámicos 9H, corrección de barniz y estética vehicular de precisión en Córdoba.",
+    "descripcion": "Taller especializado en detailing automotriz y protección para vehículos en Córdoba.",
+    "servicios_rich": [
+      {
+        "id": "tratamiento-ceramico",
+        "titulo": "Tratamiento Cerámico 9H",
+        "descripcion": "Protección nanométrica de alta dureza que sella el barniz, otorga brillo cristalino y máxima repelencia hidrofóbica hasta por 3 años.",
+        "icono": "ShieldCheck",
+        "duracion": "24 a 48 hs",
+        "garantia": "Garantía escrita 3 años",
+        "precio_desde": "$120.000",
+        "imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "correccion-barniz",
+        "titulo": "Corrección de Pintura en Pasos",
+        "descripcion": "Eliminación micro-quirúrgica de rayas superficiales, marcas de remolino (swirls) y marcas de agua, devolviendo profundidad total al color.",
+        "icono": "Sparkles",
+        "duracion": "8 a 12 hs",
+        "garantia": "Inspección digital",
+        "precio_desde": "$85.000",
+        "imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "acondicionamiento-interior",
+        "titulo": "Limpieza y Detailing de Interior",
+        "descripcion": "Desinfección profunda a vapor y extracción de tapizados, nutrición de cueros con productos premium y sellado anti-estático de plásticos.",
+        "icono": "Car",
+        "duracion": "6 a 8 hs",
+        "garantia": "Secado 100% en cabina",
+        "precio_desde": "$75.000",
+        "imagen": "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "sellado-vidrios",
+        "titulo": "Sellado Acrílico y Repelencia de Cristales",
+        "descripcion": "Tratamiento hidrofóbico para parabrisas y lunetas que incrementa drásticamente la visibilidad bajo lluvia intensa a velocidades superiores a 60 km/h.",
+        "icono": "Droplets",
+        "duracion": "3 a 4 hs",
+        "garantia": "Duración 6 meses",
+        "precio_desde": "$45.000",
+        "imagen": "https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "restauracion-opticas",
+        "titulo": "Restauración y Sellado de Ópticas",
+        "descripcion": "Lijado progresivo al agua y sellado UV cerámico para recuperar la transparencia cristalina original y maximizar el haz lumínico nocturno.",
+        "icono": "Eye",
+        "duracion": "2 a 3 hs",
+        "garantia": "Anti-amarilleo 1 año",
+        "precio_desde": "$40.000",
+        "imagen": "https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "lavado-premium",
+        "titulo": "Lavado Técnico al Detalle",
+        "descripcion": "Método de dos baldes con shampoo pH neutro, descontaminado ferroso de llantas, snow foam y secado con microfibra ultra-soft con aire caliente.",
+        "icono": "Flame",
+        "duracion": "3 a 4 hs",
+        "garantia": "Cero marcas",
+        "precio_desde": "$35.000",
+        "imagen": "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "proteccion-ppf",
+        "titulo": "Paint Protection Film (PPF)",
+        "descripcion": "Instalación de film de poliuretano transparente auto-regenerativo en zonas de alto impacto (trompa, paragolpes, capó) contra piedras y picaduras.",
+        "icono": "Shield",
+        "duracion": "2 a 3 días",
+        "garantia": "Garantía 5 a 10 años",
+        "precio_desde": "$250.000",
+        "imagen": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "detailing-motor",
+        "titulo": "Detailing y Nutrición de Motor",
+        "descripcion": "Limpieza en seco con vapor y desengrasantes dieléctricos biodegradables, protegiendo conectores y renovando plásticos con sellador térmico.",
+        "icono": "Cpu",
+        "duracion": "3 a 4 hs",
+        "garantia": "Protección dieléctrica",
+        "precio_desde": "$50.000",
+        "imagen": "https://images.unsplash.com/photo-1489824904134-891ab64532f1?auto=format&fit=crop&w=800&q=80"
+      }
+    ],
+    "slider_antes_despues": {
+      "habilitado": true,
+      "antes_imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=1200&q=80",
+      "despues_imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=1200&q=80",
+      "antes_etiqueta": "Antes: Barniz opaco y rayas",
+      "despues_etiqueta": "Después: Corrección y Cerámico 9H"
+    },
+    "faq": [
+      {
+        "pregunta": "¿Cuánto tiempo demora un tratamiento cerámico?",
+        "respuesta": "En nuestro estudio en Córdoba, un sellado cerámico completo requiere entre 24 y 48 horas de trabajo técnico y curado."
+      },
+      {
+        "pregunta": "¿Qué diferencia hay entre pulido y encerado?",
+        "respuesta": "El encerado sólo cubre imperfecciones por semanas. La corrección de pintura elimina físicamente micro-rayas y hologramas para siempre."
+      },
+      {
+        "pregunta": "¿Cómo solicito mi turno?",
+        "respuesta": "Podes escribirnos directo por WhatsApp al 0351 15-300-2343 y coordinamos la inspección técnica de tu unidad."
+      }
+    ]
+  },
+  {
+    "slug": "cotxe-detalle",
+    "nombre": "COTXE DETALLE",
+    "ciudad": "Córdoba",
+    "direccion": "Raúl Puccio Posse 4238, Córdoba",
+    "telefono": "0351 15-674-4305",
+    "whatsapp": "5493516744305",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 25,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/COTXE+DETALLE+%7C+ESTETICA+VEHICULAR/@-31.3643363,-68.8499786,7z/data=!4m10!1m2!2m1!1sestetica+vehicular+cerro+de+las+rosas+cordoba!3m6!1s0x943299ccf4e95819:0xb8feb7e0a507fc32!8m2!3d-31.3554809!4d-64.2287698!15sCi1lc3RldGljYSB2ZWhpY3VsYXIgY2Vycm8gZGUgbGFzIHJvc2FzIGNvcmRvYmGSAQhjYXJfd2FzaOABAA!16s%2Fg%2F11zy03hkh4?entry=ttu&g_ep=EgoyMDI2MTAxMS4wIKXMDSoASAFQAw%3D%3D",
+    "hero_titulo": "Detailing de Alta Gama en Córdoba",
+    "hero_subtitulo": "Tratamientos cerámicos 9H, corrección de barniz y estética vehicular de precisión en Córdoba.",
+    "descripcion": "Taller especializado en detailing automotriz y protección para vehículos en Córdoba.",
+    "servicios_rich": [
+      {
+        "id": "tratamiento-ceramico",
+        "titulo": "Tratamiento Cerámico 9H",
+        "descripcion": "Protección nanométrica de alta dureza que sella el barniz, otorga brillo cristalino y máxima repelencia hidrofóbica hasta por 3 años.",
+        "icono": "ShieldCheck",
+        "duracion": "24 a 48 hs",
+        "garantia": "Garantía escrita 3 años",
+        "precio_desde": "$120.000",
+        "imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "correccion-barniz",
+        "titulo": "Corrección de Pintura en Pasos",
+        "descripcion": "Eliminación micro-quirúrgica de rayas superficiales, marcas de remolino (swirls) y marcas de agua, devolviendo profundidad total al color.",
+        "icono": "Sparkles",
+        "duracion": "8 a 12 hs",
+        "garantia": "Inspección digital",
+        "precio_desde": "$85.000",
+        "imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "acondicionamiento-interior",
+        "titulo": "Limpieza y Detailing de Interior",
+        "descripcion": "Desinfección profunda a vapor y extracción de tapizados, nutrición de cueros con productos premium y sellado anti-estático de plásticos.",
+        "icono": "Car",
+        "duracion": "6 a 8 hs",
+        "garantia": "Secado 100% en cabina",
+        "precio_desde": "$75.000",
+        "imagen": "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "sellado-vidrios",
+        "titulo": "Sellado Acrílico y Repelencia de Cristales",
+        "descripcion": "Tratamiento hidrofóbico para parabrisas y lunetas que incrementa drásticamente la visibilidad bajo lluvia intensa a velocidades superiores a 60 km/h.",
+        "icono": "Droplets",
+        "duracion": "3 a 4 hs",
+        "garantia": "Duración 6 meses",
+        "precio_desde": "$45.000",
+        "imagen": "https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "restauracion-opticas",
+        "titulo": "Restauración y Sellado de Ópticas",
+        "descripcion": "Lijado progresivo al agua y sellado UV cerámico para recuperar la transparencia cristalina original y maximizar el haz lumínico nocturno.",
+        "icono": "Eye",
+        "duracion": "2 a 3 hs",
+        "garantia": "Anti-amarilleo 1 año",
+        "precio_desde": "$40.000",
+        "imagen": "https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "lavado-premium",
+        "titulo": "Lavado Técnico al Detalle",
+        "descripcion": "Método de dos baldes con shampoo pH neutro, descontaminado ferroso de llantas, snow foam y secado con microfibra ultra-soft con aire caliente.",
+        "icono": "Flame",
+        "duracion": "3 a 4 hs",
+        "garantia": "Cero marcas",
+        "precio_desde": "$35.000",
+        "imagen": "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "proteccion-ppf",
+        "titulo": "Paint Protection Film (PPF)",
+        "descripcion": "Instalación de film de poliuretano transparente auto-regenerativo en zonas de alto impacto (trompa, paragolpes, capó) contra piedras y picaduras.",
+        "icono": "Shield",
+        "duracion": "2 a 3 días",
+        "garantia": "Garantía 5 a 10 años",
+        "precio_desde": "$250.000",
+        "imagen": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "detailing-motor",
+        "titulo": "Detailing y Nutrición de Motor",
+        "descripcion": "Limpieza en seco con vapor y desengrasantes dieléctricos biodegradables, protegiendo conectores y renovando plásticos con sellador térmico.",
+        "icono": "Cpu",
+        "duracion": "3 a 4 hs",
+        "garantia": "Protección dieléctrica",
+        "precio_desde": "$50.000",
+        "imagen": "https://images.unsplash.com/photo-1489824904134-891ab64532f1?auto=format&fit=crop&w=800&q=80"
+      }
+    ],
+    "slider_antes_despues": {
+      "habilitado": true,
+      "antes_imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=1200&q=80",
+      "despues_imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=1200&q=80",
+      "antes_etiqueta": "Antes: Barniz opaco y rayas",
+      "despues_etiqueta": "Después: Corrección y Cerámico 9H"
+    },
+    "faq": [
+      {
+        "pregunta": "¿Cuánto tiempo demora un tratamiento cerámico?",
+        "respuesta": "En nuestro estudio en Córdoba, un sellado cerámico completo requiere entre 24 y 48 horas de trabajo técnico y curado."
+      },
+      {
+        "pregunta": "¿Qué diferencia hay entre pulido y encerado?",
+        "respuesta": "El encerado sólo cubre imperfecciones por semanas. La corrección de pintura elimina físicamente micro-rayas y hologramas para siempre."
+      },
+      {
+        "pregunta": "¿Cómo solicito mi turno?",
+        "respuesta": "Podes escribirnos directo por WhatsApp al 0351 15-674-4305 y coordinamos la inspección técnica de tu unidad."
+      }
+    ]
+  },
+  {
+    "slug": "ijj-car-details",
+    "nombre": "IJJ CAR DETAILS",
+    "ciudad": "Córdoba",
+    "direccion": "Pedro Carrasco 3635, Córdoba",
+    "telefono": "0351 15-316-7710",
+    "whatsapp": "5493513167710",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 25,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/IJJ+CAR+DETAILS/@-31.3994723,-64.1896443,12z/data=!4m10!1m2!2m1!1sdetailing+urca+cordoba!3m6!1s0x9432993fc7fbbc65:0x6b5c67dfa1a6c8dd!8m2!3d-31.4156288!4d-64.2324262!15sChZkZXRhaWxpbmcgdXJjYSBjb3Jkb2JhkgEQYXV0b19yZXBhaXJfc2hvcOABAA!16s%2Fg%2F11fl8_h3t3?entry=ttu&g_ep=EgoyMDI2MTAxMS4wIKXMDSoASAFQAw%3D%3D",
+    "hero_titulo": "Detailing de Alta Gama en Córdoba",
+    "hero_subtitulo": "Tratamientos cerámicos 9H, corrección de barniz y estética vehicular de precisión en Córdoba.",
+    "descripcion": "Taller especializado en detailing automotriz y protección para vehículos en Córdoba.",
+    "servicios_rich": [
+      {
+        "id": "tratamiento-ceramico",
+        "titulo": "Tratamiento Cerámico 9H",
+        "descripcion": "Protección nanométrica de alta dureza que sella el barniz, otorga brillo cristalino y máxima repelencia hidrofóbica hasta por 3 años.",
+        "icono": "ShieldCheck",
+        "duracion": "24 a 48 hs",
+        "garantia": "Garantía escrita 3 años",
+        "precio_desde": "$120.000",
+        "imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "correccion-barniz",
+        "titulo": "Corrección de Pintura en Pasos",
+        "descripcion": "Eliminación micro-quirúrgica de rayas superficiales, marcas de remolino (swirls) y marcas de agua, devolviendo profundidad total al color.",
+        "icono": "Sparkles",
+        "duracion": "8 a 12 hs",
+        "garantia": "Inspección digital",
+        "precio_desde": "$85.000",
+        "imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "acondicionamiento-interior",
+        "titulo": "Limpieza y Detailing de Interior",
+        "descripcion": "Desinfección profunda a vapor y extracción de tapizados, nutrición de cueros con productos premium y sellado anti-estático de plásticos.",
+        "icono": "Car",
+        "duracion": "6 a 8 hs",
+        "garantia": "Secado 100% en cabina",
+        "precio_desde": "$75.000",
+        "imagen": "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "sellado-vidrios",
+        "titulo": "Sellado Acrílico y Repelencia de Cristales",
+        "descripcion": "Tratamiento hidrofóbico para parabrisas y lunetas que incrementa drásticamente la visibilidad bajo lluvia intensa a velocidades superiores a 60 km/h.",
+        "icono": "Droplets",
+        "duracion": "3 a 4 hs",
+        "garantia": "Duración 6 meses",
+        "precio_desde": "$45.000",
+        "imagen": "https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "restauracion-opticas",
+        "titulo": "Restauración y Sellado de Ópticas",
+        "descripcion": "Lijado progresivo al agua y sellado UV cerámico para recuperar la transparencia cristalina original y maximizar el haz lumínico nocturno.",
+        "icono": "Eye",
+        "duracion": "2 a 3 hs",
+        "garantia": "Anti-amarilleo 1 año",
+        "precio_desde": "$40.000",
+        "imagen": "https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "lavado-premium",
+        "titulo": "Lavado Técnico al Detalle",
+        "descripcion": "Método de dos baldes con shampoo pH neutro, descontaminado ferroso de llantas, snow foam y secado con microfibra ultra-soft con aire caliente.",
+        "icono": "Flame",
+        "duracion": "3 a 4 hs",
+        "garantia": "Cero marcas",
+        "precio_desde": "$35.000",
+        "imagen": "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "proteccion-ppf",
+        "titulo": "Paint Protection Film (PPF)",
+        "descripcion": "Instalación de film de poliuretano transparente auto-regenerativo en zonas de alto impacto (trompa, paragolpes, capó) contra piedras y picaduras.",
+        "icono": "Shield",
+        "duracion": "2 a 3 días",
+        "garantia": "Garantía 5 a 10 años",
+        "precio_desde": "$250.000",
+        "imagen": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "detailing-motor",
+        "titulo": "Detailing y Nutrición de Motor",
+        "descripcion": "Limpieza en seco con vapor y desengrasantes dieléctricos biodegradables, protegiendo conectores y renovando plásticos con sellador térmico.",
+        "icono": "Cpu",
+        "duracion": "3 a 4 hs",
+        "garantia": "Protección dieléctrica",
+        "precio_desde": "$50.000",
+        "imagen": "https://images.unsplash.com/photo-1489824904134-891ab64532f1?auto=format&fit=crop&w=800&q=80"
+      }
+    ],
+    "slider_antes_despues": {
+      "habilitado": true,
+      "antes_imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=1200&q=80",
+      "despues_imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=1200&q=80",
+      "antes_etiqueta": "Antes: Barniz opaco y rayas",
+      "despues_etiqueta": "Después: Corrección y Cerámico 9H"
+    },
+    "faq": [
+      {
+        "pregunta": "¿Cuánto tiempo demora un tratamiento cerámico?",
+        "respuesta": "En nuestro estudio en Córdoba, un sellado cerámico completo requiere entre 24 y 48 horas de trabajo técnico y curado."
+      },
+      {
+        "pregunta": "¿Qué diferencia hay entre pulido y encerado?",
+        "respuesta": "El encerado sólo cubre imperfecciones por semanas. La corrección de pintura elimina físicamente micro-rayas y hologramas para siempre."
+      },
+      {
+        "pregunta": "¿Cómo solicito mi turno?",
+        "respuesta": "Podes escribirnos directo por WhatsApp al 0351 15-316-7710 y coordinamos la inspección técnica de tu unidad."
+      }
+    ]
+  },
+  {
+    "slug": "gema-detailing",
+    "nombre": "GEMA Detailing",
+    "ciudad": "Córdoba",
+    "direccion": "Pte. Marcelino Augier 3844, Córdoba",
+    "telefono": "0351 15-873-9447",
+    "whatsapp": "5493518739447",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 25,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/GEMA+Detailing/@-31.4592742,-64.331407,12z/data=!4m10!1m2!2m1!1stratamiento+ceramico+cordoba+capital!3m6!1s0x9432a398691eae99:0xb73781ad977c9747!8m2!3d-31.4434019!4d-64.2387151!15sCiR0cmF0YW1pZW50byBjZXJhbWljbyBjb3Jkb2JhIGNhcGl0YWxaJiIkdHJhdGFtaWVudG8gY2VyYW1pY28gY29yZG9iYSBjYXBpdGFskgEIY2FyX3dhc2jgAQA!16s%2Fg%2F11ntp_2_37?entry=ttu&g_ep=EgoyMDI2MTAxMS4wIKXMDSoASAFQAw%3D%3D",
+    "hero_titulo": "Detailing de Alta Gama en Córdoba",
+    "hero_subtitulo": "Tratamientos cerámicos 9H, corrección de barniz y estética vehicular de precisión en Córdoba.",
+    "descripcion": "Taller especializado en detailing automotriz y protección para vehículos en Córdoba.",
+    "servicios_rich": [
+      {
+        "id": "tratamiento-ceramico",
+        "titulo": "Tratamiento Cerámico 9H",
+        "descripcion": "Protección nanométrica de alta dureza que sella el barniz, otorga brillo cristalino y máxima repelencia hidrofóbica hasta por 3 años.",
+        "icono": "ShieldCheck",
+        "duracion": "24 a 48 hs",
+        "garantia": "Garantía escrita 3 años",
+        "precio_desde": "$120.000",
+        "imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "correccion-barniz",
+        "titulo": "Corrección de Pintura en Pasos",
+        "descripcion": "Eliminación micro-quirúrgica de rayas superficiales, marcas de remolino (swirls) y marcas de agua, devolviendo profundidad total al color.",
+        "icono": "Sparkles",
+        "duracion": "8 a 12 hs",
+        "garantia": "Inspección digital",
+        "precio_desde": "$85.000",
+        "imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "acondicionamiento-interior",
+        "titulo": "Limpieza y Detailing de Interior",
+        "descripcion": "Desinfección profunda a vapor y extracción de tapizados, nutrición de cueros con productos premium y sellado anti-estático de plásticos.",
+        "icono": "Car",
+        "duracion": "6 a 8 hs",
+        "garantia": "Secado 100% en cabina",
+        "precio_desde": "$75.000",
+        "imagen": "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "sellado-vidrios",
+        "titulo": "Sellado Acrílico y Repelencia de Cristales",
+        "descripcion": "Tratamiento hidrofóbico para parabrisas y lunetas que incrementa drásticamente la visibilidad bajo lluvia intensa a velocidades superiores a 60 km/h.",
+        "icono": "Droplets",
+        "duracion": "3 a 4 hs",
+        "garantia": "Duración 6 meses",
+        "precio_desde": "$45.000",
+        "imagen": "https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "restauracion-opticas",
+        "titulo": "Restauración y Sellado de Ópticas",
+        "descripcion": "Lijado progresivo al agua y sellado UV cerámico para recuperar la transparencia cristalina original y maximizar el haz lumínico nocturno.",
+        "icono": "Eye",
+        "duracion": "2 a 3 hs",
+        "garantia": "Anti-amarilleo 1 año",
+        "precio_desde": "$40.000",
+        "imagen": "https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "lavado-premium",
+        "titulo": "Lavado Técnico al Detalle",
+        "descripcion": "Método de dos baldes con shampoo pH neutro, descontaminado ferroso de llantas, snow foam y secado con microfibra ultra-soft con aire caliente.",
+        "icono": "Flame",
+        "duracion": "3 a 4 hs",
+        "garantia": "Cero marcas",
+        "precio_desde": "$35.000",
+        "imagen": "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "proteccion-ppf",
+        "titulo": "Paint Protection Film (PPF)",
+        "descripcion": "Instalación de film de poliuretano transparente auto-regenerativo en zonas de alto impacto (trompa, paragolpes, capó) contra piedras y picaduras.",
+        "icono": "Shield",
+        "duracion": "2 a 3 días",
+        "garantia": "Garantía 5 a 10 años",
+        "precio_desde": "$250.000",
+        "imagen": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "detailing-motor",
+        "titulo": "Detailing y Nutrición de Motor",
+        "descripcion": "Limpieza en seco con vapor y desengrasantes dieléctricos biodegradables, protegiendo conectores y renovando plásticos con sellador térmico.",
+        "icono": "Cpu",
+        "duracion": "3 a 4 hs",
+        "garantia": "Protección dieléctrica",
+        "precio_desde": "$50.000",
+        "imagen": "https://images.unsplash.com/photo-1489824904134-891ab64532f1?auto=format&fit=crop&w=800&q=80"
+      }
+    ],
+    "slider_antes_despues": {
+      "habilitado": true,
+      "antes_imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=1200&q=80",
+      "despues_imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=1200&q=80",
+      "antes_etiqueta": "Antes: Barniz opaco y rayas",
+      "despues_etiqueta": "Después: Corrección y Cerámico 9H"
+    },
+    "faq": [
+      {
+        "pregunta": "¿Cuánto tiempo demora un tratamiento cerámico?",
+        "respuesta": "En nuestro estudio en Córdoba, un sellado cerámico completo requiere entre 24 y 48 horas de trabajo técnico y curado."
+      },
+      {
+        "pregunta": "¿Qué diferencia hay entre pulido y encerado?",
+        "respuesta": "El encerado sólo cubre imperfecciones por semanas. La corrección de pintura elimina físicamente micro-rayas y hologramas para siempre."
+      },
+      {
+        "pregunta": "¿Cómo solicito mi turno?",
+        "respuesta": "Podes escribirnos directo por WhatsApp al 0351 15-873-9447 y coordinamos la inspección técnica de tu unidad."
+      }
+    ]
+  },
+  {
+    "slug": "1813-cardetail",
+    "nombre": "1813 cardetail",
+    "ciudad": "Córdoba",
+    "direccion": "Av. del Trabajo 1686, Córdoba",
+    "telefono": "0351 15-759-3662",
+    "whatsapp": "5493517593662",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 25,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/1813+cardetail/@-31.4592742,-64.331407,12z/data=!4m10!1m2!2m1!1stratamiento+ceramico+cordoba+capital!3m6!1s0x94329957da5d37d3:0x1df421a5b7ca630b!8m2!3d-31.3862795!4d-64.1581982!15sCiR0cmF0YW1pZW50byBjZXJhbWljbyBjb3Jkb2JhIGNhcGl0YWxaJiIkdHJhdGFtaWVudG8gY2VyYW1pY28gY29yZG9iYSBjYXBpdGFskgEWYm9hdF9kZXRhaWxpbmdfc2VydmljZZoBRENpOURRVWxSUVVOdlpFTm9kSGxqUmpsdlQycE9NVk5FVVhsUFZVa3haRmh3ZDA1V1RtbGphMmhYWXpKd1dXTklZeEFC4AEA-gEECAAQRw!16s%2Fg%2F11zh6tlvsh?entry=ttu&g_ep=EgoyMDI2MTAxMS4wIKXMDSoASAFQAw%3D%3D",
+    "hero_titulo": "Detailing de Alta Gama en Córdoba",
+    "hero_subtitulo": "Tratamientos cerámicos 9H, corrección de barniz y estética vehicular de precisión en Córdoba.",
+    "descripcion": "Taller especializado en detailing automotriz y protección para vehículos en Córdoba.",
+    "servicios_rich": [
+      {
+        "id": "tratamiento-ceramico",
+        "titulo": "Tratamiento Cerámico 9H",
+        "descripcion": "Protección nanométrica de alta dureza que sella el barniz, otorga brillo cristalino y máxima repelencia hidrofóbica hasta por 3 años.",
+        "icono": "ShieldCheck",
+        "duracion": "24 a 48 hs",
+        "garantia": "Garantía escrita 3 años",
+        "precio_desde": "$120.000",
+        "imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "correccion-barniz",
+        "titulo": "Corrección de Pintura en Pasos",
+        "descripcion": "Eliminación micro-quirúrgica de rayas superficiales, marcas de remolino (swirls) y marcas de agua, devolviendo profundidad total al color.",
+        "icono": "Sparkles",
+        "duracion": "8 a 12 hs",
+        "garantia": "Inspección digital",
+        "precio_desde": "$85.000",
+        "imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "acondicionamiento-interior",
+        "titulo": "Limpieza y Detailing de Interior",
+        "descripcion": "Desinfección profunda a vapor y extracción de tapizados, nutrición de cueros con productos premium y sellado anti-estático de plásticos.",
+        "icono": "Car",
+        "duracion": "6 a 8 hs",
+        "garantia": "Secado 100% en cabina",
+        "precio_desde": "$75.000",
+        "imagen": "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "sellado-vidrios",
+        "titulo": "Sellado Acrílico y Repelencia de Cristales",
+        "descripcion": "Tratamiento hidrofóbico para parabrisas y lunetas que incrementa drásticamente la visibilidad bajo lluvia intensa a velocidades superiores a 60 km/h.",
+        "icono": "Droplets",
+        "duracion": "3 a 4 hs",
+        "garantia": "Duración 6 meses",
+        "precio_desde": "$45.000",
+        "imagen": "https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "restauracion-opticas",
+        "titulo": "Restauración y Sellado de Ópticas",
+        "descripcion": "Lijado progresivo al agua y sellado UV cerámico para recuperar la transparencia cristalina original y maximizar el haz lumínico nocturno.",
+        "icono": "Eye",
+        "duracion": "2 a 3 hs",
+        "garantia": "Anti-amarilleo 1 año",
+        "precio_desde": "$40.000",
+        "imagen": "https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "lavado-premium",
+        "titulo": "Lavado Técnico al Detalle",
+        "descripcion": "Método de dos baldes con shampoo pH neutro, descontaminado ferroso de llantas, snow foam y secado con microfibra ultra-soft con aire caliente.",
+        "icono": "Flame",
+        "duracion": "3 a 4 hs",
+        "garantia": "Cero marcas",
+        "precio_desde": "$35.000",
+        "imagen": "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "proteccion-ppf",
+        "titulo": "Paint Protection Film (PPF)",
+        "descripcion": "Instalación de film de poliuretano transparente auto-regenerativo en zonas de alto impacto (trompa, paragolpes, capó) contra piedras y picaduras.",
+        "icono": "Shield",
+        "duracion": "2 a 3 días",
+        "garantia": "Garantía 5 a 10 años",
+        "precio_desde": "$250.000",
+        "imagen": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "detailing-motor",
+        "titulo": "Detailing y Nutrición de Motor",
+        "descripcion": "Limpieza en seco con vapor y desengrasantes dieléctricos biodegradables, protegiendo conectores y renovando plásticos con sellador térmico.",
+        "icono": "Cpu",
+        "duracion": "3 a 4 hs",
+        "garantia": "Protección dieléctrica",
+        "precio_desde": "$50.000",
+        "imagen": "https://images.unsplash.com/photo-1489824904134-891ab64532f1?auto=format&fit=crop&w=800&q=80"
+      }
+    ],
+    "slider_antes_despues": {
+      "habilitado": true,
+      "antes_imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=1200&q=80",
+      "despues_imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=1200&q=80",
+      "antes_etiqueta": "Antes: Barniz opaco y rayas",
+      "despues_etiqueta": "Después: Corrección y Cerámico 9H"
+    },
+    "faq": [
+      {
+        "pregunta": "¿Cuánto tiempo demora un tratamiento cerámico?",
+        "respuesta": "En nuestro estudio en Córdoba, un sellado cerámico completo requiere entre 24 y 48 horas de trabajo técnico y curado."
+      },
+      {
+        "pregunta": "¿Qué diferencia hay entre pulido y encerado?",
+        "respuesta": "El encerado sólo cubre imperfecciones por semanas. La corrección de pintura elimina físicamente micro-rayas y hologramas para siempre."
+      },
+      {
+        "pregunta": "¿Cómo solicito mi turno?",
+        "respuesta": "Podes escribirnos directo por WhatsApp al 0351 15-759-3662 y coordinamos la inspección técnica de tu unidad."
+      }
+    ]
+  },
+  {
+    "slug": "ceramic-pro-car-detail",
+    "nombre": "Ceramic Pro Car Detail",
+    "ciudad": "Córdoba",
+    "direccion": "Díaz Colodrero 3022, Córdoba",
+    "telefono": "0351 15-805-8174",
+    "whatsapp": "5493518058174",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 25,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Ceramic+Pro+Car+Detail/@-31.4592742,-64.331407,12z/data=!4m10!1m2!2m1!1stratamiento+ceramico+cordoba+capital!3m6!1s0x94329813bf2e1013:0x4a4f9254876ac4bd!8m2!3d-31.3751539!4d-64.1440637!15sCiR0cmF0YW1pZW50byBjZXJhbWljbyBjb3Jkb2JhIGNhcGl0YWySARBhdXRvX3JlcGFpcl9zaG9w4AEA!16s%2Fg%2F11h8k_tf5_?entry=ttu&g_ep=EgoyMDI2MTAxMS4wIKXMDSoASAFQAw%3D%3D",
+    "hero_titulo": "Detailing de Alta Gama en Córdoba",
+    "hero_subtitulo": "Tratamientos cerámicos 9H, corrección de barniz y estética vehicular de precisión en Córdoba.",
+    "descripcion": "Taller especializado en detailing automotriz y protección para vehículos en Córdoba.",
+    "servicios_rich": [
+      {
+        "id": "tratamiento-ceramico",
+        "titulo": "Tratamiento Cerámico 9H",
+        "descripcion": "Protección nanométrica de alta dureza que sella el barniz, otorga brillo cristalino y máxima repelencia hidrofóbica hasta por 3 años.",
+        "icono": "ShieldCheck",
+        "duracion": "24 a 48 hs",
+        "garantia": "Garantía escrita 3 años",
+        "precio_desde": "$120.000",
+        "imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "correccion-barniz",
+        "titulo": "Corrección de Pintura en Pasos",
+        "descripcion": "Eliminación micro-quirúrgica de rayas superficiales, marcas de remolino (swirls) y marcas de agua, devolviendo profundidad total al color.",
+        "icono": "Sparkles",
+        "duracion": "8 a 12 hs",
+        "garantia": "Inspección digital",
+        "precio_desde": "$85.000",
+        "imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "acondicionamiento-interior",
+        "titulo": "Limpieza y Detailing de Interior",
+        "descripcion": "Desinfección profunda a vapor y extracción de tapizados, nutrición de cueros con productos premium y sellado anti-estático de plásticos.",
+        "icono": "Car",
+        "duracion": "6 a 8 hs",
+        "garantia": "Secado 100% en cabina",
+        "precio_desde": "$75.000",
+        "imagen": "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "sellado-vidrios",
+        "titulo": "Sellado Acrílico y Repelencia de Cristales",
+        "descripcion": "Tratamiento hidrofóbico para parabrisas y lunetas que incrementa drásticamente la visibilidad bajo lluvia intensa a velocidades superiores a 60 km/h.",
+        "icono": "Droplets",
+        "duracion": "3 a 4 hs",
+        "garantia": "Duración 6 meses",
+        "precio_desde": "$45.000",
+        "imagen": "https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "restauracion-opticas",
+        "titulo": "Restauración y Sellado de Ópticas",
+        "descripcion": "Lijado progresivo al agua y sellado UV cerámico para recuperar la transparencia cristalina original y maximizar el haz lumínico nocturno.",
+        "icono": "Eye",
+        "duracion": "2 a 3 hs",
+        "garantia": "Anti-amarilleo 1 año",
+        "precio_desde": "$40.000",
+        "imagen": "https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "lavado-premium",
+        "titulo": "Lavado Técnico al Detalle",
+        "descripcion": "Método de dos baldes con shampoo pH neutro, descontaminado ferroso de llantas, snow foam y secado con microfibra ultra-soft con aire caliente.",
+        "icono": "Flame",
+        "duracion": "3 a 4 hs",
+        "garantia": "Cero marcas",
+        "precio_desde": "$35.000",
+        "imagen": "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "proteccion-ppf",
+        "titulo": "Paint Protection Film (PPF)",
+        "descripcion": "Instalación de film de poliuretano transparente auto-regenerativo en zonas de alto impacto (trompa, paragolpes, capó) contra piedras y picaduras.",
+        "icono": "Shield",
+        "duracion": "2 a 3 días",
+        "garantia": "Garantía 5 a 10 años",
+        "precio_desde": "$250.000",
+        "imagen": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "detailing-motor",
+        "titulo": "Detailing y Nutrición de Motor",
+        "descripcion": "Limpieza en seco con vapor y desengrasantes dieléctricos biodegradables, protegiendo conectores y renovando plásticos con sellador térmico.",
+        "icono": "Cpu",
+        "duracion": "3 a 4 hs",
+        "garantia": "Protección dieléctrica",
+        "precio_desde": "$50.000",
+        "imagen": "https://images.unsplash.com/photo-1489824904134-891ab64532f1?auto=format&fit=crop&w=800&q=80"
+      }
+    ],
+    "slider_antes_despues": {
+      "habilitado": true,
+      "antes_imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=1200&q=80",
+      "despues_imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=1200&q=80",
+      "antes_etiqueta": "Antes: Barniz opaco y rayas",
+      "despues_etiqueta": "Después: Corrección y Cerámico 9H"
+    },
+    "faq": [
+      {
+        "pregunta": "¿Cuánto tiempo demora un tratamiento cerámico?",
+        "respuesta": "En nuestro estudio en Córdoba, un sellado cerámico completo requiere entre 24 y 48 horas de trabajo técnico y curado."
+      },
+      {
+        "pregunta": "¿Qué diferencia hay entre pulido y encerado?",
+        "respuesta": "El encerado sólo cubre imperfecciones por semanas. La corrección de pintura elimina físicamente micro-rayas y hologramas para siempre."
+      },
+      {
+        "pregunta": "¿Cómo solicito mi turno?",
+        "respuesta": "Podes escribirnos directo por WhatsApp al 0351 15-805-8174 y coordinamos la inspección técnica de tu unidad."
+      }
+    ]
+  },
+  {
+    "slug": "fibra-garage-car-detailing",
+    "nombre": "Fibra Garage Car Detailing",
+    "ciudad": "Córdoba",
+    "direccion": "Av. Amadeo Sabattini 2127, Córdoba",
+    "telefono": "0351 15-311-8594",
+    "whatsapp": "5493513118594",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 25,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Fibra+Garage+Car+Detailing/@-31.4592742,-64.331407,12z/data=!4m10!1m2!2m1!1stratamiento+ceramico+cordoba+capital!3m6!1s0x9432a2c8ce73563d:0xef6a43fbd5e198bc!8m2!3d-31.4329419!4d-64.1575299!15sCiR0cmF0YW1pZW50byBjZXJhbWljbyBjb3Jkb2JhIGNhcGl0YWySAQhjYXJfd2FzaOABAA!16s%2Fg%2F11hdyr1587?entry=ttu&g_ep=EgoyMDI2MTAxMS4wIKXMDSoASAFQAw%3D%3D",
+    "hero_titulo": "Detailing de Alta Gama en Córdoba",
+    "hero_subtitulo": "Tratamientos cerámicos 9H, corrección de barniz y estética vehicular de precisión en Córdoba.",
+    "descripcion": "Taller especializado en detailing automotriz y protección para vehículos en Córdoba.",
+    "servicios_rich": [
+      {
+        "id": "tratamiento-ceramico",
+        "titulo": "Tratamiento Cerámico 9H",
+        "descripcion": "Protección nanométrica de alta dureza que sella el barniz, otorga brillo cristalino y máxima repelencia hidrofóbica hasta por 3 años.",
+        "icono": "ShieldCheck",
+        "duracion": "24 a 48 hs",
+        "garantia": "Garantía escrita 3 años",
+        "precio_desde": "$120.000",
+        "imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "correccion-barniz",
+        "titulo": "Corrección de Pintura en Pasos",
+        "descripcion": "Eliminación micro-quirúrgica de rayas superficiales, marcas de remolino (swirls) y marcas de agua, devolviendo profundidad total al color.",
+        "icono": "Sparkles",
+        "duracion": "8 a 12 hs",
+        "garantia": "Inspección digital",
+        "precio_desde": "$85.000",
+        "imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "acondicionamiento-interior",
+        "titulo": "Limpieza y Detailing de Interior",
+        "descripcion": "Desinfección profunda a vapor y extracción de tapizados, nutrición de cueros con productos premium y sellado anti-estático de plásticos.",
+        "icono": "Car",
+        "duracion": "6 a 8 hs",
+        "garantia": "Secado 100% en cabina",
+        "precio_desde": "$75.000",
+        "imagen": "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "sellado-vidrios",
+        "titulo": "Sellado Acrílico y Repelencia de Cristales",
+        "descripcion": "Tratamiento hidrofóbico para parabrisas y lunetas que incrementa drásticamente la visibilidad bajo lluvia intensa a velocidades superiores a 60 km/h.",
+        "icono": "Droplets",
+        "duracion": "3 a 4 hs",
+        "garantia": "Duración 6 meses",
+        "precio_desde": "$45.000",
+        "imagen": "https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "restauracion-opticas",
+        "titulo": "Restauración y Sellado de Ópticas",
+        "descripcion": "Lijado progresivo al agua y sellado UV cerámico para recuperar la transparencia cristalina original y maximizar el haz lumínico nocturno.",
+        "icono": "Eye",
+        "duracion": "2 a 3 hs",
+        "garantia": "Anti-amarilleo 1 año",
+        "precio_desde": "$40.000",
+        "imagen": "https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "lavado-premium",
+        "titulo": "Lavado Técnico al Detalle",
+        "descripcion": "Método de dos baldes con shampoo pH neutro, descontaminado ferroso de llantas, snow foam y secado con microfibra ultra-soft con aire caliente.",
+        "icono": "Flame",
+        "duracion": "3 a 4 hs",
+        "garantia": "Cero marcas",
+        "precio_desde": "$35.000",
+        "imagen": "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "proteccion-ppf",
+        "titulo": "Paint Protection Film (PPF)",
+        "descripcion": "Instalación de film de poliuretano transparente auto-regenerativo en zonas de alto impacto (trompa, paragolpes, capó) contra piedras y picaduras.",
+        "icono": "Shield",
+        "duracion": "2 a 3 días",
+        "garantia": "Garantía 5 a 10 años",
+        "precio_desde": "$250.000",
+        "imagen": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "detailing-motor",
+        "titulo": "Detailing y Nutrición de Motor",
+        "descripcion": "Limpieza en seco con vapor y desengrasantes dieléctricos biodegradables, protegiendo conectores y renovando plásticos con sellador térmico.",
+        "icono": "Cpu",
+        "duracion": "3 a 4 hs",
+        "garantia": "Protección dieléctrica",
+        "precio_desde": "$50.000",
+        "imagen": "https://images.unsplash.com/photo-1489824904134-891ab64532f1?auto=format&fit=crop&w=800&q=80"
+      }
+    ],
+    "slider_antes_despues": {
+      "habilitado": true,
+      "antes_imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=1200&q=80",
+      "despues_imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=1200&q=80",
+      "antes_etiqueta": "Antes: Barniz opaco y rayas",
+      "despues_etiqueta": "Después: Corrección y Cerámico 9H"
+    },
+    "faq": [
+      {
+        "pregunta": "¿Cuánto tiempo demora un tratamiento cerámico?",
+        "respuesta": "En nuestro estudio en Córdoba, un sellado cerámico completo requiere entre 24 y 48 horas de trabajo técnico y curado."
+      },
+      {
+        "pregunta": "¿Qué diferencia hay entre pulido y encerado?",
+        "respuesta": "El encerado sólo cubre imperfecciones por semanas. La corrección de pintura elimina físicamente micro-rayas y hologramas para siempre."
+      },
+      {
+        "pregunta": "¿Cómo solicito mi turno?",
+        "respuesta": "Podes escribirnos directo por WhatsApp al 0351 15-311-8594 y coordinamos la inspección técnica de tu unidad."
+      }
+    ]
+  },
+  {
+    "slug": "cdz-detail",
+    "nombre": "CDZ DETAIL",
+    "ciudad": "Córdoba",
+    "direccion": "Julio A. Roca 1118, Córdoba",
+    "telefono": "0351 15-874-8373",
+    "whatsapp": "5493518748373",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 25,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/CDZ+DETAIL+-+EST%C3%89TICA+VEHICULAR/@-31.4592742,-64.331407,12z/data=!4m10!1m2!2m1!1stratamiento+ceramico+cordoba+capital!3m6!1s0x9432a3a311c5ea79:0xa0e7b6a502b7e559!8m2!3d-31.4276145!4d-64.2076265!15sCiR0cmF0YW1pZW50byBjZXJhbWljbyBjb3Jkb2JhIGNhcGl0YWySARVjYXJfZGV0YWlsaW5nX3NlcnZpY2XgAQA!16s%2Fg%2F11nw2h34xj?entry=ttu&g_ep=EgoyMDI2MTAxMS4wIKXMDSoASAFQAw%3D%3D",
+    "hero_titulo": "Detailing de Alta Gama en Córdoba",
+    "hero_subtitulo": "Tratamientos cerámicos 9H, corrección de barniz y estética vehicular de precisión en Córdoba.",
+    "descripcion": "Taller especializado en detailing automotriz y protección para vehículos en Córdoba.",
+    "servicios_rich": [
+      {
+        "id": "tratamiento-ceramico",
+        "titulo": "Tratamiento Cerámico 9H",
+        "descripcion": "Protección nanométrica de alta dureza que sella el barniz, otorga brillo cristalino y máxima repelencia hidrofóbica hasta por 3 años.",
+        "icono": "ShieldCheck",
+        "duracion": "24 a 48 hs",
+        "garantia": "Garantía escrita 3 años",
+        "precio_desde": "$120.000",
+        "imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "correccion-barniz",
+        "titulo": "Corrección de Pintura en Pasos",
+        "descripcion": "Eliminación micro-quirúrgica de rayas superficiales, marcas de remolino (swirls) y marcas de agua, devolviendo profundidad total al color.",
+        "icono": "Sparkles",
+        "duracion": "8 a 12 hs",
+        "garantia": "Inspección digital",
+        "precio_desde": "$85.000",
+        "imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "acondicionamiento-interior",
+        "titulo": "Limpieza y Detailing de Interior",
+        "descripcion": "Desinfección profunda a vapor y extracción de tapizados, nutrición de cueros con productos premium y sellado anti-estático de plásticos.",
+        "icono": "Car",
+        "duracion": "6 a 8 hs",
+        "garantia": "Secado 100% en cabina",
+        "precio_desde": "$75.000",
+        "imagen": "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "sellado-vidrios",
+        "titulo": "Sellado Acrílico y Repelencia de Cristales",
+        "descripcion": "Tratamiento hidrofóbico para parabrisas y lunetas que incrementa drásticamente la visibilidad bajo lluvia intensa a velocidades superiores a 60 km/h.",
+        "icono": "Droplets",
+        "duracion": "3 a 4 hs",
+        "garantia": "Duración 6 meses",
+        "precio_desde": "$45.000",
+        "imagen": "https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "restauracion-opticas",
+        "titulo": "Restauración y Sellado de Ópticas",
+        "descripcion": "Lijado progresivo al agua y sellado UV cerámico para recuperar la transparencia cristalina original y maximizar el haz lumínico nocturno.",
+        "icono": "Eye",
+        "duracion": "2 a 3 hs",
+        "garantia": "Anti-amarilleo 1 año",
+        "precio_desde": "$40.000",
+        "imagen": "https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "lavado-premium",
+        "titulo": "Lavado Técnico al Detalle",
+        "descripcion": "Método de dos baldes con shampoo pH neutro, descontaminado ferroso de llantas, snow foam y secado con microfibra ultra-soft con aire caliente.",
+        "icono": "Flame",
+        "duracion": "3 a 4 hs",
+        "garantia": "Cero marcas",
+        "precio_desde": "$35.000",
+        "imagen": "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "proteccion-ppf",
+        "titulo": "Paint Protection Film (PPF)",
+        "descripcion": "Instalación de film de poliuretano transparente auto-regenerativo en zonas de alto impacto (trompa, paragolpes, capó) contra piedras y picaduras.",
+        "icono": "Shield",
+        "duracion": "2 a 3 días",
+        "garantia": "Garantía 5 a 10 años",
+        "precio_desde": "$250.000",
+        "imagen": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "detailing-motor",
+        "titulo": "Detailing y Nutrición de Motor",
+        "descripcion": "Limpieza en seco con vapor y desengrasantes dieléctricos biodegradables, protegiendo conectores y renovando plásticos con sellador térmico.",
+        "icono": "Cpu",
+        "duracion": "3 a 4 hs",
+        "garantia": "Protección dieléctrica",
+        "precio_desde": "$50.000",
+        "imagen": "https://images.unsplash.com/photo-1489824904134-891ab64532f1?auto=format&fit=crop&w=800&q=80"
+      }
+    ],
+    "slider_antes_despues": {
+      "habilitado": true,
+      "antes_imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=1200&q=80",
+      "despues_imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=1200&q=80",
+      "antes_etiqueta": "Antes: Barniz opaco y rayas",
+      "despues_etiqueta": "Después: Corrección y Cerámico 9H"
+    },
+    "faq": [
+      {
+        "pregunta": "¿Cuánto tiempo demora un tratamiento cerámico?",
+        "respuesta": "En nuestro estudio en Córdoba, un sellado cerámico completo requiere entre 24 y 48 horas de trabajo técnico y curado."
+      },
+      {
+        "pregunta": "¿Qué diferencia hay entre pulido y encerado?",
+        "respuesta": "El encerado sólo cubre imperfecciones por semanas. La corrección de pintura elimina físicamente micro-rayas y hologramas para siempre."
+      },
+      {
+        "pregunta": "¿Cómo solicito mi turno?",
+        "respuesta": "Podes escribirnos directo por WhatsApp al 0351 15-874-8373 y coordinamos la inspección técnica de tu unidad."
+      }
+    ]
+  },
+  {
+    "slug": "crystal-detailing",
+    "nombre": "Crystal Detailing",
+    "ciudad": "Córdoba",
+    "direccion": "Avenida Bodereau 7825, Córdoba",
+    "telefono": "0351 15-804-2033",
+    "whatsapp": "5493518042033",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 25,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Crystal+Detailing/@-31.4592742,-64.331407,12z/data=!4m10!1m2!2m1!1stratamiento+ceramico+cordoba+capital!3m6!1s0x94329d2689c1c7b3:0x2c9910d780b19315!8m2!3d-31.3314393!4d-64.2883377!15sCiR0cmF0YW1pZW50byBjZXJhbWljbyBjb3Jkb2JhIGNhcGl0YWySARVjYXJfZGV0YWlsaW5nX3NlcnZpY2XgAQA!16s%2Fg%2F11ml2b67z_?entry=ttu&g_ep=EgoyMDI2MTAxMS4wIKXMDSoASAFQAw%3D%3D",
+    "hero_titulo": "Detailing de Alta Gama en Córdoba",
+    "hero_subtitulo": "Tratamientos cerámicos 9H, corrección de barniz y estética vehicular de precisión en Córdoba.",
+    "descripcion": "Taller especializado en detailing automotriz y protección para vehículos en Córdoba.",
+    "servicios_rich": [
+      {
+        "id": "tratamiento-ceramico",
+        "titulo": "Tratamiento Cerámico 9H",
+        "descripcion": "Protección nanométrica de alta dureza que sella el barniz, otorga brillo cristalino y máxima repelencia hidrofóbica hasta por 3 años.",
+        "icono": "ShieldCheck",
+        "duracion": "24 a 48 hs",
+        "garantia": "Garantía escrita 3 años",
+        "precio_desde": "$120.000",
+        "imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "correccion-barniz",
+        "titulo": "Corrección de Pintura en Pasos",
+        "descripcion": "Eliminación micro-quirúrgica de rayas superficiales, marcas de remolino (swirls) y marcas de agua, devolviendo profundidad total al color.",
+        "icono": "Sparkles",
+        "duracion": "8 a 12 hs",
+        "garantia": "Inspección digital",
+        "precio_desde": "$85.000",
+        "imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "acondicionamiento-interior",
+        "titulo": "Limpieza y Detailing de Interior",
+        "descripcion": "Desinfección profunda a vapor y extracción de tapizados, nutrición de cueros con productos premium y sellado anti-estático de plásticos.",
+        "icono": "Car",
+        "duracion": "6 a 8 hs",
+        "garantia": "Secado 100% en cabina",
+        "precio_desde": "$75.000",
+        "imagen": "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "sellado-vidrios",
+        "titulo": "Sellado Acrílico y Repelencia de Cristales",
+        "descripcion": "Tratamiento hidrofóbico para parabrisas y lunetas que incrementa drásticamente la visibilidad bajo lluvia intensa a velocidades superiores a 60 km/h.",
+        "icono": "Droplets",
+        "duracion": "3 a 4 hs",
+        "garantia": "Duración 6 meses",
+        "precio_desde": "$45.000",
+        "imagen": "https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "restauracion-opticas",
+        "titulo": "Restauración y Sellado de Ópticas",
+        "descripcion": "Lijado progresivo al agua y sellado UV cerámico para recuperar la transparencia cristalina original y maximizar el haz lumínico nocturno.",
+        "icono": "Eye",
+        "duracion": "2 a 3 hs",
+        "garantia": "Anti-amarilleo 1 año",
+        "precio_desde": "$40.000",
+        "imagen": "https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "lavado-premium",
+        "titulo": "Lavado Técnico al Detalle",
+        "descripcion": "Método de dos baldes con shampoo pH neutro, descontaminado ferroso de llantas, snow foam y secado con microfibra ultra-soft con aire caliente.",
+        "icono": "Flame",
+        "duracion": "3 a 4 hs",
+        "garantia": "Cero marcas",
+        "precio_desde": "$35.000",
+        "imagen": "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "proteccion-ppf",
+        "titulo": "Paint Protection Film (PPF)",
+        "descripcion": "Instalación de film de poliuretano transparente auto-regenerativo en zonas de alto impacto (trompa, paragolpes, capó) contra piedras y picaduras.",
+        "icono": "Shield",
+        "duracion": "2 a 3 días",
+        "garantia": "Garantía 5 a 10 años",
+        "precio_desde": "$250.000",
+        "imagen": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "detailing-motor",
+        "titulo": "Detailing y Nutrición de Motor",
+        "descripcion": "Limpieza en seco con vapor y desengrasantes dieléctricos biodegradables, protegiendo conectores y renovando plásticos con sellador térmico.",
+        "icono": "Cpu",
+        "duracion": "3 a 4 hs",
+        "garantia": "Protección dieléctrica",
+        "precio_desde": "$50.000",
+        "imagen": "https://images.unsplash.com/photo-1489824904134-891ab64532f1?auto=format&fit=crop&w=800&q=80"
+      }
+    ],
+    "slider_antes_despues": {
+      "habilitado": true,
+      "antes_imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=1200&q=80",
+      "despues_imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=1200&q=80",
+      "antes_etiqueta": "Antes: Barniz opaco y rayas",
+      "despues_etiqueta": "Después: Corrección y Cerámico 9H"
+    },
+    "faq": [
+      {
+        "pregunta": "¿Cuánto tiempo demora un tratamiento cerámico?",
+        "respuesta": "En nuestro estudio en Córdoba, un sellado cerámico completo requiere entre 24 y 48 horas de trabajo técnico y curado."
+      },
+      {
+        "pregunta": "¿Qué diferencia hay entre pulido y encerado?",
+        "respuesta": "El encerado sólo cubre imperfecciones por semanas. La corrección de pintura elimina físicamente micro-rayas y hologramas para siempre."
+      },
+      {
+        "pregunta": "¿Cómo solicito mi turno?",
+        "respuesta": "Podes escribirnos directo por WhatsApp al 0351 15-804-2033 y coordinamos la inspección técnica de tu unidad."
+      }
+    ]
+  },
+  {
+    "slug": "vakkar-detail-center",
+    "nombre": "Vakkar Detail Center",
+    "ciudad": "Córdoba",
+    "direccion": "Puerto de Palos 2536, Córdoba",
+    "telefono": "0351 15-357-9732",
+    "whatsapp": "5493513579732",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 25,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Vakkar+Detail+Center/@-31.3314393,-64.4325333,12z/data=!4m10!1m2!2m1!1stratamiento+ceramico+cordoba+capital!3m6!1s0x943299138d1f05f1:0x4164a027d75280d6!8m2!3d-31.3919858!4d-64.1511123!15sCiR0cmF0YW1pZW50byBjZXJhbWljbyBjb3Jkb2JhIGNhcGl0YWxaJiIkdHJhdGFtaWVudG8gY2VyYW1pY28gY29yZG9iYSBjYXBpdGFskgEIY2FyX3dhc2iaAURDaTlEUVVsUlFVTnZaRU5vZEhsalJqbHZUMjF3U1ZsWGJFdGxhMUozVlZkd1VVOVdWbGxXTUhCWVdrVXhSRXhZWXhBQuABAPoBBAgAEEA!16s%2Fg%2F11zjl8_mq6?entry=ttu&g_ep=EgoyMDI2MTAxMS4wIKXMDSoASAFQAw%3D%3D",
+    "hero_titulo": "Detailing de Alta Gama en Córdoba",
+    "hero_subtitulo": "Tratamientos cerámicos 9H, corrección de barniz y estética vehicular de precisión en Córdoba.",
+    "descripcion": "Taller especializado en detailing automotriz y protección para vehículos en Córdoba.",
+    "servicios_rich": [
+      {
+        "id": "tratamiento-ceramico",
+        "titulo": "Tratamiento Cerámico 9H",
+        "descripcion": "Protección nanométrica de alta dureza que sella el barniz, otorga brillo cristalino y máxima repelencia hidrofóbica hasta por 3 años.",
+        "icono": "ShieldCheck",
+        "duracion": "24 a 48 hs",
+        "garantia": "Garantía escrita 3 años",
+        "precio_desde": "$120.000",
+        "imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "correccion-barniz",
+        "titulo": "Corrección de Pintura en Pasos",
+        "descripcion": "Eliminación micro-quirúrgica de rayas superficiales, marcas de remolino (swirls) y marcas de agua, devolviendo profundidad total al color.",
+        "icono": "Sparkles",
+        "duracion": "8 a 12 hs",
+        "garantia": "Inspección digital",
+        "precio_desde": "$85.000",
+        "imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "acondicionamiento-interior",
+        "titulo": "Limpieza y Detailing de Interior",
+        "descripcion": "Desinfección profunda a vapor y extracción de tapizados, nutrición de cueros con productos premium y sellado anti-estático de plásticos.",
+        "icono": "Car",
+        "duracion": "6 a 8 hs",
+        "garantia": "Secado 100% en cabina",
+        "precio_desde": "$75.000",
+        "imagen": "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "sellado-vidrios",
+        "titulo": "Sellado Acrílico y Repelencia de Cristales",
+        "descripcion": "Tratamiento hidrofóbico para parabrisas y lunetas que incrementa drásticamente la visibilidad bajo lluvia intensa a velocidades superiores a 60 km/h.",
+        "icono": "Droplets",
+        "duracion": "3 a 4 hs",
+        "garantia": "Duración 6 meses",
+        "precio_desde": "$45.000",
+        "imagen": "https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "restauracion-opticas",
+        "titulo": "Restauración y Sellado de Ópticas",
+        "descripcion": "Lijado progresivo al agua y sellado UV cerámico para recuperar la transparencia cristalina original y maximizar el haz lumínico nocturno.",
+        "icono": "Eye",
+        "duracion": "2 a 3 hs",
+        "garantia": "Anti-amarilleo 1 año",
+        "precio_desde": "$40.000",
+        "imagen": "https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "lavado-premium",
+        "titulo": "Lavado Técnico al Detalle",
+        "descripcion": "Método de dos baldes con shampoo pH neutro, descontaminado ferroso de llantas, snow foam y secado con microfibra ultra-soft con aire caliente.",
+        "icono": "Flame",
+        "duracion": "3 a 4 hs",
+        "garantia": "Cero marcas",
+        "precio_desde": "$35.000",
+        "imagen": "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "proteccion-ppf",
+        "titulo": "Paint Protection Film (PPF)",
+        "descripcion": "Instalación de film de poliuretano transparente auto-regenerativo en zonas de alto impacto (trompa, paragolpes, capó) contra piedras y picaduras.",
+        "icono": "Shield",
+        "duracion": "2 a 3 días",
+        "garantia": "Garantía 5 a 10 años",
+        "precio_desde": "$250.000",
+        "imagen": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "detailing-motor",
+        "titulo": "Detailing y Nutrición de Motor",
+        "descripcion": "Limpieza en seco con vapor y desengrasantes dieléctricos biodegradables, protegiendo conectores y renovando plásticos con sellador térmico.",
+        "icono": "Cpu",
+        "duracion": "3 a 4 hs",
+        "garantia": "Protección dieléctrica",
+        "precio_desde": "$50.000",
+        "imagen": "https://images.unsplash.com/photo-1489824904134-891ab64532f1?auto=format&fit=crop&w=800&q=80"
+      }
+    ],
+    "slider_antes_despues": {
+      "habilitado": true,
+      "antes_imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=1200&q=80",
+      "despues_imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=1200&q=80",
+      "antes_etiqueta": "Antes: Barniz opaco y rayas",
+      "despues_etiqueta": "Después: Corrección y Cerámico 9H"
+    },
+    "faq": [
+      {
+        "pregunta": "¿Cuánto tiempo demora un tratamiento cerámico?",
+        "respuesta": "En nuestro estudio en Córdoba, un sellado cerámico completo requiere entre 24 y 48 horas de trabajo técnico y curado."
+      },
+      {
+        "pregunta": "¿Qué diferencia hay entre pulido y encerado?",
+        "respuesta": "El encerado sólo cubre imperfecciones por semanas. La corrección de pintura elimina físicamente micro-rayas y hologramas para siempre."
+      },
+      {
+        "pregunta": "¿Cómo solicito mi turno?",
+        "respuesta": "Podes escribirnos directo por WhatsApp al 0351 15-357-9732 y coordinamos la inspección técnica de tu unidad."
+      }
+    ]
+  },
+  {
+    "slug": "el-padrecito-car-detailing",
+    "nombre": "El Padrecito Car Detailing",
+    "ciudad": "Córdoba",
+    "direccion": "Julio A. Roca 655, Córdoba",
+    "telefono": "0351 15-347-1747",
+    "whatsapp": "5493513471747",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 25,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/El+Padrecito+Car+Detailing/@-31.4218621,-68.7724444,7z/data=!4m10!1m2!2m1!1sdetailing+nueva+cordoba!3m6!1s0x9432a2637c11d0b7:0xc43d394112c28add!8m2!3d-31.4290122!4d-64.2007446!15sChdkZXRhaWxpbmcgbnVldmEgY29yZG9iYVoZIhdkZXRhaWxpbmcgbnVldmEgY29yZG9iYZIBCGNhcl93YXNomgEkQ2hkRFNVaE5NRzluUzBWSlEwRm5TVU14YW05WU9YUjNSUkFC4AEA-gEECAAQNQ!16s%2Fg%2F11d_pxc6zx?entry=ttu&g_ep=EgoyMDI2MTAxMS4wIKXMDSoASAFQAw%3D%3D",
+    "hero_titulo": "Detailing de Alta Gama en Córdoba",
+    "hero_subtitulo": "Tratamientos cerámicos 9H, corrección de barniz y estética vehicular de precisión en Córdoba.",
+    "descripcion": "Taller especializado en detailing automotriz y protección para vehículos en Córdoba.",
+    "servicios_rich": [
+      {
+        "id": "tratamiento-ceramico",
+        "titulo": "Tratamiento Cerámico 9H",
+        "descripcion": "Protección nanométrica de alta dureza que sella el barniz, otorga brillo cristalino y máxima repelencia hidrofóbica hasta por 3 años.",
+        "icono": "ShieldCheck",
+        "duracion": "24 a 48 hs",
+        "garantia": "Garantía escrita 3 años",
+        "precio_desde": "$120.000",
+        "imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "correccion-barniz",
+        "titulo": "Corrección de Pintura en Pasos",
+        "descripcion": "Eliminación micro-quirúrgica de rayas superficiales, marcas de remolino (swirls) y marcas de agua, devolviendo profundidad total al color.",
+        "icono": "Sparkles",
+        "duracion": "8 a 12 hs",
+        "garantia": "Inspección digital",
+        "precio_desde": "$85.000",
+        "imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "acondicionamiento-interior",
+        "titulo": "Limpieza y Detailing de Interior",
+        "descripcion": "Desinfección profunda a vapor y extracción de tapizados, nutrición de cueros con productos premium y sellado anti-estático de plásticos.",
+        "icono": "Car",
+        "duracion": "6 a 8 hs",
+        "garantia": "Secado 100% en cabina",
+        "precio_desde": "$75.000",
+        "imagen": "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "sellado-vidrios",
+        "titulo": "Sellado Acrílico y Repelencia de Cristales",
+        "descripcion": "Tratamiento hidrofóbico para parabrisas y lunetas que incrementa drásticamente la visibilidad bajo lluvia intensa a velocidades superiores a 60 km/h.",
+        "icono": "Droplets",
+        "duracion": "3 a 4 hs",
+        "garantia": "Duración 6 meses",
+        "precio_desde": "$45.000",
+        "imagen": "https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "restauracion-opticas",
+        "titulo": "Restauración y Sellado de Ópticas",
+        "descripcion": "Lijado progresivo al agua y sellado UV cerámico para recuperar la transparencia cristalina original y maximizar el haz lumínico nocturno.",
+        "icono": "Eye",
+        "duracion": "2 a 3 hs",
+        "garantia": "Anti-amarilleo 1 año",
+        "precio_desde": "$40.000",
+        "imagen": "https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "lavado-premium",
+        "titulo": "Lavado Técnico al Detalle",
+        "descripcion": "Método de dos baldes con shampoo pH neutro, descontaminado ferroso de llantas, snow foam y secado con microfibra ultra-soft con aire caliente.",
+        "icono": "Flame",
+        "duracion": "3 a 4 hs",
+        "garantia": "Cero marcas",
+        "precio_desde": "$35.000",
+        "imagen": "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "proteccion-ppf",
+        "titulo": "Paint Protection Film (PPF)",
+        "descripcion": "Instalación de film de poliuretano transparente auto-regenerativo en zonas de alto impacto (trompa, paragolpes, capó) contra piedras y picaduras.",
+        "icono": "Shield",
+        "duracion": "2 a 3 días",
+        "garantia": "Garantía 5 a 10 años",
+        "precio_desde": "$250.000",
+        "imagen": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "detailing-motor",
+        "titulo": "Detailing y Nutrición de Motor",
+        "descripcion": "Limpieza en seco con vapor y desengrasantes dieléctricos biodegradables, protegiendo conectores y renovando plásticos con sellador térmico.",
+        "icono": "Cpu",
+        "duracion": "3 a 4 hs",
+        "garantia": "Protección dieléctrica",
+        "precio_desde": "$50.000",
+        "imagen": "https://images.unsplash.com/photo-1489824904134-891ab64532f1?auto=format&fit=crop&w=800&q=80"
+      }
+    ],
+    "slider_antes_despues": {
+      "habilitado": true,
+      "antes_imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=1200&q=80",
+      "despues_imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=1200&q=80",
+      "antes_etiqueta": "Antes: Barniz opaco y rayas",
+      "despues_etiqueta": "Después: Corrección y Cerámico 9H"
+    },
+    "faq": [
+      {
+        "pregunta": "¿Cuánto tiempo demora un tratamiento cerámico?",
+        "respuesta": "En nuestro estudio en Córdoba, un sellado cerámico completo requiere entre 24 y 48 horas de trabajo técnico y curado."
+      },
+      {
+        "pregunta": "¿Qué diferencia hay entre pulido y encerado?",
+        "respuesta": "El encerado sólo cubre imperfecciones por semanas. La corrección de pintura elimina físicamente micro-rayas y hologramas para siempre."
+      },
+      {
+        "pregunta": "¿Cómo solicito mi turno?",
+        "respuesta": "Podes escribirnos directo por WhatsApp al 0351 15-347-1747 y coordinamos la inspección técnica de tu unidad."
+      }
+    ]
+  },
+  {
+    "slug": "adel-detail-microbollos",
+    "nombre": "ADEL-DETAIL MICROBOLLOS",
+    "ciudad": "Córdoba",
+    "direccion": "Velez Sarfield 664, Córdoba",
+    "telefono": "0351 15-320-9340",
+    "whatsapp": "5493513209340",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 25,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/ADEL-DETAIL+MICROBOLLOS/@-31.4218621,-68.7724444,7z/data=!4m10!1m2!2m1!1sdetailing+nueva+cordoba!3m6!1s0x95c943006b5081db:0xa693381544cb9977!8m2!3d-31.4230122!4d-64.1903379!15sChdkZXRhaWxpbmcgbnVldmEgY29yZG9iYZIBEGF1dG9fcmVwYWlyX3Nob3DgAQA!16s%2Fg%2F11zfs9z7ph?entry=ttu&g_ep=EgoyMDI2MTAxMS4wIKXMDSoASAFQAw%3D%3D",
+    "hero_titulo": "Detailing de Alta Gama en Córdoba",
+    "hero_subtitulo": "Tratamientos cerámicos 9H, corrección de barniz y estética vehicular de precisión en Córdoba.",
+    "descripcion": "Taller especializado en detailing automotriz y protección para vehículos en Córdoba.",
+    "servicios_rich": [
+      {
+        "id": "tratamiento-ceramico",
+        "titulo": "Tratamiento Cerámico 9H",
+        "descripcion": "Protección nanométrica de alta dureza que sella el barniz, otorga brillo cristalino y máxima repelencia hidrofóbica hasta por 3 años.",
+        "icono": "ShieldCheck",
+        "duracion": "24 a 48 hs",
+        "garantia": "Garantía escrita 3 años",
+        "precio_desde": "$120.000",
+        "imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "correccion-barniz",
+        "titulo": "Corrección de Pintura en Pasos",
+        "descripcion": "Eliminación micro-quirúrgica de rayas superficiales, marcas de remolino (swirls) y marcas de agua, devolviendo profundidad total al color.",
+        "icono": "Sparkles",
+        "duracion": "8 a 12 hs",
+        "garantia": "Inspección digital",
+        "precio_desde": "$85.000",
+        "imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "acondicionamiento-interior",
+        "titulo": "Limpieza y Detailing de Interior",
+        "descripcion": "Desinfección profunda a vapor y extracción de tapizados, nutrición de cueros con productos premium y sellado anti-estático de plásticos.",
+        "icono": "Car",
+        "duracion": "6 a 8 hs",
+        "garantia": "Secado 100% en cabina",
+        "precio_desde": "$75.000",
+        "imagen": "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "sellado-vidrios",
+        "titulo": "Sellado Acrílico y Repelencia de Cristales",
+        "descripcion": "Tratamiento hidrofóbico para parabrisas y lunetas que incrementa drásticamente la visibilidad bajo lluvia intensa a velocidades superiores a 60 km/h.",
+        "icono": "Droplets",
+        "duracion": "3 a 4 hs",
+        "garantia": "Duración 6 meses",
+        "precio_desde": "$45.000",
+        "imagen": "https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "restauracion-opticas",
+        "titulo": "Restauración y Sellado de Ópticas",
+        "descripcion": "Lijado progresivo al agua y sellado UV cerámico para recuperar la transparencia cristalina original y maximizar el haz lumínico nocturno.",
+        "icono": "Eye",
+        "duracion": "2 a 3 hs",
+        "garantia": "Anti-amarilleo 1 año",
+        "precio_desde": "$40.000",
+        "imagen": "https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "lavado-premium",
+        "titulo": "Lavado Técnico al Detalle",
+        "descripcion": "Método de dos baldes con shampoo pH neutro, descontaminado ferroso de llantas, snow foam y secado con microfibra ultra-soft con aire caliente.",
+        "icono": "Flame",
+        "duracion": "3 a 4 hs",
+        "garantia": "Cero marcas",
+        "precio_desde": "$35.000",
+        "imagen": "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "proteccion-ppf",
+        "titulo": "Paint Protection Film (PPF)",
+        "descripcion": "Instalación de film de poliuretano transparente auto-regenerativo en zonas de alto impacto (trompa, paragolpes, capó) contra piedras y picaduras.",
+        "icono": "Shield",
+        "duracion": "2 a 3 días",
+        "garantia": "Garantía 5 a 10 años",
+        "precio_desde": "$250.000",
+        "imagen": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "detailing-motor",
+        "titulo": "Detailing y Nutrición de Motor",
+        "descripcion": "Limpieza en seco con vapor y desengrasantes dieléctricos biodegradables, protegiendo conectores y renovando plásticos con sellador térmico.",
+        "icono": "Cpu",
+        "duracion": "3 a 4 hs",
+        "garantia": "Protección dieléctrica",
+        "precio_desde": "$50.000",
+        "imagen": "https://images.unsplash.com/photo-1489824904134-891ab64532f1?auto=format&fit=crop&w=800&q=80"
+      }
+    ],
+    "slider_antes_despues": {
+      "habilitado": true,
+      "antes_imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=1200&q=80",
+      "despues_imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=1200&q=80",
+      "antes_etiqueta": "Antes: Barniz opaco y rayas",
+      "despues_etiqueta": "Después: Corrección y Cerámico 9H"
+    },
+    "faq": [
+      {
+        "pregunta": "¿Cuánto tiempo demora un tratamiento cerámico?",
+        "respuesta": "En nuestro estudio en Córdoba, un sellado cerámico completo requiere entre 24 y 48 horas de trabajo técnico y curado."
+      },
+      {
+        "pregunta": "¿Qué diferencia hay entre pulido y encerado?",
+        "respuesta": "El encerado sólo cubre imperfecciones por semanas. La corrección de pintura elimina físicamente micro-rayas y hologramas para siempre."
+      },
+      {
+        "pregunta": "¿Cómo solicito mi turno?",
+        "respuesta": "Podes escribirnos directo por WhatsApp al 0351 15-320-9340 y coordinamos la inspección técnica de tu unidad."
+      }
+    ]
+  },
+  {
+    "slug": "tt-detailing",
+    "nombre": "TT Detailing",
+    "ciudad": "Córdoba",
+    "direccion": "Pedro Arata 2494, Córdoba",
+    "telefono": "0351 15-809-9635",
+    "whatsapp": "5493518099635",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 25,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/TT+Detailing/@-31.4218621,-68.7724444,7z/data=!4m10!1m2!2m1!1sdetailing+nueva+cordoba!3m6!1s0x943299ed91733d2d:0x493b543be425a61b!8m2!3d-31.3962628!4d-64.2112989!15sChdkZXRhaWxpbmcgbnVldmEgY29yZG9iYVoZIhdkZXRhaWxpbmcgbnVldmEgY29yZG9iYZIBCGNhcl93YXNomgFEQ2k5RFFVbFJRVU52WkVOb2RIbGpSamx2VDJwR1VGTlhkRFpNVmtaNlkwVmFSVk16V2xwbFYzUnNZbGRhYW1OWVl4QULgAQD6AQQIABBB!16s%2Fg%2F11xdsdt1ry?entry=ttu&g_ep=EgoyMDI2MTAxMS4wIKXMDSoASAFQAw%3D%3D",
+    "hero_titulo": "Detailing de Alta Gama en Córdoba",
+    "hero_subtitulo": "Tratamientos cerámicos 9H, corrección de barniz y estética vehicular de precisión en Córdoba.",
+    "descripcion": "Taller especializado en detailing automotriz y protección para vehículos en Córdoba.",
+    "servicios_rich": [
+      {
+        "id": "tratamiento-ceramico",
+        "titulo": "Tratamiento Cerámico 9H",
+        "descripcion": "Protección nanométrica de alta dureza que sella el barniz, otorga brillo cristalino y máxima repelencia hidrofóbica hasta por 3 años.",
+        "icono": "ShieldCheck",
+        "duracion": "24 a 48 hs",
+        "garantia": "Garantía escrita 3 años",
+        "precio_desde": "$120.000",
+        "imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "correccion-barniz",
+        "titulo": "Corrección de Pintura en Pasos",
+        "descripcion": "Eliminación micro-quirúrgica de rayas superficiales, marcas de remolino (swirls) y marcas de agua, devolviendo profundidad total al color.",
+        "icono": "Sparkles",
+        "duracion": "8 a 12 hs",
+        "garantia": "Inspección digital",
+        "precio_desde": "$85.000",
+        "imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "acondicionamiento-interior",
+        "titulo": "Limpieza y Detailing de Interior",
+        "descripcion": "Desinfección profunda a vapor y extracción de tapizados, nutrición de cueros con productos premium y sellado anti-estático de plásticos.",
+        "icono": "Car",
+        "duracion": "6 a 8 hs",
+        "garantia": "Secado 100% en cabina",
+        "precio_desde": "$75.000",
+        "imagen": "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "sellado-vidrios",
+        "titulo": "Sellado Acrílico y Repelencia de Cristales",
+        "descripcion": "Tratamiento hidrofóbico para parabrisas y lunetas que incrementa drásticamente la visibilidad bajo lluvia intensa a velocidades superiores a 60 km/h.",
+        "icono": "Droplets",
+        "duracion": "3 a 4 hs",
+        "garantia": "Duración 6 meses",
+        "precio_desde": "$45.000",
+        "imagen": "https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "restauracion-opticas",
+        "titulo": "Restauración y Sellado de Ópticas",
+        "descripcion": "Lijado progresivo al agua y sellado UV cerámico para recuperar la transparencia cristalina original y maximizar el haz lumínico nocturno.",
+        "icono": "Eye",
+        "duracion": "2 a 3 hs",
+        "garantia": "Anti-amarilleo 1 año",
+        "precio_desde": "$40.000",
+        "imagen": "https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "lavado-premium",
+        "titulo": "Lavado Técnico al Detalle",
+        "descripcion": "Método de dos baldes con shampoo pH neutro, descontaminado ferroso de llantas, snow foam y secado con microfibra ultra-soft con aire caliente.",
+        "icono": "Flame",
+        "duracion": "3 a 4 hs",
+        "garantia": "Cero marcas",
+        "precio_desde": "$35.000",
+        "imagen": "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "proteccion-ppf",
+        "titulo": "Paint Protection Film (PPF)",
+        "descripcion": "Instalación de film de poliuretano transparente auto-regenerativo en zonas de alto impacto (trompa, paragolpes, capó) contra piedras y picaduras.",
+        "icono": "Shield",
+        "duracion": "2 a 3 días",
+        "garantia": "Garantía 5 a 10 años",
+        "precio_desde": "$250.000",
+        "imagen": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "detailing-motor",
+        "titulo": "Detailing y Nutrición de Motor",
+        "descripcion": "Limpieza en seco con vapor y desengrasantes dieléctricos biodegradables, protegiendo conectores y renovando plásticos con sellador térmico.",
+        "icono": "Cpu",
+        "duracion": "3 a 4 hs",
+        "garantia": "Protección dieléctrica",
+        "precio_desde": "$50.000",
+        "imagen": "https://images.unsplash.com/photo-1489824904134-891ab64532f1?auto=format&fit=crop&w=800&q=80"
+      }
+    ],
+    "slider_antes_despues": {
+      "habilitado": true,
+      "antes_imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=1200&q=80",
+      "despues_imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=1200&q=80",
+      "antes_etiqueta": "Antes: Barniz opaco y rayas",
+      "despues_etiqueta": "Después: Corrección y Cerámico 9H"
+    },
+    "faq": [
+      {
+        "pregunta": "¿Cuánto tiempo demora un tratamiento cerámico?",
+        "respuesta": "En nuestro estudio en Córdoba, un sellado cerámico completo requiere entre 24 y 48 horas de trabajo técnico y curado."
+      },
+      {
+        "pregunta": "¿Qué diferencia hay entre pulido y encerado?",
+        "respuesta": "El encerado sólo cubre imperfecciones por semanas. La corrección de pintura elimina físicamente micro-rayas y hologramas para siempre."
+      },
+      {
+        "pregunta": "¿Cómo solicito mi turno?",
+        "respuesta": "Podes escribirnos directo por WhatsApp al 0351 15-809-9635 y coordinamos la inspección técnica de tu unidad."
+      }
+    ]
+  },
+  {
+    "slug": "santarelli-detail",
+    "nombre": "Santarelli Detail",
+    "ciudad": "Río Cuarto",
+    "direccion": "Pje. Orquidea, Río Cuarto",
+    "telefono": "0358 15-424-5554",
+    "whatsapp": "5493584245554",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 25,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Santarelli+Detail/@-33.1298693,-64.40891,14z/data=!4m10!1m2!2m1!1sdetailing+rio+cuarto+cordoba!3m6!1s0x95d1ff2321322de5:0xf738df02e37318fe!8m2!3d-33.1483779!4d-64.3465974!15sChxkZXRhaWxpbmcgcmlvIGN1YXJ0byBjb3Jkb2JhkgEVY2FyX2RldGFpbGluZ19zZXJ2aWNl4AEA!16s%2Fg%2F11zg4gcy4b?entry=ttu&g_ep=EgoyMDI2MTAxMS4wIKXMDSoASAFQAw%3D%3D",
+    "hero_titulo": "Detailing de Alta Gama en Río Cuarto",
+    "hero_subtitulo": "Tratamientos cerámicos 9H, corrección de barniz y estética vehicular de precisión en Río Cuarto.",
+    "descripcion": "Taller especializado en detailing automotriz y protección para vehículos en Río Cuarto.",
+    "servicios_rich": [
+      {
+        "id": "tratamiento-ceramico",
+        "titulo": "Tratamiento Cerámico 9H",
+        "descripcion": "Protección nanométrica de alta dureza que sella el barniz, otorga brillo cristalino y máxima repelencia hidrofóbica hasta por 3 años.",
+        "icono": "ShieldCheck",
+        "duracion": "24 a 48 hs",
+        "garantia": "Garantía escrita 3 años",
+        "precio_desde": "$120.000",
+        "imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "correccion-barniz",
+        "titulo": "Corrección de Pintura en Pasos",
+        "descripcion": "Eliminación micro-quirúrgica de rayas superficiales, marcas de remolino (swirls) y marcas de agua, devolviendo profundidad total al color.",
+        "icono": "Sparkles",
+        "duracion": "8 a 12 hs",
+        "garantia": "Inspección digital",
+        "precio_desde": "$85.000",
+        "imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "acondicionamiento-interior",
+        "titulo": "Limpieza y Detailing de Interior",
+        "descripcion": "Desinfección profunda a vapor y extracción de tapizados, nutrición de cueros con productos premium y sellado anti-estático de plásticos.",
+        "icono": "Car",
+        "duracion": "6 a 8 hs",
+        "garantia": "Secado 100% en cabina",
+        "precio_desde": "$75.000",
+        "imagen": "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "sellado-vidrios",
+        "titulo": "Sellado Acrílico y Repelencia de Cristales",
+        "descripcion": "Tratamiento hidrofóbico para parabrisas y lunetas que incrementa drásticamente la visibilidad bajo lluvia intensa a velocidades superiores a 60 km/h.",
+        "icono": "Droplets",
+        "duracion": "3 a 4 hs",
+        "garantia": "Duración 6 meses",
+        "precio_desde": "$45.000",
+        "imagen": "https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "restauracion-opticas",
+        "titulo": "Restauración y Sellado de Ópticas",
+        "descripcion": "Lijado progresivo al agua y sellado UV cerámico para recuperar la transparencia cristalina original y maximizar el haz lumínico nocturno.",
+        "icono": "Eye",
+        "duracion": "2 a 3 hs",
+        "garantia": "Anti-amarilleo 1 año",
+        "precio_desde": "$40.000",
+        "imagen": "https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "lavado-premium",
+        "titulo": "Lavado Técnico al Detalle",
+        "descripcion": "Método de dos baldes con shampoo pH neutro, descontaminado ferroso de llantas, snow foam y secado con microfibra ultra-soft con aire caliente.",
+        "icono": "Flame",
+        "duracion": "3 a 4 hs",
+        "garantia": "Cero marcas",
+        "precio_desde": "$35.000",
+        "imagen": "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "proteccion-ppf",
+        "titulo": "Paint Protection Film (PPF)",
+        "descripcion": "Instalación de film de poliuretano transparente auto-regenerativo en zonas de alto impacto (trompa, paragolpes, capó) contra piedras y picaduras.",
+        "icono": "Shield",
+        "duracion": "2 a 3 días",
+        "garantia": "Garantía 5 a 10 años",
+        "precio_desde": "$250.000",
+        "imagen": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "detailing-motor",
+        "titulo": "Detailing y Nutrición de Motor",
+        "descripcion": "Limpieza en seco con vapor y desengrasantes dieléctricos biodegradables, protegiendo conectores y renovando plásticos con sellador térmico.",
+        "icono": "Cpu",
+        "duracion": "3 a 4 hs",
+        "garantia": "Protección dieléctrica",
+        "precio_desde": "$50.000",
+        "imagen": "https://images.unsplash.com/photo-1489824904134-891ab64532f1?auto=format&fit=crop&w=800&q=80"
+      }
+    ],
+    "slider_antes_despues": {
+      "habilitado": true,
+      "antes_imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=1200&q=80",
+      "despues_imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=1200&q=80",
+      "antes_etiqueta": "Antes: Barniz opaco y rayas",
+      "despues_etiqueta": "Después: Corrección y Cerámico 9H"
+    },
+    "faq": [
+      {
+        "pregunta": "¿Cuánto tiempo demora un tratamiento cerámico?",
+        "respuesta": "En nuestro estudio en Río Cuarto, un sellado cerámico completo requiere entre 24 y 48 horas de trabajo técnico y curado."
+      },
+      {
+        "pregunta": "¿Qué diferencia hay entre pulido y encerado?",
+        "respuesta": "El encerado sólo cubre imperfecciones por semanas. La corrección de pintura elimina físicamente micro-rayas y hologramas para siempre."
+      },
+      {
+        "pregunta": "¿Cómo solicito mi turno?",
+        "respuesta": "Podes escribirnos directo por WhatsApp al 0358 15-424-5554 y coordinamos la inspección técnica de tu unidad."
+      }
+    ]
+  },
+  {
+    "slug": "auto-spa-detail",
+    "nombre": "Auto Spa Detail",
+    "ciudad": "Río Cuarto",
+    "direccion": "Avenida Argentina 49, Río Cuarto",
+    "telefono": "0358 15-483-7799",
+    "whatsapp": "5493584837799",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 25,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Auto+Spa+Detail/@-33.1483779,-64.3826463,14z/data=!4m10!1m2!2m1!1sdetailing+rio+cuarto+cordoba!3m6!1s0x95d2010001392b8d:0x1503353d42a7ef9e!8m2!3d-33.1112947!4d-64.3413991!15sChxkZXRhaWxpbmcgcmlvIGN1YXJ0byBjb3Jkb2JhkgEIY2FyX3dhc2jgAQA!16s%2Fg%2F11yy2_wcmb?entry=ttu&g_ep=EgoyMDI2MTAxMS4wIKXMDSoASAFQAw%3D%3D",
+    "hero_titulo": "Detailing de Alta Gama en Río Cuarto",
+    "hero_subtitulo": "Tratamientos cerámicos 9H, corrección de barniz y estética vehicular de precisión en Río Cuarto.",
+    "descripcion": "Taller especializado en detailing automotriz y protección para vehículos en Río Cuarto.",
+    "servicios_rich": [
+      {
+        "id": "tratamiento-ceramico",
+        "titulo": "Tratamiento Cerámico 9H",
+        "descripcion": "Protección nanométrica de alta dureza que sella el barniz, otorga brillo cristalino y máxima repelencia hidrofóbica hasta por 3 años.",
+        "icono": "ShieldCheck",
+        "duracion": "24 a 48 hs",
+        "garantia": "Garantía escrita 3 años",
+        "precio_desde": "$120.000",
+        "imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "correccion-barniz",
+        "titulo": "Corrección de Pintura en Pasos",
+        "descripcion": "Eliminación micro-quirúrgica de rayas superficiales, marcas de remolino (swirls) y marcas de agua, devolviendo profundidad total al color.",
+        "icono": "Sparkles",
+        "duracion": "8 a 12 hs",
+        "garantia": "Inspección digital",
+        "precio_desde": "$85.000",
+        "imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "acondicionamiento-interior",
+        "titulo": "Limpieza y Detailing de Interior",
+        "descripcion": "Desinfección profunda a vapor y extracción de tapizados, nutrición de cueros con productos premium y sellado anti-estático de plásticos.",
+        "icono": "Car",
+        "duracion": "6 a 8 hs",
+        "garantia": "Secado 100% en cabina",
+        "precio_desde": "$75.000",
+        "imagen": "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "sellado-vidrios",
+        "titulo": "Sellado Acrílico y Repelencia de Cristales",
+        "descripcion": "Tratamiento hidrofóbico para parabrisas y lunetas que incrementa drásticamente la visibilidad bajo lluvia intensa a velocidades superiores a 60 km/h.",
+        "icono": "Droplets",
+        "duracion": "3 a 4 hs",
+        "garantia": "Duración 6 meses",
+        "precio_desde": "$45.000",
+        "imagen": "https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "restauracion-opticas",
+        "titulo": "Restauración y Sellado de Ópticas",
+        "descripcion": "Lijado progresivo al agua y sellado UV cerámico para recuperar la transparencia cristalina original y maximizar el haz lumínico nocturno.",
+        "icono": "Eye",
+        "duracion": "2 a 3 hs",
+        "garantia": "Anti-amarilleo 1 año",
+        "precio_desde": "$40.000",
+        "imagen": "https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "lavado-premium",
+        "titulo": "Lavado Técnico al Detalle",
+        "descripcion": "Método de dos baldes con shampoo pH neutro, descontaminado ferroso de llantas, snow foam y secado con microfibra ultra-soft con aire caliente.",
+        "icono": "Flame",
+        "duracion": "3 a 4 hs",
+        "garantia": "Cero marcas",
+        "precio_desde": "$35.000",
+        "imagen": "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "proteccion-ppf",
+        "titulo": "Paint Protection Film (PPF)",
+        "descripcion": "Instalación de film de poliuretano transparente auto-regenerativo en zonas de alto impacto (trompa, paragolpes, capó) contra piedras y picaduras.",
+        "icono": "Shield",
+        "duracion": "2 a 3 días",
+        "garantia": "Garantía 5 a 10 años",
+        "precio_desde": "$250.000",
+        "imagen": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "detailing-motor",
+        "titulo": "Detailing y Nutrición de Motor",
+        "descripcion": "Limpieza en seco con vapor y desengrasantes dieléctricos biodegradables, protegiendo conectores y renovando plásticos con sellador térmico.",
+        "icono": "Cpu",
+        "duracion": "3 a 4 hs",
+        "garantia": "Protección dieléctrica",
+        "precio_desde": "$50.000",
+        "imagen": "https://images.unsplash.com/photo-1489824904134-891ab64532f1?auto=format&fit=crop&w=800&q=80"
+      }
+    ],
+    "slider_antes_despues": {
+      "habilitado": true,
+      "antes_imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=1200&q=80",
+      "despues_imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=1200&q=80",
+      "antes_etiqueta": "Antes: Barniz opaco y rayas",
+      "despues_etiqueta": "Después: Corrección y Cerámico 9H"
+    },
+    "faq": [
+      {
+        "pregunta": "¿Cuánto tiempo demora un tratamiento cerámico?",
+        "respuesta": "En nuestro estudio en Río Cuarto, un sellado cerámico completo requiere entre 24 y 48 horas de trabajo técnico y curado."
+      },
+      {
+        "pregunta": "¿Qué diferencia hay entre pulido y encerado?",
+        "respuesta": "El encerado sólo cubre imperfecciones por semanas. La corrección de pintura elimina físicamente micro-rayas y hologramas para siempre."
+      },
+      {
+        "pregunta": "¿Cómo solicito mi turno?",
+        "respuesta": "Podes escribirnos directo por WhatsApp al 0358 15-483-7799 y coordinamos la inspección técnica de tu unidad."
+      }
+    ]
+  },
+  {
+    "slug": "smokes-motorcycle-detailing",
+    "nombre": "Smokes motorcycle detailing",
+    "ciudad": "Río Cuarto",
+    "direccion": "Buenos Aires 1511, Río Cuarto",
+    "telefono": "0358 15-513-3154",
+    "whatsapp": "5493585133154",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 25,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Smokes+motorcycle+detailing/@-33.1238567,-64.3963167,14z/data=!4m10!1m2!2m1!1sdetailing+rio+cuarto+cordoba!3m6!1s0x95d201355e0f8e1b:0xa1335f0e61b8195d!8m2!3d-33.1202923!4d-64.3664356!15sChxkZXRhaWxpbmcgcmlvIGN1YXJ0byBjb3Jkb2JhkgEUYXV0b190dW5lX3VwX3NlcnZpY2XgAQA!16s%2Fg%2F11hfbp31ty?entry=ttu&g_ep=EgoyMDI2MTAxMS4wIKXMDSoASAFQAw%3D%3D",
+    "hero_titulo": "Detailing de Alta Gama en Río Cuarto",
+    "hero_subtitulo": "Tratamientos cerámicos 9H, corrección de barniz y estética vehicular de precisión en Río Cuarto.",
+    "descripcion": "Taller especializado en detailing automotriz y protección para vehículos en Río Cuarto.",
+    "servicios_rich": [
+      {
+        "id": "tratamiento-ceramico",
+        "titulo": "Tratamiento Cerámico 9H",
+        "descripcion": "Protección nanométrica de alta dureza que sella el barniz, otorga brillo cristalino y máxima repelencia hidrofóbica hasta por 3 años.",
+        "icono": "ShieldCheck",
+        "duracion": "24 a 48 hs",
+        "garantia": "Garantía escrita 3 años",
+        "precio_desde": "$120.000",
+        "imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "correccion-barniz",
+        "titulo": "Corrección de Pintura en Pasos",
+        "descripcion": "Eliminación micro-quirúrgica de rayas superficiales, marcas de remolino (swirls) y marcas de agua, devolviendo profundidad total al color.",
+        "icono": "Sparkles",
+        "duracion": "8 a 12 hs",
+        "garantia": "Inspección digital",
+        "precio_desde": "$85.000",
+        "imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "acondicionamiento-interior",
+        "titulo": "Limpieza y Detailing de Interior",
+        "descripcion": "Desinfección profunda a vapor y extracción de tapizados, nutrición de cueros con productos premium y sellado anti-estático de plásticos.",
+        "icono": "Car",
+        "duracion": "6 a 8 hs",
+        "garantia": "Secado 100% en cabina",
+        "precio_desde": "$75.000",
+        "imagen": "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "sellado-vidrios",
+        "titulo": "Sellado Acrílico y Repelencia de Cristales",
+        "descripcion": "Tratamiento hidrofóbico para parabrisas y lunetas que incrementa drásticamente la visibilidad bajo lluvia intensa a velocidades superiores a 60 km/h.",
+        "icono": "Droplets",
+        "duracion": "3 a 4 hs",
+        "garantia": "Duración 6 meses",
+        "precio_desde": "$45.000",
+        "imagen": "https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "restauracion-opticas",
+        "titulo": "Restauración y Sellado de Ópticas",
+        "descripcion": "Lijado progresivo al agua y sellado UV cerámico para recuperar la transparencia cristalina original y maximizar el haz lumínico nocturno.",
+        "icono": "Eye",
+        "duracion": "2 a 3 hs",
+        "garantia": "Anti-amarilleo 1 año",
+        "precio_desde": "$40.000",
+        "imagen": "https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "lavado-premium",
+        "titulo": "Lavado Técnico al Detalle",
+        "descripcion": "Método de dos baldes con shampoo pH neutro, descontaminado ferroso de llantas, snow foam y secado con microfibra ultra-soft con aire caliente.",
+        "icono": "Flame",
+        "duracion": "3 a 4 hs",
+        "garantia": "Cero marcas",
+        "precio_desde": "$35.000",
+        "imagen": "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "proteccion-ppf",
+        "titulo": "Paint Protection Film (PPF)",
+        "descripcion": "Instalación de film de poliuretano transparente auto-regenerativo en zonas de alto impacto (trompa, paragolpes, capó) contra piedras y picaduras.",
+        "icono": "Shield",
+        "duracion": "2 a 3 días",
+        "garantia": "Garantía 5 a 10 años",
+        "precio_desde": "$250.000",
+        "imagen": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "detailing-motor",
+        "titulo": "Detailing y Nutrición de Motor",
+        "descripcion": "Limpieza en seco con vapor y desengrasantes dieléctricos biodegradables, protegiendo conectores y renovando plásticos con sellador térmico.",
+        "icono": "Cpu",
+        "duracion": "3 a 4 hs",
+        "garantia": "Protección dieléctrica",
+        "precio_desde": "$50.000",
+        "imagen": "https://images.unsplash.com/photo-1489824904134-891ab64532f1?auto=format&fit=crop&w=800&q=80"
+      }
+    ],
+    "slider_antes_despues": {
+      "habilitado": true,
+      "antes_imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=1200&q=80",
+      "despues_imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=1200&q=80",
+      "antes_etiqueta": "Antes: Barniz opaco y rayas",
+      "despues_etiqueta": "Después: Corrección y Cerámico 9H"
+    },
+    "faq": [
+      {
+        "pregunta": "¿Cuánto tiempo demora un tratamiento cerámico?",
+        "respuesta": "En nuestro estudio en Río Cuarto, un sellado cerámico completo requiere entre 24 y 48 horas de trabajo técnico y curado."
+      },
+      {
+        "pregunta": "¿Qué diferencia hay entre pulido y encerado?",
+        "respuesta": "El encerado sólo cubre imperfecciones por semanas. La corrección de pintura elimina físicamente micro-rayas y hologramas para siempre."
+      },
+      {
+        "pregunta": "¿Cómo solicito mi turno?",
+        "respuesta": "Podes escribirnos directo por WhatsApp al 0358 15-513-3154 y coordinamos la inspección técnica de tu unidad."
+      }
+    ]
+  },
+  {
+    "slug": "lavadero-mb-detail",
+    "nombre": "Lavadero MB Detail",
+    "ciudad": "Río Cuarto",
+    "direccion": "5800, Río Cuarto",
+    "telefono": "0358 15-433-1517",
+    "whatsapp": "5493584331517",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 25,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Lavadero+MB+Detail/@-33.1238567,-64.3963167,14z/data=!4m10!1m2!2m1!1sdetailing+rio+cuarto+cordoba!3m6!1s0x95d1ffd5ab37c2ff:0x50d1f71be0498fd5!8m2!3d-33.1496862!4d-64.3556753!15sChxkZXRhaWxpbmcgcmlvIGN1YXJ0byBjb3Jkb2JhkgEIY2FyX3dhc2jgAQA!16s%2Fg%2F11tj_928_y?entry=ttu&g_ep=EgoyMDI2MTAxMS4wIKXMDSoASAFQAw%3D%3D",
+    "hero_titulo": "Detailing de Alta Gama en Río Cuarto",
+    "hero_subtitulo": "Tratamientos cerámicos 9H, corrección de barniz y estética vehicular de precisión en Río Cuarto.",
+    "descripcion": "Taller especializado en detailing automotriz y protección para vehículos en Río Cuarto.",
+    "servicios_rich": [
+      {
+        "id": "tratamiento-ceramico",
+        "titulo": "Tratamiento Cerámico 9H",
+        "descripcion": "Protección nanométrica de alta dureza que sella el barniz, otorga brillo cristalino y máxima repelencia hidrofóbica hasta por 3 años.",
+        "icono": "ShieldCheck",
+        "duracion": "24 a 48 hs",
+        "garantia": "Garantía escrita 3 años",
+        "precio_desde": "$120.000",
+        "imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "correccion-barniz",
+        "titulo": "Corrección de Pintura en Pasos",
+        "descripcion": "Eliminación micro-quirúrgica de rayas superficiales, marcas de remolino (swirls) y marcas de agua, devolviendo profundidad total al color.",
+        "icono": "Sparkles",
+        "duracion": "8 a 12 hs",
+        "garantia": "Inspección digital",
+        "precio_desde": "$85.000",
+        "imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "acondicionamiento-interior",
+        "titulo": "Limpieza y Detailing de Interior",
+        "descripcion": "Desinfección profunda a vapor y extracción de tapizados, nutrición de cueros con productos premium y sellado anti-estático de plásticos.",
+        "icono": "Car",
+        "duracion": "6 a 8 hs",
+        "garantia": "Secado 100% en cabina",
+        "precio_desde": "$75.000",
+        "imagen": "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "sellado-vidrios",
+        "titulo": "Sellado Acrílico y Repelencia de Cristales",
+        "descripcion": "Tratamiento hidrofóbico para parabrisas y lunetas que incrementa drásticamente la visibilidad bajo lluvia intensa a velocidades superiores a 60 km/h.",
+        "icono": "Droplets",
+        "duracion": "3 a 4 hs",
+        "garantia": "Duración 6 meses",
+        "precio_desde": "$45.000",
+        "imagen": "https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "restauracion-opticas",
+        "titulo": "Restauración y Sellado de Ópticas",
+        "descripcion": "Lijado progresivo al agua y sellado UV cerámico para recuperar la transparencia cristalina original y maximizar el haz lumínico nocturno.",
+        "icono": "Eye",
+        "duracion": "2 a 3 hs",
+        "garantia": "Anti-amarilleo 1 año",
+        "precio_desde": "$40.000",
+        "imagen": "https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "lavado-premium",
+        "titulo": "Lavado Técnico al Detalle",
+        "descripcion": "Método de dos baldes con shampoo pH neutro, descontaminado ferroso de llantas, snow foam y secado con microfibra ultra-soft con aire caliente.",
+        "icono": "Flame",
+        "duracion": "3 a 4 hs",
+        "garantia": "Cero marcas",
+        "precio_desde": "$35.000",
+        "imagen": "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "proteccion-ppf",
+        "titulo": "Paint Protection Film (PPF)",
+        "descripcion": "Instalación de film de poliuretano transparente auto-regenerativo en zonas de alto impacto (trompa, paragolpes, capó) contra piedras y picaduras.",
+        "icono": "Shield",
+        "duracion": "2 a 3 días",
+        "garantia": "Garantía 5 a 10 años",
+        "precio_desde": "$250.000",
+        "imagen": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "detailing-motor",
+        "titulo": "Detailing y Nutrición de Motor",
+        "descripcion": "Limpieza en seco con vapor y desengrasantes dieléctricos biodegradables, protegiendo conectores y renovando plásticos con sellador térmico.",
+        "icono": "Cpu",
+        "duracion": "3 a 4 hs",
+        "garantia": "Protección dieléctrica",
+        "precio_desde": "$50.000",
+        "imagen": "https://images.unsplash.com/photo-1489824904134-891ab64532f1?auto=format&fit=crop&w=800&q=80"
+      }
+    ],
+    "slider_antes_despues": {
+      "habilitado": true,
+      "antes_imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=1200&q=80",
+      "despues_imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=1200&q=80",
+      "antes_etiqueta": "Antes: Barniz opaco y rayas",
+      "despues_etiqueta": "Después: Corrección y Cerámico 9H"
+    },
+    "faq": [
+      {
+        "pregunta": "¿Cuánto tiempo demora un tratamiento cerámico?",
+        "respuesta": "En nuestro estudio en Río Cuarto, un sellado cerámico completo requiere entre 24 y 48 horas de trabajo técnico y curado."
+      },
+      {
+        "pregunta": "¿Qué diferencia hay entre pulido y encerado?",
+        "respuesta": "El encerado sólo cubre imperfecciones por semanas. La corrección de pintura elimina físicamente micro-rayas y hologramas para siempre."
+      },
+      {
+        "pregunta": "¿Cómo solicito mi turno?",
+        "respuesta": "Podes escribirnos directo por WhatsApp al 0358 15-433-1517 y coordinamos la inspección técnica de tu unidad."
+      }
+    ]
+  },
+  {
+    "slug": "zona-sur-detail",
+    "nombre": "Zona Sur Detail",
+    "ciudad": "Río Cuarto",
+    "direccion": "Ordóñez 650, Río Cuarto",
+    "telefono": "0358 15-483-9382",
+    "whatsapp": "5493584839382",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 25,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Zona+Sur+Detail/@-33.1238567,-64.3963167,14z/data=!4m10!1m2!2m1!1sdetailing+rio+cuarto+cordoba!3m6!1s0x95d2015f310418d9:0xdf6a959dc83d2dea!8m2!3d-33.1409181!4d-64.3639766!15sChxkZXRhaWxpbmcgcmlvIGN1YXJ0byBjb3Jkb2JhkgEIY2FyX3dhc2jgAQA!16s%2Fg%2F11zjj9mq7v?entry=ttu&g_ep=EgoyMDI2MTAxMS4wIKXMDSoASAFQAw%3D%3D",
+    "hero_titulo": "Detailing de Alta Gama en Río Cuarto",
+    "hero_subtitulo": "Tratamientos cerámicos 9H, corrección de barniz y estética vehicular de precisión en Río Cuarto.",
+    "descripcion": "Taller especializado en detailing automotriz y protección para vehículos en Río Cuarto.",
+    "servicios_rich": [
+      {
+        "id": "tratamiento-ceramico",
+        "titulo": "Tratamiento Cerámico 9H",
+        "descripcion": "Protección nanométrica de alta dureza que sella el barniz, otorga brillo cristalino y máxima repelencia hidrofóbica hasta por 3 años.",
+        "icono": "ShieldCheck",
+        "duracion": "24 a 48 hs",
+        "garantia": "Garantía escrita 3 años",
+        "precio_desde": "$120.000",
+        "imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "correccion-barniz",
+        "titulo": "Corrección de Pintura en Pasos",
+        "descripcion": "Eliminación micro-quirúrgica de rayas superficiales, marcas de remolino (swirls) y marcas de agua, devolviendo profundidad total al color.",
+        "icono": "Sparkles",
+        "duracion": "8 a 12 hs",
+        "garantia": "Inspección digital",
+        "precio_desde": "$85.000",
+        "imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "acondicionamiento-interior",
+        "titulo": "Limpieza y Detailing de Interior",
+        "descripcion": "Desinfección profunda a vapor y extracción de tapizados, nutrición de cueros con productos premium y sellado anti-estático de plásticos.",
+        "icono": "Car",
+        "duracion": "6 a 8 hs",
+        "garantia": "Secado 100% en cabina",
+        "precio_desde": "$75.000",
+        "imagen": "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "sellado-vidrios",
+        "titulo": "Sellado Acrílico y Repelencia de Cristales",
+        "descripcion": "Tratamiento hidrofóbico para parabrisas y lunetas que incrementa drásticamente la visibilidad bajo lluvia intensa a velocidades superiores a 60 km/h.",
+        "icono": "Droplets",
+        "duracion": "3 a 4 hs",
+        "garantia": "Duración 6 meses",
+        "precio_desde": "$45.000",
+        "imagen": "https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "restauracion-opticas",
+        "titulo": "Restauración y Sellado de Ópticas",
+        "descripcion": "Lijado progresivo al agua y sellado UV cerámico para recuperar la transparencia cristalina original y maximizar el haz lumínico nocturno.",
+        "icono": "Eye",
+        "duracion": "2 a 3 hs",
+        "garantia": "Anti-amarilleo 1 año",
+        "precio_desde": "$40.000",
+        "imagen": "https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "lavado-premium",
+        "titulo": "Lavado Técnico al Detalle",
+        "descripcion": "Método de dos baldes con shampoo pH neutro, descontaminado ferroso de llantas, snow foam y secado con microfibra ultra-soft con aire caliente.",
+        "icono": "Flame",
+        "duracion": "3 a 4 hs",
+        "garantia": "Cero marcas",
+        "precio_desde": "$35.000",
+        "imagen": "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "proteccion-ppf",
+        "titulo": "Paint Protection Film (PPF)",
+        "descripcion": "Instalación de film de poliuretano transparente auto-regenerativo en zonas de alto impacto (trompa, paragolpes, capó) contra piedras y picaduras.",
+        "icono": "Shield",
+        "duracion": "2 a 3 días",
+        "garantia": "Garantía 5 a 10 años",
+        "precio_desde": "$250.000",
+        "imagen": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "detailing-motor",
+        "titulo": "Detailing y Nutrición de Motor",
+        "descripcion": "Limpieza en seco con vapor y desengrasantes dieléctricos biodegradables, protegiendo conectores y renovando plásticos con sellador térmico.",
+        "icono": "Cpu",
+        "duracion": "3 a 4 hs",
+        "garantia": "Protección dieléctrica",
+        "precio_desde": "$50.000",
+        "imagen": "https://images.unsplash.com/photo-1489824904134-891ab64532f1?auto=format&fit=crop&w=800&q=80"
+      }
+    ],
+    "slider_antes_despues": {
+      "habilitado": true,
+      "antes_imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=1200&q=80",
+      "despues_imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=1200&q=80",
+      "antes_etiqueta": "Antes: Barniz opaco y rayas",
+      "despues_etiqueta": "Después: Corrección y Cerámico 9H"
+    },
+    "faq": [
+      {
+        "pregunta": "¿Cuánto tiempo demora un tratamiento cerámico?",
+        "respuesta": "En nuestro estudio en Río Cuarto, un sellado cerámico completo requiere entre 24 y 48 horas de trabajo técnico y curado."
+      },
+      {
+        "pregunta": "¿Qué diferencia hay entre pulido y encerado?",
+        "respuesta": "El encerado sólo cubre imperfecciones por semanas. La corrección de pintura elimina físicamente micro-rayas y hologramas para siempre."
+      },
+      {
+        "pregunta": "¿Cómo solicito mi turno?",
+        "respuesta": "Podes escribirnos directo por WhatsApp al 0358 15-483-9382 y coordinamos la inspección técnica de tu unidad."
+      }
+    ]
+  },
+  {
+    "slug": "sp-garage-detail",
+    "nombre": "SP GARAGE DETAIL",
+    "ciudad": "Río Cuarto",
+    "direccion": "Malvinas 227, Río Cuarto",
+    "telefono": "0358 15-548-8451",
+    "whatsapp": "5493585488451",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 25,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/SP+GARAGE+DETAIL/@-33.1238567,-64.3963167,14z/data=!4m10!1m2!2m1!1sdetailing+rio+cuarto+cordoba!3m6!1s0x95cdff52495287cf:0xb18647210d2b5515!8m2!3d-33.0915547!4d-64.2839375!15sChxkZXRhaWxpbmcgcmlvIGN1YXJ0byBjb3Jkb2JhWh4iHGRldGFpbGluZyByaW8gY3VhcnRvIGNvcmRvYmGSAQhjYXJfd2FzaOABAA!16s%2Fg%2F11rtd4z3n_?entry=ttu&g_ep=EgoyMDI2MTAxMS4wIKXMDSoASAFQAw%3D%3D",
+    "hero_titulo": "Detailing de Alta Gama en Río Cuarto",
+    "hero_subtitulo": "Tratamientos cerámicos 9H, corrección de barniz y estética vehicular de precisión en Río Cuarto.",
+    "descripcion": "Taller especializado en detailing automotriz y protección para vehículos en Río Cuarto.",
+    "servicios_rich": [
+      {
+        "id": "tratamiento-ceramico",
+        "titulo": "Tratamiento Cerámico 9H",
+        "descripcion": "Protección nanométrica de alta dureza que sella el barniz, otorga brillo cristalino y máxima repelencia hidrofóbica hasta por 3 años.",
+        "icono": "ShieldCheck",
+        "duracion": "24 a 48 hs",
+        "garantia": "Garantía escrita 3 años",
+        "precio_desde": "$120.000",
+        "imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "correccion-barniz",
+        "titulo": "Corrección de Pintura en Pasos",
+        "descripcion": "Eliminación micro-quirúrgica de rayas superficiales, marcas de remolino (swirls) y marcas de agua, devolviendo profundidad total al color.",
+        "icono": "Sparkles",
+        "duracion": "8 a 12 hs",
+        "garantia": "Inspección digital",
+        "precio_desde": "$85.000",
+        "imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "acondicionamiento-interior",
+        "titulo": "Limpieza y Detailing de Interior",
+        "descripcion": "Desinfección profunda a vapor y extracción de tapizados, nutrición de cueros con productos premium y sellado anti-estático de plásticos.",
+        "icono": "Car",
+        "duracion": "6 a 8 hs",
+        "garantia": "Secado 100% en cabina",
+        "precio_desde": "$75.000",
+        "imagen": "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "sellado-vidrios",
+        "titulo": "Sellado Acrílico y Repelencia de Cristales",
+        "descripcion": "Tratamiento hidrofóbico para parabrisas y lunetas que incrementa drásticamente la visibilidad bajo lluvia intensa a velocidades superiores a 60 km/h.",
+        "icono": "Droplets",
+        "duracion": "3 a 4 hs",
+        "garantia": "Duración 6 meses",
+        "precio_desde": "$45.000",
+        "imagen": "https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "restauracion-opticas",
+        "titulo": "Restauración y Sellado de Ópticas",
+        "descripcion": "Lijado progresivo al agua y sellado UV cerámico para recuperar la transparencia cristalina original y maximizar el haz lumínico nocturno.",
+        "icono": "Eye",
+        "duracion": "2 a 3 hs",
+        "garantia": "Anti-amarilleo 1 año",
+        "precio_desde": "$40.000",
+        "imagen": "https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "lavado-premium",
+        "titulo": "Lavado Técnico al Detalle",
+        "descripcion": "Método de dos baldes con shampoo pH neutro, descontaminado ferroso de llantas, snow foam y secado con microfibra ultra-soft con aire caliente.",
+        "icono": "Flame",
+        "duracion": "3 a 4 hs",
+        "garantia": "Cero marcas",
+        "precio_desde": "$35.000",
+        "imagen": "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "proteccion-ppf",
+        "titulo": "Paint Protection Film (PPF)",
+        "descripcion": "Instalación de film de poliuretano transparente auto-regenerativo en zonas de alto impacto (trompa, paragolpes, capó) contra piedras y picaduras.",
+        "icono": "Shield",
+        "duracion": "2 a 3 días",
+        "garantia": "Garantía 5 a 10 años",
+        "precio_desde": "$250.000",
+        "imagen": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "detailing-motor",
+        "titulo": "Detailing y Nutrición de Motor",
+        "descripcion": "Limpieza en seco con vapor y desengrasantes dieléctricos biodegradables, protegiendo conectores y renovando plásticos con sellador térmico.",
+        "icono": "Cpu",
+        "duracion": "3 a 4 hs",
+        "garantia": "Protección dieléctrica",
+        "precio_desde": "$50.000",
+        "imagen": "https://images.unsplash.com/photo-1489824904134-891ab64532f1?auto=format&fit=crop&w=800&q=80"
+      }
+    ],
+    "slider_antes_despues": {
+      "habilitado": true,
+      "antes_imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=1200&q=80",
+      "despues_imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=1200&q=80",
+      "antes_etiqueta": "Antes: Barniz opaco y rayas",
+      "despues_etiqueta": "Después: Corrección y Cerámico 9H"
+    },
+    "faq": [
+      {
+        "pregunta": "¿Cuánto tiempo demora un tratamiento cerámico?",
+        "respuesta": "En nuestro estudio en Río Cuarto, un sellado cerámico completo requiere entre 24 y 48 horas de trabajo técnico y curado."
+      },
+      {
+        "pregunta": "¿Qué diferencia hay entre pulido y encerado?",
+        "respuesta": "El encerado sólo cubre imperfecciones por semanas. La corrección de pintura elimina físicamente micro-rayas y hologramas para siempre."
+      },
+      {
+        "pregunta": "¿Cómo solicito mi turno?",
+        "respuesta": "Podes escribirnos directo por WhatsApp al 0358 15-548-8451 y coordinamos la inspección técnica de tu unidad."
+      }
+    ]
+  },
+  {
+    "slug": "corban-estetica-vehicular",
+    "nombre": "Corban estética vehicular",
+    "ciudad": "Río Cuarto",
+    "direccion": "Roma 1272, Río Cuarto",
+    "telefono": "0358 15-417-7999",
+    "whatsapp": "5493584177999",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 25,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Corban+est%C3%A9tica+vehicular/@-33.1195192,-64.3456662,14z/data=!4m10!1m2!2m1!1sestetica+vehicular+rio+cuarto!3m6!1s0x95d201005d1a9d5f:0x609c80ac58fc950b!8m2!3d-33.1174193!4d-64.3612519!15sCh1lc3RldGljYSB2ZWhpY3VsYXIgcmlvIGN1YXJ0b5IBCGNhcl93YXNo4AEA!16s%2Fg%2F11nqskr8xd?entry=ttu&g_ep=EgoyMDI2MTAxMS4wIKXMDSoASAFQAw%3D%3D",
+    "hero_titulo": "Detailing de Alta Gama en Río Cuarto",
+    "hero_subtitulo": "Tratamientos cerámicos 9H, corrección de barniz y estética vehicular de precisión en Río Cuarto.",
+    "descripcion": "Taller especializado en detailing automotriz y protección para vehículos en Río Cuarto.",
+    "servicios_rich": [
+      {
+        "id": "tratamiento-ceramico",
+        "titulo": "Tratamiento Cerámico 9H",
+        "descripcion": "Protección nanométrica de alta dureza que sella el barniz, otorga brillo cristalino y máxima repelencia hidrofóbica hasta por 3 años.",
+        "icono": "ShieldCheck",
+        "duracion": "24 a 48 hs",
+        "garantia": "Garantía escrita 3 años",
+        "precio_desde": "$120.000",
+        "imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "correccion-barniz",
+        "titulo": "Corrección de Pintura en Pasos",
+        "descripcion": "Eliminación micro-quirúrgica de rayas superficiales, marcas de remolino (swirls) y marcas de agua, devolviendo profundidad total al color.",
+        "icono": "Sparkles",
+        "duracion": "8 a 12 hs",
+        "garantia": "Inspección digital",
+        "precio_desde": "$85.000",
+        "imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "acondicionamiento-interior",
+        "titulo": "Limpieza y Detailing de Interior",
+        "descripcion": "Desinfección profunda a vapor y extracción de tapizados, nutrición de cueros con productos premium y sellado anti-estático de plásticos.",
+        "icono": "Car",
+        "duracion": "6 a 8 hs",
+        "garantia": "Secado 100% en cabina",
+        "precio_desde": "$75.000",
+        "imagen": "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "sellado-vidrios",
+        "titulo": "Sellado Acrílico y Repelencia de Cristales",
+        "descripcion": "Tratamiento hidrofóbico para parabrisas y lunetas que incrementa drásticamente la visibilidad bajo lluvia intensa a velocidades superiores a 60 km/h.",
+        "icono": "Droplets",
+        "duracion": "3 a 4 hs",
+        "garantia": "Duración 6 meses",
+        "precio_desde": "$45.000",
+        "imagen": "https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "restauracion-opticas",
+        "titulo": "Restauración y Sellado de Ópticas",
+        "descripcion": "Lijado progresivo al agua y sellado UV cerámico para recuperar la transparencia cristalina original y maximizar el haz lumínico nocturno.",
+        "icono": "Eye",
+        "duracion": "2 a 3 hs",
+        "garantia": "Anti-amarilleo 1 año",
+        "precio_desde": "$40.000",
+        "imagen": "https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "lavado-premium",
+        "titulo": "Lavado Técnico al Detalle",
+        "descripcion": "Método de dos baldes con shampoo pH neutro, descontaminado ferroso de llantas, snow foam y secado con microfibra ultra-soft con aire caliente.",
+        "icono": "Flame",
+        "duracion": "3 a 4 hs",
+        "garantia": "Cero marcas",
+        "precio_desde": "$35.000",
+        "imagen": "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "proteccion-ppf",
+        "titulo": "Paint Protection Film (PPF)",
+        "descripcion": "Instalación de film de poliuretano transparente auto-regenerativo en zonas de alto impacto (trompa, paragolpes, capó) contra piedras y picaduras.",
+        "icono": "Shield",
+        "duracion": "2 a 3 días",
+        "garantia": "Garantía 5 a 10 años",
+        "precio_desde": "$250.000",
+        "imagen": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "detailing-motor",
+        "titulo": "Detailing y Nutrición de Motor",
+        "descripcion": "Limpieza en seco con vapor y desengrasantes dieléctricos biodegradables, protegiendo conectores y renovando plásticos con sellador térmico.",
+        "icono": "Cpu",
+        "duracion": "3 a 4 hs",
+        "garantia": "Protección dieléctrica",
+        "precio_desde": "$50.000",
+        "imagen": "https://images.unsplash.com/photo-1489824904134-891ab64532f1?auto=format&fit=crop&w=800&q=80"
+      }
+    ],
+    "slider_antes_despues": {
+      "habilitado": true,
+      "antes_imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=1200&q=80",
+      "despues_imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=1200&q=80",
+      "antes_etiqueta": "Antes: Barniz opaco y rayas",
+      "despues_etiqueta": "Después: Corrección y Cerámico 9H"
+    },
+    "faq": [
+      {
+        "pregunta": "¿Cuánto tiempo demora un tratamiento cerámico?",
+        "respuesta": "En nuestro estudio en Río Cuarto, un sellado cerámico completo requiere entre 24 y 48 horas de trabajo técnico y curado."
+      },
+      {
+        "pregunta": "¿Qué diferencia hay entre pulido y encerado?",
+        "respuesta": "El encerado sólo cubre imperfecciones por semanas. La corrección de pintura elimina físicamente micro-rayas y hologramas para siempre."
+      },
+      {
+        "pregunta": "¿Cómo solicito mi turno?",
+        "respuesta": "Podes escribirnos directo por WhatsApp al 0358 15-417-7999 y coordinamos la inspección técnica de tu unidad."
+      }
+    ]
+  },
+  {
+    "slug": "ferradans-estetica-vehicular",
+    "nombre": "Ferradans Estética Vehicular",
+    "ciudad": "Villa María",
+    "direccion": "Gral. Mosconi 1565, Villa María",
+    "telefono": "0353 15-657-0316",
+    "whatsapp": "5493536570316",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 25,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Ferradans+Est%C3%A9tica+Vehicular/@-32.4153056,-63.2673364,14z/data=!4m10!1m2!2m1!1sdetailing+villa+maria+cordoba!3m6!1s0x95cc439198ca15af:0xa20c90dbd93c843d!8m2!3d-32.3990749!4d-63.2458829!15sCh1kZXRhaWxpbmcgdmlsbGEgbWFyaWEgY29yZG9iYZIBCmNhcl9yZXBhaXLgAQA!16s%2Fg%2F11qzxjdq92?entry=ttu&g_ep=EgoyMDI2MTAxMS4wIKXMDSoASAFQAw%3D%3D",
+    "hero_titulo": "Detailing de Alta Gama en Villa María",
+    "hero_subtitulo": "Tratamientos cerámicos 9H, corrección de barniz y estética vehicular de precisión en Villa María.",
+    "descripcion": "Taller especializado en detailing automotriz y protección para vehículos en Villa María.",
+    "servicios_rich": [
+      {
+        "id": "tratamiento-ceramico",
+        "titulo": "Tratamiento Cerámico 9H",
+        "descripcion": "Protección nanométrica de alta dureza que sella el barniz, otorga brillo cristalino y máxima repelencia hidrofóbica hasta por 3 años.",
+        "icono": "ShieldCheck",
+        "duracion": "24 a 48 hs",
+        "garantia": "Garantía escrita 3 años",
+        "precio_desde": "$120.000",
+        "imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "correccion-barniz",
+        "titulo": "Corrección de Pintura en Pasos",
+        "descripcion": "Eliminación micro-quirúrgica de rayas superficiales, marcas de remolino (swirls) y marcas de agua, devolviendo profundidad total al color.",
+        "icono": "Sparkles",
+        "duracion": "8 a 12 hs",
+        "garantia": "Inspección digital",
+        "precio_desde": "$85.000",
+        "imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "acondicionamiento-interior",
+        "titulo": "Limpieza y Detailing de Interior",
+        "descripcion": "Desinfección profunda a vapor y extracción de tapizados, nutrición de cueros con productos premium y sellado anti-estático de plásticos.",
+        "icono": "Car",
+        "duracion": "6 a 8 hs",
+        "garantia": "Secado 100% en cabina",
+        "precio_desde": "$75.000",
+        "imagen": "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "sellado-vidrios",
+        "titulo": "Sellado Acrílico y Repelencia de Cristales",
+        "descripcion": "Tratamiento hidrofóbico para parabrisas y lunetas que incrementa drásticamente la visibilidad bajo lluvia intensa a velocidades superiores a 60 km/h.",
+        "icono": "Droplets",
+        "duracion": "3 a 4 hs",
+        "garantia": "Duración 6 meses",
+        "precio_desde": "$45.000",
+        "imagen": "https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "restauracion-opticas",
+        "titulo": "Restauración y Sellado de Ópticas",
+        "descripcion": "Lijado progresivo al agua y sellado UV cerámico para recuperar la transparencia cristalina original y maximizar el haz lumínico nocturno.",
+        "icono": "Eye",
+        "duracion": "2 a 3 hs",
+        "garantia": "Anti-amarilleo 1 año",
+        "precio_desde": "$40.000",
+        "imagen": "https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "lavado-premium",
+        "titulo": "Lavado Técnico al Detalle",
+        "descripcion": "Método de dos baldes con shampoo pH neutro, descontaminado ferroso de llantas, snow foam y secado con microfibra ultra-soft con aire caliente.",
+        "icono": "Flame",
+        "duracion": "3 a 4 hs",
+        "garantia": "Cero marcas",
+        "precio_desde": "$35.000",
+        "imagen": "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "proteccion-ppf",
+        "titulo": "Paint Protection Film (PPF)",
+        "descripcion": "Instalación de film de poliuretano transparente auto-regenerativo en zonas de alto impacto (trompa, paragolpes, capó) contra piedras y picaduras.",
+        "icono": "Shield",
+        "duracion": "2 a 3 días",
+        "garantia": "Garantía 5 a 10 años",
+        "precio_desde": "$250.000",
+        "imagen": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "detailing-motor",
+        "titulo": "Detailing y Nutrición de Motor",
+        "descripcion": "Limpieza en seco con vapor y desengrasantes dieléctricos biodegradables, protegiendo conectores y renovando plásticos con sellador térmico.",
+        "icono": "Cpu",
+        "duracion": "3 a 4 hs",
+        "garantia": "Protección dieléctrica",
+        "precio_desde": "$50.000",
+        "imagen": "https://images.unsplash.com/photo-1489824904134-891ab64532f1?auto=format&fit=crop&w=800&q=80"
+      }
+    ],
+    "slider_antes_despues": {
+      "habilitado": true,
+      "antes_imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=1200&q=80",
+      "despues_imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=1200&q=80",
+      "antes_etiqueta": "Antes: Barniz opaco y rayas",
+      "despues_etiqueta": "Después: Corrección y Cerámico 9H"
+    },
+    "faq": [
+      {
+        "pregunta": "¿Cuánto tiempo demora un tratamiento cerámico?",
+        "respuesta": "En nuestro estudio en Villa María, un sellado cerámico completo requiere entre 24 y 48 horas de trabajo técnico y curado."
+      },
+      {
+        "pregunta": "¿Qué diferencia hay entre pulido y encerado?",
+        "respuesta": "El encerado sólo cubre imperfecciones por semanas. La corrección de pintura elimina físicamente micro-rayas y hologramas para siempre."
+      },
+      {
+        "pregunta": "¿Cómo solicito mi turno?",
+        "respuesta": "Podes escribirnos directo por WhatsApp al 0353 15-657-0316 y coordinamos la inspección técnica de tu unidad."
+      }
+    ]
+  },
+  {
+    "slug": "am-centro-de-estetica-vehicular",
+    "nombre": "Am Centro De Estetica Vehicular",
+    "ciudad": "Villa María",
+    "direccion": "Av. Colón 385, Villa María",
+    "telefono": "0353 15-414-1738",
+    "whatsapp": "5493534141738",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 25,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Am+Centro+De+Estetica+Vehicular/@-32.4153056,-65.5384164,8z/data=!4m10!1m2!2m1!1sestetica+vehicular+villa+maria!3m6!1s0x95cc4323c2879ff1:0xdd33942fbd9dc0fb!8m2!3d-32.4106845!4d-63.2764092!15sCh5lc3RldGljYSB2ZWhpY3VsYXIgdmlsbGEgbWFyaWHgAQA!16s%2Fg%2F11fqbjf_1l?entry=ttu&g_ep=EgoyMDI2MTAxMS4wIKXMDSoASAFQAw%3D%3D",
+    "hero_titulo": "Detailing de Alta Gama en Villa María",
+    "hero_subtitulo": "Tratamientos cerámicos 9H, corrección de barniz y estética vehicular de precisión en Villa María.",
+    "descripcion": "Taller especializado en detailing automotriz y protección para vehículos en Villa María.",
+    "servicios_rich": [
+      {
+        "id": "tratamiento-ceramico",
+        "titulo": "Tratamiento Cerámico 9H",
+        "descripcion": "Protección nanométrica de alta dureza que sella el barniz, otorga brillo cristalino y máxima repelencia hidrofóbica hasta por 3 años.",
+        "icono": "ShieldCheck",
+        "duracion": "24 a 48 hs",
+        "garantia": "Garantía escrita 3 años",
+        "precio_desde": "$120.000",
+        "imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "correccion-barniz",
+        "titulo": "Corrección de Pintura en Pasos",
+        "descripcion": "Eliminación micro-quirúrgica de rayas superficiales, marcas de remolino (swirls) y marcas de agua, devolviendo profundidad total al color.",
+        "icono": "Sparkles",
+        "duracion": "8 a 12 hs",
+        "garantia": "Inspección digital",
+        "precio_desde": "$85.000",
+        "imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "acondicionamiento-interior",
+        "titulo": "Limpieza y Detailing de Interior",
+        "descripcion": "Desinfección profunda a vapor y extracción de tapizados, nutrición de cueros con productos premium y sellado anti-estático de plásticos.",
+        "icono": "Car",
+        "duracion": "6 a 8 hs",
+        "garantia": "Secado 100% en cabina",
+        "precio_desde": "$75.000",
+        "imagen": "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "sellado-vidrios",
+        "titulo": "Sellado Acrílico y Repelencia de Cristales",
+        "descripcion": "Tratamiento hidrofóbico para parabrisas y lunetas que incrementa drásticamente la visibilidad bajo lluvia intensa a velocidades superiores a 60 km/h.",
+        "icono": "Droplets",
+        "duracion": "3 a 4 hs",
+        "garantia": "Duración 6 meses",
+        "precio_desde": "$45.000",
+        "imagen": "https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "restauracion-opticas",
+        "titulo": "Restauración y Sellado de Ópticas",
+        "descripcion": "Lijado progresivo al agua y sellado UV cerámico para recuperar la transparencia cristalina original y maximizar el haz lumínico nocturno.",
+        "icono": "Eye",
+        "duracion": "2 a 3 hs",
+        "garantia": "Anti-amarilleo 1 año",
+        "precio_desde": "$40.000",
+        "imagen": "https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "lavado-premium",
+        "titulo": "Lavado Técnico al Detalle",
+        "descripcion": "Método de dos baldes con shampoo pH neutro, descontaminado ferroso de llantas, snow foam y secado con microfibra ultra-soft con aire caliente.",
+        "icono": "Flame",
+        "duracion": "3 a 4 hs",
+        "garantia": "Cero marcas",
+        "precio_desde": "$35.000",
+        "imagen": "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "proteccion-ppf",
+        "titulo": "Paint Protection Film (PPF)",
+        "descripcion": "Instalación de film de poliuretano transparente auto-regenerativo en zonas de alto impacto (trompa, paragolpes, capó) contra piedras y picaduras.",
+        "icono": "Shield",
+        "duracion": "2 a 3 días",
+        "garantia": "Garantía 5 a 10 años",
+        "precio_desde": "$250.000",
+        "imagen": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "detailing-motor",
+        "titulo": "Detailing y Nutrición de Motor",
+        "descripcion": "Limpieza en seco con vapor y desengrasantes dieléctricos biodegradables, protegiendo conectores y renovando plásticos con sellador térmico.",
+        "icono": "Cpu",
+        "duracion": "3 a 4 hs",
+        "garantia": "Protección dieléctrica",
+        "precio_desde": "$50.000",
+        "imagen": "https://images.unsplash.com/photo-1489824904134-891ab64532f1?auto=format&fit=crop&w=800&q=80"
+      }
+    ],
+    "slider_antes_despues": {
+      "habilitado": true,
+      "antes_imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=1200&q=80",
+      "despues_imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=1200&q=80",
+      "antes_etiqueta": "Antes: Barniz opaco y rayas",
+      "despues_etiqueta": "Después: Corrección y Cerámico 9H"
+    },
+    "faq": [
+      {
+        "pregunta": "¿Cuánto tiempo demora un tratamiento cerámico?",
+        "respuesta": "En nuestro estudio en Villa María, un sellado cerámico completo requiere entre 24 y 48 horas de trabajo técnico y curado."
+      },
+      {
+        "pregunta": "¿Qué diferencia hay entre pulido y encerado?",
+        "respuesta": "El encerado sólo cubre imperfecciones por semanas. La corrección de pintura elimina físicamente micro-rayas y hologramas para siempre."
+      },
+      {
+        "pregunta": "¿Cómo solicito mi turno?",
+        "respuesta": "Podes escribirnos directo por WhatsApp al 0353 15-414-1738 y coordinamos la inspección técnica de tu unidad."
+      }
+    ]
+  },
+  {
+    "slug": "estetica-vehicular-autospa",
+    "nombre": "Estética vehicular AutoSpa",
+    "ciudad": "Villa María",
+    "direccion": "Periodistas Argentinos 252, Villa María",
+    "telefono": "0353 15-440-2337",
+    "whatsapp": "5493534402337",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 25,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Est%C3%A9tica+vehicular+AutoSpa/@-32.4153056,-65.5384164,8z/data=!4m10!1m2!2m1!1sestetica+vehicular+villa+maria!3m6!1s0x95cc4394ac89cbfd:0x27b4df415b815e17!8m2!3d-32.4103489!4d-63.2356687!15sCh5lc3RldGljYSB2ZWhpY3VsYXIgdmlsbGEgbWFyaWGSAQhjYXJfd2FzaOABAA!16s%2Fg%2F11h009gwd9?entry=ttu&g_ep=EgoyMDI2MTAxMS4wIKXMDSoASAFQAw%3D%3D",
+    "hero_titulo": "Detailing de Alta Gama en Villa María",
+    "hero_subtitulo": "Tratamientos cerámicos 9H, corrección de barniz y estética vehicular de precisión en Villa María.",
+    "descripcion": "Taller especializado en detailing automotriz y protección para vehículos en Villa María.",
+    "servicios_rich": [
+      {
+        "id": "tratamiento-ceramico",
+        "titulo": "Tratamiento Cerámico 9H",
+        "descripcion": "Protección nanométrica de alta dureza que sella el barniz, otorga brillo cristalino y máxima repelencia hidrofóbica hasta por 3 años.",
+        "icono": "ShieldCheck",
+        "duracion": "24 a 48 hs",
+        "garantia": "Garantía escrita 3 años",
+        "precio_desde": "$120.000",
+        "imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "correccion-barniz",
+        "titulo": "Corrección de Pintura en Pasos",
+        "descripcion": "Eliminación micro-quirúrgica de rayas superficiales, marcas de remolino (swirls) y marcas de agua, devolviendo profundidad total al color.",
+        "icono": "Sparkles",
+        "duracion": "8 a 12 hs",
+        "garantia": "Inspección digital",
+        "precio_desde": "$85.000",
+        "imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "acondicionamiento-interior",
+        "titulo": "Limpieza y Detailing de Interior",
+        "descripcion": "Desinfección profunda a vapor y extracción de tapizados, nutrición de cueros con productos premium y sellado anti-estático de plásticos.",
+        "icono": "Car",
+        "duracion": "6 a 8 hs",
+        "garantia": "Secado 100% en cabina",
+        "precio_desde": "$75.000",
+        "imagen": "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "sellado-vidrios",
+        "titulo": "Sellado Acrílico y Repelencia de Cristales",
+        "descripcion": "Tratamiento hidrofóbico para parabrisas y lunetas que incrementa drásticamente la visibilidad bajo lluvia intensa a velocidades superiores a 60 km/h.",
+        "icono": "Droplets",
+        "duracion": "3 a 4 hs",
+        "garantia": "Duración 6 meses",
+        "precio_desde": "$45.000",
+        "imagen": "https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "restauracion-opticas",
+        "titulo": "Restauración y Sellado de Ópticas",
+        "descripcion": "Lijado progresivo al agua y sellado UV cerámico para recuperar la transparencia cristalina original y maximizar el haz lumínico nocturno.",
+        "icono": "Eye",
+        "duracion": "2 a 3 hs",
+        "garantia": "Anti-amarilleo 1 año",
+        "precio_desde": "$40.000",
+        "imagen": "https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "lavado-premium",
+        "titulo": "Lavado Técnico al Detalle",
+        "descripcion": "Método de dos baldes con shampoo pH neutro, descontaminado ferroso de llantas, snow foam y secado con microfibra ultra-soft con aire caliente.",
+        "icono": "Flame",
+        "duracion": "3 a 4 hs",
+        "garantia": "Cero marcas",
+        "precio_desde": "$35.000",
+        "imagen": "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "proteccion-ppf",
+        "titulo": "Paint Protection Film (PPF)",
+        "descripcion": "Instalación de film de poliuretano transparente auto-regenerativo en zonas de alto impacto (trompa, paragolpes, capó) contra piedras y picaduras.",
+        "icono": "Shield",
+        "duracion": "2 a 3 días",
+        "garantia": "Garantía 5 a 10 años",
+        "precio_desde": "$250.000",
+        "imagen": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "detailing-motor",
+        "titulo": "Detailing y Nutrición de Motor",
+        "descripcion": "Limpieza en seco con vapor y desengrasantes dieléctricos biodegradables, protegiendo conectores y renovando plásticos con sellador térmico.",
+        "icono": "Cpu",
+        "duracion": "3 a 4 hs",
+        "garantia": "Protección dieléctrica",
+        "precio_desde": "$50.000",
+        "imagen": "https://images.unsplash.com/photo-1489824904134-891ab64532f1?auto=format&fit=crop&w=800&q=80"
+      }
+    ],
+    "slider_antes_despues": {
+      "habilitado": true,
+      "antes_imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=1200&q=80",
+      "despues_imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=1200&q=80",
+      "antes_etiqueta": "Antes: Barniz opaco y rayas",
+      "despues_etiqueta": "Después: Corrección y Cerámico 9H"
+    },
+    "faq": [
+      {
+        "pregunta": "¿Cuánto tiempo demora un tratamiento cerámico?",
+        "respuesta": "En nuestro estudio en Villa María, un sellado cerámico completo requiere entre 24 y 48 horas de trabajo técnico y curado."
+      },
+      {
+        "pregunta": "¿Qué diferencia hay entre pulido y encerado?",
+        "respuesta": "El encerado sólo cubre imperfecciones por semanas. La corrección de pintura elimina físicamente micro-rayas y hologramas para siempre."
+      },
+      {
+        "pregunta": "¿Cómo solicito mi turno?",
+        "respuesta": "Podes escribirnos directo por WhatsApp al 0353 15-440-2337 y coordinamos la inspección técnica de tu unidad."
+      }
+    ]
+  },
+  {
+    "slug": "ffg-estetica-vehicular",
+    "nombre": "FFG Estética Vehicular",
+    "ciudad": "Villa María",
+    "direccion": "Av. Guillermo Rawson 2047, Villa María",
+    "telefono": "0353 15-564-9620",
+    "whatsapp": "5493535649620",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 25,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/FFG+Est%C3%A9tica+Vehicular/@-34.5557319,-60.8855983,8z/data=!4m10!1m2!2m1!1sestetica+vehicular+villa+maria!3m6!1s0x95cc43bc20cf075d:0x3a2d3bf16065142c!8m2!3d-32.3954173!4d-63.241398!15sCh5lc3RldGljYSB2ZWhpY3VsYXIgdmlsbGEgbWFyaWFaICIeZXN0ZXRpY2EgdmVoaWN1bGFyIHZpbGxhIG1hcmlhkgENbW90b3JpbmdfY2x1YpoBRENpOURRVWxSUVVOdlpFTm9kSGxqUmpsdlQyc3hkRkpzV25KVFZrSXhWbFZHVFUwd2VITlVSWGhRVVZaQ1RGZHNSUkFC4AEA-gEECAAQJQ!16s%2Fg%2F11rgh9wdtp?entry=ttu&g_ep=EgoyMDI2MTAxMS4wIKXMDSoASAFQAw%3D%3D",
+    "hero_titulo": "Detailing de Alta Gama en Villa María",
+    "hero_subtitulo": "Tratamientos cerámicos 9H, corrección de barniz y estética vehicular de precisión en Villa María.",
+    "descripcion": "Taller especializado en detailing automotriz y protección para vehículos en Villa María.",
+    "servicios_rich": [
+      {
+        "id": "tratamiento-ceramico",
+        "titulo": "Tratamiento Cerámico 9H",
+        "descripcion": "Protección nanométrica de alta dureza que sella el barniz, otorga brillo cristalino y máxima repelencia hidrofóbica hasta por 3 años.",
+        "icono": "ShieldCheck",
+        "duracion": "24 a 48 hs",
+        "garantia": "Garantía escrita 3 años",
+        "precio_desde": "$120.000",
+        "imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "correccion-barniz",
+        "titulo": "Corrección de Pintura en Pasos",
+        "descripcion": "Eliminación micro-quirúrgica de rayas superficiales, marcas de remolino (swirls) y marcas de agua, devolviendo profundidad total al color.",
+        "icono": "Sparkles",
+        "duracion": "8 a 12 hs",
+        "garantia": "Inspección digital",
+        "precio_desde": "$85.000",
+        "imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "acondicionamiento-interior",
+        "titulo": "Limpieza y Detailing de Interior",
+        "descripcion": "Desinfección profunda a vapor y extracción de tapizados, nutrición de cueros con productos premium y sellado anti-estático de plásticos.",
+        "icono": "Car",
+        "duracion": "6 a 8 hs",
+        "garantia": "Secado 100% en cabina",
+        "precio_desde": "$75.000",
+        "imagen": "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "sellado-vidrios",
+        "titulo": "Sellado Acrílico y Repelencia de Cristales",
+        "descripcion": "Tratamiento hidrofóbico para parabrisas y lunetas que incrementa drásticamente la visibilidad bajo lluvia intensa a velocidades superiores a 60 km/h.",
+        "icono": "Droplets",
+        "duracion": "3 a 4 hs",
+        "garantia": "Duración 6 meses",
+        "precio_desde": "$45.000",
+        "imagen": "https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "restauracion-opticas",
+        "titulo": "Restauración y Sellado de Ópticas",
+        "descripcion": "Lijado progresivo al agua y sellado UV cerámico para recuperar la transparencia cristalina original y maximizar el haz lumínico nocturno.",
+        "icono": "Eye",
+        "duracion": "2 a 3 hs",
+        "garantia": "Anti-amarilleo 1 año",
+        "precio_desde": "$40.000",
+        "imagen": "https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "lavado-premium",
+        "titulo": "Lavado Técnico al Detalle",
+        "descripcion": "Método de dos baldes con shampoo pH neutro, descontaminado ferroso de llantas, snow foam y secado con microfibra ultra-soft con aire caliente.",
+        "icono": "Flame",
+        "duracion": "3 a 4 hs",
+        "garantia": "Cero marcas",
+        "precio_desde": "$35.000",
+        "imagen": "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "proteccion-ppf",
+        "titulo": "Paint Protection Film (PPF)",
+        "descripcion": "Instalación de film de poliuretano transparente auto-regenerativo en zonas de alto impacto (trompa, paragolpes, capó) contra piedras y picaduras.",
+        "icono": "Shield",
+        "duracion": "2 a 3 días",
+        "garantia": "Garantía 5 a 10 años",
+        "precio_desde": "$250.000",
+        "imagen": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "detailing-motor",
+        "titulo": "Detailing y Nutrición de Motor",
+        "descripcion": "Limpieza en seco con vapor y desengrasantes dieléctricos biodegradables, protegiendo conectores y renovando plásticos con sellador térmico.",
+        "icono": "Cpu",
+        "duracion": "3 a 4 hs",
+        "garantia": "Protección dieléctrica",
+        "precio_desde": "$50.000",
+        "imagen": "https://images.unsplash.com/photo-1489824904134-891ab64532f1?auto=format&fit=crop&w=800&q=80"
+      }
+    ],
+    "slider_antes_despues": {
+      "habilitado": true,
+      "antes_imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=1200&q=80",
+      "despues_imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=1200&q=80",
+      "antes_etiqueta": "Antes: Barniz opaco y rayas",
+      "despues_etiqueta": "Después: Corrección y Cerámico 9H"
+    },
+    "faq": [
+      {
+        "pregunta": "¿Cuánto tiempo demora un tratamiento cerámico?",
+        "respuesta": "En nuestro estudio en Villa María, un sellado cerámico completo requiere entre 24 y 48 horas de trabajo técnico y curado."
+      },
+      {
+        "pregunta": "¿Qué diferencia hay entre pulido y encerado?",
+        "respuesta": "El encerado sólo cubre imperfecciones por semanas. La corrección de pintura elimina físicamente micro-rayas y hologramas para siempre."
+      },
+      {
+        "pregunta": "¿Cómo solicito mi turno?",
+        "respuesta": "Podes escribirnos directo por WhatsApp al 0353 15-564-9620 y coordinamos la inspección técnica de tu unidad."
+      }
+    ]
+  },
+  {
+    "slug": "revion-reflect",
+    "nombre": "Revion Reflect",
+    "ciudad": "San Francisco",
+    "direccion": "Hermanos Casalis 2660, San Francisco",
+    "telefono": "03564 15-336-238",
+    "whatsapp": "5493564336238",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 25,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Revion+Reflect+-+Detailing/@-31.4294876,-62.0926626,14z/data=!4m10!1m2!2m1!1sdetailing+san+francisco+cordoba!3m6!1s0x95cb29b34b5c98c5:0x34b0c4d92373ba77!8m2!3d-31.428322!4d-62.0955907!15sCh9kZXRhaWxpbmcgc2FuIGZyYW5jaXNjbyBjb3Jkb2JhkgEVY2FyX2RldGFpbGluZ19zZXJ2aWNl4AEA!16s%2Fg%2F11zxjzf4tw?entry=ttu&g_ep=EgoyMDI2MTAxMS4wIKXMDSoASAFQAw%3D%3D",
+    "hero_titulo": "Detailing de Alta Gama en San Francisco",
+    "hero_subtitulo": "Tratamientos cerámicos 9H, corrección de barniz y estética vehicular de precisión en San Francisco.",
+    "descripcion": "Taller especializado en detailing automotriz y protección para vehículos en San Francisco.",
+    "servicios_rich": [
+      {
+        "id": "tratamiento-ceramico",
+        "titulo": "Tratamiento Cerámico 9H",
+        "descripcion": "Protección nanométrica de alta dureza que sella el barniz, otorga brillo cristalino y máxima repelencia hidrofóbica hasta por 3 años.",
+        "icono": "ShieldCheck",
+        "duracion": "24 a 48 hs",
+        "garantia": "Garantía escrita 3 años",
+        "precio_desde": "$120.000",
+        "imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "correccion-barniz",
+        "titulo": "Corrección de Pintura en Pasos",
+        "descripcion": "Eliminación micro-quirúrgica de rayas superficiales, marcas de remolino (swirls) y marcas de agua, devolviendo profundidad total al color.",
+        "icono": "Sparkles",
+        "duracion": "8 a 12 hs",
+        "garantia": "Inspección digital",
+        "precio_desde": "$85.000",
+        "imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "acondicionamiento-interior",
+        "titulo": "Limpieza y Detailing de Interior",
+        "descripcion": "Desinfección profunda a vapor y extracción de tapizados, nutrición de cueros con productos premium y sellado anti-estático de plásticos.",
+        "icono": "Car",
+        "duracion": "6 a 8 hs",
+        "garantia": "Secado 100% en cabina",
+        "precio_desde": "$75.000",
+        "imagen": "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "sellado-vidrios",
+        "titulo": "Sellado Acrílico y Repelencia de Cristales",
+        "descripcion": "Tratamiento hidrofóbico para parabrisas y lunetas que incrementa drásticamente la visibilidad bajo lluvia intensa a velocidades superiores a 60 km/h.",
+        "icono": "Droplets",
+        "duracion": "3 a 4 hs",
+        "garantia": "Duración 6 meses",
+        "precio_desde": "$45.000",
+        "imagen": "https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "restauracion-opticas",
+        "titulo": "Restauración y Sellado de Ópticas",
+        "descripcion": "Lijado progresivo al agua y sellado UV cerámico para recuperar la transparencia cristalina original y maximizar el haz lumínico nocturno.",
+        "icono": "Eye",
+        "duracion": "2 a 3 hs",
+        "garantia": "Anti-amarilleo 1 año",
+        "precio_desde": "$40.000",
+        "imagen": "https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "lavado-premium",
+        "titulo": "Lavado Técnico al Detalle",
+        "descripcion": "Método de dos baldes con shampoo pH neutro, descontaminado ferroso de llantas, snow foam y secado con microfibra ultra-soft con aire caliente.",
+        "icono": "Flame",
+        "duracion": "3 a 4 hs",
+        "garantia": "Cero marcas",
+        "precio_desde": "$35.000",
+        "imagen": "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "proteccion-ppf",
+        "titulo": "Paint Protection Film (PPF)",
+        "descripcion": "Instalación de film de poliuretano transparente auto-regenerativo en zonas de alto impacto (trompa, paragolpes, capó) contra piedras y picaduras.",
+        "icono": "Shield",
+        "duracion": "2 a 3 días",
+        "garantia": "Garantía 5 a 10 años",
+        "precio_desde": "$250.000",
+        "imagen": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "detailing-motor",
+        "titulo": "Detailing y Nutrición de Motor",
+        "descripcion": "Limpieza en seco con vapor y desengrasantes dieléctricos biodegradables, protegiendo conectores y renovando plásticos con sellador térmico.",
+        "icono": "Cpu",
+        "duracion": "3 a 4 hs",
+        "garantia": "Protección dieléctrica",
+        "precio_desde": "$50.000",
+        "imagen": "https://images.unsplash.com/photo-1489824904134-891ab64532f1?auto=format&fit=crop&w=800&q=80"
+      }
+    ],
+    "slider_antes_despues": {
+      "habilitado": true,
+      "antes_imagen": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=1200&q=80",
+      "despues_imagen": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=1200&q=80",
+      "antes_etiqueta": "Antes: Barniz opaco y rayas",
+      "despues_etiqueta": "Después: Corrección y Cerámico 9H"
+    },
+    "faq": [
+      {
+        "pregunta": "¿Cuánto tiempo demora un tratamiento cerámico?",
+        "respuesta": "En nuestro estudio en San Francisco, un sellado cerámico completo requiere entre 24 y 48 horas de trabajo técnico y curado."
+      },
+      {
+        "pregunta": "¿Qué diferencia hay entre pulido y encerado?",
+        "respuesta": "El encerado sólo cubre imperfecciones por semanas. La corrección de pintura elimina físicamente micro-rayas y hologramas para siempre."
+      },
+      {
+        "pregunta": "¿Cómo solicito mi turno?",
+        "respuesta": "Podes escribirnos directo por WhatsApp al 03564 15-336-238 y coordinamos la inspección técnica de tu unidad."
+      }
+    ]
   }
 ]
