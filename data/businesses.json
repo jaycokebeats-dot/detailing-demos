@@ -50051,5 +50051,65 @@
         "respuesta": "Podes escribirnos directo por WhatsApp al 03564 15-336-238 y coordinamos la inspección técnica de tu unidad."
       }
     ]
+  },
+  {
+    "slug": "diamond-detailing",
+    "nombre": "Diamond Detailing",
+    "ciudad": "Alcobendas",
+    "direccion": "Ctra. Fuencarral a, Alcobendas",
+    "telefono": "+34 622 49 67 58",
+    "whatsapp": "34622496758",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 25,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Diamond+Detailing/@40.5127326,-3.7091913,14z/data=!4m10!1m2!2m1!1sdetailing+alcobendas!3m6!1s0xd422dc74e608bcd:0x5e5510f4da90860f!8m2!3d40.5362445!4d-3.6424188!15sChRkZXRhaWxpbmcgYWxjb2JlbmRhc5IBFWNhcl9kZXRhaWxpbmdfc2VydmljZeABAA!16s%2Fg%2F11z9pz77vv?entry=ttu&g_ep=EgoyMDI2MTAxMi4wIKXMDSoASAFQAw%3D%3D",
+    "pais": "ES",
+    "template": "spain"
+  },
+  {
+    "slug": "studio-luxe-detailing",
+    "nombre": "Studio Luxe Detailing",
+    "ciudad": "Boadilla del Monte",
+    "direccion": "C. Juana I, Boadilla del Monte",
+    "telefono": "+34 649 66 03 47",
+    "whatsapp": "34649660347",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 25,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Studio+Luxe+Detailing/@40.391217,-4.1328221,11z/data=!4m10!1m2!2m1!1sdetailing+boadilla+del+monte!3m6!1s0xd41853044b8b90b:0x29425701c06aeb34!8m2!3d40.4072043!4d-3.8852194!15sChxkZXRhaWxpbmcgYm9hZGlsbGEgZGVsIG1vbnRlkgEIY2FyX3dhc2jgAQA!16s%2Fg%2F11q4hcng7x?entry=ttu&g_ep=EgoyMDI2MTAxMi4wIKXMDSoASAFQAw%3D%3D",
+    "pais": "ES",
+    "template": "spain"
+  },
+  {
+    "slug": "the-house-of-detail-madrid",
+    "nombre": "The House Of Detail Madrid",
+    "ciudad": "Alcorcón",
+    "direccion": "C. Polvoranca, Alcorcón",
+    "telefono": "+34 650 17 56 20",
+    "whatsapp": "34650175620",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 25,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/The+House+Of+Detail+Madrid+(Alcorc%C3%B3n)/@40.4747558,-77.5142622,3z/data=!4m11!1m3!2m2!1sdetailing+madrid!6e2!3m6!1s0xd41893dbb544ceb:0x174bcce07859a6dd!8m2!3d40.3367055!4d-3.8119788!15sChBkZXRhaWxpbmcgbWFkcmlkWhIiEGRldGFpbGluZyBtYWRyaWSSARVjYXJfZGV0YWlsaW5nX3NlcnZpY2WaASRDaGREU1VoTk1HOW5TMFZKUTBGblNVUk9iVFZRWTNaUlJSQULgAQD6AQUI1AEQLw!16s%2Fg%2F11l5l1n6cw?entry=ttu&g_ep=EgoyMDI2MTAxMi4wIKXMDSoASAFQAw%3D%3D",
+    "pais": "ES",
+    "template": "spain"
+  },
+  {
+    "slug": "ride-detailing-garage",
+    "nombre": "Ride Detailing Garage",
+    "ciudad": "Leganés",
+    "direccion": "C. Galileo, Leganés",
+    "telefono": "+34 675 42 27 67",
+    "whatsapp": "34675422767",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 25,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Ride+Detailing+Garage/@40.391217,-4.1328221,11z/data=!4m10!1m2!2m1!1sdetailing+leganes!3m6!1s0xd418b912b868bc9:0xd99828674f73c6c1!8m2!3d40.3116511!4d-3.8045974!15sChFkZXRhaWxpbmcgbGVnYW5lc1oTIhFkZXRhaWxpbmcgbGVnYW5lc5IBCGNhcl93YXNomgEkQ2hkRFNVaE5NRzluUzBWSlEwRm5TVU5DY0ZscFptOVJSUkFC4AEA-gEECFEQRg!16s%2Fg%2F11s2ly01vg?entry=ttu&g_ep=EgoyMDI2MTAxMi4wIKXMDSoASAFQAw%3D%3D",
+    "pais": "ES",
+    "template": "spain"
   }
 ]

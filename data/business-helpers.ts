@@ -27,6 +27,8 @@ export type Business = {
   nombreCorto?: string;
   horario?: string;
   servicios?: ServiceItem[];
+  pais?: string;
+  template?: string;
 };
 
 export const MSG_PRESUPUESTO = "Hola! Quiero pedir un presupuesto para mi auto.";

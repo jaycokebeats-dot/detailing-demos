@@ -22,8 +22,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (HIDDEN_SLUGS.has(slug)) return {};
   const biz = getBusiness(slug);
   if (!biz) return {};
+  const isSpain = biz.pais === "ES" || biz.template === "spain";
   const titulo = `${biz.nombre} — Detailing en ${biz.ciudad}`;
-  const descripcion = `Detailing profesional a mano en ${biz.ciudad}: lavado sin remolinos, corrección de pintura y recubrimiento cerámico. Pedí tu turno por WhatsApp.`;
+  const descripcion = isSpain
+    ? `Detailing profesional de coches en ${biz.ciudad} (Madrid): lavado a mano, corrección de pintura y tratamiento cerámico. Pide tu cita por WhatsApp.`
+    : `Detailing profesional a mano en ${biz.ciudad}: lavado sin remolinos, corrección de pintura y recubrimiento cerámico. Pedí tu turno por WhatsApp.`;
   return {
     title: titulo,
     description: descripcion,
@@ -31,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: titulo,
       description: descripcion,
-      locale: "es_AR",
+      locale: isSpain ? "es_ES" : "es_AR",
       type: "website",
       ...(biz.fotos?.[0] ? { images: [{ url: biz.fotos[0] }] } : {}),
     },
