@@ -5,8 +5,6 @@ import { FaWhatsapp } from "react-icons/fa";
 import { type Business, MSG_PRESUPUESTO, waHref } from "@/data/business-helpers";
 
 export default function Navbar({ biz }: { biz: Business }) {
-  // primera palabra blanca, resto en gold (BLACK LINE)
-  const [primera, ...resto] = (biz.nombreCorto ?? biz.nombre).toUpperCase().split(" ");
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -40,30 +38,27 @@ export default function Navbar({ biz }: { biz: Business }) {
         }
       >
         <div className={`max-w-6xl mx-auto flex items-center justify-between px-5 sm:px-8 transition-[height] duration-300 ${scrolled ? "h-14" : "h-16"}`}>
-          <a href="#hero" className="text-base font-bold tracking-widest text-white" style={{ fontFamily: "var(--font-soehne-breit)" }}>
-            {resto.length > 0 ? (
-              <>
-                {`${primera} `}
-                <span className="text-gold">{resto.join(" ")}</span>
-              </>
-            ) : (
-              primera
-            )}
+          <a href="#hero" className="flex items-center shrink-0 group transition-transform active:scale-95" aria-label="Ir al inicio">
+            <img
+              src="/logo/loguitopng.png"
+              alt="BORGES PPF & DETAILING"
+              className="h-11 sm:h-12 w-auto object-contain transition-transform group-hover:scale-105"
+            />
           </a>
           <div className="hidden md:flex items-center gap-8 text-xs uppercase tracking-widest text-slate-400">
-            <a href="#resultados" className="hover:text-white transition-colors">Resultados</a>
             <a href="#servicios" className="hover:text-white transition-colors">Servicios</a>
             <a href="#nosotros" className="hover:text-white transition-colors">Por qué nosotros</a>
             <a href="#ubicacion" className="hover:text-white transition-colors">Ubicación</a>
+            <a href="#tienda" className="hover:text-white transition-colors">Tienda</a>
           </div>
           <a
             href={waHref(biz, MSG_PRESUPUESTO)}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-white hover:opacity-70 transition-opacity"
+            className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-white hover:opacity-70 transition-opacity shrink-0"
           >
             <FaWhatsapp aria-hidden className="size-4" />
-            Escribinos
+            Contáctanos
           </a>
         </div>
       </header>

@@ -1,86 +1,50 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import { useEffect, useRef, useState } from "react";
 import type { Business } from "@/data/business-helpers";
 import SectionDivider from "./SectionDivider";
 
-// El visor 3D pesa (three + el modelo), asi que no entra en el bundle inicial
-// ni se descarga hasta que la seccion esta por aparecer en pantalla.
-const CarShowcase = dynamic(() => import("./CarShowcase"), {
-  ssr: false,
-  loading: () => <div className="w-full aspect-square" />,
-});
-
 export default function About({ biz }: { biz: Business }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    if (typeof IntersectionObserver === "undefined") {
-      setVisible(true);
-      return;
-    }
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          io.disconnect();
-        }
-      },
-      { rootMargin: "300px" }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
   return (
-    <section id="nosotros" className="relative px-5 sm:px-8 pt-24 pb-28" style={{ background: "#101010" }}>
+    <section id="nosotros" className="relative px-5 sm:px-8 py-20" style={{ background: "#101010" }}>
       <SectionDivider edge="top" />
 
-      <div className="max-w-6xl mx-auto grid gap-10 md:gap-14 md:grid-cols-2 md:items-center">
-        <div>
-          <span className="section-badge mb-5">Sobre nosotros</span>
-          <h2 className="text-3xl md:text-4xl font-medium text-gold mb-6">
-            Un auto por vez, hecho a mano
-          </h2>
-          <div className="space-y-4 text-slate-400 leading-relaxed">
-            <p>
-              {biz.nombreCorto} arrancó en un garage de {biz.ciudad}, con una idea simple: un auto puede
-              quedar mejor que el día que salió del concesionario.
+      <div className="max-w-3xl mx-auto text-center space-y-6">
+        <span className="section-badge mb-3">Sobre nosotros</span>
+        
+        <h2 className="text-3xl md:text-4xl font-medium text-gold mb-3">
+          Somos Líderes en la Colocación de PPF en Canning
+        </h2>
+
+
+        <div className="space-y-4 text-slate-300 max-w-2xl mx-auto leading-relaxed text-sm sm:text-base font-light">
+          <p>
+            Con más de <strong className="text-white font-semibold">8 años de experiencia</strong> en el rubro, nos respaldan las reseñas reales de clientes que confían en nosotros.
+          </p>
+          <p>
+            Nos caracteriza la calidad del servicio y de nuestros productos. Trabajamos con <strong className="text-white font-semibold">PPF XPEL</strong> y recubrimientos cerámicos premium, que traemos del exterior.
+          </p>
+          <div className="glass-panel rounded-2xl p-5 text-left max-w-2xl mx-auto border border-white/10 mt-6 space-y-2">
+            <p className="text-xs uppercase tracking-widest font-bold text-slate-200">
+              Visítanos & Asesoramiento Gratuito
             </p>
-            <p>
-              Seguimos siendo un equipo chico y nos gusta así. Cada auto lo trabaja la misma persona de
-              principio a fin, y esa persona es la que te lo entrega y te cuenta qué le hizo.
-            </p>
-            <p>
-              Por eso tomamos pocos autos por día. Preferimos que te vayas mostrándole el resultado a
-              todo el mundo, y no que esperes tres semanas por un turno.
+            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-light">
+              Te asesoramos para encontrar la protección ideal para tu vehículo. Podés visitarnos en nuestro espacio en Canning y conocer nuestros materiales y terminaciones.
             </p>
           </div>
-
-          <dl className="grid grid-cols-3 gap-4 mt-9">
-            {[
-              { k: "Trabajo", v: "A mano" },
-              { k: "Turnos", v: "Acotados" },
-              { k: "Atención", v: "Personalizada" },
-            ].map((d) => (
-              <div key={d.k}>
-                <dt className="text-[11px] uppercase tracking-widest text-slate-500 mb-1">{d.k}</dt>
-                <dd className="text-white font-medium">{d.v}</dd>
-              </div>
-            ))}
-          </dl>
         </div>
 
-        <div ref={ref} className="relative">
-          <div
-            className="absolute inset-0 -z-10 rounded-full blur-3xl opacity-25 pointer-events-none"
-            style={{ background: "radial-gradient(circle at 50% 55%, #b8c2cc 0%, transparent 65%)" }}
-          />
-          {visible ? <CarShowcase /> : <div className="w-full aspect-square" />}
+        <div className="pt-6">
+          <p className="text-xs sm:text-sm text-slate-400 mb-5 font-light">
+            ¿Quieres conocer la experiencia de nuestros clientes?
+          </p>
+          <a
+            href={biz.maps_url || "https://maps.google.com"}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-red-premium inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-xs font-semibold uppercase tracking-wider active:scale-95 transition-transform"
+          >
+            Ver Reseñas Reales en Google Maps ↗
+          </a>
         </div>
       </div>
     </section>

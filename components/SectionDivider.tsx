@@ -17,10 +17,12 @@ export default function SectionDivider({
   edge,
   shape = "symmetric",
   mirror = false,
+  fill = "#101010",
 }: {
   edge: "top" | "bottom";
   shape?: keyof typeof SHAPES;
   mirror?: boolean;
+  fill?: string;
 }) {
   const strokeId = useId();
   const paths = SHAPES[shape];
@@ -40,7 +42,7 @@ export default function SectionDivider({
         className={`w-full h-10 sm:h-12 md:h-16 block overflow-visible ${flipX ? "-scale-x-100" : ""} ${flipY ? "-scale-y-100" : ""}`}
         aria-hidden="true"
       >
-        <path d={paths.fill} fill="#101010" />
+        <path d={paths.fill} fill={fill} />
         <path
           d={paths.edge}
           fill="none"

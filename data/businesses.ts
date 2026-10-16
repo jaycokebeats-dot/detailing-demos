@@ -20,8 +20,9 @@ if (fs.existsSync(localPath)) {
 }
 
 import { DEFAULT_DEMO_BUSINESS } from "./demo-business";
+import { BORGES_BUSINESS } from "./borges-data";
 
-const rawList: Business[] = [DEFAULT_DEMO_BUSINESS, ...raw];
+const rawList: Business[] = [DEFAULT_DEMO_BUSINESS, BORGES_BUSINESS, ...raw];
 const businessesMap = new Map<string, Business>();
 
 for (const b of rawList) {
@@ -38,6 +39,7 @@ export function getAllBusinesses(): Business[] {
 
 export function getBusiness(slug: string): Business | undefined {
   if (slug === "demo") return DEFAULT_DEMO_BUSINESS;
+  if (slug === "borges-ppf-y-detailing") return BORGES_BUSINESS;
   return businessesMap.get(slug);
 }
 

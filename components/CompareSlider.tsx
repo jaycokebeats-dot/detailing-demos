@@ -42,7 +42,7 @@ export default function CompareSlider({
   return (
     <div
       ref={containerRef}
-      className="relative aspect-square overflow-hidden select-none touch-none cursor-ew-resize"
+      className="relative w-full h-full overflow-hidden select-none touch-none cursor-ew-resize"
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
       onPointerUp={stopDragging}

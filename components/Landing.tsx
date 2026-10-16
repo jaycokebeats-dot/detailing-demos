@@ -10,10 +10,15 @@ import About from "./About";
 import Footer from "./Footer";
 import WhatsAppFloat from "./WhatsAppFloat";
 import LandingSpain from "./spain/LandingSpain";
+import LandingMexico from "./mexico/LandingMexico";
 
 export default function Landing({ biz }: { biz: Business }) {
   if (biz.pais === "ES" || biz.template === "spain") {
     return <LandingSpain biz={biz} />;
+  }
+
+  if (biz.pais === "MX" || biz.template === "mexico") {
+    return <LandingMexico biz={biz} />;
   }
 
   const isCustom = Boolean(biz.servicios && biz.servicios.length > 0);

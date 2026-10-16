@@ -38,6 +38,26 @@ h1, h2, h3 {
 .btn-red:hover { filter: brightness(1.08); box-shadow: 0 12px 48px rgba(224, 20, 15, 0.6); }
 .btn-red:active { filter: brightness(0.94); }
 
+.btn-red-premium {
+  text-wrap: nowrap;
+  border: 1.5px solid transparent;
+  background-image:
+    linear-gradient(289deg, #d41516 0%, #a80c0d 50%, #800809 100%),
+    linear-gradient(289deg, #ff6666 0%, #ffffff 50%, #d41516 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  color: #ffffff;
+  letter-spacing: 0.05em;
+  box-shadow: 0 8px 30px rgba(212, 21, 22, 0.4);
+  transition: filter 150ms ease, box-shadow 150ms ease, transform 150ms ease;
+}
+.btn-red-premium:hover {
+  filter: brightness(1.12);
+  box-shadow: 0 12px 40px rgba(212, 21, 22, 0.6);
+  transform: translateY(-1px);
+}
+.btn-red-premium:active { filter: brightness(0.94); }
+
 .btn-gold {
   text-wrap: nowrap;
   border: 1.5px solid transparent;

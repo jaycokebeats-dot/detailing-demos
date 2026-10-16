@@ -10,11 +10,11 @@ export default function WhatsAppFloat({ biz }: { biz: Business }) {
       href={waHref(biz, MSG_PRESUPUESTO)}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Escribinos por WhatsApp"
-      className="fixed bottom-5 right-5 z-50 w-14 h-14 rounded-full flex items-center justify-center shadow-lg"
-      style={{ background: "#25D366", color: "#0b0b0b" }}
+      aria-label="Contáctanos por WhatsApp"
+      className="fixed bottom-5 right-5 z-50 w-14 h-14 rounded-full flex items-center justify-center text-black active:scale-95 transition-transform shadow-xl"
+      style={{ background: "#25D366" }}
     >
-      <FaWhatsapp aria-hidden className="size-6" />
+      <FaWhatsapp aria-hidden className="size-7" />
     </a>
   );
 }
