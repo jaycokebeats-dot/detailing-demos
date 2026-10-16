@@ -220,7 +220,7 @@ export default function LandingSpain({ biz }: { biz: Business }) {
           <div className="max-w-2xl text-center space-y-5 mx-auto py-12 lg:py-8">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs sm:text-sm font-medium text-slate-300">
               <span className="flex size-2 rounded-full shrink-0 animate-pulse bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
-              <span>{biz.ciudad} (Madrid)</span>
+              <span>{biz.ciudad}</span>
               <span className="text-slate-500">·</span>
               <span>Citas disponibles esta semana</span>
             </div>
@@ -338,7 +338,7 @@ export default function LandingSpain({ biz }: { biz: Business }) {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-14 max-w-2xl mx-auto">
             <span className="section-badge mb-5">Nuestros servicios</span>
-            <h2 className="text-3xl md:text-5xl font-medium text-gold mb-4">Servicios & Tarifas en Madrid</h2>
+            <h2 className="text-3xl md:text-5xl font-medium text-gold mb-4">Servicios & Tarifas en {biz.ciudad}</h2>
             <p className="text-slate-400">
               Tratamiento cerámico, corrección de pintura, protección PPF y limpieza integral de tapicería. Tarifas de referencia sin sorpresas.
             </p>
@@ -500,7 +500,7 @@ export default function LandingSpain({ biz }: { biz: Business }) {
               <div>
                 <p className="text-xs text-slate-400 uppercase tracking-wider font-semibold">Dirección</p>
                 <p className="text-white text-base font-medium">{biz.direccion}</p>
-                <p className="text-slate-400 text-sm">{biz.ciudad}, Madrid (España)</p>
+                <p className="text-slate-400 text-sm">{biz.ciudad} (España)</p>
               </div>
             </div>
 
@@ -589,7 +589,7 @@ export default function LandingSpain({ biz }: { biz: Business }) {
         />
 
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-slate-400 font-light">
-          <span>© {new Date().getFullYear()} {biz.nombre} · Detailing de Coches en {biz.ciudad} (Madrid)</span>
+          <span>© {new Date().getFullYear()} {biz.nombre} · Detailing de Coches en {biz.ciudad}</span>
           <span>{biz.direccion} · {biz.telefono}</span>
         </div>
       </footer>

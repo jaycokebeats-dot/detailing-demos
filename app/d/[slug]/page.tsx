@@ -23,10 +23,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const biz = getBusiness(slug);
   if (!biz) return {};
   const isSpain = biz.pais === "ES" || biz.template === "spain";
+  const isMexico = biz.pais === "MX" || biz.template === "mexico";
   const titulo = `${biz.nombre} — Detailing en ${biz.ciudad}`;
-  const descripcion = isSpain
-    ? `Detailing profesional de coches en ${biz.ciudad} (Madrid): lavado a mano, corrección de pintura y tratamiento cerámico. Pide tu cita por WhatsApp.`
-    : `Detailing profesional a mano en ${biz.ciudad}: lavado sin remolinos, corrección de pintura y recubrimiento cerámico. Pedí tu turno por WhatsApp.`;
+  let descripcion = `Detailing profesional a mano en ${biz.ciudad}: lavado sin remolinos, corrección de pintura y recubrimiento cerámico. Pedí tu turno por WhatsApp.`;
+  if (isSpain) {
+    descripcion = `Detailing profesional de coches en ${biz.ciudad}: lavado a mano, corrección de pintura y tratamiento cerámico. Pide tu cita por WhatsApp.`;
+  } else if (isMexico) {
+    descripcion = `Detailing profesional en ${biz.ciudad}: corrección de pintura, recubrimiento cerámico y estética interior. Cotiza por WhatsApp.`;
+  }
   return {
     title: titulo,
     description: descripcion,
@@ -34,7 +38,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: titulo,
       description: descripcion,
-      locale: isSpain ? "es_ES" : "es_AR",
+      locale: isSpain ? "es_ES" : isMexico ? "es_MX" : "es_AR",
       type: "website",
       ...(biz.fotos?.[0] ? { images: [{ url: biz.fotos[0] }] } : {}),
     },
