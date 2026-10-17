@@ -39,11 +39,17 @@ export default function Navbar({ biz }: { biz: Business }) {
       >
         <div className={`max-w-6xl mx-auto flex items-center justify-between px-5 sm:px-8 transition-[height] duration-300 ${scrolled ? "h-14" : "h-16"}`}>
           <a href="#hero" className="flex items-center shrink-0 group transition-transform active:scale-95" aria-label="Ir al inicio">
-            <img
-              src="/logo/loguitopng.png"
-              alt="BORGES PPF & DETAILING"
-              className="h-11 sm:h-12 w-auto object-contain transition-transform group-hover:scale-105"
-            />
+            {biz.slug === "borges-ppf-y-detailing" ? (
+              <img
+                src="/logo/loguitopng.png"
+                alt="BORGES PPF & DETAILING"
+                className="h-11 sm:h-12 w-auto object-contain transition-transform group-hover:scale-105"
+              />
+            ) : (
+              <span className="text-base sm:text-lg font-bold tracking-widest text-white uppercase group-hover:text-gold transition-colors">
+                {biz.nombre}
+              </span>
+            )}
           </a>
           <div className="hidden md:flex items-center gap-8 text-xs uppercase tracking-widest text-slate-400">
             <a href="#servicios" className="hover:text-white transition-colors">Servicios</a>

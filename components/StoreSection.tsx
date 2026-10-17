@@ -6,13 +6,11 @@ export default function StoreSection() {
       <SectionDivider edge="top" fill="#101010" />
 
       <div className="max-w-3xl mx-auto text-center space-y-6">
-        {/* Loguito PNG oficial de Borges centrado */}
+        {/* Insignia de Detailing Studio */}
         <div className="flex justify-center mb-2">
-          <img
-            src="/logo/loguitopng.png"
-            alt="BORGES Insignia"
-            className="h-20 sm:h-24 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity"
-          />
+          <div className="size-14 rounded-full border border-gold/30 bg-gold/10 flex items-center justify-center text-gold text-2xl font-bold">
+            ✦
+          </div>
         </div>
 
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-red-500/30 bg-red-950/30 text-xs font-semibold uppercase tracking-widest text-red-400">

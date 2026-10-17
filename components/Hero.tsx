@@ -97,14 +97,16 @@ export default function Hero({ biz }: { biz: Business }) {
 
       <div className="relative z-10 max-w-6xl mx-auto w-full h-full flex items-center justify-center">
         <div className="max-w-2xl text-center space-y-5 mx-auto py-8 lg:py-6">
-          {/* Logo oficial en blanco, bien grande y posicionado arriba */}
-          <div className="flex justify-center mb-6 -mt-6 lg:-mt-10">
-            <img
-              src="/logo/logopngblanco.png"
-              alt="BORGES PPF & DETAILING"
-              className="h-32 sm:h-36 md:h-44 w-auto object-contain drop-shadow-[0_15px_35px_rgba(0,0,0,0.95)] transition-transform hover:scale-105"
-            />
-          </div>
+          {/* Logo oficial en blanco si es Borges */}
+          {biz.slug === "borges-ppf-y-detailing" && (
+            <div className="flex justify-center mb-6 -mt-6 lg:-mt-10">
+              <img
+                src="/logo/logopngblanco.png"
+                alt="BORGES PPF & DETAILING"
+                className="h-32 sm:h-36 md:h-44 w-auto object-contain drop-shadow-[0_15px_35px_rgba(0,0,0,0.95)] transition-transform hover:scale-105"
+              />
+            </div>
+          )}
 
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs sm:text-sm font-medium text-slate-300">
             <span className="flex size-2 rounded-full shrink-0 animate-pulse" style={{ background: "#b8c2cc", boxShadow: "0 0 6px rgba(184,194,204,0.8)" }} />

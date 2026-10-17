@@ -44,9 +44,7 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "/favicon.png",
-    shortcut: "/favicon.ico",
-    apple: "/favicon.png",
+    icon: "/favicon.ico",
   },
   openGraph: {
     title: TITULO,
@@ -57,7 +55,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/og-detailing.jpg",
+        url: "https://detailing-demos-three.vercel.app/servicios/ceramico-real.jpg",
         width: 1200,
         height: 630,
         alt: "Detailing Profesional — Tratamientos Cerámicos y Estética Vehicular",
@@ -68,7 +66,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: TITULO,
     description: DESCRIPCION,
-    images: ["/og-detailing.jpg"],
+    images: ["https://detailing-demos-three.vercel.app/servicios/ceramico-real.jpg"],
   },
 };
 
