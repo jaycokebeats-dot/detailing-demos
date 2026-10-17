@@ -211,10 +211,6 @@ export default function LandingMexico({ biz }: { biz: Business }) {
           />
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/80" />
-        <div
-          className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full pointer-events-none"
-          style={{ background: "radial-gradient(circle, rgba(212,175,55,0.06) 0%, transparent 70%)" }}
-        />
 
         <div className="relative z-10 max-w-6xl mx-auto w-full h-full flex items-center justify-center">
           <div className="max-w-2xl text-center space-y-5 mx-auto py-12 lg:py-8">
