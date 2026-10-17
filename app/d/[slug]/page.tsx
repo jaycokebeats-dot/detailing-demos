@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const ogImageUrl = (biz.fotos && biz.fotos.length > 0 && biz.fotos[0])
     ? (biz.fotos[0].startsWith("http") ? biz.fotos[0] : `https://detailing-demos-three.vercel.app${biz.fotos[0].startsWith("/") ? "" : "/"}${biz.fotos[0]}`)
-    : "https://detailing-demos-three.vercel.app/servicios/ceramico-real.jpg";
+    : "https://detailing-demos-three.vercel.app/og-detailing.jpg";
 
   return {
     metadataBase: new URL("https://detailing-demos-three.vercel.app"),

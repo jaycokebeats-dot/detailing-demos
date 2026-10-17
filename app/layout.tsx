@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://detailing-demos-three.vercel.app/servicios/ceramico-real.jpg",
+        url: "https://detailing-demos-three.vercel.app/og-detailing.jpg",
         width: 1200,
         height: 630,
         alt: "Detailing Profesional — Tratamientos Cerámicos y Estética Vehicular",
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: TITULO,
     description: DESCRIPCION,
-    images: ["https://detailing-demos-three.vercel.app/servicios/ceramico-real.jpg"],
+    images: ["https://detailing-demos-three.vercel.app/og-detailing.jpg"],
   },
 };
 
