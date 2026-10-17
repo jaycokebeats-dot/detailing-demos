@@ -24,23 +24,46 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!biz) return {};
   const isSpain = biz.pais === "ES" || biz.template === "spain";
   const isMexico = biz.pais === "MX" || biz.template === "mexico";
-  const titulo = `${biz.nombre} — Detailing en ${biz.ciudad}`;
+  const titulo = `${biz.nombre} — Detailing Profesional en ${biz.ciudad}`;
   let descripcion = `Detailing profesional a mano en ${biz.ciudad}: lavado sin remolinos, corrección de pintura y recubrimiento cerámico. Pedí tu turno por WhatsApp.`;
   if (isSpain) {
     descripcion = `Detailing profesional de coches en ${biz.ciudad}: lavado a mano, corrección de pintura y tratamiento cerámico. Pide tu cita por WhatsApp.`;
   } else if (isMexico) {
     descripcion = `Detailing profesional en ${biz.ciudad}: corrección de pintura, recubrimiento cerámico y estética interior. Cotiza por WhatsApp.`;
   }
+
+  const ogImageUrl = (biz.fotos && biz.fotos.length > 0 && biz.fotos[0])
+    ? biz.fotos[0]
+    : "https://detailing-demos-three.vercel.app/og-detailing.jpg";
+
   return {
-    title: titulo,
+    metadataBase: new URL("https://detailing-demos-three.vercel.app"),
+    title: {
+      absolute: titulo,
+    },
     description: descripcion,
     applicationName: biz.nombre,
     openGraph: {
       title: titulo,
       description: descripcion,
+      url: `https://detailing-demos-three.vercel.app/d/${biz.slug}/`,
+      siteName: biz.nombre,
       locale: isSpain ? "es_ES" : isMexico ? "es_MX" : "es_AR",
       type: "website",
-      ...(biz.fotos?.[0] ? { images: [{ url: biz.fotos[0] }] } : {}),
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: titulo,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: titulo,
+      description: descripcion,
+      images: [ogImageUrl],
     },
   };
 }
