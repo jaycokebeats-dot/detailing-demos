@@ -52931,5 +52931,35 @@
     "maps_url": "https://www.google.com/maps/place/IG_DETAILINGCAR/data=!4m7!3m6!1s0x1297938cdd97d559:0x8ce60765ea920020!8m2!3d39.5713505!4d2.6259957!16s%2Fg%2F11w7jd9xd5!19sChIJWdWX3YyTlxIRIACS6mUH5ow?authuser=0&hl=es&g_ep=EgoyMDI2MTAxMy4wIJJjKgBIAVAD&rclk=1",
     "pais": "ES",
     "template": "spain"
+  },
+  {
+    "slug": "nt-detailing",
+    "nombre": "NT DETAILING",
+    "ciudad": "Tarragona",
+    "direccion": "\nCarrer del Coure, 43006 Tarragona, España",
+    "telefono": "+34 680 15 35 31",
+    "whatsapp": "34680153531",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 10,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/NT+DETAILING/data=!4m7!3m6!1s0x12a3fd02246ee0cd:0xbee154943aee14f3!8m2!3d41.1402616!4d1.2193155!16s%2Fg%2F11zxcq2r0r!19sChIJzeBuJAL9oxIR8xTuOpRU4b4?authuser=0&hl=es&g_ep=EgoyMDI2MTAxMy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "ES",
+    "template": "spain"
+  },
+  {
+    "slug": "veles-detailing",
+    "nombre": "VELES Detailing",
+    "ciudad": "Alicante",
+    "direccion": "\nC/ Germans Bernad, 26, 03006 Alacant, Alicante, España",
+    "telefono": "+34 613 17 27 23",
+    "whatsapp": "34613172723",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 10,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/VELES+Detailing/data=!4m7!3m6!1s0xd6237f0bebc909b:0x457b4470c72636ee!8m2!3d38.346267!4d-0.5169588!16s%2Fg%2F11xmgyqj6f!19sChIJm5C8vvA3Yg0R7jYmx3BEe0U?authuser=0&hl=es&g_ep=EgoyMDI2MTAxMy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "ES",
+    "template": "spain"
   }
 ]
