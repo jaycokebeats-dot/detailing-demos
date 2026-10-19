@@ -7,87 +7,110 @@ import type { Business, ServiceItem } from "@/data/business-helpers";
 import { waHref, mapsHref } from "@/data/business-helpers";
 import SectionDivider from "@/components/SectionDivider";
 import CompareSlider from "@/components/CompareSlider";
+import PpfColorVisualizer from "@/components/PpfColorVisualizer";
 
 // Servicios estándar para España con precios de referencia en Euros (€) y modismos de España
 const SERVICIOS_ESPANA: ServiceItem[] = [
   {
+    nombre: "Detallado y Nutrición de Motor",
+    descripcion: "Limpieza técnica profunda del vano motor con vapor controlado y productos dieléctricos seguros. Desengrasado exhaustivo y nutrición de plásticos, gomas y manguitos con acabado satinado de origen.",
+    ideal_si: "Llevar el coche impecable también bajo el capó y proteger las gomas frente al envejecimiento térmico.",
+    precio: "Desde 75 €",
+    destacado: true,
+    proteccion: "Nutrición Dieléctrica de Plásticos",
+    antes_img: "/before-after/motor-antes.jpg",
+    despues_img: "/before-after/motor-despues.jpg",
+  },
+  {
     nombre: "Tratamiento Cerámico 9H",
-    descripcion: "Recubrimiento nanotecnológico de máxima dureza. Otorga un brillo cristalino espectacular, extrema repelencia al agua y suciedad, y protección UV contra la degradación solar.",
+    descripcion: "Recubrimiento nanotecnológico de máxima dureza. Otorga un brillo cristalino espectacular, extrema repelencia al agua y suciedad, y protección UV contra la degradación solar y cal.",
     ideal_si: "Buscas la máxima protección duradera que mantenga la pintura protegida y facilite el lavado.",
     precio: "Desde 280 €",
     destacado: true,
-    proteccion: "Protección 2 a 5 Años",
-    img: "/servicios/ceramico-real.jpg",
+    proteccion: "Protección Cerámica 2 a 5 Años",
+    antes_img: "/servicios/ceramico-antes.png",
+    despues_img: "/servicios/ceramico-despues.png",
   },
   {
     nombre: "Corrección de Pintura & Pulido",
-    descripcion: "Pulido técnico en varias fases para eliminar microarañazos circulares (swirls), marcas de lavados previos y hologramas, recuperando la nitidez y profundidad del color original.",
+    descripcion: "Pulido técnico en varias fases con pulidoras orbitales para eliminar microarañazos circulares (swirls), marcas de túnel de lavado y hologramas, recuperando la nitidez y profundidad del barniz original.",
     ideal_si: "La carrocería tiene marcas circulares visibles al sol o el barniz ha perdido su brillo original.",
     precio: "Desde 180 €",
     destacado: true,
-    proteccion: "Eliminación de Swirls",
-    img: "/servicios/acrilico.jpg",
+    proteccion: "Eliminación de Microswirls",
+    antes_img: "/before-after/pintura-antes.jpg",
+    despues_img: "/before-after/pintura-despues.jpg",
+  },
+  {
+    nombre: "PPF Brillante | Paint Protection Film",
+    descripcion: "Lámina de poliuretano autorregenerable de alta gama con acabado Gloss brillante. Blindaje físico real contra impactos de piedras en autopista, arañazos y roces de aparcamiento.",
+    ideal_si: "Garantía Oficial 10 Años · Propiedad autorregenerable con calor · Cobertura frontal o completa.",
+    precio: "Desde 450 €",
+    destacado: true,
+    proteccion: "Garantía Oficial 10 Años",
+    antes_img: "/servicios/ppf-brilloso-antes.png",
+    despues_img: "/servicios/ppf-brilloso-despues.png",
+  },
+  {
+    nombre: "PPF Mate | Paint Protection Film",
+    descripcion: "Lámina autorregenerable de acabado satinado mate. Convierte el color original de tu coche en un acabado mate satinado exclusivo y protector sin tocar la pintura de fábrica.",
+    ideal_si: "Garantía Oficial 10 Años · Transformación a terminado mate satinado elegante y protector.",
+    precio: "Consultar Presupuesto",
+    destacado: false,
+    proteccion: "Garantía Oficial 10 Años",
+    antes_img: "/servicios/ppf-mate-antes.png",
+    despues_img: "/servicios/ppf-mate-despues.png",
+  },
+  {
+    nombre: "PPF Color | Paint Protection Film",
+    descripcion: "Lámina autorregenerable de protección con pigmentos de color premium. Cambia el color de tu coche protegiendo al 100% la pintura original contra agresiones externas.",
+    ideal_si: "Garantía Oficial 10 Años · Cambio de color con protección autorregenerable de alto impacto.",
+    precio: "Consultar Presupuesto",
+    destacado: true,
+    proteccion: "Garantía Oficial 10 Años",
+    antes_img: "/servicios/ppf-color-antes.png",
+    despues_img: "/servicios/ppf-color-despues.png",
   },
   {
     nombre: "Detailing Interior & Tapicería",
-    descripcion: "Higienización integral del habitáculo con vapor seco: limpieza a fondo de tapicería textil o tratamiento nutritivo para cuero, alfombrillas, conductos de aire y plásticos.",
+    descripcion: "Higienización integral del habitáculo con vapor seco: limpieza profunda por inyección-extracción en tapicería textil o tratamiento nutritivo para cuero, alfombrillas, conductos de aire y plásticos.",
     ideal_si: "Quieres recuperar la sensación, olor y tacto de coche nuevo, libre de bacterias y ácaros.",
     precio: "Desde 120 €",
     destacado: false,
     proteccion: "Desinfección & Acondicionado",
-    img: "/servicios/interior.jpg",
+    antes_img: "/servicios/limpieza-tapizado-antes.png",
+    despues_img: "/servicios/limpieza-tapizado-despues.png",
   },
   {
-    nombre: "PPF (Paint Protection Film)",
-    descripcion: "Lámina de poliuretano transparente autorregenerable de alta resistencia. Blindaje físico real contra chinazos, impactos de piedras en carretera, arañazos y roces de aparcamiento.",
-    ideal_si: "Haces carretera o quieres blindar el frontal o carrocería completa frente a impactos de gravilla.",
-    precio: "Desde 450 €",
-    destacado: true,
-    proteccion: "Garantía Oficial 10 Años",
-    img: "/servicios/ppf.jpg",
-  },
-  {
-    nombre: "Restauración de Faros",
-    descripcion: "Lijado micrométrico por pasos, pulido de policarbonato y aplicación de sellador de protección UV para devolver la transparencia total, máxima potencia lumínica y pasar la ITV sin problemas.",
-    ideal_si: "Los faros están amarillentos, opacos o desgastados por el sol.",
-    precio: "Desde 60 €",
+    nombre: "Reparación de Tapicería & Cuero",
+    descripcion: "Recuperación y reparación especializada de tapizados interiores. Solución técnica para roturas, rozaduras en orejeras de asientos, desgastes en volantes de cuero y quemaduras.",
+    ideal_si: "Restauración de roturas y zonas desgastadas devolviendo el aspecto y textura original.",
+    precio: "Consultar Presupuesto",
     destacado: false,
-    proteccion: "Homologado ITV",
-    img: "/servicios/polarizado.jpg",
+    proteccion: "Restauración Estética Interior",
+    antes_img: "/servicios/reparacion-tapizado-antes.png",
+    despues_img: "/servicios/reparacion-tapizado-despues.png",
   },
   {
-    nombre: "Lavado Detallado a Mano",
-    descripcion: "Lavado seguro con método de 2 cubos, champú con pH neutro, guante de microfibra ultrasuave, descontaminado de llantas y secado meticuloso por aire caliente.",
-    ideal_si: "Quieres mantener el coche impecable sin crear las típicas microrrayas de los lavaderos convencionales.",
-    precio: "Desde 45 €",
+    nombre: "Tintado y Lámina Nano Cerámica",
+    descripcion: "Lámina solar de alta tecnología con partículas cerámicas avanzadas para cristales y lunas. Reduce drásticamente el calor en el habitáculo y filtra el 99% de radiación UV sin perder claridad óptica.",
+    ideal_si: "Máximo rechazo de calor, 99% protección UV, menor deslumbramiento y privacidad.",
+    precio: "Desde 140 €",
     destacado: false,
-    proteccion: "Lavado Seguro Anti-Swirls",
-    img: "/servicios/exterior.jpg",
+    proteccion: "Homologado ITV & Filtro 99% UV",
+    antes_img: "/servicios/polarizado-antes.png",
+    despues_img: "/servicios/polarizado-despues.png",
   },
   {
-    nombre: "Tratamiento Repelente de Lunas",
-    descripcion: "Sellado cerámico para parabrisas y cristales. A más de 70 km/h el agua desliza sola sin accionar el limpiaparabrisas, mejorando drásticamente la visibilidad y seguridad bajo la lluvia.",
-    ideal_si: "Conduces habitualmente por carretera o autovía y priorizas la seguridad con lluvia.",
-    precio: "Desde 50 €",
+    nombre: "Varillero Sacabollos (PDR)",
+    descripcion: "Servicio técnico especializado en la reparación de abolladuras y pequeños golpes con varillas artesanales, recuperando la chapa a su estado de fábrica sin masillas ni repintar.",
+    ideal_si: "Conserva la pintura original de fábrica, evita repintados y mantiene el valor de tasación del coche.",
+    precio: "Presupuesto y Cita Previa",
     destacado: false,
-    proteccion: "Efecto Hidrofóbico 12 Meses",
-    img: "/before-after/ceramico.jpg",
+    proteccion: "100% Pintura Original",
+    antes_img: "/servicios/sacabollos-antes.png",
+    despues_img: "/servicios/sacabollos-despues.png",
   },
-  {
-    nombre: "Detallado y Nutrición de Motor",
-    descripcion: "Limpieza técnica del vano motor con productos dieléctricos y vapor controlado, seguido de un acondicionado y nutrición de plásticos y manguitos para prevenir su envejecimiento.",
-    ideal_si: "Te gusta llevar el coche perfecto también bajo el capó o vas a ponerlo a la venta.",
-    precio: "Desde 75 €",
-    destacado: false,
-    proteccion: "Nutrición Dieléctrica",
-    img: "/before-after/motor-despues.jpg",
-  },
-];
-
-const PARES_ESPANA = [
-  { servicio: "Pintura Exterior & Carrocería", antes: "/before-after/pintura-antes.jpg", despues: "/before-after/pintura-despues.jpg", real: true },
-  { servicio: "Interior & Tapicería", antes: "/before-after/interior-antes.jpg", despues: "/before-after/interior-despues.jpg", real: true },
-  { servicio: "Vano Motor & Compartimento", antes: "/before-after/motor-antes.jpg", despues: "/before-after/motor-despues.jpg", real: true },
 ];
 
 const ITEMS_PROBLEMA_ESPANA = [
@@ -123,8 +146,8 @@ export default function LandingSpain({ biz }: { biz: Business }) {
   const [primeraPalabra, ...restoNombre] = (biz.nombreCorto ?? biz.nombre).toUpperCase().split(" ");
   const nombreResto = restoNombre.join(" ");
 
-  const msgPresupuesto = "¡Hola! Quisiera pedir información o presupuesto para mi coche.";
-  const msgFotos = "¡Hola! Os envío unas fotos de mi coche para que me asesoréis sobre qué tratamiento le vendría mejor.";
+  const msgPresupuesto = `Hola! Quisiera pedir información o presupuesto para mi coche en ${biz.nombre}.`;
+  const msgFotos = `Hola! Os envío unas fotos de mi coche para que me asesoréis sobre qué tratamiento le vendría mejor en ${biz.nombre}.`;
 
   const stats = [
     biz.rating != null
@@ -172,7 +195,6 @@ export default function LandingSpain({ biz }: { biz: Business }) {
             </a>
             <div className="hidden md:flex items-center gap-7 text-xs uppercase tracking-widest text-slate-400">
               <a href="#servicios" className="hover:text-white transition-colors">Servicios</a>
-              <a href="#resultados" className="hover:text-white transition-colors">Antes y Después</a>
               <a href="#garantia" className="hover:text-white transition-colors">Compromiso</a>
               <a href="#nosotros" className="hover:text-white transition-colors">Nosotros</a>
               <a href="#ubicacion" className="hover:text-white transition-colors">Ubicación</a>
@@ -300,50 +322,25 @@ export default function LandingSpain({ biz }: { biz: Business }) {
             </div>
           </div>
         )}
-      </section>
-
-      {/* 4. ANTES Y DESPUÉS (COMPARADOR INTERACTIVO CON SLIDER) */}
-      <section id="resultados" className="relative px-5 sm:px-8 py-24" style={{ background: "#101010" }}>
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-14 max-w-2xl mx-auto">
-            <span className="section-badge mb-5">Resultados reales</span>
-            <h2 className="text-3xl md:text-5xl font-medium text-gold mb-4">Antes y Después</h2>
-            <p className="text-slate-400">Así queda un coche cuando se trabaja al detalle, sin prisas ni atajos.</p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {PARES_ESPANA.map((p) => (
-              <div key={p.servicio} className="product-card rounded-[24px] overflow-hidden border border-white/10" style={{ background: "#141414" }}>
-                <div className="aspect-[4/3] w-full relative">
-                  <CompareSlider before={p.antes} after={p.despues} alt={p.servicio} real={p.real} />
-                </div>
-                <div className="p-4 bg-black/40 border-t border-white/5">
-                  <h3 className="font-semibold text-sm text-white" style={{ textTransform: "none", fontFamily: "inherit" }}>
-                    {p.servicio}
-                  </h3>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
         <SectionDivider edge="bottom" shape="asymmetric" />
       </section>
 
-      {/* 5. SERVICIOS CON PRECIOS DE REFERENCIA EN EUROS (€) */}
+      {/* 4. SERVICIOS CON SLIDERS INTERACTIVOS DE ANTES Y DESPUÉS (€) */}
       <section id="servicios" className="px-5 sm:px-8 py-24 bg-black">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-14 max-w-2xl mx-auto">
             <span className="section-badge mb-5">Nuestros servicios</span>
             <h2 className="text-3xl md:text-5xl font-medium text-gold mb-4">Servicios & Tarifas en {biz.ciudad}</h2>
             <p className="text-slate-400">
-              Tratamiento cerámico, corrección de pintura, protección PPF y limpieza integral de tapicería. Tarifas de referencia sin sorpresas.
+              Desliza sobre cada trabajo para comparar los resultados reales. Detallado de motor, tratamiento cerámico, pulido, PPF y tapicería.
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
             {SERVICIOS_ESPANA.map((s) => {
-              const reservaMsg = `¡Hola! Me gustaría pedir información o presupuesto para el servicio: ${s.nombre} en ${biz.nombre}.`;
+              const reservaMsg = `Hola! Me gustaría pedir información o presupuesto para el servicio: ${s.nombre} en ${biz.nombre}.`;
               const imgSource = s.img ?? "/servicios/exterior.jpg";
+              const isPpfColor = s.nombre.toLowerCase().includes("ppf color");
 
               return (
                 <div
@@ -361,9 +358,15 @@ export default function LandingSpain({ biz }: { biz: Business }) {
                   )}
 
                   <div className="aspect-[4/3] overflow-hidden relative" style={{ background: "#141414" }}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={imgSource} alt={s.nombre} className="w-full h-full object-cover" />
-                    {s.proteccion && (
+                    {isPpfColor ? (
+                      <PpfColorVisualizer biz={biz} />
+                    ) : s.antes_img && s.despues_img ? (
+                      <CompareSlider before={s.antes_img} after={s.despues_img} alt={s.nombre} real />
+                    ) : (
+                      /* eslint-disable-next-line @next/next/no-img-element */
+                      <img src={imgSource} alt={s.nombre} className="w-full h-full object-cover" />
+                    )}
+                    {s.proteccion && !isPpfColor && (
                       <div
                         className="absolute bottom-2 left-2 right-2 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/15 text-[11px] font-semibold text-white/95 flex items-center gap-1.5 shadow-lg z-20 pointer-events-none"
                         style={{ background: "rgba(10,10,10,0.85)" }}

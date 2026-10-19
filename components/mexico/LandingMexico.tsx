@@ -7,26 +7,69 @@ import type { Business, ServiceItem } from "@/data/business-helpers";
 import { waHref, mapsHref } from "@/data/business-helpers";
 import SectionDivider from "@/components/SectionDivider";
 import CompareSlider from "@/components/CompareSlider";
+import PpfColorVisualizer from "@/components/PpfColorVisualizer";
 
 // Servicios estándar para México con precios de referencia en Pesos Mexicanos ($ MXN) y modismos de México
 const SERVICIOS_MEXICO: ServiceItem[] = [
   {
+    nombre: "Estética & Detallado de Motor",
+    descripcion: "Limpieza técnica profunda de la bahía del motor con vapor controlado y desengrasantes dieléctricos seguros. Nutrición y abrillantado de mangueras y plásticos con terminado satinado original libre de siliconas grasosas.",
+    ideal_si: "Recuperar el aspecto de agencia bajo el cofre y prevenir la resequedad de plásticos y empaques.",
+    precio: "Desde $1,300 MXN",
+    destacado: true,
+    proteccion: "Acondicionado Dieléctrico de Plásticos",
+    antes_img: "/before-after/motor-antes.jpg",
+    despues_img: "/before-after/motor-despues.jpg",
+  },
+  {
     nombre: "Tratamiento Cerámico 9H",
-    descripcion: "Recubrimiento nanotecnológico de máxima dureza. Otorga un brillo cristalino espectacular, extrema repelencia al agua y suciedad (hidrofobia), y protección UV contra la radiación solar.",
+    descripcion: "Recubrimiento nanotecnológico de máxima dureza. Otorga un brillo cristalino espectacular, extrema repelencia al agua y suciedad (hidrofobia), y protección UV contra la radiación solar y lluvia ácida.",
     ideal_si: "Buscas la máxima protección duradera que conserve la pintura impecable y facilite las lavadas.",
     precio: "Desde $4,800 MXN",
     destacado: true,
-    proteccion: "Protección 2 a 5 Años",
-    img: "/servicios/ceramico-real.jpg",
+    proteccion: "Protección Cerámica 2 a 5 Años",
+    antes_img: "/servicios/ceramico-antes.png",
+    despues_img: "/servicios/ceramico-despues.png",
   },
   {
     nombre: "Corrección de Pintura & Abrillantado",
-    descripcion: "Pulido técnico en varias etapas para eliminar microrrayones circulares (swirls), marcas de lavados previos y marcas de agua, recuperando la nitidez y profundidad del color original.",
+    descripcion: "Pulido técnico en varias etapas con máquinas orbitales para eliminar microrrayones circulares (swirls), marcas de lavados previos y sarro, devolviendo la nitidez y profundidad del color original.",
     ideal_si: "La carrocería tiene marcas circulares visibles bajo el sol o el transparente se ve opaco.",
     precio: "Desde $3,500 MXN",
     destacado: true,
-    proteccion: "Eliminación de Swirls",
-    img: "/servicios/acrilico.jpg",
+    proteccion: "Eliminación de Microswirls",
+    antes_img: "/before-after/pintura-antes.jpg",
+    despues_img: "/before-after/pintura-despues.jpg",
+  },
+  {
+    nombre: "PPF Brilloso | Paint Protection Film",
+    descripcion: "Lámina de poliuretano autorregenerable XPEL americana de acabado Gloss brillante. Blinda la pintura original contra impactos de grava en carretera, rayones y rayos UV conservando la máxima profundidad de color.",
+    ideal_si: "Garantía Oficial hasta 10 Años · Propiedad autorregenerable con calor · Cobertura frente o completa.",
+    precio: "Desde $9,500 MXN",
+    destacado: true,
+    proteccion: "Garantía Oficial hasta 10 Años",
+    antes_img: "/servicios/ppf-brilloso-antes.png",
+    despues_img: "/servicios/ppf-brilloso-despues.png",
+  },
+  {
+    nombre: "PPF Mate | Paint Protection Film",
+    descripcion: "Lámina autorregenerable de acabado satinado mate. Convierte el color original de tu auto en un acabado mate protector de máximo nivel sin alterar la pintura de fábrica.",
+    ideal_si: "Garantía Oficial hasta 10 Años · Transformación a terminado mate satinado elegante y protector.",
+    precio: "Consultar Presupuesto",
+    destacado: false,
+    proteccion: "Garantía Oficial hasta 10 Años",
+    antes_img: "/servicios/ppf-mate-antes.png",
+    despues_img: "/servicios/ppf-mate-despues.png",
+  },
+  {
+    nombre: "PPF Color | Paint Protection Film",
+    descripcion: "Lámina autorregenerable de protección con pigmentos de color premium. Cambia el color de tu auto protegiendo al mismo tiempo la pintura original contra piedras y arañazos.",
+    ideal_si: "Garantía Oficial hasta 10 Años · Cambio de color con protección autorregenerable de alto impacto.",
+    precio: "Consultar Presupuesto",
+    destacado: true,
+    proteccion: "Garantía Oficial hasta 10 Años",
+    antes_img: "/servicios/ppf-color-antes.png",
+    despues_img: "/servicios/ppf-color-despues.png",
   },
   {
     nombre: "Detallado Interior & Vestiduras",
@@ -35,59 +78,39 @@ const SERVICIOS_MEXICO: ServiceItem[] = [
     precio: "Desde $1,900 MXN",
     destacado: false,
     proteccion: "Desinfección & Acondicionado",
-    img: "/servicios/interior.jpg",
+    antes_img: "/servicios/limpieza-tapizado-antes.png",
+    despues_img: "/servicios/limpieza-tapizado-despues.png",
   },
   {
-    nombre: "PPF (Película de Protección de Pintura)",
-    descripcion: "Lámina de poliuretano transparente autorregenerable de alta resistencia. Blindaje físico real contra piedrazos en carretera, rayones, picaduras de grava y fricciones de estacionamiento.",
-    ideal_si: "Sales a carretera o quieres blindar el frente o carrocería completa contra piedrazos y raspones.",
-    precio: "Desde $9,500 MXN",
-    destacado: true,
-    proteccion: "Garantía Oficial hasta 10 Años",
-    img: "/servicios/ppf.jpg",
-  },
-  {
-    nombre: "Restauración y Pulido de Faros",
-    descripcion: "Lijado micrométrico por pasos, pulido de policarbonato y sellador cerámico UV para devolver la transparencia cristalina, máxima iluminación en carretera y mejor apariencia.",
-    ideal_si: "Los faros están amarillentos, opacos o pañosos por el desgaste del sol.",
-    precio: "Desde $850 MXN",
+    nombre: "Reparación de Vestiduras & Piel",
+    descripcion: "Restauración especializada de asientos y volantes de piel o tela. Reparación de roturas, grietas, desgaste de uso y quemaduras devolviendo el color y textura original de agencia.",
+    ideal_si: "Restauración de roturas y zonas desgastadas devolviendo el aspecto y textura original.",
+    precio: "Consultar Presupuesto",
     destacado: false,
-    proteccion: "Sellado UV Duradero",
-    img: "/servicios/polarizado.jpg",
+    proteccion: "Restauración Estética Interior",
+    antes_img: "/servicios/reparacion-tapizado-antes.png",
+    despues_img: "/servicios/reparacion-tapizado-despues.png",
   },
   {
-    nombre: "Lavado Detallado a Mano",
-    descripcion: "Lavado seguro con método de 2 cubetas, champú con pH neutro, guante de microfibra ultrasuave, descontaminado de rines y secado meticuloso por aire caliente sin rayar.",
-    ideal_si: "Quieres mantener el auto impecable sin generar las rayas típicas de los autolavados de rodillos.",
-    precio: "Desde $650 MXN",
+    nombre: "Polarizado Nano Cerámico",
+    descripcion: "Película de control solar de alta tecnología con partículas cerámicas avanzadas para cristales. Reduce drásticamente el calor y la radiación UV sin afectar la claridad óptica.",
+    ideal_si: "Máximo rechazo de calor, 99% protección UV, menor deslumbramiento y privacidad.",
+    precio: "Desde $2,400 MXN",
     destacado: false,
-    proteccion: "Lavado Seguro Anti-Swirls",
-    img: "/servicios/exterior.jpg",
+    proteccion: "Filtro Solar & Protección 99% UV",
+    antes_img: "/servicios/polarizado-antes.png",
+    despues_img: "/servicios/polarizado-despues.png",
   },
   {
-    nombre: "Repelente Hidrofóbico de Parabrisas",
-    descripcion: "Sellado cerámico para parabrisas y cristales. A más de 70 km/h el agua resbala sola sin necesidad de usar los limpiaparabrisas, mejorando radicalmente la visibilidad bajo la lluvia.",
-    ideal_si: "Manejas habitualmente en carretera o vías rápidas y priorizas tu seguridad al volante con lluvia.",
-    precio: "Desde $950 MXN",
+    nombre: "Sacabollos Artesanal (PDR)",
+    descripcion: "Servicio técnico especializado en la reparación de abolladuras y golpes en la carrocería con varillas especiales, recuperando la forma original sin necesidad de repintar.",
+    ideal_si: "Conserva la pintura original de fábrica, evita repintados y mantiene el valor comercial del auto.",
+    precio: "Presupuesto y Cita Previa",
     destacado: false,
-    proteccion: "Efecto Hidrofóbico 12 Meses",
-    img: "/before-after/ceramico.jpg",
+    proteccion: "100% Pintura Original",
+    antes_img: "/servicios/sacabollos-antes.png",
+    despues_img: "/servicios/sacabollos-despues.png",
   },
-  {
-    nombre: "Estética y Detallado de Motor",
-    descripcion: "Limpieza técnica de la bahía del motor con productos dieléctricos y vapor controlado, seguido de acondicionamiento de plásticos y mangueras para prevenir resequedad.",
-    ideal_si: "Te gusta traer el auto impecable bajo el cofre o buscas maximizar su valor de reventa.",
-    precio: "Desde $1,300 MXN",
-    destacado: false,
-    proteccion: "Acondicionado Dieléctrico",
-    img: "/before-after/motor-despues.jpg",
-  },
-];
-
-const PARES_MEXICO = [
-  { servicio: "Pintura Exterior & Carrocería", antes: "/before-after/pintura-antes.jpg", despues: "/before-after/pintura-despues.jpg", real: true },
-  { servicio: "Interior & Vestiduras", antes: "/before-after/interior-antes.jpg", despues: "/before-after/interior-despues.jpg", real: true },
-  { servicio: "Bahía de Motor & Plásticos", antes: "/before-after/motor-antes.jpg", despues: "/before-after/motor-despues.jpg", real: true },
 ];
 
 const ITEMS_PROBLEMA_MEXICO = [
@@ -123,8 +146,8 @@ export default function LandingMexico({ biz }: { biz: Business }) {
   const [primeraPalabra, ...restoNombre] = (biz.nombreCorto ?? biz.nombre).toUpperCase().split(" ");
   const nombreResto = restoNombre.join(" ");
 
-  const msgPresupuesto = "¡Hola! Quisiera pedir información o cotización para mi auto.";
-  const msgFotos = "¡Hola! Les mando unas fotos de mi auto para que me asesoren sobre qué tratamiento le conviene más.";
+  const msgPresupuesto = `Hola! Quisiera pedir información o cotización para mi auto en ${biz.nombre}.`;
+  const msgFotos = `Hola! Les mando unas fotos de mi auto para que me asesoren sobre qué tratamiento le conviene más en ${biz.nombre}.`;
 
   const stats = [
     biz.rating != null
@@ -172,7 +195,6 @@ export default function LandingMexico({ biz }: { biz: Business }) {
             </a>
             <div className="hidden md:flex items-center gap-7 text-xs uppercase tracking-widest text-slate-400">
               <a href="#servicios" className="hover:text-white transition-colors">Servicios</a>
-              <a href="#resultados" className="hover:text-white transition-colors">Antes y Después</a>
               <a href="#garantia" className="hover:text-white transition-colors">Compromiso</a>
               <a href="#nosotros" className="hover:text-white transition-colors">Nosotros</a>
               <a href="#ubicacion" className="hover:text-white transition-colors">Ubicación</a>
@@ -300,50 +322,25 @@ export default function LandingMexico({ biz }: { biz: Business }) {
             </div>
           </div>
         )}
-      </section>
-
-      {/* 4. ANTES Y DESPUÉS (COMPARADOR INTERACTIVO CON SLIDER) */}
-      <section id="resultados" className="relative px-5 sm:px-8 py-24" style={{ background: "#101010" }}>
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-14 max-w-2xl mx-auto">
-            <span className="section-badge mb-5">Resultados reales</span>
-            <h2 className="text-3xl md:text-5xl font-medium text-gold mb-4">Antes y Después</h2>
-            <p className="text-slate-400">Así queda un auto cuando se trabaja a detalle, sin prisas ni atajos.</p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {PARES_MEXICO.map((p) => (
-              <div key={p.servicio} className="product-card rounded-[24px] overflow-hidden border border-white/10" style={{ background: "#141414" }}>
-                <div className="aspect-[4/3] w-full relative">
-                  <CompareSlider before={p.antes} after={p.despues} alt={p.servicio} real={p.real} />
-                </div>
-                <div className="p-4 bg-black/40 border-t border-white/5">
-                  <h3 className="font-semibold text-sm text-white" style={{ textTransform: "none", fontFamily: "inherit" }}>
-                    {p.servicio}
-                  </h3>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
         <SectionDivider edge="bottom" shape="asymmetric" />
       </section>
 
-      {/* 5. SERVICIOS CON PRECIOS DE REFERENCIA EN PESOS MEXICANOS ($ MXN) */}
+      {/* 4. SERVICIOS CON SLIDERS INTERACTIVOS DE ANTES Y DESPUÉS ($ MXN) */}
       <section id="servicios" className="px-5 sm:px-8 py-24 bg-black">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-14 max-w-2xl mx-auto">
             <span className="section-badge mb-5">Nuestros servicios</span>
             <h2 className="text-3xl md:text-5xl font-medium text-gold mb-4">Servicios & Tarifas en {biz.ciudad}</h2>
             <p className="text-slate-400">
-              Tratamiento cerámico, corrección de pintura, protección PPF y detallado integral de vestiduras. Tarifas de referencia sin sorpresas.
+              Desliza sobre cada trabajo para comparar los resultados reales. Estética de motor, tratamiento cerámico, corrección de pintura, PPF y vestiduras.
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
             {SERVICIOS_MEXICO.map((s) => {
-              const reservaMsg = `¡Hola! Me gustaría pedir información o cotización para el servicio: ${s.nombre} en ${biz.nombre}.`;
+              const reservaMsg = `Hola! Me gustaría pedir información o cotización para el servicio: ${s.nombre} en ${biz.nombre}.`;
               const imgSource = s.img ?? "/servicios/exterior.jpg";
+              const isPpfColor = s.nombre.toLowerCase().includes("ppf color");
 
               return (
                 <div
@@ -361,9 +358,15 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                   )}
 
                   <div className="aspect-[4/3] overflow-hidden relative" style={{ background: "#141414" }}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={imgSource} alt={s.nombre} className="w-full h-full object-cover" />
-                    {s.proteccion && (
+                    {isPpfColor ? (
+                      <PpfColorVisualizer biz={biz} />
+                    ) : s.antes_img && s.despues_img ? (
+                      <CompareSlider before={s.antes_img} after={s.despues_img} alt={s.nombre} real />
+                    ) : (
+                      /* eslint-disable-next-line @next/next/no-img-element */
+                      <img src={imgSource} alt={s.nombre} className="w-full h-full object-cover" />
+                    )}
+                    {s.proteccion && !isPpfColor && (
                       <div
                         className="absolute bottom-2 left-2 right-2 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/15 text-[11px] font-semibold text-white/95 flex items-center gap-1.5 shadow-lg z-20 pointer-events-none"
                         style={{ background: "rgba(10,10,10,0.85)" }}
