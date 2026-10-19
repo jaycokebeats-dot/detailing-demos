@@ -14,100 +14,81 @@ const SERVICIOS_MEXICO: ServiceItem[] = [
   {
     nombre: "Estética & Detallado de Motor",
     descripcion: "Limpieza técnica profunda de la bahía del motor con vapor controlado y desengrasantes dieléctricos seguros. Nutrición y abrillantado de mangueras y plásticos con terminado satinado original libre de siliconas grasosas.",
-    ideal_si: "Recuperar el aspecto de agencia bajo el cofre y prevenir la resequedad de plásticos y empaques.",
+    ideal_si: "Recuperar el aspecto de agencia bajo el cofre y proteger plásticos y mangueras.",
     precio: "Desde $1,300 MXN",
-    destacado: true,
     proteccion: "Acondicionado Dieléctrico de Plásticos",
     antes_img: "/before-after/motor-antes.jpg",
     despues_img: "/before-after/motor-despues.jpg",
   },
   {
     nombre: "Tratamiento Cerámico 9H",
-    descripcion: "Recubrimiento nanotecnológico de máxima dureza. Otorga un brillo cristalino espectacular, extrema repelencia al agua y suciedad (hidrofobia), y protección UV contra la radiación solar y lluvia ácida.",
-    ideal_si: "Buscas la máxima protección duradera que conserve la pintura impecable y facilite las lavadas.",
+    descripcion: "Recubrimiento nanotecnológico de alta dureza. Otorga un brillo cristalino espectacular, extrema repelencia al agua y suciedad (hidrofobia), y protección UV contra la radiación solar y lluvia ácida.",
+    ideal_si: "Conserva la pintura impecable, repele agua y polvo, y facilita enormemente el lavado.",
     precio: "Desde $4,800 MXN",
-    destacado: true,
-    proteccion: "Protección Cerámica 2 a 5 Años",
+    proteccion: "Brillo Espejo & Máxima Hidrofobia",
     antes_img: "/servicios/ceramico-antes.png",
     despues_img: "/servicios/ceramico-despues.png",
   },
   {
-    nombre: "Corrección de Pintura & Abrillantado",
-    descripcion: "Pulido técnico en varias etapas con máquinas orbitales para eliminar microrrayones circulares (swirls), marcas de lavados previos y sarro, devolviendo la nitidez y profundidad del color original.",
-    ideal_si: "La carrocería tiene marcas circulares visibles bajo el sol o el transparente se ve opaco.",
-    precio: "Desde $3,500 MXN",
-    destacado: true,
-    proteccion: "Eliminación de Microswirls",
-    antes_img: "/before-after/pintura-antes.jpg",
-    despues_img: "/before-after/pintura-despues.jpg",
-  },
-  {
-    nombre: "PPF Brilloso | Paint Protection Film",
-    descripcion: "Lámina de poliuretano autorregenerable XPEL americana de acabado Gloss brillante. Blinda la pintura original contra impactos de grava en carretera, rayones y rayos UV conservando la máxima profundidad de color.",
-    ideal_si: "Garantía Oficial hasta 10 Años · Propiedad autorregenerable con calor · Cobertura frente o completa.",
+    nombre: "PPF Brillante | Paint Protection Film",
+    descripcion: "Película de poliuretano autorregenerable de alto impacto con terminado Gloss brillante. Protege la pintura original contra impactos de grava en carretera, rayones y rayos UV, conservando la máxima profundidad de color.",
+    ideal_si: "Película autorregenerable con calor · Cobertura para frente o carrocería completa.",
     precio: "Desde $9,500 MXN",
-    destacado: true,
-    proteccion: "Garantía Oficial hasta 10 Años",
+    proteccion: "Protección Física de Alto Impacto",
     antes_img: "/servicios/ppf-brilloso-antes.png",
     despues_img: "/servicios/ppf-brilloso-despues.png",
   },
   {
     nombre: "PPF Mate | Paint Protection Film",
-    descripcion: "Lámina autorregenerable de acabado satinado mate. Convierte el color original de tu auto en un acabado mate protector de máximo nivel sin alterar la pintura de fábrica.",
-    ideal_si: "Garantía Oficial hasta 10 Años · Transformación a terminado mate satinado elegante y protector.",
+    descripcion: "Película autorregenerable de terminado satinado mate. Transforma el color original de tu auto en un acabado mate exclusivo y protector sin tocar la pintura de fábrica.",
+    ideal_si: "Transformación a terminado mate satinado elegante con protección física contra piedras y rayones.",
     precio: "Consultar Presupuesto",
-    destacado: false,
-    proteccion: "Garantía Oficial hasta 10 Años",
+    proteccion: "Acabado Mate Satinado Protector",
     antes_img: "/servicios/ppf-mate-antes.png",
     despues_img: "/servicios/ppf-mate-despues.png",
   },
   {
     nombre: "PPF Color | Paint Protection Film",
-    descripcion: "Lámina autorregenerable de protección con pigmentos de color premium. Cambia el color de tu auto protegiendo al mismo tiempo la pintura original contra piedras y arañazos.",
-    ideal_si: "Garantía Oficial hasta 10 Años · Cambio de color con protección autorregenerable de alto impacto.",
+    descripcion: "Película autorregenerable de protección con pigmentos de color de alta calidad. Cambia el color de tu auto al tono que prefieras mientras proteges la pintura original contra piedras y arañazos.",
+    ideal_si: "Cambio de color con protección autorregenerable de alto impacto.",
     precio: "Consultar Presupuesto",
-    destacado: true,
-    proteccion: "Garantía Oficial hasta 10 Años",
+    proteccion: "Personalización & Protección Total",
     antes_img: "/servicios/ppf-color-antes.png",
     despues_img: "/servicios/ppf-color-despues.png",
   },
   {
     nombre: "Detallado Interior & Vestiduras",
     descripcion: "Desinfección integral de cabina con vapor seco: extracción profunda en vestiduras de tela o tratamiento nutritivo para asientos de piel, alfombras, cielo, ductos de aire y plásticos.",
-    ideal_si: "Quieres recuperar la textura, aroma y sensación de auto recién salido de agencia, libre de bacterias.",
+    ideal_si: "Recuperar la textura, aroma y sensación de auto limpio y cuidado a detalle.",
     precio: "Desde $1,900 MXN",
-    destacado: false,
     proteccion: "Desinfección & Acondicionado",
     antes_img: "/servicios/limpieza-tapizado-antes.png",
     despues_img: "/servicios/limpieza-tapizado-despues.png",
   },
   {
     nombre: "Reparación de Vestiduras & Piel",
-    descripcion: "Restauración especializada de asientos y volantes de piel o tela. Reparación de roturas, grietas, desgaste de uso y quemaduras devolviendo el color y textura original de agencia.",
-    ideal_si: "Restauración de roturas y zonas desgastadas devolviendo el aspecto y textura original.",
-    precio: "Consultar Presupuesto",
-    destacado: false,
-    proteccion: "Restauración Estética Interior",
+    descripcion: "Restauración especializada de asientos y volantes de piel o tela. Reparación de roturas, grietas, desgaste de uso y quemaduras devolviendo el color y textura original.",
+    ideal_si: "Solución para roturas, quemaduras o desgaste en asientos y volantes.",
+    precio: "Cotización Previa",
+    proteccion: "Restauración de Vestiduras",
     antes_img: "/servicios/reparacion-tapizado-antes.png",
     despues_img: "/servicios/reparacion-tapizado-despues.png",
   },
   {
-    nombre: "Polarizado Nano Cerámico",
-    descripcion: "Película de control solar de alta tecnología con partículas cerámicas avanzadas para cristales. Reduce drásticamente el calor y la radiación UV sin afectar la claridad óptica.",
-    ideal_si: "Máximo rechazo de calor, 99% protección UV, menor deslumbramiento y privacidad.",
+    nombre: "Película de Control Solar & Cerámica",
+    descripcion: "Película de control solar con tecnología cerámica para cristales. Reduce drásticamente la temperatura en cabina y filtra los rayos UV sin afectar la claridad óptica.",
+    ideal_si: "Rechazo de calor, protección solar para interiores y mayor privacidad.",
     precio: "Desde $2,400 MXN",
-    destacado: false,
-    proteccion: "Filtro Solar & Protección 99% UV",
+    proteccion: "Control Térmico & Filtro UV",
     antes_img: "/servicios/polarizado-antes.png",
     despues_img: "/servicios/polarizado-despues.png",
   },
   {
-    nombre: "Sacabollos Artesanal (PDR)",
-    descripcion: "Servicio técnico especializado en la reparación de abolladuras y golpes en la carrocería con varillas especiales, recuperando la forma original sin necesidad de repintar.",
-    ideal_si: "Conserva la pintura original de fábrica, evita repintados y mantiene el valor comercial del auto.",
+    nombre: "Reparación de Abolladuras (PDR)",
+    descripcion: "Técnica artesanal de varillero para eliminar abolladuras, portazos de estacionamiento y daños por granizo sin necesidad de hojalatería tradicional ni repintar el auto.",
+    ideal_si: "Reparar golpes manteniendo la pintura y el valor comercial original de agencia.",
     precio: "Presupuesto y Cita Previa",
-    destacado: false,
-    proteccion: "100% Pintura Original",
+    proteccion: "100% Pintura Original de Fábrica",
     antes_img: "/servicios/sacabollos-antes.png",
     despues_img: "/servicios/sacabollos-despues.png",
   },
@@ -332,7 +313,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
             <span className="section-badge mb-5">Nuestros servicios</span>
             <h2 className="text-3xl md:text-5xl font-medium text-gold mb-4">Servicios & Tarifas en {biz.ciudad}</h2>
             <p className="text-slate-400">
-              Desliza sobre cada trabajo para comparar los resultados reales. Estética de motor, tratamiento cerámico, corrección de pintura, PPF y vestiduras.
+              Desliza sobre cada trabajo para comparar los resultados reales. Estética de motor, tratamiento cerámico, protección PPF, vestiduras y más.
             </p>
           </div>
 
@@ -348,15 +329,6 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                   className="product-card rounded-[24px] overflow-hidden flex flex-col relative border border-white/10 hover:border-white/25 transition w-full h-full justify-between"
                   style={{ background: "#101010" }}
                 >
-                  {s.destacado && (
-                    <span
-                      className="absolute top-3 right-3 z-10 text-[10px] px-2.5 py-1 rounded-full text-black font-bold uppercase tracking-wider shadow-md"
-                      style={{ background: "#d4af37" }}
-                    >
-                      Recomendado
-                    </span>
-                  )}
-
                   <div className="aspect-[4/3] overflow-hidden relative" style={{ background: "#141414" }}>
                     {isPpfColor ? (
                       <PpfColorVisualizer biz={biz} />

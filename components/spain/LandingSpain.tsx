@@ -14,69 +14,53 @@ const SERVICIOS_ESPANA: ServiceItem[] = [
   {
     nombre: "Detallado y Nutrición de Motor",
     descripcion: "Limpieza técnica profunda del vano motor con vapor controlado y productos dieléctricos seguros. Desengrasado exhaustivo y nutrición de plásticos, gomas y manguitos con acabado satinado de origen.",
-    ideal_si: "Llevar el coche impecable también bajo el capó y proteger las gomas frente al envejecimiento térmico.",
+    ideal_si: "Llevar el coche impecable bajo el capó y proteger plásticos y manguitos.",
     precio: "Desde 75 €",
-    destacado: true,
-    proteccion: "Nutrición Dieléctrica de Plásticos",
+    proteccion: "Acondicionado Dieléctrico de Plásticos",
     antes_img: "/before-after/motor-antes.jpg",
     despues_img: "/before-after/motor-despues.jpg",
   },
   {
     nombre: "Tratamiento Cerámico 9H",
-    descripcion: "Recubrimiento nanotecnológico de máxima dureza. Otorga un brillo cristalino espectacular, extrema repelencia al agua y suciedad, y protección UV contra la degradación solar y cal.",
-    ideal_si: "Buscas la máxima protección duradera que mantenga la pintura protegida y facilite el lavado.",
+    descripcion: "Recubrimiento nanotecnológico de alta dureza. Otorga un brillo cristalino espectacular, extrema repelencia al agua y suciedad, y protección UV contra la degradación solar y cal.",
+    ideal_si: "Mantiene la pintura protegida, repele agua y suciedad, y facilita enormemente el lavado.",
     precio: "Desde 280 €",
-    destacado: true,
-    proteccion: "Protección Cerámica 2 a 5 Años",
+    proteccion: "Brillo Espejo & Máxima Hidrofobia",
     antes_img: "/servicios/ceramico-antes.png",
     despues_img: "/servicios/ceramico-despues.png",
   },
   {
-    nombre: "Corrección de Pintura & Pulido",
-    descripcion: "Pulido técnico en varias fases con pulidoras orbitales para eliminar microarañazos circulares (swirls), marcas de túnel de lavado y hologramas, recuperando la nitidez y profundidad del barniz original.",
-    ideal_si: "La carrocería tiene marcas circulares visibles al sol o el barniz ha perdido su brillo original.",
-    precio: "Desde 180 €",
-    destacado: true,
-    proteccion: "Eliminación de Microswirls",
-    antes_img: "/before-after/pintura-antes.jpg",
-    despues_img: "/before-after/pintura-despues.jpg",
-  },
-  {
     nombre: "PPF Brillante | Paint Protection Film",
-    descripcion: "Lámina de poliuretano autorregenerable de alta gama con acabado Gloss brillante. Blindaje físico real contra impactos de piedras en autopista, arañazos y roces de aparcamiento.",
-    ideal_si: "Garantía Oficial 10 Años · Propiedad autorregenerable con calor · Cobertura frontal o completa.",
+    descripcion: "Lámina de poliuretano autorregenerable de alta gama con acabado Gloss brillante. Protege la pintura original contra impactos de gravilla en carretera, arañazos y roces de aparcamiento.",
+    ideal_si: "Película autorregenerable con calor · Cobertura para frontal o carrocería completa.",
     precio: "Desde 450 €",
-    destacado: true,
-    proteccion: "Garantía Oficial 10 Años",
+    proteccion: "Protección Física de Alto Impacto",
     antes_img: "/servicios/ppf-brilloso-antes.png",
     despues_img: "/servicios/ppf-brilloso-despues.png",
   },
   {
     nombre: "PPF Mate | Paint Protection Film",
-    descripcion: "Lámina autorregenerable de acabado satinado mate. Convierte el color original de tu coche en un acabado mate satinado exclusivo y protector sin tocar la pintura de fábrica.",
-    ideal_si: "Garantía Oficial 10 Años · Transformación a terminado mate satinado elegante y protector.",
+    descripcion: "Lámina autorregenerable de acabado satinado mate. Transforma el color original de tu coche en un acabado mate exclusivo y protector sin tocar la pintura de fábrica.",
+    ideal_si: "Transformación a acabado mate satinado elegante con protección contra chinazos y roces.",
     precio: "Consultar Presupuesto",
-    destacado: false,
-    proteccion: "Garantía Oficial 10 Años",
+    proteccion: "Acabado Mate Satinado Protector",
     antes_img: "/servicios/ppf-mate-antes.png",
     despues_img: "/servicios/ppf-mate-despues.png",
   },
   {
     nombre: "PPF Color | Paint Protection Film",
-    descripcion: "Lámina autorregenerable de protección con pigmentos de color premium. Cambia el color de tu coche protegiendo al 100% la pintura original contra agresiones externas.",
-    ideal_si: "Garantía Oficial 10 Años · Cambio de color con protección autorregenerable de alto impacto.",
+    descripcion: "Lámina autorregenerable con pigmentos de color de alta calidad. Cambia el color de tu coche al tono que prefieras mientras proteges la pintura original contra agresiones externas.",
+    ideal_si: "Cambio de color integral con protección autorregenerable de impacto.",
     precio: "Consultar Presupuesto",
-    destacado: true,
-    proteccion: "Garantía Oficial 10 Años",
+    proteccion: "Personalización & Protección Total",
     antes_img: "/servicios/ppf-color-antes.png",
     despues_img: "/servicios/ppf-color-despues.png",
   },
   {
     nombre: "Detailing Interior & Tapicería",
     descripcion: "Higienización integral del habitáculo con vapor seco: limpieza profunda por inyección-extracción en tapicería textil o tratamiento nutritivo para cuero, alfombrillas, conductos de aire y plásticos.",
-    ideal_si: "Quieres recuperar la sensación, olor y tacto de coche nuevo, libre de bacterias y ácaros.",
+    ideal_si: "Recuperar el tacto, olor y confort de un habitáculo limpio y desinfectado.",
     precio: "Desde 120 €",
-    destacado: false,
     proteccion: "Desinfección & Acondicionado",
     antes_img: "/servicios/limpieza-tapizado-antes.png",
     despues_img: "/servicios/limpieza-tapizado-despues.png",
@@ -84,30 +68,27 @@ const SERVICIOS_ESPANA: ServiceItem[] = [
   {
     nombre: "Reparación de Tapicería & Cuero",
     descripcion: "Recuperación y reparación especializada de tapizados interiores. Solución técnica para roturas, rozaduras en orejeras de asientos, desgastes en volantes de cuero y quemaduras.",
-    ideal_si: "Restauración de roturas y zonas desgastadas devolviendo el aspecto y textura original.",
-    precio: "Consultar Presupuesto",
-    destacado: false,
-    proteccion: "Restauración Estética Interior",
+    ideal_si: "Solución para roturas, rozaduras o desgaste en asientos y volantes.",
+    precio: "Presupuesto Previo",
+    proteccion: "Restauración de Tapicería",
     antes_img: "/servicios/reparacion-tapizado-antes.png",
     despues_img: "/servicios/reparacion-tapizado-despues.png",
   },
   {
-    nombre: "Tintado y Lámina Nano Cerámica",
-    descripcion: "Lámina solar de alta tecnología con partículas cerámicas avanzadas para cristales y lunas. Reduce drásticamente el calor en el habitáculo y filtra el 99% de radiación UV sin perder claridad óptica.",
-    ideal_si: "Máximo rechazo de calor, 99% protección UV, menor deslumbramiento y privacidad.",
+    nombre: "Tintado y Lámina Solar Cerámica",
+    descripcion: "Lámina de control solar con tecnología cerámica para cristales y lunas. Reduce el calor en el habitáculo y filtra la radiación UV con homologación para circular.",
+    ideal_si: "Rechazo de calor, protección para el interior y mayor privacidad.",
     precio: "Desde 140 €",
-    destacado: false,
-    proteccion: "Homologado ITV & Filtro 99% UV",
+    proteccion: "Control Térmico & Homologado ITV",
     antes_img: "/servicios/polarizado-antes.png",
     despues_img: "/servicios/polarizado-despues.png",
   },
   {
     nombre: "Varillero Sacabollos (PDR)",
-    descripcion: "Servicio técnico especializado en la reparación de abolladuras y pequeños golpes con varillas artesanales, recuperando la chapa a su estado de fábrica sin masillas ni repintar.",
-    ideal_si: "Conserva la pintura original de fábrica, evita repintados y mantiene el valor de tasación del coche.",
+    descripcion: "Reparación técnica de bollos, impactos de granizo y toques de aparcamiento mediante varillas artesanales, devolviendo la chapa a su forma original sin masillar ni repintar el coche.",
+    ideal_si: "Eliminar abolladuras conservando la pintura de origen y el valor de tasación del vehículo.",
     precio: "Presupuesto y Cita Previa",
-    destacado: false,
-    proteccion: "100% Pintura Original",
+    proteccion: "100% Pintura Original de Fábrica",
     antes_img: "/servicios/sacabollos-antes.png",
     despues_img: "/servicios/sacabollos-despues.png",
   },
@@ -332,7 +313,7 @@ export default function LandingSpain({ biz }: { biz: Business }) {
             <span className="section-badge mb-5">Nuestros servicios</span>
             <h2 className="text-3xl md:text-5xl font-medium text-gold mb-4">Servicios & Tarifas en {biz.ciudad}</h2>
             <p className="text-slate-400">
-              Desliza sobre cada trabajo para comparar los resultados reales. Detallado de motor, tratamiento cerámico, pulido, PPF y tapicería.
+              Desliza sobre cada trabajo para comparar los resultados reales. Detallado de motor, tratamiento cerámico, protección PPF, tapicería y más.
             </p>
           </div>
 
@@ -348,15 +329,6 @@ export default function LandingSpain({ biz }: { biz: Business }) {
                   className="product-card rounded-[24px] overflow-hidden flex flex-col relative border border-white/10 hover:border-white/25 transition w-full h-full justify-between"
                   style={{ background: "#101010" }}
                 >
-                  {s.destacado && (
-                    <span
-                      className="absolute top-3 right-3 z-10 text-[10px] px-2.5 py-1 rounded-full text-black font-bold uppercase tracking-wider shadow-md"
-                      style={{ background: "#d4af37" }}
-                    >
-                      Recomendado
-                    </span>
-                  )}
-
                   <div className="aspect-[4/3] overflow-hidden relative" style={{ background: "#141414" }}>
                     {isPpfColor ? (
                       <PpfColorVisualizer biz={biz} />
