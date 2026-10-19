@@ -14,22 +14,22 @@ export type ColorOption = {
 };
 
 export const XPEL_COLORS: ColorOption[] = [
-  { id: "pearl-white", name: "XPEL PEARL WHITE", hex: "#f5f5f7", finish: "Gloss" },
-  { id: "xpel-yellow", name: "XPEL YELLOW", hex: "#f5c518", finish: "Gloss" },
-  { id: "molten-orange", name: "XPEL MOLTEN ORANGE", hex: "#e65100", finish: "Gloss" },
-  { id: "monza-red", name: "XPEL MONZA RED", hex: "#d32f2f", finish: "Gloss" },
-  { id: "thermal-beige", name: "XPEL SATIN THERMAL BEIGE", hex: "#c2a675", finish: "Satin" },
-  { id: "battle-green", name: "XPEL SATIN BATTLE GREEN", hex: "#485842", finish: "Satin" },
-  { id: "moss-green", name: "XPEL GLOSS MOSS GREEN", hex: "#2e4d36", finish: "Gloss" },
-  { id: "south-beach-blue", name: "XPEL SOUTH BEACH BLUE", hex: "#00a8b5", finish: "Gloss" },
-  { id: "abyss-blue", name: "XPEL SATIN ABYSS BLUE", hex: "#2b5b84", finish: "Satin" },
-  { id: "midnight-black", name: "XPEL SATIN MIDNIGHT BLACK", hex: "#1c2833", finish: "Satin" },
-  { id: "ultra-plum", name: "XPEL ULTRA PLUM", hex: "#4a154b", finish: "Gloss" },
-  { id: "bond-silver", name: "XPEL METALLIC BOND SILVER", hex: "#b0bec5", finish: "Metallic" },
-  { id: "heritage-grey", name: "XPEL HERITAGE GREY", hex: "#78909c", finish: "Gloss" },
-  { id: "grey-black", name: "XPEL GREY BLACK", hex: "#37474f", finish: "Gloss" },
-  { id: "satin-tarmac", name: "XPEL SATIN TARMAC", hex: "#212121", finish: "Satin" },
-  { id: "obsidian-black", name: "XPEL OBSIDIAN BLACK", hex: "#121212", finish: "Gloss" },
+  { id: "pearl-white", name: "PEARL WHITE", hex: "#f5f5f7", finish: "Gloss" },
+  { id: "xpel-yellow", name: "RACING YELLOW", hex: "#f5c518", finish: "Gloss" },
+  { id: "molten-orange", name: "MOLTEN ORANGE", hex: "#e65100", finish: "Gloss" },
+  { id: "monza-red", name: "MONZA RED", hex: "#d32f2f", finish: "Gloss" },
+  { id: "thermal-beige", name: "SATIN THERMAL BEIGE", hex: "#c2a675", finish: "Satin" },
+  { id: "battle-green", name: "SATIN BATTLE GREEN", hex: "#485842", finish: "Satin" },
+  { id: "moss-green", name: "GLOSS MOSS GREEN", hex: "#2e4d36", finish: "Gloss" },
+  { id: "south-beach-blue", name: "SOUTH BEACH BLUE", hex: "#00a8b5", finish: "Gloss" },
+  { id: "abyss-blue", name: "SATIN ABYSS BLUE", hex: "#2b5b84", finish: "Satin" },
+  { id: "midnight-black", name: "SATIN MIDNIGHT BLACK", hex: "#1c2833", finish: "Satin" },
+  { id: "ultra-plum", name: "ULTRA PLUM", hex: "#4a154b", finish: "Gloss" },
+  { id: "bond-silver", name: "METALLIC BOND SILVER", hex: "#b0bec5", finish: "Metallic" },
+  { id: "heritage-grey", name: "HERITAGE GREY", hex: "#78909c", finish: "Gloss" },
+  { id: "grey-black", name: "GREY BLACK", hex: "#37474f", finish: "Gloss" },
+  { id: "satin-tarmac", name: "SATIN TARMAC", hex: "#212121", finish: "Satin" },
+  { id: "obsidian-black", name: "OBSIDIAN BLACK", hex: "#121212", finish: "Gloss" },
 ];
 
 export default function PpfColorVisualizer({ biz }: { biz: Business }) {
