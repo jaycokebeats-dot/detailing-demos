@@ -227,7 +227,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
             <h1 className="text-[32px] sm:text-[42px] font-medium tracking-tight leading-tight text-balance">
               Detailing Profesional a Mano,
               <br />
-              <span className="text-gold">Acabado de Exposición.</span>
+              <span className="text-gold">Resultado de Showroom.</span>
             </h1>
 
             <p className="text-base md:text-lg text-slate-300 max-w-2xl font-light leading-relaxed text-pretty">
