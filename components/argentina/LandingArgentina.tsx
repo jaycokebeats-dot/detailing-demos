@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { FaWhatsapp, FaMapMarkerAlt, FaStar, FaClock } from "react-icons/fa";
+import { FaWhatsapp, FaMapMarkerAlt, FaStar, FaClock, FaInstagram } from "react-icons/fa";
 import { HiOutlineCheckCircle, HiOutlineSparkles, HiShieldCheck } from "react-icons/hi2";
 import type { Business, ServiceItem } from "@/data/business-helpers";
 import { waHref, mapsHref } from "@/data/business-helpers";
@@ -484,6 +484,23 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
                 </p>
               </div>
             </div>
+
+            {biz.instagram && (
+              <div className="flex items-start gap-4">
+                <FaInstagram className="size-5 text-gold shrink-0 mt-1" />
+                <div>
+                  <p className="text-xs text-slate-400 uppercase tracking-wider font-semibold">Instagram</p>
+                  <a
+                    href={`https://instagram.com/${biz.instagram}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white text-sm hover:text-gold transition-colors font-medium underline underline-offset-4 decoration-slate-600"
+                  >
+                    @{biz.instagram} ↗
+                  </a>
+                </div>
+              </div>
+            )}
 
             <div className="pt-4 flex flex-col sm:flex-row gap-3">
               <a

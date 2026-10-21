@@ -12600,15 +12600,17 @@
   {
     "slug": "black-point-detailing",
     "nombre": "Black Point Detailing",
-    "telefono": "011 15-6080-0540",
-    "whatsapp": "5491160800540",
-    "instagram": null,
-    "direccion": "San Lorenzo 3038, San Martín",
-    "ciudad": "San Martín",
+    "telefono": "011 15-3339-2287",
+    "whatsapp": "5491133392287",
+    "instagram": "blackpoint.detailing",
+    "direccion": "San Lorenzo 3038, San Andrés",
+    "ciudad": "San Andrés",
     "rating": 4.9,
     "reviews_count": 18,
     "fotos": [],
-    "maps_url": "https://www.google.com/maps/place/Black+Point+Detailing/@-34.5691919,-58.5848164,14z/data=!4m10!1m2!2m1!1scar+detailing+san+martin+buenos+aires!3m6!1s0x95bcbb48a8b5dc21:0xe8a13c5a1d603baf!8m2!3d-34.5691919!4d-58.5487675!15sCiVjYXIgZGV0YWlsaW5nIHNhbiBtYXJ0aW4gYnVlbm9zIGFpcmVzkgEKY2FyX3JlcGFpcuABAA!16s%2Fg%2F11r9lk28g3?entry=ttu&g_ep=EgoyMDI2MDkyMi4wIKXMDSoASAFQAw%3D%3D"
+    "maps_url": "https://www.google.com/maps/place/Black+Point+Detailing/@-34.5691919,-58.5848164,14z/data=!4m10!1m2!2m1!1scar+detailing+san+martin+buenos+aires!3m6!1s0x95bcbb48a8b5dc21:0xe8a13c5a1d603baf!8m2!3d-34.5691919!4d-58.5487675!15sCiVjYXIgZGV0YWlsaW5nIHNhbiBtYXJ0aW4gYnVlbm9zIGFpcmVzkgEKY2FyX3JlcGFpcuABAA!16s%2Fg%2F11r9lk28g3?entry=ttu&g_ep=EgoyMDI2MDkyMi4wIKXMDSoASAFQAw%3D%3D",
+    "pais": "AR",
+    "template": "argentina"
   },
   {
     "slug": "lavautos-bri",
