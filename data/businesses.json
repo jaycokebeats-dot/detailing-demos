@@ -56272,21 +56272,6 @@
     "template": "spain"
   },
   {
-    "slug": "auto-detail-camino-real",
-    "nombre": "Auto Detail Camiño Real",
-    "ciudad": "Lugo",
-    "direccion": "España, Lugo",
-    "telefono": "+34 604 09 03 96",
-    "whatsapp": "34604090396",
-    "instagram": null,
-    "rating": 4.8,
-    "reviews_count": 129,
-    "fotos": [],
-    "maps_url": "https://www.google.com/maps/place/AUTO+DETAIL+CAMI%C3%91O+REAL/data=!4m7!3m6!1s0xd31cf0026770a53:0x7c3b64baede01f6d!8m2!3d43.0192629!4d-7.566599!16s%2Fg%2F11vz8_wwy7!19sChIJUwp3JgDPMQ0RbR_g7bpkO3w?authuser=0&hl=es&g_ep=EgoyMDI2MTAxNC4wIJJjKgBIAVAD&rclk=1",
-    "pais": "ES",
-    "template": "spain"
-  },
-  {
     "slug": "lucus-detail",
     "nombre": "Lucus Detail",
     "ciudad": "Lugo",
@@ -56750,5 +56735,20 @@
     "maps_url": "https://www.google.com/maps/place/d.one_detailing/data=!4m7!3m6!1s0xd7071f71a5a84db:0x38fb18beb4963cbf!8m2!3d36.777689!4d-2.6269528!16s%2Fg%2F11vbp08qs5!19sChIJ24RaGvdxcA0RvzyWtL4Y-zg?authuser=0&hl=es&g_ep=EgoyMDI2MTAxOC4wIJJjKgBIAVAD&rclk=1",
     "pais": "ES",
     "template": "spain"
+  },
+  {
+    "slug": "ckm-home-y-car-detailing",
+    "nombre": "CKM HOME Y CAR DETAILING",
+    "ciudad": "Campestre, León",
+    "direccion": "C. Prado 110, Centro, León de los Aldama, Gto.",
+    "telefono": "+52 47 7754 3347",
+    "whatsapp": "524777543347",
+    "instagram": null,
+    "rating": 5,
+    "reviews_count": 16,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/CKM+HOME+Y+CAR+DETAILING/data=!4m7!3m6!1s0x4d1ae2fe48a2014d:0x9280cff31c8aa8e8!8m2!3d21.119534!4d-101.6716903!16s%2Fg%2F11nvfmzg40!19sChIJTQGiSP7iGk0R6KiKHPPPgJI?authuser=0&hl=es-419&g_ep=EgoyMDI2MTAxMy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "template": "mexico"
   }
 ]
