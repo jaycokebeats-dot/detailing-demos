@@ -11,6 +11,7 @@ import Footer from "./Footer";
 import WhatsAppFloat from "./WhatsAppFloat";
 import LandingSpain from "./spain/LandingSpain";
 import LandingMexico from "./mexico/LandingMexico";
+import LandingArgentina from "./argentina/LandingArgentina";
 
 export default function Landing({ biz }: { biz: Business }) {
   if (biz.pais === "ES" || biz.template === "spain") {
@@ -19,6 +20,10 @@ export default function Landing({ biz }: { biz: Business }) {
 
   if (biz.pais === "MX" || biz.template === "mexico") {
     return <LandingMexico biz={biz} />;
+  }
+
+  if (biz.pais === "AR" || biz.template === "argentina" || biz.slug === "gli-stance") {
+    return <LandingArgentina biz={biz} />;
   }
 
   const isCustom = Boolean(biz.servicios && biz.servicios.length > 0);

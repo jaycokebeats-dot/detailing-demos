@@ -4,6 +4,7 @@ import CompareSlider from "./CompareSlider";
 import PpfColorVisualizer from "./PpfColorVisualizer";
 
 export default function Inventory({ biz }: { biz: Business }) {
+  const isBorges = biz.slug === "borges-ppf-y-detailing";
   const listaServicios = biz.servicios ?? [];
 
   const renderCard = (s: ServiceItem, i: number) => {
@@ -29,7 +30,7 @@ export default function Inventory({ biz }: { biz: Business }) {
             <img src={imgSource} alt={s.nombre} className="w-full h-full object-cover" />
           )}
           {s.proteccion && !isPpfColor && (
-            <div className="absolute bottom-2 left-2 right-2 bg-slate-950/85 backdrop-blur-md px-2.5 py-1 rounded-lg border border-red-500/40 text-[11px] font-semibold text-red-400 flex items-center gap-1.5 shadow-lg z-20 pointer-events-none">
+            <div className="absolute bottom-2 left-2 right-2 bg-slate-950/85 backdrop-blur-md px-2.5 py-1 rounded-lg border border-gold/40 text-[11px] font-semibold text-gold flex items-center gap-1.5 shadow-lg z-20 pointer-events-none">
               <span>{s.proteccion}</span>
             </div>
           )}
@@ -56,7 +57,7 @@ export default function Inventory({ biz }: { biz: Business }) {
             href={waHref(biz, reservaMsg)}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-red-premium mt-4 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider"
+            className={`${isBorges ? "btn-red-premium" : "btn-gold"} mt-4 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider`}
           >
             <FaWhatsapp aria-hidden className="size-3.5" />
             Asesorarme
@@ -73,7 +74,7 @@ export default function Inventory({ biz }: { biz: Business }) {
           <span className="section-badge mb-5">Nuestros servicios</span>
           <h2 className="text-3xl md:text-5xl font-medium text-gold mb-4">Qué Hacemos</h2>
           <p className="text-slate-400">
-            Protección PPF XPEL, corrección de pintura y tratamientos cerámicos. Sin remolinos, sin atajos.
+            Protección de pintura, corrección y tratamientos cerámicos. Sin remolinos, sin atajos.
           </p>
         </div>
 
@@ -88,4 +89,3 @@ export default function Inventory({ biz }: { biz: Business }) {
     </section>
   );
 }
-

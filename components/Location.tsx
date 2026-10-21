@@ -3,6 +3,7 @@ import { HiOutlineMapPin, HiOutlineClock, HiOutlinePhone, HiOutlineCamera } from
 import { type Business, MSG_PRESUPUESTO, instagramHref, mapsHref, waHref } from "@/data/business-helpers";
 
 export default function Location({ biz }: { biz: Business }) {
+  const isBorges = biz.slug === "borges-ppf-y-detailing";
   const direccionTexto = biz.direccion.toLowerCase().includes(biz.ciudad.toLowerCase())
     ? biz.direccion
     : `${biz.direccion}, ${biz.ciudad}`;
@@ -55,7 +56,7 @@ export default function Location({ biz }: { biz: Business }) {
             href={waHref(biz, MSG_PRESUPUESTO)}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-red-premium flex items-center justify-center gap-2 w-full py-3.5 rounded-full text-sm font-semibold uppercase tracking-wide mt-8"
+            className={`${isBorges ? "btn-red-premium" : "btn-gold"} flex items-center justify-center gap-2 w-full py-3.5 rounded-full text-sm font-semibold uppercase tracking-wide mt-8`}
           >
             <FaWhatsapp aria-hidden className="size-4" />
             Contáctanos por WhatsApp

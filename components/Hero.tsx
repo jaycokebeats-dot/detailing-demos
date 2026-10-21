@@ -68,10 +68,12 @@ export default function Hero({ biz }: { biz: Business }) {
     };
   }, []);
 
+  const isBorges = biz.slug === "borges-ppf-y-detailing";
+
   const stats = [
-    "5 ★ en Google",
-    "8 años en el rubro",
-    "Garantía Oficial XPEL 10 Años",
+    biz.rating != null ? `★ ${biz.rating === 5 ? "5.0" : biz.rating.toFixed(1)} en Google` : "5 ★ en Google",
+    "Garantía escrita",
+    isBorges ? "Garantía Oficial XPEL 10 Años" : "Atención personalizada",
   ];
 
   return (
@@ -98,7 +100,7 @@ export default function Hero({ biz }: { biz: Business }) {
       <div className="relative z-10 max-w-6xl mx-auto w-full h-full flex items-center justify-center">
         <div className="max-w-2xl text-center space-y-5 mx-auto py-8 lg:py-6">
           {/* Logo oficial en blanco si es Borges */}
-          {biz.slug === "borges-ppf-y-detailing" && (
+          {isBorges && (
             <div className="flex justify-center mb-6 -mt-6 lg:-mt-10">
               <img
                 src="/logo/logopngblanco.png"
@@ -112,17 +114,29 @@ export default function Hero({ biz }: { biz: Business }) {
             <span className="flex size-2 rounded-full shrink-0 animate-pulse" style={{ background: "#b8c2cc", boxShadow: "0 0 6px rgba(184,194,204,0.8)" }} />
             <span>{biz.ciudad}</span>
             <span className="text-slate-500">·</span>
-            <span>Tecnología XPEL Americana</span>
+            <span>{isBorges ? "Tecnología XPEL Americana" : "Estética Vehicular Profesional"}</span>
           </div>
 
           <h1 className="text-[32px] sm:text-[38px] font-medium tracking-tight leading-tight text-balance">
-            Somos Líderes en la Colocación de
-            <br />
-            <span className="text-gold">PPF en Canning.</span>
+            {isBorges ? (
+              <>
+                Somos Líderes en la Colocación de
+                <br />
+                <span className="text-gold">PPF en Canning.</span>
+              </>
+            ) : (
+              <>
+                Detailing Profesional y
+                <br />
+                <span className="text-gold">Protección en {biz.ciudad}.</span>
+              </>
+            )}
           </h1>
 
           <p className="text-base md:text-lg text-slate-400 max-w-2xl font-light leading-relaxed text-pretty">
-            Protección de pintura con tecnología americana XPEL, recubrimiento cerámico y detailing interior. Hecho a mano en Canning.
+            {isBorges
+              ? "Protección de pintura con tecnología americana XPEL, recubrimiento cerámico y detailing interior. Hecho a mano en Canning."
+              : `Corrección de pintura, recubrimiento cerámico y detailing interior. Cuidado artesanal a mano en ${biz.ciudad}.`}
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full sm:w-auto">
@@ -130,7 +144,7 @@ export default function Hero({ biz }: { biz: Business }) {
               href={waHref(biz, MSG_PRESUPUESTO)}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-red-premium group w-full sm:w-auto px-7 py-3.5 min-h-[44px] rounded-full text-sm font-semibold uppercase tracking-wide active:scale-95 transition-[transform,filter] duration-150 flex items-center justify-center gap-2.5"
+              className="btn-gold group w-full sm:w-auto px-7 py-3.5 min-h-[44px] rounded-full text-sm font-semibold uppercase tracking-wide active:scale-95 transition-[transform,filter] duration-150 flex items-center justify-center gap-2.5"
             >
               <FaWhatsapp aria-hidden className="size-4" />
               Consultar por WhatsApp
