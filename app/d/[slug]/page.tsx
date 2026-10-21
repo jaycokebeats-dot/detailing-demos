@@ -6,6 +6,7 @@ import { getAllBusinesses, getBusiness } from "@/data/businesses";
 
 const HIDDEN_SLUGS = new Set<string>([
   "ec-detail-estetica-vehicular",
+  "ckm-home-y-car-detailing",
 ]);
 
 export const dynamicParams = true;
