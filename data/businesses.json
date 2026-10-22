@@ -10002,13 +10002,15 @@
     "nombre": "Squadra Detail",
     "telefono": "011 15-2327-6230",
     "whatsapp": "5491123276230",
-    "instagram": null,
+    "instagram": "squadradetailing",
     "direccion": "Fray Mamerto Esquiú 5655, Caseros",
     "ciudad": "Caseros",
-    "rating": 4.9,
+    "rating": 5.0,
     "reviews_count": 18,
     "fotos": [],
-    "maps_url": "https://www.google.com/maps/place/Squadra+Detail/@-34.5936926,-58.6506169,13z/data=!4m11!1m3!2m2!1scar+detailing+caseros+tres+de+febrero!6e2!3m6!1s0x95bcb9004611f7e5:0x2f4f48558d58661f!8m2!3d-34.5936926!4d-58.5785191!15sCiVjYXIgZGV0YWlsaW5nIGNhc2Vyb3MgdHJlcyBkZSBmZWJyZXJvWiciJWNhciBkZXRhaWxpbmcgY2FzZXJvcyB0cmVzIGRlIGZlYnJlcm-SAQhjYXJfd2FzaJoBRENpOURRVWxSUVVOdlpFTm9kSGxqUmpsdlQyMXNjVTFWUm1wa00wWXpUWHBWTkZsdFJsWmlWVEZHVkRBeGEwMXJSUkFC4AEA-gEECAAQMQ!16s%2Fg%2F11mzfj09mp?entry=ttu&g_ep=EgoyMDI2MDkxNi4wIKXMDSoASAFQAw%3D%3D"
+    "maps_url": "https://www.google.com/maps/place/Squadra+Detail/@-34.5936926,-58.6506169,13z/data=!4m11!1m3!2m2!1scar+detailing+caseros+tres+de+febrero!6e2!3m6!1s0x95bcb9004611f7e5:0x2f4f48558d58661f!8m2!3d-34.5936926!4d-58.5785191!15sCiVjYXIgZGV0YWlsaW5nIGNhc2Vyb3MgdHJlcyBkZSBmZWJyZXJvWiciJWNhciBkZXRhaWxpbmcgY2FzZXJvcyB0cmVzIGRlIGZlYnJlcm-SAQhjYXJfd2FzaJoBRENpOURRVWxSUVVOdlpFTm9kSGxqUmpsdlQyMXNjVTFWUm1wa00wWXpUWHBWTkZsdFJsWmlWVEZHVkRBeGEwMXJSUkFC4AEA-gEECAAQMQ!16s%2Fg%2F11mzfj09mp?entry=ttu&g_ep=EgoyMDI2MDkxNi4wIKXMDSoASAFQAw%3D%3D",
+    "pais": "AR",
+    "template": "argentina"
   },
   {
     "slug": "bravo-arg",
@@ -10038,16 +10040,18 @@
   },
   {
     "slug": "monaco-detail",
-    "nombre": "Mónaco detail",
+    "nombre": "Mónaco Detail",
     "telefono": "011 15-6620-9718",
     "whatsapp": "5491166209718",
     "instagram": null,
     "direccion": "Alsina 1810, San Martín",
     "ciudad": "San Martín",
-    "rating": 4.9,
+    "rating": 5.0,
     "reviews_count": 18,
     "fotos": [],
-    "maps_url": "https://www.google.com/maps/place/M%C3%B3naco+detail/@-34.580981,-58.5815865,14z/data=!4m11!1m3!2m2!1scar+detailing+san+martin+buenos+aires!6e2!3m6!1s0x95bcb75860860253:0xa2d0f65a1f5718d6!8m2!3d-34.5835229!4d-58.5405143!15sCiVjYXIgZGV0YWlsaW5nIHNhbiBtYXJ0aW4gYnVlbm9zIGFpcmVzkgEbYXV0b193aW5kb3dfdGludGluZ19zZXJ2aWNl4AEA!16s%2Fg%2F11t8c92qkc?entry=ttu&g_ep=EgoyMDI2MDkxNi4wIKXMDSoASAFQAw%3D%3D"
+    "maps_url": "https://www.google.com/maps/place/M%C3%B3naco+detail/@-34.580981,-58.5815865,14z/data=!4m11!1m3!2m2!1scar+detailing+san+martin+buenos+aires!6e2!3m6!1s0x95bcb75860860253:0xa2d0f65a1f5718d6!8m2!3d-34.5835229!4d-58.5405143!15sCiVjYXIgZGV0YWlsaW5nIHNhbiBtYXJ0aW4gYnVlbm9zIGFpcmVzkgEbYXV0b193aW5kb3dfdGludGluZ19zZXJ2aWNl4AEA!16s%2Fg%2F11t8c92qkc?entry=ttu&g_ep=EgoyMDI2MDkxNi4wIKXMDSoASAFQAw%3D%3D",
+    "pais": "AR",
+    "template": "argentina"
   },
   {
     "slug": "dual-team-detail",
@@ -12633,10 +12637,12 @@
     "instagram": "musa.detail",
     "direccion": "Manuel Quintana 1858, Caseros",
     "ciudad": "Caseros",
-    "rating": 4.9,
+    "rating": 5.0,
     "reviews_count": 18,
     "fotos": [],
-    "maps_url": "https://www.google.com/maps/place/Musa+Detail/@-34.6113063,-58.6311883,13z/data=!4m10!1m2!2m1!1scar+detailing+caseros+buenos+aires!3m6!1s0x95bcb97a78bf28af:0x70c37e369e7bf63d!8m2!3d-34.5966881!4d-58.5767781!15sCiJjYXIgZGV0YWlsaW5nIGNhc2Vyb3MgYnVlbm9zIGFpcmVzWiQiImNhciBkZXRhaWxpbmcgY2FzZXJvcyBidWVub3MgYWlyZXOSARVjYXJfZGV0YWlsaW5nX3NlcnZpY2XgAQA!16s%2Fg%2F11zj1_qnkr?entry=ttu&g_ep=EgoyMDI2MDkyMi4wIKXMDSoASAFQAw%3D%3D"
+    "maps_url": "https://www.google.com/maps/place/Musa+Detail/@-34.6113063,-58.6311883,13z/data=!4m10!1m2!2m1!1scar+detailing+caseros+buenos+aires!3m6!1s0x95bcb97a78bf28af:0x70c37e369e7bf63d!8m2!3d-34.5966881!4d-58.5767781!15sCiJjYXIgZGV0YWlsaW5nIGNhc2Vyb3MgYnVlbm9zIGFpcmVzWiQiImNhciBkZXRhaWxpbmcgY2FzZXJvcyBidWVub3MgYWlyZXOSARVjYXJfZGV0YWlsaW5nX3NlcnZpY2XgAQA!16s%2Fg%2F11zj1_qnkr?entry=ttu&g_ep=EgoyMDI2MDkyMi4wIKXMDSoASAFQAw%3D%3D",
+    "pais": "AR",
+    "template": "argentina"
   },
   {
     "slug": "top-wash-saenz",
@@ -13257,10 +13263,12 @@
     "instagram": "natogaraje",
     "direccion": "Necochea 1685, San Martín",
     "ciudad": "San Martín",
-    "rating": 4.9,
+    "rating": 5.0,
     "reviews_count": 18,
     "fotos": [],
-    "maps_url": "https://www.google.com/maps/place/NATO+GARAJE/@-34.5841093,-58.5937291,14z/data=!4m10!1m2!2m1!1scar+detailing+san+martin+buenos+aires!3m6!1s0x95bcb7c4c4f77f4b:0x91701eeda9be461!8m2!3d-34.5878049!4d-58.544345!15sCiVjYXIgZGV0YWlsaW5nIHNhbiBtYXJ0aW4gYnVlbm9zIGFpcmVzkgEVY2FyX2RldGFpbGluZ19zZXJ2aWNl4AEA!16s%2Fg%2F11s4m3m8qt?entry=ttu&g_ep=EgoyMDI2MDkyMi4wIKXMDSoASAFQAw%3D%3D"
+    "maps_url": "https://www.google.com/maps/place/NATO+GARAJE/@-34.5841093,-58.5937291,14z/data=!4m10!1m2!2m1!1scar+detailing+san+martin+buenos+aires!3m6!1s0x95bcb7c4c4f77f4b:0x91701eeda9be461!8m2!3d-34.5878049!4d-58.544345!15sCiVjYXIgZGV0YWlsaW5nIHNhbiBtYXJ0aW4gYnVlbm9zIGFpcmVzkgEVY2FyX2RldGFpbGluZ19zZXJ2aWNl4AEA!16s%2Fg%2F11s4m3m8qt?entry=ttu&g_ep=EgoyMDI2MDkyMi4wIKXMDSoASAFQAw%3D%3D",
+    "pais": "AR",
+    "template": "argentina"
   },
   {
     "slug": "filosowash1",
@@ -14284,10 +14292,12 @@
     "instagram": "chalo_detail",
     "direccion": "Dante 5068, Caseros",
     "ciudad": "Caseros",
-    "rating": 4.9,
+    "rating": 5.0,
     "reviews_count": 18,
     "fotos": [],
-    "maps_url": "https://www.google.com/maps/place/Chalo+Detail+Automotores/@-34.5557319,-58.6505672,13z/data=!4m11!1m3!2m2!1scar+detailing+caseros+buenos+aires!6e2!3m6!1s0x95bcb9acb3b4b21f:0xd05fc878a9fa1dd9!8m2!3d-34.5974954!4d-58.5682488!15sCiJjYXIgZGV0YWlsaW5nIGNhc2Vyb3MgYnVlbm9zIGFpcmVzWiQiImNhciBkZXRhaWxpbmcgY2FzZXJvcyBidWVub3MgYWlyZXOSARhhdXRvX3Jlc3RvcmF0aW9uX3NlcnZpY2WaASNDaFpEU1VoTk1HOW5TMFZKUTBGblRVTjNiSEJNVGsxUkVBReABAPoBBAgAEDI!16s%2Fg%2F11lzrrhwkw?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D"
+    "maps_url": "https://www.google.com/maps/place/Chalo+Detail+Automotores/@-34.5557319,-58.6505672,13z/data=!4m11!1m3!2m2!1scar+detailing+caseros+buenos+aires!6e2!3m6!1s0x95bcb9acb3b4b21f:0xd05fc878a9fa1dd9!8m2!3d-34.5974954!4d-58.5682488!15sCiJjYXIgZGV0YWlsaW5nIGNhc2Vyb3MgYnVlbm9zIGFpcmVzWiQiImNhciBkZXRhaWxpbmcgY2FzZXJvcyBidWVub3MgYWlyZXOSARhhdXRvX3Jlc3RvcmF0aW9uX3NlcnZpY2WaASNDaFpEU1VoTk1HOW5TMFZKUTBGblRVTjNiSEJNVGsxUkVBReABAPoBBAgAEDI!16s%2Fg%2F11lzrrhwkw?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+    "pais": "AR",
+    "template": "argentina"
   },
   {
     "slug": "pocho-detailing",
@@ -58625,5 +58635,20 @@
     "maps_url": "https://www.google.com/maps/search/?api=1&query=Est%C3%A9tica%20Automotr%C3%ADz%20Cadillac&query_place_id=ChIJM60NA5SJzYURqiyMZw8K5tk",
     "pais": "MX",
     "template": "mexico"
+  },
+  {
+    "slug": "nk-detailing",
+    "nombre": "NK Detailing",
+    "telefono": "011 Caseros",
+    "whatsapp": "qr/OZ7CQVFTVSN2A1",
+    "instagram": "nk.detailling",
+    "direccion": "Fischetti 4944, Caseros",
+    "ciudad": "Caseros",
+    "rating": 5.0,
+    "reviews_count": 6,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/NK+Detailling/@-34.6001406,-58.5659912,17z/data=!3m1!4b1!4m6!3m5!1s0x95bcb97b638a7ac9:0x51b850d93966de13!8m2!3d-34.6001406!4d-58.5659912!16s%2Fg%2F11zxzc0_m8",
+    "pais": "AR",
+    "template": "argentina"
   }
 ]

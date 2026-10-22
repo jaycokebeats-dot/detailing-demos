@@ -36,7 +36,11 @@ export const MSG_FOTOS = "Hola! Te mando fotos de mi auto para que me digan qué
 
 // wa.me si hay whatsapp, sino tel:
 export function waHref(biz: Business, msg: string): string {
-  if (biz.whatsapp) return `https://wa.me/${biz.whatsapp}?text=${encodeURIComponent(msg)}`;
+  if (biz.whatsapp) {
+    if (biz.whatsapp.startsWith("http")) return biz.whatsapp;
+    if (biz.whatsapp.startsWith("qr/")) return `https://wa.me/${biz.whatsapp}`;
+    return `https://wa.me/${biz.whatsapp}?text=${encodeURIComponent(msg)}`;
+  }
   return `tel:${biz.telefono.replace(/[^\d+]/g, "")}`;
 }
 
