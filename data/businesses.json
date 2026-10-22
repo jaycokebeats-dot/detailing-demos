@@ -57875,5 +57875,35 @@
     "maps_url": "https://www.google.com/maps/search/?api=1&query=Chex%20detailer&query_place_id=ChIJq6qLXaDuKYQRW2_mvQOY2KE",
     "pais": "MX",
     "template": "mexico"
+  },
+  {
+    "slug": "ecocars-vl",
+    "nombre": "ECOCARS V.L",
+    "ciudad": "Godella",
+    "direccion": "España, Godella",
+    "telefono": "+34 642 60 01 87",
+    "whatsapp": "34642600187",
+    "instagram": null,
+    "rating": 4.6,
+    "reviews_count": 72,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/ECOCARS+V.L/data=!4m7!3m6!1s0xd6045b30aa6f313:0x1af3fc513f8a63e9!8m2!3d39.5260513!4d-0.4150729!16s%2Fg%2F11kqn37ghz!19sChIJE_OmCrNFYA0R6WOKP1H88xo?authuser=0&hl=es&g_ep=EgoyMDI2MTAyMC4wIJJjKgBIAVAD&rclk=1",
+    "pais": "ES",
+    "template": "spain"
+  },
+  {
+    "slug": "lavado-a-mano-burgos",
+    "nombre": "Lavado a mano Burgos",
+    "ciudad": "Burgos",
+    "direccion": "España, Burgos",
+    "telefono": "+34 678 23 46 80",
+    "whatsapp": "34678234680",
+    "instagram": null,
+    "rating": 4.9,
+    "reviews_count": 420,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Lavado+a+mano+Burgos/data=!4m7!3m6!1s0xd45fbb77d24c145:0x275e388a91080ec6!8m2!3d42.3518845!4d-3.6588199!16s%2Fg%2F11fl0ylvtr!19sChIJRcEkfbf7RQ0Rxg4IkYo4Xic?authuser=0&hl=es&g_ep=EgoyMDI2MTAxOS4wIJJjKgBIAVAD&rclk=1",
+    "pais": "ES",
+    "template": "spain"
   }
 ]
