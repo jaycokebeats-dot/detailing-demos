@@ -210,7 +210,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
             loop
             playsInline
             className="absolute inset-0 w-full h-full object-cover opacity-50 contrast-110 pointer-events-none"
-            src="https://storage.googleapis.com/webild/default/templates/detailing/hero/hero.mp4"
+            src={biz.video_hero ?? "https://storage.googleapis.com/webild/default/templates/detailing/hero/hero.mp4"}
           />
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/80" />

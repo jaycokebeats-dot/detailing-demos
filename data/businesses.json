@@ -58650,5 +58650,22 @@
     "maps_url": "https://www.google.com/maps/place/NK+Detailling/@-34.6001406,-58.5659912,17z/data=!3m1!4b1!4m6!3m5!1s0x95bcb97b638a7ac9:0x51b850d93966de13!8m2!3d-34.6001406!4d-58.5659912!16s%2Fg%2F11zxzc0_m8",
     "pais": "AR",
     "template": "argentina"
+  },
+  {
+    "slug": "demo-auto-blanco",
+    "nombre": "White Car Detailing Demo",
+    "nombreCorto": "White Car Detailing",
+    "telefono": "011 15-0000-0000",
+    "whatsapp": "5491100000000",
+    "instagram": "demo.detailing",
+    "direccion": "Av. del Libertador 1500, Buenos Aires",
+    "ciudad": "Buenos Aires",
+    "rating": 5.0,
+    "reviews_count": 28,
+    "fotos": [],
+    "maps_url": null,
+    "pais": "AR",
+    "template": "argentina",
+    "video_hero": "/videos/hero-compilado-blanco.mp4"
   }
 ]
