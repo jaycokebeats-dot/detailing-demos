@@ -317,16 +317,16 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-            {SERVICIOS_ARGENTINA.map((s) => {
+          <div className="flex flex-wrap justify-center gap-6 max-w-7xl mx-auto">
+            {((biz.servicios && biz.servicios.length > 0) ? biz.servicios : SERVICIOS_ARGENTINA).map((s, idx) => {
               const reservaMsg = `Hola! Me gustaría pedir información o presupuesto para el servicio: ${s.nombre} en ${biz.nombre}.`;
               const imgSource = s.img ?? "/servicios/exterior.jpg";
               const isPpfColor = s.nombre.toLowerCase().includes("ppf color");
 
               return (
                 <div
-                  key={s.nombre}
-                  className="product-card rounded-[24px] overflow-hidden flex flex-col relative border border-white/10 hover:border-white/25 transition w-full h-full justify-between"
+                  key={`${s.nombre}-${idx}`}
+                  className="product-card rounded-[24px] overflow-hidden flex flex-col relative border border-white/10 hover:border-white/25 transition w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] max-w-md justify-between"
                   style={{ background: "#101010" }}
                 >
                   <div className="aspect-[4/3] overflow-hidden relative" style={{ background: "#141414" }}>
@@ -336,7 +336,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
                       <CompareSlider before={s.antes_img} after={s.despues_img} alt={s.nombre} real />
                     ) : (
                       /* eslint-disable-next-line @next/next/no-img-element */
-                      <img src={imgSource} alt={s.nombre} className="w-full h-full object-cover" />
+                      <img src={s.img || imgSource} alt={s.nombre} className="w-full h-full object-cover" />
                     )}
                     {s.proteccion && !isPpfColor && (
                       <div

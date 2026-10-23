@@ -49,6 +49,7 @@ export async function saveDemoBusiness(updated: Business): Promise<{ success: bo
   if (typeof window !== "undefined") {
     try {
       localStorage.setItem(DEMO_STORAGE_KEY, JSON.stringify(updated));
+      window.dispatchEvent(new Event("black_line_demo_updated"));
     } catch (e) {
       console.warn("Error guardando en localStorage:", e);
     }
@@ -75,6 +76,7 @@ export async function saveDemoBusiness(updated: Business): Promise<{ success: bo
 export async function resetDemoBusiness(): Promise<void> {
   if (typeof window !== "undefined") {
     localStorage.removeItem(DEMO_STORAGE_KEY);
+    window.dispatchEvent(new Event("black_line_demo_updated"));
   }
   if (supabase) {
     try {
