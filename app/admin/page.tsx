@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import type { Business, ServiceItem } from "@/data/business-helpers";
 import { DEFAULT_DEMO_BUSINESS } from "@/data/demo-business";
 import { getDemoBusiness, saveDemoBusiness, resetDemoBusiness } from "@/lib/supabase";
@@ -59,6 +59,54 @@ const PRESETS_SINGLE = [
   { label: "Ploteo & Wrap", img: "/servicios/ploteo.jpg" },
   { label: "Reparación Butaca", img: "/servicios/tapizado-reparacion.jpg" },
 ];
+
+/**
+ * Optimiza y comprime fotos locales (del celular o PC) a JPEG 1200px máx
+ * para garantizar carga ultra-rápida y almacenamiento fluido sin errores de cuota.
+ */
+function resizeAndCompressImage(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        const MAX_WIDTH = 1200;
+        const MAX_HEIGHT = 1200;
+        let width = img.width;
+        let height = img.height;
+
+        if (width > height) {
+          if (width > MAX_WIDTH) {
+            height = Math.round((height * MAX_WIDTH) / width);
+            width = MAX_WIDTH;
+          }
+        } else {
+          if (height > MAX_HEIGHT) {
+            width = Math.round((width * MAX_HEIGHT) / height);
+            height = MAX_HEIGHT;
+          }
+        }
+
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext("2d");
+        if (!ctx) {
+          resolve(e.target?.result as string);
+          return;
+        }
+        ctx.drawImage(img, 0, 0, width, height);
+        // Calidad 0.82 JPEG (ultra nítido y liviano: ~100-150KB)
+        const dataUrl = canvas.toDataURL("image/jpeg", 0.82);
+        resolve(dataUrl);
+      };
+      img.onerror = () => resolve(e.target?.result as string);
+      img.src = e.target?.result as string;
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
 
 export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -158,8 +206,8 @@ export default function AdminPage() {
     }
   };
 
-  // Subir imagen local (FileReader a Base64)
-  const handleFileUpload = (
+  // Subir imagen local comprimida
+  const handleFileUpload = async (
     e: React.ChangeEvent<HTMLInputElement>,
     index: number,
     field: "antes_img" | "despues_img" | "img"
@@ -167,19 +215,13 @@ export default function AdminPage() {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    if (file.size > 4 * 1024 * 1024) {
-      alert("La imagen es muy pesada. Por favor seleccioná una imagen menor a 4MB.");
-      return;
+    try {
+      const optimizedDataUrl = await resizeAndCompressImage(file);
+      handleServiceChange(index, field, optimizedDataUrl);
+      showToast("📷 Foto cargada y optimizada con éxito.");
+    } catch (err) {
+      alert("Error al procesar la imagen. Intentá con otra foto.");
     }
-
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      const result = event.target?.result as string;
-      if (result) {
-        handleServiceChange(index, field, result);
-      }
-    };
-    reader.readAsDataURL(file);
   };
 
   // Cambiar modo de foto del servicio
@@ -201,15 +243,13 @@ export default function AdminPage() {
     }
   };
 
-  // --- VISTA DE LOGIN ---
+  // --- VISTA DE LOGIN (Estilo Luxury Monocromático en Gris y Grafito) ---
   if (!isAuthenticated) {
     return (
       <main className="min-h-screen bg-[#0a0a0a] text-neutral-100 flex items-center justify-center p-4">
-        <div className="w-full max-w-md bg-[#121212] border border-amber-500/20 rounded-3xl p-7 sm:p-9 shadow-2xl shadow-amber-500/5 relative overflow-hidden">
-          <div className="absolute -top-16 -right-16 w-48 h-48 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
-
+        <div className="w-full max-w-md bg-[#121212] border border-neutral-800 rounded-3xl p-7 sm:p-9 shadow-2xl relative overflow-hidden">
           <div className="text-center mb-6">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-500/10 text-amber-400 text-xs font-bold rounded-full border border-amber-500/30 mb-3 tracking-wide">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-neutral-900 text-neutral-300 text-xs font-semibold rounded-full border border-neutral-700 mb-3 tracking-wide">
               <span>⚡</span> BLACK LINE STUDIO
             </span>
             <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
@@ -230,7 +270,7 @@ export default function AdminPage() {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="demo"
-                className="w-full bg-[#0a0a0a] border border-neutral-800 rounded-xl px-4 py-3 text-sm text-neutral-100 focus:outline-none focus:border-amber-500 transition-colors"
+                className="w-full bg-[#0a0a0a] border border-neutral-800 rounded-xl px-4 py-3 text-sm text-neutral-100 focus:outline-none focus:border-neutral-500 transition-colors"
                 required
               />
             </div>
@@ -244,7 +284,7 @@ export default function AdminPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="demo"
-                className="w-full bg-[#0a0a0a] border border-neutral-800 rounded-xl px-4 py-3 text-sm text-neutral-100 focus:outline-none focus:border-amber-500 transition-colors"
+                className="w-full bg-[#0a0a0a] border border-neutral-800 rounded-xl px-4 py-3 text-sm text-neutral-100 focus:outline-none focus:border-neutral-500 transition-colors"
                 required
               />
             </div>
@@ -257,7 +297,7 @@ export default function AdminPage() {
 
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500 hover:brightness-110 text-black font-extrabold py-3.5 rounded-xl shadow-lg shadow-amber-500/25 transition-all text-sm cursor-pointer mt-2"
+              className="w-full bg-gradient-to-r from-neutral-200 via-neutral-100 to-neutral-300 hover:from-white hover:to-neutral-100 text-neutral-950 font-black py-3.5 rounded-xl shadow-lg shadow-white/5 transition-all text-sm cursor-pointer mt-2 active:scale-95 border border-white/30"
             >
               Ingresar al Panel
             </button>
@@ -266,8 +306,8 @@ export default function AdminPage() {
           <div className="mt-6 pt-4 border-t border-neutral-800/80 text-center">
             <p className="text-xs text-neutral-400">
               💡 Credenciales de demostración:<br />
-              <strong className="text-amber-400">Usuario:</strong> demo &nbsp;|&nbsp;{" "}
-              <strong className="text-amber-400">Contraseña:</strong> demo
+              <strong className="text-neutral-200">Usuario:</strong> demo &nbsp;|&nbsp;{" "}
+              <strong className="text-neutral-200">Contraseña:</strong> demo
             </p>
           </div>
         </div>
@@ -280,43 +320,43 @@ export default function AdminPage() {
     <main className="min-h-screen bg-[#090909] text-neutral-100 pb-32">
       {/* Toast Notification */}
       {toastMessage && (
-        <div className="fixed top-5 right-5 z-50 bg-[#161616] border border-amber-500/50 text-neutral-100 px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3 animate-fade-in text-xs sm:text-sm font-medium">
+        <div className="fixed top-5 right-5 z-50 bg-[#161616] border border-neutral-600 text-neutral-100 px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3 animate-fade-in text-xs sm:text-sm font-medium">
           <span className="text-base">✨</span>
           <span>{toastMessage}</span>
         </div>
       )}
 
       {/* Header Superior Sticky */}
-      <header className="sticky top-0 z-40 bg-[#090909]/90 backdrop-blur-md border-b border-neutral-800/80">
+      <header className="sticky top-0 z-40 bg-[#090909]/95 backdrop-blur-md border-b border-neutral-800/80">
         <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 font-black text-lg">
+            <div className="w-10 h-10 rounded-2xl bg-neutral-900 border border-neutral-700 flex items-center justify-center text-neutral-200 font-black text-lg shadow-sm">
               ⚡
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="text-sm sm:text-base font-extrabold text-neutral-100 truncate max-w-[180px] sm:max-w-none">
+                <h1 className="text-sm sm:text-base font-extrabold text-neutral-100 truncate max-w-[170px] sm:max-w-none">
                   {biz.nombre}
                 </h1>
-                <span className="text-[10px] font-bold bg-amber-500/20 text-amber-400 border border-amber-500/40 px-2 py-0.5 rounded-full uppercase tracking-wider">
+                <span className="text-[10px] font-bold bg-neutral-800 text-neutral-300 border border-neutral-700 px-2 py-0.5 rounded-full uppercase tracking-wider">
                   Panel Demo
                 </span>
               </div>
-              <p className="text-[11px] text-neutral-400">Panel de Control & Autogestión</p>
+              <p className="text-[11px] text-neutral-400">Autogestión de Taller en Vivo</p>
             </div>
           </div>
 
           <div className="flex items-center gap-2">
             <a
-              href="/d/demo/"
+              href="/d/taller-demo/"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-neutral-900 hover:bg-neutral-800 border border-amber-500/30 hover:border-amber-500 text-amber-400 text-xs font-bold px-3.5 py-2 rounded-xl transition-all flex items-center gap-1.5 shadow-sm"
-              title="Abrir la web en vivo en una pestaña nueva"
+              className="bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 hover:border-neutral-500 text-neutral-200 hover:text-white text-xs font-bold px-3.5 py-2 rounded-xl transition-all flex items-center gap-1.5 shadow-sm"
+              title="Abrir la web de demostración en una pestaña nueva"
             >
               <span>🔗</span>
               <span className="hidden sm:inline">Ver Web en Vivo</span>
-              <span className="sm:hidden">Ver Web</span>
+              <span className="sm:hidden">Web</span>
             </a>
 
             <button
@@ -341,19 +381,19 @@ export default function AdminPage() {
       <div className="max-w-5xl mx-auto px-4 py-6">
         {loading ? (
           <div className="py-24 text-center text-neutral-400 text-sm flex flex-col items-center gap-3">
-            <span className="w-6 h-6 border-2 border-amber-500 border-t-transparent rounded-full animate-spin" />
+            <span className="w-6 h-6 border-2 border-neutral-400 border-t-transparent rounded-full animate-spin" />
             <span>Cargando datos del taller...</span>
           </div>
         ) : (
           <div className="space-y-6">
-            {/* Tabs de Navegación (Solo 2 secciones, limpias y directas) */}
+            {/* Tabs de Navegación en Gris / Composé */}
             <div className="grid grid-cols-2 gap-2 bg-[#121212] p-1.5 rounded-2xl border border-neutral-800 max-w-md mx-auto">
               <button
                 type="button"
                 onClick={() => setActiveTab("general")}
                 className={`py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center justify-center gap-2 ${
                   activeTab === "general"
-                    ? "bg-amber-500 text-black shadow-md shadow-amber-500/20"
+                    ? "bg-neutral-800 text-white shadow-sm border border-neutral-700"
                     : "text-neutral-400 hover:text-neutral-200"
                 }`}
               >
@@ -366,12 +406,12 @@ export default function AdminPage() {
                 onClick={() => setActiveTab("services")}
                 className={`py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center justify-center gap-2 ${
                   activeTab === "services"
-                    ? "bg-amber-500 text-black shadow-md shadow-amber-500/20"
+                    ? "bg-neutral-800 text-white shadow-sm border border-neutral-700"
                     : "text-neutral-400 hover:text-neutral-200"
                 }`}
               >
                 <span>🛠️</span>
-                <span>2. Servicios y Precios ({biz.servicios?.length || 0})</span>
+                <span>2. Servicios ({biz.servicios?.length || 0})</span>
               </button>
             </div>
 
@@ -398,14 +438,14 @@ export default function AdminPage() {
                       value={biz.nombre}
                       onChange={(e) => setBiz({ ...biz, nombre: e.target.value })}
                       placeholder="Ej: Black Line Detail Studio"
-                      className="w-full bg-[#0a0a0a] border border-neutral-800 rounded-xl px-4 py-3 text-sm text-neutral-100 focus:outline-none focus:border-amber-500"
+                      className="w-full bg-[#0a0a0a] border border-neutral-800 rounded-xl px-4 py-3 text-sm text-neutral-100 focus:outline-none focus:border-neutral-500"
                     />
                   </div>
 
-                  {/* Número de WhatsApp - Destacado especial */}
-                  <div className="sm:col-span-2 bg-emerald-500/5 border border-emerald-500/30 rounded-2xl p-4 sm:p-5 space-y-2">
-                    <div className="flex items-center gap-2 text-emerald-400 font-bold text-xs sm:text-sm">
-                      <span className="text-base">💬</span>
+                  {/* Número de WhatsApp - Conexión directa a todos los botones */}
+                  <div className="sm:col-span-2 bg-neutral-900/60 border border-neutral-700/80 rounded-2xl p-4 sm:p-5 space-y-2">
+                    <div className="flex items-center gap-2 text-neutral-200 font-bold text-xs sm:text-sm">
+                      <span className="text-emerald-400 text-base">💬</span>
                       <span>Número de WhatsApp para Presupuestos y Consultas</span>
                     </div>
                     <p className="text-[11px] sm:text-xs text-neutral-400 leading-relaxed">
@@ -416,8 +456,8 @@ export default function AdminPage() {
                         type="text"
                         value={biz.whatsapp || ""}
                         onChange={(e) => setBiz({ ...biz, whatsapp: e.target.value.replace(/[^\d]/g, "") })}
-                        placeholder="Ej: 5491155558888 (Código de país + área + número, sin + ni espacios)"
-                        className="w-full bg-[#0a0a0a] border border-emerald-500/40 rounded-xl px-4 py-3 text-sm font-mono text-emerald-400 focus:outline-none focus:border-emerald-400"
+                        placeholder="Ej: 5491155558888 (Código país + área + número, sin + ni espacios)"
+                        className="w-full bg-[#0a0a0a] border border-neutral-700 rounded-xl px-4 py-3 text-sm font-mono text-emerald-400 focus:outline-none focus:border-neutral-400"
                       />
                       <p className="text-[10px] text-neutral-500 mt-1.5">
                         Formato internacional: <strong>549</strong> (Argentina), <strong>52</strong> (México), <strong>34</strong> (España), seguido del número sin espacios ni guiones.
@@ -434,7 +474,7 @@ export default function AdminPage() {
                       value={biz.telefono}
                       onChange={(e) => setBiz({ ...biz, telefono: e.target.value })}
                       placeholder="+54 9 11 5555-8888"
-                      className="w-full bg-[#0a0a0a] border border-neutral-800 rounded-xl px-4 py-3 text-sm text-neutral-100 focus:outline-none focus:border-amber-500"
+                      className="w-full bg-[#0a0a0a] border border-neutral-800 rounded-xl px-4 py-3 text-sm text-neutral-100 focus:outline-none focus:border-neutral-500"
                     />
                   </div>
 
@@ -447,7 +487,7 @@ export default function AdminPage() {
                       value={biz.instagram || ""}
                       onChange={(e) => setBiz({ ...biz, instagram: e.target.value.replace("@", "").trim() })}
                       placeholder="blacklinedetailing"
-                      className="w-full bg-[#0a0a0a] border border-neutral-800 rounded-xl px-4 py-3 text-sm text-neutral-100 focus:outline-none focus:border-amber-500"
+                      className="w-full bg-[#0a0a0a] border border-neutral-800 rounded-xl px-4 py-3 text-sm text-neutral-100 focus:outline-none focus:border-neutral-500"
                     />
                   </div>
 
@@ -460,7 +500,7 @@ export default function AdminPage() {
                       value={biz.direccion}
                       onChange={(e) => setBiz({ ...biz, direccion: e.target.value })}
                       placeholder="Av. Del Libertador 4500"
-                      className="w-full bg-[#0a0a0a] border border-neutral-800 rounded-xl px-4 py-3 text-sm text-neutral-100 focus:outline-none focus:border-amber-500"
+                      className="w-full bg-[#0a0a0a] border border-neutral-800 rounded-xl px-4 py-3 text-sm text-neutral-100 focus:outline-none focus:border-neutral-500"
                     />
                   </div>
 
@@ -473,7 +513,7 @@ export default function AdminPage() {
                       value={biz.ciudad}
                       onChange={(e) => setBiz({ ...biz, ciudad: e.target.value })}
                       placeholder="Buenos Aires"
-                      className="w-full bg-[#0a0a0a] border border-neutral-800 rounded-xl px-4 py-3 text-sm text-neutral-100 focus:outline-none focus:border-amber-500"
+                      className="w-full bg-[#0a0a0a] border border-neutral-800 rounded-xl px-4 py-3 text-sm text-neutral-100 focus:outline-none focus:border-neutral-500"
                     />
                   </div>
 
@@ -486,7 +526,7 @@ export default function AdminPage() {
                       value={biz.horario || ""}
                       onChange={(e) => setBiz({ ...biz, horario: e.target.value })}
                       placeholder="Lunes a Sábados: 09:00 a 19:00 hs"
-                      className="w-full bg-[#0a0a0a] border border-neutral-800 rounded-xl px-4 py-3 text-sm text-neutral-100 focus:outline-none focus:border-amber-500"
+                      className="w-full bg-[#0a0a0a] border border-neutral-800 rounded-xl px-4 py-3 text-sm text-neutral-100 focus:outline-none focus:border-neutral-500"
                     />
                   </div>
 
@@ -499,7 +539,7 @@ export default function AdminPage() {
                       value={biz.maps_url || ""}
                       onChange={(e) => setBiz({ ...biz, maps_url: e.target.value })}
                       placeholder="https://maps.google.com/?q=..."
-                      className="w-full bg-[#0a0a0a] border border-neutral-800 rounded-xl px-4 py-3 text-sm text-neutral-100 focus:outline-none focus:border-amber-500 text-xs font-mono"
+                      className="w-full bg-[#0a0a0a] border border-neutral-800 rounded-xl px-4 py-3 text-sm text-neutral-100 focus:outline-none focus:border-neutral-500 text-xs font-mono"
                     />
                   </div>
                 </div>
@@ -524,7 +564,7 @@ export default function AdminPage() {
                   <button
                     type="button"
                     onClick={handleAddService}
-                    className="self-start sm:self-center bg-gradient-to-r from-amber-500 to-amber-600 hover:brightness-110 text-black font-extrabold text-xs sm:text-sm px-4 py-2.5 rounded-xl transition-all cursor-pointer shadow-lg shadow-amber-500/20 flex items-center gap-2 shrink-0"
+                    className="self-start sm:self-center bg-neutral-800 hover:bg-neutral-700 text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl transition-all cursor-pointer border border-neutral-600 hover:border-neutral-400 flex items-center gap-2 shrink-0 shadow-sm active:scale-95"
                   >
                     <span>➕</span>
                     <span>Agregar Tratamiento</span>
@@ -544,7 +584,7 @@ export default function AdminPage() {
                         {/* Header de la tarjeta */}
                         <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-neutral-800/80">
                           <div className="flex items-center gap-2.5">
-                            <span className="text-xs font-bold text-amber-400 bg-amber-500/10 border border-amber-500/30 px-3 py-1 rounded-xl">
+                            <span className="text-xs font-bold text-neutral-300 bg-neutral-900 border border-neutral-700 px-3 py-1 rounded-xl">
                               Servicio #{idx + 1}
                             </span>
                             <span className="text-xs font-semibold text-neutral-300 truncate max-w-[200px] sm:max-w-none">
@@ -558,7 +598,7 @@ export default function AdminPage() {
                                 type="checkbox"
                                 checked={!!srv.destacado}
                                 onChange={(e) => handleServiceChange(idx, "destacado", e.target.checked)}
-                                className="accent-amber-500 w-3.5 h-3.5 rounded cursor-pointer"
+                                className="accent-neutral-400 w-3.5 h-3.5 rounded cursor-pointer"
                               />
                               <span>⭐ Destacado</span>
                             </label>
@@ -586,7 +626,7 @@ export default function AdminPage() {
                               value={srv.nombre}
                               onChange={(e) => handleServiceChange(idx, "nombre", e.target.value)}
                               placeholder="Ej: Tratamiento Cerámico 9H"
-                              className="w-full bg-[#0a0a0a] border border-neutral-800 rounded-xl px-4 py-2.5 text-sm font-semibold text-neutral-100 focus:outline-none focus:border-amber-500"
+                              className="w-full bg-[#0a0a0a] border border-neutral-800 rounded-xl px-4 py-2.5 text-sm font-semibold text-neutral-100 focus:outline-none focus:border-neutral-500"
                             />
                           </div>
 
@@ -599,7 +639,7 @@ export default function AdminPage() {
                               value={srv.precio}
                               onChange={(e) => handleServiceChange(idx, "precio", e.target.value)}
                               placeholder="Ej: $160.000 / Desde $45.000"
-                              className="w-full bg-[#0a0a0a] border border-neutral-800 rounded-xl px-4 py-2.5 text-sm font-bold text-amber-400 focus:outline-none focus:border-amber-500"
+                              className="w-full bg-[#0a0a0a] border border-neutral-800 rounded-xl px-4 py-2.5 text-sm font-bold text-neutral-100 focus:outline-none focus:border-neutral-500"
                             />
                           </div>
 
@@ -612,7 +652,7 @@ export default function AdminPage() {
                               value={srv.descripcion}
                               onChange={(e) => handleServiceChange(idx, "descripcion", e.target.value)}
                               placeholder="Detallá los pasos técnicos, beneficios y resultados para el cliente..."
-                              className="w-full bg-[#0a0a0a] border border-neutral-800 rounded-xl p-3 text-xs sm:text-sm text-neutral-200 focus:outline-none focus:border-amber-500 resize-none leading-relaxed"
+                              className="w-full bg-[#0a0a0a] border border-neutral-800 rounded-xl p-3 text-xs sm:text-sm text-neutral-200 focus:outline-none focus:border-neutral-500 resize-none leading-relaxed"
                             />
                           </div>
 
@@ -625,7 +665,7 @@ export default function AdminPage() {
                               value={srv.proteccion || ""}
                               onChange={(e) => handleServiceChange(idx, "proteccion", e.target.value)}
                               placeholder="Ej: Brillo Espejo & Máxima Hidrofobia / Garantía 3 Años"
-                              className="w-full bg-[#0a0a0a] border border-neutral-800 rounded-xl px-4 py-2.5 text-xs text-neutral-300 focus:outline-none focus:border-amber-500"
+                              className="w-full bg-[#0a0a0a] border border-neutral-800 rounded-xl px-4 py-2.5 text-xs text-neutral-300 focus:outline-none focus:border-neutral-500"
                             />
                           </div>
 
@@ -638,7 +678,7 @@ export default function AdminPage() {
                               value={srv.ideal_si || ""}
                               onChange={(e) => handleServiceChange(idx, "ideal_si", e.target.value)}
                               placeholder="Ej: Autos 0km o con pintura desgastada"
-                              className="w-full bg-[#0a0a0a] border border-neutral-800 rounded-xl px-4 py-2.5 text-xs text-neutral-400 focus:outline-none focus:border-amber-500"
+                              className="w-full bg-[#0a0a0a] border border-neutral-800 rounded-xl px-4 py-2.5 text-xs text-neutral-400 focus:outline-none focus:border-neutral-500"
                             />
                           </div>
                         </div>
@@ -647,7 +687,7 @@ export default function AdminPage() {
                         <div className="bg-[#0b0b0b] border border-neutral-800/80 rounded-2xl p-4 sm:p-5 space-y-4">
                           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                             <div>
-                              <span className="text-xs font-bold text-amber-400 uppercase tracking-wider">
+                              <span className="text-xs font-bold text-neutral-200 uppercase tracking-wider">
                                 📸 Formato de Fotografía del Servicio
                               </span>
                               <p className="text-[11px] text-neutral-400">
@@ -655,14 +695,14 @@ export default function AdminPage() {
                               </p>
                             </div>
 
-                            {/* Switch de modo */}
+                            {/* Switch de modo en Gris / Monocromático */}
                             <div className="inline-flex rounded-xl bg-neutral-900 p-1 border border-neutral-800 self-start sm:self-auto">
                               <button
                                 type="button"
                                 onClick={() => setServicePhotoMode(idx, "before_after")}
                                 className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                                   isBeforeAfter
-                                    ? "bg-amber-500 text-black shadow-sm"
+                                    ? "bg-neutral-200 text-neutral-950 shadow-sm"
                                     : "text-neutral-400 hover:text-white"
                                 }`}
                               >
@@ -673,7 +713,7 @@ export default function AdminPage() {
                                 onClick={() => setServicePhotoMode(idx, "single")}
                                 className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                                   !isBeforeAfter
-                                    ? "bg-amber-500 text-black shadow-sm"
+                                    ? "bg-neutral-200 text-neutral-950 shadow-sm"
                                     : "text-neutral-400 hover:text-white"
                                 }`}
                               >
@@ -693,7 +733,7 @@ export default function AdminPage() {
                                       <span className="w-2 h-2 rounded-full bg-red-400" />
                                       <span>Foto del ANTES (Estado Inicial)</span>
                                     </label>
-                                    <label className="text-[10px] text-amber-400 hover:underline cursor-pointer">
+                                    <label className="text-[10px] text-neutral-300 hover:text-white hover:underline cursor-pointer bg-neutral-900 border border-neutral-700 px-2 py-0.5 rounded-md">
                                       📁 Subir archivo
                                       <input
                                         type="file"
@@ -709,7 +749,7 @@ export default function AdminPage() {
                                     value={srv.antes_img || ""}
                                     onChange={(e) => handleServiceChange(idx, "antes_img", e.target.value)}
                                     placeholder="URL o ruta de la foto inicial (/servicios/...)"
-                                    className="w-full bg-[#121212] border border-neutral-800 rounded-xl px-3 py-2 text-xs text-neutral-200 focus:outline-none focus:border-amber-500 font-mono"
+                                    className="w-full bg-[#121212] border border-neutral-800 rounded-xl px-3 py-2 text-xs text-neutral-200 focus:outline-none focus:border-neutral-500 font-mono"
                                   />
 
                                   {srv.antes_img && (
@@ -734,7 +774,7 @@ export default function AdminPage() {
                                       <span className="w-2 h-2 rounded-full bg-emerald-400" />
                                       <span>Foto del DESPUÉS (Terminado)</span>
                                     </label>
-                                    <label className="text-[10px] text-amber-400 hover:underline cursor-pointer">
+                                    <label className="text-[10px] text-neutral-300 hover:text-white hover:underline cursor-pointer bg-neutral-900 border border-neutral-700 px-2 py-0.5 rounded-md">
                                       📁 Subir archivo
                                       <input
                                         type="file"
@@ -750,7 +790,7 @@ export default function AdminPage() {
                                     value={srv.despues_img || ""}
                                     onChange={(e) => handleServiceChange(idx, "despues_img", e.target.value)}
                                     placeholder="URL o ruta de la foto terminada (/servicios/...)"
-                                    className="w-full bg-[#121212] border border-neutral-800 rounded-xl px-3 py-2 text-xs text-neutral-200 focus:outline-none focus:border-amber-500 font-mono"
+                                    className="w-full bg-[#121212] border border-neutral-800 rounded-xl px-3 py-2 text-xs text-neutral-200 focus:outline-none focus:border-neutral-500 font-mono"
                                   />
 
                                   {srv.despues_img && (
@@ -769,7 +809,7 @@ export default function AdminPage() {
                                 </div>
                               </div>
 
-                              {/* Presets rápidos Antes/Después */}
+                              {/* Presets rápidos Antes/Después en Gris */}
                               <div className="pt-2">
                                 <span className="text-[11px] font-semibold text-neutral-400 block mb-1.5">
                                   ⚡ Fotos comparativas listas para aplicar:
@@ -783,7 +823,7 @@ export default function AdminPage() {
                                         handleServiceChange(idx, "antes_img", p.antes);
                                         handleServiceChange(idx, "despues_img", p.despues);
                                       }}
-                                      className="text-[10px] font-medium bg-neutral-900 hover:bg-amber-500/20 text-neutral-300 hover:text-amber-300 border border-neutral-800 hover:border-amber-500/40 px-2.5 py-1 rounded-lg transition-colors cursor-pointer"
+                                      className="text-[10px] font-medium bg-neutral-900 hover:bg-neutral-800 text-neutral-300 hover:text-white border border-neutral-800 hover:border-neutral-600 px-2.5 py-1 rounded-lg transition-colors cursor-pointer"
                                     >
                                       {p.label}
                                     </button>
@@ -797,10 +837,10 @@ export default function AdminPage() {
                               <div className="space-y-2 max-w-lg">
                                 <div className="flex items-center justify-between">
                                   <label className="text-xs font-bold text-neutral-300 flex items-center gap-1.5">
-                                    <span className="w-2 h-2 rounded-full bg-amber-400" />
+                                    <span className="w-2 h-2 rounded-full bg-neutral-300" />
                                     <span>Foto del Trabajo Terminado</span>
                                   </label>
-                                  <label className="text-[10px] text-amber-400 hover:underline cursor-pointer">
+                                  <label className="text-[10px] text-neutral-300 hover:text-white hover:underline cursor-pointer bg-neutral-900 border border-neutral-700 px-2 py-0.5 rounded-md">
                                     📁 Subir archivo desde dispositivo
                                     <input
                                       type="file"
@@ -816,7 +856,7 @@ export default function AdminPage() {
                                   value={srv.img || ""}
                                   onChange={(e) => handleServiceChange(idx, "img", e.target.value)}
                                   placeholder="URL o ruta de la foto (/servicios/...)"
-                                  className="w-full bg-[#121212] border border-neutral-800 rounded-xl px-3 py-2 text-xs text-neutral-200 focus:outline-none focus:border-amber-500 font-mono"
+                                  className="w-full bg-[#121212] border border-neutral-800 rounded-xl px-3 py-2 text-xs text-neutral-200 focus:outline-none focus:border-neutral-500 font-mono"
                                 />
 
                                 {srv.img && (
@@ -827,14 +867,14 @@ export default function AdminPage() {
                                       alt="Preview Foto Única"
                                       className="w-full h-full object-cover"
                                     />
-                                    <span className="absolute bottom-2 left-2 px-2 py-0.5 bg-black/80 backdrop-blur-sm text-[10px] font-bold text-amber-300 rounded-md border border-amber-500/30">
+                                    <span className="absolute bottom-2 left-2 px-2 py-0.5 bg-black/80 backdrop-blur-sm text-[10px] font-bold text-neutral-200 rounded-md border border-neutral-700">
                                       FOTO FIJA
                                     </span>
                                   </div>
                                 )}
                               </div>
 
-                              {/* Presets rápidos Foto Única */}
+                              {/* Presets rápidos Foto Única en Gris */}
                               <div className="pt-2">
                                 <span className="text-[11px] font-semibold text-neutral-400 block mb-1.5">
                                   ⚡ Fotos premium listas para aplicar:
@@ -845,7 +885,7 @@ export default function AdminPage() {
                                       key={p.label}
                                       type="button"
                                       onClick={() => handleServiceChange(idx, "img", p.img)}
-                                      className="text-[10px] font-medium bg-neutral-900 hover:bg-amber-500/20 text-neutral-300 hover:text-amber-300 border border-neutral-800 hover:border-amber-500/40 px-2.5 py-1 rounded-lg transition-colors cursor-pointer"
+                                      className="text-[10px] font-medium bg-neutral-900 hover:bg-neutral-800 text-neutral-300 hover:text-white border border-neutral-800 hover:border-neutral-600 px-2.5 py-1 rounded-lg transition-colors cursor-pointer"
                                     >
                                       {p.label}
                                     </button>
@@ -865,8 +905,8 @@ export default function AdminPage() {
         )}
       </div>
 
-      {/* Barra de Guardado Inferior Sticky */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 bg-[#090909]/95 backdrop-blur-md border-t border-neutral-800/90 py-3.5 px-4 shadow-2xl">
+      {/* Barra de Guardado Inferior Sticky en Gris / Titanium */}
+      <div className="fixed bottom-0 left-0 right-0 z-40 bg-[#090909]/95 backdrop-blur-md border-t border-neutral-800 py-3.5 px-4 shadow-2xl">
         <div className="max-w-5xl mx-auto flex items-center justify-between gap-4">
           <div className="hidden sm:flex items-center gap-2.5">
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
@@ -882,24 +922,24 @@ export default function AdminPage() {
 
           <div className="flex items-center gap-3 w-full sm:w-auto">
             <a
-              href="/d/demo/"
+              href="/d/taller-demo/"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:inline-flex items-center justify-center gap-1.5 bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 text-neutral-200 text-xs font-bold px-4 py-3 rounded-xl transition-all"
+              className="hidden sm:inline-flex items-center justify-center gap-1.5 bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 hover:border-neutral-500 text-neutral-200 text-xs font-bold px-4 py-3 rounded-xl transition-all"
             >
               <span>👁️</span>
-              <span>Abrir Web</span>
+              <span>Abrir Web en Vivo</span>
             </a>
 
             <button
               type="button"
               onClick={handleSave}
               disabled={saving}
-              className="w-full sm:w-auto bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500 hover:brightness-110 active:scale-95 text-black font-extrabold text-sm px-8 py-3.5 rounded-xl shadow-xl shadow-amber-500/25 transition-all cursor-pointer flex items-center justify-center gap-2"
+              className="w-full sm:w-auto bg-gradient-to-r from-neutral-200 via-neutral-100 to-neutral-300 hover:from-white hover:to-neutral-100 active:scale-95 text-neutral-950 font-black text-sm px-8 py-3.5 rounded-xl shadow-xl shadow-white/5 transition-all cursor-pointer flex items-center justify-center gap-2 border border-white/30"
             >
               {saving ? (
                 <>
-                  <span className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
+                  <span className="w-4 h-4 border-2 border-neutral-950 border-t-transparent rounded-full animate-spin" />
                   <span>Guardando...</span>
                 </>
               ) : (

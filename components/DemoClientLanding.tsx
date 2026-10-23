@@ -18,7 +18,7 @@ export default function DemoClientLanding({ initialBiz }: { initialBiz: Business
   }, []);
 
   useEffect(() => {
-    if (initialBiz.slug === "demo") {
+    if (initialBiz.slug === "demo" || initialBiz.slug === "taller-demo") {
       setIsDemo(true);
       refreshData();
 
@@ -43,10 +43,10 @@ export default function DemoClientLanding({ initialBiz }: { initialBiz: Business
         <div className="fixed bottom-5 left-5 z-50">
           <a
             href="/admin/"
-            className="group flex items-center gap-2.5 rounded-full bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500 px-4 py-2.5 text-xs sm:text-sm font-bold text-black shadow-xl shadow-amber-500/30 hover:scale-105 active:scale-95 transition-all border border-amber-200/50"
+            className="group flex items-center gap-2.5 rounded-full bg-neutral-900/95 hover:bg-neutral-800 text-neutral-100 px-4 py-2.5 text-xs sm:text-sm font-bold shadow-2xl shadow-black/80 hover:scale-105 active:scale-95 transition-all border border-neutral-700 hover:border-neutral-500 backdrop-blur-md"
           >
-            <span className="flex h-2.5 w-2.5 rounded-full bg-black/80 animate-ping" />
-            <span className="tracking-wide">⚙️ Panel de Control Demo</span>
+            <span className="flex h-2 w-2 rounded-full bg-white/90 animate-ping" />
+            <span className="tracking-wide">⚙️ Panel de Control</span>
           </a>
         </div>
       )}

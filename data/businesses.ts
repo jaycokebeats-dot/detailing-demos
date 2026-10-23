@@ -28,8 +28,15 @@ const JDS_ALIAS: Business = {
   slug: "jds-detailing-car-estudio",
 };
 
+const TALLER_DEMO_BUSINESS: Business = {
+  ...DEFAULT_DEMO_BUSINESS,
+  slug: "taller-demo",
+  nombre: "Taller Piloto Detail Studio",
+};
+
 const rawList: Business[] = [
   DEFAULT_DEMO_BUSINESS,
+  TALLER_DEMO_BUSINESS,
   BORGES_BUSINESS,
   JDS_DETAILING_BUSINESS,
   JDS_ALIAS,
@@ -51,6 +58,7 @@ export function getAllBusinesses(): Business[] {
 
 export function getBusiness(slug: string): Business | undefined {
   if (slug === "demo") return DEFAULT_DEMO_BUSINESS;
+  if (slug === "taller-demo") return TALLER_DEMO_BUSINESS;
   if (slug === "borges-ppf-y-detailing") return BORGES_BUSINESS;
   if (slug === "jds-detailing" || slug === "jds-detailing-car-estudio") return JDS_DETAILING_BUSINESS;
   return businessesMap.get(slug);
