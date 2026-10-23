@@ -332,8 +332,8 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
                   <div className="aspect-[4/3] overflow-hidden relative" style={{ background: "#141414" }}>
                     {isPpfColor ? (
                       <PpfColorVisualizer biz={biz} />
-                    ) : s.antes_img && s.despues_img ? (
-                      <CompareSlider before={s.antes_img} after={s.despues_img} alt={s.nombre} real fit={s.foto_fit} />
+                    ) : (s.modo_foto === "before_after" ? (s.antes_img || s.despues_img) : (s.antes_img && s.despues_img)) ? (
+                      <CompareSlider before={s.antes_img || s.despues_img || imgSource} after={s.despues_img || s.antes_img || imgSource} alt={s.nombre} real fit={s.foto_fit} />
                     ) : (
                       /* eslint-disable-next-line @next/next/no-img-element */
                       <div className="relative w-full h-full bg-[#0d0d0d] overflow-hidden">

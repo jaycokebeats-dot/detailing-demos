@@ -225,6 +225,7 @@ export default function AdminPage() {
       proteccion: "Garantía Oficial de Calidad",
       img: "/servicios/exterior.jpg",
       foto_fit: "cover",
+      modo_foto: "single",
     };
     setBiz({ ...biz, servicios: [...(biz.servicios || []), newService] });
   };
@@ -254,23 +255,21 @@ export default function AdminPage() {
     }
   };
 
-  // Cambiar modo de foto del servicio
+  // Cambiar modo de foto del servicio (atómico y sin pérdida de estado)
   const setServicePhotoMode = (index: number, mode: "before_after" | "single") => {
-    const s = (biz.servicios || [])[index];
-    if (!s) return;
+    const updatedServices = [...(biz.servicios || [])];
+    const s = { ...updatedServices[index] };
 
+    s.modo_foto = mode;
     if (mode === "before_after") {
-      // Activar antes y después
-      handleServiceChange(index, "antes_img", s.antes_img || "/servicios/ceramico-antes.png");
-      handleServiceChange(index, "despues_img", s.despues_img || "/servicios/ceramico-despues.png");
+      if (s.antes_img === undefined) s.antes_img = "";
+      if (s.despues_img === undefined) s.despues_img = "";
     } else {
-      // Activar foto única
-      const updatedServices = [...(biz.servicios || [])];
-      delete updatedServices[index].antes_img;
-      delete updatedServices[index].despues_img;
-      updatedServices[index].img = s.img || "/servicios/exterior.jpg";
-      setBiz({ ...biz, servicios: updatedServices });
+      if (!s.img) s.img = "/servicios/exterior.jpg";
     }
+
+    updatedServices[index] = s;
+    setBiz({ ...biz, servicios: updatedServices });
   };
 
   // --- VISTA DE LOGIN ---
@@ -610,7 +609,7 @@ export default function AdminPage() {
                 {/* Lista de Servicios */}
                 <div className="grid grid-cols-1 gap-6">
                   {(biz.servicios || []).map((srv, idx) => {
-                    const isBeforeAfter = Boolean(srv.antes_img && srv.despues_img);
+                    const isBeforeAfter = srv.modo_foto ? srv.modo_foto === "before_after" : Boolean(srv.antes_img || srv.despues_img);
                     const fitMode = srv.foto_fit || "cover";
 
                     return (
@@ -728,7 +727,7 @@ export default function AdminPage() {
                                 📸 Formato de Fotografía del Servicio
                               </span>
                               <p className="text-[11px] text-neutral-400">
-                                Las fotos subidas se encuadran automáticamente en 4:3 para evitar cortes o zoom deforme.
+                                Elegí si querés slider comparativo de 2 fotos o una foto fija.
                               </p>
                             </div>
 
@@ -822,7 +821,7 @@ export default function AdminPage() {
                                     className="w-full bg-[#121212] border border-neutral-800 rounded-xl px-3 py-2 text-xs text-neutral-200 focus:outline-none focus:border-neutral-500 font-mono"
                                   />
 
-                                  {srv.antes_img && (
+                                  {srv.antes_img ? (
                                     <div className="aspect-[4/3] w-full rounded-xl overflow-hidden bg-neutral-950 border border-neutral-800 relative group">
                                       {/* eslint-disable-next-line @next/next/no-img-element */}
                                       <img
@@ -833,7 +832,27 @@ export default function AdminPage() {
                                       <span className="absolute bottom-2 left-2 px-2 py-0.5 bg-black/80 backdrop-blur-sm text-[10px] font-bold text-red-300 rounded-md border border-red-500/30">
                                         ANTES
                                       </span>
+                                      <button
+                                        type="button"
+                                        onClick={() => handleServiceChange(idx, "antes_img", "")}
+                                        className="absolute top-2 right-2 w-6 h-6 flex items-center justify-center rounded-md bg-black/75 hover:bg-red-500 text-white text-xs transition-colors cursor-pointer"
+                                        title="Quitar foto"
+                                      >
+                                        ✕
+                                      </button>
                                     </div>
+                                  ) : (
+                                    <label className="aspect-[4/3] w-full rounded-xl border border-dashed border-neutral-700 hover:border-neutral-500 bg-neutral-950/60 flex flex-col items-center justify-center gap-1.5 cursor-pointer text-center p-4 transition-colors">
+                                      <span className="text-xl">📷</span>
+                                      <span className="text-xs font-semibold text-neutral-300">Subir Foto del ANTES</span>
+                                      <span className="text-[10px] text-neutral-500">Tocá para elegir de tu galería o cámara</span>
+                                      <input
+                                        type="file"
+                                        accept="image/*"
+                                        className="hidden"
+                                        onChange={(e) => handleFileUpload(e, idx, "antes_img")}
+                                      />
+                                    </label>
                                   )}
                                 </div>
 
@@ -863,7 +882,7 @@ export default function AdminPage() {
                                     className="w-full bg-[#121212] border border-neutral-800 rounded-xl px-3 py-2 text-xs text-neutral-200 focus:outline-none focus:border-neutral-500 font-mono"
                                   />
 
-                                  {srv.despues_img && (
+                                  {srv.despues_img ? (
                                     <div className="aspect-[4/3] w-full rounded-xl overflow-hidden bg-neutral-950 border border-neutral-800 relative group">
                                       {/* eslint-disable-next-line @next/next/no-img-element */}
                                       <img
@@ -874,7 +893,27 @@ export default function AdminPage() {
                                       <span className="absolute bottom-2 left-2 px-2 py-0.5 bg-black/80 backdrop-blur-sm text-[10px] font-bold text-emerald-300 rounded-md border border-emerald-500/30">
                                         DESPUÉS
                                       </span>
+                                      <button
+                                        type="button"
+                                        onClick={() => handleServiceChange(idx, "despues_img", "")}
+                                        className="absolute top-2 right-2 w-6 h-6 flex items-center justify-center rounded-md bg-black/75 hover:bg-red-500 text-white text-xs transition-colors cursor-pointer"
+                                        title="Quitar foto"
+                                      >
+                                        ✕
+                                      </button>
                                     </div>
+                                  ) : (
+                                    <label className="aspect-[4/3] w-full rounded-xl border border-dashed border-neutral-700 hover:border-neutral-500 bg-neutral-950/60 flex flex-col items-center justify-center gap-1.5 cursor-pointer text-center p-4 transition-colors">
+                                      <span className="text-xl">📷</span>
+                                      <span className="text-xs font-semibold text-neutral-300">Subir Foto del DESPUÉS</span>
+                                      <span className="text-[10px] text-neutral-500">Tocá para elegir de tu galería o cámara</span>
+                                      <input
+                                        type="file"
+                                        accept="image/*"
+                                        className="hidden"
+                                        onChange={(e) => handleFileUpload(e, idx, "despues_img")}
+                                      />
+                                    </label>
                                   )}
                                 </div>
                               </div>
@@ -890,8 +929,14 @@ export default function AdminPage() {
                                       key={p.label}
                                       type="button"
                                       onClick={() => {
-                                        handleServiceChange(idx, "antes_img", p.antes);
-                                        handleServiceChange(idx, "despues_img", p.despues);
+                                        const updatedServices = [...(biz.servicios || [])];
+                                        updatedServices[idx] = {
+                                          ...updatedServices[idx],
+                                          modo_foto: "before_after",
+                                          antes_img: p.antes,
+                                          despues_img: p.despues,
+                                        };
+                                        setBiz({ ...biz, servicios: updatedServices });
                                       }}
                                       className="text-[10px] font-medium bg-neutral-900 hover:bg-neutral-800 text-neutral-300 hover:text-white border border-neutral-800 hover:border-neutral-600 px-2.5 py-1 rounded-lg transition-colors cursor-pointer"
                                     >
@@ -929,7 +974,7 @@ export default function AdminPage() {
                                   className="w-full bg-[#121212] border border-neutral-800 rounded-xl px-3 py-2 text-xs text-neutral-200 focus:outline-none focus:border-neutral-500 font-mono"
                                 />
 
-                                {srv.img && (
+                                {srv.img ? (
                                   <div className="aspect-[4/3] w-full rounded-xl overflow-hidden bg-neutral-950 border border-neutral-800 relative">
                                     {/* eslint-disable-next-line @next/next/no-img-element */}
                                     <img
@@ -940,7 +985,27 @@ export default function AdminPage() {
                                     <span className="absolute bottom-2 left-2 px-2 py-0.5 bg-black/80 backdrop-blur-sm text-[10px] font-bold text-neutral-200 rounded-md border border-neutral-700">
                                       FOTO FIJA
                                     </span>
+                                    <button
+                                      type="button"
+                                      onClick={() => handleServiceChange(idx, "img", "")}
+                                      className="absolute top-2 right-2 w-6 h-6 flex items-center justify-center rounded-md bg-black/75 hover:bg-red-500 text-white text-xs transition-colors cursor-pointer"
+                                      title="Quitar foto"
+                                    >
+                                      ✕
+                                    </button>
                                   </div>
+                                ) : (
+                                  <label className="aspect-[4/3] w-full rounded-xl border border-dashed border-neutral-700 hover:border-neutral-500 bg-neutral-950/60 flex flex-col items-center justify-center gap-1.5 cursor-pointer text-center p-4 transition-colors">
+                                    <span className="text-xl">📷</span>
+                                    <span className="text-xs font-semibold text-neutral-300">Subir Foto del Trabajo</span>
+                                    <span className="text-[10px] text-neutral-500">Tocá para elegir de tu galería o cámara</span>
+                                    <input
+                                      type="file"
+                                      accept="image/*"
+                                      className="hidden"
+                                      onChange={(e) => handleFileUpload(e, idx, "img")}
+                                    />
+                                  </label>
                                 )}
                               </div>
 
@@ -954,7 +1019,15 @@ export default function AdminPage() {
                                     <button
                                       key={p.label}
                                       type="button"
-                                      onClick={() => handleServiceChange(idx, "img", p.img)}
+                                      onClick={() => {
+                                        const updatedServices = [...(biz.servicios || [])];
+                                        updatedServices[idx] = {
+                                          ...updatedServices[idx],
+                                          modo_foto: "single",
+                                          img: p.img,
+                                        };
+                                        setBiz({ ...biz, servicios: updatedServices });
+                                      }}
                                       className="text-[10px] font-medium bg-neutral-900 hover:bg-neutral-800 text-neutral-300 hover:text-white border border-neutral-800 hover:border-neutral-600 px-2.5 py-1 rounded-lg transition-colors cursor-pointer"
                                     >
                                       {p.label}
