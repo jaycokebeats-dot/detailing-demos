@@ -3,7 +3,7 @@
 import { useEffect, useState, useCallback } from "react";
 import Landing from "@/components/Landing";
 import type { Business } from "@/data/business-helpers";
-import { getDemoBusiness } from "@/lib/supabase";
+import { getBusinessData, subscribeToBusiness, normalizeSlug } from "@/lib/supabase";
 
 export default function DemoClientLanding({ initialBiz }: { initialBiz: Business }) {
   const [biz, setBiz] = useState<Business>(initialBiz);
@@ -11,38 +11,59 @@ export default function DemoClientLanding({ initialBiz }: { initialBiz: Business
   const [hasAdminSession, setHasAdminSession] = useState(false);
   const [dismissed, setDismissed] = useState(false);
 
+  const slug = initialBiz.slug;
+  const isDemoSlug = slug === "demo" || slug === "taller-demo";
+
   const refreshData = useCallback(() => {
-    getDemoBusiness().then((data) => {
+    getBusinessData(slug).then((data) => {
       if (data) {
         setBiz(data);
       }
     });
-  }, []);
+  }, [slug]);
 
   useEffect(() => {
-    if (initialBiz.slug === "demo" || initialBiz.slug === "taller-demo") {
+    if (isDemoSlug) {
       setIsDemo(true);
       refreshData();
 
-      // Solo los administradores que ya iniciaron sesión en /admin verán este botón de acceso rápido
-      // Para cualquier cliente o visitante normal, está 100% oculto
+      // Solo administradores autenticados ven el botón flotante
       if (typeof window !== "undefined") {
         const isAuth = sessionStorage.getItem("black_line_admin_auth") === "true";
         setHasAdminSession(isAuth);
       }
 
-      // Escuchar cambios en vivo entre pestañas o foco de ventana
+      // Escuchar eventos en vivo locales (cambio de pestaña, foco, storage)
       window.addEventListener("storage", refreshData);
       window.addEventListener("focus", refreshData);
       window.addEventListener("black_line_demo_updated", refreshData);
+
+      // Suscripción en tiempo real a Supabase en la nube
+      const unsubscribe = subscribeToBusiness(slug, (newData) => {
+        if (newData) setBiz(newData);
+      });
 
       return () => {
         window.removeEventListener("storage", refreshData);
         window.removeEventListener("focus", refreshData);
         window.removeEventListener("black_line_demo_updated", refreshData);
+        if (unsubscribe) unsubscribe();
+      };
+    } else {
+      // Para otros talleres, intentar cargar si existe personalización en Supabase
+      getBusinessData(slug).then((data) => {
+        if (data) setBiz(data);
+      });
+
+      const unsubscribe = subscribeToBusiness(slug, (newData) => {
+        if (newData) setBiz(newData);
+      });
+
+      return () => {
+        if (unsubscribe) unsubscribe();
       };
     }
-  }, [initialBiz, refreshData]);
+  }, [slug, isDemoSlug, refreshData]);
 
   return (
     <>
@@ -61,8 +82,8 @@ export default function DemoClientLanding({ initialBiz }: { initialBiz: Business
           <button
             type="button"
             onClick={() => setDismissed(true)}
+            className="h-8 w-8 rounded-full bg-black/80 hover:bg-neutral-800 text-neutral-400 hover:text-white flex items-center justify-center border border-neutral-700/60 text-xs transition-colors cursor-pointer"
             title="Ocultar acceso rápido"
-            className="w-7 h-7 flex items-center justify-center rounded-full bg-neutral-900/90 hover:bg-neutral-800 text-neutral-400 hover:text-white border border-neutral-700 text-xs transition-colors cursor-pointer"
           >
             ✕
           </button>

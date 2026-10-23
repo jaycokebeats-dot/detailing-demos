@@ -2,67 +2,112 @@ import { createClient } from "@supabase/supabase-js";
 import type { Business } from "@/data/business-helpers";
 import { DEFAULT_DEMO_BUSINESS } from "@/data/demo-business";
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
+const supabaseUrl =
+  process.env.NEXT_PUBLIC_SUPABASE_URL ||
+  "https://sliqwmfzklqwjrxywndl.supabase.co";
 
-export const supabase = (supabaseUrl && supabaseAnonKey)
-  ? createClient(supabaseUrl, supabaseAnonKey)
-  : null;
+const supabaseAnonKey =
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNsaXF3bWZ6a2xxd2pyeHl3bmRsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI3OTU3MjMsImV4cCI6MjEwODM3MTcyM30.ZIfSCplqA6s0pDeG1BgDAr2hLz0NkYkkTmyvkkUVmb0";
 
-const DEMO_STORAGE_KEY = "black_line_demo_business_data_v1";
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-export async function getDemoBusiness(): Promise<Business> {
-  // 1. Intentar desde Supabase si está configurado
+export function normalizeSlug(slug: string): string {
+  const s = (slug || "").toLowerCase().trim();
+  if (s === "taller-demo" || s === "demo") return "demo";
+  return s;
+}
+
+export function getStorageKey(slug: string): string {
+  return `black_line_biz_data_${normalizeSlug(slug)}_v1`;
+}
+
+/**
+ * Obtener datos de un taller por su slug (Supabase -> LocalStorage -> Fallback)
+ */
+export async function getBusinessData(slug: string = "demo"): Promise<Business | null> {
+  const normSlug = normalizeSlug(slug);
+
+  // 1. Intentar desde Supabase en la nube
   if (supabase) {
     try {
       const { data, error } = await supabase
         .from("businesses")
         .select("data")
-        .eq("slug", "demo")
+        .eq("slug", normSlug)
         .single();
 
-      if (!error && data?.data) {
+      if (!error && data?.data && typeof data.data === "object" && (data.data as Business).nombre) {
         return data.data as Business;
       }
     } catch (e) {
-      console.warn("Error leyendo de Supabase, usando fallback local:", e);
+      console.warn(`[Supabase] Error leyendo slug "${normSlug}":`, e);
     }
   }
 
-  // 2. Fallback a localStorage en cliente
+  // 2. Fallback a localStorage local del navegador
   if (typeof window !== "undefined") {
     try {
-      const local = localStorage.getItem(DEMO_STORAGE_KEY);
+      const local = localStorage.getItem(getStorageKey(normSlug));
       if (local) {
         return JSON.parse(local) as Business;
       }
+      // Chequear legacy key para demo
+      if (normSlug === "demo") {
+        const legacy = localStorage.getItem("black_line_demo_business_data_v1");
+        if (legacy) return JSON.parse(legacy) as Business;
+      }
     } catch (e) {
-      console.warn("Error leyendo localStorage:", e);
+      console.warn("[Storage] Error leyendo local:", e);
     }
   }
 
-  return DEFAULT_DEMO_BUSINESS;
+  if (normSlug === "demo") {
+    return DEFAULT_DEMO_BUSINESS;
+  }
+
+  return null;
 }
 
-export async function saveDemoBusiness(updated: Business): Promise<{ success: boolean; error?: string }> {
-  // Guardar en localStorage siempre para respuesta instantánea en navegador
+/**
+ * Guardar datos de un taller en Supabase y sincronizar en navegador
+ */
+export async function saveBusinessData(
+  slug: string = "demo",
+  updated: Business
+): Promise<{ success: boolean; error?: string }> {
+  const normSlug = normalizeSlug(slug);
+
+  // 1. Guardar en localStorage para feedback visual instantáneo
   if (typeof window !== "undefined") {
     try {
-      localStorage.setItem(DEMO_STORAGE_KEY, JSON.stringify(updated));
+      localStorage.setItem(getStorageKey(normSlug), JSON.stringify(updated));
+      if (normSlug === "demo") {
+        localStorage.setItem("black_line_demo_business_data_v1", JSON.stringify(updated));
+      }
       window.dispatchEvent(new Event("black_line_demo_updated"));
+      window.dispatchEvent(new CustomEvent("black_line_biz_updated", { detail: { slug: normSlug } }));
     } catch (e) {
-      console.warn("Error guardando en localStorage:", e);
+      console.warn("[Storage] Error guardando local:", e);
     }
   }
 
-  // Guardar en Supabase si el cliente está conectado
+  // 2. Guardar en Supabase persistente en la nube
   if (supabase) {
     try {
       const { error } = await supabase
         .from("businesses")
-        .upsert({ slug: "demo", data: updated, updated_at: new Date().toISOString() }, { onConflict: "slug" });
+        .upsert(
+          {
+            slug: normSlug,
+            data: updated,
+            updated_at: new Date().toISOString(),
+          },
+          { onConflict: "slug" }
+        );
 
       if (error) {
+        console.error("[Supabase] Error en upsert:", error);
         return { success: false, error: error.message };
       }
     } catch (e: any) {
@@ -73,16 +118,61 @@ export async function saveDemoBusiness(updated: Business): Promise<{ success: bo
   return { success: true };
 }
 
-export async function resetDemoBusiness(): Promise<void> {
+/**
+ * Restablecer datos a los originales
+ */
+export async function resetBusinessData(slug: string = "demo"): Promise<void> {
+  const normSlug = normalizeSlug(slug);
   if (typeof window !== "undefined") {
-    localStorage.removeItem(DEMO_STORAGE_KEY);
+    localStorage.removeItem(getStorageKey(normSlug));
+    if (normSlug === "demo") {
+      localStorage.removeItem("black_line_demo_business_data_v1");
+    }
     window.dispatchEvent(new Event("black_line_demo_updated"));
   }
   if (supabase) {
     try {
-      await supabase.from("businesses").delete().eq("slug", "demo");
+      await supabase.from("businesses").delete().eq("slug", normSlug);
     } catch (e) {
-      console.warn("Error al borrar en Supabase:", e);
+      console.warn("[Supabase] Error borrando slug:", e);
     }
   }
 }
+
+/**
+ * Suscripción en Tiempo Real a cambios en Supabase
+ */
+export function subscribeToBusiness(
+  slug: string,
+  callback: (data: Business) => void
+): (() => void) | null {
+  if (!supabase) return null;
+  const normSlug = normalizeSlug(slug);
+
+  const channel = supabase
+    .channel(`realtime-biz-${normSlug}`)
+    .on(
+      "postgres_changes",
+      {
+        event: "*",
+        schema: "public",
+        table: "businesses",
+        filter: `slug=eq.${normSlug}`,
+      },
+      (payload) => {
+        if (payload.new && (payload.new as any).data) {
+          callback((payload.new as any).data as Business);
+        }
+      }
+    )
+    .subscribe();
+
+  return () => {
+    supabase.removeChannel(channel);
+  };
+}
+
+// Helpers retrocompatibles para no romper nada existente
+export const getDemoBusiness = () => getBusinessData("demo").then((b) => b || DEFAULT_DEMO_BUSINESS);
+export const saveDemoBusiness = (updated: Business) => saveBusinessData("demo", updated);
+export const resetDemoBusiness = () => resetBusinessData("demo");

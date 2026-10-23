@@ -193,7 +193,7 @@ export default function AdminPage() {
     setSaving(false);
 
     if (res.success) {
-      showToast("✨ ¡Cambios guardados con éxito! Los datos ya se actualizaron en la web.");
+      showToast("✨ ¡Cambios guardados con éxito en Supabase! Ya se actualizaron en vivo en la web para todos.");
     } else {
       showToast(`⚠️ Error al guardar: ${res.error || "No se pudo actualizar"}`);
     }
@@ -369,6 +369,10 @@ export default function AdminPage() {
                 </h1>
                 <span className="text-[10px] font-bold bg-neutral-800 text-neutral-300 border border-neutral-700 px-2 py-0.5 rounded-full uppercase tracking-wider">
                   Panel Demo
+                </span>
+                <span className="hidden sm:inline-flex items-center gap-1.5 text-[10px] font-semibold bg-emerald-950/60 text-emerald-400 border border-emerald-800/50 px-2.5 py-0.5 rounded-full">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  Nube Supabase Conectada
                 </span>
               </div>
               <p className="text-[11px] text-neutral-400">Autogestión de Taller en Vivo</p>
