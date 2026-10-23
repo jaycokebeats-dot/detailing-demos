@@ -3,7 +3,6 @@ import type { Business } from "./business-helpers";
 export const DEFAULT_DEMO_BUSINESS: Business = {
   slug: "demo",
   nombre: "Demo Detail Studio",
-  nombreCorto: "Demo Detail",
   telefono: "+54 9 11 5555-8888",
   whatsapp: "5491155558888",
   instagram: "demodetailstudio",

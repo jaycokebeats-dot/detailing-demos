@@ -61,8 +61,10 @@ const PRESETS_SINGLE = [
 ];
 
 /**
- * Optimiza y comprime fotos locales (del celular o PC) a JPEG 1200px máx
- * para garantizar carga ultra-rápida y almacenamiento fluido sin errores de cuota.
+ * Normaliza y comprime fotos locales (del celular o PC) a proporción estándar 4:3 (1200x900).
+ * - Si es horizontal: encuadre suave centrado a 4:3 para llenar la tarjeta sin zoom desmedido.
+ * - Si es vertical o cuadrada: centra la foto completa con un fondo ambiental difuminado suave
+ *   para que NUNCA se corte la pieza ni se vea rara con exceso de zoom.
  */
 function resizeAndCompressImage(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -70,34 +72,60 @@ function resizeAndCompressImage(file: File): Promise<string> {
     reader.onload = (e) => {
       const img = new Image();
       img.onload = () => {
-        const MAX_WIDTH = 1200;
-        const MAX_HEIGHT = 1200;
-        let width = img.width;
-        let height = img.height;
-
-        if (width > height) {
-          if (width > MAX_WIDTH) {
-            height = Math.round((height * MAX_WIDTH) / width);
-            width = MAX_WIDTH;
-          }
-        } else {
-          if (height > MAX_HEIGHT) {
-            width = Math.round((width * MAX_HEIGHT) / height);
-            height = MAX_HEIGHT;
-          }
-        }
+        const TARGET_WIDTH = 1200;
+        const TARGET_HEIGHT = 900;
+        const TARGET_RATIO = TARGET_WIDTH / TARGET_HEIGHT; // 4:3 = 1.3333
+        const imgRatio = img.width / img.height;
 
         const canvas = document.createElement("canvas");
-        canvas.width = width;
-        canvas.height = height;
+        canvas.width = TARGET_WIDTH;
+        canvas.height = TARGET_HEIGHT;
         const ctx = canvas.getContext("2d");
         if (!ctx) {
           resolve(e.target?.result as string);
           return;
         }
-        ctx.drawImage(img, 0, 0, width, height);
-        // Calidad 0.82 JPEG (ultra nítido y liviano: ~100-150KB)
-        const dataUrl = canvas.toDataURL("image/jpeg", 0.82);
+
+        // Caso 1: Foto horizontal (landscape >= 1.15)
+        if (imgRatio >= 1.15) {
+          let renderW, renderH, offsetX, offsetY;
+          if (imgRatio > TARGET_RATIO) {
+            renderH = TARGET_HEIGHT;
+            renderW = img.width * (TARGET_HEIGHT / img.height);
+            offsetX = (TARGET_WIDTH - renderW) / 2;
+            offsetY = 0;
+          } else {
+            renderW = TARGET_WIDTH;
+            renderH = img.height * (TARGET_WIDTH / img.width);
+            offsetX = 0;
+            offsetY = (TARGET_HEIGHT - renderH) / 2;
+          }
+          ctx.drawImage(img, offsetX, offsetY, renderW, renderH);
+        } else {
+          // Caso 2: Foto vertical o cuadrada (alargada)
+          // 1. Fondo oscuro
+          ctx.fillStyle = "#0c0c0c";
+          ctx.fillRect(0, 0, TARGET_WIDTH, TARGET_HEIGHT);
+
+          // 2. Fondo difuminado ambiental de la misma foto para evitar franjas negras duras
+          ctx.save();
+          ctx.filter = "blur(28px) brightness(0.35)";
+          const bgScale = Math.max(TARGET_WIDTH / img.width, TARGET_HEIGHT / img.height);
+          const bgW = img.width * bgScale;
+          const bgH = img.height * bgScale;
+          ctx.drawImage(img, (TARGET_WIDTH - bgW) / 2, (TARGET_HEIGHT - bgH) / 2, bgW, bgH);
+          ctx.restore();
+
+          // 3. Foto vertical completa centrada y nítida (100% visible, sin zoom exagerado)
+          const scale = TARGET_HEIGHT / img.height;
+          const fitW = img.width * scale;
+          const fitH = TARGET_HEIGHT;
+          const fitX = (TARGET_WIDTH - fitW) / 2;
+          ctx.drawImage(img, fitX, 0, fitW, fitH);
+        }
+
+        // Calidad 0.84 JPEG (~120KB ultra nítido y liviano)
+        const dataUrl = canvas.toDataURL("image/jpeg", 0.84);
         resolve(dataUrl);
       };
       img.onerror = () => resolve(e.target?.result as string);
@@ -114,7 +142,8 @@ export default function AdminPage() {
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
 
-  const [activeTab, setActiveTab] = useState<"general" | "services">("services");
+  // Pestaña inicial por defecto: Datos del Taller (general)
+  const [activeTab, setActiveTab] = useState<"general" | "services">("general");
   const [biz, setBiz] = useState<Business>(DEFAULT_DEMO_BUSINESS);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -195,6 +224,7 @@ export default function AdminPage() {
       destacado: false,
       proteccion: "Garantía Oficial de Calidad",
       img: "/servicios/exterior.jpg",
+      foto_fit: "cover",
     };
     setBiz({ ...biz, servicios: [...(biz.servicios || []), newService] });
   };
@@ -206,7 +236,7 @@ export default function AdminPage() {
     }
   };
 
-  // Subir imagen local comprimida
+  // Subir imagen local auto-normalizada a 4:3
   const handleFileUpload = async (
     e: React.ChangeEvent<HTMLInputElement>,
     index: number,
@@ -218,7 +248,7 @@ export default function AdminPage() {
     try {
       const optimizedDataUrl = await resizeAndCompressImage(file);
       handleServiceChange(index, field, optimizedDataUrl);
-      showToast("📷 Foto cargada y optimizada con éxito.");
+      showToast("📷 Foto optimizada y encuadrada con éxito.");
     } catch (err) {
       alert("Error al procesar la imagen. Intentá con otra foto.");
     }
@@ -243,7 +273,7 @@ export default function AdminPage() {
     }
   };
 
-  // --- VISTA DE LOGIN (Estilo Luxury Monocromático en Gris y Grafito) ---
+  // --- VISTA DE LOGIN ---
   if (!isAuthenticated) {
     return (
       <main className="min-h-screen bg-[#0a0a0a] text-neutral-100 flex items-center justify-center p-4">
@@ -424,19 +454,25 @@ export default function AdminPage() {
                     <span>Información Principal de tu Negocio</span>
                   </h2>
                   <p className="text-xs text-neutral-400 mt-1">
-                    Estos datos se muestran en la cabecera, pie de página y botones de contacto de toda tu web.
+                    Estos datos se muestran en la cabecera (logo superior), pie de página y botones de contacto de toda tu web.
                   </p>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div className="sm:col-span-2">
                     <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
-                      Nombre Comercial del Taller
+                      Nombre Comercial del Taller (Actualiza el título y el logo superior)
                     </label>
                     <input
                       type="text"
                       value={biz.nombre}
-                      onChange={(e) => setBiz({ ...biz, nombre: e.target.value })}
+                      onChange={(e) =>
+                        setBiz({
+                          ...biz,
+                          nombre: e.target.value,
+                          nombreCorto: e.target.value,
+                        })
+                      }
                       placeholder="Ej: Black Line Detail Studio"
                       className="w-full bg-[#0a0a0a] border border-neutral-800 rounded-xl px-4 py-3 text-sm text-neutral-100 focus:outline-none focus:border-neutral-500"
                     />
@@ -575,6 +611,7 @@ export default function AdminPage() {
                 <div className="grid grid-cols-1 gap-6">
                   {(biz.servicios || []).map((srv, idx) => {
                     const isBeforeAfter = Boolean(srv.antes_img && srv.despues_img);
+                    const fitMode = srv.foto_fit || "cover";
 
                     return (
                       <div
@@ -683,19 +720,19 @@ export default function AdminPage() {
                           </div>
                         </div>
 
-                        {/* SELECTOR DE FORMATO DE FOTO (Requerimiento Clave) */}
+                        {/* SELECTOR DE FORMATO Y ENCUADRE DE FOTO */}
                         <div className="bg-[#0b0b0b] border border-neutral-800/80 rounded-2xl p-4 sm:p-5 space-y-4">
-                          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-neutral-800/60">
                             <div>
                               <span className="text-xs font-bold text-neutral-200 uppercase tracking-wider">
                                 📸 Formato de Fotografía del Servicio
                               </span>
                               <p className="text-[11px] text-neutral-400">
-                                Elegí si querés slider comparativo de 2 fotos o una sola foto de alta calidad.
+                                Las fotos subidas se encuadran automáticamente en 4:3 para evitar cortes o zoom deforme.
                               </p>
                             </div>
 
-                            {/* Switch de modo en Gris / Monocromático */}
+                            {/* Switch de modo Antes/Después vs Foto Única */}
                             <div className="inline-flex rounded-xl bg-neutral-900 p-1 border border-neutral-800 self-start sm:self-auto">
                               <button
                                 type="button"
@@ -718,6 +755,39 @@ export default function AdminPage() {
                                 }`}
                               >
                                 🖼️ Foto Única (1 foto)
+                              </button>
+                            </div>
+                          </div>
+
+                          {/* Control de Encuadre (Cover vs Contain con fondo difuminado) */}
+                          <div className="flex flex-wrap items-center justify-between gap-2 pt-1 text-xs">
+                            <span className="text-neutral-400 text-[11px]">
+                              📐 Modo de encuadre en la tarjeta:
+                            </span>
+                            <div className="inline-flex rounded-lg bg-neutral-900 p-0.5 border border-neutral-800">
+                              <button
+                                type="button"
+                                onClick={() => handleServiceChange(idx, "foto_fit", "cover")}
+                                className={`px-2.5 py-1 rounded-md text-[11px] font-semibold transition-all cursor-pointer ${
+                                  fitMode === "cover"
+                                    ? "bg-neutral-800 text-white shadow-sm"
+                                    : "text-neutral-400 hover:text-white"
+                                }`}
+                                title="Ideal para fotos horizontales de autos"
+                              >
+                                🔲 Llenar marco (Horizontal)
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => handleServiceChange(idx, "foto_fit", "contain")}
+                                className={`px-2.5 py-1 rounded-md text-[11px] font-semibold transition-all cursor-pointer ${
+                                  fitMode === "contain"
+                                    ? "bg-neutral-800 text-white shadow-sm"
+                                    : "text-neutral-400 hover:text-white"
+                                }`}
+                                title="Ideal para fotos verticales tomadas con celular o piezas alargadas (asientos, volantes)"
+                              >
+                                ↕️ Foto completa (Vertical / Alargada)
                               </button>
                             </div>
                           </div>
@@ -753,12 +823,12 @@ export default function AdminPage() {
                                   />
 
                                   {srv.antes_img && (
-                                    <div className="aspect-video w-full rounded-xl overflow-hidden bg-neutral-950 border border-neutral-800 relative group">
+                                    <div className="aspect-[4/3] w-full rounded-xl overflow-hidden bg-neutral-950 border border-neutral-800 relative group">
                                       {/* eslint-disable-next-line @next/next/no-img-element */}
                                       <img
                                         src={srv.antes_img}
                                         alt="Preview Antes"
-                                        className="w-full h-full object-cover"
+                                        className={`w-full h-full ${fitMode === "contain" ? "object-contain" : "object-cover"}`}
                                       />
                                       <span className="absolute bottom-2 left-2 px-2 py-0.5 bg-black/80 backdrop-blur-sm text-[10px] font-bold text-red-300 rounded-md border border-red-500/30">
                                         ANTES
@@ -794,12 +864,12 @@ export default function AdminPage() {
                                   />
 
                                   {srv.despues_img && (
-                                    <div className="aspect-video w-full rounded-xl overflow-hidden bg-neutral-950 border border-neutral-800 relative group">
+                                    <div className="aspect-[4/3] w-full rounded-xl overflow-hidden bg-neutral-950 border border-neutral-800 relative group">
                                       {/* eslint-disable-next-line @next/next/no-img-element */}
                                       <img
                                         src={srv.despues_img}
                                         alt="Preview Después"
-                                        className="w-full h-full object-cover"
+                                        className={`w-full h-full ${fitMode === "contain" ? "object-contain" : "object-cover"}`}
                                       />
                                       <span className="absolute bottom-2 left-2 px-2 py-0.5 bg-black/80 backdrop-blur-sm text-[10px] font-bold text-emerald-300 rounded-md border border-emerald-500/30">
                                         DESPUÉS
@@ -860,12 +930,12 @@ export default function AdminPage() {
                                 />
 
                                 {srv.img && (
-                                  <div className="aspect-video w-full rounded-xl overflow-hidden bg-neutral-950 border border-neutral-800 relative">
+                                  <div className="aspect-[4/3] w-full rounded-xl overflow-hidden bg-neutral-950 border border-neutral-800 relative">
                                     {/* eslint-disable-next-line @next/next/no-img-element */}
                                     <img
                                       src={srv.img}
                                       alt="Preview Foto Única"
-                                      className="w-full h-full object-cover"
+                                      className={`w-full h-full ${fitMode === "contain" ? "object-contain" : "object-cover"}`}
                                     />
                                     <span className="absolute bottom-2 left-2 px-2 py-0.5 bg-black/80 backdrop-blur-sm text-[10px] font-bold text-neutral-200 rounded-md border border-neutral-700">
                                       FOTO FIJA

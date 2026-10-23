@@ -124,7 +124,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
     video.play().catch(() => {});
   }, []);
 
-  const [primeraPalabra, ...restoNombre] = (biz.nombreCorto ?? biz.nombre).toUpperCase().split(" ");
+  const [primeraPalabra, ...restoNombre] = (biz.nombre || "").trim().toUpperCase().split(" ");
   const nombreResto = restoNombre.join(" ");
 
   const msgPresupuesto = `Hola! Quisiera pedir información o presupuesto para mi auto en ${biz.nombre}.`;
@@ -333,10 +333,26 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
                     {isPpfColor ? (
                       <PpfColorVisualizer biz={biz} />
                     ) : s.antes_img && s.despues_img ? (
-                      <CompareSlider before={s.antes_img} after={s.despues_img} alt={s.nombre} real />
+                      <CompareSlider before={s.antes_img} after={s.despues_img} alt={s.nombre} real fit={s.foto_fit} />
                     ) : (
                       /* eslint-disable-next-line @next/next/no-img-element */
-                      <img src={s.img || imgSource} alt={s.nombre} className="w-full h-full object-cover" />
+                      <div className="relative w-full h-full bg-[#0d0d0d] overflow-hidden">
+                        {s.foto_fit === "contain" && (
+                          /* eslint-disable-next-line @next/next/no-img-element */
+                          <img
+                            src={s.img || imgSource}
+                            alt=""
+                            aria-hidden
+                            className="absolute inset-0 w-full h-full object-cover blur-2xl opacity-35 scale-110 pointer-events-none"
+                          />
+                        )}
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={s.img || imgSource}
+                          alt={s.nombre}
+                          className={`w-full h-full relative z-10 ${s.foto_fit === "contain" ? "object-contain" : "object-cover"}`}
+                        />
+                      </div>
                     )}
                     {s.proteccion && !isPpfColor && (
                       <div

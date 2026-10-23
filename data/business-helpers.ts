@@ -9,6 +9,7 @@ export type ServiceItem = {
   antes_img?: string;
   despues_img?: string;
   proteccion?: string;
+  foto_fit?: "cover" | "contain";
 };
 
 export type Business = {
