@@ -21,8 +21,20 @@ if (fs.existsSync(localPath)) {
 
 import { DEFAULT_DEMO_BUSINESS } from "./demo-business";
 import { BORGES_BUSINESS } from "./borges-data";
+import { JDS_DETAILING_BUSINESS } from "./jds-data";
 
-const rawList: Business[] = [DEFAULT_DEMO_BUSINESS, BORGES_BUSINESS, ...raw];
+const JDS_ALIAS: Business = {
+  ...JDS_DETAILING_BUSINESS,
+  slug: "jds-detailing-car-estudio",
+};
+
+const rawList: Business[] = [
+  DEFAULT_DEMO_BUSINESS,
+  BORGES_BUSINESS,
+  JDS_DETAILING_BUSINESS,
+  JDS_ALIAS,
+  ...raw,
+];
 const businessesMap = new Map<string, Business>();
 
 for (const b of rawList) {
@@ -40,7 +52,6 @@ export function getAllBusinesses(): Business[] {
 export function getBusiness(slug: string): Business | undefined {
   if (slug === "demo") return DEFAULT_DEMO_BUSINESS;
   if (slug === "borges-ppf-y-detailing") return BORGES_BUSINESS;
+  if (slug === "jds-detailing" || slug === "jds-detailing-car-estudio") return JDS_DETAILING_BUSINESS;
   return businessesMap.get(slug);
 }
-
-
