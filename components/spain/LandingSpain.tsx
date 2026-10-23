@@ -209,11 +209,11 @@ export default function LandingSpain({ biz }: { biz: Business }) {
             muted
             loop
             playsInline
-            className="absolute inset-0 w-full h-full object-cover opacity-50 contrast-110 pointer-events-none"
+            className="absolute inset-0 w-full h-full object-cover opacity-65 contrast-105 pointer-events-none"
             src={biz.video_hero ?? "/videos/hero-compilado-blanco.mp4"}
           />
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/80" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/70" />
 
         <div className="relative z-10 max-w-6xl mx-auto w-full h-full flex items-center justify-center">
           <div className="max-w-2xl text-center space-y-5 mx-auto py-12 lg:py-8">
