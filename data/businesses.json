@@ -59842,5 +59842,20 @@
     "maps_url": "https://www.google.com/maps/search/?api=1&query=DeluxeDetailing&query_place_id=ChIJQ4849Ez70YURnDZF2OR0gVM",
     "pais": "MX",
     "template": "mexico"
+  },
+  {
+    "slug": "zeus-car-detailing",
+    "nombre": "Zeus Car Detailing",
+    "ciudad": "Murcia",
+    "direccion": "España, Murcia",
+    "telefono": "+34 622 94 63 64",
+    "whatsapp": "34622946364",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 76,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Zeus+Car+Detailing/data=!4m7!3m6!1s0xd6383873420edb1:0x9c8f68089493bef2!8m2!3d37.9570644!4d-1.2065214!16s%2Fg%2F11vt621pqk!19sChIJse0gNIeDYw0R8r6TlAhoj5w?authuser=0&hl=es&g_ep=EgoyMDI2MTAxOS4wIJJjKgBIAVAD&rclk=1",
+    "pais": "ES",
+    "template": "spain"
   }
 ]
