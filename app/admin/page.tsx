@@ -585,6 +585,18 @@ export default function AdminPage() {
               <span>Copiar Acceso</span>
             </button>
 
+            {/* Acceso directo a la App de Presupuestos */}
+            <a
+              href={`/presupuesto?taller=${currentSlug}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 hover:border-neutral-500 text-neutral-200 hover:text-white text-xs font-bold px-3 py-2 rounded-xl transition-all flex items-center gap-1.5 shadow-sm"
+              title="Abrir App de Presupuestos para este taller"
+            >
+              <span>🧾</span>
+              <span className="hidden sm:inline">Presupuestador</span>
+            </a>
+
             {/* Botón rápido Guardar arriba en el header */}
             <button
               type="button"
