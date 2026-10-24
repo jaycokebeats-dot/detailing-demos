@@ -36,11 +36,17 @@ export async function getBusinessData(slug: string = "demo"): Promise<Business |
   // 1. Intentar desde Supabase en la nube
   if (supabase) {
     try {
+      const candidateSlugs = [normSlug];
+      if (normSlug === "the-zone-car-autospa-detailing" || normSlug === "thezone") {
+        candidateSlugs.push("the-zone-car-autospa-detailing", "thezone");
+      }
       const { data, error } = await supabase
         .from("businesses")
         .select("data")
-        .eq("slug", normSlug)
-        .single();
+        .in("slug", Array.from(new Set(candidateSlugs)))
+        .order("updated_at", { ascending: false })
+        .limit(1)
+        .maybeSingle();
 
       if (!error && data?.data && typeof data.data === "object" && (data.data as Business).nombre) {
         return data.data as Business;
@@ -100,16 +106,25 @@ export async function saveBusinessData(
   // 2. Guardar en Supabase persistente en la nube
   if (supabase) {
     try {
-      const { error } = await supabase
-        .from("businesses")
-        .upsert(
-          {
-            slug: normSlug,
-            data: updated,
-            updated_at: new Date().toISOString(),
-          },
-          { onConflict: "slug" }
-        );
+      const slugsToSave = [normSlug];
+      if (normSlug === "the-zone-car-autospa-detailing" || normSlug === "thezone") {
+        slugsToSave.push("the-zone-car-autospa-detailing", "thezone");
+      }
+      let saveError: any = null;
+      for (const s of Array.from(new Set(slugsToSave))) {
+        const { error } = await supabase
+          .from("businesses")
+          .upsert(
+            {
+              slug: s,
+              data: updated,
+              updated_at: new Date().toISOString(),
+            },
+            { onConflict: "slug" }
+          );
+        if (error) saveError = error;
+      }
+      const error = saveError;
 
       if (error) {
         console.error("[Supabase] Error en upsert:", error);
@@ -137,7 +152,11 @@ export async function resetBusinessData(slug: string = "demo"): Promise<void> {
   }
   if (supabase) {
     try {
-      await supabase.from("businesses").delete().eq("slug", normSlug);
+      const slugsToDelete = [normSlug];
+      if (normSlug === "the-zone-car-autospa-detailing" || normSlug === "thezone") {
+        slugsToDelete.push("the-zone-car-autospa-detailing", "thezone");
+      }
+      await supabase.from("businesses").delete().in("slug", Array.from(new Set(slugsToDelete)));
     } catch (e) {
       console.warn("[Supabase] Error borrando slug:", e);
     }
