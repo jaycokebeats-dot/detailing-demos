@@ -3,25 +3,26 @@ import { notFound } from "next/navigation";
 import Landing from "@/components/Landing";
 import DemoClientLanding from "@/components/DemoClientLanding";
 import { getAllBusinesses, getBusiness } from "@/data/businesses";
+import { getBusinessData } from "@/lib/supabase";
 
 const HIDDEN_SLUGS = new Set<string>([
   "ec-detail-estetica-vehicular",
   "auto-detail-camino-real",
 ]);
 
-export const dynamicParams = true;
-
-// Render paths dynamically on-demand to ensure instant 1-second Vercel builds without timeouts.
-export function generateStaticParams() {
-  return [];
-}
+// Forzar renderizado en el servidor dinámico para que siempre sirva los datos actualizados de Supabase
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+export const fetchCache = "force-no-store";
 
 type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   if (HIDDEN_SLUGS.has(slug)) return {};
-  const biz = getBusiness(slug);
+  const staticBiz = getBusiness(slug);
+  const cloudBiz = await getBusinessData(slug);
+  const biz = cloudBiz || staticBiz;
   if (!biz) return {};
   const isSpain = biz.pais === "ES" || biz.template === "spain";
   const isMexico = biz.pais === "MX" || biz.template === "mexico";
@@ -78,8 +79,14 @@ function pixelScript(slug: string): string {
 export default async function BusinessPage({ params }: Props) {
   const { slug } = await params;
   if (HIDDEN_SLUGS.has(slug)) notFound();
-  const biz = getBusiness(slug);
+  const staticBiz = getBusiness(slug);
+  if (!staticBiz && slug !== "demo" && slug !== "taller-demo") notFound();
+
+  // Obtener los datos personalizados de Supabase en el servidor (elimina el parpadeo en F5)
+  const cloudBiz = await getBusinessData(slug);
+  const biz = cloudBiz || staticBiz;
   if (!biz) notFound();
+
   return (
     <>
       <DemoClientLanding initialBiz={biz} />
@@ -87,4 +94,3 @@ export default async function BusinessPage({ params }: Props) {
     </>
   );
 }
-

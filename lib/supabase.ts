@@ -10,7 +10,11 @@ const supabaseAnonKey =
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNsaXF3bWZ6a2xxd2pyeHl3bmRsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI3OTU3MjMsImV4cCI6MjEwODM3MTcyM30.ZIfSCplqA6s0pDeG1BgDAr2hLz0NkYkkTmyvkkUVmb0";
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+  global: {
+    fetch: (url, options = {}) => fetch(url, { ...options, cache: "no-store" }),
+  },
+});
 
 export function normalizeSlug(slug: string): string {
   const s = (slug || "").toLowerCase().trim();
@@ -62,7 +66,7 @@ export async function getBusinessData(slug: string = "demo"): Promise<Business |
     }
   }
 
-  if (normSlug === "demo") {
+  if (normSlug === "demo" && slug !== "taller-demo") {
     return DEFAULT_DEMO_BUSINESS;
   }
 
