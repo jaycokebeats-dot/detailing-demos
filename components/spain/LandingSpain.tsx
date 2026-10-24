@@ -124,8 +124,9 @@ export default function LandingSpain({ biz }: { biz: Business }) {
     video.play().catch(() => {});
   }, []);
 
-  const [primeraPalabra, ...restoNombre] = (biz.nombreCorto ?? biz.nombre).toUpperCase().split(" ");
-  const nombreResto = restoNombre.join(" ");
+  const brandParts = (biz.nombre || "").trim().toUpperCase().split(" ");
+  const primeraPalabra = brandParts[0] || "";
+  const nombreResto = brandParts.slice(1).join(" ");
 
   const msgPresupuesto = `Hola! Quisiera pedir información o presupuesto para mi coche en ${biz.nombre}.`;
   const msgFotos = `Hola! Os envío unas fotos de mi coche para que me asesoréis sobre qué tratamiento le vendría mejor en ${biz.nombre}.`;
@@ -317,26 +318,38 @@ export default function LandingSpain({ biz }: { biz: Business }) {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-            {SERVICIOS_ESPANA.map((s) => {
+          <div className="flex flex-wrap justify-center gap-6 max-w-7xl mx-auto">
+            {((biz.servicios && biz.servicios.length > 0) ? biz.servicios : SERVICIOS_ESPANA).map((s, idx) => {
               const reservaMsg = `Hola! Me gustaría pedir información o presupuesto para el servicio: ${s.nombre} en ${biz.nombre}.`;
               const imgSource = s.img ?? "/servicios/exterior.jpg";
               const isPpfColor = s.nombre.toLowerCase().includes("ppf color");
 
               return (
                 <div
-                  key={s.nombre}
-                  className="product-card rounded-[24px] overflow-hidden flex flex-col relative border border-white/10 hover:border-white/25 transition w-full h-full justify-between"
+                  key={`${s.nombre}-${idx}`}
+                  className="product-card rounded-[24px] overflow-hidden flex flex-col relative border border-white/10 hover:border-white/25 transition w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] max-w-md justify-between"
                   style={{ background: "#101010" }}
                 >
                   <div className="aspect-[4/3] overflow-hidden relative" style={{ background: "#141414" }}>
                     {isPpfColor ? (
                       <PpfColorVisualizer biz={biz} />
-                    ) : s.antes_img && s.despues_img ? (
-                      <CompareSlider before={s.antes_img} after={s.despues_img} alt={s.nombre} real />
+                    ) : (s.modo_foto === "before_after" ? (s.antes_img || s.despues_img) : (s.antes_img && s.despues_img)) ? (
+                      <CompareSlider before={s.antes_img || s.despues_img || imgSource} after={s.despues_img || s.antes_img || imgSource} alt={s.nombre} real fit={s.foto_fit} />
                     ) : (
                       /* eslint-disable-next-line @next/next/no-img-element */
-                      <img src={imgSource} alt={s.nombre} className="w-full h-full object-cover" />
+                      <div className="relative w-full h-full bg-[#0d0d0d] overflow-hidden">
+                        {s.foto_fit === "contain" && (
+                          <div
+                            className="absolute inset-0 bg-cover bg-center filter blur-md opacity-35 scale-110"
+                            style={{ backgroundImage: `url(${imgSource})` }}
+                          />
+                        )}
+                        <img
+                          src={imgSource}
+                          alt={s.nombre}
+                          className={`relative w-full h-full ${s.foto_fit === "contain" ? "object-contain p-2" : "object-cover"}`}
+                        />
+                      </div>
                     )}
                     {s.proteccion && !isPpfColor && (
                       <div
