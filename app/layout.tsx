@@ -81,7 +81,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="es" className="scroll-smooth">
-      <body className={`${archivo.className} ${syne.variable} bg-[#010101] text-slate-300 antialiased`}>
+      <body className={`${archivo.className} ${archivo.variable} ${syne.variable} bg-[#010101] text-slate-300 antialiased`}>
         {children}
       </body>
     </html>

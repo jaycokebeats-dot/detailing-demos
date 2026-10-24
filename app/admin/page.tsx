@@ -281,9 +281,16 @@ export default function AdminPage() {
             <span className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-neutral-900/90 text-neutral-300 text-xs sm:text-sm font-semibold rounded-full border border-neutral-700/80 mb-4 shadow-sm">
               <span className="text-amber-400">⚡</span> Black Line Studio
             </span>
-            <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white mb-2.5">
+            <div
+              className="text-2xl sm:text-3xl font-black text-white tracking-normal mb-3"
+              style={{
+                fontFamily: "var(--font-soehne), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+                textTransform: "none",
+                letterSpacing: "-0.01em",
+              }}
+            >
               Panel de Autogestión
-            </h1>
+            </div>
             <p className="text-sm sm:text-base text-neutral-300/90 leading-relaxed max-w-sm mx-auto">
               Ingresá con las credenciales demo para probar cómo tu cliente puede editar su web en tiempo real.
             </p>
@@ -372,9 +379,12 @@ export default function AdminPage() {
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="text-sm sm:text-base font-extrabold text-neutral-100 truncate max-w-[170px] sm:max-w-none">
+                <div
+                  className="text-sm sm:text-base font-bold text-neutral-100 truncate max-w-[170px] sm:max-w-none"
+                  style={{ textTransform: "none", fontFamily: "var(--font-soehne), sans-serif" }}
+                >
                   {biz.nombre}
-                </h1>
+                </div>
                 <span className="text-[10px] font-bold bg-neutral-800 text-neutral-300 border border-neutral-700 px-2 py-0.5 rounded-full uppercase tracking-wider">
                   Panel Demo
                 </span>
@@ -474,10 +484,13 @@ export default function AdminPage() {
             {activeTab === "general" && (
               <div className="bg-[#121212] border border-neutral-800 rounded-3xl p-5 sm:p-7 space-y-6">
                 <div>
-                  <h2 className="text-base sm:text-lg font-bold text-white flex items-center gap-2">
+                  <div
+                    className="text-base sm:text-lg font-bold text-white flex items-center gap-2"
+                    style={{ textTransform: "none", fontFamily: "var(--font-soehne), sans-serif" }}
+                  >
                     <span>📌</span>
                     <span>Información Principal de tu Negocio</span>
-                  </h2>
+                  </div>
                   <p className="text-xs text-neutral-400 mt-1">
                     Estos datos se muestran en la cabecera (logo superior), pie de página y botones de contacto de toda tu web.
                   </p>
@@ -613,10 +626,13 @@ export default function AdminPage() {
                 {/* Banner de control de servicios */}
                 <div className="bg-[#121212] border border-neutral-800 rounded-2xl p-4 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div>
-                    <h2 className="text-base sm:text-lg font-bold text-white flex items-center gap-2">
+                    <div
+                      className="text-base sm:text-lg font-bold text-white flex items-center gap-2"
+                      style={{ textTransform: "none", fontFamily: "var(--font-soehne), sans-serif" }}
+                    >
                       <span>🛠️</span>
                       <span>Catálogo de Servicios & Lista de Precios</span>
-                    </h2>
+                    </div>
                     <p className="text-xs text-neutral-400 mt-1 max-w-xl">
                       Agregá, editá o eliminá los tratamientos de tu taller. Podés configurar fotos comparativas de <strong>Antes y Después con slider interactivo</strong> o una <strong>foto única</strong> si no tenés el antes.
                     </p>
