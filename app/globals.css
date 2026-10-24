@@ -18,6 +18,19 @@ h1, h2, h3 {
   color: transparent;
 }
 
+/* Ámbito del Panel de Autogestión: tipografía natural, nítida, cómoda y proporcionada (no aplanada) */
+.admin-scope h1,
+.admin-scope h2,
+.admin-scope h3 {
+  font-family: var(--font-soehne), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  text-transform: none;
+  background-image: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+  color: inherit;
+  letter-spacing: normal;
+}
+
 ::selection { background: white; color: black; }
 
 .glass-panel {

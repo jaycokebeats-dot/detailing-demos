@@ -275,23 +275,23 @@ export default function AdminPage() {
   // --- VISTA DE LOGIN ---
   if (!isAuthenticated) {
     return (
-      <main className="min-h-screen bg-[#0a0a0a] text-neutral-100 flex items-center justify-center p-4">
-        <div className="w-full max-w-md bg-[#121212] border border-neutral-800 rounded-3xl p-7 sm:p-9 shadow-2xl relative overflow-hidden">
-          <div className="text-center mb-6">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-neutral-900 text-neutral-300 text-xs font-semibold rounded-full border border-neutral-700 mb-3 tracking-wide">
-              <span>⚡</span> BLACK LINE STUDIO
+      <main className="min-h-screen bg-[#070707] text-neutral-100 flex items-center justify-center p-4 sm:p-6 admin-scope">
+        <div className="w-full max-w-lg bg-[#121212]/95 border border-neutral-700/80 rounded-3xl p-8 sm:p-10 shadow-2xl relative overflow-hidden backdrop-blur-md">
+          <div className="text-center mb-8">
+            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-neutral-900/90 text-neutral-300 text-xs sm:text-sm font-semibold rounded-full border border-neutral-700/80 mb-4 shadow-sm">
+              <span className="text-amber-400">⚡</span> Black Line Studio
             </span>
-            <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
+            <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white mb-2.5">
               Panel de Autogestión
             </h1>
-            <p className="text-xs text-neutral-400 mt-2">
+            <p className="text-sm sm:text-base text-neutral-300/90 leading-relaxed max-w-sm mx-auto">
               Ingresá con las credenciales demo para probar cómo tu cliente puede editar su web en tiempo real.
             </p>
           </div>
 
-          <form onSubmit={handleLogin} className="space-y-4">
+          <form onSubmit={handleLogin} className="space-y-5">
             <div>
-              <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
+              <label className="block text-sm font-bold text-neutral-200 mb-2">
                 Usuario
               </label>
               <input
@@ -299,13 +299,13 @@ export default function AdminPage() {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="demo"
-                className="w-full bg-[#0a0a0a] border border-neutral-800 rounded-xl px-4 py-3 text-sm text-neutral-100 focus:outline-none focus:border-neutral-500 transition-colors"
+                className="w-full bg-[#181818] border border-neutral-700/80 rounded-2xl px-4 py-3.5 text-base sm:text-sm text-neutral-100 placeholder:text-neutral-500 focus:outline-none focus:border-neutral-300 focus:bg-[#1c1c1c] transition-all shadow-inner"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
+              <label className="block text-sm font-bold text-neutral-200 mb-2">
                 Contraseña
               </label>
               <input
@@ -313,31 +313,39 @@ export default function AdminPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="demo"
-                className="w-full bg-[#0a0a0a] border border-neutral-800 rounded-xl px-4 py-3 text-sm text-neutral-100 focus:outline-none focus:border-neutral-500 transition-colors"
+                className="w-full bg-[#181818] border border-neutral-700/80 rounded-2xl px-4 py-3.5 text-base sm:text-sm text-neutral-100 placeholder:text-neutral-500 focus:outline-none focus:border-neutral-300 focus:bg-[#1c1c1c] transition-all shadow-inner"
                 required
               />
             </div>
 
             {loginError && (
-              <p className="text-xs text-red-400 bg-red-500/10 border border-red-500/20 rounded-xl p-3 text-center">
+              <p className="text-sm text-red-400 bg-red-500/10 border border-red-500/20 rounded-2xl p-3.5 text-center font-medium">
                 {loginError}
               </p>
             )}
 
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-neutral-200 via-neutral-100 to-neutral-300 hover:from-white hover:to-neutral-100 text-neutral-950 font-black py-3.5 rounded-xl shadow-lg shadow-white/5 transition-all text-sm cursor-pointer mt-2 active:scale-95 border border-white/30"
+              className="w-full bg-gradient-to-r from-neutral-200 via-neutral-100 to-neutral-300 hover:from-white hover:to-neutral-100 text-neutral-950 font-black py-4 rounded-2xl shadow-xl transition-all text-base cursor-pointer mt-3 active:scale-98 flex items-center justify-center gap-2 border border-white/40 tracking-wide"
             >
               Ingresar al Panel
             </button>
           </form>
 
-          <div className="mt-6 pt-4 border-t border-neutral-800/80 text-center">
-            <p className="text-xs text-neutral-400">
-              💡 Credenciales de demostración:<br />
-              <strong className="text-neutral-200">Usuario:</strong> demo &nbsp;|&nbsp;{" "}
-              <strong className="text-neutral-200">Contraseña:</strong> demo
-            </p>
+          <div className="mt-8 pt-6 border-t border-neutral-800/90 text-center">
+            <div className="bg-neutral-900/90 border border-neutral-700/60 rounded-2xl p-4 text-left sm:text-center">
+              <p className="text-xs sm:text-sm text-neutral-300 font-semibold mb-2 flex items-center justify-center gap-2">
+                <span>💡</span> Credenciales de demostración:
+              </p>
+              <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm">
+                <span className="bg-black/80 px-3 py-1.5 rounded-xl border border-neutral-700/70 text-neutral-300">
+                  Usuario: <strong className="text-white font-mono font-bold">demo</strong>
+                </span>
+                <span className="bg-black/80 px-3 py-1.5 rounded-xl border border-neutral-700/70 text-neutral-300">
+                  Contraseña: <strong className="text-white font-mono font-bold">demo</strong>
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </main>
@@ -346,7 +354,7 @@ export default function AdminPage() {
 
   // --- VISTA DEL PANEL DE CONTROL ---
   return (
-    <main className="min-h-screen bg-[#090909] text-neutral-100 pb-56 sm:pb-36">
+    <main className="min-h-screen bg-[#090909] text-neutral-100 pb-56 sm:pb-36 admin-scope">
       {/* Toast Notification */}
       {toastMessage && (
         <div className="fixed top-5 right-5 z-50 bg-[#161616] border border-neutral-600 text-neutral-100 px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3 animate-fade-in text-xs sm:text-sm font-medium">
@@ -477,7 +485,7 @@ export default function AdminPage() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div className="sm:col-span-2">
-                    <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
+                    <label className="block text-sm font-semibold text-neutral-200 mb-2">
                       Nombre Comercial del Taller (Actualiza el título y el logo superior)
                     </label>
                     <input
@@ -519,7 +527,7 @@ export default function AdminPage() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
+                    <label className="block text-sm font-semibold text-neutral-200 mb-2">
                       Teléfono de Línea / Visible
                     </label>
                     <input
@@ -532,7 +540,7 @@ export default function AdminPage() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
+                    <label className="block text-sm font-semibold text-neutral-200 mb-2">
                       Usuario de Instagram (Sin @)
                     </label>
                     <input
@@ -545,7 +553,7 @@ export default function AdminPage() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
+                    <label className="block text-sm font-semibold text-neutral-200 mb-2">
                       Dirección Física del Taller
                     </label>
                     <input
@@ -558,7 +566,7 @@ export default function AdminPage() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
+                    <label className="block text-sm font-semibold text-neutral-200 mb-2">
                       Ciudad / Localidad / Zona
                     </label>
                     <input
@@ -571,7 +579,7 @@ export default function AdminPage() {
                   </div>
 
                   <div className="sm:col-span-2">
-                    <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
+                    <label className="block text-sm font-semibold text-neutral-200 mb-2">
                       Horarios de Atención
                     </label>
                     <input
@@ -584,7 +592,7 @@ export default function AdminPage() {
                   </div>
 
                   <div className="sm:col-span-2">
-                    <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
+                    <label className="block text-sm font-semibold text-neutral-200 mb-2">
                       Enlace a Google Maps (Opcional)
                     </label>
                     <input
@@ -672,7 +680,7 @@ export default function AdminPage() {
                         {/* Campos de texto principales */}
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                           <div className="sm:col-span-2">
-                            <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
+                            <label className="block text-sm font-semibold text-neutral-200 mb-2">
                               Nombre / Título del Tratamiento
                             </label>
                             <input
@@ -685,7 +693,7 @@ export default function AdminPage() {
                           </div>
 
                           <div>
-                            <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
+                            <label className="block text-sm font-semibold text-neutral-200 mb-2">
                               Precio Mostrado
                             </label>
                             <input
@@ -698,7 +706,7 @@ export default function AdminPage() {
                           </div>
 
                           <div className="sm:col-span-3">
-                            <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
+                            <label className="block text-sm font-semibold text-neutral-200 mb-2">
                               Descripción Completa del Trabajo
                             </label>
                             <textarea
@@ -711,7 +719,7 @@ export default function AdminPage() {
                           </div>
 
                           <div className="sm:col-span-2">
-                            <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
+                            <label className="block text-sm font-semibold text-neutral-200 mb-2">
                               Garantía / Beneficio Destacado (Insignia en la tarjeta)
                             </label>
                             <input
@@ -724,7 +732,7 @@ export default function AdminPage() {
                           </div>
 
                           <div>
-                            <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
+                            <label className="block text-sm font-semibold text-neutral-200 mb-2">
                               Detalle Recomendado (Ideal para...)
                             </label>
                             <input
