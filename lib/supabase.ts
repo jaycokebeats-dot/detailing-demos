@@ -19,6 +19,7 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
 export function normalizeSlug(slug: string): string {
   const s = (slug || "").toLowerCase().trim();
   if (s === "taller-demo" || s === "demo") return "demo";
+  if (s === "thezone" || s === "the-zone") return "the-zone-car-autospa-detailing";
   return s;
 }
 

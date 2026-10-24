@@ -6,12 +6,30 @@
  * 3. Usuario y contraseña son exactamente iguales (user === password).
  * 
  * Formato estándar: "pro-" + slug (ej: "pro-jds-detailing")
+ * Soporta alias cortos amigables (ej: "pro-thezone" para "the-zone-car-autospa-detailing")
  */
+
+const CUSTOM_CREDENTIALS_MAP: Record<string, string> = {
+  "the-zone-car-autospa-detailing": "pro-thezone",
+  "the-zone": "pro-thezone",
+  "thezone": "pro-thezone",
+};
+
+const USERNAME_TO_SLUG_MAP: Record<string, string> = {
+  "pro-thezone": "the-zone-car-autospa-detailing",
+  "detail-thezone": "the-zone-car-autospa-detailing",
+  "thezone": "the-zone-car-autospa-detailing",
+  "pro-the-zone": "the-zone-car-autospa-detailing",
+};
 
 export function getWorkshopCredentials(slug: string): { username: string; password: string } {
   const clean = (slug || "").toLowerCase().trim();
   if (clean === "demo" || clean === "taller-demo") {
     return { username: "demo", password: "demo" };
+  }
+  if (CUSTOM_CREDENTIALS_MAP[clean]) {
+    const customUser = CUSTOM_CREDENTIALS_MAP[clean];
+    return { username: customUser, password: customUser };
   }
   const user = `pro-${clean}`;
   return { username: user, password: user };
@@ -54,6 +72,12 @@ export function validateWorkshopAuth(
       slug: "",
       error: "La contraseña debe ser idéntica al usuario asignado.",
     };
+  }
+
+  // 3.1 Revisar si coincide con alias personalizado corto
+  if (USERNAME_TO_SLUG_MAP[u]) {
+    const mappedSlug = USERNAME_TO_SLUG_MAP[u];
+    return { valid: true, isSuperAdmin: false, slug: mappedSlug };
   }
 
   // 4. Si empieza con "pro-" (ej: pro-jds-detailing)
