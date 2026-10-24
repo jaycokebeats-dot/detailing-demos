@@ -3,6 +3,8 @@
 import { useEffect, useState, useMemo } from "react";
 import type { Business, ServiceItem } from "@/data/business-helpers";
 import { DEFAULT_DEMO_BUSINESS } from "@/data/demo-business";
+import { SERVICIOS_MEXICO } from "@/components/mexico/LandingMexico";
+import { SERVICIOS_ESPANA } from "@/components/spain/LandingSpain";
 import { getBusinessData, saveBusinessData, resetBusinessData } from "@/lib/supabase";
 import { validateWorkshopAuth, getWorkshopCredentials } from "@/lib/workshop-auth";
 
@@ -218,6 +220,15 @@ export default function AdminPage() {
       const res = await fetch(`/api/workshops?slug=${encodeURIComponent(norm)}`);
       if (res.ok) {
         const initialData = await res.json();
+        if (!initialData.servicios || initialData.servicios.length === 0) {
+          if (initialData.pais === "MX" || initialData.template === "mexico") {
+            initialData.servicios = SERVICIOS_MEXICO;
+          } else if (initialData.pais === "ES" || initialData.template === "spain") {
+            initialData.servicios = SERVICIOS_ESPANA;
+          } else {
+            initialData.servicios = DEFAULT_DEMO_BUSINESS.servicios;
+          }
+        }
         setBiz(initialData);
       } else {
         showToast(`⚠️ No se encontró el taller "${norm}". Cargando demo.`);
@@ -288,7 +299,7 @@ export default function AdminPage() {
   };
 
   const handleReset = async () => {
-    if (confirm(`¿Estás seguro de restablecer los datos originales de "${biz.nombre}"?`)) {
+    if (confirm(`¿Estás seguro de restablecer los datos originales de "${biz.nombre}"? Volverá al diseño y datos originales de este taller.`)) {
       setLoading(true);
       await resetBusinessData(currentSlug);
       await loadWorkshop(currentSlug);

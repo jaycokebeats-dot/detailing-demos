@@ -10,7 +10,7 @@ import CompareSlider from "@/components/CompareSlider";
 import PpfColorVisualizer from "@/components/PpfColorVisualizer";
 
 // Servicios estándar para España con precios de referencia en Euros (€) y modismos de España
-const SERVICIOS_ESPANA: ServiceItem[] = [
+export const SERVICIOS_ESPANA: ServiceItem[] = [
   {
     nombre: "Detallado y Nutrición de Motor",
     descripcion: "Limpieza técnica profunda del vano motor con vapor controlado y productos dieléctricos seguros. Desengrasado exhaustivo y nutrición de plásticos, gomas y manguitos con acabado satinado de origen.",

@@ -10,7 +10,7 @@ import CompareSlider from "@/components/CompareSlider";
 import PpfColorVisualizer from "@/components/PpfColorVisualizer";
 
 // Servicios estándar para México con precios de referencia en Pesos Mexicanos ($ MXN) y modismos de México
-const SERVICIOS_MEXICO: ServiceItem[] = [
+export const SERVICIOS_MEXICO: ServiceItem[] = [
   {
     nombre: "Estética & Detallado de Motor",
     descripcion: "Limpieza técnica profunda de la bahía del motor con vapor controlado y desengrasantes dieléctricos seguros. Nutrición y abrillantado de mangueras y plásticos con terminado satinado original libre de siliconas grasosas.",

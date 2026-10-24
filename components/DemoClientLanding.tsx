@@ -18,9 +18,11 @@ export default function DemoClientLanding({ initialBiz }: { initialBiz: Business
     getBusinessData(slug).then((data) => {
       if (data) {
         setBiz(data);
+      } else {
+        setBiz(initialBiz);
       }
     });
-  }, [slug]);
+  }, [slug, initialBiz]);
 
   useEffect(() => {
     if (isDemoSlug) {
@@ -41,6 +43,7 @@ export default function DemoClientLanding({ initialBiz }: { initialBiz: Business
       // Suscripción en tiempo real a Supabase en la nube
       const unsubscribe = subscribeToBusiness(slug, (newData) => {
         if (newData) setBiz(newData);
+        else setBiz(initialBiz);
       });
 
       return () => {
@@ -50,20 +53,24 @@ export default function DemoClientLanding({ initialBiz }: { initialBiz: Business
         if (unsubscribe) unsubscribe();
       };
     } else {
-      // Para otros talleres, intentar cargar si existe personalización en Supabase
-      getBusinessData(slug).then((data) => {
-        if (data) setBiz(data);
-      });
+      // Para cualquier taller, escuchar eventos en vivo locales y en Supabase
+      window.addEventListener("storage", refreshData);
+      window.addEventListener("focus", refreshData);
+      window.addEventListener("black_line_biz_updated", refreshData);
 
       const unsubscribe = subscribeToBusiness(slug, (newData) => {
         if (newData) setBiz(newData);
+        else setBiz(initialBiz);
       });
 
       return () => {
+        window.removeEventListener("storage", refreshData);
+        window.removeEventListener("focus", refreshData);
+        window.removeEventListener("black_line_biz_updated", refreshData);
         if (unsubscribe) unsubscribe();
       };
     }
-  }, [slug, isDemoSlug, refreshData]);
+  }, [slug, isDemoSlug, refreshData, initialBiz]);
 
   return (
     <>

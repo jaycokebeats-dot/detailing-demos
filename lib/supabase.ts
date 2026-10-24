@@ -164,7 +164,9 @@ export function subscribeToBusiness(
         filter: `slug=eq.${normSlug}`,
       },
       (payload) => {
-        if (payload.new && (payload.new as any).data) {
+        if (payload.eventType === "DELETE") {
+          callback(null as any);
+        } else if (payload.new && (payload.new as any).data) {
           callback((payload.new as any).data as Business);
         }
       }
