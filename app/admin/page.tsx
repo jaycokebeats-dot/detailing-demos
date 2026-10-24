@@ -346,7 +346,7 @@ export default function AdminPage() {
 
   // --- VISTA DEL PANEL DE CONTROL ---
   return (
-    <main className="min-h-screen bg-[#090909] text-neutral-100 pb-32">
+    <main className="min-h-screen bg-[#090909] text-neutral-100 pb-56 sm:pb-36">
       {/* Toast Notification */}
       {toastMessage && (
         <div className="fixed top-5 right-5 z-50 bg-[#161616] border border-neutral-600 text-neutral-100 px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3 animate-fade-in text-xs sm:text-sm font-medium">
@@ -380,16 +380,30 @@ export default function AdminPage() {
           </div>
 
           <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={handleSave}
+              disabled={saving}
+              className="bg-gradient-to-r from-neutral-200 via-neutral-100 to-neutral-300 hover:from-white hover:to-neutral-100 active:scale-95 text-neutral-950 font-black text-xs px-3 sm:px-4 py-2 rounded-xl shadow-md transition-all flex items-center gap-1.5 cursor-pointer border border-white/40"
+              title="Guardar cambios en la web"
+            >
+              {saving ? (
+                <span className="w-3.5 h-3.5 border-2 border-neutral-950 border-t-transparent rounded-full animate-spin" />
+              ) : (
+                <span>💾</span>
+              )}
+              <span className="font-extrabold">Guardar</span>
+            </button>
+
             <a
               href="/d/taller-demo/"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 hover:border-neutral-500 text-neutral-200 hover:text-white text-xs font-bold px-3.5 py-2 rounded-xl transition-all flex items-center gap-1.5 shadow-sm"
+              className="bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 hover:border-neutral-500 text-neutral-200 hover:text-white text-xs font-bold px-3 py-2 rounded-xl transition-all flex items-center gap-1.5 shadow-sm"
               title="Abrir la web de demostración en una pestaña nueva"
             >
               <span>🔗</span>
-              <span className="hidden sm:inline">Ver Web en Vivo</span>
-              <span className="sm:hidden">Web</span>
+              <span className="hidden sm:inline">Ver Web</span>
             </a>
 
             <button
@@ -1052,8 +1066,13 @@ export default function AdminPage() {
         )}
       </div>
 
-      {/* Barra de Guardado Inferior Sticky en Gris / Titanium */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 bg-[#090909]/95 backdrop-blur-md border-t border-neutral-800 py-3.5 px-4 shadow-2xl">
+      {/* Barra de Guardado Inferior Sticky en Gris / Titanium con soporte Safe Area para iPhone */}
+      <div
+        className="fixed bottom-0 left-0 right-0 z-40 bg-[#090909]/95 backdrop-blur-md border-t border-neutral-800 px-4 pt-3.5 shadow-2xl"
+        style={{
+          paddingBottom: "max(24px, calc(env(safe-area-inset-bottom, 0px) + 20px))",
+        }}
+      >
         <div className="max-w-5xl mx-auto flex items-center justify-between gap-4">
           <div className="hidden sm:flex items-center gap-2.5">
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
