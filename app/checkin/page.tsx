@@ -684,16 +684,73 @@ export default function CheckinPage() {
   };
 
   return (
-    <div className="admin-scope min-h-screen bg-[#0a0a0a] text-neutral-100 font-sans selection:bg-gold/30 selection:text-amber-400 pb-28">
+    <div className="admin-scope min-h-screen bg-[#0a0a0a] text-neutral-100 font-sans selection:bg-gold/30 selection:text-amber-400 pb-28 print:min-h-0 print:bg-white print:text-slate-900 print:p-0 print:m-0">
+      {/* Inyección de estilos de impresión garantizados para navegador y PDF */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        @media print {
+          @page {
+            size: A4 portrait;
+            margin: 8mm 10mm;
+          }
+          html, body {
+            background: #ffffff !important;
+            background-color: #ffffff !important;
+            color: #0f172a !important;
+            font-size: 11px !important;
+            line-height: 1.3 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            overflow: visible !important;
+            overflow-x: visible !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+          }
+          .screen-only, .no-print {
+            display: none !important;
+          }
+          .print-document {
+            display: block !important;
+            visibility: visible !important;
+            background: #ffffff !important;
+            color: #0f172a !important;
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+          }
+          .print-page-break-avoid {
+            break-inside: avoid !important;
+            page-break-inside: avoid !important;
+          }
+          .print-page-break-after {
+            break-after: page !important;
+            page-break-after: always !important;
+          }
+          h1, h2, h3, h4, h5, h6 {
+            background-image: none !important;
+            -webkit-background-clip: unset !important;
+            background-clip: unset !important;
+            color: #0f172a !important;
+            text-transform: none !important;
+            letter-spacing: normal !important;
+          }
+        }
+      `}} />
+
       {/* Toast Alert */}
       {toastMessage && (
-        <div className="fixed top-5 left-1/2 -translate-x-1/2 z-50 bg-neutral-900 border border-amber-400/40 text-neutral-100 px-5 py-3 rounded-2xl shadow-2xl shadow-black flex items-center gap-3 text-xs sm:text-sm font-medium animate-fade-in backdrop-blur-md">
+        <div className="fixed top-5 left-1/2 -translate-x-1/2 z-50 bg-neutral-900 border border-amber-400/40 text-neutral-100 px-5 py-3 rounded-2xl shadow-2xl shadow-black flex items-center gap-3 text-xs sm:text-sm font-medium animate-fade-in backdrop-blur-md no-print">
           <span className="text-amber-400 text-base">✨</span>
           <span>{toastMessage}</span>
         </div>
       )}
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-6 sm:pt-8">
+      {/* =========================================================================
+          VISTA DE PANTALLA WEB (Oculta en modo impresión / PDF)
+         ========================================================================= */}
+      <div className="screen-only print:hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-6 sm:pt-8">
         {/* HEADER PRINCIPAL */}
         <header className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-neutral-800">
           <div>
@@ -735,6 +792,16 @@ export default function CheckinPage() {
                 </button>
               ))}
             </div>
+
+            <button
+              type="button"
+              onClick={handleImprimir}
+              className="bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 hover:border-amber-400/50 text-neutral-200 hover:text-white text-xs font-semibold px-3 py-2 rounded-xl transition-all cursor-pointer flex items-center gap-1.5"
+              title="Imprimir acta o exportar como PDF (1 a 2 páginas)"
+            >
+              <span>🖨️</span>
+              <span>Imprimir / PDF</span>
+            </button>
 
             <button
               type="button"
@@ -1601,9 +1668,11 @@ export default function CheckinPage() {
                       <button
                         type="button"
                         onClick={handleImprimir}
-                        className="bg-neutral-800 hover:bg-neutral-700 text-white font-bold text-xs px-3 py-1.5 rounded-xl border border-neutral-600 flex items-center gap-1.5 transition-all cursor-pointer shadow-sm"
+                        className="bg-gradient-to-r from-amber-400 via-amber-500 to-amber-400 hover:brightness-110 text-neutral-950 font-black text-xs px-3.5 py-1.5 rounded-xl border border-amber-300 flex items-center gap-1.5 transition-all cursor-pointer shadow-md shadow-amber-500/20 active:scale-95"
+                        title="Imprimir acta técnica oficial o guardar en PDF (1 a 2 páginas)"
                       >
-                        <span>🖨️ Imprimir</span>
+                        <span>🖨️</span>
+                        <span>Imprimir Hoja (1-2 pág)</span>
                       </button>
                     </div>
                   </div>
@@ -1708,6 +1777,383 @@ export default function CheckinPage() {
             </div>
           </div>
         )}
+        </div>
+      </div>
+
+      {/* =========================================================================
+          DOCUMENTO OFICIAL IMPRIMIBLE (SOLO VISIBLE EN @MEDIA PRINT / PDF)
+          Diseñado estrictamente para A4: 1 página (hasta 8 daños) o máx 2 páginas.
+          Protegido contra cortes indebidos mediante 'print-page-break-avoid'.
+         ========================================================================= */}
+      <div className="print-document hidden print:block bg-white text-slate-900 font-sans p-0 m-0">
+        {/* ENCABEZADO / MEMBRETE */}
+        <div className="border-b-2 border-slate-900 pb-2.5 mb-2.5 flex justify-between items-start">
+          <div>
+            <div className="flex items-center gap-2">
+              <h1 className="text-xl font-black uppercase tracking-tight text-slate-900 m-0 p-0">
+                {biz.nombre || "The Zone Car Detailing"}
+              </h1>
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-100 border border-slate-300 text-slate-700">
+                {config.bandera} {config.nombrePais}
+              </span>
+            </div>
+            <p className="text-[10px] font-bold text-slate-700 uppercase tracking-wider mt-0.5 m-0">
+              Acta de Recepción Técnica, Inspección de Daños & Custodia
+            </p>
+            <div className="text-[9px] text-slate-500 flex items-center gap-3 mt-1">
+              <span>📍 {biz.ciudad || "Estética Automotriz"}</span>
+              {biz.telefono && <span>📞 {biz.telefono}</span>}
+              <span>🛡️ Constancia Fehaciente de Ingreso</span>
+            </div>
+          </div>
+
+          <div className="text-right border border-slate-900 rounded-lg p-2 bg-slate-50 min-w-[145px]">
+            <span className="text-[8.5px] uppercase font-bold text-slate-500 block tracking-wider">Folio Oficial</span>
+            <span className="font-mono font-black text-sm text-slate-900 block leading-tight">{folio}</span>
+            <span className="text-[8.5px] text-slate-600 block mt-0.5">{fechaIngreso}</span>
+          </div>
+        </div>
+
+        {/* SECCIÓN 1: DATOS CLIENTE Y VEHÍCULO (TABLA COMPACTA) */}
+        <div className="print-page-break-avoid mb-2.5 border border-slate-300 rounded-lg overflow-hidden text-[9.5px]">
+          <div className="bg-slate-100 px-3 py-1 border-b border-slate-300 font-bold text-slate-800 uppercase tracking-wider text-[8.5px] flex justify-between">
+            <span>1. Identificación del Titular y Unidad</span>
+            <span>Estado: En Custodia Técnica</span>
+          </div>
+          <div className="grid grid-cols-4 divide-x divide-slate-200">
+            <div className="p-2 space-y-0.5">
+              <span className="text-[8px] text-slate-500 uppercase font-bold block">Titular / Cliente</span>
+              <span className="font-bold text-slate-900 text-[10.5px] block leading-tight">{clienteNombre.trim() || "Sin especificar"}</span>
+              <span className="text-slate-600 block text-[8.5px]">Tel: {clienteTelefono.trim() || "No registrado"}</span>
+            </div>
+            <div className="p-2 space-y-0.5">
+              <span className="text-[8px] text-slate-500 uppercase font-bold block">{config.terminoVehiculo}</span>
+              <span className="font-bold text-slate-900 text-[10.5px] block leading-tight">{vehiculoModelo.trim() || "No especificado"}</span>
+              <span className="text-slate-600 block text-[8.5px]">Color: {vehiculoColor.trim() || "S/D"}</span>
+            </div>
+            <div className="p-2 space-y-0.5">
+              <span className="text-[8px] text-slate-500 uppercase font-bold block">{config.terminoPatente}</span>
+              <span className="font-mono font-black text-xs text-slate-900 bg-slate-200/80 px-2 py-0.5 rounded border border-slate-400 inline-block uppercase">
+                {vehiculoPatente.trim() || "S/D"}
+              </span>
+            </div>
+            <div className="p-2 space-y-0.5">
+              <span className="text-[8px] text-slate-500 uppercase font-bold block">Kilometraje & {config.terminoCombustible}</span>
+              <span className="font-bold text-slate-900 block leading-tight">{vehiculoKm.trim() || "-"} km</span>
+              <span className="text-slate-600 block text-[8.5px]">Nivel: {nivelCombustible}</span>
+            </div>
+          </div>
+        </div>
+
+        {/* SECCIÓN 2: MAPEO VISUAL + TABLA DE DAÑOS PREVIOS (SIDE-BY-SIDE) */}
+        <div className="print-page-break-avoid mb-2.5 border border-slate-300 rounded-lg p-2 bg-white">
+          <div className="flex justify-between items-center border-b border-slate-200 pb-1 mb-2">
+            <span className="font-bold text-slate-900 text-[9.5px] uppercase tracking-wider flex items-center gap-1.5">
+              <span>🔍</span>
+              <span>2. Inspección Técnica Visual de Daños Preexistentes</span>
+            </span>
+            <span className="text-[8.5px] font-bold px-2 py-0.5 rounded bg-slate-100 text-slate-800 border border-slate-300">
+              {damages.length === 0 ? "Sin daños constatados" : `${damages.length} daños registrados`}
+            </span>
+          </div>
+
+          <div className="grid grid-cols-12 gap-3 items-start">
+            {/* Columna Izquierda: Silueta 2D del Auto con Pines (5 cols) */}
+            <div className="col-span-5 flex flex-col items-center border border-slate-200 rounded-lg p-1.5 bg-slate-50/60">
+              <div className="w-[180px] h-[310px] relative">
+                <svg viewBox="0 0 400 700" fill="none" className="w-full h-full">
+                  {/* Sombra base */}
+                  <ellipse cx="200" cy="355" rx="145" ry="305" fill="#e2e8f0" opacity="0.6" />
+
+                  {/* Ruedas */}
+                  <rect x="58" y="145" width="28" height="75" rx="12" fill="#334155" stroke="#1e293b" strokeWidth="2" />
+                  <rect x="64" y="155" width="16" height="55" rx="6" fill="#cbd5e1" stroke="#475569" strokeWidth="1" />
+                  <rect x="314" y="145" width="28" height="75" rx="12" fill="#334155" stroke="#1e293b" strokeWidth="2" />
+                  <rect x="320" y="155" width="16" height="55" rx="6" fill="#cbd5e1" stroke="#475569" strokeWidth="1" />
+                  <rect x="58" y="490" width="28" height="75" rx="12" fill="#334155" stroke="#1e293b" strokeWidth="2" />
+                  <rect x="64" y="500" width="16" height="55" rx="6" fill="#cbd5e1" stroke="#475569" strokeWidth="1" />
+                  <rect x="314" y="490" width="28" height="75" rx="12" fill="#334155" stroke="#1e293b" strokeWidth="2" />
+                  <rect x="320" y="500" width="16" height="55" rx="6" fill="#cbd5e1" stroke="#475569" strokeWidth="1" />
+
+                  {/* Espejos */}
+                  <path d="M 80 255 Q 60 260 55 245 Q 60 235 85 240 Z" fill="#e2e8f0" stroke="#475569" strokeWidth="1.5" />
+                  <path d="M 320 255 Q 340 260 345 245 Q 340 235 315 240 Z" fill="#e2e8f0" stroke="#475569" strokeWidth="1.5" />
+
+                  {/* Chasis exterior blanco técnico con trazo oscuro */}
+                  <path
+                    d="M 125 70 
+                       C 160 45, 240 45, 275 70 
+                       C 300 85, 315 115, 315 145 
+                       C 315 155, 305 160, 305 210 
+                       C 305 230, 320 250, 320 320 
+                       C 320 420, 320 470, 322 490 
+                       C 325 510, 308 525, 308 565 
+                       C 308 600, 295 625, 275 640 
+                       C 240 660, 160 660, 125 640 
+                       C 105 625, 92 600, 92 565 
+                       C 92 525, 75 510, 78 490 
+                       C 80 470, 80 420, 80 320 
+                       C 80 250, 95 230, 95 210 
+                       C 95 160, 85 155, 85 145 
+                       C 85 115, 100 85, 125 70 Z"
+                    fill="#ffffff"
+                    stroke="#0f172a"
+                    strokeWidth="2.5"
+                  />
+
+                  {/* Líneas de Capó */}
+                  <path d="M 140 100 Q 200 115 260 100" stroke="#94a3b8" strokeWidth="1.5" />
+                  <path d="M 135 115 Q 155 190 145 220" stroke="#94a3b8" strokeWidth="1.5" />
+                  <path d="M 265 115 Q 245 190 255 220" stroke="#94a3b8" strokeWidth="1.5" />
+
+                  {/* Ópticas delanteras */}
+                  <path d="M 110 80 Q 140 75 145 95 Q 120 100 110 80 Z" fill="#e0f2fe" stroke="#0284c7" strokeWidth="1.5" />
+                  <path d="M 290 80 Q 260 75 255 95 Q 280 100 290 80 Z" fill="#e0f2fe" stroke="#0284c7" strokeWidth="1.5" />
+
+                  {/* Parabrisas */}
+                  <path d="M 125 235 Q 200 220 275 235 L 260 310 Q 200 300 140 310 Z" fill="#f8fafc" stroke="#475569" strokeWidth="1.5" />
+
+                  {/* Techo */}
+                  <rect x="135" y="325" width="130" height="150" rx="10" fill="#f1f5f9" stroke="#64748b" strokeWidth="1.5" />
+                  <rect x="150" y="340" width="100" height="70" rx="8" fill="#e2e8f0" stroke="#94a3b8" strokeWidth="1" />
+
+                  {/* Luneta Trasera */}
+                  <path d="M 140 490 Q 200 500 260 490 L 275 555 Q 200 565 125 555 Z" fill="#f8fafc" stroke="#475569" strokeWidth="1.5" />
+
+                  {/* Baúl / Cajuela */}
+                  <path d="M 135 570 Q 200 580 265 570" stroke="#94a3b8" strokeWidth="1.5" />
+                  <path d="M 145 575 L 140 625" stroke="#cbd5e1" strokeWidth="1.5" />
+                  <path d="M 255 575 L 260 625" stroke="#cbd5e1" strokeWidth="1.5" />
+
+                  {/* Ópticas traseras */}
+                  <path d="M 115 635 Q 145 640 150 625 Q 125 620 115 635 Z" fill="#fee2e2" stroke="#dc2626" strokeWidth="1.5" />
+                  <path d="M 285 635 Q 255 640 250 625 Q 275 620 285 635 Z" fill="#fee2e2" stroke="#dc2626" strokeWidth="1.5" />
+
+                  {/* Separador de puertas */}
+                  <line x1="90" y1="395" x2="135" y2="395" stroke="#94a3b8" strokeWidth="1.5" />
+                  <line x1="265" y1="395" x2="310" y2="395" stroke="#94a3b8" strokeWidth="1.5" />
+
+                  {/* Textos de zonas */}
+                  <text x="200" y="165" textAnchor="middle" fill="#64748b" fontSize="10" fontWeight="bold">
+                    {countryCode === "MX" ? "COFRE" : "CAPÓ"}
+                  </text>
+                  <text x="200" y="445" textAnchor="middle" fill="#64748b" fontSize="10" fontWeight="bold">
+                    TECHO
+                  </text>
+                  <text x="200" y="605" textAnchor="middle" fill="#64748b" fontSize="10" fontWeight="bold">
+                    {countryCode === "MX" ? "CAJUELA" : countryCode === "ES" ? "MALETERO" : "BAÚL"}
+                  </text>
+
+                  {/* Pines de Daños Numerados */}
+                  {damages.map((d, index) => {
+                    const typeObj = DAMAGE_TYPES.find((t) => t.id === d.typeId);
+                    const cx = (d.x / 100) * 400;
+                    const cy = (d.y / 100) * 700;
+                    const pinColor = typeObj?.color || "#dc2626";
+                    return (
+                      <g key={`print-pin-${d.id}`}>
+                        <circle cx={cx} cy={cy} r="17" fill={pinColor} opacity="0.3" />
+                        <circle cx={cx} cy={cy} r="13" fill={pinColor} stroke="#ffffff" strokeWidth="2.5" />
+                        <text
+                          x={cx}
+                          y={cy + 4.5}
+                          textAnchor="middle"
+                          fill="#ffffff"
+                          fontSize="11"
+                          fontWeight="900"
+                          fontFamily="sans-serif"
+                        >
+                          {index + 1}
+                        </text>
+                      </g>
+                    );
+                  })}
+                </svg>
+              </div>
+              <span className="text-[7.5px] text-slate-500 mt-1 uppercase font-semibold">Silueta Técnica de Inspección</span>
+            </div>
+
+            {/* Columna Derecha: Tabla de Daños Registrados (7 cols) */}
+            <div className="col-span-7">
+              {damages.length === 0 ? (
+                <div className="border border-emerald-300 bg-emerald-50 text-emerald-900 rounded-lg p-3 text-[9.5px] space-y-1">
+                  <div className="font-bold flex items-center gap-1 text-[10.5px]">
+                    <span>✓</span>
+                    <span>Sin daños ni detalles preexistentes constatados</span>
+                  </div>
+                  <p className="text-slate-600 leading-relaxed text-[8.5px]">
+                    La inspección visual inicial no arroja rayones, abolladuras, saltaduras de laca ni desperfectos aparentes en la chapa o cristales al momento de la entrega en custodia.
+                  </p>
+                </div>
+              ) : (
+                <div className="border border-slate-300 rounded-lg overflow-hidden text-[8.5px]">
+                  <table className="w-full text-left border-collapse">
+                    <thead>
+                      <tr className="bg-slate-100 border-b border-slate-300 text-slate-700 font-bold">
+                        <th className="py-1 px-1.5 w-5 text-center">#</th>
+                        <th className="py-1 px-1.5">Zona</th>
+                        <th className="py-1 px-1.5">Tipo</th>
+                        <th className="py-1 px-1.5 text-center">Gravedad</th>
+                        <th className="py-1 px-1.5">Observación</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-200">
+                      {damages.map((d, i) => {
+                        const t = DAMAGE_TYPES.find((dt) => dt.id === d.typeId);
+                        return (
+                          <tr key={d.id} className="hover:bg-slate-50">
+                            <td className="py-1 px-1.5 text-center font-bold">
+                              <span
+                                className="inline-block w-4 h-4 rounded-full text-white text-[8px] font-black leading-4 text-center"
+                                style={{ backgroundColor: t?.color || "#dc2626" }}
+                              >
+                                {i + 1}
+                              </span>
+                            </td>
+                            <td className="py-1 px-1.5 font-bold text-slate-900">{d.zone}</td>
+                            <td className="py-1 px-1.5 text-slate-700">{t?.label || "Detalle"}</td>
+                            <td className="py-1 px-1.5 text-center">
+                              <span
+                                className={`px-1 py-0.2 rounded text-[7.5px] font-bold uppercase ${
+                                  d.severity === "grave"
+                                    ? "bg-red-100 text-red-700 border border-red-200"
+                                    : d.severity === "medio"
+                                    ? "bg-amber-100 text-amber-800 border border-amber-200"
+                                    : "bg-emerald-100 text-emerald-700 border border-emerald-200"
+                                }`}
+                              >
+                                {d.severity}
+                              </span>
+                            </td>
+                            <td className="py-1 px-1.5 text-slate-600 italic">
+                              {d.nota || "-"}
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+
+              <p className="text-[7.5px] text-slate-500 italic mt-1.5">
+                * Los puntos numerados en la silueta corresponden a la ubicación exacta verificada conjuntamente con el titular.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* SECCIÓN 3: CONTROL DE HABITÁCULO & PERTENENCIAS */}
+        <div className="print-page-break-avoid mb-2.5 border border-slate-300 rounded-lg p-2 text-[8.5px] bg-white">
+          <div className="font-bold text-slate-800 uppercase tracking-wider text-[8.5px] border-b border-slate-200 pb-1 mb-1.5">
+            3. Control de Habitáculo & Pertenencias
+          </div>
+          <div className="grid grid-cols-4 gap-2 text-center">
+            <div className="border border-slate-200 rounded p-1 bg-slate-50">
+              <span className="text-[7.5px] text-slate-500 uppercase block font-bold">Tuerca Antirrobo</span>
+              <span className="font-bold text-slate-900 text-[9.5px]">
+                {tuercaSeguridad === "si" ? "✓ Presente" : tuercaSeguridad === "no" ? "✗ No entregada" : "N/A"}
+              </span>
+            </div>
+            <div className="border border-slate-200 rounded p-1 bg-slate-50">
+              <span className="text-[7.5px] text-slate-500 uppercase block font-bold">{config.terminoRuedaAuxilio}</span>
+              <span className="font-bold text-slate-900 text-[9.5px]">
+                {ruedaAuxilio ? "✓ Presente" : "✗ No posee"}
+              </span>
+            </div>
+            <div className="border border-slate-200 rounded p-1 bg-slate-50">
+              <span className="text-[7.5px] text-slate-500 uppercase block font-bold">Documentación</span>
+              <span className="font-bold text-slate-900 text-[9.5px]">
+                {documentosGuantera ? "✓ En Guantera" : "No declarada"}
+              </span>
+            </div>
+            <div className="border border-slate-200 rounded p-1 bg-slate-50">
+              <span className="text-[7.5px] text-slate-500 uppercase block font-bold">Objetos de Valor</span>
+              <span className="font-bold text-slate-900 text-[9.5px]">
+                {objetosRetirados ? "✓ Retirados" : "Declarados"}
+              </span>
+            </div>
+          </div>
+          {pertenenciasNotas.trim() && (
+            <div className="mt-1 pt-1 border-t border-slate-100 text-slate-700">
+              <span className="font-bold text-[7.5px] uppercase">Otras pertenencias declaradas: </span>
+              <span className="italic">"{pertenenciasNotas.trim()}"</span>
+            </div>
+          )}
+        </div>
+
+        {/* SECCIÓN 4: SERVICIOS CONTRATADOS & ENTREGA */}
+        <div className="print-page-break-avoid mb-2.5 border border-slate-300 rounded-lg p-2 text-[8.5px] bg-white">
+          <div className="font-bold text-slate-800 uppercase tracking-wider text-[8.5px] border-b border-slate-200 pb-1 mb-1.5">
+            4. Trabajos Contratados & Compromiso de Entrega
+          </div>
+          <div className="grid grid-cols-3 gap-3">
+            <div className="col-span-2">
+              <span className="text-[7.5px] text-slate-500 uppercase block font-bold">Tratamiento / Servicios Acordados</span>
+              <span className="font-bold text-slate-900 text-[9.5px] block leading-tight">
+                {serviciosSolicitados.trim() || "Servicio Integral de Detailing Automotriz"}
+              </span>
+            </div>
+            <div>
+              <span className="text-[7.5px] text-slate-500 uppercase block font-bold">Fecha / Hora Estimada de Entrega</span>
+              <span className="font-bold text-slate-900 text-[9.5px] block leading-tight">
+                {fechaEntregaEstimada.trim() || "A coordinar con cliente"}
+              </span>
+            </div>
+          </div>
+          {observacionesEspeciales.trim() && (
+            <div className="mt-1 pt-1 border-t border-slate-100 text-slate-700">
+              <span className="font-bold text-[7.5px] uppercase">Observaciones especiales: </span>
+              <span className="italic">"{observacionesEspeciales.trim()}"</span>
+            </div>
+          )}
+        </div>
+
+        {/* SECCIÓN 5: EVIDENCIA FOTOGRÁFICA (SI EXISTEN FOTOS) */}
+        {fotosDaños.length > 0 && (
+          <div className="print-page-break-avoid mb-2.5 border border-slate-300 rounded-lg p-2 text-[8.5px] bg-white">
+            <div className="font-bold text-slate-800 uppercase tracking-wider text-[8.5px] border-b border-slate-200 pb-1 mb-1.5 flex justify-between">
+              <span>5. Registro Fotográfico Adjunto ({fotosDaños.length} fotos)</span>
+              <span className="text-slate-500 text-[7.5px]">Tomas directas de recepción</span>
+            </div>
+            <div className="grid grid-cols-4 gap-2">
+              {fotosDaños.slice(0, 4).map((f, i) => (
+                <div key={i} className="border border-slate-300 rounded overflow-hidden aspect-video bg-slate-100">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={f} alt={`Foto daño #${i + 1}`} className="w-full h-full object-cover" />
+                </div>
+              ))}
+            </div>
+            {fotosDaños.length > 4 && (
+              <span className="text-[7.5px] text-slate-500 italic mt-1 block">
+                + {fotosDaños.length - 4} fotos adicionales almacenadas en el legajo digital del taller.
+              </span>
+            )}
+          </div>
+        )}
+
+        {/* SECCIÓN 6: ACTA LEGAL & FIRMAS DE CONFORMIDAD */}
+        <div className="print-page-break-avoid border-t-2 border-slate-900 pt-2 mt-2 text-[8.5px]">
+          <p className="text-[7.5px] text-slate-600 leading-snug italic text-justify mb-4">
+            "El cliente declara bajo juramento que el vehículo ingresa en las condiciones técnicas, mecánicas y estéticas precedentemente detalladas, prestando expresa conformidad con el relevamiento de daños preexistentes aquí efectuado, y deslindando al taller de responsabilidades por fallas preexistentes, vicios ocultos no manifestados o pertenencias no declaradas expresamente en la presente acta."
+          </p>
+
+          <div className="grid grid-cols-2 gap-8 text-center pt-2">
+            <div className="border-t border-slate-400 pt-1">
+              <span className="block font-bold text-slate-900 text-[9.5px]">Firma del Cliente / Titular</span>
+              <span className="block text-[7.5px] text-slate-500">Aclaración & N° de Identificación</span>
+            </div>
+            <div className="border-t border-slate-400 pt-1">
+              <span className="block font-bold text-slate-900 text-[9.5px]">Recepción del Taller: {biz.nombre || "Responsable"}</span>
+              <span className="block text-[7.5px] text-slate-500">Firma, Sello & Conformidad Técnica</span>
+            </div>
+          </div>
+
+          <div className="flex justify-between items-center text-[7px] text-slate-400 border-t border-slate-200 mt-3 pt-1">
+            <span>Folio Oficial: {folio} • Documento de Custodia Vehicular</span>
+            <span>Impreso el {fechaIngreso} • {biz.nombre || "Taller de Detailing"}</span>
+          </div>
+        </div>
       </div>
     </div>
   );
