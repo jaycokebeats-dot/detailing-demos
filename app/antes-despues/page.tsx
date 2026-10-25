@@ -38,6 +38,7 @@ export default function AntesDespuesPage() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Estados de exportación
+  const [videoDuracion, setVideoDuracion] = useState<10 | 12 | 15>(12);
   const [generatingVideo, setGeneratingVideo] = useState<boolean>(false);
   const [videoProgress, setVideoProgress] = useState<number>(0);
   const [videoUrl, setVideoUrl] = useState<string | null>(null);
@@ -241,28 +242,42 @@ export default function AntesDespuesPage() {
     drawCover(imgAntes);
     ctx.restore();
 
-    // 4. Dibujar la línea divisoria con resplandor dorado / blanco
-    ctx.save();
-    ctx.beginPath();
-    if (style === "diagonal") {
-      const offset = height * 0.2;
-      ctx.moveTo(splitX + offset, 0);
-      ctx.lineTo(splitX - offset, height);
-    } else {
-      ctx.moveTo(splitX, 0);
-      ctx.lineTo(splitX, height);
+    // 4. Dibujar la línea divisoria con resplandor dorado / blanco (solo cuando esté en pantalla)
+    if (splitPercent > 0.5 && splitPercent < 99.5) {
+      ctx.save();
+      ctx.beginPath();
+      if (style === "diagonal") {
+        const offset = height * 0.2;
+        ctx.moveTo(splitX + offset, 0);
+        ctx.lineTo(splitX - offset, height);
+      } else {
+        ctx.moveTo(splitX, 0);
+        ctx.lineTo(splitX, height);
+      }
+
+      // Glow exterior
+      ctx.strokeStyle = "rgba(251, 191, 36, 0.45)";
+      ctx.lineWidth = 8;
+      ctx.stroke();
+
+      // Línea interior nítida
+      ctx.strokeStyle = "#ffffff";
+      ctx.lineWidth = 3;
+      ctx.stroke();
+
+      // Destello y tirador luminoso central
+      const centerY = height * 0.45;
+      const gradient = ctx.createRadialGradient(splitX, centerY, 0, splitX, centerY, 24);
+      gradient.addColorStop(0, "rgba(255, 255, 255, 0.95)");
+      gradient.addColorStop(0.5, "rgba(251, 191, 36, 0.6)");
+      gradient.addColorStop(1, "rgba(251, 191, 36, 0)");
+      ctx.fillStyle = gradient;
+      ctx.beginPath();
+      ctx.arc(splitX, centerY, 24, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.restore();
     }
-
-    // Glow exterior
-    ctx.strokeStyle = "rgba(251, 191, 36, 0.4)";
-    ctx.lineWidth = 8;
-    ctx.stroke();
-
-    // Línea interior nítida
-    ctx.strokeStyle = "#ffffff";
-    ctx.lineWidth = 3;
-    ctx.stroke();
-    ctx.restore();
 
     // 5. Etiquetas "ANTES" y "DESPUÉS"
     const pillY = height * 0.08;
@@ -417,40 +432,57 @@ export default function AntesDespuesPage() {
 
       recorder.start();
 
-      // Animación de barrido: 135 cuadros (4.5 segundos a 30 FPS)
-      // 0 - 55 frames: barrido de 0% a 100% (revela el resultado brillante)
-      // 55 - 90 frames: pausa en 100% para apreciar el brillo cerámico
-      // 90 - 125 frames: regresa suavemente al 50%
-      // 125 - 135 frames: pausa final en 50%
-      const totalFrames = 135;
+      // Animación cinematográfica equilibrada (10s, 12s o 15s a 30 FPS)
+      const fps = 30;
+      const totalFrames = videoDuracion * fps; // 300, 360 o 450 frames
+
+      // Fases perfectamente equilibradas:
+      // Fase 1: Muestra 100% ANTES (para ver el estado inicial dañado) -> 20% del video
+      // Fase 2: Barrido LENTO de derecha a izquierda revelando el DESPUÉS (100% -> 0%) -> 32% del video
+      // Fase 3: Muestra 100% DESPUÉS (para ver el brillo cerámico en su totalidad) -> 20% del video
+      // Fase 4: Retorno suave del DESPUÉS al SPLIT 50/50 (0% -> 50%) -> 18% del video
+      // Fase 5: Cierre en comparativa 50/50 con Lower Third de marca -> 10% del video
+      const f1 = Math.round(totalFrames * 0.20);
+      const f2 = Math.round(totalFrames * 0.52);
+      const f3 = Math.round(totalFrames * 0.72);
+      const f4 = Math.round(totalFrames * 0.90);
+
+      // Suavizado cúbico cinematográfico
+      const easeInOutCubic = (t: number) => {
+        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      };
 
       for (let f = 0; f < totalFrames; f++) {
         let percent = 50;
 
-        if (f <= 55) {
-          // Curva ease-in-out de 0% a 100%
-          const t = f / 55;
-          const ease = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
-          percent = ease * 100;
-        } else if (f <= 90) {
+        if (f < f1) {
+          // Fase 1: ANTES al 100% (muestra la chapa dañada al inicio)
           percent = 100;
-        } else if (f <= 125) {
-          const t = (f - 90) / 35;
-          const ease = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
-          percent = 100 - ease * 50; // Vuelve a 50%
+        } else if (f < f2) {
+          // Fase 2: Barrido LENTO revelando el DESPUÉS (100% -> 0%)
+          const t = (f - f1) / (f2 - f1);
+          percent = 100 - easeInOutCubic(t) * 100;
+        } else if (f < f3) {
+          // Fase 3: DESPUÉS al 100% (exactamente el mismo tiempo que el Antes para apreciar el brillo)
+          percent = 0;
+        } else if (f < f4) {
+          // Fase 4: Regreso suave al SPLIT 50/50 (0% -> 50%)
+          const t = (f - f3) / (f4 - f3);
+          percent = easeInOutCubic(t) * 50;
         } else {
+          // Fase 5: Hold final en 50/50 con la marca del taller
           percent = 50;
         }
 
         drawFrame(ctx, videoW, videoH, imgAntes, imgDespues, percent, splitStyle);
 
         // Actualizar progreso visible
-        if (f % 15 === 0) {
-          setVideoProgress(Math.round((f / totalFrames) * 90));
+        if (f % 10 === 0) {
+          setVideoProgress(Math.round((f / totalFrames) * 92));
         }
 
         // Delay para sincronizar con la tasa de cuadros del stream
-        await new Promise((r) => setTimeout(r, 28));
+        await new Promise((r) => setTimeout(r, 26));
       }
 
       setVideoProgress(95);
@@ -1032,14 +1064,14 @@ export default function AntesDespuesPage() {
               <div className="bg-[#121214] border border-neutral-800 rounded-3xl p-5 space-y-4 shadow-xl">
                 {/* PESTAÑA 1: VIDEO ANIMADO */}
                 {exportTab === "video" && (
-                  <div className="space-y-3">
+                  <div className="space-y-4">
                     <div className="flex items-center justify-between">
                       <div>
                         <span className="text-xs font-bold text-white block">
-                          Video de Barrido Automático (4.5s)
+                          Video de Barrido Cinematográfico ({videoDuracion}s)
                         </span>
                         <span className="text-[11px] text-neutral-400">
-                          La línea se desliza sola revelando el brillo. Ideal para Reels y Stories.
+                          Equilibrado: 50% Antes / 50% Después con efecto de revelación lenta.
                         </span>
                       </div>
                       <span className="text-xs font-mono px-2 py-0.5 rounded bg-amber-400/10 text-amber-400 border border-amber-400/20 font-bold">
@@ -1047,11 +1079,47 @@ export default function AntesDespuesPage() {
                       </span>
                     </div>
 
+                    {/* Selector de Duración del Video */}
+                    <div>
+                      <div className="flex justify-between items-center mb-1.5">
+                        <label className="text-[11px] font-semibold text-neutral-400">
+                          ⏱️ Duración del Video:
+                        </label>
+                        <span className="text-[10px] text-amber-400 font-bold">
+                          {videoDuracion} segundos
+                        </span>
+                      </div>
+                      <div className="grid grid-cols-3 gap-2">
+                        {[
+                          { seg: 10, label: "10 seg", desc: "Rápido" },
+                          { seg: 12, label: "12 seg ⭐", desc: "Recomendado" },
+                          { seg: 15, label: "15 seg", desc: "Cine Lento" },
+                        ].map((d) => (
+                          <button
+                            key={d.seg}
+                            type="button"
+                            onClick={() => {
+                              setVideoDuracion(d.seg as 10 | 12 | 15);
+                              setVideoUrl(null);
+                            }}
+                            className={`py-2 px-2.5 rounded-xl border text-center transition-all cursor-pointer ${
+                              videoDuracion === d.seg
+                                ? "bg-amber-400/20 text-amber-300 border-amber-400/60 font-bold shadow-sm"
+                                : "bg-[#18181c] border-neutral-800 text-neutral-400 hover:text-white"
+                            }`}
+                          >
+                            <span className="text-xs block font-bold">{d.label}</span>
+                            <span className="text-[10px] text-neutral-500 block">{d.desc}</span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
                     {/* Barra de progreso si está grabando */}
                     {generatingVideo && (
                       <div className="space-y-1.5 pt-2">
                         <div className="flex justify-between text-xs font-mono text-neutral-300">
-                          <span>Generando video animado...</span>
+                          <span>Generando video animado ({videoDuracion}s)...</span>
                           <span>{videoProgress}%</span>
                         </div>
                         <div className="w-full h-2 rounded-full bg-neutral-800 overflow-hidden">
@@ -1067,7 +1135,7 @@ export default function AntesDespuesPage() {
                     {videoUrl && (
                       <div className="p-3 bg-neutral-900/80 rounded-2xl border border-amber-400/30 space-y-2">
                         <span className="text-[11px] font-bold text-amber-400 block">
-                          🎬 Vista previa del video generado:
+                          🎬 Vista previa del video generado ({videoDuracion}s):
                         </span>
                         <video
                           src={videoUrl}
@@ -1090,12 +1158,12 @@ export default function AntesDespuesPage() {
                         {generatingVideo ? (
                           <>
                             <span className="w-4 h-4 border-2 border-neutral-950 border-t-transparent rounded-full animate-spin" />
-                            <span>Animando ({videoProgress}%)...</span>
+                            <span>Grabando ({videoProgress}%)...</span>
                           </>
                         ) : (
                           <>
                             <span>🎥</span>
-                            <span>Generar y Descargar Video (MP4)</span>
+                            <span>Generar Video de {videoDuracion}s (MP4)</span>
                           </>
                         )}
                       </button>
