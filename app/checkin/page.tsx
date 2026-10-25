@@ -190,6 +190,9 @@ export default function CheckinPage() {
 
   // Referencia al contenedor de la silueta del auto
   const carContainerRef = useRef<HTMLDivElement>(null);
+  const carSvgRef = useRef<SVGSVGElement>(null);
+  const [generatingImage, setGeneratingImage] = useState(false);
+  const [canShare, setCanShare] = useState(false);
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
@@ -202,6 +205,9 @@ export default function CheckinPage() {
       const params = new URLSearchParams(window.location.search);
       const slug = (params.get("taller") || params.get("slug") || "demo").toLowerCase().trim();
       setCurrentSlug(slug);
+      if (typeof navigator !== "undefined" && typeof (navigator as any).canShare === "function") {
+        setCanShare(true);
+      }
 
       async function load() {
         setLoading(true);
@@ -373,6 +379,266 @@ export default function CheckinPage() {
     fechaEntregaEstimada,
     observacionesEspeciales,
   ]);
+
+  // Exportar el boceto del auto con daños a imagen PNG en alta definición (Canvas 1080x1620)
+  const handleExportImage = async (mode: "download" | "share" = "download") => {
+    if (!carSvgRef.current) return;
+    setGeneratingImage(true);
+
+    try {
+      // 1. Clonar y preparar SVG con dimensiones absolutas
+      const svgElement = carSvgRef.current.cloneNode(true) as SVGSVGElement;
+      svgElement.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+      svgElement.setAttribute("width", "500");
+      svgElement.setAttribute("height", "875");
+
+      const svgXml = new XMLSerializer().serializeToString(svgElement);
+      const svgBlob = new Blob([svgXml], { type: "image/svg+xml;charset=utf-8" });
+      const URLObj = window.URL || window.webkitURL || window;
+      const blobURL = URLObj.createObjectURL(svgBlob);
+
+      const img = new Image();
+      img.crossOrigin = "anonymous";
+
+      await new Promise<void>((resolve, reject) => {
+        img.onload = () => resolve();
+        img.onerror = () => reject(new Error("Error al cargar SVG en imagen"));
+        img.src = blobURL;
+      });
+
+      // 2. Configurar Canvas 1080 x 1620 (proporción óptima para celulares y WhatsApp)
+      const canvas = document.createElement("canvas");
+      canvas.width = 1080;
+      canvas.height = 1620;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) throw new Error("No context 2d");
+
+      // Fondo oscuro
+      const bgGradient = ctx.createLinearGradient(0, 0, 0, 1620);
+      bgGradient.addColorStop(0, "#0b0c0e");
+      bgGradient.addColorStop(0.5, "#111317");
+      bgGradient.addColorStop(1, "#0a0a0c");
+      ctx.fillStyle = bgGradient;
+      ctx.fillRect(0, 0, 1080, 1620);
+
+      // Marco dorado exterior
+      ctx.strokeStyle = "rgba(212, 175, 55, 0.4)";
+      ctx.lineWidth = 4;
+      ctx.strokeRect(25, 25, 1030, 1570);
+
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
+      ctx.lineWidth = 1;
+      ctx.strokeRect(35, 35, 1010, 1550);
+
+      // Encabezado
+      ctx.fillStyle = "#ffffff";
+      ctx.font = "bold 36px sans-serif";
+      ctx.fillText((biz.nombre || "TALLER DE DETAILING").toUpperCase(), 60, 95);
+
+      ctx.fillStyle = "#fbbf24";
+      ctx.font = "bold 15px monospace";
+      ctx.fillText("INSPECCIÓN TÉCNICA VISUAL • CONTROL DE INGRESO", 60, 130);
+
+      // Folio y Fecha a la derecha
+      ctx.textAlign = "right";
+      ctx.fillStyle = "#fbbf24";
+      ctx.font = "bold 24px monospace";
+      ctx.fillText(folio, 1020, 95);
+
+      ctx.fillStyle = "#888888";
+      ctx.font = "15px sans-serif";
+      ctx.fillText(fechaIngreso, 1020, 125);
+      ctx.textAlign = "left";
+
+      // Tarjeta de datos del auto y cliente
+      ctx.fillStyle = "#15181f";
+      if (typeof ctx.roundRect === "function") {
+        ctx.beginPath();
+        ctx.roundRect(60, 155, 960, 135, 16);
+        ctx.fill();
+        ctx.strokeStyle = "rgba(255, 255, 255, 0.1)";
+        ctx.stroke();
+      } else {
+        ctx.fillRect(60, 155, 960, 135);
+      }
+
+      // Textos de datos
+      ctx.fillStyle = "#777777";
+      ctx.font = "bold 12px sans-serif";
+      ctx.fillText("CLIENTE", 85, 190);
+      ctx.fillText(config.terminoPatente.toUpperCase(), 370, 190);
+      ctx.fillText("KM / " + config.terminoCombustible.toUpperCase(), 700, 190);
+
+      ctx.fillStyle = "#ffffff";
+      ctx.font = "bold 19px sans-serif";
+      ctx.fillText(clienteNombre.trim() || "Sin especificar", 85, 220);
+
+      ctx.fillStyle = "#fbbf24";
+      ctx.font = "bold 22px monospace";
+      ctx.fillText(vehiculoPatente.trim() || "S/D", 370, 220);
+
+      ctx.fillStyle = "#e2e8f0";
+      ctx.font = "bold 17px sans-serif";
+      ctx.fillText(`${vehiculoKm.trim() || "-"} km (${nivelCombustible})`, 700, 220);
+
+      // Vehículo Modelo
+      ctx.fillStyle = "#777777";
+      ctx.font = "bold 12px sans-serif";
+      ctx.fillText(config.terminoVehiculo.toUpperCase(), 85, 255);
+      ctx.fillStyle = "#cbd5e1";
+      ctx.font = "bold 17px sans-serif";
+      const carTitle = `${vehiculoModelo.trim() || "Vehículo sin especificar"}${vehiculoColor.trim() ? " (" + vehiculoColor.trim() + ")" : ""}`;
+      ctx.fillText(carTitle, 85, 278);
+
+      // Dibujar el SVG del auto en el centro (420 x 735)
+      // Centro X: (1080 - 420) / 2 = 330
+      ctx.drawImage(img, 330, 310, 420, 735);
+      URLObj.revokeObjectURL(blobURL);
+
+      // Sección de Lista de Daños
+      ctx.fillStyle = "#ffffff";
+      ctx.font = "bold 20px sans-serif";
+      ctx.fillText(`DAÑOS PREVIOS REGISTRADOS (${damages.length})`, 60, 1080);
+
+      if (damages.length === 0) {
+        ctx.fillStyle = "rgba(16, 185, 129, 0.12)";
+        if (typeof ctx.roundRect === "function") {
+          ctx.beginPath();
+          ctx.roundRect(60, 1105, 960, 65, 12);
+          ctx.fill();
+          ctx.strokeStyle = "rgba(16, 185, 129, 0.35)";
+          ctx.stroke();
+        } else {
+          ctx.fillRect(60, 1105, 960, 65);
+        }
+
+        ctx.fillStyle = "#34d399";
+        ctx.font = "bold 17px sans-serif";
+        ctx.fillText("✓ Sin daños visibles preexistentes detectados al momento del ingreso.", 85, 1145);
+      } else {
+        // Dibujar hasta 8 daños en 2 columnas
+        const colWidth = 465;
+        const visibleDamages = damages.slice(0, 8);
+        visibleDamages.forEach((d, i) => {
+          const col = i % 2;
+          const row = Math.floor(i / 2);
+          const itemX = 60 + col * (colWidth + 30);
+          const itemY = 1105 + row * 82;
+
+          ctx.fillStyle = "#15181f";
+          if (typeof ctx.roundRect === "function") {
+            ctx.beginPath();
+            ctx.roundRect(itemX, itemY, colWidth, 72, 12);
+            ctx.fill();
+            ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
+            ctx.stroke();
+          } else {
+            ctx.fillRect(itemX, itemY, colWidth, 72);
+          }
+
+          const typeObj = DAMAGE_TYPES.find((t) => t.id === d.typeId);
+
+          // Círculo número
+          ctx.fillStyle = typeObj?.color || "#ef4444";
+          ctx.beginPath();
+          ctx.arc(itemX + 25, itemY + 36, 15, 0, Math.PI * 2);
+          ctx.fill();
+
+          ctx.fillStyle = "#ffffff";
+          ctx.font = "bold 14px sans-serif";
+          ctx.textAlign = "center";
+          ctx.fillText(`${i + 1}`, itemX + 25, itemY + 41);
+          ctx.textAlign = "left";
+
+          // Nombre de zona
+          ctx.fillStyle = "#f8fafc";
+          ctx.font = "bold 15px sans-serif";
+          ctx.fillText(d.zone, itemX + 50, itemY + 30);
+
+          // Tipo y nota
+          ctx.fillStyle = typeObj?.color || "#e2e8f0";
+          ctx.font = "13px sans-serif";
+          const extraNote = d.nota ? ` • "${d.nota.length > 25 ? d.nota.slice(0, 25) + "..." : d.nota}"` : "";
+          ctx.fillText(`${typeObj?.label || "Detalle"} (${d.severity})${extraNote}`, itemX + 50, itemY + 54);
+        });
+
+        if (damages.length > 8) {
+          ctx.fillStyle = "#fbbf24";
+          ctx.font = "italic 13px sans-serif";
+          ctx.fillText(`+ ${damages.length - 8} daños adicionales registrados en el informe escrito.`, 60, 1465);
+        }
+      }
+
+      // Pie de página y constancia legal
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.1)";
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(60, 1500);
+      ctx.lineTo(1020, 1500);
+      ctx.stroke();
+
+      ctx.fillStyle = "#888888";
+      ctx.font = "italic 13px sans-serif";
+      ctx.fillText(`Constancia emitida por ${biz.nombre || "Taller"}. El cliente toma conocimiento del estado constatado.`, 60, 1540);
+
+      ctx.fillStyle = "#fbbf24";
+      ctx.font = "bold 13px monospace";
+      ctx.textAlign = "right";
+      ctx.fillText("detailing-demos.vercel.app/checkin", 1020, 1540);
+      ctx.textAlign = "left";
+
+      // 3. Exportar a Blob y disparar descarga o compartir
+      const cleanPlate = (vehiculoPatente || "inspeccion").replace(/[^a-zA-Z0-9]/g, "").toUpperCase() || "AUTO";
+      const fileName = `Boceto_${cleanPlate}_${folio}.png`;
+
+      canvas.toBlob(async (blob) => {
+        if (!blob) {
+          setGeneratingImage(false);
+          return;
+        }
+
+        // Si el usuario eligió compartir y el navegador soporta compartir archivos
+        if (mode === "share" && typeof navigator !== "undefined" && typeof (navigator as any).canShare === "function") {
+          try {
+            const file = new File([blob], fileName, { type: "image/png" });
+            if ((navigator as any).canShare({ files: [file] })) {
+              await navigator.share({
+                files: [file],
+                title: `Inspección de Daños - ${vehiculoPatente || vehiculoModelo}`,
+                text: `Boceto de inspección del vehículo ${vehiculoModelo || ""} (${folio}) en ${biz.nombre || "Taller"}`,
+              });
+              showToast("✨ ¡Imagen compartida con éxito!");
+              setGeneratingImage(false);
+              return;
+            }
+          } catch (shareErr: any) {
+            if (shareErr?.name === "AbortError") {
+              setGeneratingImage(false);
+              return;
+            }
+          }
+        }
+
+        // Descarga tradicional en archivo
+        const dlUrl = URLObj.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = dlUrl;
+        a.download = fileName;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(() => URLObj.revokeObjectURL(dlUrl), 1500);
+
+        showToast("📥 ¡Imagen del boceto descargada en alta resolución!");
+        setGeneratingImage(false);
+      }, "image/png");
+
+    } catch (err) {
+      console.error("Error al exportar imagen:", err);
+      showToast("⚠️ No se pudo generar la imagen.");
+      setGeneratingImage(false);
+    }
+  };
 
   const handleCopiarMensaje = () => {
     if (typeof navigator !== "undefined" && navigator.clipboard) {
@@ -630,9 +896,44 @@ export default function CheckinPage() {
                     </span>
                   </div>
 
-                  <span className="text-[11px] text-neutral-400 bg-neutral-900 border border-neutral-800 px-2.5 py-1 rounded-full">
-                    👆 Tocá en la silueta para marcar un daño
-                  </span>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <button
+                      type="button"
+                      onClick={() => handleExportImage("download")}
+                      disabled={generatingImage}
+                      className="bg-neutral-800 hover:bg-neutral-700 active:scale-95 text-amber-300 hover:text-amber-200 text-xs font-bold px-3 py-1.5 rounded-xl border border-amber-500/30 flex items-center gap-1.5 shadow-sm transition-all cursor-pointer disabled:opacity-50"
+                      title="Descargar boceto con los daños marcados en imagen PNG"
+                    >
+                      {generatingImage ? (
+                        <>
+                          <span className="w-3 h-3 border-2 border-amber-400 border-t-transparent rounded-full animate-spin" />
+                          <span>Generando...</span>
+                        </>
+                      ) : (
+                        <>
+                          <span>📸</span>
+                          <span>Descargar Boceto (PNG)</span>
+                        </>
+                      )}
+                    </button>
+
+                    {canShare && (
+                      <button
+                        type="button"
+                        onClick={() => handleExportImage("share")}
+                        disabled={generatingImage}
+                        className="bg-neutral-800 hover:bg-neutral-700 active:scale-95 text-neutral-300 hover:text-white text-xs font-bold px-2.5 py-1.5 rounded-xl border border-neutral-700 flex items-center gap-1 shadow-sm transition-all cursor-pointer disabled:opacity-50"
+                        title="Compartir imagen directo a WhatsApp o guardar en fotos"
+                      >
+                        <span>📲</span>
+                        <span className="hidden sm:inline">Compartir</span>
+                      </button>
+                    )}
+
+                    <span className="text-[11px] text-neutral-400 bg-neutral-900 border border-neutral-800 px-2.5 py-1 rounded-full">
+                      👆 Tocá en la silueta
+                    </span>
+                  </div>
                 </div>
 
                 {/* SILUETA DEL AUTO INTERACTIVA */}
@@ -646,6 +947,7 @@ export default function CheckinPage() {
                       title="Haz clic o toca para marcar un daño previo"
                     >
                       <svg
+                        ref={carSvgRef}
                         viewBox="0 0 400 700"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
@@ -732,6 +1034,31 @@ export default function CheckinPage() {
                         <text x="200" y="605" textAnchor="middle" fill="#666" fontSize="10" fontWeight="bold" letterSpacing="1">
                           {countryCode === "MX" ? "CAJUELA" : countryCode === "ES" ? "MALETERO" : "BAÚL"}
                         </text>
+
+                        {/* Pins de Daños incrustados en SVG para captura en Canvas/Imagen */}
+                        {damages.map((d, index) => {
+                          const typeObj = DAMAGE_TYPES.find((t) => t.id === d.typeId);
+                          const cx = (d.x / 100) * 400;
+                          const cy = (d.y / 100) * 700;
+                          const pinColor = typeObj?.color || "#ef4444";
+                          return (
+                            <g key={`svg-pin-${d.id}`}>
+                              <circle cx={cx} cy={cy} r="18" fill={pinColor} opacity="0.3" />
+                              <circle cx={cx} cy={cy} r="13" fill={pinColor} stroke="#ffffff" strokeWidth="2.5" />
+                              <text
+                                x={cx}
+                                y={cy + 4.5}
+                                textAnchor="middle"
+                                fill="#ffffff"
+                                fontSize="12"
+                                fontWeight="900"
+                                fontFamily="sans-serif"
+                              >
+                                {index + 1}
+                              </text>
+                            </g>
+                          );
+                        })}
                       </svg>
 
                       {/* Pins de Daños Registrados */}
@@ -1217,6 +1544,25 @@ export default function CheckinPage() {
                   <div className="space-y-2 pt-2">
                     <button
                       type="button"
+                      onClick={() => handleExportImage("download")}
+                      disabled={generatingImage}
+                      className="w-full bg-neutral-900 hover:bg-neutral-800 border border-amber-500/40 hover:border-amber-400 text-amber-300 hover:text-amber-200 font-bold text-xs py-3 px-4 rounded-2xl transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md active:scale-98 disabled:opacity-50"
+                    >
+                      {generatingImage ? (
+                        <>
+                          <span className="w-3.5 h-3.5 border-2 border-amber-400 border-t-transparent rounded-full animate-spin" />
+                          <span>Generando imagen de alta resolución...</span>
+                        </>
+                      ) : (
+                        <>
+                          <span>📸</span>
+                          <span>Descargar Boceto del Auto con Daños (PNG)</span>
+                        </>
+                      )}
+                    </button>
+
+                    <button
+                      type="button"
                       onClick={handleEnviarWhatsAppDirecto}
                       className="w-full bg-emerald-600 hover:bg-emerald-500 active:scale-98 text-white font-extrabold text-sm py-3.5 px-4 rounded-2xl shadow-lg shadow-emerald-950/50 flex items-center justify-center gap-2 transition-all cursor-pointer"
                     >
@@ -1242,13 +1588,24 @@ export default function CheckinPage() {
                       <span>🛡️</span>
                       <span>Acta de Recepción Oficial</span>
                     </span>
-                    <button
-                      type="button"
-                      onClick={handleImprimir}
-                      className="bg-neutral-800 hover:bg-neutral-700 text-white font-bold text-xs px-3 py-1.5 rounded-xl border border-neutral-600 flex items-center gap-1.5 transition-all cursor-pointer shadow-sm"
-                    >
-                      <span>🖨️ Imprimir / PDF</span>
-                    </button>
+                    <div className="flex items-center gap-2">
+                      <button
+                        type="button"
+                        onClick={() => handleExportImage("download")}
+                        disabled={generatingImage}
+                        className="bg-neutral-800 hover:bg-neutral-700 text-amber-300 hover:text-amber-200 font-bold text-xs px-3 py-1.5 rounded-xl border border-amber-500/30 flex items-center gap-1.5 transition-all cursor-pointer shadow-sm active:scale-95"
+                      >
+                        <span>📸</span>
+                        <span>Boceto PNG</span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={handleImprimir}
+                        className="bg-neutral-800 hover:bg-neutral-700 text-white font-bold text-xs px-3 py-1.5 rounded-xl border border-neutral-600 flex items-center gap-1.5 transition-all cursor-pointer shadow-sm"
+                      >
+                        <span>🖨️ Imprimir</span>
+                      </button>
+                    </div>
                   </div>
 
                   {/* Tarjeta de Recepción Estilo Luxury */}
