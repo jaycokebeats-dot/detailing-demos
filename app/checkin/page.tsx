@@ -418,11 +418,11 @@ export default function CheckinPage() {
   };
 
   return (
-    <div className="admin-scope min-h-screen bg-[#0a0a0a] text-neutral-100 font-sans selection:bg-gold/30 selection:text-gold pb-28">
+    <div className="admin-scope min-h-screen bg-[#0a0a0a] text-neutral-100 font-sans selection:bg-gold/30 selection:text-amber-400 pb-28">
       {/* Toast Alert */}
       {toastMessage && (
-        <div className="fixed top-5 left-1/2 -translate-x-1/2 z-50 bg-neutral-900 border border-gold/40 text-neutral-100 px-5 py-3 rounded-2xl shadow-2xl shadow-black flex items-center gap-3 text-xs sm:text-sm font-medium animate-fade-in backdrop-blur-md">
-          <span className="text-gold text-base">✨</span>
+        <div className="fixed top-5 left-1/2 -translate-x-1/2 z-50 bg-neutral-900 border border-amber-400/40 text-neutral-100 px-5 py-3 rounded-2xl shadow-2xl shadow-black flex items-center gap-3 text-xs sm:text-sm font-medium animate-fade-in backdrop-blur-md">
+          <span className="text-amber-400 text-base">✨</span>
           <span>{toastMessage}</span>
         </div>
       )}
@@ -432,7 +432,7 @@ export default function CheckinPage() {
         <header className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-neutral-800">
           <div>
             <div className="flex items-center gap-2 mb-1.5 flex-wrap">
-              <span className="text-xs font-mono uppercase tracking-wider text-gold px-2.5 py-0.5 rounded-full bg-gold/10 border border-gold/20 font-bold">
+              <span className="text-xs font-mono uppercase tracking-wider text-amber-400 px-2.5 py-0.5 rounded-full bg-gold/10 border border-amber-400/20 font-bold">
                 Control de Ingreso & Daños
               </span>
               <span className="text-xs font-mono text-neutral-400">
@@ -521,7 +521,7 @@ export default function CheckinPage() {
                       value={clienteNombre}
                       onChange={(e) => setClienteNombre(e.target.value)}
                       placeholder="Ej: Marcelo Morales"
-                      className="w-full bg-[#161616] border border-neutral-800 rounded-xl px-3.5 py-2.5 text-xs text-neutral-200 focus:outline-none focus:border-gold/60"
+                      className="w-full bg-[#161616] border border-neutral-800 rounded-xl px-3.5 py-2.5 text-xs text-neutral-200 focus:outline-none focus:border-amber-400/60"
                     />
                   </div>
 
@@ -535,7 +535,7 @@ export default function CheckinPage() {
                         value={clienteTelefono}
                         onChange={(e) => setClienteTelefono(e.target.value)}
                         placeholder={`Ej: ${countryCode === "MX" ? "524441234567" : countryCode === "ES" ? "34612345678" : "5491154514393"}`}
-                        className="w-full bg-[#161616] border border-neutral-800 rounded-xl px-3.5 py-2.5 text-xs text-neutral-200 focus:outline-none focus:border-gold/60"
+                        className="w-full bg-[#161616] border border-neutral-800 rounded-xl px-3.5 py-2.5 text-xs text-neutral-200 focus:outline-none focus:border-amber-400/60"
                       />
                     </div>
                   </div>
@@ -549,7 +549,7 @@ export default function CheckinPage() {
                       value={vehiculoModelo}
                       onChange={(e) => setVehiculoModelo(e.target.value)}
                       placeholder="Ej: BMW 330i M Sport 2023"
-                      className="w-full bg-[#161616] border border-neutral-800 rounded-xl px-3.5 py-2.5 text-xs text-neutral-200 focus:outline-none focus:border-gold/60 font-semibold"
+                      className="w-full bg-[#161616] border border-neutral-800 rounded-xl px-3.5 py-2.5 text-xs text-neutral-200 focus:outline-none focus:border-amber-400/60 font-semibold"
                     />
                   </div>
 
@@ -563,7 +563,7 @@ export default function CheckinPage() {
                         value={vehiculoColor}
                         onChange={(e) => setVehiculoColor(e.target.value)}
                         placeholder="Ej: Azul Estoril"
-                        className="w-full bg-[#161616] border border-neutral-800 rounded-xl px-3.5 py-2.5 text-xs text-neutral-200 focus:outline-none focus:border-gold/60"
+                        className="w-full bg-[#161616] border border-neutral-800 rounded-xl px-3.5 py-2.5 text-xs text-neutral-200 focus:outline-none focus:border-amber-400/60"
                       />
                     </div>
 
@@ -576,7 +576,7 @@ export default function CheckinPage() {
                         value={vehiculoPatente}
                         onChange={(e) => setVehiculoPatente(e.target.value.toUpperCase())}
                         placeholder={countryCode === "MX" ? "ABC-12-34" : countryCode === "ES" ? "1234 ABC" : "AF 123 CD"}
-                        className="w-full bg-[#161616] border border-neutral-800 rounded-xl px-3.5 py-2.5 text-xs text-neutral-200 focus:outline-none focus:border-gold/60 font-mono font-bold tracking-wider uppercase text-center"
+                        className="w-full bg-[#161616] border border-neutral-800 rounded-xl px-3.5 py-2.5 text-xs text-neutral-200 focus:outline-none focus:border-amber-400/60 font-mono font-bold tracking-wider uppercase text-center"
                       />
                     </div>
                   </div>
@@ -590,7 +590,7 @@ export default function CheckinPage() {
                       value={vehiculoKm}
                       onChange={(e) => setVehiculoKm(e.target.value)}
                       placeholder="Ej: 34,500"
-                      className="w-full bg-[#161616] border border-neutral-800 rounded-xl px-3.5 py-2.5 text-xs text-neutral-200 focus:outline-none focus:border-gold/60"
+                      className="w-full bg-[#161616] border border-neutral-800 rounded-xl px-3.5 py-2.5 text-xs text-neutral-200 focus:outline-none focus:border-amber-400/60"
                     />
                   </div>
 
@@ -606,7 +606,7 @@ export default function CheckinPage() {
                           onClick={() => setNivelCombustible(lvl)}
                           className={`text-[11px] py-2 rounded-lg font-bold border transition-all cursor-pointer ${
                             nivelCombustible === lvl
-                              ? "bg-gold/20 text-gold border-gold/50 shadow-sm"
+                              ? "bg-amber-500/20 text-amber-300 border-amber-500/50 shadow-sm"
                               : "bg-[#161616] border-neutral-800 text-neutral-400 hover:text-white"
                           }`}
                         >
@@ -765,7 +765,7 @@ export default function CheckinPage() {
                           style={{ left: `${pendingPoint.x}%`, top: `${pendingPoint.y}%` }}
                           className="absolute -translate-x-1/2 -translate-y-1/2 z-20 flex items-center justify-center pointer-events-none"
                         >
-                          <span className="w-7 h-7 rounded-full bg-white text-black font-extrabold text-xs flex items-center justify-center animate-bounce shadow-2xl border-2 border-gold">
+                          <span className="w-7 h-7 rounded-full bg-white text-black font-extrabold text-xs flex items-center justify-center animate-bounce shadow-2xl border-2 border-amber-400">
                             +
                           </span>
                         </div>
@@ -776,9 +776,9 @@ export default function CheckinPage() {
 
                 {/* MODAL / FORMULARIO RÁPIDO PARA REGISTRAR EL DAÑO SELECCIONADO */}
                 {pendingPoint && (
-                  <div className="bg-[#181818] border border-gold/40 rounded-2xl p-4 space-y-3 animate-fade-in shadow-xl">
+                  <div className="bg-[#181818] border border-amber-400/40 rounded-2xl p-4 space-y-3 animate-fade-in shadow-xl">
                     <div className="flex items-center justify-between border-b border-neutral-800 pb-2">
-                      <span className="text-xs font-bold text-gold flex items-center gap-1.5">
+                      <span className="text-xs font-bold text-amber-400 flex items-center gap-1.5">
                         <span>📍</span>
                         <span>Zona seleccionada: {pendingPoint.zone}</span>
                       </span>
@@ -803,7 +803,7 @@ export default function CheckinPage() {
                             onClick={() => setPendingType(t.id)}
                             className={`text-xs px-2.5 py-2 rounded-xl border text-left flex items-center gap-1.5 transition-all cursor-pointer ${
                               pendingType === t.id
-                                ? "bg-neutral-800 text-white border-gold/70 shadow-sm font-bold"
+                                ? "bg-neutral-800 text-white border-amber-400/70 shadow-sm font-bold"
                                 : "bg-[#141414] border-neutral-800 text-neutral-400 hover:text-neutral-200"
                             }`}
                           >
@@ -850,7 +850,7 @@ export default function CheckinPage() {
                           value={pendingNota}
                           onChange={(e) => setPendingNota(e.target.value)}
                           placeholder="Ej: Rayón de 8cm, no salió con pulido"
-                          className="w-full bg-[#141414] border border-neutral-800 rounded-xl px-3 py-1.5 text-xs text-neutral-200 focus:outline-none focus:border-gold/60"
+                          className="w-full bg-[#141414] border border-neutral-800 rounded-xl px-3 py-1.5 text-xs text-neutral-200 focus:outline-none focus:border-amber-400/60"
                         />
                       </div>
                     </div>
@@ -866,9 +866,10 @@ export default function CheckinPage() {
                       <button
                         type="button"
                         onClick={handleConfirmDamage}
-                        className="bg-gold hover:bg-gold/90 text-neutral-950 font-bold text-xs px-4 py-2 rounded-xl shadow-md transition-all cursor-pointer active:scale-95"
+                        className="bg-gradient-to-r from-amber-400 via-amber-500 to-amber-400 hover:brightness-110 text-neutral-950 font-black text-xs px-5 py-2.5 rounded-xl shadow-lg shadow-amber-500/25 transition-all cursor-pointer active:scale-95 flex items-center gap-1.5 border border-amber-300"
                       >
-                        ✓ Guardar Daño #{damages.length + 1}
+                        <span className="text-sm font-extrabold">✓</span>
+                        <span>Guardar Daño #{damages.length + 1}</span>
                       </button>
                     </div>
                   </div>
@@ -1085,7 +1086,7 @@ export default function CheckinPage() {
                           onClick={() => setLlavesEntregadas(k)}
                           className={`text-xs py-2 rounded-xl font-bold border transition-all cursor-pointer ${
                             llavesEntregadas === k
-                              ? "bg-neutral-800 text-white border-gold/50 shadow-sm"
+                              ? "bg-neutral-800 text-white border-amber-400/50 shadow-sm"
                               : "bg-[#161616] border-neutral-800 text-neutral-400"
                           }`}
                         >
@@ -1104,7 +1105,7 @@ export default function CheckinPage() {
                       value={pertenenciasNotas}
                       onChange={(e) => setPertenenciasNotas(e.target.value)}
                       placeholder="Ej: Lentes de sol Ray-Ban, monedas en gaveta"
-                      className="w-full bg-[#161616] border border-neutral-800 rounded-xl px-3.5 py-2 text-xs text-neutral-200 focus:outline-none focus:border-gold/60"
+                      className="w-full bg-[#161616] border border-neutral-800 rounded-xl px-3.5 py-2 text-xs text-neutral-200 focus:outline-none focus:border-amber-400/60"
                     />
                   </div>
                 </div>
@@ -1131,7 +1132,7 @@ export default function CheckinPage() {
                       value={serviciosSolicitados}
                       onChange={(e) => setServiciosSolicitados(e.target.value)}
                       placeholder="Ej: Corrección de Pintura 2 Pasos + Cerámico 9H 3 Años + Detallado de Motor"
-                      className="w-full bg-[#161616] border border-neutral-800 rounded-xl px-3.5 py-2.5 text-xs text-neutral-200 focus:outline-none focus:border-gold/60 font-semibold"
+                      className="w-full bg-[#161616] border border-neutral-800 rounded-xl px-3.5 py-2.5 text-xs text-neutral-200 focus:outline-none focus:border-amber-400/60 font-semibold"
                     />
                   </div>
 
@@ -1145,7 +1146,7 @@ export default function CheckinPage() {
                         value={fechaEntregaEstimada}
                         onChange={(e) => setFechaEntregaEstimada(e.target.value)}
                         placeholder="Ej: Mañana a las 18:30 hs"
-                        className="w-full bg-[#161616] border border-neutral-800 rounded-xl px-3.5 py-2 text-xs text-neutral-200 focus:outline-none focus:border-gold/60"
+                        className="w-full bg-[#161616] border border-neutral-800 rounded-xl px-3.5 py-2 text-xs text-neutral-200 focus:outline-none focus:border-amber-400/60"
                       />
                     </div>
 
@@ -1158,7 +1159,7 @@ export default function CheckinPage() {
                         value={observacionesEspeciales}
                         onChange={(e) => setObservacionesEspeciales(e.target.value)}
                         placeholder="Ej: Cuidado con el splitter delantero de carbono"
-                        className="w-full bg-[#161616] border border-neutral-800 rounded-xl px-3.5 py-2 text-xs text-neutral-200 focus:outline-none focus:border-gold/60"
+                        className="w-full bg-[#161616] border border-neutral-800 rounded-xl px-3.5 py-2 text-xs text-neutral-200 focus:outline-none focus:border-amber-400/60"
                       />
                     </div>
                   </div>
@@ -1186,7 +1187,7 @@ export default function CheckinPage() {
                   onClick={() => setActiveTab("ficha")}
                   className={`flex-1 py-2.5 rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-all cursor-pointer ${
                     activeTab === "ficha"
-                      ? "bg-neutral-800 text-gold border border-gold/40 shadow-md"
+                      ? "bg-neutral-800 text-amber-400 border border-amber-400/40 shadow-md"
                       : "text-neutral-400 hover:text-white"
                   }`}
                 >
@@ -1237,7 +1238,7 @@ export default function CheckinPage() {
               {activeTab === "ficha" && (
                 <div className="bg-[#121212] border border-neutral-800 rounded-3xl p-5 sm:p-6 space-y-4 shadow-xl animate-fade-in">
                   <div className="flex items-center justify-between border-b border-neutral-800 pb-3">
-                    <span className="text-xs font-bold text-gold flex items-center gap-1.5">
+                    <span className="text-xs font-bold text-amber-400 flex items-center gap-1.5">
                       <span>🛡️</span>
                       <span>Acta de Recepción Oficial</span>
                     </span>
@@ -1251,7 +1252,7 @@ export default function CheckinPage() {
                   </div>
 
                   {/* Tarjeta de Recepción Estilo Luxury */}
-                  <div className="bg-[#161616] border border-gold/30 rounded-2xl p-4 sm:p-5 text-neutral-200 text-xs space-y-4 shadow-md font-sans">
+                  <div className="bg-[#161616] border border-amber-400/30 rounded-2xl p-4 sm:p-5 text-neutral-200 text-xs space-y-4 shadow-md font-sans">
                     {/* Cabecera */}
                     <div className="flex justify-between items-start border-b border-neutral-800 pb-3">
                       <div>
@@ -1261,7 +1262,7 @@ export default function CheckinPage() {
                         <p className="text-[11px] text-neutral-400">{biz.ciudad || "Estética Vehicular"}</p>
                       </div>
                       <div className="text-right">
-                        <span className="font-mono font-bold text-gold text-xs block">{folio}</span>
+                        <span className="font-mono font-bold text-amber-400 text-xs block">{folio}</span>
                         <span className="text-[10px] text-neutral-500">{fechaIngreso}</span>
                       </div>
                     </div>
@@ -1274,7 +1275,7 @@ export default function CheckinPage() {
                       </div>
                       <div>
                         <span className="text-[10px] text-neutral-500 block uppercase font-bold">{config.terminoPatente}</span>
-                        <span className="font-mono font-bold text-gold">{vehiculoPatente || "S/D"}</span>
+                        <span className="font-mono font-bold text-amber-400">{vehiculoPatente || "S/D"}</span>
                       </div>
                       <div>
                         <span className="text-[10px] text-neutral-500 block uppercase font-bold">{config.terminoVehiculo}</span>
@@ -1340,7 +1341,7 @@ export default function CheckinPage() {
               {/* CARD DE VALOR PARA EL NEGOCIO */}
               <div className="bg-gradient-to-br from-[#141414] to-[#0d0d0d] border border-neutral-800/80 rounded-3xl p-5 text-xs text-neutral-400 space-y-2">
                 <span className="font-bold text-neutral-200 flex items-center gap-1.5">
-                  <span className="text-gold">💡</span>
+                  <span className="text-amber-400">💡</span>
                   <span>Protección total para el taller</span>
                 </span>
                 <p className="text-[11px] leading-relaxed">
