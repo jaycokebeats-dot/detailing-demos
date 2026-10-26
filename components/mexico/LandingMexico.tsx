@@ -128,6 +128,14 @@ export default function LandingMexico({ biz }: { biz: Business }) {
   const primeraPalabra = brandParts[0] || "";
   const nombreResto = brandParts.slice(1).join(" ");
 
+  const isTheZone =
+    biz.slug === "the-zone-car-autospa-detailing" ||
+    biz.slug === "thezone" ||
+    biz.slug === "the-zone" ||
+    Boolean(biz.nombre && biz.nombre.toLowerCase().includes("the zone"));
+
+  const badgeClass = isTheZone ? "section-badge-thezone" : "section-badge";
+
   const msgPresupuesto = `Hola! Quisiera pedir información o cotización para mi auto en ${biz.nombre}.`;
   const msgFotos = `Hola! Les mando unas fotos de mi auto para que me asesoren sobre qué tratamiento le conviene más en ${biz.nombre}.`;
 
@@ -140,7 +148,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
   ];
 
   return (
-    <div className="min-h-screen bg-black text-white selection:bg-amber-500/30 selection:text-amber-200">
+    <div className={`min-h-screen bg-black text-white ${isTheZone ? "selection:bg-blue-600/40 selection:text-sky-100" : "selection:bg-amber-500/30 selection:text-amber-200"}`}>
       {/* 1. NAVBAR */}
       <div className="fixed top-0 left-0 right-0 z-50 flex justify-center px-3 pointer-events-none">
         <header
@@ -151,10 +159,10 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                   marginTop: "12px",
                   maxWidth: "56rem",
                   borderRadius: "9999px",
-                  background: "rgba(10,10,10,0.85)",
+                  background: isTheZone ? "rgba(8,12,20,0.88)" : "rgba(10,10,10,0.85)",
                   backdropFilter: "blur(14px)",
-                  boxShadow: "0 8px 30px rgba(0,0,0,0.45)",
-                  border: "1px solid rgba(255,255,255,0.08)",
+                  boxShadow: isTheZone ? "0 8px 30px rgba(0,102,255,0.25)" : "0 8px 30px rgba(0,0,0,0.45)",
+                  border: isTheZone ? "1px solid rgba(56,189,248,0.25)" : "1px solid rgba(255,255,255,0.08)",
                 }
               : {
                   marginTop: "0px",
@@ -165,16 +173,26 @@ export default function LandingMexico({ biz }: { biz: Business }) {
           }
         >
           <div className={`max-w-6xl mx-auto flex items-center justify-between px-5 sm:px-8 transition-[height] duration-300 ${scrolled ? "h-14" : "h-16"}`}>
-            <a href="#hero" className="text-base font-bold tracking-widest text-white">
-              {nombreResto ? (
-                <>
-                  {`${primeraPalabra} `}
-                  <span className="text-gold">{nombreResto}</span>
-                </>
-              ) : (
-                primeraPalabra
-              )}
-            </a>
+            {isTheZone ? (
+              <a href="#hero" className="flex items-center shrink-0 group transition-transform active:scale-95" aria-label="Ir al inicio">
+                <img
+                  src="/logo/the-zone-logo.png"
+                  alt={biz.nombre}
+                  className="h-9 sm:h-11 w-auto object-contain transition-transform group-hover:scale-105 drop-shadow-[0_4px_14px_rgba(0,102,255,0.4)]"
+                />
+              </a>
+            ) : (
+              <a href="#hero" className="text-base font-bold tracking-widest text-white">
+                {nombreResto ? (
+                  <>
+                    {`${primeraPalabra} `}
+                    <span className="text-gold">{nombreResto}</span>
+                  </>
+                ) : (
+                  primeraPalabra
+                )}
+              </a>
+            )}
             <div className="hidden md:flex items-center gap-7 text-xs uppercase tracking-widest text-slate-400">
               <a href="#servicios" className="hover:text-white transition-colors">Servicios</a>
               <a href="#garantia" className="hover:text-white transition-colors">Compromiso</a>
@@ -185,9 +203,9 @@ export default function LandingMexico({ biz }: { biz: Business }) {
               href={waHref(biz, msgPresupuesto)}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-white hover:opacity-70 transition-opacity"
+              className={`inline-flex items-center gap-2 text-xs uppercase tracking-widest ${isTheZone ? "text-sky-300 hover:text-white" : "text-white hover:opacity-70"} transition-opacity`}
             >
-              <FaWhatsapp aria-hidden className="size-4 text-emerald-400" />
+              <FaWhatsapp aria-hidden className={`size-4 ${isTheZone ? "text-sky-400" : "text-emerald-400"}`} />
               Agendar Cita
             </a>
           </div>
@@ -216,19 +234,48 @@ export default function LandingMexico({ biz }: { biz: Business }) {
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/70" />
 
+        {/* Ambient Blue Halo for The Zone */}
+        {isTheZone && (
+          <div
+            className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[480px] rounded-full pointer-events-none blur-[110px] opacity-40"
+            style={{ background: "radial-gradient(circle, #0066ff 0%, #00d0ff 35%, transparent 70%)" }}
+          />
+        )}
+
         <div className="relative z-10 max-w-6xl mx-auto w-full h-full flex items-center justify-center">
           <div className="max-w-2xl text-center space-y-5 mx-auto py-12 lg:py-8">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs sm:text-sm font-medium text-slate-300">
-              <span className="flex size-2 rounded-full shrink-0 animate-pulse bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
+            {/* Logo oficial centrado para The Zone (estilo Borges) */}
+            {isTheZone && (
+              <div className="flex justify-center mb-6 -mt-4 sm:-mt-6 lg:-mt-8">
+                <img
+                  src="/logo/the-zone-logo.png"
+                  alt={biz.nombre}
+                  className="h-32 sm:h-40 md:h-48 w-auto object-contain drop-shadow-[0_15px_35px_rgba(0,102,255,0.45)] transition-transform hover:scale-105"
+                />
+              </div>
+            )}
+
+            <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full border ${isTheZone ? "border-sky-500/30 bg-sky-500/10 text-sky-200" : "border-white/10 bg-white/5 text-slate-300"} text-xs sm:text-sm font-medium`}>
+              <span className={`flex size-2 rounded-full shrink-0 animate-pulse ${isTheZone ? "bg-sky-400 shadow-[0_0_8px_rgba(56,189,248,0.9)]" : "bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]"}`} />
               <span>{biz.ciudad} (México)</span>
               <span className="text-slate-500">·</span>
               <span>Citas disponibles esta semana</span>
             </div>
 
             <h1 className="text-[32px] sm:text-[42px] font-medium tracking-tight leading-tight text-balance">
-              Detailing Profesional a Mano,
-              <br />
-              <span className="text-gold">Acabado de Exposición.</span>
+              {isTheZone ? (
+                <>
+                  Estética y Detallado Automotriz en San Luis Potosí.
+                  <br />
+                  <span className="text-thezone">Protección y Brillo de Nivel Premium.</span>
+                </>
+              ) : (
+                <>
+                  Detailing Profesional a Mano,
+                  <br />
+                  <span className="text-gold">Acabado de Exposición.</span>
+                </>
+              )}
             </h1>
 
             <p className="text-base md:text-lg text-slate-300 max-w-2xl font-light leading-relaxed text-pretty">
@@ -240,14 +287,14 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                 href={waHref(biz, msgPresupuesto)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-gold group w-full sm:w-auto px-7 py-3.5 min-h-[44px] rounded-full text-sm font-semibold uppercase tracking-wide active:scale-95 transition-[transform,filter] duration-150 flex items-center justify-center gap-2.5"
+                className={`${isTheZone ? "btn-thezone" : "btn-gold"} group w-full sm:w-auto px-7 py-3.5 min-h-[44px] rounded-full text-sm font-semibold uppercase tracking-wide active:scale-95 transition-[transform,filter,box-shadow] duration-150 flex items-center justify-center gap-2.5`}
               >
                 <FaWhatsapp aria-hidden className="size-4" />
                 Cotizar por WhatsApp
               </a>
               <a
                 href="#servicios"
-                className="btn-outline-gold text-nowrap group w-full sm:w-auto px-7 py-3.5 min-h-[44px] rounded-full text-sm font-semibold uppercase active:scale-95 flex items-center justify-center gap-2.5"
+                className={`${isTheZone ? "btn-outline-thezone" : "btn-outline-gold"} text-nowrap group w-full sm:w-auto px-7 py-3.5 min-h-[44px] rounded-full text-sm font-semibold uppercase active:scale-95 flex items-center justify-center gap-2.5`}
               >
                 <HiOutlineSparkles aria-hidden className="size-4" />
                 Ver Servicios
@@ -257,7 +304,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
             <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 pt-2">
               {stats.map((item) => (
                 <span key={item} className="inline-flex items-center gap-1.5 text-xs sm:text-sm text-slate-300">
-                  <HiOutlineCheckCircle aria-hidden className="size-4 shrink-0 text-gold" />
+                  <HiOutlineCheckCircle aria-hidden className={`size-4 shrink-0 ${isTheZone ? "text-sky-400" : "text-gold"}`} />
                   {item}
                 </span>
               ))}
@@ -270,15 +317,15 @@ export default function LandingMexico({ biz }: { biz: Business }) {
       <section className="relative px-5 sm:px-8 py-20" style={{ background: "#101010" }}>
         <SectionDivider edge="top" />
         <div className="max-w-3xl mx-auto text-center">
-          <span className="section-badge mb-5">El problema real</span>
-          <h2 className="text-3xl md:text-4xl font-medium text-gold mb-3">Lavar el Auto no es lo Mismo que un Detailing</h2>
+          <span className={`${badgeClass} mb-5`}>El problema real</span>
+          <h2 className={`text-3xl md:text-4xl font-medium ${isTheZone ? "text-thezone" : "text-gold"} mb-3`}>Lavar el Auto no es lo Mismo que un Detailing</h2>
           <p className="text-slate-400 max-w-xl mx-auto mb-10">
             Un auto puede salir limpio de un autolavado convencional y seguir viéndose opaco o rayado. Señales habituales:
           </p>
           <div className="grid sm:grid-cols-2 gap-3 text-left max-w-xl mx-auto">
             {ITEMS_PROBLEMA_MEXICO.map((item) => (
               <div key={item} className="glass-panel rounded-2xl px-4 py-3 flex items-start gap-3 border border-white/10">
-                <span className="shrink-0 w-1.5 h-1.5 rounded-full mt-2" style={{ backgroundColor: "#b8c2cc" }} />
+                <span className="shrink-0 w-1.5 h-1.5 rounded-full mt-2" style={{ backgroundColor: isTheZone ? "#38bdf8" : "#b8c2cc" }} />
                 <p className="text-sm text-slate-300">{item}</p>
               </div>
             ))}
@@ -289,8 +336,8 @@ export default function LandingMexico({ biz }: { biz: Business }) {
         {biz.fotos && biz.fotos.length > 0 && (
           <div className="max-w-6xl mx-auto mt-16">
             <div className="text-center mb-8">
-              <span className="section-badge mb-4">Nuestro trabajo</span>
-              <h3 className="text-2xl md:text-3xl font-medium text-gold" style={{ textTransform: "none", fontFamily: "inherit" }}>
+              <span className={`${badgeClass} mb-4`}>Nuestro trabajo</span>
+              <h3 className={`text-2xl md:text-3xl font-medium ${isTheZone ? "text-thezone" : "text-gold"}`} style={{ textTransform: "none", fontFamily: "inherit" }}>
                 Así trabajamos en {biz.nombre}
               </h3>
             </div>
@@ -311,8 +358,8 @@ export default function LandingMexico({ biz }: { biz: Business }) {
       <section id="servicios" className="px-5 sm:px-8 py-24 bg-black">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-14 max-w-2xl mx-auto">
-            <span className="section-badge mb-5">Nuestros servicios</span>
-            <h2 className="text-3xl md:text-5xl font-medium text-gold mb-4">Servicios & Tarifas en {biz.ciudad}</h2>
+            <span className={`${badgeClass} mb-5`}>Nuestros servicios</span>
+            <h2 className={`text-3xl md:text-5xl font-medium ${isTheZone ? "text-thezone" : "text-gold"} mb-4`}>Servicios & Tarifas en {biz.ciudad}</h2>
             <p className="text-slate-400">
               Desliza sobre cada trabajo para comparar los resultados reales. Estética de motor, tratamiento cerámico, protección PPF, vestiduras y más.
             </p>
@@ -327,8 +374,8 @@ export default function LandingMexico({ biz }: { biz: Business }) {
               return (
                 <div
                   key={`${s.nombre}-${idx}`}
-                  className="product-card rounded-[24px] overflow-hidden flex flex-col relative border border-white/10 hover:border-white/25 transition w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] max-w-md justify-between"
-                  style={{ background: "#101010" }}
+                  className={`product-card rounded-[24px] overflow-hidden flex flex-col relative border ${isTheZone ? "border-sky-500/20 hover:border-sky-500/50 hover:shadow-[0_10px_30px_rgba(0,102,255,0.2)]" : "border-white/10 hover:border-white/25"} transition w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] max-w-md justify-between`}
+                  style={{ background: isTheZone ? "rgba(10,14,24,0.95)" : "#101010" }}
                 >
                   <div className="aspect-[4/3] overflow-hidden relative" style={{ background: "#141414" }}>
                     {isPpfColor ? (
@@ -356,7 +403,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                         className="absolute bottom-2 left-2 right-2 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/15 text-[11px] font-semibold text-white/95 flex items-center gap-1.5 shadow-lg z-20 pointer-events-none"
                         style={{ background: "rgba(10,10,10,0.85)" }}
                       >
-                        <span className="size-1.5 rounded-full bg-emerald-400 shrink-0" />
+                        <span className={`size-1.5 rounded-full ${isTheZone ? "bg-sky-400" : "bg-emerald-400"} shrink-0`} />
                         <span>{s.proteccion}</span>
                       </div>
                     )}
@@ -367,7 +414,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                       <h3 className="font-bold text-lg text-white leading-tight" style={{ textTransform: "none", fontFamily: "inherit" }}>
                         {s.nombre}
                       </h3>
-                      <p className="text-base font-extrabold text-gold">{s.precio}</p>
+                      <p className={`text-base font-extrabold ${isTheZone ? "text-thezone" : "text-gold"}`}>{s.precio}</p>
                       <p className="text-xs text-slate-300 leading-relaxed">{s.descripcion}</p>
 
                       {s.ideal_si && (
@@ -381,7 +428,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                       href={waHref(biz, reservaMsg)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn-outline-gold mt-4 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider"
+                      className={`${isTheZone ? "btn-outline-thezone" : "btn-outline-gold"} mt-4 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider`}
                     >
                       <FaWhatsapp aria-hidden className="size-3.5 text-emerald-400" />
                       Cotizar por WhatsApp
@@ -395,7 +442,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
           {/* Banner de fotos y asesoramiento */}
           <div className="glass-panel rounded-[28px] mt-12 p-8 md:p-10 flex flex-col md:flex-row items-center gap-6 justify-between border border-white/10" style={{ background: "#101010" }}>
             <div>
-              <span className="section-badge mb-3">¿Dudas sobre qué necesita tu auto?</span>
+              <span className={`${badgeClass} mb-3`}>¿Dudas sobre qué necesita tu auto?</span>
               <h3 className="font-semibold text-xl md:text-2xl mb-2 text-white" style={{ textTransform: "none", fontFamily: "inherit" }}>
                 Mándanos 3 Fotos por WhatsApp y te Asesoramos
               </h3>
@@ -407,7 +454,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
               href={waHref(biz, msgFotos)}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-gold shrink-0 inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold uppercase tracking-wide whitespace-nowrap"
+              className={`${isTheZone ? "btn-thezone" : "btn-gold"} shrink-0 inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold uppercase tracking-wide whitespace-nowrap`}
             >
               <FaWhatsapp aria-hidden className="size-4" />
               Enviar Fotos por WhatsApp
@@ -422,7 +469,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
         <SectionDivider edge="bottom" />
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14 max-w-2xl mx-auto">
-            <span className="section-badge mb-5">Compromiso de calidad</span>
+            <span className={`${badgeClass} mb-5`}>Compromiso de calidad</span>
             <h2 className="text-3xl md:text-4xl font-medium text-gold mb-4">Tratamientos con Garantía por Escrito</h2>
             <p className="text-slate-400 max-w-xl mx-auto text-sm">
               Cada vehículo se atiende de forma individual, dedicando el tiempo necesario para alcanzar el estándar más exigente.
@@ -431,8 +478,8 @@ export default function LandingMexico({ biz }: { biz: Business }) {
 
           <div className="grid md:grid-cols-3 gap-6 text-left">
             <div className="glass-panel rounded-[24px] p-7 space-y-3 border border-white/10" style={{ background: "#141414" }}>
-              <div className="w-11 h-11 rounded-full flex items-center justify-center mb-5" style={{ background: "rgba(184,194,204,0.1)" }}>
-                <HiShieldCheck className="size-5" style={{ color: "#b8c2cc" }} />
+              <div className="w-11 h-11 rounded-full flex items-center justify-center mb-5" style={{ background: isTheZone ? "rgba(0,102,255,0.15)" : "rgba(184,194,204,0.1)" }}>
+                <HiShieldCheck className="size-5" style={{ color: isTheZone ? "#38bdf8" : "#b8c2cc" }} />
               </div>
               <h4 className="font-semibold text-white text-base" style={{ textTransform: "none", fontFamily: "inherit" }}>
                 Marcas Premium Mundiales
@@ -443,8 +490,8 @@ export default function LandingMexico({ biz }: { biz: Business }) {
             </div>
 
             <div className="glass-panel rounded-[24px] p-7 space-y-3 border border-white/10" style={{ background: "#141414" }}>
-              <div className="w-11 h-11 rounded-full flex items-center justify-center mb-5" style={{ background: "rgba(184,194,204,0.1)" }}>
-                <HiOutlineSparkles className="size-5" style={{ color: "#b8c2cc" }} />
+              <div className="w-11 h-11 rounded-full flex items-center justify-center mb-5" style={{ background: isTheZone ? "rgba(0,102,255,0.15)" : "rgba(184,194,204,0.1)" }}>
+                <HiOutlineSparkles className="size-5" style={{ color: isTheZone ? "#38bdf8" : "#b8c2cc" }} />
               </div>
               <h4 className="font-semibold text-white text-base" style={{ textTransform: "none", fontFamily: "inherit" }}>
                 Técnica Segura y Precisa
@@ -455,8 +502,8 @@ export default function LandingMexico({ biz }: { biz: Business }) {
             </div>
 
             <div className="glass-panel rounded-[24px] p-7 space-y-3 border border-white/10" style={{ background: "#141414" }}>
-              <div className="w-11 h-11 rounded-full flex items-center justify-center mb-5" style={{ background: "rgba(184,194,204,0.1)" }}>
-                <HiOutlineCheckCircle className="size-5" style={{ color: "#b8c2cc" }} />
+              <div className="w-11 h-11 rounded-full flex items-center justify-center mb-5" style={{ background: isTheZone ? "rgba(0,102,255,0.15)" : "rgba(184,194,204,0.1)" }}>
+                <HiOutlineCheckCircle className="size-5" style={{ color: isTheZone ? "#38bdf8" : "#b8c2cc" }} />
               </div>
               <h4 className="font-semibold text-white text-base" style={{ textTransform: "none", fontFamily: "inherit" }}>
                 Asesoría Post-Servicio
@@ -473,14 +520,14 @@ export default function LandingMexico({ biz }: { biz: Business }) {
       <section id="ubicacion" className="px-5 sm:px-8 py-24 bg-black">
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <div>
-            <span className="section-badge mb-5">Ubicación</span>
-            <h2 className="text-3xl md:text-4xl font-medium text-gold mb-3">Dónde Encontrarnos</h2>
+            <span className={`${badgeClass} mb-5`}>Ubicación</span>
+            <h2 className={`text-3xl md:text-4xl font-medium ${isTheZone ? "text-thezone" : "text-gold"} mb-3`}>Dónde Encontrarnos</h2>
             <p className="text-slate-400 text-sm">Visítanos en nuestro estudio o agenda tu cita previa</p>
           </div>
 
           <div className="glass-panel rounded-[28px] p-8 md:p-10 border border-white/10 text-left max-w-2xl mx-auto space-y-6" style={{ background: "#101010" }}>
             <div className="flex items-start gap-4">
-              <FaMapMarkerAlt className="size-5 text-gold shrink-0 mt-1" />
+              <FaMapMarkerAlt className={`size-5 ${isTheZone ? "text-sky-400" : "text-gold"} shrink-0 mt-1`} />
               <div>
                 <p className="text-xs text-slate-400 uppercase tracking-wider font-semibold">Dirección</p>
                 <p className="text-white text-base font-medium">{biz.direccion}</p>
@@ -489,7 +536,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
             </div>
 
             <div className="flex items-start gap-4">
-              <FaClock className="size-5 text-gold shrink-0 mt-1" />
+              <FaClock className={`size-5 ${isTheZone ? "text-sky-400" : "text-gold"} shrink-0 mt-1`} />
               <div>
                 <p className="text-xs text-slate-400 uppercase tracking-wider font-semibold">Horario de Atención</p>
                 <p className="text-white text-sm">
@@ -503,7 +550,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                 href={mapsHref(biz)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-outline-gold flex-1 text-center py-3 rounded-full text-xs font-semibold uppercase tracking-wider"
+                className={`${isTheZone ? "btn-outline-thezone" : "btn-outline-gold"} flex-1 text-center py-3 rounded-full text-xs font-semibold uppercase tracking-wider`}
               >
                 Ver en Google Maps ↗
               </a>
@@ -511,7 +558,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                 href={waHref(biz, msgPresupuesto)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-gold flex-1 inline-flex items-center justify-center gap-2 py-3 rounded-full text-xs font-semibold uppercase tracking-wider"
+                className={`${isTheZone ? "btn-thezone" : "btn-gold"} flex-1 inline-flex items-center justify-center gap-2 py-3 rounded-full text-xs font-semibold uppercase tracking-wider`}
               >
                 <FaWhatsapp className="size-4" />
                 Escríbenos por WhatsApp
@@ -525,8 +572,8 @@ export default function LandingMexico({ biz }: { biz: Business }) {
       <section id="nosotros" className="relative px-5 sm:px-8 py-20" style={{ background: "#101010" }}>
         <SectionDivider edge="top" />
         <div className="max-w-3xl mx-auto text-center space-y-6">
-          <span className="section-badge mb-3">Sobre nosotros</span>
-          <h2 className="text-3xl md:text-4xl font-medium text-gold mb-3">
+          <span className={`${badgeClass} mb-3`}>Sobre nosotros</span>
+          <h2 className={`text-3xl md:text-4xl font-medium ${isTheZone ? "text-thezone" : "text-gold"} mb-3`}>
             Pasión por la Estética Automotriz en {biz.ciudad}
           </h2>
 
@@ -552,7 +599,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
               href={mapsHref(biz)}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-gold inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-xs font-semibold uppercase tracking-wider active:scale-95 transition-transform"
+              className={`${isTheZone ? "btn-thezone" : "btn-gold"} inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-xs font-semibold uppercase tracking-wider active:scale-95 transition-transform`}
             >
               <FaStar className="size-3.5" />
               Ver Opiniones en Google Maps ↗
@@ -562,14 +609,25 @@ export default function LandingMexico({ biz }: { biz: Business }) {
       </section>
 
       {/* 9. FOOTER */}
-      <footer className="relative px-5 sm:px-8 pt-12 pb-8" style={{ background: "#101010" }}>
+      <footer className="relative px-5 sm:px-8 pt-12 pb-8" style={{ background: isTheZone ? "rgba(8,12,20,0.98)" : "#101010" }}>
         <div
           className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[1px]"
           style={{
-            background:
-              "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.12) 20%, rgba(212,175,55,0.35) 50%, rgba(255,255,255,0.12) 80%, transparent 100%)",
+            background: isTheZone
+              ? "linear-gradient(90deg, transparent 0%, rgba(56,189,248,0.25) 20%, rgba(0,102,255,0.7) 50%, rgba(56,189,248,0.25) 80%, transparent 100%)"
+              : "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.12) 20%, rgba(212,175,55,0.35) 50%, rgba(255,255,255,0.12) 80%, transparent 100%)",
           }}
         />
+
+        {isTheZone && (
+          <div className="flex justify-center mb-6">
+            <img
+              src="/logo/the-zone-logo.png"
+              alt={biz.nombre}
+              className="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity drop-shadow-[0_4px_15px_rgba(0,102,255,0.35)]"
+            />
+          </div>
+        )}
 
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-slate-400 font-light">
           <span>© {new Date().getFullYear()} {biz.nombre} · Detailing Automotriz en {biz.ciudad} (México)</span>
@@ -583,7 +641,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
           href={waHref(biz, "¡Hola! Vi su página web y quería hacerles una consulta.")}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-black px-4 py-3 font-bold text-xs uppercase tracking-wider shadow-2xl hover:scale-105 active:scale-95 transition-all"
+          className={`flex items-center gap-2.5 rounded-full ${isTheZone ? "bg-emerald-500 hover:bg-emerald-400 text-black ring-2 ring-sky-400/50 shadow-[0_0_25px_rgba(0,102,255,0.45)]" : "bg-emerald-500 hover:bg-emerald-400 text-black shadow-2xl"} px-4 py-3 font-bold text-xs uppercase tracking-wider hover:scale-105 active:scale-95 transition-all`}
           aria-label="Contactar por WhatsApp"
         >
           <FaWhatsapp className="size-5" />
