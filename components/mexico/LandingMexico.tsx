@@ -105,6 +105,7 @@ const ITEMS_PROBLEMA_MEXICO = [
 
 export default function LandingMexico({ biz }: { biz: Business }) {
   const [scrolled, setScrolled] = useState(false);
+  const [ppfMode, setPpfMode] = useState<"slider" | "visualizer">("slider");
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -117,11 +118,61 @@ export default function LandingMexico({ biz }: { biz: Business }) {
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
+
+    // Enforce webkit & mobile Safari video DOM requirements
     video.defaultMuted = true;
     video.muted = true;
     video.setAttribute("muted", "");
     video.setAttribute("playsinline", "true");
-    video.play().catch(() => {});
+    video.setAttribute("webkit-playsinline", "true");
+    video.setAttribute("x5-playsinline", "true");
+
+    const safePlay = () => {
+      if (video.paused) {
+        const promise = video.play();
+        if (promise !== undefined) {
+          promise.catch(() => {
+            // Autoplay blocked by browser until user gesture
+          });
+        }
+      }
+    };
+
+    safePlay();
+
+    // Event listeners to retry playback upon media load or tab focus
+    video.addEventListener("loadeddata", safePlay);
+    video.addEventListener("canplay", safePlay);
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        safePlay();
+      }
+    };
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    const handleUserInteraction = () => {
+      safePlay();
+      window.removeEventListener("touchstart", handleUserInteraction);
+      window.removeEventListener("touchend", handleUserInteraction);
+      window.removeEventListener("click", handleUserInteraction);
+      window.removeEventListener("scroll", handleUserInteraction);
+    };
+
+    window.addEventListener("touchstart", handleUserInteraction, { passive: true });
+    window.addEventListener("touchend", handleUserInteraction, { passive: true });
+    window.addEventListener("click", handleUserInteraction, { passive: true });
+    window.addEventListener("scroll", handleUserInteraction, { passive: true });
+
+    return () => {
+      video.removeEventListener("loadeddata", safePlay);
+      video.removeEventListener("canplay", safePlay);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      window.removeEventListener("touchstart", handleUserInteraction);
+      window.removeEventListener("touchend", handleUserInteraction);
+      window.removeEventListener("click", handleUserInteraction);
+      window.removeEventListener("scroll", handleUserInteraction);
+    };
   }, []);
 
   const brandParts = (biz.nombre || "").trim().toUpperCase().split(" ");
@@ -214,7 +265,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
 
       {/* 2. HERO */}
       <section id="hero" className="relative lg:h-dvh pt-24 pb-12 lg:pb-0 px-4 sm:px-6 overflow-x-clip flex items-center">
-        {biz.fotos && biz.fotos.length > 0 ? (
+        {(!isTheZone && biz.fotos && biz.fotos.length > 0) ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={biz.fotos[0]}
@@ -228,8 +279,12 @@ export default function LandingMexico({ biz }: { biz: Business }) {
             muted
             loop
             playsInline
+            preload="auto"
+            poster="/servicios/ppf.jpg"
+            disablePictureInPicture
+            controls={false}
             className="absolute inset-0 w-full h-full object-cover opacity-65 contrast-105 pointer-events-none"
-            src={biz.video_hero ?? "/videos/hero-compilado-blanco.mp4"}
+            src="/videos/hero-compilado-blanco.mp4"
           />
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/70" />
@@ -378,10 +433,17 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                   style={{ background: isTheZone ? "rgba(10,14,24,0.95)" : "#101010" }}
                 >
                   <div className="aspect-[4/3] overflow-hidden relative" style={{ background: "#141414" }}>
-                    {isPpfColor ? (
+                    {isPpfColor && ppfMode === "visualizer" ? (
                       <PpfColorVisualizer biz={biz} />
                     ) : (s.modo_foto === "before_after" ? (s.antes_img || s.despues_img) : (s.antes_img && s.despues_img)) ? (
-                      <CompareSlider before={s.antes_img || s.despues_img || imgSource} after={s.despues_img || s.antes_img || imgSource} alt={s.nombre} real fit={s.foto_fit} />
+                      <CompareSlider
+                        before={s.antes_img || s.despues_img || imgSource}
+                        after={s.despues_img || s.antes_img || imgSource}
+                        alt={s.nombre}
+                        real
+                        fit={s.foto_fit}
+                        isTheZone={isTheZone}
+                      />
                     ) : (
                       /* eslint-disable-next-line @next/next/no-img-element */
                       <div className="relative w-full h-full bg-[#0d0d0d] overflow-hidden">
@@ -398,7 +460,19 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                         />
                       </div>
                     )}
-                    {s.proteccion && !isPpfColor && (
+
+                    {/* Botón interactivo para alternar entre Antes/Después y Visualizador 3D en PPF Color */}
+                    {isPpfColor && (
+                      <button
+                        type="button"
+                        onClick={() => setPpfMode((m) => (m === "slider" ? "visualizer" : "slider"))}
+                        className="absolute top-2 right-2 z-30 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider backdrop-blur-md bg-black/85 border border-sky-400/50 text-sky-300 hover:text-white shadow-lg transition-transform active:scale-95 cursor-pointer"
+                      >
+                        {ppfMode === "slider" ? "🎨 Probar Colores 3D" : "↔ Ver Antes/Después"}
+                      </button>
+                    )}
+
+                    {s.proteccion && (!isPpfColor || ppfMode === "slider") && (
                       <div
                         className="absolute bottom-2 left-2 right-2 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/15 text-[11px] font-semibold text-white/95 flex items-center gap-1.5 shadow-lg z-20 pointer-events-none"
                         style={{ background: "rgba(10,10,10,0.85)" }}
@@ -641,10 +715,14 @@ export default function LandingMexico({ biz }: { biz: Business }) {
           href={waHref(biz, "¡Hola! Vi su página web y quería hacerles una consulta.")}
           target="_blank"
           rel="noopener noreferrer"
-          className={`flex items-center gap-2.5 rounded-full ${isTheZone ? "bg-emerald-500 hover:bg-emerald-400 text-black ring-2 ring-sky-400/50 shadow-[0_0_25px_rgba(0,102,255,0.45)]" : "bg-emerald-500 hover:bg-emerald-400 text-black shadow-2xl"} px-4 py-3 font-bold text-xs uppercase tracking-wider hover:scale-105 active:scale-95 transition-all`}
+          className={`flex items-center gap-2.5 rounded-full ${
+            isTheZone
+              ? "btn-thezone text-white ring-2 ring-sky-300/40 shadow-[0_0_30px_rgba(0,102,255,0.7)]"
+              : "bg-emerald-500 hover:bg-emerald-400 text-black shadow-2xl"
+          } px-4 py-3 font-bold text-xs uppercase tracking-wider hover:scale-105 active:scale-95 transition-all`}
           aria-label="Contactar por WhatsApp"
         >
-          <FaWhatsapp className="size-5" />
+          <FaWhatsapp className={`size-5 ${isTheZone ? "text-white" : "text-black"}`} />
           <span className="hidden sm:inline">¿Dudas? Escríbenos</span>
         </a>
       </div>
