@@ -223,13 +223,13 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                 }
           }
         >
-          <div className={`max-w-6xl mx-auto flex items-center justify-between px-5 sm:px-8 transition-[height] duration-300 ${scrolled ? "h-14" : "h-16"}`}>
+          <div className={`max-w-6xl mx-auto flex items-center justify-between px-4 sm:px-8 transition-[height] duration-300 ${scrolled ? "h-14" : (isTheZone ? "h-16 sm:h-20" : "h-16")}`}>
             {isTheZone ? (
-              <a href="#hero" className="flex items-center shrink-0 group transition-transform active:scale-95" aria-label="Ir al inicio">
+              <a href="#hero" className="flex items-center shrink-0 group transition-transform active:scale-95 py-1" aria-label="Ir al inicio">
                 <img
                   src="/logo/the-zone-logo.png"
                   alt={biz.nombre}
-                  className="h-9 sm:h-11 w-auto object-contain transition-transform group-hover:scale-105 drop-shadow-[0_4px_14px_rgba(0,102,255,0.4)]"
+                  className="h-11 sm:h-14 md:h-16 w-auto object-contain transition-transform group-hover:scale-105 drop-shadow-[0_4px_16px_rgba(0,102,255,0.45)]"
                 />
               </a>
             ) : (
@@ -264,7 +264,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
       </div>
 
       {/* 2. HERO */}
-      <section id="hero" className="relative lg:h-dvh pt-24 pb-12 lg:pb-0 px-4 sm:px-6 overflow-x-clip flex items-center">
+      <section id="hero" className={`relative min-h-[100dvh] lg:h-dvh ${isTheZone ? "pt-16 sm:pt-20 lg:pt-24 pb-8 lg:pb-0" : "pt-24 pb-12 lg:pb-0"} px-4 sm:px-6 overflow-x-clip flex items-center`}>
         {(!isTheZone && biz.fotos && biz.fotos.length > 0) ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
@@ -298,26 +298,26 @@ export default function LandingMexico({ biz }: { biz: Business }) {
         )}
 
         <div className="relative z-10 max-w-6xl mx-auto w-full h-full flex items-center justify-center">
-          <div className="max-w-2xl text-center space-y-5 mx-auto py-12 lg:py-8">
-            {/* Logo oficial centrado para The Zone (estilo Borges) */}
+          <div className={`max-w-3xl text-center ${isTheZone ? "space-y-3 sm:space-y-4 py-3 sm:py-6 lg:py-8" : "space-y-5 py-12 lg:py-8"} mx-auto`}>
+            {/* Logo oficial centrado para The Zone (agrandado y dominante) */}
             {isTheZone && (
-              <div className="flex justify-center mb-6 -mt-4 sm:-mt-6 lg:-mt-8">
+              <div className="flex justify-center mb-2 sm:mb-4 -mt-2 sm:-mt-4">
                 <img
                   src="/logo/the-zone-logo.png"
                   alt={biz.nombre}
-                  className="h-32 sm:h-40 md:h-48 w-auto object-contain drop-shadow-[0_15px_35px_rgba(0,102,255,0.45)] transition-transform hover:scale-105"
+                  className="h-44 sm:h-56 md:h-64 lg:h-72 w-auto object-contain drop-shadow-[0_20px_50px_rgba(0,102,255,0.6)] transition-transform hover:scale-105"
                 />
               </div>
             )}
 
-            <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full border ${isTheZone ? "border-sky-500/30 bg-sky-500/10 text-sky-200" : "border-white/10 bg-white/5 text-slate-300"} text-xs sm:text-sm font-medium`}>
-              <span className={`flex size-2 rounded-full shrink-0 animate-pulse ${isTheZone ? "bg-sky-400 shadow-[0_0_8px_rgba(56,189,248,0.9)]" : "bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]"}`} />
+            <div className={`inline-flex items-center gap-2 ${isTheZone ? "px-2.5 py-1 text-[11px] sm:text-xs" : "px-3 py-1.5 text-xs sm:text-sm"} rounded-full border ${isTheZone ? "border-sky-500/30 bg-sky-500/10 text-sky-200" : "border-white/10 bg-white/5 text-slate-300"} font-medium`}>
+              <span className={`flex size-1.5 sm:size-2 rounded-full shrink-0 animate-pulse ${isTheZone ? "bg-sky-400 shadow-[0_0_8px_rgba(56,189,248,0.9)]" : "bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]"}`} />
               <span>{biz.ciudad} (México)</span>
               <span className="text-slate-500">·</span>
               <span>Citas disponibles esta semana</span>
             </div>
 
-            <h1 className="text-[32px] sm:text-[42px] font-medium tracking-tight leading-tight text-balance">
+            <h1 className={`${isTheZone ? "text-[20px] sm:text-[26px] md:text-[30px]" : "text-[32px] sm:text-[42px]"} font-medium tracking-tight leading-tight text-balance`}>
               {isTheZone ? (
                 <>
                   Estética y Detallado Automotriz en San Luis Potosí.
@@ -333,33 +333,33 @@ export default function LandingMexico({ biz }: { biz: Business }) {
               )}
             </h1>
 
-            <p className="text-base md:text-lg text-slate-300 max-w-2xl font-light leading-relaxed text-pretty">
+            <p className={`${isTheZone ? "text-xs sm:text-sm max-w-xl line-clamp-2 sm:line-clamp-none" : "text-base md:text-lg max-w-2xl"} text-slate-300 font-light leading-relaxed mx-auto text-pretty`}>
               Corrección de pintura, recubrimiento cerámico y estética interior en {biz.ciudad}. Tratamiento artesanal sin microrrayones ni atajos.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full sm:w-auto pt-2">
+            <div className={`flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-3 w-full sm:w-auto ${isTheZone ? "pt-1 sm:pt-2" : "pt-2"}`}>
               <a
                 href={waHref(biz, msgPresupuesto)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`${isTheZone ? "btn-thezone" : "btn-gold"} group w-full sm:w-auto px-7 py-3.5 min-h-[44px] rounded-full text-sm font-semibold uppercase tracking-wide active:scale-95 transition-[transform,filter,box-shadow] duration-150 flex items-center justify-center gap-2.5`}
+                className={`${isTheZone ? "btn-thezone" : "btn-gold"} group w-full sm:w-auto px-6 sm:px-7 py-2.5 sm:py-3.5 min-h-[42px] sm:min-h-[44px] rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wide active:scale-95 transition-[transform,filter,box-shadow] duration-150 flex items-center justify-center gap-2.5`}
               >
                 <FaWhatsapp aria-hidden className="size-4" />
                 Cotizar por WhatsApp
               </a>
               <a
                 href="#servicios"
-                className={`${isTheZone ? "btn-outline-thezone" : "btn-outline-gold"} text-nowrap group w-full sm:w-auto px-7 py-3.5 min-h-[44px] rounded-full text-sm font-semibold uppercase active:scale-95 flex items-center justify-center gap-2.5`}
+                className={`${isTheZone ? "btn-outline-thezone" : "btn-outline-gold"} text-nowrap group w-full sm:w-auto px-6 sm:px-7 py-2.5 sm:py-3.5 min-h-[42px] sm:min-h-[44px] rounded-full text-xs sm:text-sm font-semibold uppercase active:scale-95 flex items-center justify-center gap-2.5`}
               >
                 <HiOutlineSparkles aria-hidden className="size-4" />
                 Ver Servicios
               </a>
             </div>
 
-            <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 pt-2">
+            <div className={`flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 ${isTheZone ? "pt-1" : "pt-2"}`}>
               {stats.map((item) => (
-                <span key={item} className="inline-flex items-center gap-1.5 text-xs sm:text-sm text-slate-300">
-                  <HiOutlineCheckCircle aria-hidden className={`size-4 shrink-0 ${isTheZone ? "text-sky-400" : "text-gold"}`} />
+                <span key={item} className={`inline-flex items-center gap-1.5 ${isTheZone ? "text-[11px] sm:text-xs" : "text-xs sm:text-sm"} text-slate-300`}>
+                  <HiOutlineCheckCircle aria-hidden className={`size-3.5 sm:size-4 shrink-0 ${isTheZone ? "text-sky-400" : "text-gold"}`} />
                   {item}
                 </span>
               ))}
@@ -694,11 +694,11 @@ export default function LandingMexico({ biz }: { biz: Business }) {
         />
 
         {isTheZone && (
-          <div className="flex justify-center mb-6">
+          <div className="flex justify-center mb-8">
             <img
               src="/logo/the-zone-logo.png"
               alt={biz.nombre}
-              className="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity drop-shadow-[0_4px_15px_rgba(0,102,255,0.35)]"
+              className="h-20 sm:h-28 md:h-32 w-auto object-contain opacity-90 hover:opacity-100 transition-all drop-shadow-[0_8px_30px_rgba(0,102,255,0.5)] hover:scale-105"
             />
           </div>
         )}
