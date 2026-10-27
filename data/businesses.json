@@ -9715,8 +9715,8 @@
     "maps_url": "https://www.google.com/maps/place/Precision+detailing+studio/@-34.5903341,-58.5671467,14z/data=!4m10!1m2!2m1!1scar+detailing+san+martin+buenos+aires!3m6!1s0x95bcb76099bc39dd:0x28144310aa82d2ba!8m2!3d-34.5903341!4d-58.5310978!15sCiVjYXIgZGV0YWlsaW5nIHNhbiBtYXJ0aW4gYnVlbm9zIGFpcmVzkgEbYXV0b193aW5kb3dfdGludGluZ19zZXJ2aWNl4AEA!16s%2Fg%2F11lcs8jv9j?entry=ttu&g_ep=EgoyMDI2MDkxNi4wIKXMDSoASAFQAw%3D%3D"
   },
   {
-    "slug": "sanders",
-    "nombre": "Sanders",
+    "slug": "sanders-car-detail",
+    "nombre": "Sanders Car Detail",
     "telefono": "011 15-3313-7109",
     "whatsapp": "5491133137109",
     "instagram": null,
@@ -9725,7 +9725,9 @@
     "rating": 4.9,
     "reviews_count": 18,
     "fotos": [],
-    "maps_url": "https://www.google.com/maps/place/Sanders+car+detail/@-34.5841093,-58.5937291,14z/data=!4m10!1m2!2m1!1scar+detailing+san+martin+buenos+aires!3m6!1s0x95bcb72a5ad4ea27:0x3356fe93da629523!8m2!3d-34.5845728!4d-58.5466455!15sCiVjYXIgZGV0YWlsaW5nIHNhbiBtYXJ0aW4gYnVlbm9zIGFpcmVzkgEQYXV0b19yZXBhaXJfc2hvcOABAA!16s%2Fg%2F11y1xsy_23?entry=ttu&g_ep=EgoyMDI2MDkxNi4wIKXMDSoASAFQAw%3D%3D"
+    "maps_url": "https://www.google.com/maps/place/Sanders+car+detail/@-34.5841093,-58.5937291,14z/data=!4m10!1m2!2m1!1scar+detailing+san+martin+buenos+aires!3m6!1s0x95bcb72a5ad4ea27:0x3356fe93da629523!8m2!3d-34.5845728!4d-58.5466455!15sCiVjYXIgZGV0YWlsaW5nIHNhbiBtYXJ0aW4gYnVlbm9zIGFpcmVzkgEQYXV0b19yZXBhaXJfc2hvcOABAA!16s%2Fg%2F11y1xsy_23?entry=ttu&g_ep=EgoyMDI2MDkxNi4wIKXMDSoASAFQAw%3D%3D",
+    "pais": "AR",
+    "template": "argentina"
   },
   {
     "slug": "elite-car-wash",
