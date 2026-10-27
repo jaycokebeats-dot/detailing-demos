@@ -14022,12 +14022,14 @@
     "telefono": "011 15-6743-5166",
     "whatsapp": "5491167435166",
     "instagram": "mazzu_detail",
-    "direccion": "José Hernández 1580 Martin Coronado, San Martín",
-    "ciudad": "San Martín",
+    "direccion": "José Hernández 1580, Martín Coronado",
+    "ciudad": "Martín Coronado",
     "rating": 4.9,
     "reviews_count": 18,
     "fotos": [],
-    "maps_url": "https://www.google.com/maps/place/Mazzu+Detail/@-34.591153,-58.6148329,14z/data=!4m10!1m2!2m1!1scar+detailing+san+martin+buenos+aires!3m6!1s0x95bcb70b7ec2a0a5:0x3633a619711b0a64!8m2!3d-34.591153!4d-58.578784!15sCiVjYXIgZGV0YWlsaW5nIHNhbiBtYXJ0aW4gYnVlbm9zIGFpcmVzkgEOYXV0b19ib2R5X3Nob3DgAQA!16s%2Fg%2F11s1b04cxv?entry=ttu&g_ep=EgoyMDI2MDkyMi4wIKXMDSoASAFQAw%3D%3D"
+    "maps_url": "https://www.google.com/maps/place/Mazzu+Detail/@-34.591153,-58.6148329,14z/data=!4m10!1m2!2m1!1scar+detailing+san+martin+buenos+aires!3m6!1s0x95bcb70b7ec2a0a5:0x3633a619711b0a64!8m2!3d-34.591153!4d-58.578784!15sCiVjYXIgZGV0YWlsaW5nIHNhbiBtYXJ0aW4gYnVlbm9zIGFpcmVzkgEOYXV0b19ib2R5X3Nob3DgAQA!16s%2Fg%2F11s1b04cxv?entry=ttu&g_ep=EgoyMDI2MDkyMi4wIKXMDSoASAFQAw%3D%3D",
+    "pais": "AR",
+    "template": "argentina"
   },
   {
     "slug": "toscano",
