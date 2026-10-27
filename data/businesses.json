@@ -12378,12 +12378,14 @@
     "telefono": "011 15-6118-1128",
     "whatsapp": "5491161181128",
     "instagram": "nobile.detail",
-    "direccion": "Alejandro Magariños Cervantes 5392, Caballito",
-    "ciudad": "Caballito",
+    "direccion": "Alejandro Magariños Cervantes 5392, CABA",
+    "ciudad": "CABA",
     "rating": 4.9,
     "reviews_count": 18,
     "fotos": [],
-    "maps_url": "https://www.google.com/maps/place/Nobile+Detail/@-34.6322872,-58.5428999,14z/data=!4m11!1m3!2m2!1scar+detailing+caballito+buenos+aires!6e2!3m6!1s0x95bcb1bf1dafbb2b:0x25f112004f9cc44!8m2!3d-34.6322872!4d-58.506851!15sCiRjYXIgZGV0YWlsaW5nIGNhYmFsbGl0byBidWVub3MgYWlyZXOSARVjYXJfZGV0YWlsaW5nX3NlcnZpY2XgAQA!16s%2Fg%2F11srs63mqj?entry=ttu&g_ep=EgoyMDI2MDkyMi4wIKXMDSoASAFQAw%3D%3D"
+    "maps_url": "https://www.google.com/maps/place/Nobile+Detail/@-34.6322872,-58.5428999,14z/data=!4m11!1m3!2m2!1scar+detailing+caballito+buenos+aires!6e2!3m6!1s0x95bcb1bf1dafbb2b:0x25f112004f9cc44!8m2!3d-34.6322872!4d-58.506851!15sCiRjYXIgZGV0YWlsaW5nIGNhYmFsbGl0byBidWVub3MgYWlyZXOSARVjYXJfZGV0YWlsaW5nX3NlcnZpY2XgAQA!16s%2Fg%2F11srs63mqj?entry=ttu&g_ep=EgoyMDI2MDkyMi4wIKXMDSoASAFQAw%3D%3D",
+    "pais": "AR",
+    "template": "argentina"
   },
   {
     "slug": "gleam-detail",
@@ -17244,12 +17246,14 @@
     "telefono": "011 15-5939-2073",
     "whatsapp": "5491159392073",
     "instagram": "ch.detailingg",
-    "direccion": "RP202 3124, San Fernando",
-    "ciudad": "San Fernando",
+    "direccion": "RP202 3124, Don Torcuato",
+    "ciudad": "Don Torcuato",
     "rating": 4.9,
     "reviews_count": 18,
     "fotos": [],
-    "maps_url": "https://www.google.com/maps/place/CH+Detailing/@-34.4843623,-58.6494368,14z/data=!4m11!1m3!2m2!1scar+detailing+san+fernando+buenos+aires!6e2!3m6!1s0x95bcbb8442d12673:0x61e42c90e0de1eaa!8m2!3d-34.4843623!4d-58.6133879!15sCidjYXIgZGV0YWlsaW5nIHNhbiBmZXJuYW5kbyBidWVub3MgYWlyZXOSARhhdXRvX3Jlc3RvcmF0aW9uX3NlcnZpY2XgAQA!16s%2Fg%2F11z1zpf4kr?entry=ttu&g_ep=EgoyMDI2MDkyNy4wIKXMDSoASAFQAw%3D%3D"
+    "maps_url": "https://www.google.com/maps/place/CH+Detailing/@-34.4843623,-58.6494368,14z/data=!4m11!1m3!2m2!1scar+detailing+san+fernando+buenos+aires!6e2!3m6!1s0x95bcbb8442d12673:0x61e42c90e0de1eaa!8m2!3d-34.4843623!4d-58.6133879!15sCidjYXIgZGV0YWlsaW5nIHNhbiBmZXJuYW5kbyBidWVub3MgYWlyZXOSARhhdXRvX3Jlc3RvcmF0aW9uX3NlcnZpY2XgAQA!16s%2Fg%2F11z1zpf4kr?entry=ttu&g_ep=EgoyMDI2MDkyNy4wIKXMDSoASAFQAw%3D%3D",
+    "pais": "AR",
+    "template": "argentina"
   },
   {
     "slug": "sacabollos-polarizados-biffs-detailing",
@@ -65086,5 +65090,20 @@
     "pais": "MX",
     "template": "mexico",
     "websiteUrl": ""
+  },
+  {
+    "slug": "dtf-detail",
+    "nombre": "DTF Detail",
+    "telefono": "011 15-2350-1577",
+    "whatsapp": "5491123501577",
+    "instagram": null,
+    "direccion": "Viamonte 653, Lanús",
+    "ciudad": "Lanús",
+    "rating": 5,
+    "reviews_count": 18,
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=DTF+Detail+Viamonte+653+Lan%C3%BAs",
+    "pais": "AR",
+    "template": "argentina"
   }
 ]
