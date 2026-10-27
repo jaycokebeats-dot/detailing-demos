@@ -85,7 +85,6 @@ export default function Hero({ biz }: { biz: Business }) {
         loop
         playsInline
         preload="auto"
-        poster="/servicios/ppf.jpg"
         disablePictureInPicture
         controls={false}
         className="absolute inset-0 w-full h-full object-cover opacity-55 contrast-110 pointer-events-none"

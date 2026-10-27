@@ -280,11 +280,10 @@ export default function LandingMexico({ biz }: { biz: Business }) {
             loop
             playsInline
             preload="auto"
-            poster="/servicios/ppf.jpg"
             disablePictureInPicture
             controls={false}
             className="absolute inset-0 w-full h-full object-cover opacity-65 contrast-105 pointer-events-none"
-            src="/videos/hero-compilado-blanco.mp4"
+            src={biz.video_hero ?? "/videos/hero-compilado-blanco.mp4"}
           />
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/70" />
