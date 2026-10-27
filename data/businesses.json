@@ -13420,16 +13420,18 @@
   },
   {
     "slug": "strong-car",
-    "nombre": "Strong car",
+    "nombre": "Strong Car",
     "telefono": "011 15-7363-9151",
     "whatsapp": "5491173639151",
     "instagram": null,
-    "direccion": "Martín Miguens 6725, San Martín",
-    "ciudad": "San Martín",
+    "direccion": "Martín Miguens 6725, Villa Bosch",
+    "ciudad": "Villa Bosch",
     "rating": 4.9,
     "reviews_count": 18,
     "fotos": [],
-    "maps_url": "https://www.google.com/maps/place/Strong+car/@-34.594298,-58.6202865,14z/data=!4m10!1m2!2m1!1scar+detailing+san+martin+buenos+aires!3m6!1s0x95bcb9cf2b601f27:0x33f07617203151d2!8m2!3d-34.5807344!4d-58.5804426!15sCiVjYXIgZGV0YWlsaW5nIHNhbiBtYXJ0aW4gYnVlbm9zIGFpcmVzkgEbdXBob2xzdGVyeV9jbGVhbmluZ19zZXJ2aWNl4AEA!16s%2Fg%2F11zgvl5qc6?entry=ttu&g_ep=EgoyMDI2MDkyMi4wIKXMDSoASAFQAw%3D%3D"
+    "maps_url": "https://www.google.com/maps/place/Strong+car/@-34.594298,-58.6202865,14z/data=!4m10!1m2!2m1!1scar+detailing+san+martin+buenos+aires!3m6!1s0x95bcb9cf2b601f27:0x33f07617203151d2!8m2!3d-34.5807344!4d-58.5804426!15sCiVjYXIgZGV0YWlsaW5nIHNhbiBtYXJ0aW4gYnVlbm9zIGFpcmVzkgEbdXBob2xzdGVyeV9jbGVhbmluZ19zZXJ2aWNl4AEA!16s%2Fg%2F11zgvl5qc6?entry=ttu&g_ep=EgoyMDI2MDkyMi4wIKXMDSoASAFQAw%3D%3D",
+    "pais": "AR",
+    "template": "argentina"
   },
   {
     "slug": "rp-shine-detailing",
