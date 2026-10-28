@@ -105,7 +105,6 @@ const ITEMS_PROBLEMA_MEXICO = [
 
 export default function LandingMexico({ biz }: { biz: Business }) {
   const [scrolled, setScrolled] = useState(false);
-  const [ppfMode, setPpfMode] = useState<"slider" | "visualizer">("slider");
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -432,7 +431,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                   style={{ background: isTheZone ? "rgba(10,14,24,0.95)" : "#101010" }}
                 >
                   <div className="aspect-[4/3] overflow-hidden relative" style={{ background: "#141414" }}>
-                    {isPpfColor && ppfMode === "visualizer" ? (
+                    {isPpfColor ? (
                       <PpfColorVisualizer biz={biz} />
                     ) : (s.modo_foto === "before_after" ? (s.antes_img || s.despues_img) : (s.antes_img && s.despues_img)) ? (
                       <CompareSlider
@@ -460,18 +459,8 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                       </div>
                     )}
 
-                    {/* Botón interactivo para alternar entre Antes/Después y Visualizador 3D en PPF Color */}
-                    {isPpfColor && (
-                      <button
-                        type="button"
-                        onClick={() => setPpfMode((m) => (m === "slider" ? "visualizer" : "slider"))}
-                        className="absolute top-2 right-2 z-30 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider backdrop-blur-md bg-black/85 border border-sky-400/50 text-sky-300 hover:text-white shadow-lg transition-transform active:scale-95 cursor-pointer"
-                      >
-                        {ppfMode === "slider" ? "🎨 Probar Colores 3D" : "↔ Ver Antes/Después"}
-                      </button>
-                    )}
 
-                    {s.proteccion && (!isPpfColor || ppfMode === "slider") && (
+                    {s.proteccion && !isPpfColor && (
                       <div
                         className="absolute bottom-2 left-2 right-2 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/15 text-[11px] font-semibold text-white/95 flex items-center gap-1.5 shadow-lg z-20 pointer-events-none"
                         style={{ background: "rgba(10,10,10,0.85)" }}
