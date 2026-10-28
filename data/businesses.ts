@@ -68,5 +68,6 @@ export function getBusiness(slug: string): Business | undefined {
   if (slug === "dtf" || slug === "dtf-detail") return businessesMap.get("dtf-detail");
   if (slug === "nobile" || slug === "nobile-detail") return businessesMap.get("nobile-detail");
   if (slug === "ch" || slug === "ch-detailing") return businessesMap.get("ch-detailing");
+  if (slug === "work-style" || slug === "workstyle") return businessesMap.get("work-style");
   return businessesMap.get(slug);
 }
