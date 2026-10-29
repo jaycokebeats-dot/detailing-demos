@@ -68081,28 +68081,6 @@
     ]
   },
   {
-    "slug": "pulido-truck-and-parts-dist-nogales-sonora",
-    "nombre": "Pulido Truck and Parts Dist. Nogales Sonora",
-    "telefono": "63 1125 2315",
-    "whatsapp": "526311252315",
-    "instagram": "pulido.truck.and.parts.dist.nogales.sonora",
-    "direccion": "Carr. Internacional Km 8.5, Sonora, 84094 Heroica Nogales, Son., México",
-    "ciudad": "Nogales, Son.",
-    "rating": 4.8,
-    "reviews_count": 40,
-    "fotos": [],
-    "place_id": "ChIJ-3TQy25T0YYRKq9KrLqn9os",
-    "maps_url": "https://www.google.com/maps/place/Pulido+Truck+and+Parts+Dist.+Nogales,+Sonora./data=!4m7!3m6!1s0x86d1536ecbd074fb:0x8bf6a7baac4aaf2a!8m2!3d31.2617615!4d-110.9485975!16s%2Fg%2F11qqlr9wks!19sChIJ-3TQy25T0YYRKq9KrLqn9os?authuser=0&hl=es&g_ep=EgoyMDI2MTAyMC4wIJJjKgBIAVAD&rclk=1",
-    "pais": "MX",
-    "template": "mexico",
-    "websiteUrl": "",
-    "reviewDates": [
-      "Hace un año",
-      "Hace 5 años",
-      "Hace 2 años"
-    ]
-  },
-  {
     "slug": "auto-detallado-lm",
     "nombre": "Auto detallado LM",
     "telefono": "64 6109 7844",
@@ -68122,6 +68100,28 @@
       "Hace 6 meses",
       "Hace 11 meses",
       "Hace 3 meses"
+    ]
+  },
+  {
+    "slug": "gordo-wash-detailing",
+    "nombre": "Gordo Wash Detailing",
+    "telefono": "22 9422 7442",
+    "whatsapp": "522294227442",
+    "instagram": "gordo.wash.detailing",
+    "direccion": "91700, Zona Centro, 91700 Veracruz, Ver., México",
+    "ciudad": "Veracruz, Ver.",
+    "rating": 5.0,
+    "reviews_count": 36,
+    "fotos": [],
+    "place_id": "ChIJbcI6OfdHw4URMcpMDK_7RlI",
+    "maps_url": "https://www.google.com/maps/place/Gordo+Wash+Detailing/data=!4m7!3m6!1s0x85c347f7393ac26d:0x5246fbaf0c4cca31!8m2!3d19.1855643!4d-96.1393998!16s%2Fg%2F11ytrcljhh!19sChIJbcI6OfdHw4URMcpMDK_7RlI?authuser=0&hl=es&g_ep=EgoyMDI2MTAyMC4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "template": "mexico",
+    "websiteUrl": "",
+    "reviewDates": [
+      "Hace 8 meses",
+      "Hace 8 meses",
+      "Hace 5 meses"
     ]
   }
 ]
