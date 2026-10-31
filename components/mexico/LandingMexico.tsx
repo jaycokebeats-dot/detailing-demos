@@ -187,6 +187,8 @@ export default function LandingMexico({ biz }: { biz: Business }) {
     biz.slug === "the-zone" ||
     Boolean(biz.nombre && biz.nombre.toLowerCase().includes("the zone"));
 
+  const isPlatinum = biz.slug === "platinum-detallado-automotriz-a-domicilio";
+
   const badgeClass = isTheZone ? "section-badge-thezone" : "section-badge";
 
   const msgPresupuesto = `Hola! Quisiera pedir información o cotización para mi auto en ${biz.nombre}.`;
@@ -232,6 +234,14 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                   src="/logo/the-zone-logo.png"
                   alt={biz.nombre}
                   className="h-11 sm:h-14 md:h-16 w-auto object-contain transition-transform group-hover:scale-105 drop-shadow-[0_4px_16px_rgba(0,102,255,0.45)]"
+                />
+              </a>
+            ) : isPlatinum ? (
+              <a href="#hero" className="flex items-center shrink-0 group transition-transform active:scale-95 py-1" aria-label="Ir al inicio">
+                <img
+                  src="/logo/platinum-logo.png"
+                  alt={biz.nombre}
+                  className="h-8 sm:h-10 md:h-12 w-auto object-contain transition-transform group-hover:scale-105 drop-shadow-[0_2px_12px_rgba(255,255,255,0.25)]"
                 />
               </a>
             ) : (
@@ -300,8 +310,8 @@ export default function LandingMexico({ biz }: { biz: Business }) {
 
         <div className="relative z-10 max-w-6xl mx-auto w-full h-full flex items-center justify-center">
           <div className={`max-w-3xl text-center ${isTheZone ? "space-y-3 sm:space-y-4 py-3 sm:py-6 lg:py-8" : "space-y-5 py-12 lg:py-8"} mx-auto`}>
-            {/* Logo oficial centrado para The Zone (agrandado y dominante) */}
-            {isTheZone && (
+            {/* Logo oficial centrado para The Zone y Platinum */}
+            {isTheZone ? (
               <div className="flex justify-center mb-2 sm:mb-4 -mt-2 sm:-mt-4">
                 <img
                   src="/logo/the-zone-logo.png"
@@ -309,7 +319,15 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                   className="h-44 sm:h-56 md:h-64 lg:h-72 w-auto object-contain drop-shadow-[0_20px_50px_rgba(0,102,255,0.6)] transition-transform hover:scale-105"
                 />
               </div>
-            )}
+            ) : isPlatinum ? (
+              <div className="flex justify-center mb-4 sm:mb-6 -mt-2 sm:-mt-4">
+                <img
+                  src="/logo/platinum-logo.png"
+                  alt={biz.nombre}
+                  className="h-28 sm:h-40 md:h-48 lg:h-56 w-auto object-contain drop-shadow-[0_15px_40px_rgba(255,255,255,0.22)] transition-transform hover:scale-105"
+                />
+              </div>
+            ) : null}
 
             <div className={`inline-flex items-center gap-2 ${isTheZone ? "px-2.5 py-1 text-[11px] sm:text-xs" : "px-3 py-1.5 text-xs sm:text-sm"} rounded-full border ${isTheZone ? "border-sky-500/30 bg-sky-500/10 text-sky-200" : "border-white/10 bg-white/5 text-slate-300"} font-medium`}>
               <span className={`flex size-1.5 sm:size-2 rounded-full shrink-0 animate-pulse ${isTheZone ? "bg-sky-400 shadow-[0_0_8px_rgba(56,189,248,0.9)]" : "bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]"}`} />
@@ -737,7 +755,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
           }}
         />
 
-        {isTheZone && (
+        {isTheZone ? (
           <div className="flex justify-center mb-8">
             <img
               src="/logo/the-zone-logo.png"
@@ -745,7 +763,15 @@ export default function LandingMexico({ biz }: { biz: Business }) {
               className="h-20 sm:h-28 md:h-32 w-auto object-contain opacity-90 hover:opacity-100 transition-all drop-shadow-[0_8px_30px_rgba(0,102,255,0.5)] hover:scale-105"
             />
           </div>
-        )}
+        ) : isPlatinum ? (
+          <div className="flex justify-center mb-8">
+            <img
+              src="/logo/platinum-logo.png"
+              alt={biz.nombre}
+              className="h-16 sm:h-20 md:h-24 w-auto object-contain opacity-90 hover:opacity-100 transition-all drop-shadow-[0_6px_25px_rgba(255,255,255,0.2)] hover:scale-105"
+            />
+          </div>
+        ) : null}
 
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-slate-400 font-light">
           <span>© {new Date().getFullYear()} {biz.nombre} · Detailing Automotriz en {biz.ciudad} (México)</span>
