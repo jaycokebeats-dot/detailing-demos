@@ -10,8 +10,8 @@ import {
   LuWrench, 
   LuCheck, 
   LuPlus, 
-  LuClock, 
-  LuInfo 
+  LuInfo,
+  LuTrash2
 } from "react-icons/lu";
 import type { Business } from "@/data/business-helpers";
 
@@ -71,12 +71,11 @@ export interface ServicioBase {
   subtitulo: string;
   descripcion: string;
   badge?: string;
-  duracionEstimada: string;
   detalles: string[];
   precios: Record<VehiculoId, number | null>;
 }
 
-// Catálogo Oficial Actualizado (Versión 3.4 sin Interior Care ni Essential Care)
+// Catálogo Oficial Actualizado (Versión 3.4)
 export const SERVICIOS_PLATINUM: ServicioBase[] = [
   // --- COMBOS ESTRELLA ---
   {
@@ -86,7 +85,6 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
     subtitulo: "Renovación Integral Interior & Exterior",
     descripcion: "El tratamiento insignia a domicilio. Desinfección integral a vapor e inyección-succión en vestiduras y alfombras, pulido de 1 paso y sellador cerámico exterior.",
     badge: "Más Solicitado",
-    duracionEstimada: "4 a 6 horas",
     detalles: [
       "Lavado profundo de asientos (inyección-succión tela o nutrición piel)",
       "Extracción profunda en alfombras, tapetes y cajuela",
@@ -112,7 +110,6 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
     subtitulo: "Preparación Rápida para Venta",
     descripcion: "Diseñado para incrementar el valor de reventa de tu auto. Incluye restauración completa de faros, limpieza interior y abrillantado exterior express.",
     badge: "Especial Venta",
-    duracionEstimada: "3 a 4 horas",
     detalles: [
       "Restauración completa de ambos faros con polímero de vapor óptico",
       "Lavado de asientos por inyección-succión (eliminación de manchas visibles)",
@@ -139,7 +136,6 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
     subtitulo: "Renovación Total de Interiores a Vapor",
     descripcion: "Limpieza exhaustiva del habitáculo. Ideal para eliminar suciedad profunda, ácaros, bacterias y manchas difíciles en asientos, alfombras y cajuela.",
     badge: "Desinfección Total",
-    duracionEstimada: "3 a 4 horas",
     detalles: [
       "Inyección-succión en vestiduras de tela o nutrición profunda en piel",
       "Tratamiento y extracción profunda en alfombras, tapetes y cajuela",
@@ -163,7 +159,6 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
     nombre: "Premier Pro Interior",
     subtitulo: "Sistema Inyección-Succión & Limpieza Pro",
     descripcion: "Lavado profesional de vestiduras y plásticos interiores con lavado exterior de cortesía.",
-    duracionEstimada: "2.5 a 3.5 horas",
     detalles: [
       "Lavado profundo en asientos con máquina de inyección-succión (tela o piel)",
       "Aspirado exhaustivo de habitáculo y cajuela completa",
@@ -189,7 +184,6 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
     subtitulo: "Corrección Profunda & Protección Cerámica 9H",
     descripcion: "Máxima protección de carrocería. Descontaminado con clay bar, corrección de pintura en 2 pasos y sellado nanocerámico 9H bajo carpa móvil climatizada.",
     badge: "Máxima Gama",
-    duracionEstimada: "6 a 8 horas",
     detalles: [
       "Lavado a presión con pH neutro y descontaminado físico (clay bar) y químico",
       "Trabajo técnico bajo carpa móvil con paredes para control de polvo y temperatura",
@@ -214,7 +208,6 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
     subtitulo: "Pulido a 2 Pasos & Refinado Espejo",
     descripcion: "Elimina entre 80% y 90% de microrrayones, marcas circulares y opacidad. Deja un reflejo espejo profundo protegido con sellador híbrido SiO2.",
     badge: "Efecto Espejo",
-    duracionEstimada: "4 a 5 horas",
     detalles: [
       "Descontaminado químico y físico completo con clay bar",
       "Trabajo bajo carpa móvil acondicionada para detallado profesional",
@@ -237,7 +230,6 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
     nombre: "Gloss & Shine",
     subtitulo: "Pulido a 1 Paso & Abrillantado",
     descripcion: "Recupera la profundidad y vida del color eliminando entre 50% y 70% de microrrayones leves. Incluye sellador sintético.",
-    duracionEstimada: "3 a 4 horas",
     detalles: [
       "Pre-lavado con cañón de espuma y descontaminado rápido de pintura",
       "Pulido técnico a máquina de 1 paso para recuperar brillo profundo",
@@ -261,7 +253,6 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
     subtitulo: "Detallado de Precisión & Sellador Cerámico",
     descripcion: "Tratamiento exterior con descontaminado químico y sellador cerámico de 3 meses, más acondicionamiento interior.",
     badge: "Sellador Cerámico",
-    duracionEstimada: "2 a 2.5 horas",
     detalles: [
       "Pre-lavado con cañón de espuma y lavado técnico a presión",
       "Descontaminado químico de pintura y sellador cerámico (3 meses)",
@@ -285,7 +276,6 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
     subtitulo: "Brillo & Hidrofobia | Mantenimiento Express",
     descripcion: "Sellador hidrofóbico y anti-polvo con duración de 30 días, pre-lavado con cañón de espuma y limpieza interior.",
     badge: "Hidrofóbico",
-    duracionEstimada: "1.5 a 2 horas",
     detalles: [
       "Lavado técnico a presión con cañón de espuma",
       "Sellador hidrofóbico y anti-polvo de carrocería (hasta 30 días)",
@@ -307,7 +297,6 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
     nombre: "Mantenimiento Core",
     subtitulo: "Mantenimiento Regular & Brillo Profundo",
     descripcion: "Lavado técnico anti-rayones, shampoo con cera y sellado rápido de hasta 15 días con detallado de plásticos y rines.",
-    duracionEstimada: "1.5 horas",
     detalles: [
       "Pre-lavado y lavado técnico a presión con método anti-rayones",
       "Lavado con shampoo con cera + aplicación de cera rápida (15 días)",
@@ -332,7 +321,6 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
     subtitulo: "Tratamiento Óptico con 6 Meses de Garantía",
     descripcion: "Elimina por completo el tono amarillo, quemado y opacidad de los faros delanteros. Recupera hasta 40% más de iluminación nocturna mediante polímero de vapor.",
     badge: "6 Meses de Garantía",
-    duracionEstimada: "1.5 horas",
     detalles: [
       "Lijado graduado técnico en ambos faros delanteros",
       "Tratamiento restaurador con polímero de vapor óptico de alta transparencia",
@@ -349,7 +337,7 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
   },
 ];
 
-// Complementos y Upgrades (Páginas 13-15 del catálogo 3.4)
+// Complementos y Upgrades (Páginas 13-15 del catálogo)
 export interface Complemento {
   id: string;
   nombre: string;
@@ -463,9 +451,14 @@ const CATEGORIAS: CategoriaTab[] = [
 export default function CotizadorPlatinum({ biz }: { biz: Business }) {
   const [vehiculoId, setVehiculoId] = useState<VehiculoId>("suv2");
   const [categoriaActiva, setCategoriaActiva] = useState<CategoriaTab["id"]>("combos");
-  const [servicioSeleccionadoId, setServicioSeleccionadoId] = useState<string>("full-detail");
+  
+  // Selección múltiple persistente: permite sumar servicios de distintas categorías
+  const [serviciosSeleccionadosIds, setServiciosSeleccionadosIds] = useState<string[]>([
+    "full-detail",
+  ]);
   const [complementosSeleccionados, setComplementosSeleccionados] = useState<string[]>([]);
 
+  // Escuchar si desde alguna tarjeta exterior se solicita cotizar un servicio
   useEffect(() => {
     const handleSelectService = (event: CustomEvent<{ servicioId?: string; categoria?: string }>) => {
       const { servicioId, categoria } = event.detail || {};
@@ -473,7 +466,9 @@ export default function CotizadorPlatinum({ biz }: { biz: Business }) {
         const found = SERVICIOS_PLATINUM.find((s) => s.id === servicioId);
         if (found) {
           setCategoriaActiva(found.categoria);
-          setServicioSeleccionadoId(found.id);
+          setServiciosSeleccionadosIds((prev) => 
+            prev.includes(found.id) ? prev : [...prev, found.id]
+          );
         }
       } else if (categoria) {
         setCategoriaActiva(categoria as CategoriaTab["id"]);
@@ -489,22 +484,30 @@ export default function CotizadorPlatinum({ biz }: { biz: Business }) {
     [vehiculoId]
   );
 
-  const servicioActual = useMemo(
-    () => SERVICIOS_PLATINUM.find((s) => s.id === servicioSeleccionadoId) || SERVICIOS_PLATINUM[0],
-    [servicioSeleccionadoId]
-  );
-
+  // Servicios filtrados por la categoría activa (cambiar de pestaña NO borra lo seleccionado)
   const serviciosDeCategoria = useMemo(
     () => SERVICIOS_PLATINUM.filter((s) => s.categoria === categoriaActiva),
     [categoriaActiva]
   );
 
-  const cambiarCategoria = (catId: CategoriaTab["id"]) => {
-    setCategoriaActiva(catId);
-    const primerServicio = SERVICIOS_PLATINUM.find((s) => s.categoria === catId);
-    if (primerServicio) {
-      setServicioSeleccionadoId(primerServicio.id);
-    }
+  // Lista de todos los servicios base seleccionados
+  const serviciosSeleccionados = useMemo(
+    () => SERVICIOS_PLATINUM.filter((s) => serviciosSeleccionadosIds.includes(s.id)),
+    [serviciosSeleccionadosIds]
+  );
+
+  const toggleServicio = (id: string) => {
+    setServiciosSeleccionadosIds((prev) => {
+      if (prev.includes(id)) {
+        return prev.filter((item) => item !== id);
+      } else {
+        return [...prev, id];
+      }
+    });
+  };
+
+  const quitarServicio = (id: string) => {
+    setServiciosSeleccionadosIds((prev) => prev.filter((item) => item !== id));
   };
 
   const toggleComplemento = (id: string) => {
@@ -513,27 +516,39 @@ export default function CotizadorPlatinum({ biz }: { biz: Business }) {
     );
   };
 
-  const precioBaseActual = useMemo(() => {
-    const p = servicioActual.precios[vehiculoId];
-    return p ?? 0;
-  }, [servicioActual, vehiculoId]);
+  // Obtener precio de un servicio según vehículo
+  const getPrecioServicio = (s: ServicioBase): number => {
+    return s.precios[vehiculoId] ?? 0;
+  };
 
+  // Obtener precio de un complemento según vehículo
   const getPrecioComplemento = (c: Complemento): number => {
     if (c.precioTipo === "fijo") return c.precioFijo ?? 0;
     return c.preciosVariables?.[vehiculoId] ?? 0;
   };
 
+  // Total acumulado: suma de TODOS los servicios seleccionados + TODOS los complementos
   const totalEstimado = useMemo(() => {
+    const totalServicios = serviciosSeleccionados.reduce((acc, s) => {
+      return acc + getPrecioServicio(s);
+    }, 0);
+
     const totalComplementos = complementosSeleccionados.reduce((acc, id) => {
       const c = COMPLEMENTOS_PLATINUM.find((item) => item.id === id);
       return acc + (c ? getPrecioComplemento(c) : 0);
     }, 0);
-    return precioBaseActual + totalComplementos;
-  }, [precioBaseActual, complementosSeleccionados, vehiculoId]);
 
+    return totalServicios + totalComplementos;
+  }, [serviciosSeleccionados, complementosSeleccionados, vehiculoId]);
+
+  // Mensaje estructurado para WhatsApp
   const whatsAppUrl = useMemo(() => {
     const waNumber = (biz.whatsapp || "524427151535").replace(/\D/g, "");
     
+    const lineasServicios = serviciosSeleccionados
+      .map((s) => `• ${s.nombre} ($${getPrecioServicio(s).toLocaleString("es-MX")} MXN)`)
+      .join("\n");
+
     const lineasComplementos = complementosSeleccionados
       .map((id) => {
         const c = COMPLEMENTOS_PLATINUM.find((item) => item.id === id);
@@ -543,22 +558,25 @@ export default function CotizadorPlatinum({ biz }: { biz: Business }) {
       .filter(Boolean)
       .join("\n");
 
+    const bloqueServicios = lineasServicios || "• Tratamiento a cotizar en sitio";
     const bloqueComplementos = lineasComplementos 
-      ? `\n*Complementos agregados:*\n${lineasComplementos}` 
+      ? `\n\n*Complementos agregados:*\n${lineasComplementos}` 
       : "";
 
     const mensaje = `Hola Platinum Detallado Automotriz.
 Estuve cotizando en su sitio web para un servicio a domicilio en Querétaro:
 
 *Vehículo:* ${vehiculoActual.label} (${vehiculoActual.ejemplos})
-*Tratamiento principal:* ${servicioActual.nombre} ($${precioBaseActual.toLocaleString("es-MX")} MXN)${bloqueComplementos}
+
+*Tratamientos seleccionados:*
+${bloqueServicios}${bloqueComplementos}
 
 *Total estimado:* $${totalEstimado.toLocaleString("es-MX")} MXN
 
 ¿Qué fechas y horarios tienen disponibles para agendar la visita en mi domicilio?`;
 
     return `https://wa.me/${waNumber}?text=${encodeURIComponent(mensaje)}`;
-  }, [biz, vehiculoActual, servicioActual, precioBaseActual, complementosSeleccionados, totalEstimado]);
+  }, [biz, vehiculoActual, serviciosSeleccionados, complementosSeleccionados, totalEstimado, vehiculoId]);
 
   return (
     <section 
@@ -580,7 +598,7 @@ Estuve cotizando en su sitio web para un servicio a domicilio en Querétaro:
             Cotiza tu Detallado en <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-500">30 Segundos</span>
           </h2>
           <p className="text-sm sm:text-base text-neutral-400">
-            Selecciona tu vehículo, elige el nivel de protección o renovación y suma complementos si lo requieres. Precios transparentes con servicio 100% a domicilio en Querétaro.
+            Selecciona tu vehículo y suma libremente los tratamientos y complementos que necesites. Puedes combinar servicios de distintas categorías para armar tu paquete a medida.
           </p>
         </div>
 
@@ -591,7 +609,7 @@ Estuve cotizando en su sitio web para un servicio a domicilio en Querétaro:
               <span className="flex items-center justify-center w-5 h-5 rounded-full bg-white/10 text-white text-[11px] font-bold">1</span>
               Selecciona el tipo de vehículo
             </h3>
-            <span className="text-xs text-neutral-500 hidden sm:inline">El tamaño ajusta los insumos y tiempos de trabajo</span>
+            <span className="text-xs text-neutral-500 hidden sm:inline">El tamaño ajusta las tarifas de todos los tratamientos</span>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
@@ -631,25 +649,31 @@ Estuve cotizando en su sitio web para un servicio a domicilio en Querétaro:
           </div>
         </div>
 
-        {/* PASO 2: Categorías de Servicio y Tarjetas */}
+        {/* PASO 2: Categorías de Servicio y Tarjetas con Selección Múltiple */}
         <div className="space-y-6">
           <div className="flex items-center justify-between">
             <h3 className="text-xs uppercase tracking-widest text-neutral-400 font-semibold flex items-center gap-2">
               <span className="flex items-center justify-center w-5 h-5 rounded-full bg-white/10 text-white text-[11px] font-bold">2</span>
-              Elige el servicio o combo principal
+              Elige los tratamientos deseados (puedes sumar más de uno)
             </h3>
-            <span className="text-xs text-neutral-500 hidden sm:inline">Todos los precios se actualizan según tu vehículo</span>
+            <span className="text-xs text-amber-400/90 font-medium hidden sm:inline">
+              {serviciosSeleccionados.length} {serviciosSeleccionados.length === 1 ? "tratamiento seleccionado" : "tratamientos seleccionados"}
+            </span>
           </div>
 
-          {/* Pestañas de categorías */}
+          {/* Pestañas de categorías con contador de ítems seleccionados por categoría */}
           <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
             {CATEGORIAS.map((cat) => {
               const activa = cat.id === categoriaActiva;
               const IconComp = cat.Icono;
+              const cantidadEnCat = SERVICIOS_PLATINUM.filter(
+                (s) => s.categoria === cat.id && serviciosSeleccionadosIds.includes(s.id)
+              ).length;
+
               return (
                 <button
                   key={cat.id}
-                  onClick={() => cambiarCategoria(cat.id)}
+                  onClick={() => setCategoriaActiva(cat.id)}
                   type="button"
                   className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-medium whitespace-nowrap transition-all border ${
                     activa
@@ -659,9 +683,11 @@ Estuve cotizando en su sitio web para un servicio a domicilio en Querétaro:
                 >
                   <IconComp className={`text-base ${activa ? "text-black" : "text-amber-400/80"}`} />
                   <span>{cat.label}</span>
-                  {cat.badge && !activa && (
-                    <span className="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-white/10 text-neutral-300 ml-1">
-                      {cat.badge}
+                  {cantidadEnCat > 0 && (
+                    <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full ${
+                      activa ? "bg-black text-amber-400" : "bg-amber-400 text-black"
+                    }`}>
+                      {cantidadEnCat}
                     </span>
                   )}
                 </button>
@@ -672,13 +698,13 @@ Estuve cotizando en su sitio web para un servicio a domicilio en Querétaro:
           {/* Grid de servicios de la categoría activa */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {serviciosDeCategoria.map((s) => {
-              const seleccionado = s.id === servicioSeleccionadoId;
+              const seleccionado = serviciosSeleccionadosIds.includes(s.id);
               const precioVehiculo = s.precios[vehiculoId];
 
               return (
                 <div
                   key={s.id}
-                  onClick={() => setServicioSeleccionadoId(s.id)}
+                  onClick={() => toggleServicio(s.id)}
                   className={`rounded-2xl p-6 border cursor-pointer transition-all duration-200 flex flex-col justify-between relative ${
                     seleccionado
                       ? "bg-gradient-to-b from-neutral-900 to-[#121215] border-amber-400/80 shadow-[0_0_30px_rgba(245,158,11,0.12)] ring-1 ring-amber-400/50"
@@ -701,23 +727,22 @@ Estuve cotizando en su sitio web para un servicio a domicilio en Querétaro:
                           {s.subtitulo}
                         </p>
                       </div>
-                      <div className={`w-5 h-5 rounded-full border flex items-center justify-center shrink-0 mt-1 transition ${
+                      <div className={`w-6 h-6 rounded-lg border flex items-center justify-center shrink-0 mt-1 transition ${
                         seleccionado 
                           ? "bg-amber-400 border-amber-400 text-black" 
-                          : "border-neutral-600 bg-neutral-900"
+                          : "border-neutral-600 bg-neutral-900 text-transparent hover:border-neutral-400"
                       }`}>
-                        {seleccionado && <LuCheck className="text-xs stroke-[3]" />}
+                        {seleccionado ? (
+                          <LuCheck className="text-xs stroke-[3]" />
+                        ) : (
+                          <LuPlus className="text-xs text-neutral-500" />
+                        )}
                       </div>
                     </div>
 
                     <p className="text-xs text-neutral-400 leading-relaxed">
                       {s.descripcion}
                     </p>
-
-                    <div className="flex items-center gap-2 text-[11px] text-neutral-400 pt-1">
-                      <LuClock className="text-amber-400 text-xs shrink-0" />
-                      <span>Duración estimada: <strong className="text-neutral-200">{s.duracionEstimada}</strong></span>
-                    </div>
 
                     <ul className="space-y-1.5 pt-2 border-t border-white/5">
                       {s.detalles.slice(0, 4).map((d, i) => (
@@ -813,20 +838,51 @@ Estuve cotizando en su sitio web para un servicio a domicilio en Querétaro:
         <div className="bg-gradient-to-r from-[#141418] via-[#18181f] to-[#141418] rounded-3xl p-6 sm:p-10 border border-white/15 shadow-2xl relative overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             
+            {/* Columna Izquierda: Desglose Completo */}
             <div className="lg:col-span-7 space-y-4">
               <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-white/5 text-[11px] font-semibold text-neutral-300 tracking-wider uppercase">
-                Resumen de tu Cotización
+                Resumen de tu Cotización ({serviciosSeleccionados.length + complementosSeleccionados.length} ítems)
               </div>
               
-              <div className="space-y-2">
+              <div className="space-y-2.5">
                 <div className="flex items-baseline justify-between border-b border-white/5 pb-2">
-                  <span className="text-xs text-neutral-400">Vehículo seleccionado:</span>
+                  <span className="text-xs text-neutral-400">Vehículo:</span>
                   <span className="text-sm font-semibold text-white">{vehiculoActual.label}</span>
                 </div>
-                <div className="flex items-baseline justify-between border-b border-white/5 pb-2">
-                  <span className="text-xs text-neutral-400">Tratamiento base:</span>
-                  <span className="text-sm font-semibold text-amber-400">{servicioActual.nombre}</span>
+
+                {/* Lista de tratamientos principales seleccionados */}
+                <div className="space-y-1.5 border-b border-white/5 pb-2.5">
+                  <span className="text-xs text-neutral-400 block font-medium">Tratamientos elegidos:</span>
+                  {serviciosSeleccionados.length === 0 ? (
+                    <p className="text-xs text-amber-400/80 italic">
+                      Selecciona al menos un tratamiento arriba para calcular el total.
+                    </p>
+                  ) : (
+                    serviciosSeleccionados.map((s) => (
+                      <div key={s.id} className="flex items-center justify-between text-xs py-0.5">
+                        <span className="text-white font-medium flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                          {s.nombre}
+                        </span>
+                        <div className="flex items-center gap-2">
+                          <span className="text-amber-400 font-semibold">
+                            ${getPrecioServicio(s).toLocaleString("es-MX")} MXN
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => quitarServicio(s.id)}
+                            className="text-neutral-500 hover:text-red-400 transition"
+                            title="Quitar"
+                          >
+                            <LuTrash2 className="text-xs" />
+                          </button>
+                        </div>
+                      </div>
+                    ))
+                  )}
                 </div>
+
+                {/* Complementos */}
                 {complementosSeleccionados.length > 0 && (
                   <div className="pt-1">
                     <span className="text-xs text-neutral-400 block mb-1.5">Complementos agregados ({complementosSeleccionados.length}):</span>
@@ -847,10 +903,11 @@ Estuve cotizando en su sitio web para un servicio a domicilio en Querétaro:
 
               <p className="text-[11px] text-neutral-400 flex items-center gap-1.5 pt-2">
                 <LuInfo className="text-amber-400 text-xs shrink-0" />
-                <span>Precios referenciales oficiales de Platinum. Servicio realizado 100% a domicilio en Querétaro con equipo e insumos profesionales.</span>
+                <span>Precios referenciales oficiales de Platinum. Servicio realizado 100% a domicilio en Querétaro con equipo profesional.</span>
               </p>
             </div>
 
+            {/* Columna Derecha: Total & CTA */}
             <div className="lg:col-span-5 bg-black/60 rounded-2xl p-6 border border-white/10 flex flex-col justify-center items-center text-center space-y-4">
               <div>
                 <span className="text-xs uppercase tracking-widest text-neutral-400 font-medium">Total Estimado</span>
