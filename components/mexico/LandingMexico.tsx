@@ -9,6 +9,8 @@ import SectionDivider from "@/components/SectionDivider";
 import CompareSlider from "@/components/CompareSlider";
 import PpfColorVisualizer from "@/components/PpfColorVisualizer";
 import CotizadorPlatinum from "./CotizadorPlatinum";
+import VideosPlatinum from "./VideosPlatinum";
+import { LuSparkles } from "react-icons/lu";
 
 // Servicios estándar para México con precios de referencia en Pesos Mexicanos ($ MXN) y modismos de México
 export const SERVICIOS_MEXICO: ServiceItem[] = [
@@ -340,9 +342,10 @@ export default function LandingMexico({ biz }: { biz: Business }) {
               {biz.slug === "platinum-detallado-automotriz-a-domicilio" && (
                 <a
                   href="#cotizador"
-                  className="w-full sm:w-auto px-6 sm:px-7 py-2.5 sm:py-3.5 min-h-[42px] sm:min-h-[44px] rounded-full text-xs sm:text-sm font-bold uppercase tracking-wide bg-gradient-to-r from-emerald-500 to-teal-400 text-neutral-950 active:scale-95 transition-all flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/25"
+                  className="w-full sm:w-auto px-6 sm:px-7 py-2.5 sm:py-3.5 min-h-[42px] sm:min-h-[44px] rounded-full text-xs sm:text-sm font-bold uppercase tracking-wide bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-neutral-950 active:scale-95 transition-all flex items-center justify-center gap-2 shadow-lg shadow-amber-500/20"
                 >
-                  ⚡ Probar Cotizador en Vivo
+                  <LuSparkles className="size-4 text-black" />
+                  Cotizador Interactivo
                 </a>
               )}
               <a
@@ -499,15 +502,50 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                       )}
                     </div>
 
-                    <a
-                      href={waHref(biz, reservaMsg)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`${isTheZone ? "btn-outline-thezone" : "btn-outline-gold"} mt-4 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider`}
-                    >
-                      <FaWhatsapp aria-hidden className="size-3.5 text-emerald-400" />
-                      Cotizar por WhatsApp
-                    </a>
+                    {biz.slug === "platinum-detallado-automotriz-a-domicilio" ? (
+                      <div className="flex items-center gap-2 mt-4">
+                        <a
+                          href="#cotizador"
+                          onClick={() => {
+                            if (typeof window !== "undefined") {
+                              const mapId: Record<string, string> = {
+                                "Platinum Full Detail": "full-detail",
+                                "Corrección Profunda & Cerámico 9H": "ceramic-coating",
+                                "Detallado Interior Platinum 360": "platinum-360",
+                                "Restauración de Faros con Polímero": "faros",
+                                "Estética & Detallado de Motor a Vapor": "full-detail",
+                                "Pack Express Sale (Pre-Venta)": "express-sale",
+                              };
+                              const targetId = mapId[s.nombre] || "full-detail";
+                              window.dispatchEvent(new CustomEvent("platinum:cotizar", { detail: { servicioId: targetId } }));
+                            }
+                          }}
+                          className="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-amber-400 text-black hover:bg-amber-300 transition shadow-sm"
+                        >
+                          <LuSparkles className="size-3.5 text-black" />
+                          Cotizar Tratamiento
+                        </a>
+                        <a
+                          href={waHref(biz, reservaMsg)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center p-2.5 rounded-full border border-white/20 text-neutral-300 hover:text-white hover:border-white/40 transition shrink-0"
+                          title="Preguntar por WhatsApp"
+                        >
+                          <FaWhatsapp aria-hidden className="size-4 text-emerald-400" />
+                        </a>
+                      </div>
+                    ) : (
+                      <a
+                        href={waHref(biz, reservaMsg)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`${isTheZone ? "btn-outline-thezone" : "btn-outline-gold"} mt-4 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider`}
+                      >
+                        <FaWhatsapp aria-hidden className="size-3.5 text-emerald-400" />
+                        Cotizar por WhatsApp
+                      </a>
+                    )}
                   </div>
                 </div>
               );
@@ -537,6 +575,10 @@ export default function LandingMexico({ biz }: { biz: Business }) {
           </div>
         </div>
       </section>
+
+      {biz.slug === "platinum-detallado-automotriz-a-domicilio" && (
+        <VideosPlatinum />
+      )}
 
       {/* 6. GARANTÍA & COMPROMISO */}
       <section id="garantia" className="relative px-5 sm:px-8 pt-24 pb-32 sm:pb-36" style={{ background: "#101010" }}>
