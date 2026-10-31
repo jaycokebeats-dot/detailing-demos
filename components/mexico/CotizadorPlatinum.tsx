@@ -612,7 +612,7 @@ ${bloqueServicios}${bloqueComplementos}
   return (
     <section 
       id="cotizador" 
-      className="relative px-4 sm:px-8 py-24 bg-[#0a0a0c] text-white border-t border-b border-white/10 overflow-hidden"
+      className="relative px-4 sm:px-8 py-20 bg-[#0a0a0c] text-white border-t border-b border-white/10 overflow-hidden scroll-mt-24 sm:scroll-mt-28"
     >
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-amber-500/5 blur-[140px] pointer-events-none rounded-full" />
       <div className="absolute bottom-10 right-10 w-[400px] h-[300px] bg-emerald-500/5 blur-[120px] pointer-events-none rounded-full" />
@@ -621,14 +621,14 @@ ${bloqueServicios}${bloqueComplementos}
         
         {/* Cabecera Principal */}
         <div className="text-center space-y-4 max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/15 text-xs font-medium tracking-wide text-neutral-300">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/15 text-xs sm:text-sm font-medium tracking-wide text-neutral-200">
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
             Cotizador Oficial en Vivo · Catálogo Actualizado
           </div>
           <h2 className="text-3xl sm:text-5xl font-semibold tracking-tight text-white">
             Cotiza tu Detallado en <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-500">30 Segundos</span>
           </h2>
-          <p className="text-sm sm:text-base text-neutral-400">
+          <p className="text-sm sm:text-base text-neutral-300 max-w-2xl mx-auto leading-relaxed">
             Selecciona tu vehículo y suma libremente los tratamientos y complementos que necesites. Servicio a domicilio en todo Querétaro (El Campanario, Juriquilla, Zibatá, Zákia, Centro y zonas residenciales).
           </p>
         </div>
@@ -636,14 +636,14 @@ ${bloqueServicios}${bloqueComplementos}
         {/* PASO 1: Selector de Tipo de Vehículo */}
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="text-xs uppercase tracking-widest text-neutral-400 font-semibold flex items-center gap-2">
-              <span className="flex items-center justify-center w-5 h-5 rounded-full bg-white/10 text-white text-[11px] font-bold">1</span>
+            <h3 className="text-sm sm:text-base uppercase tracking-wider text-neutral-200 font-bold flex items-center gap-2.5">
+              <span className="flex items-center justify-center w-6 h-6 rounded-full bg-amber-400 text-black text-xs font-black">1</span>
               Selecciona el tipo de vehículo
             </h3>
-            <span className="text-xs text-neutral-500 hidden sm:inline">El tamaño ajusta las tarifas de todos los tratamientos</span>
+            <span className="text-xs sm:text-sm text-neutral-400 hidden sm:inline">Ajusta los insumos y tarifas exactas</span>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5">
             {TIPOS_VEHICULO.map((v) => {
               const activo = v.id === vehiculoId;
               const IconComp = v.Icono;
@@ -652,25 +652,25 @@ ${bloqueServicios}${bloqueComplementos}
                   key={v.id}
                   onClick={() => setVehiculoId(v.id)}
                   type="button"
-                  className={`text-left p-4 rounded-2xl border transition-all duration-200 flex flex-col justify-between min-h-[110px] ${
+                  className={`text-left p-4 sm:p-5 rounded-2xl border transition-all duration-200 flex flex-col justify-between min-h-[125px] ${
                     activo
-                      ? "bg-gradient-to-b from-amber-500/15 to-neutral-900 border-amber-400/60 shadow-[0_0_20px_rgba(245,158,11,0.15)] ring-1 ring-amber-400/40"
-                      : "bg-[#111114] border-white/10 hover:border-white/25 hover:bg-[#16161a]"
+                      ? "bg-gradient-to-b from-amber-500/20 to-neutral-900 border-amber-400/80 shadow-[0_0_24px_rgba(245,158,11,0.2)] ring-1 ring-amber-400/60"
+                      : "bg-[#111114] border-white/10 hover:border-white/30 hover:bg-[#16161a]"
                   }`}
                 >
                   <div className="flex items-center justify-between w-full">
-                    <IconComp className={`text-xl ${activo ? "text-amber-400" : "text-neutral-400"}`} />
+                    <IconComp className={`text-2xl ${activo ? "text-amber-400" : "text-neutral-300"}`} />
                     {activo && (
                       <span className="w-5 h-5 rounded-full bg-amber-400 text-black flex items-center justify-center text-xs font-bold">
                         <LuCheck className="stroke-[3]" />
                       </span>
                     )}
                   </div>
-                  <div className="mt-2">
-                    <p className={`text-sm font-semibold leading-tight ${activo ? "text-white" : "text-neutral-200"}`}>
+                  <div className="mt-3">
+                    <p className={`text-sm sm:text-base font-bold leading-tight ${activo ? "text-white" : "text-neutral-100"}`}>
                       {v.label}
                     </p>
-                    <p className="text-[11px] text-neutral-400 line-clamp-1 mt-0.5">
+                    <p className="text-xs text-neutral-400 line-clamp-1 mt-1 leading-snug">
                       {v.ejemplos}
                     </p>
                   </div>
@@ -683,17 +683,17 @@ ${bloqueServicios}${bloqueComplementos}
         {/* PASO 2: Categorías de Servicio y Tarjetas con Selección Múltiple */}
         <div className="space-y-6">
           <div className="flex items-center justify-between">
-            <h3 className="text-xs uppercase tracking-widest text-neutral-400 font-semibold flex items-center gap-2">
-              <span className="flex items-center justify-center w-5 h-5 rounded-full bg-white/10 text-white text-[11px] font-bold">2</span>
+            <h3 className="text-sm sm:text-base uppercase tracking-wider text-neutral-200 font-bold flex items-center gap-2.5">
+              <span className="flex items-center justify-center w-6 h-6 rounded-full bg-amber-400 text-black text-xs font-black">2</span>
               Elige los tratamientos deseados (puedes sumar más de uno)
             </h3>
-            <span className="text-xs text-amber-400/90 font-medium hidden sm:inline">
+            <span className="text-xs sm:text-sm text-amber-400 font-semibold hidden sm:inline">
               {serviciosSeleccionados.length} {serviciosSeleccionados.length === 1 ? "tratamiento seleccionado" : "tratamientos seleccionados"}
             </span>
           </div>
 
           {/* Pestañas de categorías con contador de ítems seleccionados */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+          <div className="flex items-center gap-2 sm:gap-3 overflow-x-auto pb-2 scrollbar-none">
             {CATEGORIAS.map((cat) => {
               const activa = cat.id === categoriaActiva;
               const IconComp = cat.Icono;
@@ -706,16 +706,16 @@ ${bloqueServicios}${bloqueComplementos}
                   key={cat.id}
                   onClick={() => setCategoriaActiva(cat.id)}
                   type="button"
-                  className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-medium whitespace-nowrap transition-all border ${
+                  className={`flex items-center gap-2.5 px-4 sm:px-5 py-3 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-all border ${
                     activa
-                      ? "bg-amber-400 text-black font-semibold border-amber-300 shadow-[0_4px_16px_rgba(245,158,11,0.25)]"
-                      : "bg-[#111114] text-neutral-300 border-white/10 hover:border-white/20 hover:bg-[#17171c]"
+                      ? "bg-amber-400 text-black border-amber-300 shadow-[0_4px_18px_rgba(245,158,11,0.28)]"
+                      : "bg-[#111114] text-neutral-200 border-white/10 hover:border-white/25 hover:bg-[#17171c]"
                   }`}
                 >
-                  <IconComp className={`text-base ${activa ? "text-black" : "text-amber-400/80"}`} />
+                  <IconComp className={`text-base sm:text-lg ${activa ? "text-black" : "text-amber-400"}`} />
                   <span>{cat.label}</span>
                   {cantidadEnCat > 0 && (
-                    <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full ${
+                    <span className={`text-xs font-extrabold px-2 py-0.5 rounded-full ${
                       activa ? "bg-black text-amber-400" : "bg-amber-400 text-black"
                     }`}>
                       {cantidadEnCat}
@@ -738,12 +738,12 @@ ${bloqueServicios}${bloqueComplementos}
                   onClick={() => toggleServicio(s.id)}
                   className={`rounded-2xl p-6 border cursor-pointer transition-all duration-200 flex flex-col justify-between relative ${
                     seleccionado
-                      ? "bg-gradient-to-b from-neutral-900 to-[#121215] border-amber-400/80 shadow-[0_0_30px_rgba(245,158,11,0.12)] ring-1 ring-amber-400/50"
+                      ? "bg-gradient-to-b from-neutral-900 to-[#121215] border-amber-400/80 shadow-[0_0_30px_rgba(245,158,11,0.15)] ring-1 ring-amber-400/50"
                       : "bg-[#111114] border-white/10 hover:border-white/25 hover:bg-[#151518]"
                   }`}
                 >
                   {s.badge && (
-                    <span className="absolute -top-2.5 right-4 text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-full bg-amber-400 text-black shadow-md">
+                    <span className="absolute -top-3 right-4 text-[11px] uppercase font-bold tracking-wider px-3 py-1 rounded-full bg-amber-400 text-black shadow-md">
                       {s.badge}
                     </span>
                   )}
@@ -754,12 +754,12 @@ ${bloqueServicios}${bloqueComplementos}
                         <h4 className="text-base sm:text-lg font-bold text-white tracking-tight">
                           {s.nombre}
                         </h4>
-                        <p className="text-xs text-amber-400/90 font-medium">
+                        <p className="text-xs sm:text-sm text-amber-400 font-medium mt-0.5">
                           {s.subtitulo}
                         </p>
                         {s.zonaAviso && (
-                          <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-amber-400/10 border border-amber-400/25 text-[10px] font-semibold text-amber-300 mt-1">
-                            <LuMapPin className="text-[10px] text-amber-400 shrink-0" />
+                          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-amber-400/10 border border-amber-400/30 text-[11px] font-semibold text-amber-300 mt-2">
+                            <LuMapPin className="text-xs text-amber-400 shrink-0" />
                             <span>{s.zonaAviso}</span>
                           </div>
                         )}
@@ -767,44 +767,44 @@ ${bloqueServicios}${bloqueComplementos}
                       <div className={`w-6 h-6 rounded-lg border flex items-center justify-center shrink-0 mt-1 transition ${
                         seleccionado 
                           ? "bg-amber-400 border-amber-400 text-black" 
-                          : "border-neutral-600 bg-neutral-900 text-transparent hover:border-neutral-400"
+                          : "border-neutral-500 bg-neutral-900 text-transparent hover:border-neutral-300"
                       }`}>
                         {seleccionado ? (
                           <LuCheck className="text-xs stroke-[3]" />
                         ) : (
-                          <LuPlus className="text-xs text-neutral-500" />
+                          <LuPlus className="text-xs text-neutral-400" />
                         )}
                       </div>
                     </div>
 
-                    <p className="text-xs text-neutral-400 leading-relaxed">
+                    <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed">
                       {s.descripcion}
                     </p>
 
-                    <ul className="space-y-1.5 pt-2 border-t border-white/5">
+                    <ul className="space-y-2 pt-2 border-t border-white/10">
                       {s.detalles.slice(0, 4).map((d, i) => (
-                        <li key={i} className="text-[11px] text-neutral-300 flex items-start gap-1.5 leading-snug">
-                          <span className="w-1.5 h-1.5 rounded-full bg-amber-400/70 mt-1 shrink-0" />
+                        <li key={i} className="text-xs sm:text-sm text-neutral-200 flex items-start gap-2 leading-snug">
+                          <span className="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1.5 shrink-0" />
                           <span>{d}</span>
                         </li>
                       ))}
                       {s.detalles.length > 4 && (
-                        <li className="text-[10px] text-neutral-400 italic pt-0.5">
+                        <li className="text-xs text-neutral-400 italic pt-1">
                           + {s.detalles.length - 4} procesos técnicos adicionales incluidos
                         </li>
                       )}
                     </ul>
                   </div>
 
-                  <div className="pt-5 mt-4 border-t border-white/10 flex items-baseline justify-between">
-                    <span className="text-[11px] text-neutral-400 uppercase tracking-wider font-medium">
+                  <div className="pt-5 mt-5 border-t border-white/10 flex items-baseline justify-between">
+                    <span className="text-xs text-neutral-400 uppercase tracking-wider font-semibold">
                       Para {vehiculoActual.label}
                     </span>
                     <div className="text-right">
                       {precioVehiculo ? (
-                        <span className="text-xl sm:text-2xl font-extrabold text-white">
+                        <span className="text-2xl sm:text-3xl font-extrabold text-white">
                           ${precioVehiculo.toLocaleString("es-MX")}{" "}
-                          <span className="text-xs font-medium text-neutral-400">MXN</span>
+                          <span className="text-xs sm:text-sm font-semibold text-neutral-400">MXN</span>
                         </span>
                       ) : (
                         <span className="text-sm font-semibold text-amber-400">
@@ -819,17 +819,17 @@ ${bloqueServicios}${bloqueComplementos}
           </div>
         </div>
 
-        {/* PASO 3: Complementos y Adicionales */}
+        {/* PASO 3: Complementos y Adicionales (Tipografía agrandada y legible) */}
         <div className="space-y-4 pt-4">
           <div className="flex items-center justify-between">
-            <h3 className="text-xs uppercase tracking-widest text-neutral-400 font-semibold flex items-center gap-2">
-              <span className="flex items-center justify-center w-5 h-5 rounded-full bg-white/10 text-white text-[11px] font-bold">3</span>
+            <h3 className="text-sm sm:text-base uppercase tracking-wider text-neutral-200 font-bold flex items-center gap-2.5">
+              <span className="flex items-center justify-center w-6 h-6 rounded-full bg-amber-400 text-black text-xs font-black">3</span>
               Complementos & Tratamientos Opcionales
             </h3>
-            <span className="text-xs text-neutral-500 hidden sm:inline">Agrega según la condición actual de tu auto</span>
+            <span className="text-xs sm:text-sm text-neutral-400 hidden sm:inline">Agrega según la condición de tu vehículo</span>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {COMPLEMENTOS_PLATINUM.map((comp) => {
               const seleccionado = complementosSeleccionados.includes(comp.id);
               const precio = getPrecioComplemento(comp);
@@ -838,30 +838,33 @@ ${bloqueServicios}${bloqueComplementos}
                 <div
                   key={comp.id}
                   onClick={() => toggleComplemento(comp.id)}
-                  className={`p-3.5 rounded-xl border cursor-pointer transition flex flex-col justify-between ${
+                  className={`p-4 sm:p-5 rounded-2xl border cursor-pointer transition-all flex flex-col justify-between ${
                     seleccionado
-                      ? "bg-amber-400/10 border-amber-400/50 text-white shadow-sm"
-                      : "bg-[#111114] border-white/10 hover:border-white/20 text-neutral-300"
+                      ? "bg-amber-400/15 border-amber-400/70 text-white shadow-md ring-1 ring-amber-400/40"
+                      : "bg-[#111114] border-white/10 hover:border-white/25 hover:bg-[#16161a] text-neutral-200"
                   }`}
                 >
-                  <div className="flex items-start justify-between gap-2">
-                    <p className="text-xs font-semibold text-white leading-tight">
-                      {comp.nombre}
-                    </p>
-                    <div className={`w-4 h-4 rounded border flex items-center justify-center shrink-0 mt-0.5 ${
-                      seleccionado
-                        ? "bg-amber-400 border-amber-400 text-black"
-                        : "border-neutral-600 bg-neutral-900"
-                    }`}>
-                      {seleccionado ? <LuCheck className="text-[10px] stroke-[3]" /> : <LuPlus className="text-[9px] text-neutral-500" />}
+                  <div>
+                    <div className="flex items-start justify-between gap-2.5">
+                      <p className="text-sm sm:text-base font-bold text-white leading-tight">
+                        {comp.nombre}
+                      </p>
+                      <div className={`w-5 h-5 rounded-md border flex items-center justify-center shrink-0 mt-0.5 ${
+                        seleccionado
+                          ? "bg-amber-400 border-amber-400 text-black"
+                          : "border-neutral-500 bg-neutral-900"
+                      }`}>
+                        {seleccionado ? <LuCheck className="text-xs stroke-[3]" /> : <LuPlus className="text-xs text-neutral-400" />}
+                      </div>
                     </div>
+                    <p className="text-xs sm:text-sm text-neutral-300 leading-snug mt-2 line-clamp-2">
+                      {comp.descripcion}
+                    </p>
                   </div>
-                  <p className="text-[11px] text-neutral-400 line-clamp-2 mt-1.5 leading-snug">
-                    {comp.descripcion}
-                  </p>
-                  <div className="mt-3 pt-2 border-t border-white/5 flex items-center justify-between">
-                    <span className="text-[10px] text-neutral-500 uppercase font-medium">Adicional</span>
-                    <span className="text-xs font-bold text-amber-400">
+
+                  <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
+                    <span className="text-xs uppercase tracking-wider text-neutral-400 font-semibold">Adicional</span>
+                    <span className="text-sm sm:text-base font-extrabold text-amber-400">
                       +${precio.toLocaleString("es-MX")} MXN
                     </span>
                   </div>
@@ -871,47 +874,47 @@ ${bloqueServicios}${bloqueComplementos}
           </div>
         </div>
 
-        {/* PASO 4: Resumen de Cotización & Botón a WhatsApp */}
+        {/* PASO 4: Resumen de Cotización & Botón a WhatsApp (Tipografía mejorada) */}
         <div className="bg-gradient-to-r from-[#141418] via-[#18181f] to-[#141418] rounded-3xl p-6 sm:p-10 border border-white/15 shadow-2xl relative overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             
             {/* Columna Izquierda: Desglose Completo */}
-            <div className="lg:col-span-7 space-y-4">
-              <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-white/5 text-[11px] font-semibold text-neutral-300 tracking-wider uppercase">
+            <div className="lg:col-span-7 space-y-5">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-white/5 border border-white/10 text-xs sm:text-sm font-bold text-neutral-200 tracking-wider uppercase">
                 Resumen de tu Cotización ({serviciosSeleccionados.length + complementosSeleccionados.length} ítems)
               </div>
               
-              <div className="space-y-2.5">
-                <div className="flex items-baseline justify-between border-b border-white/5 pb-2">
-                  <span className="text-xs text-neutral-400">Vehículo:</span>
-                  <span className="text-sm font-semibold text-white">{vehiculoActual.label}</span>
+              <div className="space-y-3">
+                <div className="flex items-baseline justify-between border-b border-white/10 pb-2.5">
+                  <span className="text-xs sm:text-sm font-medium text-neutral-400">Vehículo:</span>
+                  <span className="text-sm sm:text-base font-bold text-white">{vehiculoActual.label}</span>
                 </div>
 
                 {/* Lista de tratamientos principales seleccionados */}
-                <div className="space-y-1.5 border-b border-white/5 pb-2.5">
-                  <span className="text-xs text-neutral-400 block font-medium">Tratamientos elegidos:</span>
+                <div className="space-y-2 border-b border-white/10 pb-3">
+                  <span className="text-xs sm:text-sm font-medium text-neutral-400 block">Tratamientos elegidos:</span>
                   {serviciosSeleccionados.length === 0 ? (
-                    <p className="text-xs text-amber-400/80 italic">
+                    <p className="text-sm text-amber-400/90 italic">
                       Selecciona al menos un tratamiento arriba para calcular el total.
                     </p>
                   ) : (
                     serviciosSeleccionados.map((s) => (
-                      <div key={s.id} className="flex items-center justify-between text-xs py-0.5">
+                      <div key={s.id} className="flex items-center justify-between text-sm sm:text-base py-1">
                         <span className="text-white font-medium flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                          <span className="w-2 h-2 rounded-full bg-amber-400" />
                           {s.nombre}
                         </span>
-                        <div className="flex items-center gap-2">
-                          <span className="text-amber-400 font-semibold">
+                        <div className="flex items-center gap-3">
+                          <span className="text-amber-400 font-bold">
                             ${getPrecioServicio(s).toLocaleString("es-MX")} MXN
                           </span>
                           <button
                             type="button"
                             onClick={() => quitarServicio(s.id)}
-                            className="text-neutral-500 hover:text-red-400 transition"
+                            className="text-neutral-400 hover:text-red-400 transition p-1"
                             title="Quitar"
                           >
-                            <LuTrash2 className="text-xs" />
+                            <LuTrash2 className="text-sm" />
                           </button>
                         </div>
                       </div>
@@ -921,15 +924,15 @@ ${bloqueServicios}${bloqueComplementos}
 
                 {/* Complementos */}
                 {complementosSeleccionados.length > 0 && (
-                  <div className="pt-1">
-                    <span className="text-xs text-neutral-400 block mb-1.5">Complementos agregados ({complementosSeleccionados.length}):</span>
-                    <div className="flex flex-wrap gap-1.5">
+                  <div className="pt-1 space-y-1.5">
+                    <span className="text-xs sm:text-sm font-medium text-neutral-400 block">Complementos agregados ({complementosSeleccionados.length}):</span>
+                    <div className="flex flex-wrap gap-2">
                       {complementosSeleccionados.map((id) => {
                         const c = COMPLEMENTOS_PLATINUM.find((item) => item.id === id);
                         if (!c) return null;
                         return (
-                          <span key={id} className="text-[11px] px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-neutral-300">
-                            {c.nombre} (+${getPrecioComplemento(c).toLocaleString("es-MX")})
+                          <span key={id} className="text-xs sm:text-sm font-medium px-3 py-1 rounded-lg bg-white/5 border border-white/15 text-neutral-200">
+                            {c.nombre} (+${getPrecioComplemento(c).toLocaleString("es-MX")} MXN)
                           </span>
                         );
                       })}
@@ -940,27 +943,27 @@ ${bloqueServicios}${bloqueComplementos}
 
               {/* Aviso amigable de cobertura si eligieron lavados express Nivel 1 */}
               {tieneServicioNivel1 && (
-                <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/25 flex items-start gap-2.5 text-xs text-amber-200/90">
-                  <LuMapPin className="text-amber-400 text-sm shrink-0 mt-0.5" />
+                <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/25 flex items-start gap-3 text-xs sm:text-sm text-amber-200/95">
+                  <LuMapPin className="text-amber-400 text-base shrink-0 mt-0.5" />
                   <div className="leading-relaxed">
-                    <span className="font-semibold text-amber-300">Cobertura a domicilio:</span> Los paquetes de mantenimiento express aplican en <strong>Zákia y Zibatá</strong> (o para el resto de Querétaro al combinarse con otros tratamientos o alcanzando el mínimo a domicilio de $690 MXN).
+                    <span className="font-bold text-amber-300">Cobertura a domicilio:</span> Los paquetes de mantenimiento express aplican en <strong>Zákia y Zibatá</strong> (o para el resto de Querétaro al combinarse con otros tratamientos o alcanzando el mínimo a domicilio de $690 MXN).
                   </div>
                 </div>
               )}
 
-              <p className="text-[11px] text-neutral-400 flex items-center gap-1.5 pt-1">
-                <LuInfo className="text-amber-400 text-xs shrink-0" />
+              <p className="text-xs sm:text-sm text-neutral-400 flex items-center gap-2 pt-1">
+                <LuInfo className="text-amber-400 text-sm shrink-0" />
                 <span>Precios referenciales oficiales de Platinum. Servicio realizado 100% a domicilio en Querétaro con equipo profesional.</span>
               </p>
             </div>
 
             {/* Columna Derecha: Total & CTA */}
-            <div className="lg:col-span-5 bg-black/60 rounded-2xl p-6 border border-white/10 flex flex-col justify-center items-center text-center space-y-4">
+            <div className="lg:col-span-5 bg-black/60 rounded-2xl p-6 sm:p-8 border border-white/10 flex flex-col justify-center items-center text-center space-y-5">
               <div>
-                <span className="text-xs uppercase tracking-widest text-neutral-400 font-medium">Total Estimado</span>
-                <div className="text-3xl sm:text-4xl font-extrabold text-white mt-1">
+                <span className="text-xs sm:text-sm uppercase tracking-widest text-neutral-400 font-semibold">Total Estimado</span>
+                <div className="text-3xl sm:text-5xl font-black text-white mt-1.5">
                   ${totalEstimado.toLocaleString("es-MX")}{" "}
-                  <span className="text-sm font-medium text-amber-400">MXN</span>
+                  <span className="text-sm sm:text-base font-bold text-amber-400">MXN</span>
                 </div>
               </div>
 
@@ -974,7 +977,7 @@ ${bloqueServicios}${bloqueComplementos}
                 <span>Agendar Cita con este Presupuesto</span>
               </a>
 
-              <span className="text-[11px] text-neutral-400">
+              <span className="text-xs sm:text-sm text-neutral-400">
                 Atención directa por WhatsApp con Edgar · Respuesta ágil
               </span>
             </div>
