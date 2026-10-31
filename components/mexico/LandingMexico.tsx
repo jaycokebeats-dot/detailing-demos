@@ -8,6 +8,7 @@ import { waHref, mapsHref } from "@/data/business-helpers";
 import SectionDivider from "@/components/SectionDivider";
 import CompareSlider from "@/components/CompareSlider";
 import PpfColorVisualizer from "@/components/PpfColorVisualizer";
+import CotizadorPlatinum from "./CotizadorPlatinum";
 
 // Servicios estándar para México con precios de referencia en Pesos Mexicanos ($ MXN) y modismos de México
 export const SERVICIOS_MEXICO: ServiceItem[] = [
@@ -336,6 +337,14 @@ export default function LandingMexico({ biz }: { biz: Business }) {
             </p>
 
             <div className={`flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-3 w-full sm:w-auto ${isTheZone ? "pt-1 sm:pt-2" : "pt-2"}`}>
+              {biz.slug === "platinum-detallado-automotriz-a-domicilio" && (
+                <a
+                  href="#cotizador"
+                  className="w-full sm:w-auto px-6 sm:px-7 py-2.5 sm:py-3.5 min-h-[42px] sm:min-h-[44px] rounded-full text-xs sm:text-sm font-bold uppercase tracking-wide bg-gradient-to-r from-emerald-500 to-teal-400 text-neutral-950 active:scale-95 transition-all flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/25"
+                >
+                  ⚡ Probar Cotizador en Vivo
+                </a>
+              )}
               <a
                 href={waHref(biz, msgPresupuesto)}
                 target="_blank"
@@ -406,6 +415,10 @@ export default function LandingMexico({ biz }: { biz: Business }) {
         )}
         <SectionDivider edge="bottom" shape="asymmetric" />
       </section>
+
+      {biz.slug === "platinum-detallado-automotriz-a-domicilio" && (
+        <CotizadorPlatinum biz={biz} />
+      )}
 
       {/* 4. SERVICIOS CON SLIDERS INTERACTIVOS DE ANTES Y DESPUÉS ($ MXN) */}
       <section id="servicios" className="px-5 sm:px-8 py-24 bg-black">
