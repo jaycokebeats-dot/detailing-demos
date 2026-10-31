@@ -11,7 +11,8 @@ import {
   LuCheck, 
   LuPlus, 
   LuInfo,
-  LuTrash2
+  LuTrash2,
+  LuMapPin
 } from "react-icons/lu";
 import type { Business } from "@/data/business-helpers";
 
@@ -71,11 +72,12 @@ export interface ServicioBase {
   subtitulo: string;
   descripcion: string;
   badge?: string;
+  zonaAviso?: string;
   detalles: string[];
   precios: Record<VehiculoId, number | null>;
 }
 
-// Catálogo Oficial Actualizado (Versión 3.4)
+// Catálogo Oficial Actualizado de Platinum
 export const SERVICIOS_PLATINUM: ServicioBase[] = [
   // --- COMBOS ESTRELLA ---
   {
@@ -297,6 +299,8 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
     nombre: "Mantenimiento Core",
     subtitulo: "Mantenimiento Regular & Brillo Profundo",
     descripcion: "Lavado técnico anti-rayones, shampoo con cera y sellado rápido de hasta 15 días con detallado de plásticos y rines.",
+    zonaAviso: "Zákia y Zibatá (o combinando servicios)",
+    badge: "Zákia / Zibatá",
     detalles: [
       "Pre-lavado y lavado técnico a presión con método anti-rayones",
       "Lavado con shampoo con cera + aplicación de cera rápida (15 días)",
@@ -310,6 +314,29 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
       pickup: 520,
       suv3: 630,
       van: 890,
+    },
+  },
+  {
+    id: "essential-care",
+    categoria: "mantenimiento",
+    nombre: "Essential Care",
+    subtitulo: "Lavado Técnico pH Neutro & Aspirado",
+    descripcion: "Lavado seguro a presión con shampoo neutro, aspirado de cabina, plásticos mate y cera express básica.",
+    zonaAviso: "Zákia y Zibatá (o combinando servicios)",
+    badge: "Zákia / Zibatá",
+    detalles: [
+      "Pre-lavado y lavado técnico a presión anti-rayones con shampoo neutro",
+      "Cera express para protección y brillo ligero de 1 semana",
+      "Limpieza de cara de rines y abrillantado de neumáticos",
+      "Acondicionado mate para plásticos interiores con filtro UV (15 días)",
+      "Aspirado general de habitáculo y cajuela",
+    ],
+    precios: {
+      auto: 380,
+      suv2: 400,
+      pickup: 450,
+      suv3: 500,
+      van: 690,
     },
   },
 
@@ -496,6 +523,11 @@ export default function CotizadorPlatinum({ biz }: { biz: Business }) {
     [serviciosSeleccionadosIds]
   );
 
+  // Saber si se eligió algún servicio de mantenimiento Nivel 1 (Zákia / Zibatá)
+  const tieneServicioNivel1 = useMemo(() => {
+    return serviciosSeleccionados.some((s) => Boolean(s.zonaAviso));
+  }, [serviciosSeleccionados]);
+
   const toggleServicio = (id: string) => {
     setServiciosSeleccionadosIds((prev) => {
       if (prev.includes(id)) {
@@ -516,18 +548,16 @@ export default function CotizadorPlatinum({ biz }: { biz: Business }) {
     );
   };
 
-  // Obtener precio de un servicio según vehículo
   const getPrecioServicio = (s: ServicioBase): number => {
     return s.precios[vehiculoId] ?? 0;
   };
 
-  // Obtener precio de un complemento según vehículo
   const getPrecioComplemento = (c: Complemento): number => {
     if (c.precioTipo === "fijo") return c.precioFijo ?? 0;
     return c.preciosVariables?.[vehiculoId] ?? 0;
   };
 
-  // Total acumulado: suma de TODOS los servicios seleccionados + TODOS los complementos
+  // Total acumulado
   const totalEstimado = useMemo(() => {
     const totalServicios = serviciosSeleccionados.reduce((acc, s) => {
       return acc + getPrecioServicio(s);
@@ -572,6 +602,7 @@ Estuve cotizando en su sitio web para un servicio a domicilio en Querétaro:
 ${bloqueServicios}${bloqueComplementos}
 
 *Total estimado:* $${totalEstimado.toLocaleString("es-MX")} MXN
+*Mi zona / colonia en Querétaro:* [Escribe aquí tu colonia, ej: El Campanario, Zibatá, Juriquilla, Zákia...]
 
 ¿Qué fechas y horarios tienen disponibles para agendar la visita en mi domicilio?`;
 
@@ -598,7 +629,7 @@ ${bloqueServicios}${bloqueComplementos}
             Cotiza tu Detallado en <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-500">30 Segundos</span>
           </h2>
           <p className="text-sm sm:text-base text-neutral-400">
-            Selecciona tu vehículo y suma libremente los tratamientos y complementos que necesites. Puedes combinar servicios de distintas categorías para armar tu paquete a medida.
+            Selecciona tu vehículo y suma libremente los tratamientos y complementos que necesites. Servicio a domicilio en todo Querétaro (El Campanario, Juriquilla, Zibatá, Zákia, Centro y zonas residenciales).
           </p>
         </div>
 
@@ -661,7 +692,7 @@ ${bloqueServicios}${bloqueComplementos}
             </span>
           </div>
 
-          {/* Pestañas de categorías con contador de ítems seleccionados por categoría */}
+          {/* Pestañas de categorías con contador de ítems seleccionados */}
           <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
             {CATEGORIAS.map((cat) => {
               const activa = cat.id === categoriaActiva;
@@ -726,6 +757,12 @@ ${bloqueServicios}${bloqueComplementos}
                         <p className="text-xs text-amber-400/90 font-medium">
                           {s.subtitulo}
                         </p>
+                        {s.zonaAviso && (
+                          <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-amber-400/10 border border-amber-400/25 text-[10px] font-semibold text-amber-300 mt-1">
+                            <LuMapPin className="text-[10px] text-amber-400 shrink-0" />
+                            <span>{s.zonaAviso}</span>
+                          </div>
+                        )}
                       </div>
                       <div className={`w-6 h-6 rounded-lg border flex items-center justify-center shrink-0 mt-1 transition ${
                         seleccionado 
@@ -901,7 +938,17 @@ ${bloqueServicios}${bloqueComplementos}
                 )}
               </div>
 
-              <p className="text-[11px] text-neutral-400 flex items-center gap-1.5 pt-2">
+              {/* Aviso amigable de cobertura si eligieron lavados express Nivel 1 */}
+              {tieneServicioNivel1 && (
+                <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/25 flex items-start gap-2.5 text-xs text-amber-200/90">
+                  <LuMapPin className="text-amber-400 text-sm shrink-0 mt-0.5" />
+                  <div className="leading-relaxed">
+                    <span className="font-semibold text-amber-300">Cobertura a domicilio:</span> Los paquetes de mantenimiento express aplican en <strong>Zákia y Zibatá</strong> (o para el resto de Querétaro al combinarse con otros tratamientos o alcanzando el mínimo a domicilio de $690 MXN).
+                  </div>
+                </div>
+              )}
+
+              <p className="text-[11px] text-neutral-400 flex items-center gap-1.5 pt-1">
                 <LuInfo className="text-amber-400 text-xs shrink-0" />
                 <span>Precios referenciales oficiales de Platinum. Servicio realizado 100% a domicilio en Querétaro con equipo profesional.</span>
               </p>
