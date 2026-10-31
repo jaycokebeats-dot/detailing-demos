@@ -4,6 +4,8 @@ import { useEffect, useState, useMemo } from "react";
 import type { Business, ServiceItem } from "@/data/business-helpers";
 import { DEFAULT_DEMO_BUSINESS } from "@/data/demo-business";
 import { getBusinessData } from "@/lib/supabase";
+import { SERVICIOS_MEXICO } from "@/components/mexico/LandingMexico";
+import { SERVICIOS_ESPANA } from "@/components/spain/LandingSpain";
 
 type CountryCode = "AR" | "MX" | "ES";
 
@@ -83,6 +85,20 @@ const COUNTRY_CONFIGS: Record<CountryCode, CountryConfig> = {
   },
 };
 
+function getEffectiveServices(bizData: Business): ServiceItem[] {
+  if (bizData.servicios && bizData.servicios.length > 0) {
+    return bizData.servicios;
+  }
+  const p = (bizData.pais || "").toUpperCase();
+  if (p === "MX" || bizData.template === "mexico") {
+    return SERVICIOS_MEXICO;
+  }
+  if (p === "ES" || bizData.template === "spain") {
+    return SERVICIOS_ESPANA;
+  }
+  return DEFAULT_DEMO_BUSINESS.servicios || [];
+}
+
 function parseNumericPrice(str: string): number {
   if (!str) return 0;
   const digits = str.replace(/[^\d]/g, "");
@@ -141,8 +157,9 @@ export default function PresupuestoPage() {
           // 1. Probar en Supabase
           const supabaseData = await getBusinessData(slug);
           if (supabaseData && supabaseData.nombre) {
-            setBiz(supabaseData);
-            initServices(supabaseData.servicios || []);
+            const effectiveServices = getEffectiveServices(supabaseData);
+            setBiz({ ...supabaseData, servicios: effectiveServices });
+            initServices(effectiveServices);
             setLoading(false);
             return;
           }
@@ -152,8 +169,9 @@ export default function PresupuestoPage() {
             const res = await fetch(`/api/workshops?slug=${encodeURIComponent(slug)}`);
             if (res.ok) {
               const data = await res.json();
-              setBiz(data);
-              initServices(data.servicios || []);
+              const effectiveServices = getEffectiveServices(data);
+              setBiz({ ...data, servicios: effectiveServices });
+              initServices(effectiveServices);
               setLoading(false);
               return;
             }
@@ -161,11 +179,11 @@ export default function PresupuestoPage() {
 
           // Fallback demo
           setBiz(DEFAULT_DEMO_BUSINESS);
-          initServices(DEFAULT_DEMO_BUSINESS.servicios || []);
+          initServices(getEffectiveServices(DEFAULT_DEMO_BUSINESS));
         } catch (e) {
           console.error("Error al cargar taller:", e);
           setBiz(DEFAULT_DEMO_BUSINESS);
-          initServices(DEFAULT_DEMO_BUSINESS.servicios || []);
+          initServices(getEffectiveServices(DEFAULT_DEMO_BUSINESS));
         } finally {
           setLoading(false);
         }
@@ -235,7 +253,13 @@ export default function PresupuestoPage() {
 
   const formatAmount = (amount: number) => {
     if (amount === 0) return "A convenir";
-    const str = amount.toLocaleString(config.nombrePais === "España" ? "es-ES" : "es-AR");
+    const locale =
+      config.nombrePais === "España"
+        ? "es-ES"
+        : config.nombrePais === "México"
+        ? "es-MX"
+        : "es-AR";
+    const str = amount.toLocaleString(locale);
     return config.monedaPosicion === "left"
       ? `${config.monedaSimbolo}${str}`
       : `${str} ${config.monedaSimbolo}`;
@@ -329,7 +353,7 @@ export default function PresupuestoPage() {
       setGarantia("");
       setFormaPago("");
       setNotasExtras("");
-      initServices(biz.servicios || []);
+      initServices(getEffectiveServices(biz));
       setToastMsg("🔄 Formulario listo para un nuevo cliente.");
       setTimeout(() => setToastMsg(null), 3000);
     }
