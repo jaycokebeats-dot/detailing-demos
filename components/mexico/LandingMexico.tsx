@@ -511,7 +511,8 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                               const mapId: Record<string, string> = {
                                 "Platinum Full Detail": "full-detail",
                                 "Corrección Profunda & Cerámico 9H": "ceramic-coating",
-                                "Detallado Interior Platinum 360": "platinum-360",
+                                "Full Interior & Sanitización a Vapor": "full-interior",
+                                "Detallado Interior Platinum 360": "full-interior",
                                 "Restauración de Faros con Polímero": "faros",
                                 "Estética & Detallado de Motor a Vapor": "full-detail",
                                 "Pack Express Sale (Pre-Venta)": "express-sale",

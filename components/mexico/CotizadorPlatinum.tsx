@@ -15,7 +15,7 @@ import {
 } from "react-icons/lu";
 import type { Business } from "@/data/business-helpers";
 
-// Definición de tipos de vehículos con precios del Catálogo 3.6 de Platinum
+// Tipos de vehículos oficiales de Platinum Detallado
 export type VehiculoId = "auto" | "suv2" | "pickup" | "suv3" | "van";
 
 export interface TipoVehiculo {
@@ -64,7 +64,6 @@ export const TIPOS_VEHICULO: TipoVehiculo[] = [
   },
 ];
 
-// Paquetes base organizados por categorías del catálogo
 export interface ServicioBase {
   id: string;
   categoria: "combos" | "interiores" | "correccion" | "mantenimiento" | "faros";
@@ -74,9 +73,10 @@ export interface ServicioBase {
   badge?: string;
   duracionEstimada: string;
   detalles: string[];
-  precios: Record<VehiculoId, number | null>; // null significa "Bajo Cotización"
+  precios: Record<VehiculoId, number | null>;
 }
 
+// Catálogo Oficial Actualizado (Versión 3.4 sin Interior Care ni Essential Care)
 export const SERVICIOS_PLATINUM: ServicioBase[] = [
   // --- COMBOS ESTRELLA ---
   {
@@ -84,7 +84,7 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
     categoria: "combos",
     nombre: "Platinum Full Detail",
     subtitulo: "Renovación Integral Interior & Exterior",
-    descripcion: "El tratamiento más completo del catálogo. Desinfección interior a vapor e inyección-succión, combinada con pulido de 1 paso y sellador cerámico exterior.",
+    descripcion: "El tratamiento insignia a domicilio. Desinfección integral a vapor e inyección-succión en vestiduras y alfombras, pulido de 1 paso y sellador cerámico exterior.",
     badge: "Más Solicitado",
     duracionEstimada: "4 a 6 horas",
     detalles: [
@@ -110,7 +110,7 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
     categoria: "combos",
     nombre: "Pack Express Sale",
     subtitulo: "Preparación Rápida para Venta",
-    descripcion: "Diseñado para incrementar el valor comercial de tu auto antes de venderlo o entregarlo. Incluye restauración óptica de faros, limpieza de interiores y abrillantado exterior express.",
+    descripcion: "Diseñado para incrementar el valor de reventa de tu auto. Incluye restauración completa de faros, limpieza interior y abrillantado exterior express.",
     badge: "Especial Venta",
     duracionEstimada: "3 a 4 horas",
     detalles: [
@@ -133,21 +133,21 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
 
   // --- INTERIORES A PROFUNDIDAD ---
   {
-    id: "platinum-360",
+    id: "full-interior",
     categoria: "interiores",
-    nombre: "Platinum 360 Interior",
-    subtitulo: "Renovación de Interiores & Sanitización a Vapor",
-    descripcion: "Limpieza exhaustiva del habitáculo. Ideal para eliminar suciedad profunda, ácaros, bacterias y manchas difíciles en asientos y alfombras.",
+    nombre: "Full Interior & Sanitización",
+    subtitulo: "Renovación Total de Interiores a Vapor",
+    descripcion: "Limpieza exhaustiva del habitáculo. Ideal para eliminar suciedad profunda, ácaros, bacterias y manchas difíciles en asientos, alfombras y cajuela.",
     badge: "Desinfección Total",
     duracionEstimada: "3 a 4 horas",
     detalles: [
       "Inyección-succión en vestiduras de tela o nutrición profunda en piel",
-      "Tratamiento y extracción en alfombras, tapetes y cajuela completa",
+      "Tratamiento y extracción profunda en alfombras, tapetes y cajuela",
       "Sanitización por vapor en ductos de aire acondicionado y superficies",
       "Detallado manual con brochas en consola, volante, rejillas y puertas",
       "Acondicionamiento y protección UV en plásticos interiores (hasta 1 año)",
       "Limpieza técnica de cortesía en cielo del auto",
-      "Lavado exterior con shampoo pH neutro, cera líquida y detallado de rines",
+      "Lavado exterior básico de cortesía para entrega impecable",
     ],
     precios: {
       auto: 1990,
@@ -162,11 +162,11 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
     categoria: "interiores",
     nombre: "Premier Pro Interior",
     subtitulo: "Sistema Inyección-Succión & Limpieza Pro",
-    descripcion: "Limpieza profesional de vestiduras y plásticos interiores con lavado exterior de cortesía.",
+    descripcion: "Lavado profesional de vestiduras y plásticos interiores con lavado exterior de cortesía.",
     duracionEstimada: "2.5 a 3.5 horas",
     detalles: [
       "Lavado profundo en asientos con máquina de inyección-succión (tela o piel)",
-      "Aspirado exhaustivo de habitáculo y cajuela",
+      "Aspirado exhaustivo de habitáculo y cajuela completa",
       "Restauración y acondicionador UV en tablero y consolas (hasta 6 meses)",
       "Detallado con brochas en volante, puertas y portavasos",
       "Lavado exterior con shampoo pH neutro y cera líquida protectora (1 mes)",
@@ -180,28 +180,6 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
       van: 2800,
     },
   },
-  {
-    id: "interior-care",
-    categoria: "interiores",
-    nombre: "Interior Care",
-    subtitulo: "Lavado de Tapicerías & Mantenimiento Integral",
-    descripcion: "Paquete de mantenimiento para tapicerías con uso regular. Recupera la frescura y limpieza esencial.",
-    duracionEstimada: "2 a 2.5 horas",
-    detalles: [
-      "Lavado a profundidad de tapicería con inyección-succión",
-      "Acondicionado de tablero y puertas con protección UV (15 días)",
-      "Aspirado general de habitáculo y cajuela",
-      "Pre-lavado y lavado exterior a presión con cera express",
-      "Limpieza de cara de rines y abrillantado de llantas",
-    ],
-    precios: {
-      auto: 990,
-      suv2: 1290,
-      pickup: 1490,
-      suv3: 1690,
-      van: 2490,
-    },
-  },
 
   // --- CORRECCIÓN & CERÁMICOS ---
   {
@@ -209,7 +187,7 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
     categoria: "correccion",
     nombre: "Ceramic Coating 9H",
     subtitulo: "Corrección Profunda & Protección Cerámica 9H",
-    descripcion: "El estándar más alto de protección. Descontaminado con clay bar, corrección de 2 pasos y sellado con recubrimiento nanocerámico 9H bajo carpa móvil.",
+    descripcion: "Máxima protección de carrocería. Descontaminado con clay bar, corrección de pintura en 2 pasos y sellado nanocerámico 9H bajo carpa móvil climatizada.",
     badge: "Máxima Gama",
     duracionEstimada: "6 a 8 horas",
     detalles: [
@@ -234,7 +212,7 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
     categoria: "correccion",
     nombre: "Titanium Shine",
     subtitulo: "Pulido a 2 Pasos & Refinado Espejo",
-    descripcion: "Elimina entre 80% y 90% de microrrayones, marcas circulares y opacidad. Deja un reflejo espejo profundo protegido con sellador híbrido de SiO2.",
+    descripcion: "Elimina entre 80% y 90% de microrrayones, marcas circulares y opacidad. Deja un reflejo espejo profundo protegido con sellador híbrido SiO2.",
     badge: "Efecto Espejo",
     duracionEstimada: "4 a 5 horas",
     detalles: [
@@ -280,9 +258,9 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
     id: "diamond-protect",
     categoria: "mantenimiento",
     nombre: "Diamond Protect",
-    subtitulo: "Detallado Total con Sellador Cerámico",
+    subtitulo: "Detallado de Precisión & Sellador Cerámico",
     descripcion: "Tratamiento exterior con descontaminado químico y sellador cerámico de 3 meses, más acondicionamiento interior.",
-    badge: "Protección Rápida",
+    badge: "Sellador Cerámico",
     duracionEstimada: "2 a 2.5 horas",
     detalles: [
       "Pre-lavado con cañón de espuma y lavado técnico a presión",
@@ -304,8 +282,9 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
     id: "hydro-gloss",
     categoria: "mantenimiento",
     nombre: "Hydro Gloss",
-    subtitulo: "Detallado Premium con Sellador Hidrofóbico",
+    subtitulo: "Brillo & Hidrofobia | Mantenimiento Express",
     descripcion: "Sellador hidrofóbico y anti-polvo con duración de 30 días, pre-lavado con cañón de espuma y limpieza interior.",
+    badge: "Hidrofóbico",
     duracionEstimada: "1.5 a 2 horas",
     detalles: [
       "Lavado técnico a presión con cañón de espuma",
@@ -323,25 +302,25 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
     },
   },
   {
-    id: "essential-care",
+    id: "mantenimiento-core",
     categoria: "mantenimiento",
-    nombre: "Essential Care",
-    subtitulo: "Lavado Técnico Anti-Rayones Regular",
-    descripcion: "El servicio de mantenimiento más ágil. Lavado a presión con método anti-rayones, shampoo pH neutro y cera express.",
-    duracionEstimada: "1 hora",
+    nombre: "Mantenimiento Core",
+    subtitulo: "Mantenimiento Regular & Brillo Profundo",
+    descripcion: "Lavado técnico anti-rayones, shampoo con cera y sellado rápido de hasta 15 días con detallado de plásticos y rines.",
+    duracionEstimada: "1.5 horas",
     detalles: [
-      "Pre-lavado y lavado técnico a presión con shampoo pH neutro",
-      "Cera express para protección y brillo básico (1 semana)",
-      "Limpieza de cara de rines y abrillantado de llantas",
-      "Acondicionado mate para plásticos con protección UV (15 días)",
-      "Aspirado de cabina y limpieza de cristales y marcos",
+      "Pre-lavado y lavado técnico a presión con método anti-rayones",
+      "Lavado con shampoo con cera + aplicación de cera rápida (15 días)",
+      "Limpieza técnica de rines, tolvas y acabado alto brillo en llantas",
+      "Acondicionado efecto mate para tablero y puertas con filtro UV",
+      "Limpieza de cristales interiores/exteriores y aspirado completo",
     ],
     precios: {
-      auto: 300,
-      suv2: 350,
-      pickup: 400,
-      suv3: 500,
-      van: 690,
+      auto: 420,
+      suv2: 470,
+      pickup: 520,
+      suv3: 630,
+      van: 890,
     },
   },
 
@@ -370,7 +349,7 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
   },
 ];
 
-// Complementos y Upgrades (Páginas 14-16 del catálogo)
+// Complementos y Upgrades (Páginas 13-15 del catálogo 3.4)
 export interface Complemento {
   id: string;
   nombre: string;
@@ -487,7 +466,6 @@ export default function CotizadorPlatinum({ biz }: { biz: Business }) {
   const [servicioSeleccionadoId, setServicioSeleccionadoId] = useState<string>("full-detail");
   const [complementosSeleccionados, setComplementosSeleccionados] = useState<string[]>([]);
 
-  // Escuchar si desde alguna tarjeta se solicita cotizar un servicio específico
   useEffect(() => {
     const handleSelectService = (event: CustomEvent<{ servicioId?: string; categoria?: string }>) => {
       const { servicioId, categoria } = event.detail || {};
@@ -516,13 +494,11 @@ export default function CotizadorPlatinum({ biz }: { biz: Business }) {
     [servicioSeleccionadoId]
   );
 
-  // Servicios filtrados por la categoría activa
   const serviciosDeCategoria = useMemo(
     () => SERVICIOS_PLATINUM.filter((s) => s.categoria === categoriaActiva),
     [categoriaActiva]
   );
 
-  // Si cambia de categoría y el servicio actual no está en ella, preseleccionar el primero
   const cambiarCategoria = (catId: CategoriaTab["id"]) => {
     setCategoriaActiva(catId);
     const primerServicio = SERVICIOS_PLATINUM.find((s) => s.categoria === catId);
@@ -537,19 +513,16 @@ export default function CotizadorPlatinum({ biz }: { biz: Business }) {
     );
   };
 
-  // Calcular precio del servicio base para el vehículo actual
   const precioBaseActual = useMemo(() => {
     const p = servicioActual.precios[vehiculoId];
     return p ?? 0;
   }, [servicioActual, vehiculoId]);
 
-  // Obtener precio de un complemento según vehículo
   const getPrecioComplemento = (c: Complemento): number => {
     if (c.precioTipo === "fijo") return c.precioFijo ?? 0;
     return c.preciosVariables?.[vehiculoId] ?? 0;
   };
 
-  // Total acumulado
   const totalEstimado = useMemo(() => {
     const totalComplementos = complementosSeleccionados.reduce((acc, id) => {
       const c = COMPLEMENTOS_PLATINUM.find((item) => item.id === id);
@@ -558,7 +531,6 @@ export default function CotizadorPlatinum({ biz }: { biz: Business }) {
     return precioBaseActual + totalComplementos;
   }, [precioBaseActual, complementosSeleccionados, vehiculoId]);
 
-  // Mensaje estructurado y formal para WhatsApp (Edgar / Platinum)
   const whatsAppUrl = useMemo(() => {
     const waNumber = (biz.whatsapp || "524427151535").replace(/\D/g, "");
     
@@ -593,7 +565,6 @@ Estuve cotizando en su sitio web para un servicio a domicilio en Querétaro:
       id="cotizador" 
       className="relative px-4 sm:px-8 py-24 bg-[#0a0a0c] text-white border-t border-b border-white/10 overflow-hidden"
     >
-      {/* Luces de fondo sutiles */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-amber-500/5 blur-[140px] pointer-events-none rounded-full" />
       <div className="absolute bottom-10 right-10 w-[400px] h-[300px] bg-emerald-500/5 blur-[120px] pointer-events-none rounded-full" />
 
@@ -603,7 +574,7 @@ Estuve cotizando en su sitio web para un servicio a domicilio en Querétaro:
         <div className="text-center space-y-4 max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/15 text-xs font-medium tracking-wide text-neutral-300">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            Cotizador Oficial en Vivo · Catálogo 3.6
+            Cotizador Oficial en Vivo · Catálogo Actualizado
           </div>
           <h2 className="text-3xl sm:text-5xl font-semibold tracking-tight text-white">
             Cotiza tu Detallado en <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-500">30 Segundos</span>
@@ -698,7 +669,7 @@ Estuve cotizando en su sitio web para un servicio a domicilio en Querétaro:
             })}
           </div>
 
-          {/* Grid de servicios pertenecientes a la categoría activa */}
+          {/* Grid de servicios de la categoría activa */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {serviciosDeCategoria.map((s) => {
               const seleccionado = s.id === servicioSeleccionadoId;
@@ -714,7 +685,6 @@ Estuve cotizando en su sitio web para un servicio a domicilio en Querétaro:
                       : "bg-[#111114] border-white/10 hover:border-white/25 hover:bg-[#151518]"
                   }`}
                 >
-                  {/* Badge de estado si aplica */}
                   {s.badge && (
                     <span className="absolute -top-2.5 right-4 text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-full bg-amber-400 text-black shadow-md">
                       {s.badge}
@@ -749,7 +719,6 @@ Estuve cotizando en su sitio web para un servicio a domicilio en Querétaro:
                       <span>Duración estimada: <strong className="text-neutral-200">{s.duracionEstimada}</strong></span>
                     </div>
 
-                    {/* Lista de características */}
                     <ul className="space-y-1.5 pt-2 border-t border-white/5">
                       {s.detalles.slice(0, 4).map((d, i) => (
                         <li key={i} className="text-[11px] text-neutral-300 flex items-start gap-1.5 leading-snug">
@@ -759,13 +728,12 @@ Estuve cotizando en su sitio web para un servicio a domicilio en Querétaro:
                       ))}
                       {s.detalles.length > 4 && (
                         <li className="text-[10px] text-neutral-400 italic pt-0.5">
-                          + {s.detalles.length - 4} procesos técnicos adicionales incluidos en el catálogo
+                          + {s.detalles.length - 4} procesos técnicos adicionales incluidos
                         </li>
                       )}
                     </ul>
                   </div>
 
-                  {/* Precio dinámico */}
                   <div className="pt-5 mt-4 border-t border-white/10 flex items-baseline justify-between">
                     <span className="text-[11px] text-neutral-400 uppercase tracking-wider font-medium">
                       Para {vehiculoActual.label}
@@ -789,7 +757,7 @@ Estuve cotizando en su sitio web para un servicio a domicilio en Querétaro:
           </div>
         </div>
 
-        {/* PASO 3: Complementos y Adicionales (Upselling con checkboxes limpios) */}
+        {/* PASO 3: Complementos y Adicionales */}
         <div className="space-y-4 pt-4">
           <div className="flex items-center justify-between">
             <h3 className="text-xs uppercase tracking-widest text-neutral-400 font-semibold flex items-center gap-2">
@@ -845,7 +813,6 @@ Estuve cotizando en su sitio web para un servicio a domicilio en Querétaro:
         <div className="bg-gradient-to-r from-[#141418] via-[#18181f] to-[#141418] rounded-3xl p-6 sm:p-10 border border-white/15 shadow-2xl relative overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             
-            {/* Columna Izquierda: Desglose */}
             <div className="lg:col-span-7 space-y-4">
               <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-white/5 text-[11px] font-semibold text-neutral-300 tracking-wider uppercase">
                 Resumen de tu Cotización
@@ -880,11 +847,10 @@ Estuve cotizando en su sitio web para un servicio a domicilio en Querétaro:
 
               <p className="text-[11px] text-neutral-400 flex items-center gap-1.5 pt-2">
                 <LuInfo className="text-amber-400 text-xs shrink-0" />
-                <span>Precios referenciales oficiales del catálogo. Servicio realizado en tu domicilio en Querétaro con equipo e insumos profesionales.</span>
+                <span>Precios referenciales oficiales de Platinum. Servicio realizado 100% a domicilio en Querétaro con equipo e insumos profesionales.</span>
               </p>
             </div>
 
-            {/* Columna Derecha: Total & CTA */}
             <div className="lg:col-span-5 bg-black/60 rounded-2xl p-6 border border-white/10 flex flex-col justify-center items-center text-center space-y-4">
               <div>
                 <span className="text-xs uppercase tracking-widest text-neutral-400 font-medium">Total Estimado</span>
