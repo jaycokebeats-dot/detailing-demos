@@ -191,7 +191,7 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
   },
   {
     id: "ceramico-interior-integral-servicio",
-    categoria: "correccion",
+    categoria: "interiores",
     nombre: "Protección Cerámica Integral (Interiores)",
     subtitulo: "Blindaje Nanotecnológico de Asientos + Plásticos",
     descripcion: "Escudo nanotecnológico contra derrames de líquidos, decoloración solar UV y tinte de jeans.",
@@ -816,7 +816,7 @@ export default function CotizadorPlatinum({ biz }: { biz: Business }) {
     [vehiculoId]
   );
 
-  // Servicios filtrados y ordenados del más económico al más caro según el vehículo
+  // Servicios filtrados y ordenados del más caro al más barato según el vehículo
   const serviciosDeCategoria = useMemo(() => {
     return SERVICIOS_PLATINUM
       .filter((s) => s.categoria === categoriaActiva)
@@ -824,9 +824,16 @@ export default function CotizadorPlatinum({ biz }: { biz: Business }) {
       .sort((a, b) => {
         const pA = a.precios[vehiculoId] ?? 0;
         const pB = b.precios[vehiculoId] ?? 0;
-        return pA - pB;
+        return pB - pA;
       });
   }, [categoriaActiva, vehiculoId]);
+
+  // Complementos ordenados del más caro al más barato según el vehículo
+  const complementosOrdenados = useMemo(() => {
+    return COMPLEMENTOS_PLATINUM.slice().sort((a, b) => {
+      return getPrecioComplemento(b) - getPrecioComplemento(a);
+    });
+  }, [vehiculoId]);
 
   // Lista de todos los servicios base seleccionados
   const serviciosSeleccionados = useMemo(
@@ -1245,7 +1252,7 @@ ${bloqueServicios}${bloqueComplementos}
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {COMPLEMENTOS_PLATINUM.map((comp) => {
+            {complementosOrdenados.map((comp) => {
               const isMotor = comp.id === "motor-addon";
               const isCeramicoInterior = comp.id === "ceramico-interior-integral";
               const seleccionado = isMotor
