@@ -67,7 +67,7 @@ export const TIPOS_VEHICULO: TipoVehiculo[] = [
 
 export interface ServicioBase {
   id: string;
-  categoria: "combos" | "interiores" | "correccion" | "mantenimiento" | "faros";
+  categoria: "combos" | "interiores" | "correccion" | "mantenimiento" | "especiales";
   nombre: string;
   subtitulo: string;
   descripcion: string;
@@ -201,6 +201,28 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
       pickup: 6800,
       suv3: 7800,
       van: 9200,
+    },
+  },
+  {
+    id: "ceramico-interior-integral-servicio",
+    categoria: "correccion",
+    nombre: "Protección Cerámica Integral (Interiores)",
+    subtitulo: "Blindaje Nanotecnológico de Asientos + Plásticos",
+    descripcion: "Escudo nanotecnológico contra derrames de café/refresco, decoloración por rayos UV y transferencia de tinte de jeans en piel o textil. (Aplica sobre vestiduras limpias o como servicio complementario tras detallado).",
+    badge: "Escudo Nanotecnológico",
+    detalles: [
+      "Repelencia anti-manchas: encapsula líquidos evitando penetración en fibras y piel",
+      "Escudo UV térmico: sella tablero, consolas y plásticos previniendo cuarteaduras",
+      "Anti-transferencia de tinte: previene manchas por fricción de ropa oscura o mezclilla",
+      "Terminado original mate al tacto, sin texturas grasosas ni químicos agresivos",
+      "Durabilidad real de 12 meses (versión de alta rigidez a 3 años disponible bajo cotización)",
+    ],
+    precios: {
+      auto: 1800,
+      suv2: 2300,
+      pickup: 2300,
+      suv3: 2800,
+      van: 3200,
     },
   },
   {
@@ -340,10 +362,10 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
     },
   },
 
-  // --- RESTAURACIÓN DE FAROS ---
+  // --- SERVICIOS ESPECIALES (FAROS & MOTOR A VAPOR) ---
   {
     id: "faros",
-    categoria: "faros",
+    categoria: "especiales",
     nombre: "Restauración de Faros con Polímero",
     subtitulo: "Tratamiento Óptico con 6 Meses de Garantía",
     descripcion: "Elimina por completo el tono amarillo, quemado y opacidad de los faros delanteros. Recupera hasta 40% más de iluminación nocturna mediante polímero de vapor.",
@@ -362,20 +384,123 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
       van: 750,
     },
   },
+  {
+    id: "lavado-motor",
+    categoria: "especiales",
+    nombre: "Lavado de Motor a Vapor",
+    subtitulo: "Limpieza Segura a Vapor & Detallado Manual",
+    descripcion: "Desengrasado técnico con vapor a alta temperatura y brochas suaves. Disuelve grasa y mugre incrustada sin riesgo de cortocircuitos ni saturación de agua. Acondicionado térmico mate de plásticos y mangueras.",
+    badge: "Sin Riesgo Eléctrico",
+    detalles: [
+      "Desengrasado técnico con vapor de alta temperatura",
+      "Limpieza minuciosa a detalle con brochas suaves en zonas difíciles",
+      "Acondicionado térmico mate de plásticos y mangueras",
+      "Protección dieléctrica segura sin chorros de agua a presión",
+      "Acabado seco al tacto (no pegajoso, no atrae polvo)",
+    ],
+    precios: {
+      auto: 550,
+      suv2: 750,
+      pickup: 750,
+      suv3: 750,
+      van: 850,
+    },
+  },
 ];
 
-// Complementos y Upgrades (Páginas 13-15 del catálogo)
+// Complementos y Upgrades (Páginas 13-15 del catálogo + Cerámicos especializados de Edgar)
 export interface Complemento {
   id: string;
   nombre: string;
   descripcion: string;
-  categoriaTipo: "interior" | "cristales" | "exterior" | "condicion";
+  categoriaTipo: "interior" | "cristales" | "exterior" | "condicion" | "ceramico";
   precioTipo: "fijo" | "variable";
   precioFijo?: number;
   preciosVariables?: Record<VehiculoId, number>;
 }
 
 export const COMPLEMENTOS_PLATINUM: Complemento[] = [
+  // --- UPGRADES CERÁMICOS Y MOTOR ---
+  {
+    id: "motor-addon",
+    nombre: "Lavado de Motor a Vapor Técnico",
+    descripcion: "Desengrasado seguro a vapor y acondicionado térmico mate de mangueras (sin riesgo eléctrico).",
+    categoriaTipo: "exterior",
+    precioTipo: "variable",
+    preciosVariables: {
+      auto: 550,
+      suv2: 750,
+      pickup: 750,
+      suv3: 750,
+      van: 850,
+    },
+  },
+  {
+    id: "ceramico-asientos",
+    nombre: "Protección Cerámica en Asientos (Piel / Tela)",
+    descripcion: "Escudo nanotecnológico anti-manchas: encapsula líquidos y evita transferencia de tinte de jeans (12 meses).",
+    categoriaTipo: "ceramico",
+    precioTipo: "variable",
+    preciosVariables: {
+      auto: 1200,
+      suv2: 1500,
+      pickup: 1500,
+      suv3: 1500,
+      van: 1800,
+    },
+  },
+  {
+    id: "ceramico-rines",
+    nombre: "Cerámico Térmico en Rines Gyeon Q² (4 Ruedas)",
+    descripcion: "Resistencia térmica hasta 800°C contra polvo de balata y suciedad de frenos (12 a 18 meses).",
+    categoriaTipo: "ceramico",
+    precioTipo: "variable",
+    preciosVariables: {
+      auto: 1400,
+      suv2: 1800,
+      pickup: 1800,
+      suv3: 1800,
+      van: 1800,
+    },
+  },
+  {
+    id: "ceramico-plasticos",
+    nombre: "Cerámico de Plásticos Exteriores (12 Meses UV)",
+    descripcion: "Sella molduras y plásticos exteriores contra rayos UV y resequedad sin acabados grasosos.",
+    categoriaTipo: "ceramico",
+    precioTipo: "variable",
+    preciosVariables: {
+      auto: 1300,
+      suv2: 1800,
+      pickup: 1800,
+      suv3: 2400,
+      van: 2400,
+    },
+  },
+  {
+    id: "ceramico-interior-integral",
+    nombre: "Cerámico Interior Integral (Asientos + Plásticos)",
+    descripcion: "Blindaje cerámico completo de cabina: vestiduras y tablero protegidos contra derrames y rayos solares.",
+    categoriaTipo: "ceramico",
+    precioTipo: "variable",
+    preciosVariables: {
+      auto: 1800,
+      suv2: 2300,
+      pickup: 2300,
+      suv3: 2800,
+      van: 3200,
+    },
+  },
+
+  // --- TRATAMIENTOS GENERALES Y CONDICIÓN ---
+  {
+    id: "vision-clara",
+    nombre: "Combo Visión Clara (Repelente de Lluvia)",
+    descripcion: "Sellador cerámico hidrofóbico en todos los cristales. Repele el agua de lluvia por 3 meses.",
+    categoriaTipo: "cristales",
+    precioTipo: "fijo",
+    precioFijo: 350,
+  },
   {
     id: "pelo-mascota",
     nombre: "Extracción Técnica de Pelo de Mascota",
@@ -389,14 +514,6 @@ export const COMPLEMENTOS_PLATINUM: Complemento[] = [
       suv3: 500,
       van: 750,
     },
-  },
-  {
-    id: "vision-clara",
-    nombre: "Combo Visión Clara (Repelente de Lluvia)",
-    descripcion: "Sellador cerámico hidrofóbico en todos los cristales. Repele el agua de lluvia por 3 meses.",
-    categoriaTipo: "cristales",
-    precioTipo: "fijo",
-    precioFijo: 350,
   },
   {
     id: "ozono",
@@ -461,7 +578,7 @@ export const COMPLEMENTOS_PLATINUM: Complemento[] = [
 ];
 
 interface CategoriaTab {
-  id: "combos" | "interiores" | "correccion" | "mantenimiento" | "faros";
+  id: "combos" | "interiores" | "correccion" | "mantenimiento" | "especiales";
   label: string;
   badge?: string;
   Icono: React.ComponentType<{ className?: string }>;
@@ -472,7 +589,7 @@ const CATEGORIAS: CategoriaTab[] = [
   { id: "interiores", label: "Interiores & Vapor", Icono: LuDroplets },
   { id: "correccion", label: "Corrección & Cerámico", Icono: LuShieldCheck },
   { id: "mantenimiento", label: "Mantenimiento Express", Icono: LuSun },
-  { id: "faros", label: "Restauración de Faros", Icono: LuWrench },
+  { id: "especiales", label: "Faros & Motor a Vapor", Icono: LuWrench },
 ];
 
 export default function CotizadorPlatinum({ biz }: { biz: Business }) {
@@ -692,8 +809,8 @@ ${bloqueServicios}${bloqueComplementos}
             </span>
           </div>
 
-          {/* Pestañas de categorías con contador de ítems seleccionados */}
-          <div className="flex items-center gap-2 sm:gap-3 overflow-x-auto pb-2 scrollbar-none">
+          {/* Pestañas de categorías: uno abajo del otro en celular, flex horizontal en tablet/PC */}
+          <div className="flex flex-col sm:flex-row sm:flex-wrap lg:flex-nowrap gap-2 sm:gap-2.5">
             {CATEGORIAS.map((cat) => {
               const activa = cat.id === categoriaActiva;
               const IconComp = cat.Icono;
@@ -706,21 +823,25 @@ ${bloqueServicios}${bloqueComplementos}
                   key={cat.id}
                   onClick={() => setCategoriaActiva(cat.id)}
                   type="button"
-                  className={`flex items-center gap-2.5 px-4 sm:px-5 py-3 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-all border ${
+                  className={`w-full sm:w-auto flex items-center justify-between sm:justify-start gap-3 px-4 sm:px-5 py-3 rounded-xl text-xs sm:text-sm font-semibold transition-all border ${
                     activa
                       ? "bg-amber-400 text-black border-amber-300 shadow-[0_4px_18px_rgba(245,158,11,0.28)]"
                       : "bg-[#111114] text-neutral-200 border-white/10 hover:border-white/25 hover:bg-[#17171c]"
                   }`}
                 >
-                  <IconComp className={`text-base sm:text-lg ${activa ? "text-black" : "text-amber-400"}`} />
-                  <span>{cat.label}</span>
-                  {cantidadEnCat > 0 && (
-                    <span className={`text-xs font-extrabold px-2 py-0.5 rounded-full ${
+                  <div className="flex items-center gap-2.5 truncate">
+                    <IconComp className={`text-base sm:text-lg shrink-0 ${activa ? "text-black" : "text-amber-400"}`} />
+                    <span className="truncate">{cat.label}</span>
+                  </div>
+                  {cantidadEnCat > 0 ? (
+                    <span className={`text-xs font-extrabold px-2 py-0.5 rounded-full shrink-0 ${
                       activa ? "bg-black text-amber-400" : "bg-amber-400 text-black"
                     }`}>
                       {cantidadEnCat}
                     </span>
-                  )}
+                  ) : activa ? (
+                    <span className="sm:hidden text-[10px] uppercase font-bold tracking-wider opacity-60">Activo</span>
+                  ) : null}
                 </button>
               );
             })}
@@ -782,17 +903,12 @@ ${bloqueServicios}${bloqueComplementos}
                     </p>
 
                     <ul className="space-y-2 pt-2 border-t border-white/10">
-                      {s.detalles.slice(0, 4).map((d, i) => (
+                      {s.detalles.slice(0, 5).map((d, i) => (
                         <li key={i} className="text-xs sm:text-sm text-neutral-200 flex items-start gap-2 leading-snug">
                           <span className="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1.5 shrink-0" />
                           <span>{d}</span>
                         </li>
                       ))}
-                      {s.detalles.length > 4 && (
-                        <li className="text-xs text-neutral-400 italic pt-1">
-                          + {s.detalles.length - 4} procesos técnicos adicionales incluidos
-                        </li>
-                      )}
                     </ul>
                   </div>
 
@@ -819,14 +935,14 @@ ${bloqueServicios}${bloqueComplementos}
           </div>
         </div>
 
-        {/* PASO 3: Complementos y Adicionales (Tipografía agrandada y legible) */}
+        {/* PASO 3: Complementos & Upgrades (Incluye Cerámicos y Motor) */}
         <div className="space-y-4 pt-4">
           <div className="flex items-center justify-between">
             <h3 className="text-sm sm:text-base uppercase tracking-wider text-neutral-200 font-bold flex items-center gap-2.5">
               <span className="flex items-center justify-center w-6 h-6 rounded-full bg-amber-400 text-black text-xs font-black">3</span>
-              Complementos & Tratamientos Opcionales
+              Complementos & Upgrades Cerámicos Opcionales
             </h3>
-            <span className="text-xs sm:text-sm text-neutral-400 hidden sm:inline">Agrega según la condición de tu vehículo</span>
+            <span className="text-xs sm:text-sm text-neutral-400 hidden sm:inline">Protección adicional y detalles específicos</span>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -863,7 +979,9 @@ ${bloqueServicios}${bloqueComplementos}
                   </div>
 
                   <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
-                    <span className="text-xs uppercase tracking-wider text-neutral-400 font-semibold">Adicional</span>
+                    <span className="text-xs uppercase tracking-wider text-neutral-400 font-semibold">
+                      {comp.categoriaTipo === "ceramico" ? "Upgrade" : "Adicional"}
+                    </span>
                     <span className="text-sm sm:text-base font-extrabold text-amber-400">
                       +${precio.toLocaleString("es-MX")} MXN
                     </span>
@@ -874,7 +992,7 @@ ${bloqueServicios}${bloqueComplementos}
           </div>
         </div>
 
-        {/* PASO 4: Resumen de Cotización & Botón a WhatsApp (Tipografía mejorada) */}
+        {/* PASO 4: Resumen de Cotización & Botón a WhatsApp */}
         <div className="bg-gradient-to-r from-[#141418] via-[#18181f] to-[#141418] rounded-3xl p-6 sm:p-10 border border-white/15 shadow-2xl relative overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             

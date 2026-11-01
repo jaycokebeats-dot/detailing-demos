@@ -55223,11 +55223,11 @@
         "modo_foto": "before_after"
       },
       {
-        "nombre": "Estética & Detallado de Motor a Vapor",
-        "descripcion": "Limpieza técnica profunda con vapor controlado y desengrasantes dieléctricos seguros para electrónica. Nutrición satinada original de plásticos y mangueras libre de siliconas.",
-        "ideal_si": "Limpieza profunda de bahía de motor protegiendo arneses y sensores eléctricos a domicilio.",
-        "precio": "Desde ,200 MXN",
-        "proteccion": "Vapor Seco + Protector Dieléctrico",
+        "nombre": "Lavado de Motor a Vapor Técnico",
+        "descripcion": "Desengrasado técnico con vapor de alta temperatura y brochas suaves. Disuelve grasa y aceite sin chorros de agua a presión ni riesgo de cortocircuitos. Acondicionado térmico mate seco al tacto.",
+        "ideal_si": "Seguridad eléctrica sin riesgo · Terminado mate seco al tacto · A domicilio",
+        "precio": "Autos $550 | Camionetas $750 MXN",
+        "proteccion": "Vapor Alta Temperatura + Sin Riesgo Eléctrico",
         "antes_img": "/before-after/motor-antes.jpg",
         "despues_img": "/before-after/motor-despues.jpg",
         "modo_foto": "before_after"
