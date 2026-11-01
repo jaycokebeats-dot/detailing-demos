@@ -593,13 +593,11 @@ const CATEGORIAS: CategoriaTab[] = [
 ];
 
 export default function CotizadorPlatinum({ biz }: { biz: Business }) {
-  const [vehiculoId, setVehiculoId] = useState<VehiculoId>("suv2");
+  const [vehiculoId, setVehiculoId] = useState<VehiculoId>("auto");
   const [categoriaActiva, setCategoriaActiva] = useState<CategoriaTab["id"]>("combos");
   
-  // Selección múltiple persistente: permite sumar servicios de distintas categorías
-  const [serviciosSeleccionadosIds, setServiciosSeleccionadosIds] = useState<string[]>([
-    "full-detail",
-  ]);
+  // Selección múltiple persistente: permite sumar servicios de distintas categorías (inicia sin selección)
+  const [serviciosSeleccionadosIds, setServiciosSeleccionadosIds] = useState<string[]>([]);
   const [complementosSeleccionados, setComplementosSeleccionados] = useState<string[]>([]);
 
   // Escuchar si desde alguna tarjeta exterior se solicita cotizar un servicio
@@ -624,15 +622,21 @@ export default function CotizadorPlatinum({ biz }: { biz: Business }) {
   }, []);
 
   const vehiculoActual = useMemo(
-    () => TIPOS_VEHICULO.find((v) => v.id === vehiculoId) || TIPOS_VEHICULO[1],
+    () => TIPOS_VEHICULO.find((v) => v.id === vehiculoId) || TIPOS_VEHICULO[0],
     [vehiculoId]
   );
 
-  // Servicios filtrados por la categoría activa (cambiar de pestaña NO borra lo seleccionado)
-  const serviciosDeCategoria = useMemo(
-    () => SERVICIOS_PLATINUM.filter((s) => s.categoria === categoriaActiva),
-    [categoriaActiva]
-  );
+  // Servicios filtrados y ordenados del más económico al más caro según el vehículo
+  const serviciosDeCategoria = useMemo(() => {
+    return SERVICIOS_PLATINUM
+      .filter((s) => s.categoria === categoriaActiva)
+      .slice()
+      .sort((a, b) => {
+        const pA = a.precios[vehiculoId] ?? 0;
+        const pB = b.precios[vehiculoId] ?? 0;
+        return pA - pB;
+      });
+  }, [categoriaActiva, vehiculoId]);
 
   // Lista de todos los servicios base seleccionados
   const serviciosSeleccionados = useMemo(
@@ -761,15 +765,18 @@ ${bloqueServicios}${bloqueComplementos}
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5">
-            {TIPOS_VEHICULO.map((v) => {
+            {TIPOS_VEHICULO.map((v, idx) => {
               const activo = v.id === vehiculoId;
               const IconComp = v.Icono;
+              const isLast = idx === TIPOS_VEHICULO.length - 1;
               return (
                 <button
                   key={v.id}
                   onClick={() => setVehiculoId(v.id)}
                   type="button"
-                  className={`text-left p-4 sm:p-5 rounded-2xl border transition-all duration-200 flex flex-col justify-between min-h-[125px] ${
+                  className={`text-left p-4 sm:p-5 rounded-2xl border transition-all duration-200 flex flex-col justify-between min-h-[120px] sm:min-h-[135px] ${
+                    isLast ? "col-span-2 sm:col-span-1 justify-self-center w-full max-w-[calc(50%-7px)] sm:max-w-none" : ""
+                  } ${
                     activo
                       ? "bg-gradient-to-b from-amber-500/20 to-neutral-900 border-amber-400/80 shadow-[0_0_24px_rgba(245,158,11,0.2)] ring-1 ring-amber-400/60"
                       : "bg-[#111114] border-white/10 hover:border-white/30 hover:bg-[#16161a]"
@@ -787,7 +794,7 @@ ${bloqueServicios}${bloqueComplementos}
                     <p className={`text-sm sm:text-base font-bold leading-tight ${activo ? "text-white" : "text-neutral-100"}`}>
                       {v.label}
                     </p>
-                    <p className="text-xs text-neutral-400 line-clamp-1 mt-1 leading-snug">
+                    <p className="text-[11px] sm:text-xs text-neutral-400 mt-1 leading-tight break-words">
                       {v.ejemplos}
                     </p>
                   </div>
@@ -1079,10 +1086,16 @@ ${bloqueServicios}${bloqueComplementos}
             <div className="lg:col-span-5 bg-black/60 rounded-2xl p-6 sm:p-8 border border-white/10 flex flex-col justify-center items-center text-center space-y-5">
               <div>
                 <span className="text-xs sm:text-sm uppercase tracking-widest text-neutral-400 font-semibold">Total Estimado</span>
-                <div className="text-3xl sm:text-5xl font-black text-white mt-1.5">
-                  ${totalEstimado.toLocaleString("es-MX")}{" "}
-                  <span className="text-sm sm:text-base font-bold text-amber-400">MXN</span>
-                </div>
+                {totalEstimado > 0 ? (
+                  <div className="text-3xl sm:text-5xl font-black text-white mt-1.5">
+                    ${totalEstimado.toLocaleString("es-MX")}{" "}
+                    <span className="text-sm sm:text-base font-bold text-amber-400">MXN</span>
+                  </div>
+                ) : (
+                  <div className="text-xl sm:text-2xl font-bold text-amber-400 mt-1.5">
+                    Elige tus tratamientos
+                  </div>
+                )}
               </div>
 
               <a
@@ -1092,7 +1105,7 @@ ${bloqueServicios}${bloqueComplementos}
                 className="w-full inline-flex items-center justify-center gap-3 px-6 py-4 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-black font-extrabold text-sm sm:text-base tracking-wide transition-all shadow-[0_4px_25px_rgba(16,185,129,0.3)] hover:scale-[1.02]"
               >
                 <FaWhatsapp className="text-xl" />
-                <span>Agendar Cita con este Presupuesto</span>
+                <span>{totalEstimado > 0 ? "Agendar Cita con este Presupuesto" : "Consultar Disponibilidad por WhatsApp"}</span>
               </a>
 
               <span className="text-xs sm:text-sm text-neutral-400">
