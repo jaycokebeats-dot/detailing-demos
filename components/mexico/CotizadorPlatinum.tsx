@@ -514,7 +514,7 @@ interface CategoriaTab {
 const CATEGORIAS: CategoriaTab[] = [
   { id: "combos", label: "Combos Completos", badge: "Recomendado", Icono: LuSparkles },
   { id: "interiores", label: "Interiores & Vapor", Icono: LuDroplets },
-  { id: "correccion", label: "Corrección & Cerámico", Icono: LuShieldCheck },
+  { id: "correccion", label: "Pulidos & Cerámico", Icono: LuShieldCheck },
   { id: "mantenimiento", label: "Mantenimiento Express", Icono: LuSun },
   { id: "especiales", label: "Faros & Motor a Vapor", Icono: LuWrench },
 ];
@@ -816,6 +816,15 @@ export default function CotizadorPlatinum({ biz }: { biz: Business }) {
     [vehiculoId]
   );
 
+  const getPrecioServicio = (s: ServicioBase): number => {
+    return s.precios[vehiculoId] ?? 0;
+  };
+
+  const getPrecioComplemento = (c: Complemento): number => {
+    if (c.precioTipo === "fijo") return c.precioFijo ?? 0;
+    return c.preciosVariables?.[vehiculoId] ?? 0;
+  };
+
   // Servicios filtrados y ordenados del más caro al más barato según el vehículo
   const serviciosDeCategoria = useMemo(() => {
     return SERVICIOS_PLATINUM
@@ -845,15 +854,6 @@ export default function CotizadorPlatinum({ biz }: { biz: Business }) {
   const tieneServicioNivel1 = useMemo(() => {
     return serviciosSeleccionados.some((s) => Boolean(s.zonaAviso));
   }, [serviciosSeleccionados]);
-
-  const getPrecioServicio = (s: ServicioBase): number => {
-    return s.precios[vehiculoId] ?? 0;
-  };
-
-  const getPrecioComplemento = (c: Complemento): number => {
-    if (c.precioTipo === "fijo") return c.precioFijo ?? 0;
-    return c.preciosVariables?.[vehiculoId] ?? 0;
-  };
 
   // Total acumulado sin duplicaciones
   const totalEstimado = useMemo(() => {
