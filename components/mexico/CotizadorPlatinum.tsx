@@ -12,11 +12,12 @@ import {
   LuPlus, 
   LuInfo,
   LuTrash2,
-  LuMapPin
+  LuMapPin,
+  LuX
 } from "react-icons/lu";
 import type { Business } from "@/data/business-helpers";
 
-// Tipos de vehículos oficiales de Platinum Detallado
+// Tipos de vehiculos oficiales de Platinum Detallado
 export type VehiculoId = "auto" | "suv2" | "pickup" | "suv3" | "van";
 
 export interface TipoVehiculo {
@@ -77,7 +78,7 @@ export interface ServicioBase {
   precios: Record<VehiculoId, number | null>;
 }
 
-// Catálogo Oficial Actualizado de Platinum
+// Catalogo Oficial Actualizado de Platinum
 export const SERVICIOS_PLATINUM: ServicioBase[] = [
   // --- COMBOS ESTRELLA ---
   {
@@ -592,6 +593,87 @@ const CATEGORIAS: CategoriaTab[] = [
   { id: "especiales", label: "Faros & Motor a Vapor", Icono: LuWrench },
 ];
 
+// Grupos para reglas de exclusividad mutua e inteligencia de selección
+const GRUPO_COMBOS = ["full-detail", "express-sale"];
+const GRUPO_INTERIORES = ["full-interior", "premier-pro"];
+const GRUPO_CORRECCION_EXTERIOR = ["gloss-shine", "titanium-shine", "ceramic-coating"];
+const GRUPO_MANTENIMIENTO = ["essential-care", "mantenimiento-core", "hydro-gloss", "diamond-protect"];
+
+export interface InclusionInfo {
+  isIncluded: boolean;
+  byComboId?: string;
+  byComboName?: string;
+  reason?: string;
+}
+
+export function getInclusionInfo(serviceId: string, selectedIds: string[]): InclusionInfo {
+  const hasFullDetail = selectedIds.includes("full-detail");
+  const hasExpressSale = selectedIds.includes("express-sale");
+
+  if (hasFullDetail) {
+    if (serviceId === "full-interior") {
+      return {
+        isIncluded: true,
+        byComboId: "full-detail",
+        byComboName: "Platinum Full Detail",
+        reason: "Desinfección integral a vapor e inyección-succión ya incluidos",
+      };
+    }
+    if (serviceId === "premier-pro") {
+      return {
+        isIncluded: true,
+        byComboId: "full-detail",
+        byComboName: "Platinum Full Detail",
+        reason: "Lavado profundo de vestiduras y habitáculo ya incluido",
+      };
+    }
+    if (serviceId === "gloss-shine") {
+      return {
+        isIncluded: true,
+        byComboId: "full-detail",
+        byComboName: "Platinum Full Detail",
+        reason: "Pulido a máquina de 1 paso y sellador exterior ya incluidos",
+      };
+    }
+    if (GRUPO_MANTENIMIENTO.includes(serviceId)) {
+      return {
+        isIncluded: true,
+        byComboId: "full-detail",
+        byComboName: "Platinum Full Detail",
+        reason: "Lavado técnico exterior y descontaminado ya cubiertos en tu combo",
+      };
+    }
+  }
+
+  if (hasExpressSale) {
+    if (serviceId === "faros") {
+      return {
+        isIncluded: true,
+        byComboId: "express-sale",
+        byComboName: "Pack Express Sale",
+        reason: "Restauración de faros con polímero de vapor óptico ya incluida",
+      };
+    }
+    if (["essential-care", "mantenimiento-core"].includes(serviceId)) {
+      return {
+        isIncluded: true,
+        byComboId: "express-sale",
+        byComboName: "Pack Express Sale",
+        reason: "Lavado técnico exterior y aspirado ya cubiertos en tu combo",
+      };
+    }
+  }
+
+  return { isIncluded: false };
+}
+
+interface NotificacionState {
+  texto: string;
+  subtexto?: string;
+  accionTexto?: string;
+  onAccion?: () => void;
+}
+
 export default function CotizadorPlatinum({ biz }: { biz: Business }) {
   const [vehiculoId, setVehiculoId] = useState<VehiculoId>("auto");
   const [categoriaActiva, setCategoriaActiva] = useState<CategoriaTab["id"]>("combos");
@@ -599,6 +681,190 @@ export default function CotizadorPlatinum({ biz }: { biz: Business }) {
   // Selección múltiple persistente: permite sumar servicios de distintas categorías (inicia sin selección)
   const [serviciosSeleccionadosIds, setServiciosSeleccionadosIds] = useState<string[]>([]);
   const [complementosSeleccionados, setComplementosSeleccionados] = useState<string[]>([]);
+  const [notificacion, setNotificacion] = useState<NotificacionState | null>(null);
+
+  // Auto-ocultar notificación dinámica tras 7 segundos
+  useEffect(() => {
+    if (!notificacion) return;
+    const timer = setTimeout(() => {
+      setNotificacion(null);
+    }, 7000);
+    return () => clearTimeout(timer);
+  }, [notificacion]);
+
+  const aplicarSeleccionServicio = (id: string, forceToggleOffIfSelected = false) => {
+    // 1. Si el servicio ya está cubierto por un combo activo:
+    const inclusion = getInclusionInfo(id, serviciosSeleccionadosIds);
+    if (inclusion.isIncluded) {
+      setNotificacion({
+        texto: `"${SERVICIOS_PLATINUM.find((s) => s.id === id)?.nombre}" ya forma parte de tu ${inclusion.byComboName}.`,
+        subtexto: inclusion.reason ? `${inclusion.reason}. ¡No pagas doble!` : undefined,
+        accionTexto: "Contratar solo este servicio individual",
+        onAccion: () => {
+          setServiciosSeleccionadosIds((prev) => {
+            const sinCombo = prev.filter((item) => item !== inclusion.byComboId);
+            return sinCombo.includes(id) ? sinCombo : [...sinCombo, id];
+          });
+          setNotificacion({
+            texto: `Se cambió a "${SERVICIOS_PLATINUM.find((s) => s.id === id)?.nombre}" como servicio individual.`,
+          });
+        },
+      });
+      return;
+    }
+
+    // 2. Si ya estaba seleccionado manualmente:
+    if (serviciosSeleccionadosIds.includes(id)) {
+      if (forceToggleOffIfSelected) {
+        quitarServicio(id);
+      }
+      return;
+    }
+
+    // 3. Activar el servicio aplicando reglas de exclusividad mutua y optimización
+    setServiciosSeleccionadosIds((prev) => {
+      let next = [...prev];
+
+      // Caso A: Combo Platinum Full Detail
+      if (id === "full-detail") {
+        const absorbidos = [
+          "express-sale",
+          ...GRUPO_INTERIORES,
+          "gloss-shine",
+          ...GRUPO_MANTENIMIENTO,
+        ];
+        next = next.filter((item) => !absorbidos.includes(item));
+        next.push("full-detail");
+
+        setNotificacion({
+          texto: "✨ Platinum Full Detail activado: incluye renovación total de interiores a vapor y pulido exterior de 1 paso.",
+          subtexto: "Puedes sumar Faros, Lavado de Motor a Vapor o Complementos según lo necesites.",
+        });
+        return next;
+      }
+
+      // Caso B: Pack Express Sale
+      if (id === "express-sale") {
+        const absorbidos = ["full-detail", "faros", "essential-care", "mantenimiento-core"];
+        next = next.filter((item) => !absorbidos.includes(item));
+        next.push("express-sale");
+
+        setNotificacion({
+          texto: "✨ Pack Express Sale activado: incluye restauración óptica de faros, aspirado profundo y abrillantado express.",
+        });
+        return next;
+      }
+
+      // Caso C: Interiores (Full Interior o Premier Pro)
+      if (GRUPO_INTERIORES.includes(id)) {
+        next = next.filter((item) => !GRUPO_INTERIORES.includes(item));
+        if (next.includes("full-detail")) {
+          next = next.filter((item) => item !== "full-detail");
+          setNotificacion({
+            texto: `✨ Se configuró "${SERVICIOS_PLATINUM.find((s) => s.id === id)?.nombre}" como servicio individual.`,
+          });
+        }
+        next.push(id);
+        return next;
+      }
+
+      // Caso D: Corrección de pintura exterior (Gloss 1 paso, Titanium 2 pasos, Ceramic Coating 9H)
+      if (GRUPO_CORRECCION_EXTERIOR.includes(id)) {
+        next = next.filter((item) => !GRUPO_CORRECCION_EXTERIOR.includes(item));
+
+        // Si full-detail estaba activo y se selecciona un upgrade como 2 pasos o Ceramic Coating 9H:
+        if (next.includes("full-detail")) {
+          next = next.filter((item) => item !== "full-detail");
+          if (!next.includes("full-interior")) {
+            next.push("full-interior");
+          }
+          const servicioNombre = SERVICIOS_PLATINUM.find((s) => s.id === id)?.nombre || "Corrección";
+          setNotificacion({
+            texto: `✨ Optimización automática: Se configuró Full Interior + ${servicioNombre} para no duplicar el pulido exterior.`,
+          });
+        }
+        next.push(id);
+        return next;
+      }
+
+      // Caso E: Mantenimiento express
+      if (GRUPO_MANTENIMIENTO.includes(id)) {
+        next = next.filter((item) => !GRUPO_MANTENIMIENTO.includes(item));
+        next.push(id);
+        return next;
+      }
+
+      // Caso F: Lavado de Motor a Vapor
+      if (id === "lavado-motor") {
+        if (!next.includes("lavado-motor")) {
+          next.push("lavado-motor");
+        }
+        setComplementosSeleccionados((cPrev) => 
+          cPrev.includes("motor-addon") ? cPrev : [...cPrev, "motor-addon"]
+        );
+        return next;
+      }
+
+      // Caso G: Cerámico Interior Integral
+      if (id === "ceramico-interior-integral-servicio") {
+        if (!next.includes("ceramico-interior-integral-servicio")) {
+          next.push("ceramico-interior-integral-servicio");
+        }
+        setComplementosSeleccionados((cPrev) =>
+          cPrev.includes("ceramico-interior-integral") ? cPrev : [...cPrev, "ceramico-interior-integral"]
+        );
+        return next;
+      }
+
+      // Faros o cualquier otro
+      next.push(id);
+      return next;
+    });
+  };
+
+  const toggleServicio = (id: string) => {
+    aplicarSeleccionServicio(id, true);
+  };
+
+  const quitarServicio = (id: string) => {
+    setServiciosSeleccionadosIds((prev) => prev.filter((item) => item !== id));
+    if (id === "lavado-motor") {
+      setComplementosSeleccionados((prev) => prev.filter((item) => item !== "motor-addon"));
+    }
+    if (id === "ceramico-interior-integral-servicio") {
+      setComplementosSeleccionados((prev) => prev.filter((item) => item !== "ceramico-interior-integral"));
+    }
+  };
+
+  const toggleComplemento = (id: string) => {
+    if (id === "motor-addon") {
+      const isActivo = complementosSeleccionados.includes("motor-addon") || serviciosSeleccionadosIds.includes("lavado-motor");
+      if (isActivo) {
+        setComplementosSeleccionados((prev) => prev.filter((item) => item !== "motor-addon"));
+        setServiciosSeleccionadosIds((prev) => prev.filter((item) => item !== "lavado-motor"));
+      } else {
+        setComplementosSeleccionados((prev) => [...prev, "motor-addon"]);
+        setServiciosSeleccionadosIds((prev) => prev.includes("lavado-motor") ? prev : [...prev, "lavado-motor"]);
+      }
+      return;
+    }
+
+    if (id === "ceramico-interior-integral") {
+      const isActivo = complementosSeleccionados.includes("ceramico-interior-integral") || serviciosSeleccionadosIds.includes("ceramico-interior-integral-servicio");
+      if (isActivo) {
+        setComplementosSeleccionados((prev) => prev.filter((item) => item !== "ceramico-interior-integral"));
+        setServiciosSeleccionadosIds((prev) => prev.filter((item) => item !== "ceramico-interior-integral-servicio"));
+      } else {
+        setComplementosSeleccionados((prev) => [...prev, "ceramico-interior-integral"]);
+        setServiciosSeleccionadosIds((prev) => prev.includes("ceramico-interior-integral-servicio") ? prev : [...prev, "ceramico-interior-integral-servicio"]);
+      }
+      return;
+    }
+
+    setComplementosSeleccionados((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+    );
+  };
 
   // Escuchar si desde alguna tarjeta exterior se solicita cotizar un servicio
   useEffect(() => {
@@ -608,9 +874,7 @@ export default function CotizadorPlatinum({ biz }: { biz: Business }) {
         const found = SERVICIOS_PLATINUM.find((s) => s.id === servicioId);
         if (found) {
           setCategoriaActiva(found.categoria);
-          setServiciosSeleccionadosIds((prev) => 
-            prev.includes(found.id) ? prev : [...prev, found.id]
-          );
+          aplicarSeleccionServicio(found.id, false);
         }
       } else if (categoria) {
         setCategoriaActiva(categoria as CategoriaTab["id"]);
@@ -619,7 +883,7 @@ export default function CotizadorPlatinum({ biz }: { biz: Business }) {
 
     window.addEventListener("platinum:cotizar", handleSelectService as EventListener);
     return () => window.removeEventListener("platinum:cotizar", handleSelectService as EventListener);
-  }, []);
+  }, [serviciosSeleccionadosIds]);
 
   const vehiculoActual = useMemo(
     () => TIPOS_VEHICULO.find((v) => v.id === vehiculoId) || TIPOS_VEHICULO[0],
@@ -649,26 +913,6 @@ export default function CotizadorPlatinum({ biz }: { biz: Business }) {
     return serviciosSeleccionados.some((s) => Boolean(s.zonaAviso));
   }, [serviciosSeleccionados]);
 
-  const toggleServicio = (id: string) => {
-    setServiciosSeleccionadosIds((prev) => {
-      if (prev.includes(id)) {
-        return prev.filter((item) => item !== id);
-      } else {
-        return [...prev, id];
-      }
-    });
-  };
-
-  const quitarServicio = (id: string) => {
-    setServiciosSeleccionadosIds((prev) => prev.filter((item) => item !== id));
-  };
-
-  const toggleComplemento = (id: string) => {
-    setComplementosSeleccionados((prev) =>
-      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
-    );
-  };
-
   const getPrecioServicio = (s: ServicioBase): number => {
     return s.precios[vehiculoId] ?? 0;
   };
@@ -678,29 +922,49 @@ export default function CotizadorPlatinum({ biz }: { biz: Business }) {
     return c.preciosVariables?.[vehiculoId] ?? 0;
   };
 
-  // Total acumulado
+  // Total acumulado sin duplicaciones
   const totalEstimado = useMemo(() => {
     const totalServicios = serviciosSeleccionados.reduce((acc, s) => {
       return acc + getPrecioServicio(s);
     }, 0);
 
-    const totalComplementos = complementosSeleccionados.reduce((acc, id) => {
+    const complementosSinDuplicados = complementosSeleccionados.filter((id) => {
+      if (id === "motor-addon" && serviciosSeleccionadosIds.includes("lavado-motor")) return false;
+      if (id === "ceramico-interior-integral" && serviciosSeleccionadosIds.includes("ceramico-interior-integral-servicio")) return false;
+      return true;
+    });
+
+    const totalComplementos = complementosSinDuplicados.reduce((acc, id) => {
       const c = COMPLEMENTOS_PLATINUM.find((item) => item.id === id);
       return acc + (c ? getPrecioComplemento(c) : 0);
     }, 0);
 
     return totalServicios + totalComplementos;
-  }, [serviciosSeleccionados, complementosSeleccionados, vehiculoId]);
+  }, [serviciosSeleccionados, complementosSeleccionados, serviciosSeleccionadosIds, vehiculoId]);
 
   // Mensaje estructurado para WhatsApp
   const whatsAppUrl = useMemo(() => {
     const waNumber = (biz.whatsapp || "524427151535").replace(/\D/g, "");
     
     const lineasServicios = serviciosSeleccionados
-      .map((s) => `• ${s.nombre} ($${getPrecioServicio(s).toLocaleString("es-MX")} MXN)`)
+      .map((s) => {
+        let notaExtra = "";
+        if (s.id === "full-detail") {
+          notaExtra = "\n   ↳ Incluye: Interiores a vapor + Inyección-succión + Pulido 1 paso + Sellador cerámico";
+        } else if (s.id === "express-sale") {
+          notaExtra = "\n   ↳ Incluye: Restauración de faros + Limpieza de vestiduras + Abrillantado express";
+        }
+        return `• ${s.nombre} ($${getPrecioServicio(s).toLocaleString("es-MX")} MXN)${notaExtra}`;
+      })
       .join("\n");
 
-    const lineasComplementos = complementosSeleccionados
+    const complementosSinDuplicados = complementosSeleccionados.filter((id) => {
+      if (id === "motor-addon" && serviciosSeleccionadosIds.includes("lavado-motor")) return false;
+      if (id === "ceramico-interior-integral" && serviciosSeleccionadosIds.includes("ceramico-interior-integral-servicio")) return false;
+      return true;
+    });
+
+    const lineasComplementos = complementosSinDuplicados
       .map((id) => {
         const c = COMPLEMENTOS_PLATINUM.find((item) => item.id === id);
         if (!c) return null;
@@ -728,7 +992,10 @@ ${bloqueServicios}${bloqueComplementos}
 ¿Qué fechas y horarios tienen disponibles para agendar la visita en mi domicilio?`;
 
     return `https://wa.me/${waNumber}?text=${encodeURIComponent(mensaje)}`;
-  }, [biz, vehiculoActual, serviciosSeleccionados, complementosSeleccionados, totalEstimado, vehiculoId]);
+  }, [biz, vehiculoActual, serviciosSeleccionados, complementosSeleccionados, serviciosSeleccionadosIds, totalEstimado, vehiculoId]);
+
+  const hasFullDetail = serviciosSeleccionadosIds.includes("full-detail");
+  const hasExpressSale = serviciosSeleccionadosIds.includes("express-sale");
 
   return (
     <section 
@@ -804,7 +1071,7 @@ ${bloqueServicios}${bloqueComplementos}
           </div>
         </div>
 
-        {/* PASO 2: Categorías de Servicio y Tarjetas con Selección Múltiple */}
+        {/* PASO 2: Categorías de Servicio y Tarjetas con Selección Inteligente */}
         <div className="space-y-6">
           <div className="flex items-center justify-between">
             <h3 className="text-sm sm:text-base uppercase tracking-wider text-neutral-200 font-bold flex items-center gap-2.5">
@@ -816,7 +1083,7 @@ ${bloqueServicios}${bloqueComplementos}
             </span>
           </div>
 
-          {/* Pestañas de categorías: uno abajo del otro en celular, flex horizontal en tablet/PC */}
+          {/* Pestañas de categorías */}
           <div className="flex flex-col sm:flex-row sm:flex-wrap lg:flex-nowrap gap-2 sm:gap-2.5">
             {CATEGORIAS.map((cat) => {
               const activa = cat.id === categoriaActiva;
@@ -824,6 +1091,10 @@ ${bloqueServicios}${bloqueComplementos}
               const cantidadEnCat = SERVICIOS_PLATINUM.filter(
                 (s) => s.categoria === cat.id && serviciosSeleccionadosIds.includes(s.id)
               ).length;
+
+              const tieneCubiertos = SERVICIOS_PLATINUM.some(
+                (s) => s.categoria === cat.id && getInclusionInfo(s.id, serviciosSeleccionadosIds).isIncluded
+              );
 
               return (
                 <button
@@ -846,6 +1117,12 @@ ${bloqueServicios}${bloqueComplementos}
                     }`}>
                       {cantidadEnCat}
                     </span>
+                  ) : tieneCubiertos ? (
+                    <span className={`text-[10px] font-extrabold px-2 py-0.5 rounded-full shrink-0 uppercase tracking-wider ${
+                      activa ? "bg-black/30 text-black" : "bg-emerald-500/20 text-emerald-300 border border-emerald-500/30"
+                    }`}>
+                      Cubierto
+                    </span>
                   ) : activa ? (
                     <span className="sm:hidden text-[10px] uppercase font-bold tracking-wider opacity-60">Activo</span>
                   ) : null}
@@ -854,9 +1131,63 @@ ${bloqueServicios}${bloqueComplementos}
             })}
           </div>
 
+          {/* Banner Informativo de Combo Activo */}
+          {hasFullDetail && (
+            <div className="p-3.5 sm:p-4 rounded-xl bg-gradient-to-r from-amber-500/10 via-[#18181d] to-amber-500/5 border border-amber-400/30 flex items-start sm:items-center gap-3 text-xs sm:text-sm text-neutral-200">
+              <LuSparkles className="text-amber-400 text-lg shrink-0 mt-0.5 sm:mt-0" />
+              <div className="flex-1 leading-snug">
+                <strong className="text-amber-300">Combo Platinum Full Detail activo:</strong> Ya incluye habitáculo a vapor, inyección-succión y pulido exterior de 1 paso. Los tratamientos cubiertos se marcan en <span className="text-emerald-400 font-bold">Verde</span> para evitar cobros dobles. Puedes sumar Faros, Motor a Vapor o Complementos.
+              </div>
+            </div>
+          )}
+          {hasExpressSale && (
+            <div className="p-3.5 sm:p-4 rounded-xl bg-gradient-to-r from-amber-500/10 via-[#18181d] to-amber-500/5 border border-amber-400/30 flex items-start sm:items-center gap-3 text-xs sm:text-sm text-neutral-200">
+              <LuSparkles className="text-amber-400 text-lg shrink-0 mt-0.5 sm:mt-0" />
+              <div className="flex-1 leading-snug">
+                <strong className="text-amber-300">Pack Express Sale activo:</strong> Ya incluye restauración de faros con polímero, limpieza interior y abrillantado express.
+              </div>
+            </div>
+          )}
+
+          {/* Banner de Notificación Dinámica / Acción Inteligente */}
+          {notificacion && (
+            <div className="p-3.5 sm:p-4 rounded-xl bg-gradient-to-r from-[#1c1c24] via-[#16161b] to-[#1c1c24] border border-amber-400/60 shadow-[0_0_25px_rgba(245,158,11,0.15)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs sm:text-sm text-white">
+              <div className="flex items-start sm:items-center gap-2.5">
+                <LuSparkles className="text-amber-400 text-base shrink-0 mt-0.5 sm:mt-0" />
+                <div>
+                  <p className="font-semibold text-neutral-100">{notificacion.texto}</p>
+                  {notificacion.subtexto && (
+                    <p className="text-neutral-400 text-xs mt-0.5">{notificacion.subtexto}</p>
+                  )}
+                </div>
+              </div>
+              <div className="flex items-center gap-2 self-end sm:self-auto shrink-0">
+                {notificacion.accionTexto && notificacion.onAccion && (
+                  <button
+                    type="button"
+                    onClick={notificacion.onAccion}
+                    className="px-3 py-1.5 rounded-lg bg-amber-400 text-black font-extrabold text-xs hover:bg-amber-300 transition-colors shadow-sm"
+                  >
+                    {notificacion.accionTexto}
+                  </button>
+                )}
+                <button
+                  type="button"
+                  onClick={() => setNotificacion(null)}
+                  className="p-1 text-neutral-400 hover:text-white transition"
+                  title="Cerrar aviso"
+                >
+                  <LuX className="text-base" />
+                </button>
+              </div>
+            </div>
+          )}
+
           {/* Grid de servicios de la categoría activa */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {serviciosDeCategoria.map((s) => {
+              const inclusion = getInclusionInfo(s.id, serviciosSeleccionadosIds);
+              const isIncluded = inclusion.isIncluded;
               const seleccionado = serviciosSeleccionadosIds.includes(s.id);
               const precioVehiculo = s.precios[vehiculoId];
 
@@ -865,16 +1196,23 @@ ${bloqueServicios}${bloqueComplementos}
                   key={s.id}
                   onClick={() => toggleServicio(s.id)}
                   className={`rounded-2xl p-6 border cursor-pointer transition-all duration-200 flex flex-col justify-between relative ${
-                    seleccionado
+                    isIncluded
+                      ? "bg-emerald-950/20 border-emerald-500/50 hover:border-emerald-400/70 shadow-[0_0_24px_rgba(16,185,129,0.12)] ring-1 ring-emerald-500/30"
+                      : seleccionado
                       ? "bg-gradient-to-b from-neutral-900 to-[#121215] border-amber-400/80 shadow-[0_0_30px_rgba(245,158,11,0.15)] ring-1 ring-amber-400/50"
                       : "bg-[#111114] border-white/10 hover:border-white/25 hover:bg-[#151518]"
                   }`}
                 >
-                  {s.badge && (
+                  {isIncluded ? (
+                    <span className="absolute -top-3 right-4 text-[11px] uppercase font-bold tracking-wider px-3 py-1 rounded-full bg-emerald-400 text-black shadow-md flex items-center gap-1.5">
+                      <LuCheck className="stroke-[3] text-xs" />
+                      Incluido en Combo
+                    </span>
+                  ) : s.badge ? (
                     <span className="absolute -top-3 right-4 text-[11px] uppercase font-bold tracking-wider px-3 py-1 rounded-full bg-amber-400 text-black shadow-md">
                       {s.badge}
                     </span>
-                  )}
+                  ) : null}
 
                   <div className="space-y-4">
                     <div className="flex items-start justify-between gap-3">
@@ -892,12 +1230,17 @@ ${bloqueServicios}${bloqueComplementos}
                           </div>
                         )}
                       </div>
+
                       <div className={`w-6 h-6 rounded-lg border flex items-center justify-center shrink-0 mt-1 transition ${
-                        seleccionado 
+                        isIncluded
+                          ? "bg-emerald-500/20 border-emerald-400 text-emerald-400 shadow-sm"
+                          : seleccionado 
                           ? "bg-amber-400 border-amber-400 text-black" 
                           : "border-neutral-500 bg-neutral-900 text-transparent hover:border-neutral-300"
                       }`}>
-                        {seleccionado ? (
+                        {isIncluded ? (
+                          <LuCheck className="text-xs stroke-[3]" />
+                        ) : seleccionado ? (
                           <LuCheck className="text-xs stroke-[3]" />
                         ) : (
                           <LuPlus className="text-xs text-neutral-400" />
@@ -909,10 +1252,24 @@ ${bloqueServicios}${bloqueComplementos}
                       {s.descripcion}
                     </p>
 
+                    {/* Mensaje de inclusión detallado */}
+                    {isIncluded && (
+                      <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/25 text-xs text-emerald-200 flex items-start gap-2.5">
+                        <LuSparkles className="text-emerald-400 shrink-0 text-sm mt-0.5" />
+                        <div className="leading-snug">
+                          <strong className="text-white block font-bold mb-0.5">Ya cubierto en tu {inclusion.byComboName}</strong>
+                          <span className="text-neutral-300">{inclusion.reason}.</span>
+                          <span className="block text-emerald-400 font-semibold mt-1 text-[11px] underline">
+                            Toca para contratar solo este servicio individual
+                          </span>
+                        </div>
+                      </div>
+                    )}
+
                     <ul className="space-y-2 pt-2 border-t border-white/10">
                       {s.detalles.slice(0, 5).map((d, i) => (
                         <li key={i} className="text-xs sm:text-sm text-neutral-200 flex items-start gap-2 leading-snug">
-                          <span className="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1.5 shrink-0" />
+                          <span className={`w-1.5 h-1.5 rounded-full mt-1.5 shrink-0 ${isIncluded ? "bg-emerald-400" : "bg-amber-400"}`} />
                           <span>{d}</span>
                         </li>
                       ))}
@@ -924,7 +1281,16 @@ ${bloqueServicios}${bloqueComplementos}
                       Para {vehiculoActual.label}
                     </span>
                     <div className="text-right">
-                      {precioVehiculo ? (
+                      {isIncluded ? (
+                        <div className="flex items-center gap-2">
+                          <span className="line-through text-neutral-500 text-sm font-semibold">
+                            ${precioVehiculo?.toLocaleString("es-MX")}
+                          </span>
+                          <span className="text-xs sm:text-sm font-extrabold text-emerald-300 bg-emerald-500/20 px-2.5 py-1 rounded-md border border-emerald-500/30 uppercase tracking-wide">
+                            Cubierto
+                          </span>
+                        </div>
+                      ) : precioVehiculo ? (
                         <span className="text-2xl sm:text-3xl font-extrabold text-white">
                           ${precioVehiculo.toLocaleString("es-MX")}{" "}
                           <span className="text-xs sm:text-sm font-semibold text-neutral-400">MXN</span>
@@ -954,7 +1320,14 @@ ${bloqueServicios}${bloqueComplementos}
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {COMPLEMENTOS_PLATINUM.map((comp) => {
-              const seleccionado = complementosSeleccionados.includes(comp.id);
+              const isMotor = comp.id === "motor-addon";
+              const isCeramicoInterior = comp.id === "ceramico-interior-integral";
+              const seleccionado = isMotor
+                ? (complementosSeleccionados.includes("motor-addon") || serviciosSeleccionadosIds.includes("lavado-motor"))
+                : isCeramicoInterior
+                ? (complementosSeleccionados.includes("ceramico-interior-integral") || serviciosSeleccionadosIds.includes("ceramico-interior-integral-servicio"))
+                : complementosSeleccionados.includes(comp.id);
+
               const precio = getPrecioComplemento(comp);
 
               return (
@@ -1006,7 +1379,11 @@ ${bloqueServicios}${bloqueComplementos}
             {/* Columna Izquierda: Desglose Completo */}
             <div className="lg:col-span-7 space-y-5">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-white/5 border border-white/10 text-xs sm:text-sm font-bold text-neutral-200 tracking-wider uppercase">
-                Resumen de tu Cotización ({serviciosSeleccionados.length + complementosSeleccionados.length} ítems)
+                Resumen de tu Cotización ({serviciosSeleccionados.length + complementosSeleccionados.filter(id => {
+                  if (id === "motor-addon" && serviciosSeleccionadosIds.includes("lavado-motor")) return false;
+                  if (id === "ceramico-interior-integral" && serviciosSeleccionadosIds.includes("ceramico-interior-integral-servicio")) return false;
+                  return true;
+                }).length} ítems)
               </div>
               
               <div className="space-y-3">
@@ -1024,43 +1401,79 @@ ${bloqueServicios}${bloqueComplementos}
                     </p>
                   ) : (
                     serviciosSeleccionados.map((s) => (
-                      <div key={s.id} className="flex items-center justify-between text-sm sm:text-base py-1">
-                        <span className="text-white font-medium flex items-center gap-2">
-                          <span className="w-2 h-2 rounded-full bg-amber-400" />
-                          {s.nombre}
-                        </span>
-                        <div className="flex items-center gap-3">
-                          <span className="text-amber-400 font-bold">
-                            ${getPrecioServicio(s).toLocaleString("es-MX")} MXN
+                      <div key={s.id} className="py-2 border-b border-white/5 last:border-b-0">
+                        <div className="flex items-center justify-between text-sm sm:text-base">
+                          <span className="text-white font-medium flex items-center gap-2">
+                            <span className="w-2 h-2 rounded-full bg-amber-400 shrink-0" />
+                            {s.nombre}
                           </span>
-                          <button
-                            type="button"
-                            onClick={() => quitarServicio(s.id)}
-                            className="text-neutral-400 hover:text-red-400 transition p-1"
-                            title="Quitar"
-                          >
-                            <LuTrash2 className="text-sm" />
-                          </button>
+                          <div className="flex items-center gap-3">
+                            <span className="text-amber-400 font-bold">
+                              ${getPrecioServicio(s).toLocaleString("es-MX")} MXN
+                            </span>
+                            <button
+                              type="button"
+                              onClick={() => quitarServicio(s.id)}
+                              className="text-neutral-400 hover:text-red-400 transition p-1"
+                              title="Quitar tratamiento"
+                            >
+                              <LuTrash2 className="text-sm" />
+                            </button>
+                          </div>
                         </div>
+                        {s.id === "full-detail" && (
+                          <p className="text-xs text-neutral-400 pl-4 mt-1 leading-snug">
+                            ↳ Incluye habitáculo a vapor, inyección-succión, pulido 1 paso y sellador cerámico
+                          </p>
+                        )}
+                        {s.id === "express-sale" && (
+                          <p className="text-xs text-neutral-400 pl-4 mt-1 leading-snug">
+                            ↳ Incluye restauración de faros con polímero, interiores y abrillantado express
+                          </p>
+                        )}
                       </div>
                     ))
                   )}
                 </div>
 
                 {/* Complementos */}
-                {complementosSeleccionados.length > 0 && (
+                {complementosSeleccionados.filter(id => {
+                  if (id === "motor-addon" && serviciosSeleccionadosIds.includes("lavado-motor")) return false;
+                  if (id === "ceramico-interior-integral" && serviciosSeleccionadosIds.includes("ceramico-interior-integral-servicio")) return false;
+                  return true;
+                }).length > 0 && (
                   <div className="pt-1 space-y-1.5">
-                    <span className="text-xs sm:text-sm font-medium text-neutral-400 block">Complementos agregados ({complementosSeleccionados.length}):</span>
+                    <span className="text-xs sm:text-sm font-medium text-neutral-400 block">
+                      Complementos & Upgrades ({complementosSeleccionados.filter(id => {
+                        if (id === "motor-addon" && serviciosSeleccionadosIds.includes("lavado-motor")) return false;
+                        if (id === "ceramico-interior-integral" && serviciosSeleccionadosIds.includes("ceramico-interior-integral-servicio")) return false;
+                        return true;
+                      }).length}):
+                    </span>
                     <div className="flex flex-wrap gap-2">
-                      {complementosSeleccionados.map((id) => {
-                        const c = COMPLEMENTOS_PLATINUM.find((item) => item.id === id);
-                        if (!c) return null;
-                        return (
-                          <span key={id} className="text-xs sm:text-sm font-medium px-3 py-1 rounded-lg bg-white/5 border border-white/15 text-neutral-200">
-                            {c.nombre} (+${getPrecioComplemento(c).toLocaleString("es-MX")} MXN)
-                          </span>
-                        );
-                      })}
+                      {complementosSeleccionados
+                        .filter(id => {
+                          if (id === "motor-addon" && serviciosSeleccionadosIds.includes("lavado-motor")) return false;
+                          if (id === "ceramico-interior-integral" && serviciosSeleccionadosIds.includes("ceramico-interior-integral-servicio")) return false;
+                          return true;
+                        })
+                        .map((id) => {
+                          const c = COMPLEMENTOS_PLATINUM.find((item) => item.id === id);
+                          if (!c) return null;
+                          return (
+                            <span key={id} className="text-xs sm:text-sm font-medium px-3 py-1 rounded-lg bg-white/5 border border-white/15 text-neutral-200 flex items-center gap-2">
+                              <span>{c.nombre} (+${getPrecioComplemento(c).toLocaleString("es-MX")} MXN)</span>
+                              <button
+                                type="button"
+                                onClick={() => toggleComplemento(id)}
+                                className="text-neutral-400 hover:text-red-400 transition"
+                                title="Quitar complemento"
+                              >
+                                <LuX className="text-xs" />
+                              </button>
+                            </span>
+                          );
+                        })}
                     </div>
                   </div>
                 )}
