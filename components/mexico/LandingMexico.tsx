@@ -336,9 +336,9 @@ export default function LandingMexico({ biz }: { biz: Business }) {
 
             <div className={`inline-flex items-center gap-2 ${isTheZone || isPlatinum ? "px-2.5 py-1 text-[11px] sm:text-xs" : "px-3 py-1.5 text-xs sm:text-sm"} rounded-full border ${isTheZone ? "border-sky-500/30 bg-sky-500/10 text-sky-200" : isPlatinum ? "border-amber-400/30 bg-amber-400/10 text-amber-200" : "border-white/10 bg-white/5 text-slate-300"} font-medium`}>
               <span className={`flex size-1.5 sm:size-2 rounded-full shrink-0 animate-pulse ${isTheZone ? "bg-sky-400 shadow-[0_0_8px_rgba(56,189,248,0.9)]" : "bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]"}`} />
-              <span>{biz.ciudad} (México)</span>
+              <span>{isPlatinum ? "Querétaro" : `${biz.ciudad} (México)`}</span>
               <span className="text-slate-500">·</span>
-              <span>Citas disponibles esta semana</span>
+              <span>{isPlatinum ? "Agenda tu cita" : "Citas disponibles esta semana"}</span>
             </div>
 
             <h1 className={`${isTheZone || isPlatinum ? "text-[20px] sm:text-[26px] md:text-[30px]" : "text-[32px] sm:text-[42px]"} font-medium tracking-tight leading-tight text-balance`}>
@@ -350,10 +350,9 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                 </>
               ) : isPlatinum ? (
                 <>
-                  Estética y Detallado Automotriz a Domicilio.
-                  <br />
+                  Estética y Detallado Automotriz{" "}
                   <span className="bg-gradient-to-r from-amber-300 via-amber-400 to-yellow-500 bg-clip-text text-transparent font-semibold">
-                    Detailing Profesional & Acabado de Exposición.
+                    a Domicilio.
                   </span>
                 </>
               ) : (
@@ -366,7 +365,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
             </h1>
 
             <p className={`${isTheZone || isPlatinum ? "text-xs sm:text-sm max-w-xl line-clamp-2 sm:line-clamp-none" : "text-base md:text-lg max-w-2xl"} text-slate-300 font-light leading-relaxed mx-auto text-pretty`}>
-              Corrección de pintura, recubrimiento cerámico y estética interior en {biz.ciudad}. Tratamiento artesanal sin microrrayones ni atajos.
+              Corrección de pintura, recubrimiento cerámico y estética interior en {isPlatinum ? "Querétaro" : biz.ciudad}. Tratamiento artesanal sin microrrayones ni atajos.
             </p>
 
             <div className={`flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-3 w-full sm:w-auto ${isTheZone || isPlatinum ? "pt-1 sm:pt-2" : "pt-2"}`}>

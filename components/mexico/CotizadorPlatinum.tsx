@@ -17,7 +17,7 @@ import {
 } from "react-icons/lu";
 import type { Business } from "@/data/business-helpers";
 
-// Tipos de vehiculos oficiales de Platinum Detallado
+// Tipos de vehículos oficiales de Platinum Detallado
 export type VehiculoId = "auto" | "suv2" | "pickup" | "suv3" | "van";
 
 export interface TipoVehiculo {
@@ -78,7 +78,7 @@ export interface ServicioBase {
   precios: Record<VehiculoId, number | null>;
 }
 
-// Catalogo Oficial Actualizado de Platinum
+// Catálogo Oficial Resumido y Optimizado de Platinum
 export const SERVICIOS_PLATINUM: ServicioBase[] = [
   // --- COMBOS ESTRELLA ---
   {
@@ -86,17 +86,13 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
     categoria: "combos",
     nombre: "Platinum Full Detail",
     subtitulo: "Renovación Integral Interior & Exterior",
-    descripcion: "El tratamiento insignia a domicilio. Desinfección integral a vapor e inyección-succión en vestiduras y alfombras, pulido de 1 paso y sellador cerámico exterior.",
+    descripcion: "Desinfección profunda a vapor en habitáculo, pulido a máquina y sellador cerámico exterior.",
     badge: "Más Solicitado",
     detalles: [
-      "Lavado profundo de asientos (inyección-succión tela o nutrición piel)",
-      "Extracción profunda en alfombras, tapetes y cajuela",
-      "Sanitización por vapor en ductos de A/C y habitáculo",
-      "Acondicionamiento y restauración de plásticos UV (hasta 1 año)",
-      "Lavado técnico exterior con cañón de espuma y descontaminado con Clay bar",
-      "Pulido a máquina de 1 paso (elimina 50% a 70% de microrrayones y swirls)",
-      "Sellador sintético cerámico exterior (hasta 3 meses de protección)",
-      "Detallado de rines, tolvas y acabado alto brillo en llantas",
+      "Inyección-succión en vestiduras (tela o piel) y alfombras",
+      "Sanitización por vapor a 140°C en ductos de A/C y habitáculo",
+      "Pulido a máquina de 1 paso (elimina 50%-70% de microrrayones)",
+      "Sellador cerámico exterior (3 meses) y acondicionador UV",
     ],
     precios: {
       auto: 3690,
@@ -111,16 +107,13 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
     categoria: "combos",
     nombre: "Pack Express Sale",
     subtitulo: "Preparación Rápida para Venta",
-    descripcion: "Diseñado para incrementar el valor de reventa de tu auto. Incluye restauración completa de faros, limpieza interior y abrillantado exterior express.",
+    descripcion: "Acondicionamiento para incrementar valor de reventa: faros como nuevos, interiores y brillo express.",
     badge: "Especial Venta",
     detalles: [
-      "Restauración completa de ambos faros con polímero de vapor óptico",
-      "Lavado de asientos por inyección-succión (eliminación de manchas visibles)",
-      "Aspirado profundo de habitáculo, cajuela y detallado de tablero con brochas",
-      "Acondicionador satinado con renovación de tono en plásticos",
-      "Lavado técnico a presión con pH neutro y descontaminado rápido",
-      "Abrillantado All-In-One a máquina (elimina opacidad y sella con alto brillo)",
-      "Detallado y abrillantado de rines y neumáticos",
+      "Restauración óptica de ambos faros con polímero de vapor",
+      "Lavado de asientos por inyección-succión y aspirado profundo",
+      "Abrillantado All-In-One a máquina (elimina opacidad y sella brillo)",
+      "Acondicionado de plásticos y detallado de rines y llantas",
     ],
     precios: {
       auto: 2490,
@@ -137,16 +130,13 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
     categoria: "interiores",
     nombre: "Full Interior & Sanitización",
     subtitulo: "Renovación Total de Interiores a Vapor",
-    descripcion: "Limpieza exhaustiva del habitáculo. Ideal para eliminar suciedad profunda, ácaros, bacterias y manchas difíciles en asientos, alfombras y cajuela.",
+    descripcion: "Desinfección profunda de cabina: elimina manchas difíciles, suciedad, olores y bacterias a vapor.",
     badge: "Desinfección Total",
     detalles: [
-      "Inyección-succión en vestiduras de tela o nutrición profunda en piel",
-      "Tratamiento y extracción profunda en alfombras, tapetes y cajuela",
-      "Sanitización por vapor en ductos de aire acondicionado y superficies",
-      "Detallado manual con brochas en consola, volante, rejillas y puertas",
-      "Acondicionamiento y protección UV en plásticos interiores (hasta 1 año)",
-      "Limpieza técnica de cortesía en cielo del auto",
-      "Lavado exterior básico de cortesía para entrega impecable",
+      "Inyección-succión en vestiduras, alfombras, tapetes y cajuela",
+      "Sanitización por vapor a 140°C en ductos de aire acondicionado",
+      "Detallado con brochas en tablero, consola, volante y rejillas",
+      "Acondicionador UV en plásticos (1 año) + lavado exterior de cortesía",
     ],
     precios: {
       auto: 1990,
@@ -160,15 +150,13 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
     id: "premier-pro",
     categoria: "interiores",
     nombre: "Premier Pro Interior",
-    subtitulo: "Sistema Inyección-Succión & Limpieza Pro",
-    descripcion: "Lavado profesional de vestiduras y plásticos interiores con lavado exterior de cortesía.",
+    subtitulo: "Lavado Pro de Vestiduras & Plásticos",
+    descripcion: "Lavado profundo de asientos y plásticos con lavado exterior de cortesía.",
     detalles: [
-      "Lavado profundo en asientos con máquina de inyección-succión (tela o piel)",
-      "Aspirado exhaustivo de habitáculo y cajuela completa",
-      "Restauración y acondicionador UV en tablero y consolas (hasta 6 meses)",
-      "Detallado con brochas en volante, puertas y portavasos",
-      "Lavado exterior con shampoo pH neutro y cera líquida protectora (1 mes)",
-      "Detallado de rines y llantas con acabado alto brillo",
+      "Inyección-succión en vestiduras y aspirado de habitáculo/cajuela",
+      "Restauración y acondicionador UV en tablero y consolas (6 meses)",
+      "Detallado con brochas en puertas, volante y portavasos",
+      "Lavado exterior pH neutro con cera líquida protectora (1 mes)",
     ],
     precios: {
       auto: 1290,
@@ -184,17 +172,14 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
     id: "ceramic-coating",
     categoria: "correccion",
     nombre: "Ceramic Coating 9H",
-    subtitulo: "Corrección Profunda & Protección Cerámica 9H",
-    descripcion: "Máxima protección de carrocería. Descontaminado con clay bar, corrección de pintura en 2 pasos y sellado nanocerámico 9H bajo carpa móvil climatizada.",
+    subtitulo: "Corrección Profunda & Cerámico 9H",
+    descripcion: "Blindaje de carrocería: corrección de pintura en 2 pasos bajo carpa y sellado nanocerámico 9H.",
     badge: "Máxima Gama",
     detalles: [
-      "Lavado a presión con pH neutro y descontaminado físico (clay bar) y químico",
-      "Trabajo técnico bajo carpa móvil con paredes para control de polvo y temperatura",
+      "Descontaminado físico (clay bar) y químico de pintura",
       "Corrección de pintura en 2 pasos (corte pesado + refinado espejo)",
-      "Desengrasado completo de la pintura con alcohol isopropílico (IPA)",
-      "Aplicación de Recubrimiento Nanocerámico 9H (1 a 2 años de duración)",
-      "Máxima hidrofobia (efecto gota), repelencia de suciedad y protección UV",
-      "Descontaminado profundo de rines y detallado alto brillo en neumáticos",
+      "Recubrimiento Nanocerámico 9H (1 a 2 años de duración)",
+      "Máxima hidrofobia (efecto gota) y protección UV total",
     ],
     precios: {
       auto: 5500,
@@ -209,14 +194,13 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
     categoria: "correccion",
     nombre: "Protección Cerámica Integral (Interiores)",
     subtitulo: "Blindaje Nanotecnológico de Asientos + Plásticos",
-    descripcion: "Escudo nanotecnológico contra derrames de café/refresco, decoloración por rayos UV y transferencia de tinte de jeans en piel o textil. (Aplica sobre vestiduras limpias o como servicio complementario tras detallado).",
+    descripcion: "Escudo nanotecnológico contra derrames de líquidos, decoloración solar UV y tinte de jeans.",
     badge: "Escudo Nanotecnológico",
     detalles: [
-      "Repelencia anti-manchas: encapsula líquidos evitando penetración en fibras y piel",
-      "Escudo UV térmico: sella tablero, consolas y plásticos previniendo cuarteaduras",
-      "Anti-transferencia de tinte: previene manchas por fricción de ropa oscura o mezclilla",
-      "Terminado original mate al tacto, sin texturas grasosas ni químicos agresivos",
-      "Durabilidad real de 12 meses (versión de alta rigidez a 3 años disponible bajo cotización)",
+      "Repelencia anti-manchas: encapsula líquidos en piel y tela",
+      "Escudo térmico UV: sella plásticos y previene cuarteaduras",
+      "Barrera anti-transferencia de tinte para ropa oscura o mezclilla",
+      "Terminado mate original al tacto, sin texturas grasosas (12 meses)",
     ],
     precios: {
       auto: 1800,
@@ -231,15 +215,13 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
     categoria: "correccion",
     nombre: "Titanium Shine",
     subtitulo: "Pulido a 2 Pasos & Refinado Espejo",
-    descripcion: "Elimina entre 80% y 90% de microrrayones, marcas circulares y opacidad. Deja un reflejo espejo profundo protegido con sellador híbrido SiO2.",
+    descripcion: "Elimina 80%-90% de microrrayones y swirls, dejando reflejo espejo protegido con SiO2.",
     badge: "Efecto Espejo",
     detalles: [
-      "Descontaminado químico y físico completo con clay bar",
-      "Trabajo bajo carpa móvil acondicionada para detallado profesional",
+      "Descontaminado completo con clay bar bajo carpa móvil",
       "Paso 1: Corte pesado para eliminar rayones y marcas de lavado",
       "Paso 2: Refinado a máquina para máxima claridad y brillo espejo",
-      "Sellador híbrido cerámico SiO2 en spray (4 a 6 meses de duración)",
-      "Descontaminado de rines, limpieza de tolvas y acondicionado de llantas",
+      "Sellador híbrido cerámico SiO2 (4 a 6 meses de duración)",
     ],
     precios: {
       auto: 3200,
@@ -254,12 +236,12 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
     categoria: "correccion",
     nombre: "Gloss & Shine",
     subtitulo: "Pulido a 1 Paso & Abrillantado",
-    descripcion: "Recupera la profundidad y vida del color eliminando entre 50% y 70% de microrrayones leves. Incluye sellador sintético.",
+    descripcion: "Recupera la profundidad y tono de la pintura eliminando microrrayones leves (50%-70%).",
     detalles: [
-      "Pre-lavado con cañón de espuma y descontaminado rápido de pintura",
+      "Pre-lavado con espuma activa y descontaminado rápido de pintura",
       "Pulido técnico a máquina de 1 paso para recuperar brillo profundo",
-      "Protección con sellador sintético / cera híbrida (hasta 3 meses)",
-      "Limpieza técnica de rines, tolvas y llantas con acabado negro alto brillo",
+      "Protección con sellador sintético cerámico (hasta 3 meses)",
+      "Limpieza de rines, tolvas y llantas en negro brillante",
     ],
     precios: {
       auto: 1890,
@@ -275,16 +257,14 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
     id: "diamond-protect",
     categoria: "mantenimiento",
     nombre: "Diamond Protect",
-    subtitulo: "Detallado de Precisión & Sellador Cerámico",
-    descripcion: "Tratamiento exterior con descontaminado químico y sellador cerámico de 3 meses, más acondicionamiento interior.",
+    subtitulo: "Sellador Cerámico de 3 Meses",
+    descripcion: "Tratamiento exterior con descontaminado químico y sellador cerámico, más limpieza interior.",
     badge: "Sellador Cerámico",
     detalles: [
-      "Pre-lavado con cañón de espuma y lavado técnico a presión",
-      "Descontaminado químico de pintura y sellador cerámico (3 meses)",
-      "Descontaminado profundo de rines y abrillantado de llantas (2-3 semanas)",
-      "Limpieza y acondicionamiento especializado de asientos de piel o vinil",
-      "Tratamiento restaurador UV en plásticos de tablero y consolas (hasta 1 año)",
-      "Aspirado profundo de habitáculo y cajuela",
+      "Lavado técnico a presión y descontaminado químico de pintura",
+      "Sellador cerámico exterior de alta hidrofobia (3 meses)",
+      "Limpieza y acondicionador UV en asientos de piel/vinil y plásticos",
+      "Descontaminado profundo de rines y abrillantado de llantas",
     ],
     precios: {
       auto: 1290,
@@ -298,15 +278,14 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
     id: "hydro-gloss",
     categoria: "mantenimiento",
     nombre: "Hydro Gloss",
-    subtitulo: "Brillo & Hidrofobia | Mantenimiento Express",
-    descripcion: "Sellador hidrofóbico y anti-polvo con duración de 30 días, pre-lavado con cañón de espuma y limpieza interior.",
+    subtitulo: "Brillo & Hidrofobia Express",
+    descripcion: "Sellador hidrofóbico anti-polvo de 30 días, cañón de espuma y aspirado interior.",
     badge: "Hidrofóbico",
     detalles: [
-      "Lavado técnico a presión con cañón de espuma",
+      "Lavado técnico a presión con cañón de espuma anti-rayones",
       "Sellador hidrofóbico y anti-polvo de carrocería (hasta 30 días)",
-      "Descontaminado ligero de rines y llantas de alto brillo",
-      "Limpieza rápida y acondicionador UV para asientos de piel/vinil",
-      "Acondicionado de plásticos interiores y aspirado de habitáculo",
+      "Acondicionador UV en plásticos y aspirado de habitáculo",
+      "Limpieza de rines y neumáticos de alto brillo",
     ],
     precios: {
       auto: 690,
@@ -320,16 +299,15 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
     id: "mantenimiento-core",
     categoria: "mantenimiento",
     nombre: "Mantenimiento Core",
-    subtitulo: "Mantenimiento Regular & Brillo Profundo",
-    descripcion: "Lavado técnico anti-rayones, shampoo con cera y sellado rápido de hasta 15 días con detallado de plásticos y rines.",
+    subtitulo: "Lavado Técnico & Cera Rápida",
+    descripcion: "Lavado técnico anti-rayones, shampoo con cera y sellado rápido de 15 días con detallado de plásticos.",
     zonaAviso: "Zákia y Zibatá (o combinando servicios)",
     badge: "Zákia / Zibatá",
     detalles: [
       "Pre-lavado y lavado técnico a presión con método anti-rayones",
-      "Lavado con shampoo con cera + aplicación de cera rápida (15 días)",
-      "Limpieza técnica de rines, tolvas y acabado alto brillo en llantas",
-      "Acondicionado efecto mate para tablero y puertas con filtro UV",
-      "Limpieza de cristales interiores/exteriores y aspirado completo",
+      "Lavado con shampoo con cera + aplicación de cera líquida (15 días)",
+      "Acondicionado mate para tablero y puertas con filtro UV",
+      "Limpieza de cristales y aspirado completo de habitáculo",
     ],
     precios: {
       auto: 420,
@@ -343,16 +321,15 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
     id: "essential-care",
     categoria: "mantenimiento",
     nombre: "Essential Care",
-    subtitulo: "Lavado Técnico pH Neutro & Aspirado",
-    descripcion: "Lavado seguro a presión con shampoo neutro, aspirado de cabina, plásticos mate y cera express básica.",
+    subtitulo: "Lavado Técnico pH Neutro",
+    descripcion: "Lavado seguro a presión con shampoo neutro, aspirado de cabina y plásticos mate.",
     zonaAviso: "Zákia y Zibatá (o combinando servicios)",
     badge: "Zákia / Zibatá",
     detalles: [
-      "Pre-lavado y lavado técnico a presión anti-rayones con shampoo neutro",
-      "Cera express para protección y brillo ligero de 1 semana",
-      "Limpieza de cara de rines y abrillantado de neumáticos",
-      "Acondicionado mate para plásticos interiores con filtro UV (15 días)",
+      "Pre-lavado y lavado técnico a presión anti-rayones con pH neutro",
+      "Acondicionado mate en plásticos interiores con filtro UV (15 días)",
       "Aspirado general de habitáculo y cajuela",
+      "Limpieza de cara de rines y abrillantado de neumáticos",
     ],
     precios: {
       auto: 380,
@@ -369,13 +346,13 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
     categoria: "especiales",
     nombre: "Restauración de Faros con Polímero",
     subtitulo: "Tratamiento Óptico con 6 Meses de Garantía",
-    descripcion: "Elimina por completo el tono amarillo, quemado y opacidad de los faros delanteros. Recupera hasta 40% más de iluminación nocturna mediante polímero de vapor.",
+    descripcion: "Elimina opacidad y tono amarillo mediante polímero de vapor óptico. Recupera hasta 40% más de luz nocturna.",
     badge: "6 Meses de Garantía",
     detalles: [
       "Lijado graduado técnico en ambos faros delanteros",
-      "Tratamiento restaurador con polímero de vapor óptico de alta transparencia",
+      "Polímero de vapor óptico que devuelve transparencia de agencia",
+      "Recupera hasta 40% más de iluminación y visibilidad nocturna",
       "Garantía escrita de 6 meses contra amarillamiento",
-      "Recupera la estética de agencia y máxima visibilidad nocturna",
     ],
     precios: {
       auto: 650,
@@ -389,15 +366,14 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
     id: "lavado-motor",
     categoria: "especiales",
     nombre: "Lavado de Motor a Vapor",
-    subtitulo: "Limpieza Segura a Vapor & Detallado Manual",
-    descripcion: "Desengrasado técnico con vapor a alta temperatura y brochas suaves. Disuelve grasa y mugre incrustada sin riesgo de cortocircuitos ni saturación de agua. Acondicionado térmico mate de plásticos y mangueras.",
+    subtitulo: "Limpieza Segura a Vapor Dieléctrico",
+    descripcion: "Desengrasado seguro a vapor a alta temperatura y brochas suaves, sin riesgo eléctrico.",
     badge: "Sin Riesgo Eléctrico",
     detalles: [
-      "Desengrasado técnico con vapor de alta temperatura",
-      "Limpieza minuciosa a detalle con brochas suaves en zonas difíciles",
-      "Acondicionado térmico mate de plásticos y mangueras",
-      "Protección dieléctrica segura sin chorros de agua a presión",
-      "Acabado seco al tacto (no pegajoso, no atrae polvo)",
+      "Vapor a alta temperatura para disolver grasa y aceite incrustado",
+      "Limpieza manual minuciosa con brochas suaves en zonas difíciles",
+      "Acondicionado térmico mate de plásticos y mangueras (no graso)",
+      "100% seguro para sensores y alternador (sin agua a presión)",
     ],
     precios: {
       auto: 550,
@@ -409,12 +385,12 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
   },
 ];
 
-// Complementos y Upgrades (Páginas 13-15 del catálogo + Cerámicos especializados de Edgar)
+// Complementos y Upgrades Curados (9 opciones de alto valor)
 export interface Complemento {
   id: string;
   nombre: string;
   descripcion: string;
-  categoriaTipo: "interior" | "cristales" | "exterior" | "condicion" | "ceramico";
+  categoriaTipo: "interior" | "cristales" | "exterior" | "ceramico";
   precioTipo: "fijo" | "variable";
   precioFijo?: number;
   preciosVariables?: Record<VehiculoId, number>;
@@ -425,7 +401,7 @@ export const COMPLEMENTOS_PLATINUM: Complemento[] = [
   {
     id: "motor-addon",
     nombre: "Lavado de Motor a Vapor Técnico",
-    descripcion: "Desengrasado seguro a vapor y acondicionado térmico mate de mangueras (sin riesgo eléctrico).",
+    descripcion: "Desengrasado seguro a vapor y acondicionado térmico mate de plásticos y mangueras (sin riesgo eléctrico).",
     categoriaTipo: "exterior",
     precioTipo: "variable",
     preciosVariables: {
@@ -481,7 +457,7 @@ export const COMPLEMENTOS_PLATINUM: Complemento[] = [
   {
     id: "ceramico-interior-integral",
     nombre: "Cerámico Interior Integral (Asientos + Plásticos)",
-    descripcion: "Blindaje cerámico completo de cabina: vestiduras y tablero protegidos contra derrames y rayos solares.",
+    descripcion: "Blindaje completo de cabina: vestiduras y tablero protegidos contra derrames y rayos solares.",
     categoriaTipo: "ceramico",
     precioTipo: "variable",
     preciosVariables: {
@@ -493,7 +469,7 @@ export const COMPLEMENTOS_PLATINUM: Complemento[] = [
     },
   },
 
-  // --- TRATAMIENTOS GENERALES Y CONDICIÓN ---
+  // --- TRATAMIENTOS DE CRISTALES Y DETALLE EXTERIOR/INTERIOR ---
   {
     id: "vision-clara",
     nombre: "Combo Visión Clara (Repelente de Lluvia)",
@@ -501,20 +477,6 @@ export const COMPLEMENTOS_PLATINUM: Complemento[] = [
     categoriaTipo: "cristales",
     precioTipo: "fijo",
     precioFijo: 350,
-  },
-  {
-    id: "pelo-mascota",
-    nombre: "Extracción Técnica de Pelo de Mascota",
-    descripcion: "Eliminación profunda de pelos incrustados en alfombras, vestiduras y pliegues.",
-    categoriaTipo: "condicion",
-    precioTipo: "variable",
-    preciosVariables: {
-      auto: 250,
-      suv2: 350,
-      pickup: 350,
-      suv3: 500,
-      van: 750,
-    },
   },
   {
     id: "ozono",
@@ -539,42 +501,6 @@ export const COMPLEMENTOS_PLATINUM: Complemento[] = [
     categoriaTipo: "exterior",
     precioTipo: "fijo",
     precioFijo: 200,
-  },
-  {
-    id: "lodo-critico",
-    nombre: "Remoción de Lodo Crítico / Tierra Severa",
-    descripcion: "Desincrustado técnico para camionetas o autos con acumulación densa de lodo.",
-    categoriaTipo: "condicion",
-    precioTipo: "variable",
-    preciosVariables: {
-      auto: 350,
-      suv2: 500,
-      pickup: 500,
-      suv3: 700,
-      van: 900,
-    },
-  },
-  {
-    id: "cuidado-piel",
-    nombre: "Humectación & Cuidado de Piel Premium",
-    descripcion: "Tratamiento con bálsamos hidratantes que previenen grietas y resequedad.",
-    categoriaTipo: "interior",
-    precioTipo: "variable",
-    preciosVariables: {
-      auto: 290,
-      suv2: 390,
-      pickup: 390,
-      suv3: 490,
-      van: 490,
-    },
-  },
-  {
-    id: "fragancia",
-    nombre: "Fragancia Premium de Larga Duración",
-    descripcion: "Aroma exclusivo de fijación extendida aplicado directamente en alfombras.",
-    categoriaTipo: "interior",
-    precioTipo: "fijo",
-    precioFijo: 160,
   },
 ];
 
@@ -1017,7 +943,7 @@ ${bloqueServicios}${bloqueComplementos}
             Cotiza tu Detallado en <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-500">30 Segundos</span>
           </h2>
           <p className="text-sm sm:text-base text-neutral-300 max-w-2xl mx-auto leading-relaxed">
-            Selecciona tu vehículo y suma libremente los tratamientos y complementos que necesites. Servicio a domicilio en todo Querétaro (El Campanario, Juriquilla, Zibatá, Zákia, Centro y zonas residenciales).
+            Selecciona tu vehículo y suma los tratamientos deseados. Servicio 100% a domicilio en todo Querétaro.
           </p>
         </div>
 
@@ -1267,7 +1193,7 @@ ${bloqueServicios}${bloqueComplementos}
                     )}
 
                     <ul className="space-y-2 pt-2 border-t border-white/10">
-                      {s.detalles.slice(0, 5).map((d, i) => (
+                      {s.detalles.map((d, i) => (
                         <li key={i} className="text-xs sm:text-sm text-neutral-200 flex items-start gap-2 leading-snug">
                           <span className={`w-1.5 h-1.5 rounded-full mt-1.5 shrink-0 ${isIncluded ? "bg-emerald-400" : "bg-amber-400"}`} />
                           <span>{d}</span>
@@ -1308,17 +1234,17 @@ ${bloqueServicios}${bloqueComplementos}
           </div>
         </div>
 
-        {/* PASO 3: Complementos & Upgrades (Incluye Cerámicos y Motor) */}
+        {/* PASO 3: Complementos & Upgrades (9 Opciones Curadas) */}
         <div className="space-y-4 pt-4">
           <div className="flex items-center justify-between">
             <h3 className="text-sm sm:text-base uppercase tracking-wider text-neutral-200 font-bold flex items-center gap-2.5">
               <span className="flex items-center justify-center w-6 h-6 rounded-full bg-amber-400 text-black text-xs font-black">3</span>
-              Complementos & Upgrades Cerámicos Opcionales
+              Complementos & Upgrades Opcionales
             </h3>
             <span className="text-xs sm:text-sm text-neutral-400 hidden sm:inline">Protección adicional y detalles específicos</span>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {COMPLEMENTOS_PLATINUM.map((comp) => {
               const isMotor = comp.id === "motor-addon";
               const isCeramicoInterior = comp.id === "ceramico-interior-integral";
