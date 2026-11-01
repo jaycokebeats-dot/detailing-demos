@@ -276,7 +276,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
       </div>
 
       {/* 2. HERO */}
-      <section id="hero" className={`relative min-h-[100dvh] lg:h-dvh ${isTheZone || isPlatinum ? "pt-16 sm:pt-20 lg:pt-24 pb-4 sm:pb-8 lg:pb-0" : "pt-24 pb-12 lg:pb-0"} px-4 sm:px-6 overflow-x-clip flex items-center`}>
+      <section id="hero" className={`relative min-h-[100dvh] lg:h-dvh ${isTheZone || isPlatinum ? "pt-16 sm:pt-20 lg:pt-24 pb-8 lg:pb-0" : "pt-24 pb-12 lg:pb-0"} px-4 sm:px-6 overflow-x-clip flex items-center`}>
         {(!isTheZone && biz.fotos && biz.fotos.length > 0) ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
@@ -300,16 +300,21 @@ export default function LandingMexico({ biz }: { biz: Business }) {
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/70" />
 
-        {/* Ambient Blue Halo for The Zone */}
-        {isTheZone && (
+        {/* Ambient Halo for The Zone and Platinum */}
+        {isTheZone ? (
           <div
             className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[480px] rounded-full pointer-events-none blur-[110px] opacity-40"
             style={{ background: "radial-gradient(circle, #0066ff 0%, #00d0ff 35%, transparent 70%)" }}
           />
-        )}
+        ) : isPlatinum ? (
+          <div
+            className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[480px] rounded-full pointer-events-none blur-[110px] opacity-35"
+            style={{ background: "radial-gradient(circle, rgba(245,158,11,0.45) 0%, rgba(217,119,6,0.2) 35%, transparent 70%)" }}
+          />
+        ) : null}
 
         <div className="relative z-10 max-w-6xl mx-auto w-full h-full flex items-center justify-center">
-          <div className={`max-w-3xl text-center ${isPlatinum ? "space-y-2 sm:space-y-3.5 py-2 sm:py-4 lg:py-6" : isTheZone ? "space-y-3 sm:space-y-4 py-3 sm:py-6 lg:py-8" : "space-y-5 py-12 lg:py-8"} mx-auto`}>
+          <div className={`max-w-3xl text-center ${isTheZone || isPlatinum ? "space-y-3 sm:space-y-4 py-3 sm:py-6 lg:py-8" : "space-y-5 py-12 lg:py-8"} mx-auto`}>
             {/* Logo oficial centrado para The Zone y Platinum */}
             {isTheZone ? (
               <div className="flex justify-center mb-2 sm:mb-4 -mt-2 sm:-mt-4">
@@ -320,28 +325,36 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                 />
               </div>
             ) : isPlatinum ? (
-              <div className="flex justify-center mb-1.5 sm:mb-3 -mt-1 sm:-mt-2">
+              <div className="flex justify-center mb-2 sm:mb-4 -mt-2 sm:-mt-4">
                 <img
                   src="/logo/platinum-logo.png"
                   alt={biz.nombre}
-                  className="h-14 sm:h-24 md:h-36 lg:h-44 w-auto object-contain drop-shadow-[0_10px_30px_rgba(255,255,255,0.22)] transition-transform hover:scale-105"
+                  className="h-32 sm:h-44 md:h-52 lg:h-60 w-auto object-contain drop-shadow-[0_20px_50px_rgba(255,255,255,0.25)] transition-transform hover:scale-105"
                 />
               </div>
             ) : null}
 
-            <div className={`inline-flex items-center gap-2 ${isTheZone || isPlatinum ? "px-2.5 py-0.5 sm:py-1 text-[10px] sm:text-xs" : "px-3 py-1.5 text-xs sm:text-sm"} rounded-full border ${isTheZone ? "border-sky-500/30 bg-sky-500/10 text-sky-200" : "border-white/10 bg-white/5 text-slate-300"} font-medium`}>
+            <div className={`inline-flex items-center gap-2 ${isTheZone || isPlatinum ? "px-2.5 py-1 text-[11px] sm:text-xs" : "px-3 py-1.5 text-xs sm:text-sm"} rounded-full border ${isTheZone ? "border-sky-500/30 bg-sky-500/10 text-sky-200" : isPlatinum ? "border-amber-400/30 bg-amber-400/10 text-amber-200" : "border-white/10 bg-white/5 text-slate-300"} font-medium`}>
               <span className={`flex size-1.5 sm:size-2 rounded-full shrink-0 animate-pulse ${isTheZone ? "bg-sky-400 shadow-[0_0_8px_rgba(56,189,248,0.9)]" : "bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]"}`} />
               <span>{biz.ciudad} (México)</span>
               <span className="text-slate-500">·</span>
               <span>Citas disponibles esta semana</span>
             </div>
 
-            <h1 className={`${isPlatinum ? "text-[18px] sm:text-[24px] md:text-[30px]" : isTheZone ? "text-[20px] sm:text-[26px] md:text-[30px]" : "text-[32px] sm:text-[42px]"} font-medium tracking-tight leading-tight text-balance`}>
+            <h1 className={`${isTheZone || isPlatinum ? "text-[20px] sm:text-[26px] md:text-[30px]" : "text-[32px] sm:text-[42px]"} font-medium tracking-tight leading-tight text-balance`}>
               {isTheZone ? (
                 <>
                   Estética y Detallado Automotriz en San Luis Potosí.
                   <br />
                   <span className="text-thezone">Protección y Brillo de Nivel Premium.</span>
+                </>
+              ) : isPlatinum ? (
+                <>
+                  Estética y Detallado Automotriz a Domicilio.
+                  <br />
+                  <span className="bg-gradient-to-r from-amber-300 via-amber-400 to-yellow-500 bg-clip-text text-transparent font-semibold">
+                    Detailing Profesional & Acabado de Exposición.
+                  </span>
                 </>
               ) : (
                 <>
@@ -352,38 +365,36 @@ export default function LandingMexico({ biz }: { biz: Business }) {
               )}
             </h1>
 
-            <p className={`${isPlatinum ? "text-[11px] sm:text-xs md:text-sm max-w-lg line-clamp-2 sm:line-clamp-none" : isTheZone ? "text-xs sm:text-sm max-w-xl line-clamp-2 sm:line-clamp-none" : "text-base md:text-lg max-w-2xl"} text-slate-300 font-light leading-relaxed mx-auto text-pretty`}>
+            <p className={`${isTheZone || isPlatinum ? "text-xs sm:text-sm max-w-xl line-clamp-2 sm:line-clamp-none" : "text-base md:text-lg max-w-2xl"} text-slate-300 font-light leading-relaxed mx-auto text-pretty`}>
               Corrección de pintura, recubrimiento cerámico y estética interior en {biz.ciudad}. Tratamiento artesanal sin microrrayones ni atajos.
             </p>
 
-            <div className={`flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 w-full sm:w-auto ${isPlatinum ? "pt-1 sm:pt-2" : isTheZone ? "pt-1 sm:pt-2" : "pt-2"}`}>
+            <div className={`flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-3 w-full sm:w-auto ${isTheZone || isPlatinum ? "pt-1 sm:pt-2" : "pt-2"}`}>
               {biz.slug === "platinum-detallado-automotriz-a-domicilio" ? (
                 <>
                   <a
                     href="#cotizador"
-                    className="w-full sm:w-auto px-5 sm:px-6 py-2 sm:py-2.5 min-h-[38px] sm:min-h-[42px] rounded-full text-xs font-bold uppercase tracking-wide bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-neutral-950 active:scale-95 transition-all flex items-center justify-center gap-1.5 shadow-md shadow-amber-500/20"
+                    className="w-full sm:w-auto px-6 sm:px-7 py-2.5 sm:py-3.5 min-h-[42px] sm:min-h-[44px] rounded-full text-xs sm:text-sm font-bold uppercase tracking-wide bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 hover:from-amber-300 hover:to-amber-500 text-neutral-950 active:scale-95 transition-all flex items-center justify-center gap-2 shadow-[0_8px_30px_rgba(245,158,11,0.35)]"
                   >
-                    <LuSparkles className="size-3.5 text-black" />
+                    <LuSparkles className="size-4 text-black" />
                     Cotizador Interactivo
                   </a>
-                  <div className="flex items-center gap-2 w-full sm:w-auto justify-center">
-                    <a
-                      href={waHref(biz, msgPresupuesto)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-gold flex-1 sm:flex-initial group px-4 sm:px-6 py-2 sm:py-2.5 min-h-[38px] sm:min-h-[42px] rounded-full text-[11px] sm:text-xs font-semibold uppercase tracking-wide active:scale-95 transition-all flex items-center justify-center gap-2"
-                    >
-                      <FaWhatsapp aria-hidden className="size-3.5" />
-                      WhatsApp
-                    </a>
-                    <a
-                      href="#servicios"
-                      className="btn-outline-gold flex-1 sm:flex-initial text-nowrap group px-4 sm:px-6 py-2 sm:py-2.5 min-h-[38px] sm:min-h-[42px] rounded-full text-[11px] sm:text-xs font-semibold uppercase active:scale-95 flex items-center justify-center gap-1.5"
-                    >
-                      <HiOutlineSparkles aria-hidden className="size-3.5" />
-                      Servicios
-                    </a>
-                  </div>
+                  <a
+                    href={waHref(biz, msgPresupuesto)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full sm:w-auto px-6 sm:px-7 py-2.5 sm:py-3.5 min-h-[42px] sm:min-h-[44px] rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wide active:scale-95 transition-all flex items-center justify-center gap-2.5 border border-white/20 bg-white/5 hover:bg-white/10 text-white shadow-sm"
+                  >
+                    <FaWhatsapp aria-hidden className="size-4 text-emerald-400" />
+                    Cotizar por WhatsApp
+                  </a>
+                  <a
+                    href="#servicios"
+                    className="w-full sm:w-auto px-6 sm:px-7 py-2.5 sm:py-3.5 min-h-[42px] sm:min-h-[44px] rounded-full text-xs sm:text-sm font-semibold uppercase active:scale-95 transition-all flex items-center justify-center gap-2.5 border border-white/10 bg-black/40 hover:bg-white/5 text-neutral-300"
+                  >
+                    <HiOutlineSparkles aria-hidden className="size-4 text-amber-400" />
+                    Ver Servicios
+                  </a>
                 </>
               ) : (
                 <>
@@ -407,10 +418,10 @@ export default function LandingMexico({ biz }: { biz: Business }) {
               )}
             </div>
 
-            <div className={`flex flex-wrap items-center justify-center ${isPlatinum ? "gap-x-3 sm:gap-x-5 gap-y-1 pt-1" : isTheZone ? "gap-x-5 gap-y-1.5 pt-1" : "gap-x-5 gap-y-1.5 pt-2"}`}>
+            <div className={`flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 ${isTheZone || isPlatinum ? "pt-1" : "pt-2"}`}>
               {stats.map((item) => (
-                <span key={item} className={`inline-flex items-center gap-1.5 ${isPlatinum ? "text-[10px] sm:text-xs" : isTheZone ? "text-[11px] sm:text-xs" : "text-xs sm:text-sm"} text-slate-300`}>
-                  <HiOutlineCheckCircle aria-hidden className={`size-3.5 sm:size-4 shrink-0 ${isTheZone ? "text-sky-400" : "text-gold"}`} />
+                <span key={item} className={`inline-flex items-center gap-1.5 ${isTheZone || isPlatinum ? "text-[11px] sm:text-xs" : "text-xs sm:text-sm"} text-slate-300`}>
+                  <HiOutlineCheckCircle aria-hidden className={`size-3.5 sm:size-4 shrink-0 ${isTheZone ? "text-sky-400" : isPlatinum ? "text-amber-400" : "text-gold"}`} />
                   {item}
                 </span>
               ))}
