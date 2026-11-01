@@ -55207,7 +55207,7 @@
         "descripcion": "Limpieza profunda con máquina de inyección-succión en vestiduras (tela o piel), sanitización por vapor en ductos de A/C, alfombras, cajuela y acondicionador UV en plásticos (duración hasta 1 año). Incluye lavado exterior de cortesía.",
         "ideal_si": "Desinfección profunda contra manchas, malos olores, bacterias y ácaros en toda la cabina.",
         "precio": "Desde $1,990 MXN",
-        "proteccion": "Inyección-Succión + Vapor + Plásticos UV 1 Año",
+        "proteccion": "Inyección-Succión + Vapor 140°C + Filtro UV",
         "antes_img": "/servicios/limpieza-tapizado-antes.png",
         "despues_img": "/servicios/limpieza-tapizado-despues.png",
         "modo_foto": "before_after"
@@ -55224,20 +55224,20 @@
       },
       {
         "nombre": "Lavado de Motor a Vapor Técnico",
-        "descripcion": "Desengrasado técnico con vapor de alta temperatura y brochas suaves. Disuelve grasa y aceite sin chorros de agua a presión ni riesgo de cortocircuitos. Acondicionado térmico mate seco al tacto.",
-        "ideal_si": "Seguridad eléctrica sin riesgo · Terminado mate seco al tacto · A domicilio",
+        "descripcion": "Desengrasado seguro con vapor a alta temperatura y brochas suaves. Disuelve grasa y suciedad acumulada sin riesgo de cortocircuitos. Acondicionado térmico mate de plásticos y mangueras.",
+        "ideal_si": "Limpieza y protección de vano motor segura, sin chorros de agua a presión ni acabados grasosos.",
         "precio": "Autos $550 | Camionetas $750 MXN",
-        "proteccion": "Vapor Alta Temperatura + Sin Riesgo Eléctrico",
+        "proteccion": "Vapor Dieléctrico + Acondicionado Térmico",
         "antes_img": "/before-after/motor-antes.jpg",
         "despues_img": "/before-after/motor-despues.jpg",
         "modo_foto": "before_after"
       },
       {
         "nombre": "Pack Express Sale (Pre-Venta)",
-        "descripcion": "Combo de alto impacto comercial: restauración óptica de ambos faros + lavado de vestiduras por inyección-succión + abrillantado exterior All-In-One a máquina.",
-        "ideal_si": "Incrementar el valor percibido del auto y concretar una venta más rápida y al mejor precio.",
+        "descripcion": "Diseñado para incrementar el valor de reventa de tu auto. Incluye restauración completa de faros, limpieza interior express y abrillantado exterior con sellador de alto brillo.",
+        "ideal_si": "Maximizar el atractivo visual y el valor comercial de tu vehículo antes de publicarlo o entregarlo.",
         "precio": "Desde $2,490 MXN",
-        "proteccion": "Faros + Asientos + Abrillantado Express",
+        "proteccion": "Faros Nuevos + Interiores + Brillo Express",
         "antes_img": "/before-after/interior-antes.jpg",
         "despues_img": "/before-after/interior-despues.jpg",
         "modo_foto": "before_after"
