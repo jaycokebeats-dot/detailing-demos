@@ -258,7 +258,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
               </a>
             )}
             <div className="hidden md:flex items-center gap-7 text-xs uppercase tracking-widest text-slate-400">
-              <a href="#servicios" className="hover:text-white transition-colors">Servicios</a>
+              <a href="#servicios" className="hover:text-white transition-colors">{isPlatinum ? "Resultados" : "Servicios"}</a>
               <a href="#garantia" className="hover:text-white transition-colors">Compromiso</a>
               <a href="#nosotros" className="hover:text-white transition-colors">Nosotros</a>
               <a href="#ubicacion" className="hover:text-white transition-colors">Ubicación</a>
@@ -393,7 +393,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                     className="w-full sm:w-auto px-6 sm:px-7 py-2.5 sm:py-3.5 min-h-[42px] sm:min-h-[44px] rounded-full text-xs sm:text-sm font-semibold uppercase active:scale-95 transition-all flex items-center justify-center gap-2.5 border border-white/10 bg-black/40 hover:bg-white/5 text-neutral-300"
                   >
                     <HiOutlineSparkles aria-hidden className="size-4 text-amber-400" />
-                    Ver Servicios
+                    Ver Resultados (Antes y Después)
                   </a>
                 </>
               ) : (
@@ -479,10 +479,16 @@ export default function LandingMexico({ biz }: { biz: Business }) {
       <section id="servicios" className="px-5 sm:px-8 py-24 bg-black">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-14 max-w-2xl mx-auto">
-            <span className={`${badgeClass} mb-5`}>Nuestros servicios</span>
-            <h2 className={`text-3xl md:text-5xl font-medium ${isTheZone ? "text-thezone" : "text-gold"} mb-4`}>Servicios & Tarifas en {biz.ciudad}</h2>
+            <span className={`${badgeClass} mb-5`}>
+              {isPlatinum ? "Resultados Reales" : "Nuestros servicios"}
+            </span>
+            <h2 className={`text-3xl md:text-5xl font-medium ${isTheZone ? "text-thezone" : "text-gold"} mb-4`}>
+              {isPlatinum ? "Transformaciones Reales en Querétaro" : `Servicios & Tarifas en ${biz.ciudad}`}
+            </h2>
             <p className="text-slate-400">
-              Desliza sobre cada trabajo para comparar los resultados reales. Estética de motor, tratamiento cerámico, protección PPF, vestiduras y más.
+              {isPlatinum
+                ? "Desliza el comparador interactivo para comprobar el acabado de nuestros tratamientos a domicilio: pintura espejo, faros restaurados, vapor en interiores y motor."
+                : "Desliza sobre cada trabajo para comparar los resultados reales. Estética de motor, tratamiento cerámico, protección PPF, vestiduras y más."}
             </p>
           </div>
 
@@ -544,7 +550,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                       <h3 className="font-bold text-lg text-white leading-tight" style={{ textTransform: "none", fontFamily: "inherit" }}>
                         {s.nombre}
                       </h3>
-                      <p className={`text-base font-extrabold ${isTheZone ? "text-thezone" : "text-gold"}`}>{s.precio}</p>
+                      {!isPlatinum && <p className={`text-base font-extrabold ${isTheZone ? "text-thezone" : "text-gold"}`}>{s.precio}</p>}
                       <p className="text-xs text-slate-300 leading-relaxed">{s.descripcion}</p>
 
                       {s.ideal_si && (
@@ -555,7 +561,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                     </div>
 
                     {biz.slug === "platinum-detallado-automotriz-a-domicilio" ? (
-                      <div className="flex items-center gap-2 mt-4">
+                      <div className="mt-4">
                         <a
                           href="#cotizador"
                           onClick={() => {
@@ -575,19 +581,10 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                               window.dispatchEvent(new CustomEvent("platinum:cotizar", { detail: { servicioId: targetId } }));
                             }
                           }}
-                          className="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-amber-400 text-black hover:bg-amber-300 transition shadow-sm"
+                          className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wider bg-amber-400 hover:bg-amber-300 text-black transition-all shadow-[0_4px_15px_rgba(245,158,11,0.2)] hover:scale-[1.02] active:scale-[0.99] cursor-pointer"
                         >
                           <LuSparkles className="size-3.5 text-black" />
-                          Cotizar Tratamiento
-                        </a>
-                        <a
-                          href={waHref(biz, reservaMsg)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center p-2.5 rounded-full border border-white/20 text-neutral-300 hover:text-white hover:border-white/40 transition shrink-0"
-                          title="Preguntar por WhatsApp"
-                        >
-                          <FaWhatsapp aria-hidden className="size-4 text-emerald-400" />
+                          <span>Cotizar este resultado</span>
                         </a>
                       </div>
                     ) : (
