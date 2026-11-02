@@ -13,6 +13,8 @@ import {
   LuInfo,
   LuTrash2,
   LuMapPin,
+  LuChevronDown,
+  LuChevronUp,
   LuX
 } from "react-icons/lu";
 import type { Business } from "@/data/business-helpers";
@@ -626,6 +628,9 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
   const [complementosSeleccionados, setComplementosSeleccionados] = useState<string[]>([]);
   const [notificacion, setNotificacion] = useState<NotificacionState | null>(null);
 
+  // Acordeón desplegable para adicionales (Paso 3)
+  const [isComplementosOpen, setIsComplementosOpen] = useState(false);
+
   // Zona / Fraccionamiento del cliente en Querétaro
   const [zonaCliente, setZonaCliente] = useState("");
   const [zonaError, setZonaError] = useState(false);
@@ -836,6 +841,7 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
         } else {
           const foundAddon = COMPLEMENTOS_PLATINUM.find((c) => c.id === servicioId);
           if (foundAddon) {
+            setIsComplementosOpen(true);
             setComplementosSeleccionados((prev) => prev.includes(foundAddon.id) ? prev : [...prev, foundAddon.id]);
             const el = document.getElementById("paso-3-complementos");
             if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -891,17 +897,20 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
 
 
 
+  // Complementos filtrados sin duplicaciones con combos o servicios equivalentes
+  const complementosSinDuplicados = useMemo(() => {
+    return complementosSeleccionados.filter((id) => {
+      if (id === "faros-addon" && serviciosSeleccionadosIds.includes("express-sale")) return false;
+      if (id === "ceramico-interior-integral" && serviciosSeleccionadosIds.includes("ceramico-interior-integral-servicio")) return false;
+      return true;
+    });
+  }, [complementosSeleccionados, serviciosSeleccionadosIds]);
+
   // Total acumulado sin duplicaciones
   const totalEstimado = useMemo(() => {
     const totalServicios = serviciosSeleccionados.reduce((acc, s) => {
       return acc + getPrecioServicio(s);
     }, 0);
-
-    const complementosSinDuplicados = complementosSeleccionados.filter((id) => {
-      if (id === "faros-addon" && serviciosSeleccionadosIds.includes("express-sale")) return false;
-      if (id === "ceramico-interior-integral" && serviciosSeleccionadosIds.includes("ceramico-interior-integral-servicio")) return false;
-      return true;
-    });
 
     const totalComplementos = complementosSinDuplicados.reduce((acc, id) => {
       const c = COMPLEMENTOS_PLATINUM.find((item) => item.id === id);
@@ -909,7 +918,7 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
     }, 0);
 
     return totalServicios + totalComplementos;
-  }, [serviciosSeleccionados, complementosSeleccionados, serviciosSeleccionadosIds, vehiculoId]);
+  }, [serviciosSeleccionados, complementosSinDuplicados, vehiculoId]);
 
   // Mensaje estructurado para WhatsApp
   const whatsAppUrl = useMemo(() => {
@@ -926,12 +935,6 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
         return `• ${s.nombre} ($${getPrecioServicio(s).toLocaleString("es-MX")} MXN)${notaExtra}`;
       })
       .join("\n");
-
-    const complementosSinDuplicados = complementosSeleccionados.filter((id) => {
-      if (id === "faros-addon" && serviciosSeleccionadosIds.includes("express-sale")) return false;
-      if (id === "ceramico-interior-integral" && serviciosSeleccionadosIds.includes("ceramico-interior-integral-servicio")) return false;
-      return true;
-    });
 
     const lineasComplementos = complementosSinDuplicados
       .map((id) => {
@@ -962,7 +965,7 @@ ${bloqueServicios}${bloqueComplementos}
 ¿Qué fechas y horarios tienen disponibles para agendar la visita en mi domicilio?`;
 
     return `https://wa.me/${waNumber}?text=${encodeURIComponent(mensaje)}`;
-  }, [biz, vehiculoActual, serviciosSeleccionados, complementosSeleccionados, serviciosSeleccionadosIds, totalEstimado, vehiculoId, zonaCliente]);
+  }, [biz, vehiculoActual, serviciosSeleccionados, complementosSinDuplicados, serviciosSeleccionadosIds, totalEstimado, vehiculoId, zonaCliente]);
 
   const handlePaso4WhatsApp = () => {
     if (totalEstimado > 0 && !zonaCliente.trim()) {
@@ -1331,73 +1334,122 @@ ${bloqueServicios}${bloqueComplementos}
           </div>
         </div>
 
-        {/* PASO 3: Complementos & Upgrades (9 Opciones Curadas) */}
-        <div id="paso-3-complementos" className="space-y-4 pt-4">
-          <div className="flex items-center justify-between">
-            <h3 className="text-sm sm:text-base uppercase tracking-wider text-neutral-200 font-bold flex items-center gap-2.5">
-              <span className="flex items-center justify-center w-6 h-6 rounded-full bg-amber-400 text-black text-xs font-black">3</span>
-              Complementos & Upgrades Opcionales
-            </h3>
-            <span className="text-xs sm:text-sm text-neutral-400 hidden sm:inline">Protección adicional y detalles específicos</span>
+        {/* PASO 3: Complementos & Upgrades Opcionales (Pestaña Desplegable) */}
+        <div id="paso-3-complementos" className="space-y-4 pt-2">
+          
+          {/* Barra de cabecera / Disparador del Acordeón */}
+          <div 
+            onClick={() => setIsComplementosOpen(!isComplementosOpen)}
+            className="w-full bg-[#121216] hover:bg-[#16161c] border border-white/10 hover:border-amber-400/40 p-4 sm:p-5 rounded-2xl transition-all cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-lg group"
+          >
+            <div className="flex items-start sm:items-center gap-3">
+              <span className="flex items-center justify-center w-7 h-7 rounded-full bg-amber-400 text-black text-xs font-black shrink-0 mt-0.5 sm:mt-0 shadow-sm">
+                3
+              </span>
+              <div>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <h3 className="text-sm sm:text-base uppercase tracking-wider text-white font-bold group-hover:text-amber-300 transition">
+                    Adicionales & Upgrades Opcionales
+                  </h3>
+                  <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-neutral-300">
+                    {COMPLEMENTOS_PLATINUM.length} disponibles
+                  </span>
+                  {complementosSinDuplicados.length > 0 && (
+                    <span className="text-[11px] font-black px-2.5 py-0.5 rounded-full bg-amber-400 text-black shadow-sm">
+                      {complementosSinDuplicados.length} añadido{complementosSinDuplicados.length > 1 ? "s" : ""}
+                    </span>
+                  )}
+                </div>
+                <p className="text-xs text-neutral-400 mt-1">
+                  Faros con polímero, motor a vapor, protección de asientos, cerámicos en rines y más.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-end gap-2.5 shrink-0 self-end sm:self-center">
+              <span className="text-xs font-bold text-amber-400 group-hover:underline">
+                {isComplementosOpen ? "Ocultar adicionales" : "Ver adicionales"}
+              </span>
+              <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-neutral-300 group-hover:text-amber-400 group-hover:border-amber-400/40 transition">
+                {isComplementosOpen ? <LuChevronUp className="text-base" /> : <LuChevronDown className="text-base" />}
+              </div>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {complementosOrdenados.map((comp) => {
-              const isFaros = comp.id === "faros-addon";
-              const isFarosCubierto = isFaros && hasExpressSale;
-              const isCeramicoInterior = comp.id === "ceramico-interior-integral";
-              const seleccionado = isFarosCubierto
-                ? true
-                : isCeramicoInterior
-                ? (complementosSeleccionados.includes("ceramico-interior-integral") || serviciosSeleccionadosIds.includes("ceramico-interior-integral-servicio"))
-                : complementosSeleccionados.includes(comp.id);
+          {/* Contenido Desplegable */}
+          {isComplementosOpen && (
+            <div className="space-y-4 pt-1">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {complementosOrdenados.map((comp) => {
+                  const isFaros = comp.id === "faros-addon";
+                  const isFarosCubierto = isFaros && hasExpressSale;
+                  const isCeramicoInterior = comp.id === "ceramico-interior-integral";
+                  const seleccionado = isFarosCubierto
+                    ? true
+                    : isCeramicoInterior
+                    ? (complementosSeleccionados.includes("ceramico-interior-integral") || serviciosSeleccionadosIds.includes("ceramico-interior-integral-servicio"))
+                    : complementosSeleccionados.includes(comp.id);
 
-              const precio = getPrecioComplemento(comp);
+                  const precio = getPrecioComplemento(comp);
 
-              return (
-                <div
-                  key={comp.id}
-                  onClick={() => toggleComplemento(comp.id)}
-                  className={`p-4 sm:p-5 rounded-2xl border cursor-pointer transition-all flex flex-col justify-between ${
-                    seleccionado
-                      ? "bg-amber-400/15 border-amber-400/70 text-white shadow-md ring-1 ring-amber-400/40"
-                      : "bg-[#111114] border-white/10 hover:border-white/25 hover:bg-[#16161a] text-neutral-200"
-                  }`}
-                >
-                  <div>
-                    <div className="flex items-start justify-between gap-2.5">
-                      <p className="text-sm sm:text-base font-bold text-white leading-tight">
-                        {comp.nombre}
-                      </p>
-                      <div className={`w-5 h-5 rounded-md border flex items-center justify-center shrink-0 mt-0.5 ${
+                  return (
+                    <div
+                      key={comp.id}
+                      onClick={() => toggleComplemento(comp.id)}
+                      className={`p-4 sm:p-5 rounded-2xl border cursor-pointer transition-all flex flex-col justify-between ${
                         seleccionado
-                          ? "bg-amber-400 border-amber-400 text-black"
-                          : "border-neutral-500 bg-neutral-900"
-                      }`}>
-                        {seleccionado ? <LuCheck className="text-xs stroke-[3]" /> : <LuPlus className="text-xs text-neutral-400" />}
+                          ? "bg-amber-400/15 border-amber-400/70 text-white shadow-md ring-1 ring-amber-400/40"
+                          : "bg-[#111114] border-white/10 hover:border-white/25 hover:bg-[#16161a] text-neutral-200"
+                      }`}
+                    >
+                      <div>
+                        <div className="flex items-start justify-between gap-2.5">
+                          <p className="text-sm sm:text-base font-bold text-white leading-tight">
+                            {comp.nombre}
+                          </p>
+                          <div className={`w-5 h-5 rounded-md border flex items-center justify-center shrink-0 mt-0.5 ${
+                            seleccionado
+                              ? "bg-amber-400 border-amber-400 text-black"
+                              : "border-neutral-500 bg-neutral-900"
+                          }`}>
+                            {seleccionado ? <LuCheck className="text-xs stroke-[3]" /> : <LuPlus className="text-xs text-neutral-400" />}
+                          </div>
+                        </div>
+                        <p className="text-xs sm:text-sm text-neutral-300 leading-snug mt-2 line-clamp-2">
+                          {comp.descripcion}
+                        </p>
+                      </div>
+
+                      <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
+                        <span className={`text-xs uppercase tracking-wider font-semibold ${
+                          isFarosCubierto ? "text-emerald-400" : "text-neutral-400"
+                        }`}>
+                          {isFarosCubierto ? "✨ Ya Incluido" : comp.categoriaTipo === "ceramico" ? "Upgrade" : "Adicional"}
+                        </span>
+                        <span className={`text-sm sm:text-base font-extrabold ${
+                          isFarosCubierto ? "text-emerald-400 text-xs sm:text-sm" : "text-amber-400"
+                        }`}>
+                          {isFarosCubierto ? "Incluido en Pack Express" : `+$${precio.toLocaleString("es-MX")} MXN`}
+                        </span>
                       </div>
                     </div>
-                    <p className="text-xs sm:text-sm text-neutral-300 leading-snug mt-2 line-clamp-2">
-                      {comp.descripcion}
-                    </p>
-                  </div>
+                  );
+                })}
+              </div>
 
-                  <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
-                    <span className={`text-xs uppercase tracking-wider font-semibold ${
-                      isFarosCubierto ? "text-emerald-400" : "text-neutral-400"
-                    }`}>
-                      {isFarosCubierto ? "✨ Ya Incluido" : comp.categoriaTipo === "ceramico" ? "Upgrade" : "Adicional"}
-                    </span>
-                    <span className={`text-sm sm:text-base font-extrabold ${
-                      isFarosCubierto ? "text-emerald-400 text-xs sm:text-sm" : "text-amber-400"
-                    }`}>
-                      {isFarosCubierto ? "Incluido en Pack Express" : `+$${precio.toLocaleString("es-MX")} MXN`}
-                    </span>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+              {/* Botón sutil al pie para replegar si ya terminó */}
+              <div className="flex justify-center pt-2">
+                <button
+                  type="button"
+                  onClick={() => setIsComplementosOpen(false)}
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold text-neutral-400 hover:text-white bg-white/5 border border-white/10 hover:border-white/20 transition cursor-pointer"
+                >
+                  <LuChevronUp className="text-sm" />
+                  <span>Cerrar pestaña de adicionales</span>
+                </button>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* PASO 4: Resumen de Cotización & Botón a WhatsApp */}
