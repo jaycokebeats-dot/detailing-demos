@@ -700,7 +700,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
           <div>
             <span className={`${badgeClass} mb-5`}>Ubicación</span>
             <h2 className={`text-3xl md:text-4xl font-medium ${isTheZone ? "text-thezone" : "text-gold"} mb-3`}>Dónde Encontrarnos</h2>
-            <p className="text-slate-400 text-sm">Visítanos en nuestro estudio o agenda tu cita previa</p>
+            <p className="text-slate-400 text-sm">{isPlatinum ? "Servicio profesional 100% a domicilio en todo Querétaro" : "Visítanos en nuestro estudio o agenda tu cita previa"}</p>
           </div>
 
           <div className="glass-panel rounded-[28px] p-8 md:p-10 border border-white/10 text-left max-w-2xl mx-auto space-y-6" style={{ background: "#101010" }}>
@@ -767,7 +767,9 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                 Agenda tu Cita o Asesoría Sin Compromiso
               </p>
               <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-light">
-                Puedes contactarnos por WhatsApp o visitarnos en nuestras instalaciones en {biz.ciudad}. Con gusto te orientamos sobre las mejores opciones para tu vehículo.
+                {isPlatinum
+                  ? `Puedes contactarnos por WhatsApp para agendar tu servicio a domicilio en ${biz.ciudad}. Con gusto te orientamos sobre las mejores opciones para tu vehículo.`
+                  : `Puedes contactarnos por WhatsApp o visitarnos en nuestras instalaciones en ${biz.ciudad}. Con gusto te orientamos sobre las mejores opciones para tu vehículo.`}
               </p>
             </div>
           </div>
