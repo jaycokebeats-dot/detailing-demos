@@ -303,8 +303,7 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
     nombre: "Mantenimiento Core",
     subtitulo: "Lavado Técnico & Cera Rápida",
     descripcion: "Lavado técnico anti-rayones, shampoo con cera y sellado rápido de 15 días con detallado de plásticos.",
-    zonaAviso: "Zákia y Zibatá (o combinando servicios)",
-    badge: "Zákia / Zibatá",
+    badge: "Cera Rápida",
     detalles: [
       "Pre-lavado y lavado técnico a presión con método anti-rayones",
       "Lavado con shampoo con cera + aplicación de cera líquida (15 días)",
@@ -325,8 +324,7 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
     nombre: "Essential Care",
     subtitulo: "Lavado Técnico pH Neutro",
     descripcion: "Lavado seguro a presión con shampoo neutro, aspirado de cabina y plásticos mate.",
-    zonaAviso: "Zákia y Zibatá (o combinando servicios)",
-    badge: "Zákia / Zibatá",
+    badge: "Mantenimiento Regular",
     detalles: [
       "Pre-lavado y lavado técnico a presión anti-rayones con pH neutro",
       "Acondicionado mate en plásticos interiores con filtro UV (15 días)",
@@ -891,10 +889,7 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
     [serviciosSeleccionadosIds]
   );
 
-  // Saber si se eligió algún servicio de mantenimiento Nivel 1 (Zákia / Zibatá)
-  const tieneServicioNivel1 = useMemo(() => {
-    return serviciosSeleccionados.some((s) => Boolean(s.zonaAviso));
-  }, [serviciosSeleccionados]);
+
 
   // Total acumulado sin duplicaciones
   const totalEstimado = useMemo(() => {
@@ -1256,12 +1251,7 @@ ${bloqueServicios}${bloqueComplementos}
                         <p className="text-xs sm:text-sm text-amber-400 font-medium mt-0.5">
                           {s.subtitulo}
                         </p>
-                        {s.zonaAviso && (
-                          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-amber-400/10 border border-amber-400/30 text-[11px] font-semibold text-amber-300 mt-2">
-                            <LuMapPin className="text-xs text-amber-400 shrink-0" />
-                            <span>{s.zonaAviso}</span>
-                          </div>
-                        )}
+
                       </div>
 
                       <div className={`w-6 h-6 rounded-lg border flex items-center justify-center shrink-0 mt-1 transition ${
@@ -1517,15 +1507,7 @@ ${bloqueServicios}${bloqueComplementos}
                 )}
               </div>
 
-              {/* Aviso amigable de cobertura si eligieron lavados express Nivel 1 */}
-              {tieneServicioNivel1 && (
-                <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/25 flex items-start gap-3 text-xs sm:text-sm text-amber-200/95">
-                  <LuMapPin className="text-amber-400 text-base shrink-0 mt-0.5" />
-                  <div className="leading-relaxed">
-                    <span className="font-bold text-amber-300">Cobertura a domicilio:</span> Los paquetes de mantenimiento express aplican en <strong>Zákia y Zibatá</strong> (o para el resto de Querétaro al combinarse con otros tratamientos o alcanzando el mínimo a domicilio de $690 MXN).
-                  </div>
-                </div>
-              )}
+
 
               <p className="text-xs sm:text-sm text-neutral-400 flex items-center gap-2 pt-1">
                 <LuInfo className="text-amber-400 text-sm shrink-0" />
