@@ -15,7 +15,9 @@ import {
   LuMapPin,
   LuChevronDown,
   LuChevronUp,
-  LuX
+  LuX,
+  LuPlay,
+  LuFilm
 } from "react-icons/lu";
 import type { Business } from "@/data/business-helpers";
 
@@ -70,6 +72,12 @@ export const TIPOS_VEHICULO: TipoVehiculo[] = [
 
 export type CategoriaId = "mantenimiento" | "brillo-proteccion" | "interiores" | "combos" | "correccion";
 
+export interface VideoDemostracion {
+  url: string;
+  poster?: string;
+  titulo?: string;
+}
+
 export interface ServicioBase {
   id: string;
   categoria: CategoriaId;
@@ -80,6 +88,7 @@ export interface ServicioBase {
   zonaAviso?: string;
   detalles: string[];
   precios: Record<VehiculoId, number | null>;
+  videos?: VideoDemostracion[];
 }
 
 // Catálogo Oficial Resumido y Optimizado de Platinum
@@ -105,6 +114,18 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
       suv3: 5390,
       van: 6990,
     },
+    videos: [
+      {
+        url: "/videos/cotizador/platinum-full-detail-1.mp4",
+        poster: "/videos/cotizador/platinum-full-detail-1-thumb.jpg",
+        titulo: "Detallado Interior & Exterior (Clip 1)",
+      },
+      {
+        url: "/videos/cotizador/platinum-full-detail-2.mp4",
+        poster: "/videos/cotizador/platinum-full-detail-2-thumb.jpg",
+        titulo: "Resultado & Brillo Espejo (Clip 2)",
+      },
+    ],
   },
   {
     id: "express-sale",
@@ -149,6 +170,23 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
       suv3: 2790,
       van: 3690,
     },
+    videos: [
+      {
+        url: "/videos/cotizador/full-interior-1.mp4",
+        poster: "/videos/cotizador/full-interior-1-thumb.jpg",
+        titulo: "Desinfección Inicial a Vapor (Clip 1)",
+      },
+      {
+        url: "/videos/cotizador/full-interior-2.mp4",
+        poster: "/videos/cotizador/full-interior-2-thumb.jpg",
+        titulo: "Inyección-Succión en Vestiduras (Clip 2)",
+      },
+      {
+        url: "/videos/cotizador/full-interior-3.mp4",
+        poster: "/videos/cotizador/full-interior-3-thumb.jpg",
+        titulo: "Acondicionado Mate de Cabina (Clip 3)",
+      },
+    ],
   },
   {
     id: "premier-pro",
@@ -254,6 +292,13 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
       suv3: 2590,
       van: 3400,
     },
+    videos: [
+      {
+        url: "/videos/cotizador/gloss-shine.mp4",
+        poster: "/videos/cotizador/gloss-shine-thumb.jpg",
+        titulo: "Pulido Técnico & Abrillantado Espejo",
+      },
+    ],
   },
 
   // --- MANTENIMIENTO & ESTÉTICA ---
@@ -277,6 +322,18 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
       suv3: 2090,
       van: 2890,
     },
+    videos: [
+      {
+        url: "/videos/cotizador/diamond-protect-1.mp4",
+        poster: "/videos/cotizador/diamond-protect-1-thumb.jpg",
+        titulo: "Descontaminado & Sellador Cerámico (Parte 1)",
+      },
+      {
+        url: "/videos/cotizador/diamond-protect-2.mp4",
+        poster: "/videos/cotizador/diamond-protect-2-thumb.jpg",
+        titulo: "Repelencia & Brillo Espejo (Parte 2)",
+      },
+    ],
   },
   {
     id: "hydro-gloss",
@@ -298,6 +355,13 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
       suv3: 1090,
       van: 1490,
     },
+    videos: [
+      {
+        url: "/videos/cotizador/hydro-gloss.mp4",
+        poster: "/videos/cotizador/hydro-gloss-thumb.jpg",
+        titulo: "Sellador Hidrofóbico & Brillo Rápido",
+      },
+    ],
   },
   {
     id: "mantenimiento-core",
@@ -340,6 +404,13 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
       suv3: 500,
       van: 690,
     },
+    videos: [
+      {
+        url: "/videos/cotizador/essential-care.mp4",
+        poster: "/videos/cotizador/essential-care-thumb.jpg",
+        titulo: "Lavado Técnico pH Neutro & Detallado",
+      },
+    ],
   },
 
 
@@ -630,6 +701,8 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
 
   // Acordeón desplegable para adicionales (Paso 3)
   const [isComplementosOpen, setIsComplementosOpen] = useState(false);
+  const [servicioModalVideo, setServicioModalVideo] = useState<ServicioBase | null>(null);
+  const [videoActivoIndex, setVideoActivoIndex] = useState(0);
 
   // Zona / Fraccionamiento del cliente en Querétaro
   const [zonaCliente, setZonaCliente] = useState("");
@@ -697,6 +770,17 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
+
+  // Cerrar modal de video con tecla ESC
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setServicioModalVideo(null);
+    };
+    if (servicioModalVideo) {
+      window.addEventListener("keydown", handleKeyDown);
+      return () => window.removeEventListener("keydown", handleKeyDown);
+    }
+  }, [servicioModalVideo]);
 
   // Auto-ocultar notificación dinámica tras 7 segundos
   useEffect(() => {
@@ -1341,6 +1425,31 @@ ${bloqueServicios}${bloqueComplementos}
                         </li>
                       ))}
                     </ul>
+
+                    {/* Botón Ver Video del Resultado */}
+                    {s.videos && s.videos.length > 0 && (
+                      <div className="pt-3">
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setServicioModalVideo(s);
+                            setVideoActivoIndex(0);
+                          }}
+                          className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-gradient-to-r from-amber-400/15 to-amber-500/10 hover:from-amber-400/25 hover:to-amber-500/20 border border-amber-400/40 hover:border-amber-400/70 text-amber-300 hover:text-white text-xs font-bold transition-all group/btn cursor-pointer shadow-sm active:scale-95"
+                        >
+                          <span className="w-5 h-5 rounded-full bg-amber-400 text-black flex items-center justify-center shrink-0 group-hover/btn:scale-110 transition-transform shadow-sm">
+                            <LuPlay className="w-2.5 h-2.5 fill-current ml-0.5" />
+                          </span>
+                          <span>Ver resultado en video</span>
+                          {s.videos.length > 1 && (
+                            <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-black/60 text-amber-300 border border-amber-400/30 font-semibold">
+                              {s.videos.length} videos
+                            </span>
+                          )}
+                        </button>
+                      </div>
+                    )}
                   </div>
 
                   <div className="pt-5 mt-5 border-t border-white/10 flex items-baseline justify-between">
@@ -1847,6 +1956,129 @@ ${bloqueServicios}${bloqueComplementos}
             </div>
           </div>
         </aside>
+      )}
+
+      {/* MODAL DE VIDEO DEL RESULTADO (Carga bajo demanda, 0 bytes en carga inicial) */}
+      {servicioModalVideo && (
+        <div 
+          onClick={() => setServicioModalVideo(null)}
+          className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6"
+        >
+          <div 
+            onClick={(e) => e.stopPropagation()}
+            className="relative w-full max-w-md bg-[#121217] border border-white/15 rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[92vh] animate-in fade-in zoom-in-95 duration-200"
+          >
+            {/* Cabecera del Modal */}
+            <div className="p-4 sm:p-5 border-b border-white/10 flex items-start justify-between gap-3 bg-gradient-to-r from-[#16161c] to-[#121217]">
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-400/15 border border-amber-400/30 text-amber-300 text-[10px] uppercase font-bold tracking-wider">
+                    <LuFilm className="text-xs" />
+                    Resultado Real
+                  </span>
+                  {servicioModalVideo.videos && servicioModalVideo.videos.length > 1 && (
+                    <span className="text-[11px] text-neutral-400 font-medium">
+                      Video {videoActivoIndex + 1} de {servicioModalVideo.videos.length}
+                    </span>
+                  )}
+                </div>
+                <h3 className="text-base sm:text-lg font-bold text-white tracking-tight mt-1">
+                  {servicioModalVideo.nombre}
+                </h3>
+                <p className="text-xs text-amber-400/90 font-medium">
+                  {servicioModalVideo.subtitulo}
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setServicioModalVideo(null)}
+                className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 flex items-center justify-center text-neutral-300 hover:text-white transition cursor-pointer shrink-0"
+                aria-label="Cerrar video"
+              >
+                <LuX className="text-base" />
+              </button>
+            </div>
+
+            {/* Pestañas de videos múltiples si tiene más de 1 video (ordenados) */}
+            {servicioModalVideo.videos && servicioModalVideo.videos.length > 1 && (
+              <div className="px-4 py-2.5 border-b border-white/10 bg-black/40 flex items-center gap-2 overflow-x-auto no-scrollbar">
+                {servicioModalVideo.videos.map((vid, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => setVideoActivoIndex(idx)}
+                    className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer flex items-center gap-1.5 ${
+                      videoActivoIndex === idx
+                        ? "bg-amber-400 text-black shadow-sm font-black"
+                        : "bg-white/5 text-neutral-300 hover:text-white border border-white/10 hover:border-white/20"
+                    }`}
+                  >
+                    <LuPlay className={`text-[10px] ${videoActivoIndex === idx ? "fill-current" : ""}`} />
+                    <span>Video {idx + 1}</span>
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {/* Reproductor de Video Vertical (Reel 9:16) */}
+            <div className="relative bg-black flex items-center justify-center overflow-hidden flex-1 min-h-[320px] max-h-[58vh]">
+              {servicioModalVideo.videos?.[videoActivoIndex] && (
+                <video
+                  key={servicioModalVideo.videos[videoActivoIndex].url}
+                  src={servicioModalVideo.videos[videoActivoIndex].url}
+                  poster={servicioModalVideo.videos[videoActivoIndex].poster}
+                  controls
+                  playsInline
+                  autoPlay
+                  preload="metadata"
+                  className="w-full h-full max-h-[58vh] object-contain"
+                />
+              )}
+            </div>
+
+            {/* Pie con selector y precio */}
+            <div className="p-4 sm:p-5 border-t border-white/10 bg-[#14141a] flex flex-col sm:flex-row items-center justify-between gap-3">
+              <div>
+                <span className="text-[11px] text-neutral-400 uppercase tracking-wider block">
+                  Tarifa para {vehiculoActual.label}
+                </span>
+                <span className="text-base sm:text-lg font-black text-white">
+                  ${(servicioModalVideo.precios[vehiculoId] ?? 0).toLocaleString("es-MX")}{" "}
+                  <span className="text-xs font-bold text-neutral-400">MXN</span>
+                </span>
+              </div>
+
+              <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
+                {serviciosSeleccionadosIds.includes(servicioModalVideo.id) ? (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      toggleServicio(servicioModalVideo.id);
+                      setServicioModalVideo(null);
+                    }}
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 hover:bg-red-500/20 hover:border-red-400/40 hover:text-red-300 text-xs font-bold transition-all cursor-pointer"
+                  >
+                    <LuCheck className="text-sm stroke-[3]" />
+                    <span>Agregado (Toca para quitar)</span>
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      toggleServicio(servicioModalVideo.id);
+                      setServicioModalVideo(null);
+                    }}
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-black text-xs font-black uppercase tracking-wider transition-all cursor-pointer shadow-md shadow-amber-400/20 active:scale-95"
+                  >
+                    <LuPlus className="text-sm stroke-[3]" />
+                    <span>Agregar a mi cotización</span>
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
       )}
     </section>
   );
