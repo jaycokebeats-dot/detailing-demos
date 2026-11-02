@@ -332,9 +332,9 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
       "Limpieza de cara de rines y abrillantado de neumáticos",
     ],
     precios: {
-      auto: 380,
-      suv2: 400,
-      pickup: 450,
+      auto: 300,
+      suv2: 350,
+      pickup: 400,
       suv3: 500,
       van: 690,
     },
