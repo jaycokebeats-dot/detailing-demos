@@ -292,3 +292,23 @@ html, body {
   }
 }
 
+/* Acordeón fluido para adicionales Platinum */
+.accordion-collapse-wrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 350ms cubic-bezier(0.16, 1, 0.3, 1), opacity 250ms ease-out;
+  pointer-events: none;
+}
+
+.accordion-collapse-wrapper.is-open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.accordion-collapse-inner {
+  overflow: hidden;
+}
+
+

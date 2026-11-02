@@ -638,6 +638,40 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
   const [isResumenVisible, setIsResumenVisible] = useState(false);
   const resumenRef = useRef<HTMLDivElement | null>(null);
   const zonaInputRef = useRef<HTMLInputElement | null>(null);
+  const paso3Ref = useRef<HTMLDivElement | null>(null);
+
+  const scrollToPaso3 = (smooth = true) => {
+    const el = paso3Ref.current || document.getElementById("paso-3-complementos");
+    if (el) {
+      const yOffset = -85;
+      const targetY = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({
+        top: Math.max(0, targetY),
+        behavior: smooth ? "smooth" : "auto",
+      });
+    }
+  };
+
+  const handleToggleComplementos = () => {
+    const nextState = !isComplementosOpen;
+    setIsComplementosOpen(nextState);
+    if (nextState) {
+      setTimeout(() => {
+        scrollToPaso3(true);
+      }, 50);
+    } else {
+      setTimeout(() => {
+        scrollToPaso3(true);
+      }, 50);
+    }
+  };
+
+  const handleCloseComplementos = () => {
+    setIsComplementosOpen(false);
+    setTimeout(() => {
+      scrollToPaso3(true);
+    }, 50);
+  };
 
   // Notificar al contenedor principal cuando hay cotización activa para coordinar botones flotantes
   useEffect(() => {
@@ -843,8 +877,9 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
           if (foundAddon) {
             setIsComplementosOpen(true);
             setComplementosSeleccionados((prev) => prev.includes(foundAddon.id) ? prev : [...prev, foundAddon.id]);
-            const el = document.getElementById("paso-3-complementos");
-            if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+            setTimeout(() => {
+              scrollToPaso3(true);
+            }, 50);
           }
         }
       } else if (categoria) {
@@ -1334,13 +1369,13 @@ ${bloqueServicios}${bloqueComplementos}
           </div>
         </div>
 
-        {/* PASO 3: Complementos & Upgrades Opcionales (Pestaña Desplegable) */}
-        <div id="paso-3-complementos" className="space-y-4 pt-2">
+        {/* PASO 3: Complementos & Upgrades Opcionales (Pestaña Desplegable Animada) */}
+        <div id="paso-3-complementos" ref={paso3Ref} className="space-y-4 pt-2 scroll-mt-24 sm:scroll-mt-28">
           
           {/* Barra de cabecera / Disparador del Acordeón */}
           <div 
-            onClick={() => setIsComplementosOpen(!isComplementosOpen)}
-            className="w-full bg-[#121216] hover:bg-[#16161c] border border-white/10 hover:border-amber-400/40 p-4 sm:p-5 rounded-2xl transition-all cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-lg group"
+            onClick={handleToggleComplementos}
+            className="w-full bg-[#121216] hover:bg-[#16161c] border border-white/10 hover:border-amber-400/40 p-4 sm:p-5 rounded-2xl transition-all cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-lg group select-none"
           >
             <div className="flex items-start sm:items-center gap-3">
               <span className="flex items-center justify-center w-7 h-7 rounded-full bg-amber-400 text-black text-xs font-black shrink-0 mt-0.5 sm:mt-0 shadow-sm">
@@ -1371,85 +1406,87 @@ ${bloqueServicios}${bloqueComplementos}
                 {isComplementosOpen ? "Ocultar adicionales" : "Ver adicionales"}
               </span>
               <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-neutral-300 group-hover:text-amber-400 group-hover:border-amber-400/40 transition">
-                {isComplementosOpen ? <LuChevronUp className="text-base" /> : <LuChevronDown className="text-base" />}
+                <LuChevronDown className={`text-base transition-transform duration-300 ${isComplementosOpen ? "rotate-180 text-amber-400" : ""}`} />
               </div>
             </div>
           </div>
 
-          {/* Contenido Desplegable */}
-          {isComplementosOpen && (
-            <div className="space-y-4 pt-1">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {complementosOrdenados.map((comp) => {
-                  const isFaros = comp.id === "faros-addon";
-                  const isFarosCubierto = isFaros && hasExpressSale;
-                  const isCeramicoInterior = comp.id === "ceramico-interior-integral";
-                  const seleccionado = isFarosCubierto
-                    ? true
-                    : isCeramicoInterior
-                    ? (complementosSeleccionados.includes("ceramico-interior-integral") || serviciosSeleccionadosIds.includes("ceramico-interior-integral-servicio"))
-                    : complementosSeleccionados.includes(comp.id);
+          {/* Contenido Desplegable Animado */}
+          <div className={`accordion-collapse-wrapper ${isComplementosOpen ? "is-open" : ""}`}>
+            <div className="accordion-collapse-inner">
+              <div className="space-y-4 pt-2 pb-1">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {complementosOrdenados.map((comp) => {
+                    const isFaros = comp.id === "faros-addon";
+                    const isFarosCubierto = isFaros && hasExpressSale;
+                    const isCeramicoInterior = comp.id === "ceramico-interior-integral";
+                    const seleccionado = isFarosCubierto
+                      ? true
+                      : isCeramicoInterior
+                      ? (complementosSeleccionados.includes("ceramico-interior-integral") || serviciosSeleccionadosIds.includes("ceramico-interior-integral-servicio"))
+                      : complementosSeleccionados.includes(comp.id);
 
-                  const precio = getPrecioComplemento(comp);
+                    const precio = getPrecioComplemento(comp);
 
-                  return (
-                    <div
-                      key={comp.id}
-                      onClick={() => toggleComplemento(comp.id)}
-                      className={`p-4 sm:p-5 rounded-2xl border cursor-pointer transition-all flex flex-col justify-between ${
-                        seleccionado
-                          ? "bg-amber-400/15 border-amber-400/70 text-white shadow-md ring-1 ring-amber-400/40"
-                          : "bg-[#111114] border-white/10 hover:border-white/25 hover:bg-[#16161a] text-neutral-200"
-                      }`}
-                    >
-                      <div>
-                        <div className="flex items-start justify-between gap-2.5">
-                          <p className="text-sm sm:text-base font-bold text-white leading-tight">
-                            {comp.nombre}
-                          </p>
-                          <div className={`w-5 h-5 rounded-md border flex items-center justify-center shrink-0 mt-0.5 ${
-                            seleccionado
-                              ? "bg-amber-400 border-amber-400 text-black"
-                              : "border-neutral-500 bg-neutral-900"
-                          }`}>
-                            {seleccionado ? <LuCheck className="text-xs stroke-[3]" /> : <LuPlus className="text-xs text-neutral-400" />}
+                    return (
+                      <div
+                        key={comp.id}
+                        onClick={() => toggleComplemento(comp.id)}
+                        className={`p-4 sm:p-5 rounded-2xl border cursor-pointer transition-all flex flex-col justify-between ${
+                          seleccionado
+                            ? "bg-amber-400/15 border-amber-400/70 text-white shadow-md ring-1 ring-amber-400/40"
+                            : "bg-[#111114] border-white/10 hover:border-white/25 hover:bg-[#16161a] text-neutral-200"
+                        }`}
+                      >
+                        <div>
+                          <div className="flex items-start justify-between gap-2.5">
+                            <p className="text-sm sm:text-base font-bold text-white leading-tight">
+                              {comp.nombre}
+                            </p>
+                            <div className={`w-5 h-5 rounded-md border flex items-center justify-center shrink-0 mt-0.5 ${
+                              seleccionado
+                                ? "bg-amber-400 border-amber-400 text-black"
+                                : "border-neutral-500 bg-neutral-900"
+                            }`}>
+                              {seleccionado ? <LuCheck className="text-xs stroke-[3]" /> : <LuPlus className="text-xs text-neutral-400" />}
+                            </div>
                           </div>
+                          <p className="text-xs sm:text-sm text-neutral-300 leading-snug mt-2 line-clamp-2">
+                            {comp.descripcion}
+                          </p>
                         </div>
-                        <p className="text-xs sm:text-sm text-neutral-300 leading-snug mt-2 line-clamp-2">
-                          {comp.descripcion}
-                        </p>
-                      </div>
 
-                      <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
-                        <span className={`text-xs uppercase tracking-wider font-semibold ${
-                          isFarosCubierto ? "text-emerald-400" : "text-neutral-400"
-                        }`}>
-                          {isFarosCubierto ? "✨ Ya Incluido" : comp.categoriaTipo === "ceramico" ? "Upgrade" : "Adicional"}
-                        </span>
-                        <span className={`text-sm sm:text-base font-extrabold ${
-                          isFarosCubierto ? "text-emerald-400 text-xs sm:text-sm" : "text-amber-400"
-                        }`}>
-                          {isFarosCubierto ? "Incluido en Pack Express" : `+$${precio.toLocaleString("es-MX")} MXN`}
-                        </span>
+                        <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
+                          <span className={`text-xs uppercase tracking-wider font-semibold ${
+                            isFarosCubierto ? "text-emerald-400" : "text-neutral-400"
+                          }`}>
+                            {isFarosCubierto ? "✨ Ya Incluido" : comp.categoriaTipo === "ceramico" ? "Upgrade" : "Adicional"}
+                          </span>
+                          <span className={`text-sm sm:text-base font-extrabold ${
+                            isFarosCubierto ? "text-emerald-400 text-xs sm:text-sm" : "text-amber-400"
+                          }`}>
+                            {isFarosCubierto ? "Incluido en Pack Express" : `+$${precio.toLocaleString("es-MX")} MXN`}
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                  );
-                })}
-              </div>
+                    );
+                  })}
+                </div>
 
-              {/* Botón sutil al pie para replegar si ya terminó */}
-              <div className="flex justify-center pt-2">
-                <button
-                  type="button"
-                  onClick={() => setIsComplementosOpen(false)}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold text-neutral-400 hover:text-white bg-white/5 border border-white/10 hover:border-white/20 transition cursor-pointer"
-                >
-                  <LuChevronUp className="text-sm" />
-                  <span>Cerrar pestaña de adicionales</span>
-                </button>
+                {/* Botón sutil al pie para replegar si ya terminó */}
+                <div className="flex justify-center pt-3 pb-1">
+                  <button
+                    type="button"
+                    onClick={handleCloseComplementos}
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold text-neutral-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 hover:border-amber-400/40 transition-all cursor-pointer active:scale-95 shadow-sm"
+                  >
+                    <LuChevronUp className="text-sm text-amber-400" />
+                    <span>Cerrar adicionales</span>
+                  </button>
+                </div>
               </div>
             </div>
-          )}
+          </div>
         </div>
 
         {/* PASO 4: Resumen de Cotización & Botón a WhatsApp */}
