@@ -1256,7 +1256,7 @@ ${bloqueServicios}${bloqueComplementos}
                           ? "bg-black/20 text-black"
                           : "bg-cyan-500/20 text-cyan-300 border border-cyan-400/40"
                       }`}>
-                        EXTRA PRO
+                        EXTERIOR PRO
                       </span>
                     ) : null}
 
