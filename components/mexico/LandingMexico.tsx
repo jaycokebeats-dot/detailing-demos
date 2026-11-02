@@ -213,7 +213,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
             scrolled
               ? {
                   marginTop: "12px",
-                  maxWidth: "56rem",
+                  maxWidth: isPlatinum ? "68rem" : "56rem",
                   borderRadius: "9999px",
                   background: isTheZone ? "rgba(8,12,20,0.88)" : "rgba(10,10,10,0.85)",
                   backdropFilter: "blur(14px)",
@@ -242,7 +242,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                 <img
                   src="/logo/platinum-logo.png"
                   alt={biz.nombre}
-                  className="h-8 sm:h-10 md:h-12 w-auto object-contain transition-transform group-hover:scale-105 drop-shadow-[0_2px_12px_rgba(255,255,255,0.25)]"
+                  className={`${scrolled ? "h-7 sm:h-8 md:h-8" : "h-8 sm:h-10 md:h-11"} w-auto object-contain transition-all duration-300 group-hover:scale-105 drop-shadow-[0_2px_12px_rgba(255,255,255,0.25)]`}
                 />
               </a>
             ) : (
@@ -257,11 +257,10 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                 )}
               </a>
             )}
-            <div className="hidden md:flex items-center gap-7 text-xs uppercase tracking-widest text-slate-400">
+            <div className="hidden md:flex items-center gap-6 lg:gap-8 text-xs uppercase tracking-wider text-slate-300 font-medium">
               {isPlatinum && (
-                <a href="#cotizador" className="text-amber-400 font-bold hover:text-amber-300 transition-colors flex items-center gap-1.5">
-                  <LuSparkles className="size-3 text-amber-400" />
-                  <span>Cotizador</span>
+                <a href="#cotizador" className="text-amber-400 font-bold hover:text-amber-300 transition-colors">
+                  Cotizador
                 </a>
               )}
               <a href="#servicios" className="hover:text-white transition-colors">{isPlatinum ? "Resultados" : "Servicios"}</a>
@@ -272,9 +271,8 @@ export default function LandingMexico({ biz }: { biz: Business }) {
             {isPlatinum ? (
               <a
                 href="#cotizador"
-                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-400/15 border border-amber-400/30 text-amber-300 hover:bg-amber-400 hover:text-black text-xs font-bold uppercase tracking-wider transition-all"
+                className="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-amber-400 text-black hover:bg-amber-300 text-xs font-bold uppercase tracking-wider transition-all shadow-sm active:scale-95 shrink-0"
               >
-                <LuSparkles className="size-3 text-amber-400" />
                 <span>Agendar Cita</span>
               </a>
             ) : (
