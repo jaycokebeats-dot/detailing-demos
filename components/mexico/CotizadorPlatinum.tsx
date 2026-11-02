@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { FaCarSide, FaTruckPickup, FaVanShuttle, FaWhatsapp } from "react-icons/fa6";
 import { 
   LuSparkles, 
@@ -600,7 +600,22 @@ interface NotificacionState {
   onAccion?: () => void;
 }
 
-export default function CotizadorPlatinum({ biz }: { biz: Business }) {
+export const ZONAS_QUERETARO = [
+  "Zibatá",
+  "Zákia",
+  "El Campanario",
+  "Juriquilla",
+  "Milenio III",
+  "El Refugio",
+  "Centro Sur",
+];
+
+export interface CotizadorPlatinumProps {
+  biz: Business;
+  onCotizacionChange?: (active: boolean) => void;
+}
+
+export default function CotizadorPlatinum({ biz, onCotizacionChange }: CotizadorPlatinumProps) {
   const [vehiculoId, setVehiculoId] = useState<VehiculoId>("auto");
   const [categoriaActiva, setCategoriaActiva] = useState<CategoriaTab["id"]>("combos");
   
@@ -608,6 +623,33 @@ export default function CotizadorPlatinum({ biz }: { biz: Business }) {
   const [serviciosSeleccionadosIds, setServiciosSeleccionadosIds] = useState<string[]>([]);
   const [complementosSeleccionados, setComplementosSeleccionados] = useState<string[]>([]);
   const [notificacion, setNotificacion] = useState<NotificacionState | null>(null);
+
+  // Zona / Fraccionamiento del cliente en Querétaro
+  const [zonaCliente, setZonaCliente] = useState("");
+  const [zonaError, setZonaError] = useState(false);
+  const [showZoneDrawer, setShowZoneDrawer] = useState(false);
+  const [isResumenVisible, setIsResumenVisible] = useState(false);
+  const resumenRef = useRef<HTMLDivElement | null>(null);
+  const zonaInputRef = useRef<HTMLInputElement | null>(null);
+
+  // Notificar al contenedor principal cuando hay cotización activa para coordinar botones flotantes
+  useEffect(() => {
+    onCotizacionChange?.(serviciosSeleccionadosIds.length > 0);
+  }, [serviciosSeleccionadosIds.length, onCotizacionChange]);
+
+  // Observer para detectar si el Paso 4 (Resumen completo) está en pantalla y ocultar suavemente la barra flotante
+  useEffect(() => {
+    const el = resumenRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsResumenVisible(entry.isIntersecting);
+      },
+      { threshold: 0.15 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   // Auto-ocultar notificación dinámica tras 7 segundos
   useEffect(() => {
@@ -911,6 +953,7 @@ export default function CotizadorPlatinum({ biz }: { biz: Business }) {
       ? `\n\n*Complementos agregados:*\n${lineasComplementos}` 
       : "";
 
+    const textoZona = zonaCliente.trim() ? zonaCliente.trim() : "Querétaro (por definir)";
     const mensaje = `Hola Platinum Detallado Automotriz.
 Estuve cotizando en su sitio web para un servicio a domicilio en Querétaro:
 
@@ -920,12 +963,32 @@ Estuve cotizando en su sitio web para un servicio a domicilio en Querétaro:
 ${bloqueServicios}${bloqueComplementos}
 
 *Total estimado:* $${totalEstimado.toLocaleString("es-MX")} MXN
-*Mi zona / colonia en Querétaro:* [Escribe aquí tu colonia, ej: El Campanario, Zibatá, Juriquilla, Zákia...]
+*Mi zona / fraccionamiento:* ${textoZona}
 
 ¿Qué fechas y horarios tienen disponibles para agendar la visita en mi domicilio?`;
 
     return `https://wa.me/${waNumber}?text=${encodeURIComponent(mensaje)}`;
-  }, [biz, vehiculoActual, serviciosSeleccionados, complementosSeleccionados, serviciosSeleccionadosIds, totalEstimado, vehiculoId]);
+  }, [biz, vehiculoActual, serviciosSeleccionados, complementosSeleccionados, serviciosSeleccionadosIds, totalEstimado, vehiculoId, zonaCliente]);
+
+  const handlePaso4WhatsApp = () => {
+    if (totalEstimado > 0 && !zonaCliente.trim()) {
+      setZonaError(true);
+      if (zonaInputRef.current) {
+        zonaInputRef.current.focus();
+        zonaInputRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      return;
+    }
+    window.open(whatsAppUrl, "_blank", "noopener,noreferrer");
+  };
+
+  const handleStickyCtaClick = () => {
+    if (!zonaCliente.trim()) {
+      setShowZoneDrawer(true);
+    } else {
+      window.open(whatsAppUrl, "_blank", "noopener,noreferrer");
+    }
+  };
 
   const hasFullDetail = serviciosSeleccionadosIds.includes("full-detail");
   const hasExpressSale = serviciosSeleccionadosIds.includes("express-sale");
@@ -1306,7 +1369,7 @@ ${bloqueServicios}${bloqueComplementos}
         </div>
 
         {/* PASO 4: Resumen de Cotización & Botón a WhatsApp */}
-        <div className="bg-gradient-to-r from-[#141418] via-[#18181f] to-[#141418] rounded-3xl p-6 sm:p-10 border border-white/15 shadow-2xl relative overflow-hidden">
+        <div ref={resumenRef} id="resumen-cotizacion" className="bg-gradient-to-r from-[#141418] via-[#18181f] to-[#141418] rounded-3xl p-6 sm:p-10 border border-white/15 shadow-2xl relative overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             
             {/* Columna Izquierda: Desglose Completo */}
@@ -1444,15 +1507,67 @@ ${bloqueServicios}${bloqueComplementos}
                 )}
               </div>
 
-              <a
-                href={whatsAppUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-3 px-6 py-4 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-black font-extrabold text-sm sm:text-base tracking-wide transition-all shadow-[0_4px_25px_rgba(16,185,129,0.3)] hover:scale-[1.02]"
+              {/* CAMPO DE ZONA / FRACCIONAMIENTO INTEGRADO */}
+              {totalEstimado > 0 && (
+                <div id="campo-zona-paso4" className="w-full text-left space-y-2 pt-1 pb-1">
+                  <label className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-amber-400">
+                    <LuMapPin className="text-amber-400 text-sm shrink-0" />
+                    <span>Tu fraccionamiento o zona en Querétaro:</span>
+                  </label>
+                  <input
+                    ref={zonaInputRef}
+                    type="text"
+                    value={zonaCliente}
+                    onChange={(e) => {
+                      setZonaCliente(e.target.value);
+                      if (zonaError) setZonaError(false);
+                    }}
+                    placeholder="Ej: Zibatá, Zákia, El Campanario..."
+                    className={`w-full px-3.5 py-2.5 rounded-xl bg-neutral-900 border text-sm text-white placeholder:text-neutral-500 focus:outline-none transition-all ${
+                      zonaError
+                        ? "border-red-500/80 ring-2 ring-red-500/30 bg-red-950/20"
+                        : "border-white/15 focus:border-amber-400/80 focus:ring-1 focus:ring-amber-400/50"
+                    }`}
+                  />
+                  {zonaError && (
+                    <p className="text-xs text-red-400 font-medium pt-0.5">
+                      * Indícanos tu zona o fraccionamiento para coordinar la visita a domicilio.
+                    </p>
+                  )}
+                  {/* Chips rápidos de Querétaro */}
+                  <div className="flex flex-wrap gap-1.5 pt-1">
+                    {ZONAS_QUERETARO.map((z) => {
+                      const activa = zonaCliente.toLowerCase().trim() === z.toLowerCase().trim();
+                      return (
+                        <button
+                          key={z}
+                          type="button"
+                          onClick={() => {
+                            setZonaCliente(z);
+                            if (zonaError) setZonaError(false);
+                          }}
+                          className={`text-[11px] px-2.5 py-1 rounded-full border transition-all ${
+                            activa
+                              ? "bg-amber-400 text-black border-amber-300 font-bold shadow-sm"
+                              : "bg-white/5 text-neutral-300 border-white/10 hover:border-amber-400/50 hover:text-white"
+                          }`}
+                        >
+                          {z}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              <button
+                type="button"
+                onClick={handlePaso4WhatsApp}
+                className="w-full inline-flex items-center justify-center gap-3 px-6 py-4 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-black font-extrabold text-sm sm:text-base tracking-wide transition-all shadow-[0_4px_25px_rgba(16,185,129,0.3)] hover:scale-[1.02] active:scale-[0.99] cursor-pointer"
               >
                 <FaWhatsapp className="text-xl" />
                 <span>{totalEstimado > 0 ? "Agendar Cita con este Presupuesto" : "Consultar Disponibilidad por WhatsApp"}</span>
-              </a>
+              </button>
 
               <span className="text-xs sm:text-sm text-neutral-400">
                 Atención directa por WhatsApp con Edgar · Respuesta ágil
@@ -1463,6 +1578,157 @@ ${bloqueServicios}${bloqueComplementos}
         </div>
 
       </div>
+
+      {/* QUICK ZONE DRAWER / MODAL: Cuando se presiona desde la barra flotante y aún no ingresó zona */}
+      {showZoneDrawer && (
+        <div 
+          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/80 backdrop-blur-sm"
+          onClick={() => setShowZoneDrawer(false)}
+        >
+          <div 
+            className="w-full sm:max-w-md bg-[#16161c] border border-amber-500/30 rounded-t-3xl sm:rounded-3xl p-6 sm:p-7 shadow-[0_-10px_40px_rgba(0,0,0,0.95)] space-y-4"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-start justify-between">
+              <div className="flex items-center gap-2.5">
+                <div className="w-9 h-9 rounded-full bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-amber-400">
+                  <LuMapPin className="text-lg" />
+                </div>
+                <div>
+                  <h3 className="text-base font-bold text-white">¿En qué zona estás?</h3>
+                  <p className="text-xs text-neutral-400">Servicio 100% a domicilio en Querétaro</p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setShowZoneDrawer(false)}
+                className="p-1.5 rounded-full text-neutral-400 hover:text-white hover:bg-white/10 transition"
+              >
+                <LuX className="text-lg" />
+              </button>
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-xs font-semibold text-neutral-300 block">
+                Selecciona tu fraccionamiento o privada:
+              </label>
+              <div className="flex flex-wrap gap-1.5">
+                {ZONAS_QUERETARO.map((z) => {
+                  const activa = zonaCliente.toLowerCase().trim() === z.toLowerCase().trim();
+                  return (
+                    <button
+                      key={z}
+                      type="button"
+                      onClick={() => setZonaCliente(z)}
+                      className={`text-xs px-3 py-1.5 rounded-full border transition-all ${
+                        activa
+                          ? "bg-amber-400 text-black border-amber-300 font-bold shadow-md"
+                          : "bg-white/5 text-neutral-300 border-white/10 hover:border-amber-400/40 hover:text-white"
+                      }`}
+                    >
+                      {z}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="space-y-1.5">
+              <label className="text-xs font-semibold text-neutral-300 block">
+                O escribe tu colonia específica:
+              </label>
+              <input
+                type="text"
+                value={zonaCliente}
+                onChange={(e) => setZonaCliente(e.target.value)}
+                placeholder="Ej: Cumbres del Lago, Jurica, Vista Hermosa..."
+                className="w-full px-3.5 py-2.5 rounded-xl bg-neutral-900 border border-white/15 text-sm text-white placeholder:text-neutral-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400"
+                autoFocus
+              />
+            </div>
+
+            <div className="pt-2 space-y-2">
+              <button
+                type="button"
+                disabled={!zonaCliente.trim()}
+                onClick={() => {
+                  setShowZoneDrawer(false);
+                  window.open(whatsAppUrl, "_blank", "noopener,noreferrer");
+                }}
+                className={`w-full py-3.5 px-4 rounded-xl font-bold text-sm sm:text-base flex items-center justify-center gap-2 transition-all shadow-lg ${
+                  zonaCliente.trim()
+                    ? "bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-black shadow-emerald-500/25 cursor-pointer hover:scale-[1.01]"
+                    : "bg-neutral-800 text-neutral-500 border border-white/5 cursor-not-allowed"
+                }`}
+              >
+                <FaWhatsapp className="text-lg" />
+                <span>Confirmar y Enviar a WhatsApp</span>
+              </button>
+              <p className="text-[11px] text-center text-neutral-500">
+                Total estimado: ${totalEstimado.toLocaleString("es-MX")} MXN · {vehiculoActual.label}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* BARRA FLOTANTE INFERIOR INTELIGENTE (Visible cuando hay servicios y Paso 4 no está en pantalla) */}
+      {serviciosSeleccionados.length > 0 && (
+        <aside
+          aria-label="Resumen flotante de cotización"
+          className={`fixed bottom-0 left-0 right-0 z-40 transition-all duration-300 ease-out ${
+            isResumenVisible
+              ? "translate-y-full opacity-0 pointer-events-none"
+              : "translate-y-0 opacity-100"
+          }`}
+        >
+          <div className="bg-[#121217]/95 backdrop-blur-xl border-t border-amber-500/25 shadow-[0_-10px_35px_rgba(0,0,0,0.85)] px-4 py-3 sm:py-3.5">
+            <div className="max-w-5xl mx-auto flex items-center justify-between gap-3">
+              {/* Info y Total */}
+              <div 
+                onClick={() => {
+                  if (resumenRef.current) {
+                    resumenRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+                  }
+                }}
+                className="cursor-pointer group flex flex-col justify-center min-w-0"
+              >
+                <div className="flex items-baseline gap-1.5">
+                  <span className="text-lg sm:text-2xl font-black text-white tracking-tight">
+                    ${totalEstimado.toLocaleString("es-MX")}
+                  </span>
+                  <span className="text-xs font-bold text-amber-400">MXN</span>
+                </div>
+                <div className="flex items-center gap-1.5 text-[11px] sm:text-xs text-neutral-400 truncate">
+                  <span>{serviciosSeleccionados.length} servicio{serviciosSeleccionados.length > 1 ? "s" : ""}</span>
+                  <span>·</span>
+                  <span>{vehiculoActual.label}</span>
+                  {zonaCliente.trim() ? (
+                    <>
+                      <span>·</span>
+                      <span className="text-amber-300 font-medium truncate">📍 {zonaCliente.trim()}</span>
+                    </>
+                  ) : (
+                    <span className="hidden sm:inline text-amber-400/80 group-hover:text-amber-300 transition ml-1">
+                      (Ver desglose ▾)
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              {/* Botón CTA a WhatsApp */}
+              <button
+                type="button"
+                onClick={handleStickyCtaClick}
+                className="shrink-0 inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-black font-extrabold text-xs sm:text-sm tracking-wide shadow-[0_4px_20px_rgba(16,185,129,0.35)] hover:scale-105 active:scale-95 transition-all cursor-pointer"
+              >
+                <FaWhatsapp className="text-base sm:text-lg" />
+                <span>{zonaCliente.trim() ? "Agendar Cita" : "Pedir Cita"}</span>
+              </button>
+            </div>
+          </div>
+        </aside>
+      )}
     </section>
   );
 }

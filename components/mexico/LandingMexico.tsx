@@ -188,6 +188,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
     Boolean(biz.nombre && biz.nombre.toLowerCase().includes("the zone"));
 
   const isPlatinum = biz.slug === "platinum-detallado-automotriz-a-domicilio";
+  const [hasCotizacionActiva, setHasCotizacionActiva] = useState(false);
 
   const badgeClass = isTheZone ? "section-badge-thezone" : "section-badge";
 
@@ -471,7 +472,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
       </section>
 
       {biz.slug === "platinum-detallado-automotriz-a-domicilio" && (
-        <CotizadorPlatinum biz={biz} />
+        <CotizadorPlatinum biz={biz} onCotizacionChange={setHasCotizacionActiva} />
       )}
 
       {/* 4. SERVICIOS CON SLIDERS INTERACTIVOS DE ANTES Y DESPUÉS ($ MXN) */}
@@ -815,7 +816,8 @@ export default function LandingMexico({ biz }: { biz: Business }) {
       </footer>
 
       {/* 10. BOTÓN FLOTANTE DE WHATSAPP */}
-      <div className="fixed bottom-6 right-6 z-50 animate-fade-in">
+      {(!isPlatinum || !hasCotizacionActiva) && (
+        <div className="fixed bottom-6 right-6 z-50 animate-fade-in">
         <a
           href={waHref(biz, "¡Hola! Vi su página web y quería hacerles una consulta.")}
           target="_blank"
@@ -831,6 +833,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
           <span className="hidden sm:inline">¿Dudas? Escríbenos</span>
         </a>
       </div>
+      )}
     </div>
   );
 }
