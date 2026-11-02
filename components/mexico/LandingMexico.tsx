@@ -258,20 +258,36 @@ export default function LandingMexico({ biz }: { biz: Business }) {
               </a>
             )}
             <div className="hidden md:flex items-center gap-7 text-xs uppercase tracking-widest text-slate-400">
+              {isPlatinum && (
+                <a href="#cotizador" className="text-amber-400 font-bold hover:text-amber-300 transition-colors flex items-center gap-1.5">
+                  <LuSparkles className="size-3 text-amber-400" />
+                  <span>Cotizador</span>
+                </a>
+              )}
               <a href="#servicios" className="hover:text-white transition-colors">{isPlatinum ? "Resultados" : "Servicios"}</a>
               <a href="#garantia" className="hover:text-white transition-colors">Compromiso</a>
               <a href="#nosotros" className="hover:text-white transition-colors">Nosotros</a>
               <a href="#ubicacion" className="hover:text-white transition-colors">Ubicación</a>
             </div>
-            <a
-              href={waHref(biz, msgPresupuesto)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`inline-flex items-center gap-2 text-xs uppercase tracking-widest ${isTheZone ? "text-sky-300 hover:text-white" : "text-white hover:opacity-70"} transition-opacity`}
-            >
-              <FaWhatsapp aria-hidden className={`size-4 ${isTheZone ? "text-sky-400" : "text-emerald-400"}`} />
-              Agendar Cita
-            </a>
+            {isPlatinum ? (
+              <a
+                href="#cotizador"
+                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-400/15 border border-amber-400/30 text-amber-300 hover:bg-amber-400 hover:text-black text-xs font-bold uppercase tracking-wider transition-all"
+              >
+                <LuSparkles className="size-3 text-amber-400" />
+                <span>Agendar Cita</span>
+              </a>
+            ) : (
+              <a
+                href={waHref(biz, msgPresupuesto)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`inline-flex items-center gap-2 text-xs uppercase tracking-widest ${isTheZone ? "text-sky-300 hover:text-white" : "text-white hover:opacity-70"} transition-opacity`}
+              >
+                <FaWhatsapp aria-hidden className={`size-4 ${isTheZone ? "text-sky-400" : "text-emerald-400"}`} />
+                Agendar Cita
+              </a>
+            )}
           </div>
         </header>
       </div>
@@ -371,31 +387,13 @@ export default function LandingMexico({ biz }: { biz: Business }) {
 
             <div className={`flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-3 w-full sm:w-auto ${isTheZone || isPlatinum ? "pt-1 sm:pt-2" : "pt-2"}`}>
               {biz.slug === "platinum-detallado-automotriz-a-domicilio" ? (
-                <>
-                  <a
-                    href="#cotizador"
-                    className="w-full sm:w-auto px-6 sm:px-7 py-2.5 sm:py-3.5 min-h-[42px] sm:min-h-[44px] rounded-full text-xs sm:text-sm font-bold uppercase tracking-wide bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 hover:from-amber-300 hover:to-amber-500 text-neutral-950 active:scale-95 transition-all flex items-center justify-center gap-2 shadow-[0_8px_30px_rgba(245,158,11,0.35)]"
-                  >
-                    <LuSparkles className="size-4 text-black" />
-                    Cotizador Interactivo
-                  </a>
-                  <a
-                    href={waHref(biz, msgPresupuesto)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full sm:w-auto px-6 sm:px-7 py-2.5 sm:py-3.5 min-h-[42px] sm:min-h-[44px] rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wide active:scale-95 transition-all flex items-center justify-center gap-2.5 border border-white/20 bg-white/5 hover:bg-white/10 text-white shadow-sm"
-                  >
-                    <FaWhatsapp aria-hidden className="size-4 text-emerald-400" />
-                    Cotizar por WhatsApp
-                  </a>
-                  <a
-                    href="#servicios"
-                    className="w-full sm:w-auto px-6 sm:px-7 py-2.5 sm:py-3.5 min-h-[42px] sm:min-h-[44px] rounded-full text-xs sm:text-sm font-semibold uppercase active:scale-95 transition-all flex items-center justify-center gap-2.5 border border-white/10 bg-black/40 hover:bg-white/5 text-neutral-300"
-                  >
-                    <HiOutlineSparkles aria-hidden className="size-4 text-amber-400" />
-                    Ver Resultados (Antes y Después)
-                  </a>
-                </>
+                <a
+                  href="#cotizador"
+                  className="w-full sm:w-auto px-8 sm:px-10 py-3.5 sm:py-4 min-h-[46px] rounded-full text-xs sm:text-sm font-extrabold uppercase tracking-wider bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 hover:from-amber-300 hover:to-amber-500 text-neutral-950 active:scale-95 transition-all flex items-center justify-center gap-2.5 shadow-[0_8px_30px_rgba(245,158,11,0.35)] hover:scale-105 cursor-pointer"
+                >
+                  <LuSparkles className="size-4 text-black" />
+                  <span>Cotizar Servicio a Domicilio</span>
+                </a>
               ) : (
                 <>
                   <a
