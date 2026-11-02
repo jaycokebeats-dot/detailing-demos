@@ -314,3 +314,9 @@ html, body {
 }
 
 
+
+#cotizador,
+#resumen-cotizacion,
+#paso-3-complementos {
+  overflow-anchor: none;
+}

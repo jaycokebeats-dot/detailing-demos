@@ -9,7 +9,6 @@ import SectionDivider from "@/components/SectionDivider";
 import CompareSlider from "@/components/CompareSlider";
 import PpfColorVisualizer from "@/components/PpfColorVisualizer";
 import CotizadorPlatinum from "./CotizadorPlatinum";
-import VideosPlatinum from "./VideosPlatinum";
 import { LuSparkles } from "react-icons/lu";
 
 // Servicios estándar para México con precios de referencia en Pesos Mexicanos ($ MXN) y modismos de México
@@ -158,22 +157,38 @@ export default function LandingMexico({ biz }: { biz: Business }) {
       window.removeEventListener("touchstart", handleUserInteraction);
       window.removeEventListener("touchend", handleUserInteraction);
       window.removeEventListener("click", handleUserInteraction);
-      window.removeEventListener("scroll", handleUserInteraction);
     };
 
     window.addEventListener("touchstart", handleUserInteraction, { passive: true });
     window.addEventListener("touchend", handleUserInteraction, { passive: true });
     window.addEventListener("click", handleUserInteraction, { passive: true });
-    window.addEventListener("scroll", handleUserInteraction, { passive: true });
+
+    // Pausar el video del hero cuando no esté visible en pantalla para ahorrar recursos y decodificadores móviles
+    let observer: IntersectionObserver | null = null;
+    if (typeof IntersectionObserver !== "undefined") {
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              safePlay();
+            } else {
+              video.pause();
+            }
+          });
+        },
+        { threshold: 0.05 }
+      );
+      observer.observe(video);
+    }
 
     return () => {
+      if (observer) observer.disconnect();
       video.removeEventListener("loadeddata", safePlay);
       video.removeEventListener("canplay", safePlay);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
       window.removeEventListener("touchstart", handleUserInteraction);
       window.removeEventListener("touchend", handleUserInteraction);
       window.removeEventListener("click", handleUserInteraction);
-      window.removeEventListener("scroll", handleUserInteraction);
     };
   }, []);
 
@@ -215,7 +230,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                   marginTop: "12px",
                   maxWidth: isPlatinum ? "68rem" : "56rem",
                   borderRadius: "9999px",
-                  background: isTheZone ? "rgba(8,12,20,0.88)" : "rgba(10,10,10,0.85)",
+                  background: isTheZone ? "rgba(8,12,20,0.88)" : "rgba(10,10,10,0.96)",
                   backdropFilter: "blur(14px)",
                   boxShadow: isTheZone ? "0 8px 30px rgba(0,102,255,0.25)" : "0 8px 30px rgba(0,0,0,0.45)",
                   border: isTheZone ? "1px solid rgba(56,189,248,0.25)" : "1px solid rgba(255,255,255,0.08)",
@@ -624,9 +639,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
         </div>
       </section>
 
-      {biz.slug === "platinum-detallado-automotriz-a-domicilio" && (
-        <VideosPlatinum />
-      )}
+
 
       {/* 6. GARANTÍA & COMPROMISO */}
       <section id="garantia" className="relative px-5 sm:px-8 pt-24 pb-32 sm:pb-36" style={{ background: "#101010" }}>

@@ -703,6 +703,18 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
   const [isComplementosOpen, setIsComplementosOpen] = useState(false);
   const [servicioModalVideo, setServicioModalVideo] = useState<ServicioBase | null>(null);
   const [videoActivoIndex, setVideoActivoIndex] = useState(0);
+  const modalVideoRef = useRef<HTMLVideoElement | null>(null);
+
+  const cerrarModalVideo = () => {
+    if (modalVideoRef.current) {
+      try {
+        modalVideoRef.current.pause();
+        modalVideoRef.current.removeAttribute("src");
+        modalVideoRef.current.load();
+      } catch (e) {}
+    }
+    setServicioModalVideo(null);
+  };
 
   // Zona / Fraccionamiento del cliente en Querétaro
   const [zonaCliente, setZonaCliente] = useState("");
@@ -717,16 +729,12 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
     const el = paso3Ref.current || document.getElementById("paso-3-complementos");
     if (!el) return;
 
-    // Calcular la posición absoluta inmutable del elemento en la página
-    let absoluteTop = 0;
-    let curr: HTMLElement | null = el;
-    while (curr) {
-      absoluteTop += curr.offsetTop;
-      curr = curr.offsetParent as HTMLElement | null;
-    }
+    // Con getBoundingClientRect obtenemos la posición real exacta en pantalla
+    const rect = el.getBoundingClientRect();
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    // Dejamos 80px para que quede exactamente debajo del navbar flotante
+    const targetY = Math.max(0, scrollTop + rect.top - 80);
 
-    // Dejar aire justo debajo del navbar flotante (aprox 80px)
-    const targetY = Math.max(0, absoluteTop - 80);
     window.scrollTo({
       top: targetY,
       behavior: smooth ? "smooth" : "auto",
@@ -737,11 +745,10 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
     const nextState = !isComplementosOpen;
     setIsComplementosOpen(nextState);
     if (nextState) {
-      // Scroll inmediato para posicionar la vista al inicio del bloque
-      scrollToPaso3(true);
-      // Doble refuerzo durante el despliegue del acordeón
-      setTimeout(() => scrollToPaso3(true), 80);
-      setTimeout(() => scrollToPaso3(true), 250);
+      // Al abrir el acordeón, posicionar la vista al inicio del bloque de adicionales
+      requestAnimationFrame(() => {
+        scrollToPaso3(true);
+      });
     } else {
       scrollToPaso3(true);
     }
@@ -774,7 +781,7 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
   // Cerrar modal de video con tecla ESC
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setServicioModalVideo(null);
+      if (e.key === "Escape") cerrarModalVideo();
     };
     if (servicioModalVideo) {
       window.addEventListener("keydown", handleKeyDown);
@@ -1961,7 +1968,7 @@ ${bloqueServicios}${bloqueComplementos}
       {/* MODAL DE VIDEO DEL RESULTADO (Carga bajo demanda, 0 bytes en carga inicial) */}
       {servicioModalVideo && (
         <div 
-          onClick={() => setServicioModalVideo(null)}
+          onClick={cerrarModalVideo}
           className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6"
         >
           <div 
@@ -1992,7 +1999,7 @@ ${bloqueServicios}${bloqueComplementos}
 
               <button
                 type="button"
-                onClick={() => setServicioModalVideo(null)}
+                onClick={cerrarModalVideo}
                 className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 flex items-center justify-center text-neutral-300 hover:text-white transition cursor-pointer shrink-0"
                 aria-label="Cerrar video"
               >
@@ -2025,6 +2032,7 @@ ${bloqueServicios}${bloqueComplementos}
             <div className="relative bg-black flex items-center justify-center overflow-hidden flex-1 min-h-[320px] max-h-[58vh]">
               {servicioModalVideo.videos?.[videoActivoIndex] && (
                 <video
+                  ref={modalVideoRef}
                   key={servicioModalVideo.videos[videoActivoIndex].url}
                   src={servicioModalVideo.videos[videoActivoIndex].url}
                   poster={servicioModalVideo.videos[videoActivoIndex].poster}
@@ -2055,7 +2063,7 @@ ${bloqueServicios}${bloqueComplementos}
                     type="button"
                     onClick={() => {
                       toggleServicio(servicioModalVideo.id);
-                      setServicioModalVideo(null);
+                      cerrarModalVideo();
                     }}
                     className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 hover:bg-red-500/20 hover:border-red-400/40 hover:text-red-300 text-xs font-bold transition-all cursor-pointer"
                   >
@@ -2067,7 +2075,7 @@ ${bloqueServicios}${bloqueComplementos}
                     type="button"
                     onClick={() => {
                       toggleServicio(servicioModalVideo.id);
-                      setServicioModalVideo(null);
+                      cerrarModalVideo();
                     }}
                     className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-black text-xs font-black uppercase tracking-wider transition-all cursor-pointer shadow-md shadow-amber-400/20 active:scale-95"
                   >
