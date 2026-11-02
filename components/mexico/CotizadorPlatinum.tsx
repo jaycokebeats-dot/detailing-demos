@@ -642,35 +642,41 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
 
   const scrollToPaso3 = (smooth = true) => {
     const el = paso3Ref.current || document.getElementById("paso-3-complementos");
-    if (el) {
-      const yOffset = -85;
-      const targetY = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({
-        top: Math.max(0, targetY),
-        behavior: smooth ? "smooth" : "auto",
-      });
+    if (!el) return;
+
+    // Calcular la posición absoluta inmutable del elemento en la página
+    let absoluteTop = 0;
+    let curr: HTMLElement | null = el;
+    while (curr) {
+      absoluteTop += curr.offsetTop;
+      curr = curr.offsetParent as HTMLElement | null;
     }
+
+    // Dejar aire justo debajo del navbar flotante (aprox 80px)
+    const targetY = Math.max(0, absoluteTop - 80);
+    window.scrollTo({
+      top: targetY,
+      behavior: smooth ? "smooth" : "auto",
+    });
   };
 
   const handleToggleComplementos = () => {
     const nextState = !isComplementosOpen;
     setIsComplementosOpen(nextState);
     if (nextState) {
-      setTimeout(() => {
-        scrollToPaso3(true);
-      }, 50);
+      // Scroll inmediato para posicionar la vista al inicio del bloque
+      scrollToPaso3(true);
+      // Doble refuerzo durante el despliegue del acordeón
+      setTimeout(() => scrollToPaso3(true), 80);
+      setTimeout(() => scrollToPaso3(true), 250);
     } else {
-      setTimeout(() => {
-        scrollToPaso3(true);
-      }, 50);
+      scrollToPaso3(true);
     }
   };
 
   const handleCloseComplementos = () => {
     setIsComplementosOpen(false);
-    setTimeout(() => {
-      scrollToPaso3(true);
-    }, 50);
+    scrollToPaso3(true);
   };
 
   // Notificar al contenedor principal cuando hay cotización activa para coordinar botones flotantes
@@ -1370,7 +1376,7 @@ ${bloqueServicios}${bloqueComplementos}
         </div>
 
         {/* PASO 3: Complementos & Upgrades Opcionales (Pestaña Desplegable Animada) */}
-        <div id="paso-3-complementos" ref={paso3Ref} className="space-y-4 pt-2 scroll-mt-24 sm:scroll-mt-28">
+        <div id="paso-3-complementos" ref={paso3Ref} className="space-y-4 pt-2 scroll-mt-24 sm:scroll-mt-28 [overflow-anchor:none]">
           
           {/* Barra de cabecera / Disparador del Acordeón */}
           <div 
