@@ -565,10 +565,10 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                                 "Corrección Profunda & Cerámico 9H": "ceramic-coating",
                                 "Full Interior & Sanitización a Vapor": "full-interior",
                                 "Detallado Interior Platinum 360": "full-interior",
-                                "Restauración de Faros con Polímero": "faros",
-                                "Lavado de Motor a Vapor Técnico": "lavado-motor",
-                                "Lavado de Motor a Vapor": "lavado-motor",
-                                "Estética & Detallado de Motor a Vapor": "lavado-motor",
+                                "Restauración de Faros con Polímero": "faros-addon",
+                                "Lavado de Motor a Vapor Técnico": "motor-addon",
+                                "Lavado de Motor a Vapor": "motor-addon",
+                                "Estética & Detallado de Motor a Vapor": "motor-addon",
                                 "Pack Express Sale (Pre-Venta)": "express-sale",
                               };
                               const targetId = mapId[s.nombre] || "full-detail";

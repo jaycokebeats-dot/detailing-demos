@@ -66,9 +66,11 @@ export const TIPOS_VEHICULO: TipoVehiculo[] = [
   },
 ];
 
+export type CategoriaId = "mantenimiento" | "brillo-proteccion" | "interiores" | "combos" | "correccion";
+
 export interface ServicioBase {
   id: string;
-  categoria: "combos" | "interiores" | "correccion" | "mantenimiento" | "especiales";
+  categoria: CategoriaId;
   nombre: string;
   subtitulo: string;
   descripcion: string;
@@ -255,7 +257,7 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
   // --- MANTENIMIENTO & ESTÉTICA ---
   {
     id: "diamond-protect",
-    categoria: "mantenimiento",
+    categoria: "brillo-proteccion",
     nombre: "Diamond Protect",
     subtitulo: "Sellador Cerámico de 3 Meses",
     descripcion: "Tratamiento exterior con descontaminado químico y sellador cerámico, más limpieza interior.",
@@ -276,7 +278,7 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
   },
   {
     id: "hydro-gloss",
-    categoria: "mantenimiento",
+    categoria: "brillo-proteccion",
     nombre: "Hydro Gloss",
     subtitulo: "Brillo & Hidrofobia Express",
     descripcion: "Sellador hidrofóbico anti-polvo de 30 días, cañón de espuma y aspirado interior.",
@@ -340,49 +342,7 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
     },
   },
 
-  // --- SERVICIOS ESPECIALES (FAROS & MOTOR A VAPOR) ---
-  {
-    id: "faros",
-    categoria: "especiales",
-    nombre: "Restauración de Faros con Polímero",
-    subtitulo: "Tratamiento Óptico con 6 Meses de Garantía",
-    descripcion: "Elimina opacidad y tono amarillo mediante polímero de vapor óptico. Recupera hasta 40% más de luz nocturna.",
-    badge: "6 Meses de Garantía",
-    detalles: [
-      "Lijado graduado técnico en ambos faros delanteros",
-      "Polímero de vapor óptico que devuelve transparencia de agencia",
-      "Recupera hasta 40% más de iluminación y visibilidad nocturna",
-      "Garantía escrita de 6 meses contra amarillamiento",
-    ],
-    precios: {
-      auto: 650,
-      suv2: 750,
-      pickup: 750,
-      suv3: 750,
-      van: 750,
-    },
-  },
-  {
-    id: "lavado-motor",
-    categoria: "especiales",
-    nombre: "Lavado de Motor a Vapor",
-    subtitulo: "Limpieza Segura a Vapor Dieléctrico",
-    descripcion: "Desengrasado seguro a vapor a alta temperatura y brochas suaves, sin riesgo eléctrico.",
-    badge: "Sin Riesgo Eléctrico",
-    detalles: [
-      "Vapor a alta temperatura para disolver grasa y aceite incrustado",
-      "Limpieza manual minuciosa con brochas suaves en zonas difíciles",
-      "Acondicionado térmico mate de plásticos y mangueras (no graso)",
-      "100% seguro para sensores y alternador (sin agua a presión)",
-    ],
-    precios: {
-      auto: 550,
-      suv2: 750,
-      pickup: 750,
-      suv3: 750,
-      van: 850,
-    },
-  },
+
 ];
 
 // Complementos y Upgrades Curados (9 opciones de alto valor)
@@ -397,7 +357,21 @@ export interface Complemento {
 }
 
 export const COMPLEMENTOS_PLATINUM: Complemento[] = [
-  // --- UPGRADES CERÁMICOS Y MOTOR ---
+  // --- FAROS Y MOTOR A VAPOR (ADDONS OFICIALES) ---
+  {
+    id: "faros-addon",
+    nombre: "Restauración de Faros con Polímero de Vapor",
+    descripcion: "Elimina opacidad y tono amarillo mediante polímero de vapor óptico. Recupera hasta 40% más de iluminación con 6 meses de garantía.",
+    categoriaTipo: "exterior",
+    precioTipo: "variable",
+    preciosVariables: {
+      auto: 650,
+      suv2: 750,
+      pickup: 750,
+      suv3: 750,
+      van: 750,
+    },
+  },
   {
     id: "motor-addon",
     nombre: "Lavado de Motor a Vapor Técnico",
@@ -505,25 +479,55 @@ export const COMPLEMENTOS_PLATINUM: Complemento[] = [
 ];
 
 interface CategoriaTab {
-  id: "combos" | "interiores" | "correccion" | "mantenimiento" | "especiales";
+  id: CategoriaId;
   label: string;
+  nivel?: string;
+  isExtra?: boolean;
   badge?: string;
   Icono: React.ComponentType<{ className?: string }>;
 }
 
 const CATEGORIAS: CategoriaTab[] = [
-  { id: "combos", label: "Combos Completos", badge: "Recomendado", Icono: LuSparkles },
-  { id: "interiores", label: "Interiores & Vapor", Icono: LuDroplets },
-  { id: "correccion", label: "Pulidos & Cerámico", Icono: LuShieldCheck },
-  { id: "mantenimiento", label: "Mantenimiento Express", Icono: LuSun },
-  { id: "especiales", label: "Faros & Motor a Vapor", Icono: LuWrench },
+  { 
+    id: "mantenimiento", 
+    label: "Mantenimiento Express", 
+    nivel: "NIVEL 1", 
+    Icono: LuSun 
+  },
+  { 
+    id: "brillo-proteccion", 
+    label: "Brillo & Protección", 
+    nivel: "NIVEL 2", 
+    Icono: LuSparkles 
+  },
+  { 
+    id: "interiores", 
+    label: "Interiores a Profundidad", 
+    nivel: "NIVEL 3", 
+    Icono: LuDroplets 
+  },
+  { 
+    id: "combos", 
+    label: "Combos Completos", 
+    nivel: "NIVEL 4", 
+    badge: "Recomendado", 
+    Icono: LuSparkles 
+  },
+  { 
+    id: "correccion", 
+    label: "Pulidos & Cerámico", 
+    isExtra: true, 
+    badge: "Tratamiento Pro", 
+    Icono: LuShieldCheck 
+  },
 ];
 
 // Grupos para reglas de exclusividad mutua e inteligencia de selección
 const GRUPO_COMBOS = ["full-detail", "express-sale"];
 const GRUPO_INTERIORES = ["full-interior", "premier-pro"];
 const GRUPO_CORRECCION_EXTERIOR = ["gloss-shine", "titanium-shine", "ceramic-coating"];
-const GRUPO_MANTENIMIENTO = ["essential-care", "mantenimiento-core", "hydro-gloss", "diamond-protect"];
+const GRUPO_MANTENIMIENTO = ["essential-care", "mantenimiento-core"];
+const GRUPO_BRILLO_PROTECCION = ["diamond-protect", "hydro-gloss"];
 
 export interface InclusionInfo {
   isIncluded: boolean;
@@ -561,18 +565,18 @@ export function getInclusionInfo(serviceId: string, selectedIds: string[]): Incl
         reason: "Pulido a máquina de 1 paso y sellador exterior ya incluidos",
       };
     }
-    if (GRUPO_MANTENIMIENTO.includes(serviceId)) {
+    if ([...GRUPO_MANTENIMIENTO, ...GRUPO_BRILLO_PROTECCION].includes(serviceId)) {
       return {
         isIncluded: true,
         byComboId: "full-detail",
         byComboName: "Platinum Full Detail",
-        reason: "Lavado técnico exterior y descontaminado ya cubiertos en tu combo",
+        reason: "Lavado técnico exterior, descontaminado y sellador cerámico ya cubiertos en tu combo",
       };
     }
   }
 
   if (hasExpressSale) {
-    if (serviceId === "faros") {
+    if (serviceId === "faros-addon") {
       return {
         isIncluded: true,
         byComboId: "express-sale",
@@ -617,7 +621,7 @@ export interface CotizadorPlatinumProps {
 
 export default function CotizadorPlatinum({ biz, onCotizacionChange }: CotizadorPlatinumProps) {
   const [vehiculoId, setVehiculoId] = useState<VehiculoId>("auto");
-  const [categoriaActiva, setCategoriaActiva] = useState<CategoriaTab["id"]>("combos");
+  const [categoriaActiva, setCategoriaActiva] = useState<CategoriaTab["id"]>("mantenimiento");
   
   // Selección múltiple persistente: permite sumar servicios de distintas categorías (inicia sin selección)
   const [serviciosSeleccionadosIds, setServiciosSeleccionadosIds] = useState<string[]>([]);
@@ -755,21 +759,17 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
         return next;
       }
 
-      // Caso E: Mantenimiento express
+      // Caso E: Mantenimiento express (Nivel 1)
       if (GRUPO_MANTENIMIENTO.includes(id)) {
         next = next.filter((item) => !GRUPO_MANTENIMIENTO.includes(item));
         next.push(id);
         return next;
       }
 
-      // Caso F: Lavado de Motor a Vapor
-      if (id === "lavado-motor") {
-        if (!next.includes("lavado-motor")) {
-          next.push("lavado-motor");
-        }
-        setComplementosSeleccionados((cPrev) => 
-          cPrev.includes("motor-addon") ? cPrev : [...cPrev, "motor-addon"]
-        );
+      // Caso F: Brillo & Protección (Nivel 2)
+      if (GRUPO_BRILLO_PROTECCION.includes(id)) {
+        next = next.filter((item) => !GRUPO_BRILLO_PROTECCION.includes(item));
+        next.push(id);
         return next;
       }
 
@@ -784,7 +784,6 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
         return next;
       }
 
-      // Faros o cualquier otro
       next.push(id);
       return next;
     });
@@ -796,24 +795,17 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
 
   const quitarServicio = (id: string) => {
     setServiciosSeleccionadosIds((prev) => prev.filter((item) => item !== id));
-    if (id === "lavado-motor") {
-      setComplementosSeleccionados((prev) => prev.filter((item) => item !== "motor-addon"));
-    }
     if (id === "ceramico-interior-integral-servicio") {
       setComplementosSeleccionados((prev) => prev.filter((item) => item !== "ceramico-interior-integral"));
     }
   };
 
   const toggleComplemento = (id: string) => {
-    if (id === "motor-addon") {
-      const isActivo = complementosSeleccionados.includes("motor-addon") || serviciosSeleccionadosIds.includes("lavado-motor");
-      if (isActivo) {
-        setComplementosSeleccionados((prev) => prev.filter((item) => item !== "motor-addon"));
-        setServiciosSeleccionadosIds((prev) => prev.filter((item) => item !== "lavado-motor"));
-      } else {
-        setComplementosSeleccionados((prev) => [...prev, "motor-addon"]);
-        setServiciosSeleccionadosIds((prev) => prev.includes("lavado-motor") ? prev : [...prev, "lavado-motor"]);
-      }
+    // Si es faros y ya está cubierto por Pack Express Sale, no cobrar doble
+    if (id === "faros-addon" && hasExpressSale) {
+      setNotificacion({
+        texto: "✨ La restauración de faros ya viene incluida sin costo extra en tu Pack Express Sale.",
+      });
       return;
     }
 
@@ -843,6 +835,13 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
         if (found) {
           setCategoriaActiva(found.categoria);
           aplicarSeleccionServicio(found.id, false);
+        } else {
+          const foundAddon = COMPLEMENTOS_PLATINUM.find((c) => c.id === servicioId);
+          if (foundAddon) {
+            setComplementosSeleccionados((prev) => prev.includes(foundAddon.id) ? prev : [...prev, foundAddon.id]);
+            const el = document.getElementById("paso-3-complementos");
+            if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
         }
       } else if (categoria) {
         setCategoriaActiva(categoria as CategoriaTab["id"]);
@@ -904,7 +903,7 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
     }, 0);
 
     const complementosSinDuplicados = complementosSeleccionados.filter((id) => {
-      if (id === "motor-addon" && serviciosSeleccionadosIds.includes("lavado-motor")) return false;
+      if (id === "faros-addon" && serviciosSeleccionadosIds.includes("express-sale")) return false;
       if (id === "ceramico-interior-integral" && serviciosSeleccionadosIds.includes("ceramico-interior-integral-servicio")) return false;
       return true;
     });
@@ -934,7 +933,7 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
       .join("\n");
 
     const complementosSinDuplicados = complementosSeleccionados.filter((id) => {
-      if (id === "motor-addon" && serviciosSeleccionadosIds.includes("lavado-motor")) return false;
+      if (id === "faros-addon" && serviciosSeleccionadosIds.includes("express-sale")) return false;
       if (id === "ceramico-interior-integral" && serviciosSeleccionadosIds.includes("ceramico-interior-integral-servicio")) return false;
       return true;
     });
@@ -1079,8 +1078,8 @@ ${bloqueServicios}${bloqueComplementos}
             </span>
           </div>
 
-          {/* Pestañas de categorías */}
-          <div className="flex flex-col sm:flex-row sm:flex-wrap lg:flex-nowrap gap-2 sm:gap-2.5">
+          {/* Pestañas de categorías con Niveles y Extra Pro */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5">
             {CATEGORIAS.map((cat) => {
               const activa = cat.id === categoriaActiva;
               const IconComp = cat.Icono;
@@ -1092,36 +1091,74 @@ ${bloqueServicios}${bloqueComplementos}
                 (s) => s.categoria === cat.id && getInclusionInfo(s.id, serviciosSeleccionadosIds).isIncluded
               );
 
+              const isExtra = cat.isExtra;
+
+              let botonEstilo = "";
+              if (activa) {
+                if (isExtra) {
+                  botonEstilo = "bg-gradient-to-r from-cyan-400 to-sky-400 text-black border-cyan-300 shadow-[0_4px_22px_rgba(6,182,212,0.4)]";
+                } else {
+                  botonEstilo = "bg-amber-400 text-black border-amber-300 shadow-[0_4px_18px_rgba(245,158,11,0.28)]";
+                }
+              } else {
+                if (isExtra) {
+                  botonEstilo = "bg-gradient-to-br from-[#0a151d] to-[#0f1d28] text-cyan-200 border-cyan-500/50 hover:border-cyan-400 hover:bg-[#132736] shadow-[0_0_15px_rgba(6,182,212,0.15)]";
+                } else {
+                  botonEstilo = "bg-[#111114] text-neutral-200 border-white/10 hover:border-white/25 hover:bg-[#17171c]";
+                }
+              }
+
               return (
                 <button
                   key={cat.id}
                   onClick={() => setCategoriaActiva(cat.id)}
                   type="button"
-                  className={`w-full sm:w-auto flex items-center justify-between sm:justify-start gap-3 px-4 sm:px-5 py-3 rounded-xl text-xs sm:text-sm font-semibold transition-all border ${
-                    activa
-                      ? "bg-amber-400 text-black border-amber-300 shadow-[0_4px_18px_rgba(245,158,11,0.28)]"
-                      : "bg-[#111114] text-neutral-200 border-white/10 hover:border-white/25 hover:bg-[#17171c]"
+                  className={`w-full flex flex-col justify-between p-3 sm:p-3.5 rounded-2xl text-left transition-all border ${botonEstilo} ${
+                    isExtra && !activa ? "col-span-2 sm:col-span-1 lg:col-span-1" : ""
                   }`}
                 >
-                  <div className="flex items-center gap-2.5 truncate">
-                    <IconComp className={`text-base sm:text-lg shrink-0 ${activa ? "text-black" : "text-amber-400"}`} />
-                    <span className="truncate">{cat.label}</span>
+                  <div className="flex items-center justify-between w-full mb-2">
+                    {/* Badge de Nivel o Extra */}
+                    {cat.nivel ? (
+                      <span className={`text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md ${
+                        activa
+                          ? "bg-black/20 text-black"
+                          : "bg-amber-400/15 text-amber-300 border border-amber-400/25"
+                      }`}>
+                        {cat.nivel}
+                      </span>
+                    ) : isExtra ? (
+                      <span className={`text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md ${
+                        activa
+                          ? "bg-black/20 text-black"
+                          : "bg-cyan-500/20 text-cyan-300 border border-cyan-400/40"
+                      }`}>
+                        EXTRA PRO
+                      </span>
+                    ) : null}
+
+                    {/* Contador / Cubierto */}
+                    {cantidadEnCat > 0 ? (
+                      <span className={`text-xs font-black px-2 py-0.5 rounded-full ${
+                        activa ? "bg-black text-amber-400" : isExtra ? "bg-cyan-400 text-black" : "bg-amber-400 text-black"
+                      }`}>
+                        {cantidadEnCat}
+                      </span>
+                    ) : tieneCubiertos ? (
+                      <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-md uppercase tracking-wider ${
+                        activa ? "bg-black/30 text-black" : "bg-emerald-500/20 text-emerald-300 border border-emerald-500/30"
+                      }`}>
+                        Cubierto
+                      </span>
+                    ) : null}
                   </div>
-                  {cantidadEnCat > 0 ? (
-                    <span className={`text-xs font-extrabold px-2 py-0.5 rounded-full shrink-0 ${
-                      activa ? "bg-black text-amber-400" : "bg-amber-400 text-black"
-                    }`}>
-                      {cantidadEnCat}
-                    </span>
-                  ) : tieneCubiertos ? (
-                    <span className={`text-[10px] font-extrabold px-2 py-0.5 rounded-full shrink-0 uppercase tracking-wider ${
-                      activa ? "bg-black/30 text-black" : "bg-emerald-500/20 text-emerald-300 border border-emerald-500/30"
-                    }`}>
-                      Cubierto
-                    </span>
-                  ) : activa ? (
-                    <span className="sm:hidden text-[10px] uppercase font-bold tracking-wider opacity-60">Activo</span>
-                  ) : null}
+
+                  <div className="flex items-center gap-2">
+                    <IconComp className={`text-base shrink-0 ${
+                      activa ? "text-black" : isExtra ? "text-cyan-400" : "text-amber-400"
+                    }`} />
+                    <span className="font-bold text-xs sm:text-sm tracking-tight leading-snug">{cat.label}</span>
+                  </div>
                 </button>
               );
             })}
@@ -1132,7 +1169,7 @@ ${bloqueServicios}${bloqueComplementos}
             <div className="p-3.5 sm:p-4 rounded-xl bg-gradient-to-r from-amber-500/10 via-[#18181d] to-amber-500/5 border border-amber-400/30 flex items-start sm:items-center gap-3 text-xs sm:text-sm text-neutral-200">
               <LuSparkles className="text-amber-400 text-lg shrink-0 mt-0.5 sm:mt-0" />
               <div className="flex-1 leading-snug">
-                <strong className="text-amber-300">Combo Platinum Full Detail activo:</strong> Ya incluye habitáculo a vapor, inyección-succión y pulido exterior de 1 paso. Los tratamientos cubiertos se marcan en <span className="text-emerald-400 font-bold">Verde</span> para evitar cobros dobles. Puedes sumar Faros, Motor a Vapor o Complementos.
+                <strong className="text-amber-300">Combo Platinum Full Detail activo:</strong> Ya incluye habitáculo a vapor, inyección-succión y pulido exterior de 1 paso. Los tratamientos cubiertos se marcan en <span className="text-emerald-400 font-bold">Verde</span> para evitar cobros dobles. Puedes sumar Faros, Lavado de Motor u otros adicionales abajo.
               </div>
             </div>
           )}
@@ -1305,7 +1342,7 @@ ${bloqueServicios}${bloqueComplementos}
         </div>
 
         {/* PASO 3: Complementos & Upgrades (9 Opciones Curadas) */}
-        <div className="space-y-4 pt-4">
+        <div id="paso-3-complementos" className="space-y-4 pt-4">
           <div className="flex items-center justify-between">
             <h3 className="text-sm sm:text-base uppercase tracking-wider text-neutral-200 font-bold flex items-center gap-2.5">
               <span className="flex items-center justify-center w-6 h-6 rounded-full bg-amber-400 text-black text-xs font-black">3</span>
@@ -1316,10 +1353,11 @@ ${bloqueServicios}${bloqueComplementos}
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {complementosOrdenados.map((comp) => {
-              const isMotor = comp.id === "motor-addon";
+              const isFaros = comp.id === "faros-addon";
+              const isFarosCubierto = isFaros && hasExpressSale;
               const isCeramicoInterior = comp.id === "ceramico-interior-integral";
-              const seleccionado = isMotor
-                ? (complementosSeleccionados.includes("motor-addon") || serviciosSeleccionadosIds.includes("lavado-motor"))
+              const seleccionado = isFarosCubierto
+                ? true
                 : isCeramicoInterior
                 ? (complementosSeleccionados.includes("ceramico-interior-integral") || serviciosSeleccionadosIds.includes("ceramico-interior-integral-servicio"))
                 : complementosSeleccionados.includes(comp.id);
@@ -1355,11 +1393,15 @@ ${bloqueServicios}${bloqueComplementos}
                   </div>
 
                   <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
-                    <span className="text-xs uppercase tracking-wider text-neutral-400 font-semibold">
-                      {comp.categoriaTipo === "ceramico" ? "Upgrade" : "Adicional"}
+                    <span className={`text-xs uppercase tracking-wider font-semibold ${
+                      isFarosCubierto ? "text-emerald-400" : "text-neutral-400"
+                    }`}>
+                      {isFarosCubierto ? "✨ Ya Incluido" : comp.categoriaTipo === "ceramico" ? "Upgrade" : "Adicional"}
                     </span>
-                    <span className="text-sm sm:text-base font-extrabold text-amber-400">
-                      +${precio.toLocaleString("es-MX")} MXN
+                    <span className={`text-sm sm:text-base font-extrabold ${
+                      isFarosCubierto ? "text-emerald-400 text-xs sm:text-sm" : "text-amber-400"
+                    }`}>
+                      {isFarosCubierto ? "Incluido en Pack Express" : `+$${precio.toLocaleString("es-MX")} MXN`}
                     </span>
                   </div>
                 </div>
