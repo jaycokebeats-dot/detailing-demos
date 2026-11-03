@@ -55213,16 +55213,6 @@
         "modo_foto": "before_after"
       },
       {
-        "nombre": "Restauración de Faros con Polímero",
-        "descripcion": "Lijado graduado y aplicación de polímero de vapor óptico. Elimina paño amarillo y recupera hasta 40% más de iluminación con 6 meses de garantía.",
-        "ideal_si": "Recuperar la transparencia de agencia y seguridad nocturna sin comprar faros nuevos.",
-        "precio": "Desde $650 MXN (el par)",
-        "proteccion": "Polímero de Vapor · 6 Meses de Garantía",
-        "antes_img": "/before-after/faros-polymer-antes.jpg",
-        "despues_img": "/before-after/faros-polymer-despues.jpg",
-        "modo_foto": "before_after"
-      },
-      {
         "nombre": "Lavado de Motor a Vapor Técnico",
         "descripcion": "Desengrasado seguro a vapor a alta temperatura y brochas suaves. Disuelve grasa sin riesgo eléctrico y acondiciona plásticos al tono mate.",
         "ideal_si": "Limpieza y protección de vano motor segura, sin chorros de agua a presión.",
@@ -55240,6 +55230,16 @@
         "proteccion": "Faros Nuevos + Interiores + Brillo Express",
         "antes_img": "/before-after/interior-antes.jpg",
         "despues_img": "/before-after/interior-despues.jpg",
+        "modo_foto": "before_after"
+      },
+      {
+        "nombre": "Restauración de Faros con Polímero",
+        "descripcion": "Lijado graduado y aplicación de polímero de vapor óptico. Elimina paño amarillo y recupera hasta 40% más de iluminación con 6 meses de garantía.",
+        "ideal_si": "Recuperar la transparencia de agencia y seguridad nocturna sin comprar faros nuevos.",
+        "precio": "Desde $650 MXN (el par)",
+        "proteccion": "Polímero de Vapor · 6 Meses de Garantía",
+        "antes_img": "/before-after/faros-polymer-antes.jpg",
+        "despues_img": "/before-after/faros-polymer-despues.jpg",
         "modo_foto": "before_after"
       }
     ]
