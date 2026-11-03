@@ -716,10 +716,8 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
     if (modalVideoRef.current) {
       try {
         modalVideoRef.current.pause();
-        modalVideoRef.current.removeAttribute("src");
-        modalVideoRef.current.load();
       } catch (e) {
-        // Safe catch para navegadores con restricciones en load()
+        // Safe catch
       }
     }
   };
@@ -820,17 +818,14 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
     return () => observer.disconnect();
   }, []);
 
-  // Cerrar modal de video con tecla ESC y bloquear scroll del fondo para evitar toques fantasmas
+  // Cerrar modal de video con tecla ESC (sin mutar document.body.style.overflow para no purgar los scroll tiles de WebKit en iOS)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") cerrarModalVideo();
     };
     if (servicioModalVideo) {
-      const prevOverflow = document.body.style.overflow;
-      document.body.style.overflow = "hidden";
       window.addEventListener("keydown", handleKeyDown);
       return () => {
-        document.body.style.overflow = prevOverflow;
         window.removeEventListener("keydown", handleKeyDown);
         stopAndReleaseVideo();
       };
@@ -2072,11 +2067,13 @@ ${bloqueServicios}${bloqueComplementos}
         </aside>
       )}
 
-      {/* MODAL DE VIDEO DEL RESULTADO (Carga bajo demanda con liberación estricta de MediaCodec en móviles) */}
+      {/* MODAL DE VIDEO DEL RESULTADO (Carga bajo demanda con overlay puro sin backdrop-blur para no congelar Safari en iOS) */}
       {servicioModalVideo && (
         <div 
           onClick={cerrarModalVideo}
-          className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 touch-none overscroll-none"
+          onTouchMove={(e) => e.stopPropagation()}
+          onWheel={(e) => e.stopPropagation()}
+          className="fixed inset-0 z-50 bg-black/92 flex items-center justify-center p-3 sm:p-6 touch-none overscroll-none"
         >
           <div 
             onClick={(e) => e.stopPropagation()}
