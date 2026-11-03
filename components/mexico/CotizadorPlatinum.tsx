@@ -1252,9 +1252,10 @@ ${bloqueServicios}${bloqueComplementos}
 
           {/* Pestañas de categorías con Niveles y Extra Pro */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5">
-            {CATEGORIAS.map((cat) => {
+            {CATEGORIAS.map((cat, idx) => {
               const activa = cat.id === categoriaActiva;
               const IconComp = cat.Icono;
+              const isLast = idx === CATEGORIAS.length - 1;
               const cantidadEnCat = SERVICIOS_PLATINUM.filter(
                 (s) => s.categoria === cat.id && serviciosSeleccionadosIds.includes(s.id)
               ).length;
@@ -1286,7 +1287,7 @@ ${bloqueServicios}${bloqueComplementos}
                   onClick={() => setCategoriaActiva(cat.id)}
                   type="button"
                   className={`w-full flex flex-col justify-between p-3 sm:p-3.5 rounded-2xl text-left active:scale-[0.98] transition-colors duration-100 border cursor-pointer ${botonEstilo} ${
-                    isExtra && !activa ? "col-span-2 sm:col-span-1 lg:col-span-1" : ""
+                    isLast ? "col-span-2 sm:col-span-1 justify-self-center w-full max-w-[calc(50%-5px)] sm:max-w-none" : ""
                   }`}
                 >
                   <div className="flex items-center justify-between w-full mb-2">
