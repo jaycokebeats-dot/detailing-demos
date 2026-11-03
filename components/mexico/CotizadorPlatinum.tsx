@@ -705,6 +705,52 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
   const [videoActivoIndex, setVideoActivoIndex] = useState(0);
   const [rangoRines, setRangoRines] = useState<"r15-r18" | "r19-r22">("r15-r18");
 
+  // Control seguro de hardware decoders de video móvil
+  const modalVideoRef = useRef<HTMLVideoElement | null>(null);
+  const isOpeningModalRef = useRef(false);
+  const isClosingModalRef = useRef(false);
+
+  const stopAndReleaseVideo = () => {
+    if (modalVideoRef.current) {
+      try {
+        modalVideoRef.current.pause();
+        modalVideoRef.current.removeAttribute("src");
+        modalVideoRef.current.load();
+      } catch (e) {
+        // Safe catch para navegadores con restricciones en load()
+      }
+    }
+  };
+
+  const abrirModalVideo = (s: ServicioBase) => {
+    if (isOpeningModalRef.current) return;
+    isOpeningModalRef.current = true;
+    setTimeout(() => {
+      isOpeningModalRef.current = false;
+    }, 300);
+
+    stopAndReleaseVideo();
+    setServicioModalVideo(s);
+    setVideoActivoIndex(0);
+  };
+
+  const cerrarModalVideo = () => {
+    if (isClosingModalRef.current) return;
+    isClosingModalRef.current = true;
+    setTimeout(() => {
+      isClosingModalRef.current = false;
+    }, 250);
+
+    stopAndReleaseVideo();
+    setServicioModalVideo(null);
+  };
+
+  const cambiarVideoActivo = (idx: number) => {
+    if (idx === videoActivoIndex) return;
+    stopAndReleaseVideo();
+    setVideoActivoIndex(idx);
+  };
+
   // Zona / Fraccionamiento del cliente en Querétaro
   const [zonaCliente, setZonaCliente] = useState("");
   const [zonaError, setZonaError] = useState(false);
@@ -772,14 +818,20 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
     return () => observer.disconnect();
   }, []);
 
-  // Cerrar modal de video con tecla ESC
+  // Cerrar modal de video con tecla ESC y bloquear scroll del fondo para evitar toques fantasmas
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setServicioModalVideo(null);
+      if (e.key === "Escape") cerrarModalVideo();
     };
     if (servicioModalVideo) {
+      const prevOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
       window.addEventListener("keydown", handleKeyDown);
-      return () => window.removeEventListener("keydown", handleKeyDown);
+      return () => {
+        document.body.style.overflow = prevOverflow;
+        window.removeEventListener("keydown", handleKeyDown);
+        stopAndReleaseVideo();
+      };
     }
   }, [servicioModalVideo]);
 
@@ -1454,8 +1506,7 @@ ${bloqueServicios}${bloqueComplementos}
                           type="button"
                           onClick={(e) => {
                             e.stopPropagation();
-                            setServicioModalVideo(s);
-                            setVideoActivoIndex(0);
+                            abrirModalVideo(s);
                           }}
                           className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-gradient-to-r from-amber-400/15 to-amber-500/10 hover:from-amber-400/25 hover:to-amber-500/20 border border-amber-400/40 hover:border-amber-400/70 text-amber-300 hover:text-white text-xs font-bold transition-all group/btn cursor-pointer shadow-sm active:scale-95"
                         >
@@ -2039,11 +2090,11 @@ ${bloqueServicios}${bloqueComplementos}
         </aside>
       )}
 
-      {/* MODAL DE VIDEO DEL RESULTADO (Carga bajo demanda, 0 bytes en carga inicial) */}
+      {/* MODAL DE VIDEO DEL RESULTADO (Carga bajo demanda con liberación estricta de MediaCodec en móviles) */}
       {servicioModalVideo && (
         <div 
-          onClick={() => setServicioModalVideo(null)}
-          className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6"
+          onClick={cerrarModalVideo}
+          className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 touch-none overscroll-none"
         >
           <div 
             onClick={(e) => e.stopPropagation()}
@@ -2073,7 +2124,7 @@ ${bloqueServicios}${bloqueComplementos}
 
               <button
                 type="button"
-                onClick={() => setServicioModalVideo(null)}
+                onClick={cerrarModalVideo}
                 className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 flex items-center justify-center text-neutral-300 hover:text-white transition cursor-pointer shrink-0"
                 aria-label="Cerrar video"
               >
@@ -2081,14 +2132,14 @@ ${bloqueServicios}${bloqueComplementos}
               </button>
             </div>
 
-            {/* Pestañas de videos múltiples si tiene más de 1 video (ordenados) */}
+            {/* Pestañas de videos múltiples si tiene más de 1 video (ordenados con teardown seguro) */}
             {servicioModalVideo.videos && servicioModalVideo.videos.length > 1 && (
               <div className="px-4 py-2.5 border-b border-white/10 bg-black/40 flex items-center gap-2 overflow-x-auto no-scrollbar">
                 {servicioModalVideo.videos.map((vid, idx) => (
                   <button
                     key={idx}
                     type="button"
-                    onClick={() => setVideoActivoIndex(idx)}
+                    onClick={() => cambiarVideoActivo(idx)}
                     className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer flex items-center gap-1.5 ${
                       videoActivoIndex === idx
                         ? "bg-amber-400 text-black shadow-sm font-black"
@@ -2106,6 +2157,7 @@ ${bloqueServicios}${bloqueComplementos}
             <div className="relative bg-black flex items-center justify-center overflow-hidden flex-1 min-h-[320px] max-h-[58vh]">
               {servicioModalVideo.videos?.[videoActivoIndex] && (
                 <video
+                  ref={modalVideoRef}
                   key={servicioModalVideo.videos[videoActivoIndex].url}
                   src={servicioModalVideo.videos[videoActivoIndex].url}
                   poster={servicioModalVideo.videos[videoActivoIndex].poster}
@@ -2136,7 +2188,7 @@ ${bloqueServicios}${bloqueComplementos}
                     type="button"
                     onClick={() => {
                       toggleServicio(servicioModalVideo.id);
-                      setServicioModalVideo(null);
+                      cerrarModalVideo();
                     }}
                     className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 hover:bg-red-500/20 hover:border-red-400/40 hover:text-red-300 text-xs font-bold transition-all cursor-pointer"
                   >
@@ -2148,7 +2200,7 @@ ${bloqueServicios}${bloqueComplementos}
                     type="button"
                     onClick={() => {
                       toggleServicio(servicioModalVideo.id);
-                      setServicioModalVideo(null);
+                      cerrarModalVideo();
                     }}
                     className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-black text-xs font-black uppercase tracking-wider transition-all cursor-pointer shadow-md shadow-amber-400/20 active:scale-95"
                   >
