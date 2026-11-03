@@ -778,6 +778,35 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
   const resumenRef = useRef<HTMLDivElement | null>(null);
   const zonaInputRef = useRef<HTMLInputElement | null>(null);
   const paso3Ref = useRef<HTMLDivElement | null>(null);
+  const paso2Ref = useRef<HTMLDivElement | null>(null);
+
+  // Desplazamiento fluido y ultraligero directo hacia los tratamientos (Paso 2)
+  const scrollToPaso2 = (smooth = true) => {
+    const el = paso2Ref.current || document.getElementById("paso-2-tratamientos");
+    if (!el) return;
+
+    let absoluteTop = 0;
+    let curr: HTMLElement | null = el;
+    while (curr) {
+      absoluteTop += curr.offsetTop;
+      curr = curr.offsetParent as HTMLElement | null;
+    }
+
+    // Dejar aire cómodo debajo del navbar flotante (70px)
+    const targetY = Math.max(0, absoluteTop - 70);
+    window.scrollTo({
+      top: targetY,
+      behavior: smooth ? "smooth" : "auto",
+    });
+  };
+
+  const handleSelectVehiculo = (id: VehiculoId) => {
+    setVehiculoId(id);
+    // Timeout breve de 60ms para dar feedback táctil instantáneo al botón antes del suave deslizamiento
+    setTimeout(() => {
+      scrollToPaso2(true);
+    }, 60);
+  };
 
   const scrollToPaso3 = (smooth = true) => {
     const el = paso3Ref.current || document.getElementById("paso-3-complementos");
@@ -1227,7 +1256,7 @@ ${bloqueServicios}${bloqueComplementos}
               return (
                 <button
                   key={v.id}
-                  onClick={() => setVehiculoId(v.id)}
+                  onClick={() => handleSelectVehiculo(v.id)}
                   type="button"
                   className={`text-left p-4 sm:p-5 rounded-2xl border active:scale-[0.98] transition-colors duration-100 flex flex-col justify-between min-h-[120px] sm:min-h-[135px] cursor-pointer ${
                     isLast ? "col-span-2 sm:col-span-1 justify-self-center w-full max-w-[calc(50%-7px)] sm:max-w-none" : ""
@@ -1260,7 +1289,7 @@ ${bloqueServicios}${bloqueComplementos}
         </div>
 
         {/* PASO 2: Categorías de Servicio y Tarjetas con Selección Inteligente */}
-        <div className="space-y-6">
+        <div id="paso-2-tratamientos" ref={paso2Ref} className="space-y-6 scroll-mt-20">
           <div className="flex items-center justify-between">
             <h3 className="text-sm sm:text-base uppercase tracking-wider text-neutral-200 font-bold flex items-center gap-2.5">
               <span className="flex items-center justify-center w-6 h-6 rounded-full bg-amber-400 text-black text-xs font-black">2</span>
