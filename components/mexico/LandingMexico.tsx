@@ -110,7 +110,16 @@ export default function LandingMexico({ biz }: { biz: Business }) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 40);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -234,6 +243,8 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                   backdropFilter: "blur(14px)",
                   boxShadow: isTheZone ? "0 8px 30px rgba(0,102,255,0.25)" : "0 8px 30px rgba(0,0,0,0.45)",
                   border: isTheZone ? "1px solid rgba(56,189,248,0.25)" : "1px solid rgba(255,255,255,0.08)",
+                  transform: "translateZ(0)",
+                  willChange: "transform",
                 }
               : {
                   marginTop: "0px",
@@ -338,8 +349,8 @@ export default function LandingMexico({ biz }: { biz: Business }) {
           />
         ) : isPlatinum ? (
           <div
-            className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[480px] rounded-full pointer-events-none blur-[110px] opacity-35"
-            style={{ background: "radial-gradient(circle, rgba(245,158,11,0.45) 0%, rgba(217,119,6,0.2) 35%, transparent 70%)" }}
+            className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[480px] rounded-full pointer-events-none opacity-40"
+            style={{ background: "radial-gradient(ellipse at center, rgba(245,158,11,0.25) 0%, rgba(217,119,6,0.08) 45%, transparent 70%)" }}
           />
         ) : null}
 

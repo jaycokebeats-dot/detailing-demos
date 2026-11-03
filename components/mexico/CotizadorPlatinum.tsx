@@ -1191,8 +1191,14 @@ ${bloqueServicios}${bloqueComplementos}
       id="cotizador" 
       className="relative px-4 sm:px-8 py-20 bg-[#0a0a0c] text-white border-t border-b border-white/10 overflow-hidden scroll-mt-24 sm:scroll-mt-28"
     >
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-amber-500/5 blur-[140px] pointer-events-none rounded-full" />
-      <div className="absolute bottom-10 right-10 w-[400px] h-[300px] bg-emerald-500/5 blur-[120px] pointer-events-none rounded-full" />
+      <div 
+        className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] pointer-events-none rounded-full"
+        style={{ background: "radial-gradient(ellipse at center, rgba(245, 158, 11, 0.08) 0%, transparent 70%)" }}
+      />
+      <div 
+        className="absolute bottom-10 right-10 w-[400px] h-[300px] pointer-events-none rounded-full"
+        style={{ background: "radial-gradient(ellipse at center, rgba(16, 185, 129, 0.06) 0%, transparent 70%)" }}
+      />
 
       <div className="max-w-6xl mx-auto space-y-12 relative z-10">
         
@@ -2034,13 +2040,14 @@ ${bloqueServicios}${bloqueComplementos}
       {serviciosSeleccionados.length > 0 && (
         <aside
           aria-label="Resumen flotante de cotización"
+          style={{ willChange: "transform" }}
           className={`fixed bottom-0 left-0 right-0 z-40 transition-all duration-300 ease-out ${
             isResumenVisible
               ? "translate-y-full opacity-0 pointer-events-none"
               : "translate-y-0 opacity-100"
           }`}
         >
-          <div className="bg-[#121217]/95 backdrop-blur-xl border-t border-amber-500/25 shadow-[0_-10px_35px_rgba(0,0,0,0.85)] px-4 py-3 sm:py-3.5">
+          <div className="bg-[#121217] sm:bg-[#121217]/95 sm:backdrop-blur-md border-t border-amber-500/25 shadow-[0_-10px_35px_rgba(0,0,0,0.85)] px-4 py-3 sm:py-3.5 transform-gpu">
             <div className="max-w-5xl mx-auto flex items-center justify-between gap-3">
               {/* Info y Total */}
               <div 
