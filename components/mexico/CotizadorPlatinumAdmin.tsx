@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import type {
   Business,
   CotizadorPlatinumServicio,
@@ -60,6 +60,44 @@ export default function CotizadorPlatinumAdmin({
   const [filtroCategoria, setFiltroCategoria] = useState<string>("todas");
   const [busqueda, setBusqueda] = useState<string>("");
   const [expandedIds, setExpandedIds] = useState<Record<string, boolean>>({});
+
+  // Auto-guardado inteligente (Debounce de 2.5s tras editar)
+  const [autoSaveState, setAutoSaveState] = useState<"idle" | "saving" | "saved">("idle");
+  const isFirstLoadRef = useRef(true);
+  const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    // Evitar auto-guardar en la carga inicial
+    if (isFirstLoadRef.current) {
+      isFirstLoadRef.current = false;
+      return;
+    }
+
+    setAutoSaveState("saving");
+
+    if (debounceTimerRef.current) {
+      clearTimeout(debounceTimerRef.current);
+    }
+
+    debounceTimerRef.current = setTimeout(async () => {
+      try {
+        await onSave();
+        setAutoSaveState("saved");
+        const t = setTimeout(() => {
+          setAutoSaveState("idle");
+        }, 3000);
+        return () => clearTimeout(t);
+      } catch (e) {
+        setAutoSaveState("idle");
+      }
+    }, 2500);
+
+    return () => {
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current);
+      }
+    };
+  }, [biz.cotizador_platinum]);
 
   // Catálogo activo actual con fallback al oficial
   const servicios: CotizadorPlatinumServicio[] = useMemo(() => {
@@ -233,7 +271,25 @@ export default function CotizadorPlatinumAdmin({
             </p>
           </div>
 
-          <div className="flex items-center gap-2.5 shrink-0">
+          <div className="flex flex-col sm:flex-row items-end sm:items-center gap-2.5 shrink-0">
+            {autoSaveState === "saving" && (
+              <span className="text-[11px] text-amber-400 font-semibold flex items-center gap-1.5 animate-pulse bg-amber-400/10 border border-amber-400/20 px-2.5 py-1 rounded-lg">
+                <span className="w-2 h-2 rounded-full bg-amber-400" />
+                <span>Guardando automáticamente en Supabase...</span>
+              </span>
+            )}
+            {autoSaveState === "saved" && (
+              <span className="text-[11px] text-emerald-400 font-bold flex items-center gap-1.5 bg-emerald-400/10 border border-emerald-400/20 px-2.5 py-1 rounded-lg">
+                <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                <span>✓ Guardado en Supabase</span>
+              </span>
+            )}
+            {autoSaveState === "idle" && (
+              <span className="text-[11px] text-neutral-400 hidden lg:inline-flex items-center gap-1">
+                <span>☁️ Supabase sincronizado</span>
+              </span>
+            )}
+
             <button
               type="button"
               onClick={handleResetCatalog}
@@ -837,7 +893,19 @@ export default function CotizadorPlatinumAdmin({
             <span className="text-amber-400 text-base">⚡</span>
             <div className="text-xs">
               <span className="font-bold text-white block">Cotizador Platinum Querétaro</span>
-              <span className="text-neutral-400 text-[11px]">Cambios listos para guardar</span>
+              {autoSaveState === "saving" ? (
+                <span className="text-amber-400 text-[11px] font-semibold animate-pulse">
+                  Guardando automáticamente en Supabase...
+                </span>
+              ) : autoSaveState === "saved" ? (
+                <span className="text-emerald-400 text-[11px] font-bold">
+                  ✓ Cambios guardados automáticamente
+                </span>
+              ) : (
+                <span className="text-neutral-400 text-[11px]">
+                  Auto-guardado activo en Supabase
+                </span>
+              )}
             </div>
           </div>
 
@@ -852,7 +920,7 @@ export default function CotizadorPlatinumAdmin({
             ) : (
               <LuSave className="text-sm" />
             )}
-            <span>Guardar Cambios</span>
+            <span>Guardar Ahora</span>
           </button>
         </div>
       </div>

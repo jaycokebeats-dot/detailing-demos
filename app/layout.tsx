@@ -44,7 +44,15 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon-platinum-48.png", sizes: "48x48", type: "image/png" },
+      { url: "/favicon-platinum-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/favicon-platinum.svg", type: "image/svg+xml" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon-platinum.png", sizes: "180x180", type: "image/png" },
+    ],
   },
   openGraph: {
     title: TITULO,

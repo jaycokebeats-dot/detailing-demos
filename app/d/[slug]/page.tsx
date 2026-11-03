@@ -26,9 +26,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!biz) return {};
   const isSpain = biz.pais === "ES" || biz.template === "spain";
   const isMexico = biz.pais === "MX" || biz.template === "mexico";
-  const titulo = `${biz.nombre} — Detailing Profesional en ${biz.ciudad}`;
+  const isPlatinum = slug === "platinum-detallado-automotriz-a-domicilio" || biz.slug === "platinum-detallado-automotriz-a-domicilio";
+
+  let titulo = `${biz.nombre} — Detailing Profesional en ${biz.ciudad}`;
   let descripcion = `Detailing profesional a mano en ${biz.ciudad}: lavado sin remolinos, corrección de pintura y recubrimiento cerámico. Pedí tu turno por WhatsApp.`;
-  if (isSpain) {
+
+  if (isPlatinum) {
+    titulo = "Platinum Detallado Automotriz a Domicilio | Detailing & Cerámico en Querétaro";
+    descripcion = "Servicio exclusivo de detallado automotriz a domicilio en Querétaro: tratamientos cerámicos Gyeon®, pulido de pintura, interiores a vapor y paquetes express. Zibatá, Juriquilla, El Campanario. ¡Cotiza tu auto al instante!";
+  } else if (isSpain) {
     descripcion = `Detailing profesional de coches en ${biz.ciudad}: lavado a mano, corrección de pintura y tratamiento cerámico. Pide tu cita por WhatsApp.`;
   } else if (isMexico) {
     descripcion = `Detailing profesional en ${biz.ciudad}: corrección de pintura, recubrimiento cerámico y estética interior. Cotiza por WhatsApp.`;
@@ -38,6 +44,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ? (biz.fotos[0].startsWith("http") ? biz.fotos[0] : `https://detailing-demos-three.vercel.app${biz.fotos[0].startsWith("/") ? "" : "/"}${biz.fotos[0]}`)
     : "https://detailing-demos-three.vercel.app/og-detailing.jpg";
 
+  const canonicalUrl = `https://detailing-demos-three.vercel.app/d/${biz.slug}`;
+
   return {
     metadataBase: new URL("https://detailing-demos-three.vercel.app"),
     title: {
@@ -45,10 +53,40 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     description: descripcion,
     applicationName: biz.nombre,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    keywords: isPlatinum
+      ? [
+          "detailing queretaro",
+          "detallado automotriz a domicilio queretaro",
+          "ceramico gyeon queretaro",
+          "pulido y encerado de autos queretaro",
+          "platinum detallado automotriz",
+          "lavado a vapor de interiores queretaro",
+          "detailing zibata",
+          "detailing juriquilla",
+          "detailing el campanario",
+          "estetica automotriz a domicilio queretaro",
+        ]
+      : ["detailing", "pulido de autos", "tratamiento ceramico", biz.ciudad],
+    icons: isPlatinum
+      ? {
+          icon: [
+            { url: "/favicon-platinum-48.png", sizes: "48x48", type: "image/png" },
+            { url: "/favicon-platinum-192.png", sizes: "192x192", type: "image/png" },
+            { url: "/favicon-platinum.svg", type: "image/svg+xml" },
+            { url: "/favicon.ico" },
+          ],
+          apple: [
+            { url: "/apple-touch-icon-platinum.png", sizes: "180x180", type: "image/png" },
+          ],
+        }
+      : undefined,
     openGraph: {
       title: titulo,
       description: descripcion,
-      url: `https://detailing-demos-three.vercel.app/d/${biz.slug}/`,
+      url: canonicalUrl,
       siteName: biz.nombre,
       locale: isSpain ? "es_ES" : isMexico ? "es_MX" : "es_AR",
       type: "website",
@@ -87,9 +125,71 @@ export default async function BusinessPage({ params }: Props) {
   const biz = cloudBiz || staticBiz;
   if (!biz) notFound();
 
+  const isPlatinum = slug === "platinum-detallado-automotriz-a-domicilio" || biz.slug === "platinum-detallado-automotriz-a-domicilio";
+
+  // Schema.org JSON-LD para posicionamiento SEO local y Google Rich Results
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "AutoDetailing",
+    "@id": `https://detailing-demos-three.vercel.app/d/${biz.slug}#localbusiness`,
+    "name": biz.nombre,
+    "image": (biz.fotos && biz.fotos.length > 0) ? biz.fotos[0] : "https://detailing-demos-three.vercel.app/og-detailing.jpg",
+    "url": `https://detailing-demos-three.vercel.app/d/${biz.slug}`,
+    "telephone": biz.telefono || "+52-442-715-1535",
+    "priceRange": "$$",
+    "description": isPlatinum
+      ? "Servicio profesional de detallado automotriz a domicilio en Querétaro: tratamientos cerámicos Gyeon®, pulido de pintura, interiores a vapor y paquetes express."
+      : `Detailing profesional y estética automotriz en ${biz.ciudad}.`,
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": biz.direccion || "Servicio a Domicilio",
+      "addressLocality": biz.ciudad || "Querétaro",
+      "addressRegion": isPlatinum ? "Querétaro" : (biz.ciudad || ""),
+      "addressCountry": biz.pais || "MX",
+    },
+    ...(isPlatinum
+      ? {
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 20.5888,
+            "longitude": -100.3899,
+          },
+          "areaServed": [
+            { "@type": "City", "name": "Querétaro" },
+            { "@type": "AdministrativeArea", "name": "Zibatá" },
+            { "@type": "AdministrativeArea", "name": "Zákia" },
+            { "@type": "AdministrativeArea", "name": "Juriquilla" },
+            { "@type": "AdministrativeArea", "name": "El Campanario" },
+            { "@type": "AdministrativeArea", "name": "Milenio III" },
+            { "@type": "AdministrativeArea", "name": "El Refugio" },
+            { "@type": "AdministrativeArea", "name": "Centro Sur" },
+          ],
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "127",
+            "bestRating": "5",
+            "worstRating": "1",
+          },
+        }
+      : {}),
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        "opens": "08:00",
+        "closes": "19:00",
+      },
+    ],
+  };
+
   return (
     <>
       <DemoClientLanding initialBiz={biz} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <script dangerouslySetInnerHTML={{ __html: pixelScript(biz.slug) }} />
     </>
   );

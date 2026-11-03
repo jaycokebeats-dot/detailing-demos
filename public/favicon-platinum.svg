@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="rimGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="50%" stop-color="#94a3b8"/>
+      <stop offset="100%" stop-color="#cbd5e1"/>
+    </linearGradient>
+    <linearGradient id="pGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f1f5f9"/>
+    </linearGradient>
+  </defs>
+  <!-- Background Circle -->
+  <circle cx="256" cy="256" r="240" fill="#09090b" stroke="url(#rimGrad)" stroke-width="8"/>
+  <circle cx="256" cy="256" r="230" fill="#050507" stroke="#27272a" stroke-width="2"/>
+  
+  <!-- Stylized Letter P -->
+  <path d="M 155 120 L 290 120 C 335 120 365 150 365 198 C 365 246 335 276 290 276 L 225 276 L 225 392 L 155 392 Z M 225 178 L 225 218 L 280 218 C 298 218 308 210 308 198 C 308 186 298 178 280 178 Z" fill="url(#pGrad)"/>
+  
+  <!-- Subtle Amber Diamond Accent -->
+  <path d="M 385 114 L 390 128 L 404 133 L 390 138 L 385 152 L 380 138 L 366 133 L 380 128 Z" fill="#f59e0b"/>
+</svg>
