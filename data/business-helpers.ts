@@ -13,6 +13,38 @@ export type ServiceItem = {
   modo_foto?: "before_after" | "single";
 };
 
+export type VehiculoId = "auto" | "suv2" | "pickup" | "suv3" | "van";
+
+export type CotizadorPlatinumServicio = {
+  id: string;
+  categoria: "mantenimiento" | "brillo-proteccion" | "interiores" | "combos" | "correccion";
+  nombre: string;
+  subtitulo: string;
+  descripcion: string;
+  badge?: string;
+  zonaAviso?: string;
+  detalles: string[];
+  precios: Record<VehiculoId, number | null>;
+  videos?: { url: string; poster?: string; titulo?: string }[];
+};
+
+export type CotizadorPlatinumComplemento = {
+  id: string;
+  nombre: string;
+  descripcion: string;
+  categoriaTipo: "interior" | "cristales" | "exterior" | "ceramico";
+  precioTipo: "fijo" | "variable";
+  precioFijo?: number;
+  precioR15_R18?: number;
+  precioR19_R22?: number;
+  preciosVariables?: Partial<Record<VehiculoId, number | null>>;
+};
+
+export type CotizadorPlatinumConfig = {
+  servicios?: CotizadorPlatinumServicio[];
+  complementos?: CotizadorPlatinumComplemento[];
+};
+
 export type Business = {
   slug: string;
   nombre: string;
@@ -32,6 +64,7 @@ export type Business = {
   pais?: string;
   template?: string;
   video_hero?: string;
+  cotizador_platinum?: CotizadorPlatinumConfig;
 };
 
 export const MSG_PRESUPUESTO = "Hola! Quiero pedir un presupuesto para mi auto.";

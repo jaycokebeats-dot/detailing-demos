@@ -424,7 +424,9 @@ export interface Complemento {
   categoriaTipo: "interior" | "cristales" | "exterior" | "ceramico";
   precioTipo: "fijo" | "variable";
   precioFijo?: number;
-  preciosVariables?: Record<VehiculoId, number | null>;
+  precioR15_R18?: number;
+  precioR19_R22?: number;
+  preciosVariables?: Partial<Record<VehiculoId, number | null>>;
 }
 
 export const COMPLEMENTOS_PLATINUM: Complemento[] = [
@@ -449,6 +451,8 @@ export const COMPLEMENTOS_PLATINUM: Complemento[] = [
     descripcion: "Resistencia térmica hasta 800°C contra polvo de balata y suciedad de frenos (12 a 18 meses).",
     categoriaTipo: "ceramico",
     precioTipo: "variable",
+    precioR15_R18: 1400,
+    precioR19_R22: 1800,
     preciosVariables: {
       auto: 1400,
       suv2: 1800,
@@ -693,6 +697,21 @@ export interface CotizadorPlatinumProps {
 }
 
 export default function CotizadorPlatinum({ biz, onCotizacionChange }: CotizadorPlatinumProps) {
+  // Catálogo dinámico configurable desde el Panel de Control con fallback 100% seguro al catálogo oficial
+  const catalogoServicios = useMemo(() => {
+    if (biz?.cotizador_platinum?.servicios && biz.cotizador_platinum.servicios.length > 0) {
+      return biz.cotizador_platinum.servicios;
+    }
+    return SERVICIOS_PLATINUM;
+  }, [biz?.cotizador_platinum?.servicios]);
+
+  const catalogoComplementos = useMemo(() => {
+    if (biz?.cotizador_platinum?.complementos && biz.cotizador_platinum.complementos.length > 0) {
+      return biz.cotizador_platinum.complementos;
+    }
+    return COMPLEMENTOS_PLATINUM;
+  }, [biz?.cotizador_platinum?.complementos]);
+
   const [vehiculoId, setVehiculoId] = useState<VehiculoId>("auto");
   const [categoriaActiva, setCategoriaActiva] = useState<CategoriaTab["id"]>("mantenimiento");
   
@@ -846,7 +865,7 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
     const inclusion = getInclusionInfo(id, serviciosSeleccionadosIds);
     if (inclusion.isIncluded) {
       setNotificacion({
-        texto: `"${SERVICIOS_PLATINUM.find((s) => s.id === id)?.nombre}" ya forma parte de tu ${inclusion.byComboName}.`,
+        texto: `"${catalogoServicios.find((s) => s.id === id)?.nombre || "Este servicio"}" ya forma parte de tu ${inclusion.byComboName}.`,
         subtexto: inclusion.reason ? `${inclusion.reason}. ¡No pagas doble!` : undefined,
         accionTexto: "Contratar solo este servicio individual",
         onAccion: () => {
@@ -855,7 +874,7 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
             return sinCombo.includes(id) ? sinCombo : [...sinCombo, id];
           });
           setNotificacion({
-            texto: `Se cambió a "${SERVICIOS_PLATINUM.find((s) => s.id === id)?.nombre}" como servicio individual.`,
+            texto: `Se cambió a "${catalogoServicios.find((s) => s.id === id)?.nombre || "servicio"}" como servicio individual.`,
           });
         },
       });
@@ -992,12 +1011,12 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
     const handleSelectService = (event: CustomEvent<{ servicioId?: string; categoria?: string }>) => {
       const { servicioId, categoria } = event.detail || {};
       if (servicioId) {
-        const found = SERVICIOS_PLATINUM.find((s) => s.id === servicioId);
+        const found = catalogoServicios.find((s) => s.id === servicioId);
         if (found) {
           setCategoriaActiva(found.categoria);
           aplicarSeleccionServicio(found.id, false);
         } else {
-          const foundAddon = COMPLEMENTOS_PLATINUM.find((c) => c.id === servicioId);
+          const foundAddon = catalogoComplementos.find((c) => c.id === servicioId);
           if (foundAddon) {
             setIsComplementosOpen(true);
             setComplementosSeleccionados((prev) => prev.includes(foundAddon.id) ? prev : [...prev, foundAddon.id]);
@@ -1026,7 +1045,9 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
 
   const getPrecioComplemento = (c: Complemento): number | null => {
     if (c.id === "ceramico-rines") {
-      return rangoRines === "r19-r22" ? 1800 : 1400;
+      const p18 = c.precioR15_R18 ?? 1400;
+      const p22 = c.precioR19_R22 ?? 1800;
+      return rangoRines === "r19-r22" ? p22 : p18;
     }
     if (c.id === "ceramico-plasticos") {
       if (vehiculoId === "van") return null;
@@ -1038,21 +1059,19 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
 
   // Servicios de la categoría activa en orden fijo y estable (sin re-ordenar el DOM para máxima fluidez móvil)
   const serviciosDeCategoria = useMemo(() => {
-    return SERVICIOS_PLATINUM.filter((s) => s.categoria === categoriaActiva);
-  }, [categoriaActiva]);
+    return catalogoServicios.filter((s) => s.categoria === categoriaActiva);
+  }, [categoriaActiva, catalogoServicios]);
 
   // Complementos en orden fijo y estable para que las tarjetas NUNCA salten ni cambien de posición al interactuar
   const complementosOrdenados = useMemo(() => {
-    return COMPLEMENTOS_PLATINUM;
-  }, []);
+    return catalogoComplementos;
+  }, [catalogoComplementos]);
 
   // Lista de todos los servicios base seleccionados
   const serviciosSeleccionados = useMemo(
-    () => SERVICIOS_PLATINUM.filter((s) => serviciosSeleccionadosIds.includes(s.id)),
-    [serviciosSeleccionadosIds]
+    () => catalogoServicios.filter((s) => serviciosSeleccionadosIds.includes(s.id)),
+    [serviciosSeleccionadosIds, catalogoServicios]
   );
-
-
 
   // Complementos filtrados sin duplicaciones con combos o servicios equivalentes
   const complementosSinDuplicados = useMemo(() => {
@@ -1070,14 +1089,14 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
     }, 0);
 
     const totalComplementos = complementosSinDuplicados.reduce((acc, id) => {
-      const c = COMPLEMENTOS_PLATINUM.find((item) => item.id === id);
+      const c = catalogoComplementos.find((item) => item.id === id);
       if (!c) return acc;
       const p = getPrecioComplemento(c);
       return acc + (p ?? 0);
     }, 0);
 
     return totalServicios + totalComplementos;
-  }, [serviciosSeleccionados, complementosSinDuplicados, vehiculoId, rangoRines]);
+  }, [serviciosSeleccionados, complementosSinDuplicados, vehiculoId, rangoRines, catalogoComplementos]);
 
   // Mensaje estructurado para WhatsApp (calculado bajo demanda al hacer clic para 0 retraso al tocar opciones)
   const generateWhatsAppUrl = () => {
@@ -1097,11 +1116,13 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
 
     const lineasComplementos = complementosSinDuplicados
       .map((id) => {
-        const c = COMPLEMENTOS_PLATINUM.find((item) => item.id === id);
+        const c = catalogoComplementos.find((item) => item.id === id);
         if (!c) return null;
         if (c.id === "ceramico-rines") {
+          const p18 = c.precioR15_R18 ?? 1400;
+          const p22 = c.precioR19_R22 ?? 1800;
           const rText = rangoRines === "r19-r22" ? "R19 a R22" : "R15 a R18";
-          const p = rangoRines === "r19-r22" ? 1800 : 1400;
+          const p = rangoRines === "r19-r22" ? p22 : p18;
           return `  - ${c.nombre} [${rText}] (+$${p.toLocaleString("es-MX")} MXN)`;
         }
         const p = getPrecioComplemento(c);
@@ -1256,11 +1277,11 @@ ${bloqueServicios}${bloqueComplementos}
               const activa = cat.id === categoriaActiva;
               const IconComp = cat.Icono;
               const isLast = idx === CATEGORIAS.length - 1;
-              const cantidadEnCat = SERVICIOS_PLATINUM.filter(
+              const cantidadEnCat = catalogoServicios.filter(
                 (s) => s.categoria === cat.id && serviciosSeleccionadosIds.includes(s.id)
               ).length;
 
-              const tieneCubiertos = SERVICIOS_PLATINUM.some(
+              const tieneCubiertos = catalogoServicios.some(
                 (s) => s.categoria === cat.id && getInclusionInfo(s.id, serviciosSeleccionadosIds).isIncluded
               );
 
@@ -1468,7 +1489,7 @@ ${bloqueServicios}${bloqueComplementos}
                     )}
 
                     <ul className="space-y-2 pt-2 border-t border-white/10">
-                      {s.detalles.map((d, i) => (
+                      {(s.detalles || []).map((d, i) => (
                         <li key={i} className="text-xs sm:text-sm text-neutral-200 flex items-start gap-2 leading-snug">
                           <span className={`w-1.5 h-1.5 rounded-full mt-1.5 shrink-0 ${isIncluded ? "bg-emerald-400" : "bg-amber-400"}`} />
                           <span>{d}</span>
@@ -1551,7 +1572,7 @@ ${bloqueServicios}${bloqueComplementos}
                     Adicionales & Upgrades Opcionales
                   </h3>
                   <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-neutral-300">
-                    {COMPLEMENTOS_PLATINUM.length} disponibles
+                    {catalogoComplementos.length} disponibles
                   </span>
                   {complementosSinDuplicados.length > 0 && (
                     <span className="text-[11px] font-black px-2.5 py-0.5 rounded-full bg-amber-400 text-black shadow-sm">
@@ -1643,7 +1664,7 @@ ${bloqueServicios}${bloqueComplementos}
                                 >
                                   <span>R15 a R18</span>
                                   <span className={`text-[10px] ${rangoRines === "r15-r18" ? "text-black/85 font-black" : "text-amber-400/90 font-medium"}`}>
-                                    $1,400 MXN
+                                    ${(comp.precioR15_R18 ?? 1400).toLocaleString("es-MX")} MXN
                                   </span>
                                 </button>
 
@@ -1661,7 +1682,7 @@ ${bloqueServicios}${bloqueComplementos}
                                 >
                                   <span>R19 a R22</span>
                                   <span className={`text-[10px] ${rangoRines === "r19-r22" ? "text-black/85 font-black" : "text-amber-400/90 font-medium"}`}>
-                                    $1,800 MXN
+                                    ${(comp.precioR19_R22 ?? 1800).toLocaleString("es-MX")} MXN
                                   </span>
                                 </button>
                               </div>
@@ -1796,7 +1817,7 @@ ${bloqueServicios}${bloqueComplementos}
                           return true;
                         })
                         .map((id) => {
-                          const c = COMPLEMENTOS_PLATINUM.find((item) => item.id === id);
+                          const c = catalogoComplementos.find((item) => item.id === id);
                           if (!c) return null;
                           const p = getPrecioComplemento(c);
                           const labelExtra = c.id === "ceramico-rines" ? (rangoRines === "r19-r22" ? " (R19–R22)" : " (R15–R18)") : "";

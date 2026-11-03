@@ -7,6 +7,7 @@ import { SERVICIOS_MEXICO } from "@/components/mexico/LandingMexico";
 import { SERVICIOS_ESPANA } from "@/components/spain/LandingSpain";
 import { getBusinessData, saveBusinessData, resetBusinessData } from "@/lib/supabase";
 import { validateWorkshopAuth, getWorkshopCredentials } from "@/lib/workshop-auth";
+import CotizadorPlatinumAdmin from "@/components/mexico/CotizadorPlatinumAdmin";
 
 // Presets de fotos reales de alta definición listas para usar
 const PRESETS_BEFORE_AFTER = [
@@ -158,7 +159,7 @@ export default function AdminPage() {
   const [loginError, setLoginError] = useState("");
 
   // Pestaña inicial por defecto: Datos del Taller (general)
-  const [activeTab, setActiveTab] = useState<"general" | "services">("general");
+  const [activeTab, setActiveTab] = useState<"general" | "services" | "cotizador">("general");
   const [biz, setBiz] = useState<Business>(DEFAULT_DEMO_BUSINESS);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -525,6 +526,7 @@ export default function AdminPage() {
   }
 
   const liveWebHref = currentSlug === "demo" ? "/d/taller-demo/" : `/d/${currentSlug}/`;
+  const isPlatinum = currentSlug === "platinum-detallado-automotriz-a-domicilio" || biz?.slug === "platinum-detallado-automotriz-a-domicilio";
 
   // --- VISTA DEL PANEL DE CONTROL ---
   return (
@@ -663,32 +665,47 @@ export default function AdminPage() {
         ) : (
           <div className="space-y-6">
             {/* Tabs de Navegación en Gris / Composé */}
-            <div className="grid grid-cols-2 gap-2 bg-[#121212] p-1.5 rounded-2xl border border-neutral-800 max-w-md mx-auto">
+            <div className={`grid ${isPlatinum ? "grid-cols-3 max-w-xl" : "grid-cols-2 max-w-md"} gap-2 bg-[#121212] p-1.5 rounded-2xl border border-neutral-800 mx-auto`}>
               <button
                 type="button"
                 onClick={() => setActiveTab("general")}
-                className={`py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center justify-center gap-2 ${
+                className={`py-2.5 px-2.5 sm:px-3 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center justify-center gap-1.5 sm:gap-2 ${
                   activeTab === "general"
                     ? "bg-neutral-800 text-white shadow-sm border border-neutral-700"
                     : "text-neutral-400 hover:text-neutral-200"
                 }`}
               >
                 <span>📝</span>
-                <span>1. Datos del Taller</span>
+                <span className="truncate">1. Datos</span>
               </button>
 
               <button
                 type="button"
                 onClick={() => setActiveTab("services")}
-                className={`py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center justify-center gap-2 ${
+                className={`py-2.5 px-2.5 sm:px-3 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center justify-center gap-1.5 sm:gap-2 ${
                   activeTab === "services"
                     ? "bg-neutral-800 text-white shadow-sm border border-neutral-700"
                     : "text-neutral-400 hover:text-neutral-200"
                 }`}
               >
                 <span>🛠️</span>
-                <span>2. Servicios ({biz.servicios?.length || 0})</span>
+                <span className="truncate">2. Servicios ({biz.servicios?.length || 0})</span>
               </button>
+
+              {isPlatinum && (
+                <button
+                  type="button"
+                  onClick={() => setActiveTab("cotizador")}
+                  className={`py-2.5 px-2.5 sm:px-3 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center justify-center gap-1.5 sm:gap-2 ${
+                    activeTab === "cotizador"
+                      ? "bg-amber-400 text-black shadow-sm font-black border border-amber-300"
+                      : "text-amber-400 hover:text-amber-300 hover:bg-amber-400/10"
+                  }`}
+                >
+                  <span>⚡</span>
+                  <span className="truncate">3. Cotizador</span>
+                </button>
+              )}
             </div>
 
             {/* SECCIÓN 1: DATOS GENERALES DEL TALLER */}
@@ -1285,6 +1302,16 @@ export default function AdminPage() {
                   })}
                 </div>
               </div>
+            )}
+
+            {/* SECCIÓN 3: COTIZADOR PLATINUM (QUERÉTARO) */}
+            {activeTab === "cotizador" && isPlatinum && (
+              <CotizadorPlatinumAdmin
+                biz={biz}
+                onChange={setBiz}
+                onSave={handleSave}
+                saving={saving}
+              />
             )}
           </div>
         )}
