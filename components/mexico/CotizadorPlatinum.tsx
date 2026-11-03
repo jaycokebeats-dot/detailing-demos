@@ -424,7 +424,7 @@ export interface Complemento {
   categoriaTipo: "interior" | "cristales" | "exterior" | "ceramico";
   precioTipo: "fijo" | "variable";
   precioFijo?: number;
-  preciosVariables?: Record<VehiculoId, number>;
+  preciosVariables?: Record<VehiculoId, number | null>;
 }
 
 export const COMPLEMENTOS_PLATINUM: Complemento[] = [
@@ -496,7 +496,7 @@ export const COMPLEMENTOS_PLATINUM: Complemento[] = [
       suv2: 1800,
       pickup: 1800,
       suv3: 2400,
-      van: 2400,
+      van: null,
     },
   },
   {
@@ -703,6 +703,7 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
   const [isComplementosOpen, setIsComplementosOpen] = useState(false);
   const [servicioModalVideo, setServicioModalVideo] = useState<ServicioBase | null>(null);
   const [videoActivoIndex, setVideoActivoIndex] = useState(0);
+  const [rangoRines, setRangoRines] = useState<"r15-r18" | "r19-r22">("r15-r18");
 
   // Zona / Fraccionamiento del cliente en Querétaro
   const [zonaCliente, setZonaCliente] = useState("");
@@ -990,7 +991,14 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
     return s.precios[vehiculoId] ?? 0;
   };
 
-  const getPrecioComplemento = (c: Complemento): number => {
+  const getPrecioComplemento = (c: Complemento): number | null => {
+    if (c.id === "ceramico-rines") {
+      return rangoRines === "r19-r22" ? 1800 : 1400;
+    }
+    if (c.id === "ceramico-plasticos") {
+      if (vehiculoId === "van") return null;
+      return c.preciosVariables?.[vehiculoId] ?? 1300;
+    }
     if (c.precioTipo === "fijo") return c.precioFijo ?? 0;
     return c.preciosVariables?.[vehiculoId] ?? 0;
   };
@@ -1010,9 +1018,11 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
   // Complementos ordenados del más caro al más barato según el vehículo
   const complementosOrdenados = useMemo(() => {
     return COMPLEMENTOS_PLATINUM.slice().sort((a, b) => {
-      return getPrecioComplemento(b) - getPrecioComplemento(a);
+      const pA = getPrecioComplemento(a) ?? 0;
+      const pB = getPrecioComplemento(b) ?? 0;
+      return pB - pA;
     });
-  }, [vehiculoId]);
+  }, [vehiculoId, rangoRines]);
 
   // Lista de todos los servicios base seleccionados
   const serviciosSeleccionados = useMemo(
@@ -1039,11 +1049,13 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
 
     const totalComplementos = complementosSinDuplicados.reduce((acc, id) => {
       const c = COMPLEMENTOS_PLATINUM.find((item) => item.id === id);
-      return acc + (c ? getPrecioComplemento(c) : 0);
+      if (!c) return acc;
+      const p = getPrecioComplemento(c);
+      return acc + (p ?? 0);
     }, 0);
 
     return totalServicios + totalComplementos;
-  }, [serviciosSeleccionados, complementosSinDuplicados, vehiculoId]);
+  }, [serviciosSeleccionados, complementosSinDuplicados, vehiculoId, rangoRines]);
 
   // Mensaje estructurado para WhatsApp
   const whatsAppUrl = useMemo(() => {
@@ -1065,7 +1077,16 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
       .map((id) => {
         const c = COMPLEMENTOS_PLATINUM.find((item) => item.id === id);
         if (!c) return null;
-        return `  - ${c.nombre} (+$${getPrecioComplemento(c).toLocaleString("es-MX")} MXN)`;
+        if (c.id === "ceramico-rines") {
+          const rText = rangoRines === "r19-r22" ? "R19 a R22" : "R15 a R18";
+          const p = rangoRines === "r19-r22" ? 1800 : 1400;
+          return `  - ${c.nombre} [${rText}] (+$${p.toLocaleString("es-MX")} MXN)`;
+        }
+        const p = getPrecioComplemento(c);
+        if (p === null) {
+          return `  - ${c.nombre} (Pedir cotización)`;
+        }
+        return `  - ${c.nombre} (+$${p.toLocaleString("es-MX")} MXN)`;
       })
       .filter(Boolean)
       .join("\n");
@@ -1569,6 +1590,55 @@ ${bloqueServicios}${bloqueComplementos}
                           <p className="text-xs sm:text-sm text-neutral-300 leading-snug mt-2 line-clamp-2">
                             {comp.descripcion}
                           </p>
+
+                          {/* Selector de Medida de Rines para Cerámico en Rines */}
+                          {comp.id === "ceramico-rines" && (
+                            <div 
+                              className="mt-3 pt-2.5 border-t border-white/10 flex flex-col gap-1.5"
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              <span className="text-[11px] text-neutral-400 font-medium">
+                                Medida de rines:
+                              </span>
+                              <div className="grid grid-cols-2 gap-1.5">
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    setRangoRines("r15-r18");
+                                    if (!seleccionado) toggleComplemento(comp.id);
+                                  }}
+                                  className={`px-2 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex flex-col items-center justify-center text-center ${
+                                    rangoRines === "r15-r18"
+                                      ? "bg-amber-400 text-black shadow-sm font-black ring-1 ring-amber-300"
+                                      : "bg-white/5 text-neutral-300 hover:text-white border border-white/10 hover:border-white/20"
+                                  }`}
+                                >
+                                  <span>R15 a R18</span>
+                                  <span className={`text-[10px] ${rangoRines === "r15-r18" ? "text-black/85 font-black" : "text-amber-400/90 font-medium"}`}>
+                                    $1,400 MXN
+                                  </span>
+                                </button>
+
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    setRangoRines("r19-r22");
+                                    if (!seleccionado) toggleComplemento(comp.id);
+                                  }}
+                                  className={`px-2 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex flex-col items-center justify-center text-center ${
+                                    rangoRines === "r19-r22"
+                                      ? "bg-amber-400 text-black shadow-sm font-black ring-1 ring-amber-300"
+                                      : "bg-white/5 text-neutral-300 hover:text-white border border-white/10 hover:border-white/20"
+                                  }`}
+                                >
+                                  <span>R19 a R22</span>
+                                  <span className={`text-[10px] ${rangoRines === "r19-r22" ? "text-black/85 font-black" : "text-amber-400/90 font-medium"}`}>
+                                    $1,800 MXN
+                                  </span>
+                                </button>
+                              </div>
+                            </div>
+                          )}
                         </div>
 
                         <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
@@ -1578,9 +1648,17 @@ ${bloqueServicios}${bloqueComplementos}
                             {isFarosCubierto ? "✨ Ya Incluido" : comp.categoriaTipo === "ceramico" ? "Upgrade" : "Adicional"}
                           </span>
                           <span className={`text-sm sm:text-base font-extrabold ${
-                            isFarosCubierto ? "text-emerald-400 text-xs sm:text-sm" : "text-amber-400"
+                            isFarosCubierto 
+                              ? "text-emerald-400 text-xs sm:text-sm" 
+                              : precio === null 
+                              ? "text-amber-300 text-xs sm:text-sm" 
+                              : "text-amber-400"
                           }`}>
-                            {isFarosCubierto ? "Incluido en Pack Express" : `+$${precio.toLocaleString("es-MX")} MXN`}
+                            {isFarosCubierto 
+                              ? "Incluido en Pack Express" 
+                              : precio === null 
+                              ? "Pedir cotización" 
+                              : `+$${precio.toLocaleString("es-MX")} MXN`}
                           </span>
                         </div>
                       </div>
@@ -1692,9 +1770,12 @@ ${bloqueServicios}${bloqueComplementos}
                         .map((id) => {
                           const c = COMPLEMENTOS_PLATINUM.find((item) => item.id === id);
                           if (!c) return null;
+                          const p = getPrecioComplemento(c);
+                          const labelExtra = c.id === "ceramico-rines" ? (rangoRines === "r19-r22" ? " (R19–R22)" : " (R15–R18)") : "";
+                          const textoPrecio = p === null ? "Pedir cotización" : `+$${p.toLocaleString("es-MX")} MXN`;
                           return (
                             <span key={id} className="text-xs sm:text-sm font-medium px-3 py-1 rounded-lg bg-white/5 border border-white/15 text-neutral-200 flex items-center gap-2">
-                              <span>{c.nombre} (+${getPrecioComplemento(c).toLocaleString("es-MX")} MXN)</span>
+                              <span>{c.nombre}{labelExtra} ({textoPrecio})</span>
                               <button
                                 type="button"
                                 onClick={() => toggleComplemento(id)}
