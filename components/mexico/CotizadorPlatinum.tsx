@@ -428,47 +428,19 @@ export interface Complemento {
 }
 
 export const COMPLEMENTOS_PLATINUM: Complemento[] = [
-  // --- FAROS Y MOTOR A VAPOR (ADDONS OFICIALES) ---
+  // Fila 1: Upgrades Premium Cerámicos (Orden fijo y estable)
   {
-    id: "faros-addon",
-    nombre: "Restauración de Faros con Polímero de Vapor",
-    descripcion: "Elimina opacidad y tono amarillo mediante polímero de vapor óptico. Recupera hasta 40% más de iluminación con 6 meses de garantía.",
-    categoriaTipo: "exterior",
-    precioTipo: "variable",
-    preciosVariables: {
-      auto: 650,
-      suv2: 750,
-      pickup: 750,
-      suv3: 750,
-      van: 750,
-    },
-  },
-  {
-    id: "motor-addon",
-    nombre: "Lavado de Motor a Vapor Técnico",
-    descripcion: "Desengrasado seguro a vapor y acondicionado térmico mate de plásticos y mangueras (sin riesgo eléctrico).",
-    categoriaTipo: "exterior",
-    precioTipo: "variable",
-    preciosVariables: {
-      auto: 550,
-      suv2: 750,
-      pickup: 750,
-      suv3: 750,
-      van: 850,
-    },
-  },
-  {
-    id: "ceramico-asientos",
-    nombre: "Protección Cerámica en Asientos (Piel / Tela)",
-    descripcion: "Escudo nanotecnológico anti-manchas: encapsula líquidos y evita transferencia de tinte de jeans (12 meses).",
+    id: "ceramico-interior-integral",
+    nombre: "Cerámico Interior Integral (Asientos + Plásticos)",
+    descripcion: "Blindaje completo de cabina: vestiduras y tablero protegidos contra derrames y rayos solares.",
     categoriaTipo: "ceramico",
     precioTipo: "variable",
     preciosVariables: {
-      auto: 1200,
-      suv2: 1500,
-      pickup: 1500,
-      suv3: 1500,
-      van: 1800,
+      auto: 1800,
+      suv2: 2300,
+      pickup: 2300,
+      suv3: 2800,
+      van: 3200,
     },
   },
   {
@@ -499,22 +471,52 @@ export const COMPLEMENTOS_PLATINUM: Complemento[] = [
       van: null,
     },
   },
+
+  // Fila 2: Protección y Restauración Exterior / Interior
   {
-    id: "ceramico-interior-integral",
-    nombre: "Cerámico Interior Integral (Asientos + Plásticos)",
-    descripcion: "Blindaje completo de cabina: vestiduras y tablero protegidos contra derrames y rayos solares.",
+    id: "ceramico-asientos",
+    nombre: "Protección Cerámica en Asientos (Piel / Tela)",
+    descripcion: "Escudo nanotecnológico anti-manchas: encapsula líquidos y evita transferencia de tinte de jeans (12 meses).",
     categoriaTipo: "ceramico",
     precioTipo: "variable",
     preciosVariables: {
-      auto: 1800,
-      suv2: 2300,
-      pickup: 2300,
-      suv3: 2800,
-      van: 3200,
+      auto: 1200,
+      suv2: 1500,
+      pickup: 1500,
+      suv3: 1500,
+      van: 1800,
+    },
+  },
+  {
+    id: "faros-addon",
+    nombre: "Restauración de Faros con Polímero de Vapor",
+    descripcion: "Elimina opacidad y tono amarillo mediante polímero de vapor óptico. Recupera hasta 40% más de iluminación con 6 meses de garantía.",
+    categoriaTipo: "exterior",
+    precioTipo: "variable",
+    preciosVariables: {
+      auto: 650,
+      suv2: 750,
+      pickup: 750,
+      suv3: 750,
+      van: 750,
+    },
+  },
+  {
+    id: "motor-addon",
+    nombre: "Lavado de Motor a Vapor Técnico",
+    descripcion: "Desengrasado seguro a vapor y acondicionado térmico mate de plásticos y mangueras (sin riesgo eléctrico).",
+    categoriaTipo: "exterior",
+    precioTipo: "variable",
+    preciosVariables: {
+      auto: 550,
+      suv2: 750,
+      pickup: 750,
+      suv3: 750,
+      van: 850,
     },
   },
 
-  // --- TRATAMIENTOS DE CRISTALES Y DETALLE EXTERIOR/INTERIOR ---
+  // Fila 3: Cristales, Cabina y Ruedas
   {
     id: "vision-clara",
     nombre: "Combo Visión Clara (Repelente de Lluvia)",
@@ -1067,14 +1069,10 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
       });
   }, [categoriaActiva, vehiculoId]);
 
-  // Complementos ordenados del más caro al más barato según el vehículo
+  // Complementos en orden fijo y estable para que las tarjetas NUNCA salten ni cambien de posición al interactuar
   const complementosOrdenados = useMemo(() => {
-    return COMPLEMENTOS_PLATINUM.slice().sort((a, b) => {
-      const pA = getPrecioComplemento(a) ?? 0;
-      const pB = getPrecioComplemento(b) ?? 0;
-      return pB - pA;
-    });
-  }, [vehiculoId, rangoRines]);
+    return COMPLEMENTOS_PLATINUM;
+  }, []);
 
   // Lista de todos los servicios base seleccionados
   const serviciosSeleccionados = useMemo(
