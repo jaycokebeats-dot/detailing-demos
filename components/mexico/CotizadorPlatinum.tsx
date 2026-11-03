@@ -889,11 +889,6 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
         ];
         next = next.filter((item) => !absorbidos.includes(item));
         next.push("full-detail");
-
-        setNotificacion({
-          texto: "✨ Platinum Full Detail activado: incluye renovación total de interiores a vapor y pulido exterior de 1 paso.",
-          subtexto: "Puedes sumar Faros, Lavado de Motor a Vapor o Complementos según lo necesites.",
-        });
         return next;
       }
 
@@ -902,10 +897,6 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
         const absorbidos = ["full-detail", "faros", "essential-care", "mantenimiento-core"];
         next = next.filter((item) => !absorbidos.includes(item));
         next.push("express-sale");
-
-        setNotificacion({
-          texto: "✨ Pack Express Sale activado: incluye restauración óptica de faros, aspirado profundo y abrillantado express.",
-        });
         return next;
       }
 
@@ -914,9 +905,6 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
         next = next.filter((item) => !GRUPO_INTERIORES.includes(item));
         if (next.includes("full-detail")) {
           next = next.filter((item) => item !== "full-detail");
-          setNotificacion({
-            texto: `✨ Se configuró "${SERVICIOS_PLATINUM.find((s) => s.id === id)?.nombre}" como servicio individual.`,
-          });
         }
         next.push(id);
         return next;
@@ -932,10 +920,6 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
           if (!next.includes("full-interior")) {
             next.push("full-interior");
           }
-          const servicioNombre = SERVICIOS_PLATINUM.find((s) => s.id === id)?.nombre || "Corrección";
-          setNotificacion({
-            texto: `✨ Optimización automática: Se configuró Full Interior + ${servicioNombre} para no duplicar el pulido exterior.`,
-          });
         }
         next.push(id);
         return next;
@@ -1057,17 +1041,10 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
     return c.preciosVariables?.[vehiculoId] ?? 0;
   };
 
-  // Servicios filtrados y ordenados del más caro al más barato según el vehículo
+  // Servicios de la categoría activa en orden fijo y estable (sin re-ordenar el DOM para máxima fluidez móvil)
   const serviciosDeCategoria = useMemo(() => {
-    return SERVICIOS_PLATINUM
-      .filter((s) => s.categoria === categoriaActiva)
-      .slice()
-      .sort((a, b) => {
-        const pA = a.precios[vehiculoId] ?? 0;
-        const pB = b.precios[vehiculoId] ?? 0;
-        return pB - pA;
-      });
-  }, [categoriaActiva, vehiculoId]);
+    return SERVICIOS_PLATINUM.filter((s) => s.categoria === categoriaActiva);
+  }, [categoriaActiva]);
 
   // Complementos en orden fijo y estable para que las tarjetas NUNCA salten ni cambien de posición al interactuar
   const complementosOrdenados = useMemo(() => {
@@ -1107,8 +1084,8 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
     return totalServicios + totalComplementos;
   }, [serviciosSeleccionados, complementosSinDuplicados, vehiculoId, rangoRines]);
 
-  // Mensaje estructurado para WhatsApp
-  const whatsAppUrl = useMemo(() => {
+  // Mensaje estructurado para WhatsApp (calculado bajo demanda al hacer clic para 0 retraso al tocar opciones)
+  const generateWhatsAppUrl = () => {
     const waNumber = (biz.whatsapp || "524427151535").replace(/\D/g, "");
     
     const lineasServicios = serviciosSeleccionados
@@ -1161,7 +1138,7 @@ ${bloqueServicios}${bloqueComplementos}
 ¿Qué fechas y horarios tienen disponibles para agendar la visita en mi domicilio?`;
 
     return `https://wa.me/${waNumber}?text=${encodeURIComponent(mensaje)}`;
-  }, [biz, vehiculoActual, serviciosSeleccionados, complementosSinDuplicados, serviciosSeleccionadosIds, totalEstimado, vehiculoId, zonaCliente]);
+  };
 
   const handlePaso4WhatsApp = () => {
     if (totalEstimado > 0 && !zonaCliente.trim()) {
@@ -1172,14 +1149,14 @@ ${bloqueServicios}${bloqueComplementos}
       }
       return;
     }
-    window.open(whatsAppUrl, "_blank", "noopener,noreferrer");
+    window.open(generateWhatsAppUrl(), "_blank", "noopener,noreferrer");
   };
 
   const handleStickyCtaClick = () => {
     if (!zonaCliente.trim()) {
       setShowZoneDrawer(true);
     } else {
-      window.open(whatsAppUrl, "_blank", "noopener,noreferrer");
+      window.open(generateWhatsAppUrl(), "_blank", "noopener,noreferrer");
     }
   };
 
@@ -1236,12 +1213,12 @@ ${bloqueServicios}${bloqueComplementos}
                   key={v.id}
                   onClick={() => setVehiculoId(v.id)}
                   type="button"
-                  className={`text-left p-4 sm:p-5 rounded-2xl border transition-all duration-200 flex flex-col justify-between min-h-[120px] sm:min-h-[135px] ${
+                  className={`text-left p-4 sm:p-5 rounded-2xl border active:scale-[0.98] transition-colors duration-100 flex flex-col justify-between min-h-[120px] sm:min-h-[135px] cursor-pointer ${
                     isLast ? "col-span-2 sm:col-span-1 justify-self-center w-full max-w-[calc(50%-7px)] sm:max-w-none" : ""
                   } ${
                     activo
-                      ? "bg-gradient-to-b from-amber-500/20 to-neutral-900 border-amber-400/80 shadow-[0_0_24px_rgba(245,158,11,0.2)] ring-1 ring-amber-400/60"
-                      : "bg-[#111114] border-white/10 hover:border-white/30 hover:bg-[#16161a]"
+                      ? "bg-amber-400/15 border-amber-400 text-white shadow-sm"
+                      : "bg-[#111114] border-white/10 hover:border-white/30 hover:bg-[#16161a] text-neutral-300"
                   }`}
                 >
                   <div className="flex items-center justify-between w-full">
@@ -1313,7 +1290,7 @@ ${bloqueServicios}${bloqueComplementos}
                   key={cat.id}
                   onClick={() => setCategoriaActiva(cat.id)}
                   type="button"
-                  className={`w-full flex flex-col justify-between p-3 sm:p-3.5 rounded-2xl text-left transition-all border ${botonEstilo} ${
+                  className={`w-full flex flex-col justify-between p-3 sm:p-3.5 rounded-2xl text-left active:scale-[0.98] transition-colors duration-100 border cursor-pointer ${botonEstilo} ${
                     isExtra && !activa ? "col-span-2 sm:col-span-1 lg:col-span-1" : ""
                   }`}
                 >
@@ -1428,12 +1405,12 @@ ${bloqueServicios}${bloqueComplementos}
                 <div
                   key={s.id}
                   onClick={() => toggleServicio(s.id)}
-                  className={`rounded-2xl p-6 border cursor-pointer transition-all duration-200 flex flex-col justify-between relative ${
+                  className={`rounded-2xl p-6 border cursor-pointer active:scale-[0.98] transition-colors duration-100 flex flex-col justify-between relative ${
                     isIncluded
-                      ? "bg-emerald-950/20 border-emerald-500/50 hover:border-emerald-400/70 shadow-[0_0_24px_rgba(16,185,129,0.12)] ring-1 ring-emerald-500/30"
+                      ? "bg-emerald-950/25 border-emerald-400/70 text-white shadow-sm"
                       : seleccionado
-                      ? "bg-gradient-to-b from-neutral-900 to-[#121215] border-amber-400/80 shadow-[0_0_30px_rgba(245,158,11,0.15)] ring-1 ring-amber-400/50"
-                      : "bg-[#111114] border-white/10 hover:border-white/25 hover:bg-[#151518]"
+                      ? "bg-[#18181f] border-amber-400 text-white shadow-sm ring-1 ring-amber-400/40"
+                      : "bg-[#111114] border-white/10 hover:border-white/25 hover:bg-[#151518] text-neutral-200"
                   }`}
                 >
                   {isIncluded ? (
@@ -1623,9 +1600,9 @@ ${bloqueServicios}${bloqueComplementos}
                       <div
                         key={comp.id}
                         onClick={() => toggleComplemento(comp.id)}
-                        className={`p-4 sm:p-5 rounded-2xl border cursor-pointer transition-all flex flex-col justify-between ${
+                        className={`p-4 sm:p-5 rounded-2xl border cursor-pointer active:scale-[0.98] transition-colors duration-100 flex flex-col justify-between ${
                           seleccionado
-                            ? "bg-amber-400/15 border-amber-400/70 text-white shadow-md ring-1 ring-amber-400/40"
+                            ? "bg-amber-400/15 border-amber-400 text-white shadow-sm ring-1 ring-amber-400/40"
                             : "bg-[#111114] border-white/10 hover:border-white/25 hover:bg-[#16161a] text-neutral-200"
                         }`}
                       >
@@ -2017,7 +1994,7 @@ ${bloqueServicios}${bloqueComplementos}
                 disabled={!zonaCliente.trim()}
                 onClick={() => {
                   setShowZoneDrawer(false);
-                  window.open(whatsAppUrl, "_blank", "noopener,noreferrer");
+                  window.open(generateWhatsAppUrl(), "_blank", "noopener,noreferrer");
                 }}
                 className={`w-full py-3.5 px-4 rounded-xl font-bold text-sm sm:text-base flex items-center justify-center gap-2 transition-all shadow-lg ${
                   zonaCliente.trim()
