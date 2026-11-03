@@ -268,7 +268,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                 <img
                   src="/logo/platinum-logo.png"
                   alt={biz.nombre}
-                  className={`${scrolled ? "h-7 sm:h-8 md:h-8" : "h-8 sm:h-10 md:h-11"} w-auto object-contain transition-all duration-300 group-hover:scale-105 drop-shadow-[0_2px_12px_rgba(255,255,255,0.25)]`}
+                  className={`${scrolled ? "h-7 sm:h-8 md:h-8" : "h-8 sm:h-10 md:h-11"} w-auto object-contain transition-[height] duration-200 group-hover:scale-105 drop-shadow-[0_2px_12px_rgba(255,255,255,0.25)]`}
                 />
               </a>
             ) : (
@@ -332,7 +332,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
             muted
             loop
             playsInline
-            preload="auto"
+            preload="metadata"
             disablePictureInPicture
             controls={false}
             className="absolute inset-0 w-full h-full object-cover opacity-65 contrast-105 pointer-events-none"
@@ -558,8 +558,8 @@ export default function LandingMexico({ biz }: { biz: Business }) {
 
                     {s.proteccion && !isPpfColor && (
                       <div
-                        className="absolute bottom-2 left-2 right-2 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/15 text-[11px] font-semibold text-white/95 flex items-center gap-1.5 shadow-lg z-20 pointer-events-none"
-                        style={{ background: "rgba(10,10,10,0.85)" }}
+                        className="absolute bottom-2 left-2 right-2 px-2.5 py-1 rounded-lg border border-white/15 text-[11px] font-semibold text-white/95 flex items-center gap-1.5 shadow-lg z-20 pointer-events-none"
+                        style={{ background: "rgba(14,14,18,0.92)" }}
                       >
                         <span className={`size-1.5 rounded-full ${isTheZone ? "bg-sky-400" : "bg-emerald-400"} shrink-0`} />
                         <span>{s.proteccion}</span>

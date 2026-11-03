@@ -112,6 +112,7 @@ export default function CompareSlider({
         className={`absolute inset-0 w-full h-full ${imgFitClass}`}
         draggable={false}
         loading="lazy"
+        decoding="async"
       />
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
@@ -121,13 +122,14 @@ export default function CompareSlider({
         style={clipStyle}
         draggable={false}
         loading="lazy"
+        decoding="async"
       />
 
-      <span className="absolute top-2 left-2 text-[10px] px-2.5 py-1 rounded-full bg-black/80 text-white uppercase tracking-wider font-semibold z-10 border border-white/10 backdrop-blur-sm pointer-events-none">
+      <span className="absolute top-2 left-2 text-[10px] px-2.5 py-1 rounded-full bg-black/85 text-white uppercase tracking-wider font-semibold z-10 border border-white/15 shadow-sm pointer-events-none">
         Antes
       </span>
       <span
-        className="absolute top-2 right-2 text-[10px] px-2.5 py-1 rounded-full uppercase tracking-wider font-extrabold z-10 backdrop-blur-sm shadow-md pointer-events-none"
+        className="absolute top-2 right-2 text-[10px] px-2.5 py-1 rounded-full uppercase tracking-wider font-extrabold z-10 shadow-md pointer-events-none"
         style={{
           background: isTheZone ? "#38bdf8" : "#b8c2cc",
           color: isTheZone ? "#030712" : "black",

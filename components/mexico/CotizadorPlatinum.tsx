@@ -1538,7 +1538,7 @@ ${bloqueServicios}${bloqueComplementos}
           {/* Barra de cabecera / Disparador del Acordeón */}
           <div 
             onClick={handleToggleComplementos}
-            className="w-full bg-[#121216] hover:bg-[#16161c] border border-white/10 hover:border-amber-400/40 p-4 sm:p-5 rounded-2xl transition-all cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-lg group select-none"
+            className="w-full bg-[#121216] hover:bg-[#16161c] border border-white/10 hover:border-amber-400/40 p-4 sm:p-5 rounded-2xl transition-colors duration-150 cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-lg group select-none"
           >
             <div className="flex items-start sm:items-center gap-3">
               <span className="flex items-center justify-center w-7 h-7 rounded-full bg-amber-400 text-black text-xs font-black shrink-0 mt-0.5 sm:mt-0 shadow-sm">
@@ -1634,9 +1634,9 @@ ${bloqueServicios}${bloqueComplementos}
                                     setRangoRines("r15-r18");
                                     if (!seleccionado) toggleComplemento(comp.id);
                                   }}
-                                  className={`px-2 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex flex-col items-center justify-center text-center ${
+                                  className={`px-2 py-1.5 rounded-xl text-xs font-bold active:scale-95 transition-colors duration-100 cursor-pointer flex flex-col items-center justify-center text-center ${
                                     rangoRines === "r15-r18"
-                                      ? "bg-amber-400 text-black shadow-sm font-black ring-1 ring-amber-300"
+                                      ? "bg-amber-400 text-black shadow-sm font-black"
                                       : "bg-white/5 text-neutral-300 hover:text-white border border-white/10 hover:border-white/20"
                                   }`}
                                 >
@@ -1652,9 +1652,9 @@ ${bloqueServicios}${bloqueComplementos}
                                     setRangoRines("r19-r22");
                                     if (!seleccionado) toggleComplemento(comp.id);
                                   }}
-                                  className={`px-2 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex flex-col items-center justify-center text-center ${
+                                  className={`px-2 py-1.5 rounded-xl text-xs font-bold active:scale-95 transition-colors duration-100 cursor-pointer flex flex-col items-center justify-center text-center ${
                                     rangoRines === "r19-r22"
-                                      ? "bg-amber-400 text-black shadow-sm font-black ring-1 ring-amber-300"
+                                      ? "bg-amber-400 text-black shadow-sm font-black"
                                       : "bg-white/5 text-neutral-300 hover:text-white border border-white/10 hover:border-white/20"
                                   }`}
                                 >
@@ -1918,7 +1918,7 @@ ${bloqueServicios}${bloqueComplementos}
       {/* QUICK ZONE DRAWER / MODAL: Cuando se presiona desde la barra flotante y aún no ingresó zona */}
       {showZoneDrawer && (
         <div 
-          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/80 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/85"
           onClick={() => setShowZoneDrawer(false)}
         >
           <div 
@@ -2012,8 +2012,8 @@ ${bloqueServicios}${bloqueComplementos}
       {serviciosSeleccionados.length > 0 && (
         <aside
           aria-label="Resumen flotante de cotización"
-          style={{ willChange: "transform" }}
-          className={`fixed bottom-0 left-0 right-0 z-40 transition-all duration-300 ease-out ${
+          style={{ willChange: "transform, opacity" }}
+          className={`fixed bottom-0 left-0 right-0 z-40 transition-[transform,opacity] duration-300 ease-out ${
             isResumenVisible
               ? "translate-y-full opacity-0 pointer-events-none"
               : "translate-y-0 opacity-100"
