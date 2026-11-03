@@ -13,6 +13,8 @@ const CUSTOM_CREDENTIALS_MAP: Record<string, string> = {
   "the-zone-car-autospa-detailing": "pro-thezone",
   "the-zone": "pro-thezone",
   "thezone": "pro-thezone",
+  "platinum-detallado-automotriz-a-domicilio": "platinum0311",
+  "platinum": "platinum0311",
 };
 
 const USERNAME_TO_SLUG_MAP: Record<string, string> = {
@@ -20,6 +22,9 @@ const USERNAME_TO_SLUG_MAP: Record<string, string> = {
   "detail-thezone": "the-zone-car-autospa-detailing",
   "thezone": "the-zone-car-autospa-detailing",
   "pro-the-zone": "the-zone-car-autospa-detailing",
+  "platinum0311": "platinum-detallado-automotriz-a-domicilio",
+  "platinum": "platinum-detallado-automotriz-a-domicilio",
+  "pro-platinum-detallado-automotriz-a-domicilio": "platinum-detallado-automotriz-a-domicilio",
 };
 
 export function getWorkshopCredentials(slug: string): { username: string; password: string } {

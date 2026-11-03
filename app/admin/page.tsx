@@ -410,8 +410,6 @@ export default function AdminPage() {
 
   // --- VISTA DE LOGIN ---
   if (!isAuthenticated) {
-    const targetCreds = targetSlugFromUrl ? getWorkshopCredentials(targetSlugFromUrl) : null;
-
     return (
       <main className="min-h-screen bg-[#070707] text-neutral-100 flex items-center justify-center p-4 sm:p-6 admin-scope">
         <div className="w-full max-w-lg bg-[#121212]/95 border border-neutral-700/80 rounded-3xl p-8 sm:p-10 shadow-2xl relative overflow-hidden backdrop-blur-md">
@@ -452,7 +450,7 @@ export default function AdminPage() {
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                placeholder={targetCreds ? targetCreds.username : "pro-nombredeltaller o demo"}
+                placeholder="Ingresá tu usuario"
                 className="w-full bg-[#181818] border border-neutral-700/80 rounded-2xl px-4 py-3.5 text-base sm:text-sm text-neutral-100 placeholder:text-neutral-500 focus:outline-none focus:border-neutral-300 focus:bg-[#1c1c1c] transition-all shadow-inner"
                 required
               />
@@ -487,38 +485,10 @@ export default function AdminPage() {
           </form>
 
           <div className="mt-8 pt-6 border-t border-neutral-800/90 text-center">
-            {targetCreds ? (
-              <div className="bg-neutral-900/90 border border-neutral-700/60 rounded-2xl p-4 text-center">
-                <p className="text-xs sm:text-sm text-neutral-300 font-semibold mb-2 flex items-center justify-center gap-2">
-                  <span>🔑</span> Credenciales para este taller:
-                </p>
-                <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm">
-                  <span className="bg-black/80 px-3 py-1.5 rounded-xl border border-neutral-700/70 text-neutral-300">
-                    Usuario: <strong className="text-white font-mono font-bold">{targetCreds.username}</strong>
-                  </span>
-                  <span className="bg-black/80 px-3 py-1.5 rounded-xl border border-neutral-700/70 text-neutral-300">
-                    Clave: <strong className="text-white font-mono font-bold">{targetCreds.password}</strong>
-                  </span>
-                </div>
-              </div>
-            ) : (
-              <div className="bg-neutral-900/90 border border-neutral-700/60 rounded-2xl p-4 text-left sm:text-center space-y-2">
-                <p className="text-xs sm:text-sm text-neutral-300 font-semibold flex items-center justify-center gap-2">
-                  <span>💡</span> Accesos Disponibles:
-                </p>
-                <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm">
-                  <span className="bg-black/80 px-3 py-1.5 rounded-xl border border-neutral-700/70 text-neutral-300">
-                    Demo: <strong className="text-white font-mono font-bold">demo</strong>
-                  </span>
-                  <span className="bg-black/80 px-3 py-1.5 rounded-xl border border-neutral-700/70 text-neutral-300">
-                    Super-Admin: <strong className="text-white font-mono font-bold">admin</strong>
-                  </span>
-                </div>
-                <p className="text-[11px] text-neutral-400 text-center pt-1">
-                  Cada taller tiene su usuario: <strong>pro-[nombre-taller]</strong> (usuario y contraseña idénticos).
-                </p>
-              </div>
-            )}
+            <p className="text-xs text-neutral-500 flex items-center justify-center gap-1.5">
+              <span>🔒</span>
+              <span>Acceso protegido y confidencial para la administración del taller.</span>
+            </p>
           </div>
         </div>
       </main>
