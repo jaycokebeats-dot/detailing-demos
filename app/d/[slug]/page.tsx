@@ -49,12 +49,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     : `https://detailing-demos-three.vercel.app/d/${biz.slug}`;
 
   return {
-    metadataBase: new URL("https://detailing-demos-three.vercel.app"),
+    metadataBase: new URL(isPlatinum ? "https://platinumdetallado.com" : "https://detailing-demos-three.vercel.app"),
     title: {
       absolute: titulo,
     },
     description: descripcion,
     applicationName: biz.nombre,
+    verification: isPlatinum
+      ? {
+          google: "8KSKdnhVp7_r_zufW5NJuW-O4bCwpQ4t7Gsen_A02VE",
+        }
+      : undefined,
     alternates: {
       canonical: canonicalUrl,
     },
@@ -78,7 +83,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             { url: "/favicon-platinum-48.png", sizes: "48x48", type: "image/png" },
             { url: "/favicon-platinum-192.png", sizes: "192x192", type: "image/png" },
             { url: "/favicon-platinum.svg", type: "image/svg+xml" },
-            { url: "/favicon.ico" },
           ],
           apple: [
             { url: "/apple-touch-icon-platinum.png", sizes: "180x180", type: "image/png" },

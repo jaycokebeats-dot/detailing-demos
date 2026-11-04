@@ -43,9 +43,11 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
+  verification: {
+    google: "8KSKdnhVp7_r_zufW5NJuW-O4bCwpQ4t7Gsen_A02VE",
+  },
   icons: {
     icon: [
-      { url: "/favicon.ico" },
       { url: "/favicon-platinum-48.png", sizes: "48x48", type: "image/png" },
       { url: "/favicon-platinum-192.png", sizes: "192x192", type: "image/png" },
       { url: "/favicon-platinum.svg", type: "image/svg+xml" },
