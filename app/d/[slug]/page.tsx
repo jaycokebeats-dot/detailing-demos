@@ -40,9 +40,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     descripcion = `Detailing profesional en ${biz.ciudad}: corrección de pintura, recubrimiento cerámico y estética interior. Cotiza por WhatsApp.`;
   }
 
-  const ogImageUrl = (biz.fotos && biz.fotos.length > 0 && biz.fotos[0])
-    ? (biz.fotos[0].startsWith("http") ? biz.fotos[0] : `https://detailing-demos-three.vercel.app${biz.fotos[0].startsWith("/") ? "" : "/"}${biz.fotos[0]}`)
-    : "https://detailing-demos-three.vercel.app/og-detailing.jpg";
+  const ogImageUrl = isPlatinum
+    ? "https://platinumdetallado.com/og-platinum.jpg"
+    : (biz.fotos && biz.fotos.length > 0 && biz.fotos[0])
+      ? (biz.fotos[0].startsWith("http") ? biz.fotos[0] : `https://detailing-demos-three.vercel.app${biz.fotos[0].startsWith("/") ? "" : "/"}${biz.fotos[0]}`)
+      : "https://detailing-demos-three.vercel.app/og-detailing.jpg";
 
   const canonicalUrl = isPlatinum
     ? "https://platinumdetallado.com"
@@ -135,7 +137,7 @@ export default async function BusinessPage({ params }: Props) {
 
   // Schema.org JSON-LD para posicionamiento SEO local y Google Rich Results
   const canonicalBizUrl = isPlatinum ? "https://platinumdetallado.com" : `https://detailing-demos-three.vercel.app/d/${biz.slug}`;
-  const defaultImage = isPlatinum ? "https://platinumdetallado.com/og-detailing.jpg" : "https://detailing-demos-three.vercel.app/og-detailing.jpg";
+  const defaultImage = isPlatinum ? "https://platinumdetallado.com/og-platinum.jpg" : "https://detailing-demos-three.vercel.app/og-detailing.jpg";
   const primaryImage = (biz.fotos && biz.fotos.length > 0)
     ? (biz.fotos[0].startsWith("http") ? biz.fotos[0] : `${canonicalBizUrl}${biz.fotos[0].startsWith("/") ? "" : "/"}${biz.fotos[0]}`)
     : defaultImage;

@@ -60,15 +60,15 @@ export const metadata: Metadata = {
     title: TITULO,
     description: DESCRIPCION,
     url: SITE_URL,
-    siteName: "Detailing Profesional",
-    locale: "es_ES",
+    siteName: "Platinum Detallado Automotriz",
+    locale: "es_MX",
     type: "website",
     images: [
       {
-        url: "https://detailing-demos-three.vercel.app/og-detailing.jpg",
+        url: "https://platinumdetallado.com/og-platinum.jpg",
         width: 1200,
         height: 630,
-        alt: "Detailing Profesional — Tratamientos Cerámicos y Estética Vehicular",
+        alt: "Platinum Detallado Automotriz a Domicilio — Querétaro",
       },
     ],
   },
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: TITULO,
     description: DESCRIPCION,
-    images: ["https://detailing-demos-three.vercel.app/og-detailing.jpg"],
+    images: ["https://platinumdetallado.com/og-platinum.jpg"],
   },
 };
 

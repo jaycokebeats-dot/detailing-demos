@@ -55176,7 +55176,9 @@
     "ciudad": "Querétaro",
     "rating": 5,
     "reviews_count": 5,
-    "fotos": [],
+    "fotos": [
+      "/og-platinum.jpg"
+    ],
     "place_id": "ChIJO4JuSAVV5IoRztOMTt6ADOg",
     "maps_url": "https://www.google.com/maps/search/?api=1&query=Platinum%20Detallado%20Automotriz%20a%20Domicilio&query_place_id=ChIJO4JuSAVV5IoRztOMTt6ADOg",
     "pais": "MX",
@@ -55242,7 +55244,8 @@
         "despues_img": "/before-after/faros-polymer-despues.jpg",
         "modo_foto": "before_after"
       }
-    ]
+    ],
+    "logo": "/logo/platinum-logo.png"
   },
   {
     "slug": "estetica-automotriz-queretaro",
