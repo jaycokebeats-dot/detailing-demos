@@ -5,7 +5,11 @@ import type {
   Business,
   CotizadorPlatinumServicio,
   CotizadorPlatinumComplemento,
+  CotizadorPlatinumCategoria,
   VehiculoId,
+} from "@/data/business-helpers";
+import {
+  CATEGORIAS_PLATINUM_DEFAULT,
 } from "@/data/business-helpers";
 import {
   SERVICIOS_PLATINUM,
@@ -25,6 +29,9 @@ import {
   LuTag,
   LuDollarSign,
   LuEye,
+  LuSun,
+  LuDroplets,
+  LuShieldCheck,
 } from "react-icons/lu";
 
 interface CotizadorPlatinumAdminProps {
@@ -50,13 +57,21 @@ const CATEGORIAS_INFO: Record<string, { label: string; color: string }> = {
   correccion: { label: "Pulidos & Cerámico", color: "border-cyan-400/40 text-cyan-400 bg-cyan-400/10" },
 };
 
+const ICONOS_CATEGORIAS_ADMIN: Record<string, React.ComponentType<{ className?: string }>> = {
+  mantenimiento: LuSun,
+  "brillo-proteccion": LuSparkles,
+  interiores: LuDroplets,
+  combos: LuSparkles,
+  correccion: LuShieldCheck,
+};
+
 export default function CotizadorPlatinumAdmin({
   biz,
   onChange,
   onSave,
   saving,
 }: CotizadorPlatinumAdminProps) {
-  const [subTab, setSubTab] = useState<"servicios" | "complementos">("servicios");
+  const [subTab, setSubTab] = useState<"servicios" | "complementos" | "niveles">("servicios");
   const [filtroCategoria, setFiltroCategoria] = useState<string>("todas");
   const [busqueda, setBusqueda] = useState<string>("");
   const [expandedIds, setExpandedIds] = useState<Record<string, boolean>>({});
@@ -114,6 +129,14 @@ export default function CotizadorPlatinumAdmin({
     return COMPLEMENTOS_PLATINUM;
   }, [biz.cotizador_platinum?.complementos]);
 
+  // Niveles y categorías del cotizador configurables
+  const categoriasConfig: CotizadorPlatinumCategoria[] = useMemo(() => {
+    if (biz.cotizador_platinum?.categorias && biz.cotizador_platinum.categorias.length > 0) {
+      return biz.cotizador_platinum.categorias;
+    }
+    return CATEGORIAS_PLATINUM_DEFAULT;
+  }, [biz.cotizador_platinum?.categorias]);
+
   // Expandir / Colapsar acordeones
   const toggleExpanded = (id: string) => {
     setExpandedIds((prev) => ({ ...prev, [id]: !prev[id] }));
@@ -123,8 +146,10 @@ export default function CotizadorPlatinumAdmin({
     const all: Record<string, boolean> = {};
     if (subTab === "servicios") {
       servicios.forEach((s) => (all[s.id] = true));
-    } else {
+    } else if (subTab === "complementos") {
       complementos.forEach((c) => (all[c.id] = true));
+    } else {
+      categoriasConfig.forEach((c) => (all[c.id] = true));
     }
     setExpandedIds(all);
   };
@@ -145,6 +170,7 @@ export default function CotizadorPlatinumAdmin({
       cotizador_platinum: {
         servicios: list,
         complementos: complementos,
+        categorias: categoriasConfig,
       },
     });
   };
@@ -167,6 +193,7 @@ export default function CotizadorPlatinumAdmin({
       cotizador_platinum: {
         servicios: list,
         complementos: complementos,
+        categorias: categoriasConfig,
       },
     });
   };
@@ -183,6 +210,7 @@ export default function CotizadorPlatinumAdmin({
       cotizador_platinum: {
         servicios: servicios,
         complementos: list,
+        categorias: categoriasConfig,
       },
     });
   };
@@ -206,6 +234,27 @@ export default function CotizadorPlatinumAdmin({
       cotizador_platinum: {
         servicios: servicios,
         complementos: list,
+        categorias: categoriasConfig,
+      },
+    });
+  };
+
+  // Mutador de niveles y pestañas de categorías
+  const updateCategoria = (id: string, updates: Partial<CotizadorPlatinumCategoria>) => {
+    const list = [...categoriasConfig];
+    const idx = list.findIndex((c) => c.id === id);
+    if (idx === -1) {
+      list.push({ id, label: "", ...updates });
+    } else {
+      list[idx] = { ...list[idx], ...updates };
+    }
+
+    onChange({
+      ...biz,
+      cotizador_platinum: {
+        servicios,
+        complementos,
+        categorias: list,
       },
     });
   };
@@ -214,7 +263,7 @@ export default function CotizadorPlatinumAdmin({
   const handleResetCatalog = () => {
     if (
       confirm(
-        "¿Estás seguro de restablecer el cotizador al catálogo oficial de Platinum Querétaro?\n\nSe restaurarán los 10 tratamientos, 10 adicionales y todos sus precios oficiales por defecto."
+        "¿Estás seguro de restablecer el cotizador al catálogo oficial de Platinum Querétaro?\n\nSe restaurarán los 10 tratamientos, 10 adicionales, los 5 niveles del cotizador y todos sus precios oficiales por defecto."
       )
     ) {
       onChange({
@@ -222,9 +271,10 @@ export default function CotizadorPlatinumAdmin({
         cotizador_platinum: {
           servicios: JSON.parse(JSON.stringify(SERVICIOS_PLATINUM)),
           complementos: JSON.parse(JSON.stringify(COMPLEMENTOS_PLATINUM)),
+          categorias: JSON.parse(JSON.stringify(CATEGORIAS_PLATINUM_DEFAULT)),
         },
       });
-      alert("✅ Catálogo oficial de Platinum restablecido. Recuerda hacer clic en 'Guardar' para aplicar.");
+      alert("✅ Catálogo oficial y niveles de Platinum restablecidos. Recuerda hacer clic en 'Guardar' para aplicar.");
     }
   };
 
@@ -317,9 +367,9 @@ export default function CotizadorPlatinumAdmin({
         </div>
       </div>
 
-      {/* Selector de Sección: Tratamientos Principales vs Adicionales */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div className="grid grid-cols-2 gap-2 bg-[#121214] p-1.5 rounded-2xl border border-neutral-800 w-full sm:w-auto sm:min-w-[380px]">
+      {/* Selector de Sección: Tratamientos Principales vs Adicionales vs Niveles */}
+      <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 bg-[#121214] p-1.5 rounded-2xl border border-neutral-800 w-full lg:w-auto lg:min-w-[560px]">
           <button
             type="button"
             onClick={() => {
@@ -349,38 +399,55 @@ export default function CotizadorPlatinumAdmin({
             }`}
           >
             <LuLayers className="text-sm" />
-            <span>Adicionales & Upgrades ({complementos.length})</span>
+            <span>Adicionales ({complementos.length})</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => {
+              setSubTab("niveles");
+            }}
+            className={`py-2 px-3 sm:px-4 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center justify-center gap-2 ${
+              subTab === "niveles"
+                ? "bg-amber-400 text-black shadow-sm font-black"
+                : "text-neutral-400 hover:text-neutral-200"
+            }`}
+          >
+            <LuSparkles className="text-sm" />
+            <span>Niveles & Pestañas (5)</span>
           </button>
         </div>
 
         {/* Buscador & Controles Expandir */}
-        <div className="flex items-center gap-2 w-full sm:w-auto">
-          <div className="relative flex-1 sm:w-64">
-            <LuSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-500 text-xs" />
-            <input
-              type="text"
-              value={busqueda}
-              onChange={(e) => setBusqueda(e.target.value)}
-              placeholder="Buscar por nombre..."
-              className="w-full bg-[#141416] border border-neutral-800 rounded-xl pl-8 pr-3 py-1.5 text-xs text-neutral-200 placeholder:text-neutral-500 focus:outline-none focus:border-amber-400/60"
-            />
-          </div>
+        {subTab !== "niveles" && (
+          <div className="flex items-center gap-2 w-full lg:w-auto">
+            <div className="relative flex-1 sm:w-64">
+              <LuSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-500 text-xs" />
+              <input
+                type="text"
+                value={busqueda}
+                onChange={(e) => setBusqueda(e.target.value)}
+                placeholder="Buscar por nombre..."
+                className="w-full bg-[#141416] border border-neutral-800 rounded-xl pl-8 pr-3 py-1.5 text-xs text-neutral-200 placeholder:text-neutral-500 focus:outline-none focus:border-amber-400/60"
+              />
+            </div>
 
-          <button
-            type="button"
-            onClick={expandAll}
-            className="px-2.5 py-1.5 rounded-xl bg-neutral-900 border border-neutral-800 text-[11px] font-medium text-neutral-300 hover:text-white hover:border-neutral-700 transition"
-          >
-            Expandir todos
-          </button>
-          <button
-            type="button"
-            onClick={collapseAll}
-            className="px-2.5 py-1.5 rounded-xl bg-neutral-900 border border-neutral-800 text-[11px] font-medium text-neutral-300 hover:text-white hover:border-neutral-700 transition"
-          >
-            Colapsar
-          </button>
-        </div>
+            <button
+              type="button"
+              onClick={expandAll}
+              className="px-2.5 py-1.5 rounded-xl bg-neutral-900 border border-neutral-800 text-[11px] font-medium text-neutral-300 hover:text-white hover:border-neutral-700 transition"
+            >
+              Expandir todos
+            </button>
+            <button
+              type="button"
+              onClick={collapseAll}
+              className="px-2.5 py-1.5 rounded-xl bg-neutral-900 border border-neutral-800 text-[11px] font-medium text-neutral-300 hover:text-white hover:border-neutral-700 transition"
+            >
+              Colapsar
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Filtro de Categorías para Tratamientos */}
@@ -401,6 +468,8 @@ export default function CotizadorPlatinumAdmin({
           {Object.entries(CATEGORIAS_INFO).map(([catKey, info]) => {
             const count = servicios.filter((s) => s.categoria === catKey).length;
             const activo = filtroCategoria === catKey;
+            const catCustom = categoriasConfig.find((c) => c.id === catKey);
+            const displayLabel = catCustom?.label || info.label;
             return (
               <button
                 key={catKey}
@@ -412,7 +481,7 @@ export default function CotizadorPlatinumAdmin({
                     : "bg-neutral-900 text-neutral-400 hover:text-white border border-neutral-800"
                 }`}
               >
-                <span>{info.label}</span>
+                <span>{displayLabel}</span>
                 <span className={`text-[10px] px-1.5 rounded-md ${activo ? "bg-black/20 text-black" : "bg-neutral-800 text-neutral-300"}`}>
                   {count}
                 </span>
@@ -434,9 +503,10 @@ export default function CotizadorPlatinumAdmin({
           ) : (
             serviciosFiltrados.map((s, idx) => {
               const isExpanded = !!expandedIds[s.id];
-              const catInfo = CATEGORIAS_INFO[s.categoria] || {
-                label: s.categoria,
-                color: "border-neutral-700 text-neutral-300 bg-neutral-800",
+              const catCustom = categoriasConfig.find((c) => c.id === s.categoria);
+              const catInfo = {
+                label: catCustom?.label || CATEGORIAS_INFO[s.categoria]?.label || s.categoria,
+                color: CATEGORIAS_INFO[s.categoria]?.color || "border-neutral-700 text-neutral-300 bg-neutral-800",
               };
 
               // Resumen de precios
@@ -883,6 +953,161 @@ export default function CotizadorPlatinumAdmin({
               );
             })
           )}
+        </div>
+      )}
+
+      {/* ======================================================== */}
+      {/* SECCIÓN 3: NIVELES Y PESTAÑAS DEL COTIZADOR (5 CATEGORÍAS) */}
+      {/* ======================================================== */}
+      {subTab === "niveles" && (
+        <div className="space-y-5">
+          <div className="bg-[#121214] border border-neutral-800 rounded-2xl p-5 sm:p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="text-amber-400 text-lg">⚡</span>
+                <h3 className="text-base sm:text-lg font-bold text-white">
+                  Editor de Niveles & Pestañas del Cotizador
+                </h3>
+              </div>
+              <p className="text-xs text-neutral-400 mt-1 max-w-2xl">
+                Personaliza en tiempo real los nombres de los 5 niveles (Paso 2 del cotizador). Puedes modificar la etiqueta superior (ej. <strong className="text-amber-300">NIVEL 1</strong> o <strong className="text-cyan-300">EXTERIOR PRO</strong>), el título principal de cada nivel y su badge destacado.
+              </p>
+            </div>
+            <div className="bg-neutral-900 border border-neutral-800 px-3.5 py-2 rounded-xl text-right shrink-0">
+              <span className="text-[11px] text-neutral-500 block">Total Niveles</span>
+              <span className="text-sm font-black text-amber-400">5 Pestañas Activas</span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4">
+            {categoriasConfig.map((cat, idx) => {
+              const isExtra = cat.id === "correccion";
+              const tratamientosAsociados = servicios.filter((s) => s.categoria === cat.id);
+              const IconComp = ICONOS_CATEGORIAS_ADMIN[cat.id] || LuSparkles;
+
+              return (
+                <div
+                  key={cat.id}
+                  className="bg-[#121214] border border-neutral-800 hover:border-neutral-700/80 rounded-2xl p-5 sm:p-6 transition-all space-y-5"
+                >
+                  {/* Fila superior: Cabecera y Previsualización del Botón Móvil */}
+                  <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 pb-4 border-b border-neutral-800/80">
+                    <div className="flex items-center gap-3">
+                      <span className="w-8 h-8 rounded-xl bg-neutral-900 border border-neutral-700 text-xs font-mono font-bold text-amber-400 flex items-center justify-center">
+                        #{idx + 1}
+                      </span>
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <h4 className="text-sm sm:text-base font-extrabold text-white">
+                            {cat.label || "Sin nombre"}
+                          </h4>
+                          <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-neutral-800 text-neutral-400 border border-neutral-700">
+                            id: {cat.id}
+                          </span>
+                        </div>
+                        <span className="text-xs text-neutral-500">
+                          {tratamientosAsociados.length} tratamientos en este nivel (
+                          {tratamientosAsociados.map((t) => t.nombre).join(", ")})
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Previsualización idéntica al botón que se ve en el celular */}
+                    <div className="flex items-center gap-2.5 bg-[#0b0b0d] p-2.5 rounded-2xl border border-neutral-800 shrink-0 self-stretch sm:self-auto">
+                      <span className="text-[10px] uppercase font-bold text-neutral-500 px-1 hidden sm:inline">
+                        Vista en Celular:
+                      </span>
+                      <div
+                        className={`p-2.5 sm:p-3 rounded-xl border min-w-[170px] flex flex-col justify-between ${
+                          isExtra
+                            ? "bg-gradient-to-br from-[#0a151d] to-[#0f1d28] text-cyan-200 border-cyan-500/50"
+                            : "bg-[#111114] text-neutral-200 border-white/10"
+                        }`}
+                      >
+                        <div className="flex items-center justify-between gap-2 mb-1.5">
+                          <span
+                            className={`text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded ${
+                              isExtra
+                                ? "bg-cyan-500/20 text-cyan-300 border border-cyan-400/40"
+                                : "bg-amber-400/15 text-amber-300 border border-amber-400/25"
+                            }`}
+                          >
+                            {cat.nivel || (isExtra ? "EXTERIOR PRO" : `NIVEL ${idx + 1}`)}
+                          </span>
+                          {cat.badge && (
+                            <span className="text-[8px] font-bold text-neutral-400">
+                              {cat.badge}
+                            </span>
+                          )}
+                        </div>
+                        <div className="flex items-center gap-1.5 text-xs font-bold text-white">
+                          <IconComp className={isExtra ? "text-cyan-400 shrink-0" : "text-amber-400 shrink-0"} />
+                          <span className="truncate">{cat.label || "Título de Nivel"}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Campos Editables */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-1">
+                    {/* Campo 1: Etiqueta Superior (NIVEL 1, NIVEL 2, etc.) */}
+                    <div>
+                      <label className="text-[11px] font-bold text-neutral-300 mb-1.5 flex items-center gap-1.5">
+                        <LuTag className="text-amber-400" />
+                        <span>Etiqueta Superior (Nivel / Badge)</span>
+                      </label>
+                      <input
+                        type="text"
+                        value={cat.nivel || ""}
+                        onChange={(e) => updateCategoria(cat.id, { nivel: e.target.value })}
+                        placeholder={isExtra ? "Ej: EXTERIOR PRO" : `Ej: NIVEL ${idx + 1}`}
+                        className="w-full bg-[#18181b] border border-neutral-700/80 hover:border-neutral-600 focus:border-amber-400 rounded-xl px-3 py-2 text-xs text-white placeholder:text-neutral-600 focus:outline-none transition-colors"
+                      />
+                      <span className="text-[10px] text-neutral-500 block mt-1">
+                        Aparece arriba en la cajita pequeña (ej: NIVEL 1, EXTERIOR PRO)
+                      </span>
+                    </div>
+
+                    {/* Campo 2: Nombre Principal de la Pestaña */}
+                    <div>
+                      <label className="text-[11px] font-bold text-neutral-300 mb-1.5 flex items-center gap-1.5">
+                        <LuCar className="text-amber-400" />
+                        <span>Nombre Principal de la Pestaña</span>
+                      </label>
+                      <input
+                        type="text"
+                        value={cat.label || ""}
+                        onChange={(e) => updateCategoria(cat.id, { label: e.target.value })}
+                        placeholder="Ej: Mantenimiento Express"
+                        className="w-full bg-[#18181b] border border-neutral-700/80 hover:border-neutral-600 focus:border-amber-400 rounded-xl px-3 py-2 text-xs text-white placeholder:text-neutral-600 focus:outline-none transition-colors"
+                      />
+                      <span className="text-[10px] text-neutral-500 block mt-1">
+                        Título grande que identifica la categoría en el cotizador
+                      </span>
+                    </div>
+
+                    {/* Campo 3: Badge Destacado Opcional */}
+                    <div>
+                      <label className="text-[11px] font-bold text-neutral-300 mb-1.5 flex items-center gap-1.5">
+                        <LuSparkles className="text-amber-400" />
+                        <span>Insignia Destacada (Opcional)</span>
+                      </label>
+                      <input
+                        type="text"
+                        value={cat.badge || ""}
+                        onChange={(e) => updateCategoria(cat.id, { badge: e.target.value })}
+                        placeholder="Ej: Recomendado, Más pedido..."
+                        className="w-full bg-[#18181b] border border-neutral-700/80 hover:border-neutral-600 focus:border-amber-400 rounded-xl px-3 py-2 text-xs text-white placeholder:text-neutral-600 focus:outline-none transition-colors"
+                      />
+                      <span className="text-[10px] text-neutral-500 block mt-1">
+                        Opcional: agrega un tag adicional si es un combo o promo
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       )}
 

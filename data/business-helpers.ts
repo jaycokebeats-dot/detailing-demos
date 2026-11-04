@@ -40,9 +40,47 @@ export type CotizadorPlatinumComplemento = {
   preciosVariables?: Partial<Record<VehiculoId, number | null>>;
 };
 
+export type CotizadorPlatinumCategoria = {
+  id: "mantenimiento" | "brillo-proteccion" | "interiores" | "combos" | "correccion" | string;
+  label: string;
+  nivel?: string;
+  badge?: string;
+};
+
+export const CATEGORIAS_PLATINUM_DEFAULT: CotizadorPlatinumCategoria[] = [
+  {
+    id: "mantenimiento",
+    nivel: "NIVEL 1",
+    label: "Mantenimiento Express",
+  },
+  {
+    id: "brillo-proteccion",
+    nivel: "NIVEL 2",
+    label: "Brillo & Protección",
+  },
+  {
+    id: "interiores",
+    nivel: "NIVEL 3",
+    label: "Interiores a Profundidad",
+  },
+  {
+    id: "combos",
+    nivel: "NIVEL 4",
+    label: "Combos Completos",
+    badge: "Recomendado",
+  },
+  {
+    id: "correccion",
+    nivel: "EXTERIOR PRO",
+    label: "Pulidos & Cerámico",
+    badge: "Tratamiento Pro",
+  },
+];
+
 export type CotizadorPlatinumConfig = {
   servicios?: CotizadorPlatinumServicio[];
   complementos?: CotizadorPlatinumComplemento[];
+  categorias?: CotizadorPlatinumCategoria[];
 };
 
 export type Business = {

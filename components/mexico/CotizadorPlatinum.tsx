@@ -19,7 +19,8 @@ import {
   LuPlay,
   LuFilm
 } from "react-icons/lu";
-import type { Business } from "@/data/business-helpers";
+import type { Business, CotizadorPlatinumCategoria } from "@/data/business-helpers";
+import { CATEGORIAS_PLATINUM_DEFAULT } from "@/data/business-helpers";
 
 // Tipos de vehículos oficiales de Platinum Detallado
 export type VehiculoId = "auto" | "suv2" | "pickup" | "suv3" | "van";
@@ -564,40 +565,13 @@ interface CategoriaTab {
   Icono: React.ComponentType<{ className?: string }>;
 }
 
-const CATEGORIAS: CategoriaTab[] = [
-  { 
-    id: "mantenimiento", 
-    label: "Mantenimiento Express", 
-    nivel: "NIVEL 1", 
-    Icono: LuSun 
-  },
-  { 
-    id: "brillo-proteccion", 
-    label: "Brillo & Protección", 
-    nivel: "NIVEL 2", 
-    Icono: LuSparkles 
-  },
-  { 
-    id: "interiores", 
-    label: "Interiores a Profundidad", 
-    nivel: "NIVEL 3", 
-    Icono: LuDroplets 
-  },
-  { 
-    id: "combos", 
-    label: "Combos Completos", 
-    nivel: "NIVEL 4", 
-    badge: "Recomendado", 
-    Icono: LuSparkles 
-  },
-  { 
-    id: "correccion", 
-    label: "Pulidos & Cerámico", 
-    isExtra: true, 
-    badge: "Tratamiento Pro", 
-    Icono: LuShieldCheck 
-  },
-];
+const ICONOS_CATEGORIAS: Record<string, React.ComponentType<{ className?: string }>> = {
+  mantenimiento: LuSun,
+  "brillo-proteccion": LuSparkles,
+  interiores: LuDroplets,
+  combos: LuSparkles,
+  correccion: LuShieldCheck,
+};
 
 // Grupos para reglas de exclusividad mutua e inteligencia de selección
 const GRUPO_COMBOS = ["full-detail", "express-sale"];
@@ -711,6 +685,23 @@ export default function CotizadorPlatinum({ biz, onCotizacionChange }: Cotizador
     }
     return COMPLEMENTOS_PLATINUM;
   }, [biz?.cotizador_platinum?.complementos]);
+
+  // Categorías y niveles dinámicos editables desde el panel de control
+  const categorias: CategoriaTab[] = useMemo(() => {
+    const custom = biz?.cotizador_platinum?.categorias;
+    return CATEGORIAS_PLATINUM_DEFAULT.map((def) => {
+      const found = custom?.find((c) => c.id === def.id);
+      const isExtra = def.id === "correccion";
+      return {
+        id: def.id as CategoriaId,
+        label: found?.label?.trim() ? found.label : def.label,
+        nivel: found?.nivel !== undefined ? found.nivel : def.nivel,
+        badge: found?.badge !== undefined ? found.badge : def.badge,
+        isExtra,
+        Icono: ICONOS_CATEGORIAS[def.id] || LuSparkles,
+      };
+    });
+  }, [biz?.cotizador_platinum?.categorias]);
 
   const [vehiculoId, setVehiculoId] = useState<VehiculoId>("auto");
   const [categoriaActiva, setCategoriaActiva] = useState<CategoriaTab["id"]>("mantenimiento");
@@ -1302,10 +1293,10 @@ ${bloqueServicios}${bloqueComplementos}
 
           {/* Pestañas de categorías con Niveles y Extra Pro */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5">
-            {CATEGORIAS.map((cat, idx) => {
+            {categorias.map((cat, idx) => {
               const activa = cat.id === categoriaActiva;
               const IconComp = cat.Icono;
-              const isLast = idx === CATEGORIAS.length - 1;
+              const isLast = idx === categorias.length - 1;
               const cantidadEnCat = catalogoServicios.filter(
                 (s) => s.categoria === cat.id && serviciosSeleccionadosIds.includes(s.id)
               ).length;
@@ -1346,7 +1337,9 @@ ${bloqueServicios}${bloqueComplementos}
                       <span className={`text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md ${
                         activa
                           ? "bg-black/20 text-black"
-                          : "bg-amber-400/15 text-amber-300 border border-amber-400/25"
+                          : isExtra
+                            ? "bg-cyan-500/20 text-cyan-300 border border-cyan-400/40"
+                            : "bg-amber-400/15 text-amber-300 border border-amber-400/25"
                       }`}>
                         {cat.nivel}
                       </span>
