@@ -21,13 +21,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  // Landing destacada de Platinum Querétaro (Máxima prioridad SEO)
+  // Landing destacada y dominio propio de Platinum Querétaro (Máxima prioridad SEO)
   const platinumRoute: MetadataRoute.Sitemap = [
+    {
+      url: "https://platinumdetallado.com",
+      lastModified: now,
+      changeFrequency: "daily",
+      priority: 1.0,
+    },
     {
       url: `${baseUrl}/d/platinum-detallado-automotriz-a-domicilio`,
       lastModified: now,
       changeFrequency: "daily",
-      priority: 1.0,
+      priority: 0.9,
     },
   ];
 

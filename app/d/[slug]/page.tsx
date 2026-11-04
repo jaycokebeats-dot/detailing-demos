@@ -44,7 +44,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ? (biz.fotos[0].startsWith("http") ? biz.fotos[0] : `https://detailing-demos-three.vercel.app${biz.fotos[0].startsWith("/") ? "" : "/"}${biz.fotos[0]}`)
     : "https://detailing-demos-three.vercel.app/og-detailing.jpg";
 
-  const canonicalUrl = `https://detailing-demos-three.vercel.app/d/${biz.slug}`;
+  const canonicalUrl = isPlatinum
+    ? "https://platinumdetallado.com"
+    : `https://detailing-demos-three.vercel.app/d/${biz.slug}`;
 
   return {
     metadataBase: new URL("https://detailing-demos-three.vercel.app"),
@@ -134,7 +136,7 @@ export default async function BusinessPage({ params }: Props) {
     "@id": `https://detailing-demos-three.vercel.app/d/${biz.slug}#localbusiness`,
     "name": biz.nombre,
     "image": (biz.fotos && biz.fotos.length > 0) ? biz.fotos[0] : "https://detailing-demos-three.vercel.app/og-detailing.jpg",
-    "url": `https://detailing-demos-three.vercel.app/d/${biz.slug}`,
+    "url": isPlatinum ? "https://platinumdetallado.com" : `https://detailing-demos-three.vercel.app/d/${biz.slug}`,
     "telephone": biz.telefono || "+52-442-715-1535",
     "priceRange": "$$",
     "description": isPlatinum
