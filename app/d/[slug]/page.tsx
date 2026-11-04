@@ -134,13 +134,19 @@ export default async function BusinessPage({ params }: Props) {
   const isPlatinum = slug === "platinum-detallado-automotriz-a-domicilio" || biz.slug === "platinum-detallado-automotriz-a-domicilio";
 
   // Schema.org JSON-LD para posicionamiento SEO local y Google Rich Results
+  const canonicalBizUrl = isPlatinum ? "https://platinumdetallado.com" : `https://detailing-demos-three.vercel.app/d/${biz.slug}`;
+  const defaultImage = isPlatinum ? "https://platinumdetallado.com/og-detailing.jpg" : "https://detailing-demos-three.vercel.app/og-detailing.jpg";
+  const primaryImage = (biz.fotos && biz.fotos.length > 0)
+    ? (biz.fotos[0].startsWith("http") ? biz.fotos[0] : `${canonicalBizUrl}${biz.fotos[0].startsWith("/") ? "" : "/"}${biz.fotos[0]}`)
+    : defaultImage;
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "AutoDetailing",
-    "@id": `https://detailing-demos-three.vercel.app/d/${biz.slug}#localbusiness`,
+    "@id": `${canonicalBizUrl}/#localbusiness`,
     "name": biz.nombre,
-    "image": (biz.fotos && biz.fotos.length > 0) ? biz.fotos[0] : "https://detailing-demos-three.vercel.app/og-detailing.jpg",
-    "url": isPlatinum ? "https://platinumdetallado.com" : `https://detailing-demos-three.vercel.app/d/${biz.slug}`,
+    "image": primaryImage,
+    "url": canonicalBizUrl,
     "telephone": biz.telefono || "+52-442-715-1535",
     "priceRange": "$$",
     "description": isPlatinum
@@ -170,13 +176,6 @@ export default async function BusinessPage({ params }: Props) {
             { "@type": "AdministrativeArea", "name": "El Refugio" },
             { "@type": "AdministrativeArea", "name": "Centro Sur" },
           ],
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.9",
-            "reviewCount": "127",
-            "bestRating": "5",
-            "worstRating": "1",
-          },
         }
       : {}),
     "openingHoursSpecification": [
