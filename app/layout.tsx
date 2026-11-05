@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Archivo, Syne } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const archivo = Archivo({
@@ -83,6 +84,26 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="es" className="scroll-smooth">
       <body className={`${archivo.className} ${archivo.variable} ${syne.variable} bg-[#010101] text-slate-300 antialiased`}>
         {children}
+        <Script
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-PFBWWREXBZ"
+        />
+        <Script
+          id="google-analytics-platinum"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              if (typeof window !== 'undefined' && (window.location.hostname.includes('platinumdetallado.com') || window.location.pathname.includes('platinum-detallado'))) {
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-PFBWWREXBZ', {
+                  page_path: window.location.pathname,
+                });
+              }
+            `,
+          }}
+        />
       </body>
     </html>
   );

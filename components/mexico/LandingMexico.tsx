@@ -593,7 +593,9 @@ export default function LandingMexico({ biz }: { biz: Business }) {
             <p className="text-slate-400">
               {isPlatinum
                 ? "Desliza el comparador interactivo para comprobar el acabado de nuestros tratamientos a domicilio: pintura espejo, faros restaurados, vapor en interiores y motor."
-                : "Desliza sobre cada trabajo para comparar los resultados reales. Estética de motor, tratamiento cerámico, protección PPF, vestiduras y más."}
+                : isShalom
+                  ? "Desliza sobre cada trabajo para comparar los resultados reales: corrección de pintura y cerámico, lavado de vestiduras, motor, PPF XPEL, pulido de faros, hojalatería y más."
+                  : "Desliza sobre cada trabajo para comparar los resultados reales. Estética de motor, tratamiento cerámico, protección PPF, vestiduras y más."}
             </p>
           </div>
 
@@ -708,6 +710,30 @@ export default function LandingMexico({ biz }: { biz: Business }) {
               );
             })}
           </div>
+
+          {/* Servicios Especiales de Shalom: Motos, Motores y Mecánica Rápida */}
+          {isShalom && (
+            <div className="mt-12 p-6 sm:p-8 rounded-[24px] border border-amber-500/30 bg-gradient-to-r from-neutral-950 via-neutral-900 to-neutral-950 text-center max-w-4xl mx-auto shadow-2xl">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-[11px] sm:text-xs font-semibold uppercase tracking-wider mb-3">
+                <span>⚙️ Servicios Especiales & Mecánica Rápida</span>
+              </div>
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-2" style={{ textTransform: "none", fontFamily: "inherit" }}>
+                ¿Buscas Afinación, Frenos, Motos o Motores?
+              </h3>
+              <p className="text-slate-300 text-xs sm:text-sm max-w-2xl mx-auto mb-5 leading-relaxed">
+                En Shalom también contamos con servicio técnico de <strong>afinación y frenos</strong>, <strong>paquete todo en uno para motos con tratamiento cerámico de 15 meses</strong> y venta e instalación garantizada de <strong>motores de todo tipo</strong>.
+              </p>
+              <a
+                href={waHref(biz, "¡Hola! Vi su página web y quisiera cotizar el servicio de mecánica / motos / motores en Shalom.")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-gold inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider active:scale-95 transition-all shadow-[0_4px_20px_rgba(245,158,11,0.3)]"
+              >
+                <FaWhatsapp aria-hidden className="size-4 shrink-0 text-black" />
+                <span>Consultar por WhatsApp</span>
+              </a>
+            </div>
+          )}
 
           {/* Banner de fotos y asesoramiento */}
           <div className="glass-panel rounded-[28px] mt-12 p-8 md:p-10 flex flex-col md:flex-row items-center gap-6 justify-between border border-white/10" style={{ background: "#101010" }}>

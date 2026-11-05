@@ -1176,6 +1176,21 @@ ${bloqueServicios}${bloqueComplementos}
     return `https://wa.me/${waNumber}?text=${encodeURIComponent(mensaje)}`;
   };
 
+  const trackConversion = (label: string) => {
+    if (typeof window !== "undefined" && (window as any).gtag) {
+      try {
+        (window as any).gtag("event", "generate_lead", {
+          event_category: "Cotizador",
+          event_label: label,
+          value: totalEstimado,
+          currency: "MXN",
+        });
+      } catch (e) {
+        // ignore
+      }
+    }
+  };
+
   const handlePaso4WhatsApp = () => {
     if (totalEstimado > 0 && !zonaCliente.trim()) {
       setZonaError(true);
@@ -1185,6 +1200,7 @@ ${bloqueServicios}${bloqueComplementos}
       }
       return;
     }
+    trackConversion("WhatsApp Presupuesto");
     window.open(generateWhatsAppUrl(), "_blank", "noopener,noreferrer");
   };
 
@@ -1192,6 +1208,7 @@ ${bloqueServicios}${bloqueComplementos}
     if (!zonaCliente.trim()) {
       setShowZoneDrawer(true);
     } else {
+      trackConversion("WhatsApp Sticky CTA");
       window.open(generateWhatsAppUrl(), "_blank", "noopener,noreferrer");
     }
   };
