@@ -27,6 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const isSpain = biz.pais === "ES" || biz.template === "spain";
   const isMexico = biz.pais === "MX" || biz.template === "mexico";
   const isPlatinum = slug === "platinum-detallado-automotriz-a-domicilio" || biz.slug === "platinum-detallado-automotriz-a-domicilio";
+  const isShalom = slug === "shalom-estetica-automotriz" || slug === "shalom" || biz.slug === "shalom-estetica-automotriz";
 
   let titulo = `${biz.nombre} — Detailing Profesional en ${biz.ciudad}`;
   let descripcion = `Detailing profesional a mano en ${biz.ciudad}: lavado sin remolinos, corrección de pintura y recubrimiento cerámico. Pedí tu turno por WhatsApp.`;
@@ -34,6 +35,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (isPlatinum) {
     titulo = "Platinum Detallado Automotriz a Domicilio | Detailing & Cerámico en Querétaro";
     descripcion = "Servicio exclusivo de detallado automotriz a domicilio en Querétaro: tratamientos cerámicos Gyeon®, pulido de pintura, interiores a vapor y paquetes express. Zibatá, Juriquilla, El Campanario. ¡Cotiza tu auto al instante!";
+  } else if (isShalom) {
+    titulo = "Shalom Estética Automotriz | Detailing Profesional en Toluca";
+    descripcion = "Estética y detallado automotriz profesional en Toluca, Edo. Méx.: corrección de pintura, protección cerámica y estética de interiores sin microrrayones ni atajos. ¡Cotiza por WhatsApp!";
   } else if (isSpain) {
     descripcion = `Detailing profesional de coches en ${biz.ciudad}: lavado a mano, corrección de pintura y tratamiento cerámico. Pide tu cita por WhatsApp.`;
   } else if (isMexico) {
@@ -42,9 +46,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const ogImageUrl = isPlatinum
     ? "https://platinumdetallado.com/og-platinum.jpg"
-    : (biz.fotos && biz.fotos.length > 0 && biz.fotos[0])
-      ? (biz.fotos[0].startsWith("http") ? biz.fotos[0] : `https://detailing-demos-three.vercel.app${biz.fotos[0].startsWith("/") ? "" : "/"}${biz.fotos[0]}`)
-      : "https://detailing-demos-three.vercel.app/og-detailing.jpg";
+    : isShalom
+      ? "https://detailing-demos-three.vercel.app/logo/shalom-og.jpg"
+      : (biz.fotos && biz.fotos.length > 0 && biz.fotos[0])
+        ? (biz.fotos[0].startsWith("http") ? biz.fotos[0] : `https://detailing-demos-three.vercel.app${biz.fotos[0].startsWith("/") ? "" : "/"}${biz.fotos[0]}`)
+        : "https://detailing-demos-three.vercel.app/og-detailing.jpg";
 
   const canonicalUrl = isPlatinum
     ? "https://platinumdetallado.com"
@@ -90,7 +96,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             { url: "/apple-touch-icon-platinum.png", sizes: "180x180", type: "image/png" },
           ],
         }
-      : undefined,
+      : isShalom
+        ? {
+            icon: [
+              { url: "/logo/shalom-logo.png", sizes: "192x192", type: "image/png" },
+            ],
+            apple: [
+              { url: "/logo/shalom-logo.png", sizes: "180x180", type: "image/png" },
+            ],
+          }
+        : undefined,
     openGraph: {
       title: titulo,
       description: descripcion,

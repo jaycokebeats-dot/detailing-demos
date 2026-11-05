@@ -96,6 +96,8 @@ export type Business = {
   fotos: string[];
   maps_url: string | null;
   // campos opcionales que no vienen del scraper
+  place_id?: string;
+  logo_url?: string;
   nombreCorto?: string;
   horario?: string;
   servicios?: ServiceItem[];

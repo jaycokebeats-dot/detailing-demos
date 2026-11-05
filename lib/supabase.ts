@@ -20,6 +20,7 @@ export function normalizeSlug(slug: string): string {
   const s = (slug || "").toLowerCase().trim();
   if (s === "taller-demo" || s === "demo") return "demo";
   if (s === "thezone" || s === "the-zone") return "the-zone-car-autospa-detailing";
+  if (s === "shalom" || s === "shalom-detailing") return "shalom-estetica-automotriz";
   return s;
 }
 

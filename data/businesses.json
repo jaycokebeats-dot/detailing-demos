@@ -63623,7 +63623,8 @@
     "maps_url": "https://www.google.com/maps/search/?api=1&query=Shalom%20Est%C3%A9tica%20Automotriz&query_place_id=ChIJPy5sY5GJzYURuQhGPsPYpz4",
     "pais": "MX",
     "template": "mexico",
-    "websiteUrl": ""
+    "websiteUrl": "",
+    "logo_url": "/logo/shalom-logo.png"
   },
   {
     "slug": "detallado-automotriz-el-brayan",

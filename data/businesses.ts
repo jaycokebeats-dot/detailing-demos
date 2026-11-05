@@ -22,6 +22,7 @@ if (fs.existsSync(localPath)) {
 import { DEFAULT_DEMO_BUSINESS } from "./demo-business";
 import { BORGES_BUSINESS } from "./borges-data";
 import { JDS_DETAILING_BUSINESS } from "./jds-data";
+import { SHALOM_BUSINESS } from "./shalom-data";
 
 const JDS_ALIAS: Business = {
   ...JDS_DETAILING_BUSINESS,
@@ -40,6 +41,7 @@ const rawList: Business[] = [
   BORGES_BUSINESS,
   JDS_DETAILING_BUSINESS,
   JDS_ALIAS,
+  SHALOM_BUSINESS,
   ...raw,
 ];
 const businessesMap = new Map<string, Business>();
@@ -61,6 +63,7 @@ export function getBusiness(slug: string): Business | undefined {
   if (slug === "taller-demo") return TALLER_DEMO_BUSINESS;
   if (slug === "borges-ppf-y-detailing") return BORGES_BUSINESS;
   if (slug === "jds-detailing" || slug === "jds-detailing-car-estudio") return JDS_DETAILING_BUSINESS;
+  if (slug === "shalom" || slug === "shalom-estetica-automotriz" || slug === "shalom-detailing") return SHALOM_BUSINESS;
   if (slug === "thezone" || slug === "the-zone") return businessesMap.get("the-zone-car-autospa-detailing");
   if (slug === "sanders" || slug === "sanders-car-detail") return businessesMap.get("sanders-car-detail") ?? businessesMap.get("sanders");
   if (slug === "mazzu" || slug === "mazzu-detail") return businessesMap.get("mazzu-detail");

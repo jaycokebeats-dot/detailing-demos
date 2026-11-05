@@ -212,6 +212,11 @@ export default function LandingMexico({ biz }: { biz: Business }) {
     Boolean(biz.nombre && biz.nombre.toLowerCase().includes("the zone"));
 
   const isPlatinum = biz.slug === "platinum-detallado-automotriz-a-domicilio";
+  const isShalom =
+    biz.slug === "shalom-estetica-automotriz" ||
+    biz.slug === "shalom" ||
+    biz.slug === "shalom-detailing" ||
+    Boolean(biz.nombre && biz.nombre.toLowerCase().includes("shalom"));
   const [hasCotizacionActiva, setHasCotizacionActiva] = useState(false);
 
   const badgeClass = isTheZone ? "section-badge-thezone" : "section-badge";
@@ -271,6 +276,18 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                   className={`${scrolled ? "h-7 sm:h-8 md:h-8" : "h-8 sm:h-10 md:h-11"} w-auto object-contain transition-[height] duration-200 group-hover:scale-105 drop-shadow-[0_2px_12px_rgba(255,255,255,0.25)]`}
                 />
               </a>
+            ) : isShalom ? (
+              <a href="#hero" className="flex items-center gap-2 sm:gap-2.5 shrink-0 group transition-transform active:scale-95 py-1" aria-label="Ir al inicio">
+                <img
+                  src="/logo/shalom-logo.png"
+                  alt={biz.nombre}
+                  className={`${scrolled ? "h-8 sm:h-9 md:h-10" : "h-9 sm:h-11 md:h-12"} w-auto object-contain transition-[height] duration-200 group-hover:scale-105 drop-shadow-[0_2px_12px_rgba(245,158,11,0.35)]`}
+                />
+                <span className="flex flex-col leading-none">
+                  <span className="font-extrabold tracking-widest text-xs sm:text-sm text-white">SHALOM</span>
+                  <span className="text-[8px] sm:text-[9px] font-semibold tracking-wider text-amber-400">AUTO DETAILING</span>
+                </span>
+              </a>
             ) : (
               <a href="#hero" className="text-base font-bold tracking-widest text-white">
                 {nombreResto ? (
@@ -317,7 +334,13 @@ export default function LandingMexico({ biz }: { biz: Business }) {
       </div>
 
       {/* 2. HERO */}
-      <section id="hero" className={`relative min-h-[100dvh] lg:h-dvh ${isTheZone || isPlatinum ? "pt-16 sm:pt-20 lg:pt-24 pb-8 lg:pb-0" : "pt-24 pb-12 lg:pb-0"} px-4 sm:px-6 overflow-x-clip flex items-center`}>
+      <section id="hero" className={`relative min-h-[100dvh] lg:h-dvh ${
+        isShalom
+          ? "pt-14 sm:pt-20 lg:pt-24 pb-4 sm:pb-8 lg:pb-0"
+          : isTheZone || isPlatinum
+            ? "pt-16 sm:pt-20 lg:pt-24 pb-8 lg:pb-0"
+            : "pt-24 pb-12 lg:pb-0"
+      } px-3 sm:px-6 overflow-x-clip flex items-center justify-center`}>
         {(!isTheZone && biz.fotos && biz.fotos.length > 0) ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
@@ -352,11 +375,22 @@ export default function LandingMexico({ biz }: { biz: Business }) {
             className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[480px] rounded-full pointer-events-none opacity-40"
             style={{ background: "radial-gradient(ellipse at center, rgba(245,158,11,0.25) 0%, rgba(217,119,6,0.08) 45%, transparent 70%)" }}
           />
+        ) : isShalom ? (
+          <div
+            className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[650px] h-[340px] sm:h-[500px] rounded-full pointer-events-none opacity-50 blur-[90px]"
+            style={{ background: "radial-gradient(ellipse at center, rgba(245,158,11,0.35) 0%, rgba(234,179,8,0.18) 35%, rgba(16,185,129,0.08) 60%, transparent 75%)" }}
+          />
         ) : null}
 
         <div className="relative z-10 max-w-6xl mx-auto w-full h-full flex items-center justify-center">
-          <div className={`max-w-3xl text-center ${isTheZone || isPlatinum ? "space-y-3 sm:space-y-4 py-3 sm:py-6 lg:py-8" : "space-y-5 py-12 lg:py-8"} mx-auto`}>
-            {/* Logo oficial centrado para The Zone y Platinum */}
+          <div className={`max-w-3xl text-center ${
+            isShalom
+              ? "space-y-2 sm:space-y-3.5 py-1 sm:py-4 lg:py-6"
+              : isTheZone || isPlatinum
+                ? "space-y-3 sm:space-y-4 py-3 sm:py-6 lg:py-8"
+                : "space-y-5 py-12 lg:py-8"
+          } mx-auto`}>
+            {/* Logo oficial centrado para The Zone, Platinum y Shalom */}
             {isTheZone ? (
               <div className="flex justify-center mb-2 sm:mb-4 -mt-2 sm:-mt-4">
                 <img
@@ -373,16 +407,49 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                   className="h-32 sm:h-44 md:h-52 lg:h-60 w-auto object-contain drop-shadow-[0_20px_50px_rgba(255,255,255,0.25)] transition-transform hover:scale-105"
                 />
               </div>
+            ) : isShalom ? (
+              <div className="flex justify-center -mt-1 sm:-mt-3 mb-1 sm:mb-2">
+                <div className="relative group">
+                  {/* Halo de luz concentrado detrás del logo de Shalom */}
+                  <div
+                    className="absolute inset-0 rounded-full blur-2xl sm:blur-3xl opacity-65 scale-110 pointer-events-none"
+                    style={{
+                      background: "radial-gradient(circle, rgba(245,158,11,0.55) 0%, rgba(217,119,6,0.3) 45%, rgba(16,185,129,0.15) 75%, transparent 90%)",
+                    }}
+                  />
+                  <img
+                    src="/logo/shalom-logo.png"
+                    alt={biz.nombre}
+                    className="relative z-10 h-28 xs:h-32 sm:h-44 md:h-52 lg:h-60 w-auto object-contain drop-shadow-[0_12px_40px_rgba(245,158,11,0.45)] transition-transform hover:scale-105"
+                  />
+                </div>
+              </div>
             ) : null}
 
-            <div className={`inline-flex items-center gap-2 ${isTheZone || isPlatinum ? "px-2.5 py-1 text-[11px] sm:text-xs" : "px-3 py-1.5 text-xs sm:text-sm"} rounded-full border ${isTheZone ? "border-sky-500/30 bg-sky-500/10 text-sky-200" : isPlatinum ? "border-amber-400/30 bg-amber-400/10 text-amber-200" : "border-white/10 bg-white/5 text-slate-300"} font-medium`}>
-              <span className={`flex size-1.5 sm:size-2 rounded-full shrink-0 animate-pulse ${isTheZone ? "bg-sky-400 shadow-[0_0_8px_rgba(56,189,248,0.9)]" : "bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]"}`} />
+            <div className={`inline-flex items-center gap-1.5 sm:gap-2 ${
+              isShalom
+                ? "px-2.5 py-0.5 sm:py-1 text-[11px] sm:text-xs border-amber-400/30 bg-amber-400/10 text-amber-200"
+                : isTheZone
+                  ? "px-2.5 py-1 text-[11px] sm:text-xs border-sky-500/30 bg-sky-500/10 text-sky-200"
+                  : isPlatinum
+                    ? "px-2.5 py-1 text-[11px] sm:text-xs border-amber-400/30 bg-amber-400/10 text-amber-200"
+                    : "px-3 py-1.5 text-xs sm:text-sm border-white/10 bg-white/5 text-slate-300"
+            } rounded-full border font-medium`}>
+              <span className={`flex size-1.5 sm:size-2 rounded-full shrink-0 animate-pulse ${
+                isTheZone ? "bg-sky-400 shadow-[0_0_8px_rgba(56,189,248,0.9)]" : "bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]"
+              }`} />
               <span>{isPlatinum ? "Querétaro" : `${biz.ciudad} (México)`}</span>
               <span className="text-slate-500">·</span>
               <span>{isPlatinum ? "Agenda tu cita" : "Citas disponibles esta semana"}</span>
             </div>
 
-            <h1 className={`${isTheZone || isPlatinum ? "text-[20px] sm:text-[26px] md:text-[30px]" : "text-[32px] sm:text-[42px]"} font-medium tracking-tight leading-tight text-balance`}>
+            <h1 className={`${
+              isShalom
+                ? "text-[21px] xs:text-[25px] sm:text-[30px] md:text-[34px]"
+                : isTheZone || isPlatinum
+                  ? "text-[20px] sm:text-[26px] md:text-[30px]"
+                  : "text-[32px] sm:text-[42px]"
+            } font-bold tracking-tight leading-tight text-balance`}>
               {isTheZone ? (
                 <>
                   Estética y Detallado Automotriz en San Luis Potosí.
@@ -396,6 +463,14 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                     a Domicilio.
                   </span>
                 </>
+              ) : isShalom ? (
+                <>
+                  Estética y Detallado Automotriz en Toluca.
+                  <br />
+                  <span className="bg-gradient-to-r from-amber-300 via-amber-400 to-yellow-500 bg-clip-text text-transparent">
+                    Protección y Brillo de Exposición.
+                  </span>
+                </>
               ) : (
                 <>
                   Detailing Profesional a Mano,
@@ -405,11 +480,19 @@ export default function LandingMexico({ biz }: { biz: Business }) {
               )}
             </h1>
 
-            <p className={`${isTheZone || isPlatinum ? "text-xs sm:text-sm max-w-xl line-clamp-2 sm:line-clamp-none" : "text-base md:text-lg max-w-2xl"} text-slate-300 font-light leading-relaxed mx-auto text-pretty`}>
+            <p className={`${
+              isShalom
+                ? "text-[11px] xs:text-xs sm:text-sm max-w-xl line-clamp-2 sm:line-clamp-none text-slate-300 font-light leading-snug sm:leading-relaxed mx-auto text-pretty"
+                : isTheZone || isPlatinum
+                  ? "text-xs sm:text-sm max-w-xl line-clamp-2 sm:line-clamp-none text-slate-300 font-light leading-relaxed mx-auto text-pretty"
+                  : "text-base md:text-lg max-w-2xl text-slate-300 font-light leading-relaxed mx-auto text-pretty"
+            }`}>
               Corrección de pintura, recubrimiento cerámico y estética interior en {isPlatinum ? "Querétaro" : biz.ciudad}. Tratamiento artesanal sin microrrayones ni atajos.
             </p>
 
-            <div className={`flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-3 w-full sm:w-auto ${isTheZone || isPlatinum ? "pt-1 sm:pt-2" : "pt-2"}`}>
+            <div className={`flex flex-row items-center justify-center gap-2 sm:gap-3 w-full sm:w-auto ${
+              isShalom || isTheZone || isPlatinum ? "pt-1 sm:pt-2" : "pt-2"
+            }`}>
               {biz.slug === "platinum-detallado-automotriz-a-domicilio" ? (
                 <a
                   href="#cotizador"
@@ -424,26 +507,30 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                     href={waHref(biz, msgPresupuesto)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`${isTheZone ? "btn-thezone" : "btn-gold"} group w-full sm:w-auto px-6 sm:px-7 py-2.5 sm:py-3.5 min-h-[42px] sm:min-h-[44px] rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wide active:scale-95 transition-[transform,filter,box-shadow] duration-150 flex items-center justify-center gap-2.5`}
+                    className={`${isTheZone ? "btn-thezone" : "btn-gold"} group flex-1 sm:flex-initial px-4 sm:px-7 py-2.5 sm:py-3.5 min-h-[40px] sm:min-h-[44px] rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wide active:scale-95 transition-[transform,filter,box-shadow] duration-150 flex items-center justify-center gap-2 shadow-[0_4px_20px_rgba(245,158,11,0.25)]`}
                   >
-                    <FaWhatsapp aria-hidden className="size-4" />
-                    Cotizar por WhatsApp
+                    <FaWhatsapp aria-hidden className="size-4 shrink-0" />
+                    <span className="whitespace-nowrap">Cotizar WhatsApp</span>
                   </a>
                   <a
                     href="#servicios"
-                    className={`${isTheZone ? "btn-outline-thezone" : "btn-outline-gold"} text-nowrap group w-full sm:w-auto px-6 sm:px-7 py-2.5 sm:py-3.5 min-h-[42px] sm:min-h-[44px] rounded-full text-xs sm:text-sm font-semibold uppercase active:scale-95 flex items-center justify-center gap-2.5`}
+                    className={`${isTheZone ? "btn-outline-thezone" : "btn-outline-gold"} group flex-1 sm:flex-initial px-4 sm:px-7 py-2.5 sm:py-3.5 min-h-[40px] sm:min-h-[44px] rounded-full text-xs sm:text-sm font-semibold uppercase active:scale-95 flex items-center justify-center gap-2 whitespace-nowrap`}
                   >
-                    <HiOutlineSparkles aria-hidden className="size-4" />
-                    Ver Servicios
+                    <HiOutlineSparkles aria-hidden className="size-4 shrink-0" />
+                    <span>Servicios</span>
                   </a>
                 </>
               )}
             </div>
 
-            <div className={`flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 ${isTheZone || isPlatinum ? "pt-1" : "pt-2"}`}>
+            <div className={`flex flex-wrap items-center justify-center gap-x-4 sm:gap-x-5 gap-y-1 ${
+              isShalom || isTheZone || isPlatinum ? "pt-1 sm:pt-1.5" : "pt-2"
+            }`}>
               {stats.map((item) => (
-                <span key={item} className={`inline-flex items-center gap-1.5 ${isTheZone || isPlatinum ? "text-[11px] sm:text-xs" : "text-xs sm:text-sm"} text-slate-300`}>
-                  <HiOutlineCheckCircle aria-hidden className={`size-3.5 sm:size-4 shrink-0 ${isTheZone ? "text-sky-400" : isPlatinum ? "text-amber-400" : "text-gold"}`} />
+                <span key={item} className={`inline-flex items-center gap-1.5 ${
+                  isShalom ? "text-[10px] sm:text-xs" : isTheZone || isPlatinum ? "text-[11px] sm:text-xs" : "text-xs sm:text-sm"
+                } text-slate-300`}>
+                  <HiOutlineCheckCircle aria-hidden className={`size-3 sm:size-4 shrink-0 ${isTheZone ? "text-sky-400" : isPlatinum || isShalom ? "text-amber-400" : "text-gold"}`} />
                   {item}
                 </span>
               ))}
@@ -825,6 +912,22 @@ export default function LandingMexico({ biz }: { biz: Business }) {
               alt={biz.nombre}
               className="h-16 sm:h-20 md:h-24 w-auto object-contain opacity-90 hover:opacity-100 transition-all drop-shadow-[0_6px_25px_rgba(255,255,255,0.2)] hover:scale-105"
             />
+          </div>
+        ) : isShalom ? (
+          <div className="flex justify-center mb-8">
+            <div className="relative group">
+              <div
+                className="absolute inset-0 rounded-full blur-xl opacity-50 scale-110 pointer-events-none"
+                style={{
+                  background: "radial-gradient(circle, rgba(245,158,11,0.4) 0%, rgba(16,185,129,0.15) 60%, transparent 80%)",
+                }}
+              />
+              <img
+                src="/logo/shalom-logo.png"
+                alt={biz.nombre}
+                className="relative z-10 h-20 sm:h-28 md:h-32 w-auto object-contain opacity-95 hover:opacity-100 transition-all drop-shadow-[0_8px_30px_rgba(245,158,11,0.45)] hover:scale-105"
+              />
+            </div>
           </div>
         ) : null}
 
