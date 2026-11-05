@@ -217,6 +217,76 @@ h1, h2, h3 {
   box-shadow: 0 0 15px rgba(0, 102, 255, 0.18);
 }
 
+/* === SHALOM ESTÉTICA AUTOMOTRIZ CUSTOM THEME (Verde México & Esmeralda Metálico) === */
+.btn-shalom {
+  text-wrap: nowrap;
+  border: 1.5px solid transparent;
+  background-image:
+    linear-gradient(289deg, #047857 0%, #059669 35%, #10b981 70%, #34d399 100%),
+    linear-gradient(289deg, #064e3b 0%, #10b981 50%, #a7f3d0 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  color: #052e16;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  box-shadow: 0 10px 35px rgba(16, 185, 129, 0.4);
+  transition: filter 150ms ease, box-shadow 150ms ease, transform 150ms ease;
+}
+.btn-shalom:hover {
+  filter: brightness(1.12);
+  box-shadow: 0 14px 45px rgba(16, 185, 129, 0.6);
+  transform: translateY(-1px);
+}
+.btn-shalom:active {
+  filter: brightness(0.95);
+  transform: translateY(0);
+}
+
+.btn-outline-shalom {
+  text-wrap: nowrap;
+  border: 1.5px solid transparent;
+  background-image:
+    linear-gradient(#0a0f0d, #0a0f0d),
+    linear-gradient(289deg, #059669 0%, #10b981 50%, #6ee7b7 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  color: #a7f3d0;
+  letter-spacing: 0.04em;
+  transition: color 150ms ease, filter 150ms ease, background-image 150ms ease;
+}
+.btn-outline-shalom:hover {
+  background-image: linear-gradient(#0f1a14, #0f1a14), linear-gradient(289deg, #059669 0%, #34d399 50%, #ffffff 100%);
+  color: #ffffff;
+  filter: brightness(1.08);
+}
+.btn-outline-shalom:active {
+  filter: brightness(0.96);
+}
+
+.text-shalom {
+  background-image: linear-gradient(135deg, #ffffff 0%, #d1fae5 25%, #34d399 55%, #10b981 80%, #059669 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.section-badge-shalom {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.375rem 0.875rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  background: rgba(16, 185, 129, 0.1);
+  color: #a7f3d0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.15);
+}
+
+
 .product-card {
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(255, 255, 255, 0.02);
