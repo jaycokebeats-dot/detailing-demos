@@ -8446,12 +8446,96 @@
     "telefono": "+598 092 396 728",
     "whatsapp": "59892396728",
     "instagram": "berrodetailing",
-    "direccion": "Av.Gral Rivera 3333, Montevideo, Uruguay",
-    "ciudad": "Montevideo, Uruguay",
+    "direccion": "Av. Gral Rivera 3333, Montevideo",
+    "ciudad": "Montevideo",
     "rating": 4.9,
     "reviews_count": 18,
     "fotos": [],
-    "maps_url": "https://www.google.com/maps/place/BD+Car+Wash/@-34.884459,-56.2231126,12z/data=!4m10!1m2!2m1!1scar+detailing+montevideo+uruguay!3m6!1s0x959f81a2bf96aa9f:0x56c29a079492ef86!8m2!3d-34.9021881!4d-56.1426532!15sCiBjYXIgZGV0YWlsaW5nIG1vbnRldmlkZW8gdXJ1Z3VheVoiIiBjYXIgZGV0YWlsaW5nIG1vbnRldmlkZW8gdXJ1Z3VheZIBCGNhcl93YXNomgFEQ2k5RFFVbFJRVU52WkVOb2RIbGpSamx2VDIxak0xa3hWbkZUTUhCRFZHdGFVV013Wkdaak1HeFpZVVJhZW1WWFl4QULgAQD6AQQILhAx!16s%2Fg%2F11n18yprvk?entry=ttu&g_ep=EgoyMDI2MDkxNi4wIKXMDSoASAFQAw%3D%3D"
+    "maps_url": "https://www.google.com/maps/place/BD+Car+Wash/@-34.884459,-56.2231126,12z/data=!4m10!1m2!2m1!1scar+detailing+montevideo+uruguay!3m6!1s0x959f81a2bf96aa9f:0x56c29a079492ef86!8m2!3d-34.9021881!4d-56.1426532!15sCiBjYXIgZGV0YWlsaW5nIG1vbnRldmlkZW8gdXJ1Z3VheVoiIiBjYXIgZGV0YWlsaW5nIG1vbnRldmlkZW8gdXJ1Z3VheZIBCGNhcl93YXNomgFEQ2k5RFFVbFJRVU52WkVOb2RIbGpSamx2VDIxak0xa3hWbkZUTUhCRFZHdGFVV013Wkdaak1HeFpZVVJhZW1WWFl4QULgAQD6AQQILhAx!16s%2Fg%2F11n18yprvk?entry=ttu&g_ep=EgoyMDI2MDkxNi4wIKXMDSoASAFQAw%3D%3D",
+    "template": "argentina",
+    "servicios": [
+      {
+        "nombre": "Detallado y Nutrición de Motor",
+        "descripcion": "Limpieza técnica profunda del vano motor con vapor controlado y desengrasantes dieléctricos seguros. Nutrición y acondicionamiento de mangueras, plásticos y gomas con terminación satinada original, libre de siliconas grasosas.",
+        "ideal_si": "Recuperar el aspecto de 0km bajo el capot y proteger plásticos y mangueras contra resecamiento.",
+        "precio": "Consultar Presupuesto",
+        "proteccion": "Acondicionado Dieléctrico de Plásticos",
+        "antes_img": "/before-after/motor-antes.jpg",
+        "despues_img": "/before-after/motor-despues.jpg"
+      },
+      {
+        "nombre": "Tratamiento Cerámico 9H",
+        "descripcion": "Recubrimiento nanotecnológico de alta dureza (vidrio líquido / cerámico). Otorga un brillo cristalino y profundo tipo espejo, extrema repelencia al agua y suciedad (hidrofobia), y protección UV contra la decoloración solar y marcas de agua.",
+        "ideal_si": "Conserva la pintura impecable, repele agua y barro, y facilita enormemente los lavados diarios.",
+        "precio": "Consultar Presupuesto",
+        "proteccion": "Brillo Espejo & Máxima Hidrofobia",
+        "antes_img": "/servicios/ceramico-antes.png",
+        "despues_img": "/servicios/ceramico-despues.png"
+      },
+      {
+        "nombre": "PPF Brillante | Paint Protection Film",
+        "descripcion": "Lámina de poliuretano autorregenerable de alto impacto con terminación Gloss brillante. Blinda la pintura original contra piedrazos en autopista o ruta, rayones de estacionamiento y rayos UV, conservando la máxima profundidad de color.",
+        "ideal_si": "Film autorregenerable con calor · Cobertura para trompa / frente o carrocería completa.",
+        "precio": "Consultar Presupuesto",
+        "proteccion": "Protección Física de Alto Impacto",
+        "antes_img": "/servicios/ppf-brilloso-antes.png",
+        "despues_img": "/servicios/ppf-brilloso-despues.png"
+      },
+      {
+        "nombre": "PPF Mate | Paint Protection Film",
+        "descripcion": "Lámina autorregenerable de terminación satinada mate. Transforma el color original de tu auto en un acabado mate exclusivo y sofisticado sin alterar ni repintar la pintura de fábrica.",
+        "ideal_si": "Transformación a terminado mate satinado elegante con protección física contra piedras y rayones.",
+        "precio": "Consultar Presupuesto",
+        "proteccion": "Acabado Mate Satinado Protector",
+        "antes_img": "/servicios/ppf-mate-antes.png",
+        "despues_img": "/servicios/ppf-mate-despues.png"
+      },
+      {
+        "nombre": "PPF Color | Paint Protection Film",
+        "descripcion": "Film autorregenerable de protección con pigmentos de color de alta definición. Cambiá el color de tu auto al tono que prefieras mientras protegés la pintura original contra piedrazos y raspaduras.",
+        "ideal_si": "Cambio de color con protección autorregenerable de alto impacto.",
+        "precio": "Consultar Presupuesto",
+        "proteccion": "Personalización & Protección Total",
+        "antes_img": "/servicios/ppf-color-antes.png",
+        "despues_img": "/servicios/ppf-color-despues.png"
+      },
+      {
+        "nombre": "Detailing Interior & Limpieza de Tapizados",
+        "descripcion": "Higienización y desinfección integral del habitáculo con inyección-extracción y vapor seco: limpieza profunda en tapizados de tela o nutrición artesanal para butacas de cuero, alfombras, techo, conductos de aire y plásticos.",
+        "ideal_si": "Recuperar la textura, aroma y sensación de auto limpio y cuidado al detalle.",
+        "precio": "Consultar Presupuesto",
+        "proteccion": "Desinfección & Acondicionado",
+        "antes_img": "/servicios/limpieza-tapizado-antes.png",
+        "despues_img": "/servicios/limpieza-tapizado-despues.png"
+      },
+      {
+        "nombre": "Restauración de Tapizados & Cuero",
+        "descripcion": "Recuperación técnica especializada de butacas, paneles y volantes de cuero o tela. Reparación de roturas, grietas, desgaste por roce y quemaduras, devolviendo el tono y textura original.",
+        "ideal_si": "Solución para roturas, quemaduras de cigarrillo o desgaste en butacas y volantes.",
+        "precio": "Consultar Presupuesto",
+        "proteccion": "Restauración de Tapizados",
+        "antes_img": "/servicios/reparacion-tapizado-antes.png",
+        "despues_img": "/servicios/reparacion-tapizado-despues.png"
+      },
+      {
+        "nombre": "Polarizado Nano Cerámico & Control Solar",
+        "descripcion": "Lámina de control solar con tecnología nano cerámica de alta performance para cristales. Reduce drásticamente la temperatura en el habitáculo y filtra el 99% de rayos UV sin oscurecer ni distorsionar la visión nocturna.",
+        "ideal_si": "Rechazo térmico superior, protección para los interiores y mayor privacidad y seguridad.",
+        "precio": "Consultar Presupuesto",
+        "proteccion": "Control Térmico & Filtro UV",
+        "antes_img": "/servicios/polarizado-antes.png",
+        "despues_img": "/servicios/polarizado-despues.png"
+      },
+      {
+        "nombre": "Sacabollos Artesanal (PDR)",
+        "descripcion": "Técnica artesanal de varillero para eliminar bollos, toques de estacionamiento y daños por granizo sin necesidad de masillar ni repintar el vehículo.",
+        "ideal_si": "Reparar golpes manteniendo la pintura 100% original de fábrica y el valor de reventa.",
+        "precio": "Consultar Presupuesto",
+        "proteccion": "100% Pintura Original de Fábrica",
+        "antes_img": "/servicios/sacabollos-antes.png",
+        "despues_img": "/servicios/sacabollos-despues.png"
+      }
+    ]
   },
   {
     "slug": "bright",
