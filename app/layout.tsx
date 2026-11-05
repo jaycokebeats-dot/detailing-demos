@@ -43,32 +43,22 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
-  verification: {
-    google: "8KSKdnhVp7_r_zufW5NJuW-O4bCwpQ4t7Gsen_A02VE",
-  },
   icons: {
-    icon: [
-      { url: "/favicon-platinum-48.png", sizes: "48x48", type: "image/png" },
-      { url: "/favicon-platinum-192.png", sizes: "192x192", type: "image/png" },
-      { url: "/favicon-platinum.svg", type: "image/svg+xml" },
-    ],
-    apple: [
-      { url: "/apple-touch-icon-platinum.png", sizes: "180x180", type: "image/png" },
-    ],
+    icon: [{ url: "/favicon.ico" }],
   },
   openGraph: {
     title: TITULO,
     description: DESCRIPCION,
     url: SITE_URL,
-    siteName: "Platinum Detallado Automotriz",
+    siteName: "Detailing Profesional",
     locale: "es_MX",
     type: "website",
     images: [
       {
-        url: "https://platinumdetallado.com/og-platinum.jpg",
+        url: "https://detailing-demos-three.vercel.app/og-detailing.jpg",
         width: 1200,
         height: 630,
-        alt: "Platinum Detallado Automotriz a Domicilio — Querétaro",
+        alt: "Detailing Profesional — Tratamientos Cerámicos y Estética Vehicular",
       },
     ],
   },
@@ -76,7 +66,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: TITULO,
     description: DESCRIPCION,
-    images: ["https://platinumdetallado.com/og-platinum.jpg"],
+    images: ["https://detailing-demos-three.vercel.app/og-detailing.jpg"],
   },
 };
 
