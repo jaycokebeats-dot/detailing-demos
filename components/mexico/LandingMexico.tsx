@@ -259,7 +259,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                 }
           }
         >
-          <div className={`max-w-6xl mx-auto flex items-center justify-between px-4 sm:px-8 transition-[height] duration-300 ${scrolled ? "h-14" : (isTheZone ? "h-16 sm:h-20" : "h-16")}`}>
+          <div className={`max-w-6xl mx-auto flex items-center justify-between px-4 sm:px-8 transition-[height] duration-300 ${scrolled ? "h-14" : (isTheZone || isShalom ? "h-16 sm:h-20" : "h-16")}`}>
             {isTheZone ? (
               <a href="#hero" className="flex items-center shrink-0 group transition-transform active:scale-95 py-1" aria-label="Ir al inicio">
                 <img
@@ -277,16 +277,12 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                 />
               </a>
             ) : isShalom ? (
-              <a href="#hero" className="flex items-center gap-2 sm:gap-2.5 shrink-0 group transition-transform active:scale-95 py-1" aria-label="Ir al inicio">
+              <a href="#hero" className="flex items-center shrink-0 group transition-transform active:scale-95 py-1" aria-label="Ir al inicio">
                 <img
                   src="/logo/shalom-logo.png"
                   alt={biz.nombre}
-                  className={`${scrolled ? "h-8 sm:h-9 md:h-10" : "h-9 sm:h-11 md:h-12"} w-auto object-contain transition-[height] duration-200 group-hover:scale-105 drop-shadow-[0_2px_12px_rgba(245,158,11,0.35)]`}
+                  className={`${scrolled ? "h-10 sm:h-12 md:h-14" : "h-12 sm:h-16 md:h-18"} w-auto object-contain transition-[height] duration-200 group-hover:scale-105 drop-shadow-[0_4px_16px_rgba(245,158,11,0.45)]`}
                 />
-                <span className="flex flex-col leading-none">
-                  <span className="font-extrabold tracking-widest text-xs sm:text-sm text-white">SHALOM</span>
-                  <span className="text-[8px] sm:text-[9px] font-semibold tracking-wider text-amber-400">AUTO DETAILING</span>
-                </span>
               </a>
             ) : (
               <a href="#hero" className="text-base font-bold tracking-widest text-white">
@@ -412,15 +408,15 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                 <div className="relative group">
                   {/* Halo de luz concentrado detrás del logo de Shalom */}
                   <div
-                    className="absolute inset-0 rounded-full blur-2xl sm:blur-3xl opacity-65 scale-110 pointer-events-none"
+                    className="absolute inset-0 rounded-full blur-2xl sm:blur-3xl opacity-75 scale-125 pointer-events-none"
                     style={{
-                      background: "radial-gradient(circle, rgba(245,158,11,0.55) 0%, rgba(217,119,6,0.3) 45%, rgba(16,185,129,0.15) 75%, transparent 90%)",
+                      background: "radial-gradient(circle, rgba(245,158,11,0.65) 0%, rgba(217,119,6,0.38) 45%, rgba(16,185,129,0.18) 75%, transparent 90%)",
                     }}
                   />
                   <img
                     src="/logo/shalom-logo.png"
                     alt={biz.nombre}
-                    className="relative z-10 h-28 xs:h-32 sm:h-44 md:h-52 lg:h-60 w-auto object-contain drop-shadow-[0_12px_40px_rgba(245,158,11,0.45)] transition-transform hover:scale-105"
+                    className="relative z-10 h-[190px] xs:h-[225px] sm:h-[280px] md:h-[340px] lg:h-[390px] w-auto object-contain drop-shadow-[0_16px_50px_rgba(245,158,11,0.55)] transition-transform hover:scale-105"
                   />
                 </div>
               </div>
@@ -445,11 +441,11 @@ export default function LandingMexico({ biz }: { biz: Business }) {
 
             <h1 className={`${
               isShalom
-                ? "text-[21px] xs:text-[25px] sm:text-[30px] md:text-[34px]"
+                ? "text-[15px] xs:text-[17px] sm:text-[22px] md:text-[26px]"
                 : isTheZone || isPlatinum
                   ? "text-[20px] sm:text-[26px] md:text-[30px]"
                   : "text-[32px] sm:text-[42px]"
-            } font-bold tracking-tight leading-tight text-balance`}>
+            } font-bold tracking-tight leading-snug sm:leading-tight text-balance`}>
               {isTheZone ? (
                 <>
                   Estética y Detallado Automotriz en San Luis Potosí.
@@ -482,7 +478,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
 
             <p className={`${
               isShalom
-                ? "text-[11px] xs:text-xs sm:text-sm max-w-xl line-clamp-2 sm:line-clamp-none text-slate-300 font-light leading-snug sm:leading-relaxed mx-auto text-pretty"
+                ? "text-[11px] sm:text-xs max-w-lg line-clamp-2 text-slate-300 font-light leading-snug mx-auto text-pretty"
                 : isTheZone || isPlatinum
                   ? "text-xs sm:text-sm max-w-xl line-clamp-2 sm:line-clamp-none text-slate-300 font-light leading-relaxed mx-auto text-pretty"
                   : "text-base md:text-lg max-w-2xl text-slate-300 font-light leading-relaxed mx-auto text-pretty"
@@ -917,15 +913,15 @@ export default function LandingMexico({ biz }: { biz: Business }) {
           <div className="flex justify-center mb-8">
             <div className="relative group">
               <div
-                className="absolute inset-0 rounded-full blur-xl opacity-50 scale-110 pointer-events-none"
+                className="absolute inset-0 rounded-full blur-2xl sm:blur-3xl opacity-60 scale-125 pointer-events-none"
                 style={{
-                  background: "radial-gradient(circle, rgba(245,158,11,0.4) 0%, rgba(16,185,129,0.15) 60%, transparent 80%)",
+                  background: "radial-gradient(circle, rgba(245,158,11,0.5) 0%, rgba(16,185,129,0.2) 65%, transparent 85%)",
                 }}
               />
               <img
                 src="/logo/shalom-logo.png"
                 alt={biz.nombre}
-                className="relative z-10 h-20 sm:h-28 md:h-32 w-auto object-contain opacity-95 hover:opacity-100 transition-all drop-shadow-[0_8px_30px_rgba(245,158,11,0.45)] hover:scale-105"
+                className="relative z-10 h-28 sm:h-36 md:h-44 lg:h-48 w-auto object-contain opacity-95 hover:opacity-100 transition-all drop-shadow-[0_12px_40px_rgba(245,158,11,0.5)] hover:scale-105"
               />
             </div>
           </div>
