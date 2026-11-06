@@ -32474,7 +32474,8 @@
     "fotos": [],
     "maps_url": "https://www.google.com/maps/place/Mc+Detail+%F0%9F%92%8E+Detailing+-+polarizados+y+PPF/@-38.96292,-68.2004069,12z/data=!4m11!1m3!2m2!1scar+detailing+neuquen+capital!6e2!3m6!1s0x960a330027f8ddf1:0x4a52b0a35e9f74a5!8m2!3d-38.9616505!4d-68.0842183!15sCh1jYXIgZGV0YWlsaW5nIG5ldXF1ZW4gY2FwaXRhbJIBG2F1dG9fd2luZG93X3RpbnRpbmdfc2VydmljZeABAA!16s%2Fg%2F11mlx1zfbx?entry=ttu&g_ep=EgoyMDI2MTAwNi4wIKXMDSoASAFQAw%3D%3D",
     "pais": "AR",
-    "template": "argentina"
+    "template": "argentina",
+    "logo_url": "/logo/mc-detail-logo.png"
   },
   {
     "slug": "speedracer-car-detailing",

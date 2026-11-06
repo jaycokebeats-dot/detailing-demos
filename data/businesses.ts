@@ -23,6 +23,7 @@ import { DEFAULT_DEMO_BUSINESS } from "./demo-business";
 import { BORGES_BUSINESS } from "./borges-data";
 import { JDS_DETAILING_BUSINESS } from "./jds-data";
 import { SHALOM_BUSINESS } from "./shalom-data";
+import { MC_DETAIL_BUSINESS } from "./mc-detail-data";
 
 const JDS_ALIAS: Business = {
   ...JDS_DETAILING_BUSINESS,
@@ -42,6 +43,7 @@ const rawList: Business[] = [
   JDS_DETAILING_BUSINESS,
   JDS_ALIAS,
   SHALOM_BUSINESS,
+  MC_DETAIL_BUSINESS,
   ...raw,
 ];
 const businessesMap = new Map<string, Business>();
@@ -73,7 +75,7 @@ export function getBusiness(slug: string): Business | undefined {
   if (slug === "ch" || slug === "ch-detailing") return businessesMap.get("ch-detailing");
   if (slug === "work-style" || slug === "workstyle") return businessesMap.get("work-style");
   if (slug === "bd" || slug === "bd-car-wash") return businessesMap.get("bd-car-wash");
-  if (slug === "mc-detail" || slug === "mc-detail-detailing") return businessesMap.get("mc-detail-detailing");
+  if (slug === "mc-detail" || slug === "mc-detail-detailing") return MC_DETAIL_BUSINESS;
   if (slug === "am-centro" || slug === "am-centro-de-estetica-vehicular") return businessesMap.get("am-centro-de-estetica-vehicular");
   return businessesMap.get(slug);
 }

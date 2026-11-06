@@ -105,6 +105,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
               { url: "/logo/shalom-logo.png", sizes: "180x180", type: "image/png" },
             ],
           }
+      : biz.logo_url
+        ? {
+            icon: [{ url: biz.logo_url, type: "image/png" }],
+            apple: [{ url: biz.logo_url, type: "image/png" }],
+          }
         : undefined,
     openGraph: {
       title: titulo,

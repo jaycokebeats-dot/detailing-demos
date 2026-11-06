@@ -163,15 +163,24 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
                 }
           }
         >
-          <div className={`max-w-6xl mx-auto flex items-center justify-between px-5 sm:px-8 transition-[height] duration-300 ${scrolled ? "h-14" : "h-16"}`}>
-            <a href="#hero" className="text-base font-bold tracking-widest text-white">
-              {nombreResto ? (
-                <>
+          <div className={`max-w-6xl mx-auto flex items-center justify-between px-4 sm:px-8 transition-[height] duration-300 ${scrolled ? "h-14" : "h-16"}`}>
+            <a href="#hero" className="flex items-center shrink-0 group transition-transform active:scale-95 py-1" aria-label="Ir al inicio">
+              {biz.logo_url ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={biz.logo_url}
+                  alt={biz.nombre}
+                  className={`${scrolled ? "h-8 sm:h-9 md:h-10" : "h-9 sm:h-11 md:h-12"} w-auto max-w-[200px] sm:max-w-[260px] object-contain transition-all duration-200 group-hover:scale-105 drop-shadow-[0_2px_12px_rgba(255,255,255,0.18)]`}
+                />
+              ) : nombreResto ? (
+                <span className="text-base font-bold tracking-widest text-white">
                   {`${primeraPalabra} `}
                   <span className="text-gold">{nombreResto}</span>
-                </>
+                </span>
               ) : (
-                primeraPalabra
+                <span className="text-base font-bold tracking-widest text-white">
+                  {primeraPalabra}
+                </span>
               )}
             </a>
             <div className="hidden md:flex items-center gap-7 text-xs uppercase tracking-widest text-slate-400">
@@ -194,7 +203,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
       </div>
 
       {/* 2. HERO */}
-      <section id="hero" className="relative lg:h-dvh pt-24 pb-12 lg:pb-0 px-4 sm:px-6 overflow-x-clip flex items-center">
+      <section id="hero" className="relative min-h-[100dvh] h-[100dvh] pt-14 sm:pt-20 pb-4 sm:pb-8 px-4 sm:px-6 overflow-hidden flex items-center justify-center">
         {biz.fotos && biz.fotos.length > 0 ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
@@ -215,52 +224,68 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/70" />
 
-        <div className="relative z-10 max-w-6xl mx-auto w-full h-full flex items-center justify-center">
-          <div className="max-w-2xl text-center space-y-5 mx-auto py-12 lg:py-8">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs sm:text-sm font-medium text-slate-300">
-              <span className="flex size-2 rounded-full shrink-0 animate-pulse bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
-              <span>{biz.ciudad} (Argentina)</span>
-              <span className="text-slate-500">·</span>
-              <span>Turnos disponibles esta semana</span>
+        <div className="relative z-10 max-w-4xl mx-auto w-full h-full flex flex-col justify-center items-center text-center px-2">
+          {/* Logo oficial centrado con halo de luz premium */}
+          {biz.logo_url && (
+            <div className="relative flex justify-center items-center -mt-2 sm:-mt-6 mb-2 sm:mb-4">
+              <div
+                className="absolute inset-0 rounded-full blur-2xl sm:blur-3xl opacity-75 sm:opacity-85 scale-125 sm:scale-150 pointer-events-none"
+                style={{
+                  background: "radial-gradient(ellipse at center, rgba(56,189,248,0.45) 0%, rgba(244,63,94,0.30) 35%, rgba(255,255,255,0.15) 60%, transparent 75%)",
+                }}
+              />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={biz.logo_url}
+                alt={biz.nombre}
+                className="relative z-10 h-16 xs:h-20 sm:h-28 md:h-36 lg:h-40 w-auto max-w-[85vw] sm:max-w-[480px] object-contain drop-shadow-[0_12px_40px_rgba(0,0,0,0.9)] transition-transform hover:scale-105"
+              />
             </div>
+          )}
 
-            <h1 className="text-[32px] sm:text-[42px] font-medium tracking-tight leading-tight text-balance">
-              Detailing Profesional a Mano,
-              <br />
-              <span className="text-gold">Resultado de Showroom.</span>
-            </h1>
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-white/10 bg-white/5 text-[11px] sm:text-xs font-medium text-slate-300">
+            <span className="flex size-1.5 sm:size-2 rounded-full shrink-0 animate-pulse bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
+            <span>{biz.ciudad} (Argentina)</span>
+            <span className="text-slate-500">·</span>
+            <span>Turnos disponibles esta semana</span>
+          </div>
 
-            <p className="text-base md:text-lg text-slate-300 max-w-2xl font-light leading-relaxed text-pretty">
-              Corrección de pintura, recubrimiento cerámico y estética interior en {biz.ciudad}. Cuidado artesanal sin microrrayones ni atajos.
-            </p>
+          <h1 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight leading-snug sm:leading-tight text-balance text-white mt-1.5 sm:mt-2.5">
+            Detailing Profesional & Polarizados PPF,
+            <br />
+            <span className="text-gold">Resultado de Showroom.</span>
+          </h1>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full sm:w-auto pt-2">
-              <a
-                href={waHref(biz, msgPresupuesto)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-gold group w-full sm:w-auto px-7 py-3.5 min-h-[44px] rounded-full text-sm font-semibold uppercase tracking-wide active:scale-95 transition-[transform,filter] duration-150 flex items-center justify-center gap-2.5"
-              >
-                <FaWhatsapp aria-hidden className="size-4" />
-                Pedir Presupuesto por WhatsApp
-              </a>
-              <a
-                href="#servicios"
-                className="btn-outline-gold text-nowrap group w-full sm:w-auto px-7 py-3.5 min-h-[44px] rounded-full text-sm font-semibold uppercase active:scale-95 flex items-center justify-center gap-2.5"
-              >
-                <HiOutlineSparkles aria-hidden className="size-4" />
-                Ver Servicios
-              </a>
-            </div>
+          <p className="text-xs sm:text-sm md:text-base text-slate-300 max-w-xl mx-auto font-light leading-snug sm:leading-relaxed text-pretty mt-1 sm:mt-1.5">
+            Corrección de pintura, protección cerámica y estética interior en {biz.ciudad}. Cuidado artesanal sin microrrayones ni atajos.
+          </p>
 
-            <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 pt-2">
-              {stats.map((item) => (
-                <span key={item} className="inline-flex items-center gap-1.5 text-xs sm:text-sm text-slate-300">
-                  <HiOutlineCheckCircle aria-hidden className="size-4 shrink-0 text-gold" />
-                  {item}
-                </span>
-              ))}
-            </div>
+          <div className="flex flex-col xs:flex-row items-center justify-center gap-2.5 sm:gap-3 w-full max-w-md mx-auto pt-2 sm:pt-3">
+            <a
+              href={waHref(biz, msgPresupuesto)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-gold group w-full xs:w-auto px-6 sm:px-7 py-2.5 sm:py-3 min-h-[42px] sm:min-h-[44px] rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wide active:scale-95 transition-all flex items-center justify-center gap-2 shadow-lg shadow-amber-500/10"
+            >
+              <FaWhatsapp aria-hidden className="size-4" />
+              <span>Pedir Presupuesto</span>
+            </a>
+            <a
+              href="#servicios"
+              className="btn-outline-gold group w-full xs:w-auto px-6 sm:px-7 py-2.5 sm:py-3 min-h-[42px] sm:min-h-[44px] rounded-full text-xs sm:text-sm font-semibold uppercase active:scale-95 transition-all flex items-center justify-center gap-2"
+            >
+              <HiOutlineSparkles aria-hidden className="size-4" />
+              <span>Ver Servicios</span>
+            </a>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-x-3 sm:gap-x-5 gap-y-1 pt-1.5 sm:pt-2.5 text-[11px] sm:text-xs text-slate-300">
+            {stats.map((item) => (
+              <span key={item} className="inline-flex items-center gap-1">
+                <HiOutlineCheckCircle aria-hidden className="size-3.5 sm:size-4 shrink-0 text-gold" />
+                {item}
+              </span>
+            ))}
           </div>
         </div>
       </section>
@@ -590,6 +615,25 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
               "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.12) 20%, rgba(212,175,55,0.35) 50%, rgba(255,255,255,0.12) 80%, transparent 100%)",
           }}
         />
+
+        {biz.logo_url && (
+          <div className="flex justify-center mb-8">
+            <div className="relative group">
+              <div
+                className="absolute inset-0 rounded-full blur-2xl opacity-45 scale-125 pointer-events-none"
+                style={{
+                  background: "radial-gradient(ellipse at center, rgba(56,189,248,0.4) 0%, rgba(244,63,94,0.25) 35%, transparent 75%)",
+                }}
+              />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={biz.logo_url}
+                alt={biz.nombre}
+                className="relative z-10 h-14 sm:h-20 md:h-24 w-auto object-contain opacity-95 hover:opacity-100 transition-all drop-shadow-[0_8px_30px_rgba(0,0,0,0.8)] hover:scale-105"
+              />
+            </div>
+          </div>
+        )}
 
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-slate-400 font-light">
           <span>© {new Date().getFullYear()} {biz.nombre} · Detailing Automotriz en {biz.ciudad} (Argentina)</span>
