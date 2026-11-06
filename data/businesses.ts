@@ -74,5 +74,6 @@ export function getBusiness(slug: string): Business | undefined {
   if (slug === "work-style" || slug === "workstyle") return businessesMap.get("work-style");
   if (slug === "bd" || slug === "bd-car-wash") return businessesMap.get("bd-car-wash");
   if (slug === "mc-detail" || slug === "mc-detail-detailing") return businessesMap.get("mc-detail-detailing");
+  if (slug === "am-centro" || slug === "am-centro-de-estetica-vehicular") return businessesMap.get("am-centro-de-estetica-vehicular");
   return businessesMap.get(slug);
 }
