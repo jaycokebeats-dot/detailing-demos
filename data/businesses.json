@@ -49507,7 +49507,90 @@
     "fotos": [],
     "maps_url": "https://www.google.com/maps/place/Am+Centro+De+Estetica+Vehicular/@-32.4153056,-65.5384164,8z/data=!4m10!1m2!2m1!1sestetica+vehicular+villa+maria!3m6!1s0x95cc4323c2879ff1:0xdd33942fbd9dc0fb!8m2!3d-32.4106845!4d-63.2764092!15sCh5lc3RldGljYSB2ZWhpY3VsYXIgdmlsbGEgbWFyaWHgAQA!16s%2Fg%2F11fqbjf_1l?entry=ttu&g_ep=EgoyMDI2MTAxMS4wIKXMDSoASAFQAw%3D%3D",
     "pais": "AR",
-    "template": "argentina"
+    "template": "argentina",
+    "logo_url": "/logo/am-centro-logo.png",
+    "servicios": [
+      {
+        "nombre": "Polarizados (SunControl & 3M Oficial)",
+        "precio": "Desde $260.000",
+        "descripcion": "Láminas de control solar y seguridad de alta performance. Línea SunControl: Autos $260.000 / SUV y Chatas $280.000. Línea Premium 3M: Autos $390.000 / SUV y Chatas $320.000. Bloqueo 99% rayos UV, reducción del calor interior y máxima privacidad.",
+        "ideal_si": "Reducir la temperatura en cabina, evitar el encandilamiento y proteger los tapizados del sol.",
+        "proteccion": "Líneas SunControl & 3M Oficial",
+        "antes_img": "/servicios/polarizado-antes.png",
+        "despues_img": "/servicios/polarizado-despues.png"
+      },
+      {
+        "nombre": "Tratamientos de Pintura (Básico, Acrílico & Cerámico)",
+        "precio": "Desde $450.000",
+        "descripcion": "Corrección técnica de barniz en pasos eliminando micro-rayas (swirls) y marcas de lavado. Sellados con opciones en Tratamiento Básico, Acrílico y Cerámico 9H de alta duración. Presupuesto final previa revisión y chequeo del estado de la pintura.",
+        "ideal_si": "Eliminar rayas superficiales, recuperar brillo espejo showroom y blindar la pintura.",
+        "proteccion": "Inspección previa · Arrancan en $450.000",
+        "antes_img": "/servicios/ceramico-antes.png",
+        "despues_img": "/servicios/ceramico-despues.png"
+      },
+      {
+        "nombre": "Limpieza de Interiores Completa",
+        "precio": "$390.000",
+        "descripcion": "Higienización y desinfección total a vapor seco e inyección-extracción: butacas de tela o cuero, alfombras, techo, paneles de puerta, baúl y conductos de climatización. Acondicionado y nutrición de plásticos con acabado satinado original sin siliconas grasosas.",
+        "ideal_si": "Desinfección profunda, eliminación de manchas difíciles, olores y recuperación de textura original.",
+        "proteccion": "Desinfección 100% a Vapor & Nutrición",
+        "antes_img": "/servicios/limpieza-tapizado-antes.png",
+        "despues_img": "/servicios/limpieza-tapizado-despues.png"
+      },
+      {
+        "nombre": "Paint Protection Film (PPF) Patentes & Zonas",
+        "precio": "$45.000 c/u (Patentes)",
+        "descripcion": "Lámina de poliuretano transparente autorregenerable de alto impacto contra piedras, arenilla y raspaduras. Blindaje para chapas patentes a $45.000 c/u para evitar despintado o dobleces por estacionamiento. Coberturas adicionales (trompa, ópticas o carrocería) a consultar.",
+        "ideal_si": "Proteger patentes y partes frontales contra piedrazos en autopista y ruta.",
+        "proteccion": "Poliuretano Autorregenerable 100%",
+        "antes_img": "/servicios/ppf-brilloso-antes.png",
+        "despues_img": "/servicios/ppf-brilloso-despues.png"
+      },
+      {
+        "nombre": "Limpieza Técnica de Motor y Chasis",
+        "precio": "Presupuesto según Inspección",
+        "descripcion": "Limpieza minuciosa del vano motor con vapor controlado y desengrasantes dieléctricos biodegradables, seguros para cableados, módulos y sensores. Nutrición de plásticos y mangueras, y lavado técnico de chasis. Presupuesto previo chequeo de estado.",
+        "ideal_si": "Quitar grasa y tierra acumulada protegiendo componentes electrónicos y mangueras.",
+        "proteccion": "Acondicionado Dieléctrico Seguro",
+        "antes_img": "/before-after/motor-antes.jpg",
+        "despues_img": "/before-after/motor-despues.jpg"
+      },
+      {
+        "nombre": "Sacabollos Artesanal & Microbollos (PDR)",
+        "precio": "Presupuesto según Estado",
+        "descripcion": "Reparación técnica con varillas artesanales de precisión para remover toques de estacionamiento, marcas de portazos y daños de granizo sin repintar ni masillar. Presupuesto personalizado según cantidad y profundidad de los microbollos.",
+        "ideal_si": "Reparar golpes manteniendo la pintura 100% original de fábrica y el valor de reventa.",
+        "proteccion": "100% Pintura Original de Fábrica",
+        "antes_img": "/servicios/sacabollos-antes.png",
+        "despues_img": "/servicios/sacabollos-despues.png"
+      },
+      {
+        "nombre": "Pintura y Diamantado CNC de Llantas",
+        "precio": "Presupuesto según Estado",
+        "descripcion": "Recuperación de cordoneadas, raspones y daños en llantas de aleación. Opciones en pintura horneada de alta resistencia en tonos originales o personalizados, y diamantado CNC de precisión. Presupuesto previa verificación del estado de cada rueda.",
+        "ideal_si": "Eliminar cordoneadas y renovar el aspecto exterior de las 4 ruedas.",
+        "proteccion": "Pintura Horneada & Torneado CNC",
+        "antes_img": "/servicios/llantas-antes.jpg",
+        "despues_img": "/servicios/llantas-despues.jpg"
+      },
+      {
+        "nombre": "Iluminación LED & Modificación de Ópticas",
+        "precio": "Consultar según Vehículo",
+        "descripcion": "Instalación de lámparas LED de alta intensidad sin error en computadora de abordo (Canbus), proyectores bi-LED, apertura y personalización estética de ópticas internas, y pulido con sellador cerámico UV para faros opacos o amarillentos.",
+        "ideal_si": "Aumentar la visibilidad y seguridad nocturna con una estética moderna de alta gama.",
+        "proteccion": "Calibración Canbus & Sellador UV",
+        "antes_img": "/before-after/faros-antes.jpg",
+        "despues_img": "/before-after/faros-despues.jpg"
+      },
+      {
+        "nombre": "Accesorios & Equipamiento 4x4",
+        "precio": "Consultar según Modelo",
+        "descripcion": "Equipamiento para camionetas, pick-ups y SUV: colocación de estribos, defensas, barras antivuelco, enganches para tráiler, cobertores de caja y protectores. Asesoramiento técnico y cotización a medida según marca y modelo de tu vehículo.",
+        "ideal_si": "Personalizar y equipar pick-ups y SUV para carga, viaje o travesías off-road.",
+        "proteccion": "Instalación Profesional Garantizada",
+        "img": "/servicios/accesorios-4x4.jpg"
+      }
+    ]
   },
   {
     "slug": "estetica-vehicular-autospa",
