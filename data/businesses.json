@@ -49543,8 +49543,8 @@
         "descripcion": "Lámina de poliuretano transparente autorregenerable de alto impacto contra piedras, arenilla y raspaduras. Blindaje para chapas patentes a $45.000 c/u para evitar despintado o dobleces por estacionamiento. Coberturas adicionales (trompa, ópticas o carrocería) a consultar.",
         "ideal_si": "Proteger patentes y partes frontales contra piedrazos en autopista y ruta.",
         "proteccion": "Poliuretano Autorregenerable 100%",
-        "antes_img": "/servicios/ppf-brilloso-antes.png",
-        "despues_img": "/servicios/ppf-brilloso-despues.png"
+        "antes_img": "/servicios/patente-ppf-antes.jpg",
+        "despues_img": "/servicios/patente-ppf-despues.jpg"
       },
       {
         "nombre": "Limpieza Técnica de Motor y Chasis",
@@ -49570,8 +49570,8 @@
         "descripcion": "Recuperación de cordoneadas, raspones y daños en llantas de aleación. Opciones en pintura horneada de alta resistencia en tonos originales o personalizados, y diamantado CNC de precisión. Presupuesto previa verificación del estado de cada rueda.",
         "ideal_si": "Eliminar cordoneadas y renovar el aspecto exterior de las 4 ruedas.",
         "proteccion": "Pintura Horneada & Torneado CNC",
-        "antes_img": "/servicios/llantas-antes.jpg",
-        "despues_img": "/servicios/llantas-despues.jpg"
+        "antes_img": "/servicios/llanta-diamantada-antes.webp",
+        "despues_img": "/servicios/llanta-diamantada-despues.webp"
       },
       {
         "nombre": "Iluminación LED & Modificación de Ópticas",
