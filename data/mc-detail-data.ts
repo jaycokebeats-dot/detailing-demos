@@ -2,13 +2,13 @@ import type { Business, ServiceItem } from "./business-helpers";
 
 export const MC_DETAIL_SERVICIOS: ServiceItem[] = [
   {
-    nombre: "Polarizados Nano Cerámicos & Control Solar",
-    descripcion: "Láminas de control solar y seguridad con nanotecnología cerámica de alta performance. Ofrecen máxima privacidad, reducción térmica extrema en el habitáculo y filtro del 99% de radiación UV sin oscurecer ni distorsionar la visión nocturna.",
-    ideal_si: "Control térmico en cabina, máxima privacidad, protección contra rayos UV y refuerzo contra golpes o vandalismo.",
+    nombre: "Tratamientos Cerámicos 9H & Corrección de Pintura",
+    descripcion: "Proceso completo de pulido correctivo en etapas para eliminar microrrayones circulares (swirls), marcas de agua y opacidad, finalizando con un recubrimiento nanocerámico 9H de alta dureza. Brinda brillo espejo y repelencia hidrofóbica total.",
+    ideal_si: "Eliminar microrrayones, restaurar el color profundo de fábrica y blindar la pintura contra excremento de aves, savia y lluvia ácida.",
     precio: "",
-    proteccion: "Filtro UV 99% & Rechazo Térmico",
-    antes_img: "/servicios/polarizado-antes.png",
-    despues_img: "/servicios/polarizado-despues.png",
+    proteccion: "Brillo Espejo & Sellado Cerámico 9H",
+    antes_img: "/servicios/ceramico-antes.png",
+    despues_img: "/servicios/ceramico-despues.png",
   },
   {
     nombre: "PPF | Paint Protection Film",
@@ -20,13 +20,13 @@ export const MC_DETAIL_SERVICIOS: ServiceItem[] = [
     despues_img: "/servicios/ppf-brilloso-despues.png",
   },
   {
-    nombre: "Tratamientos Cerámicos 9H & Corrección de Pintura",
-    descripcion: "Proceso completo de pulido correctivo en etapas para eliminar microrrayones circulares (swirls), marcas de agua y opacidad, finalizando con un recubrimiento nanocerámico 9H de alta dureza. Brinda brillo espejo y repelencia hidrofóbica total.",
-    ideal_si: "Eliminar microrrayones, restaurar el color profundo de fábrica y blindar la pintura contra excremento de aves, savia y lluvia ácida.",
+    nombre: "Polarizados Nano Cerámicos & Control Solar",
+    descripcion: "Láminas de control solar y seguridad con nanotecnología cerámica de alta performance. Ofrecen máxima privacidad, reducción térmica extrema en el habitáculo y filtro del 99% de radiación UV sin oscurecer ni distorsionar la visión nocturna.",
+    ideal_si: "Control térmico en cabina, máxima privacidad, protección contra rayos UV y refuerzo contra golpes o vandalismo.",
     precio: "",
-    proteccion: "Brillo Espejo & Sellado Cerámico 9H",
-    antes_img: "/servicios/ceramico-antes.png",
-    despues_img: "/servicios/ceramico-despues.png",
+    proteccion: "Filtro UV 99% & Rechazo Térmico",
+    antes_img: "/servicios/polarizado-antes.png",
+    despues_img: "/servicios/polarizado-despues.png",
   },
   {
     nombre: "Lavados Premium Detailing",
@@ -34,8 +34,8 @@ export const MC_DETAIL_SERVICIOS: ServiceItem[] = [
     ideal_si: "Limpieza técnica a fondo y segura que resalta el brillo y cuida la pintura al 100% sin generar swirls.",
     precio: "",
     proteccion: "Lavado Técnico Anti-Swirls 100% Seguro",
-    antes_img: "/servicios/llantas-antes.jpg",
-    despues_img: "/servicios/llantas-despues.jpg",
+    antes_img: "/servicios/lavado-premium-antes.jpg",
+    despues_img: "/servicios/lavado-premium-despues.jpg",
   },
   {
     nombre: "Lavados de Mantenimiento",
@@ -43,8 +43,8 @@ export const MC_DETAIL_SERVICIOS: ServiceItem[] = [
     ideal_si: "Mantener tu vehículo protegido, limpio y con el efecto hidrofóbico activo durante todo el año.",
     precio: "",
     proteccion: "Reactivación Hidrofóbica & Cuidado de Cerámico",
-    antes_img: "/before-after/pintura-antes.jpg",
-    despues_img: "/before-after/pintura-despues.jpg",
+    antes_img: "/servicios/lavado-mantenimiento-antes.jpg",
+    despues_img: "/servicios/lavado-mantenimiento-despues.jpg",
   },
   {
     nombre: "Preparación para la Venta",
@@ -56,15 +56,6 @@ export const MC_DETAIL_SERVICIOS: ServiceItem[] = [
     despues_img: "/before-after/platinum-full-detail-despues.jpg",
   },
   {
-    nombre: "Limpieza y Desinfección de Tapizados",
-    descripcion: "Higienización profunda mediante sistema de inyección-extracción y vapor a temperatura controlada. Remueve manchas difíciles, suciedad acumulada, ácaros y olores en butacas de tela o cuero, paneles y techo, sin dejar humedad residual.",
-    ideal_si: "Quitar manchas de café, gaseosas, humedad o suciedad diaria, renovando el aspecto y aroma de las butacas.",
-    precio: "",
-    proteccion: "Sanitización a Vapor & Eliminación de Bacterias",
-    antes_img: "/servicios/limpieza-tapizado-antes.png",
-    despues_img: "/servicios/limpieza-tapizado-despues.png",
-  },
-  {
     nombre: "Limpieza y Detallado Full de Interior",
     descripcion: "Tratamiento minucioso de cada rincón del habitáculo: desinfección de ductos de aire acondicionado, limpieza de pedaleras, consola, tablero, paneles, alfombras y baúl. Tratamiento antiestático con terminación satinada original, libre de siliconas grasosas.",
     ideal_si: "Una renovación 360° del interior que devuelve la textura, fragancia y sensación de subirte a un vehículo 0km.",
@@ -72,6 +63,15 @@ export const MC_DETAIL_SERVICIOS: ServiceItem[] = [
     proteccion: "Acondicionado Satinado & Filtro UV Interior",
     antes_img: "/before-after/interior-antes.jpg",
     despues_img: "/before-after/interior-despues.jpg",
+  },
+  {
+    nombre: "Limpieza y Desinfección de Tapizados",
+    descripcion: "Higienización profunda mediante sistema de inyección-extracción y vapor a temperatura controlada. Remueve manchas difíciles, suciedad acumulada, ácaros y olores en butacas de tela o cuero, paneles y techo, sin dejar humedad residual.",
+    ideal_si: "Quitar manchas de café, gaseosas, humedad o suciedad diaria, renovando el aspecto y aroma de las butacas.",
+    precio: "",
+    proteccion: "Sanitización a Vapor & Eliminación de Bacterias",
+    antes_img: "/servicios/limpieza-tapizado-antes.png",
+    despues_img: "/servicios/limpieza-tapizado-despues.png",
   },
   {
     nombre: "Restauración y Protección para Ópticas y Faros",
