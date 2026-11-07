@@ -263,7 +263,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
               </>
             ) : (
               <>
-                Detailing Profesional & Polarizados PPF,
+                Detailing Profesional, Polarizados & PPF,
                 <br />
                 <span className="text-gold">Resultado de Showroom.</span>
               </>
@@ -274,22 +274,22 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
             Corrección de pintura, protección cerámica y estética interior en {biz.ciudad}. Cuidado artesanal sin microrrayones ni atajos.
           </p>
 
-          <div className="flex flex-row items-center justify-center gap-2 sm:gap-3 w-full max-w-sm sm:max-w-md mx-auto pt-2 sm:pt-2.5">
+          <div className="flex flex-row items-center justify-center gap-2 sm:gap-3 w-full max-w-sm sm:max-w-md mx-auto pt-2 sm:pt-2.5 px-1">
             <a
               href={waHref(biz, msgPresupuesto)}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-gold group w-full xs:w-auto px-6 sm:px-7 py-2.5 sm:py-3 min-h-[42px] sm:min-h-[44px] rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wide active:scale-95 transition-all flex items-center justify-center gap-2 shadow-lg shadow-white/5"
+              className="btn-gold group flex-1 px-3 sm:px-6 py-2.5 sm:py-3 min-h-[42px] sm:min-h-[44px] rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wide active:scale-95 transition-all flex items-center justify-center gap-1.5 sm:gap-2 shadow-lg shadow-white/5 whitespace-nowrap text-center"
             >
-              <FaWhatsapp aria-hidden className="size-4" />
-              <span>Pedir Presupuesto</span>
+              <FaWhatsapp aria-hidden className="size-3.5 sm:size-4 shrink-0" />
+              <span className="whitespace-nowrap">Pedir Presupuesto</span>
             </a>
             <a
               href="#servicios"
-              className="btn-outline-gold group w-full xs:w-auto px-6 sm:px-7 py-2.5 sm:py-3 min-h-[42px] sm:min-h-[44px] rounded-full text-xs sm:text-sm font-semibold uppercase active:scale-95 transition-all flex items-center justify-center gap-2"
+              className="btn-outline-gold group flex-1 px-3 sm:px-6 py-2.5 sm:py-3 min-h-[42px] sm:min-h-[44px] rounded-full text-xs sm:text-sm font-semibold uppercase active:scale-95 transition-all flex items-center justify-center gap-1.5 sm:gap-2 whitespace-nowrap text-center"
             >
-              <HiOutlineSparkles aria-hidden className="size-4" />
-              <span>Ver Servicios</span>
+              <HiOutlineSparkles aria-hidden className="size-3.5 sm:size-4 shrink-0" />
+              <span className="whitespace-nowrap">Ver Servicios</span>
             </a>
           </div>
 
