@@ -104,6 +104,9 @@ export type Business = {
   pais?: string;
   template?: string;
   video_hero?: string;
+  hero_titulo?: string;
+  hero_titulo_gold?: string;
+  hero_subtitulo?: string;
   cotizador_platinum?: CotizadorPlatinumConfig;
 };
 

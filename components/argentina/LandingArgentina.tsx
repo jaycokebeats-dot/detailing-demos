@@ -251,9 +251,23 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
           </div>
 
           <h1 className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-semibold tracking-tight leading-snug sm:leading-tight text-balance text-white mt-1.5 sm:mt-2">
-            Detailing Profesional & Polarizados PPF,
-            <br />
-            <span className="text-gold">Resultado de Showroom.</span>
+            {biz.hero_titulo ? (
+              <>
+                {biz.hero_titulo}
+                {biz.hero_titulo_gold && (
+                  <>
+                    <br />
+                    <span className="text-gold">{biz.hero_titulo_gold}</span>
+                  </>
+                )}
+              </>
+            ) : (
+              <>
+                Detailing Profesional & Polarizados PPF,
+                <br />
+                <span className="text-gold">Resultado de Showroom.</span>
+              </>
+            )}
           </h1>
 
           <p className="text-[11px] xs:text-xs sm:text-sm text-slate-300 max-w-lg mx-auto font-light leading-snug text-pretty mt-1 sm:mt-1.5 line-clamp-2 sm:line-clamp-none">
@@ -334,13 +348,23 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
       {/* 4. SERVICIOS CON SLIDERS INTERACTIVOS DE ANTES Y DESPUÉS ($ ARS) */}
       <section id="servicios" className="px-5 sm:px-8 py-24 bg-black">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-14 max-w-2xl mx-auto">
-            <span className="section-badge mb-5">Nuestros servicios</span>
-            <h2 className="text-3xl md:text-5xl font-medium text-gold mb-4">Servicios & Tarifas en {biz.ciudad}</h2>
-            <p className="text-slate-400">
-              Deslizá sobre cada trabajo para comparar los resultados reales. Detallado de motor, tratamiento cerámico, protección PPF, tapizados y más.
-            </p>
-          </div>
+          {(() => {
+            const serviciosList = (biz.servicios && biz.servicios.length > 0) ? biz.servicios : SERVICIOS_ARGENTINA;
+            const hasPrices = serviciosList.some((s) => Boolean(s.precio && s.precio.trim()));
+            return (
+              <div className="text-center mb-14 max-w-2xl mx-auto">
+                <span className="section-badge mb-5">Nuestros servicios</span>
+                <h2 className="text-3xl md:text-5xl font-medium text-gold mb-4">
+                  {hasPrices ? "Servicios & Tarifas" : "Servicios & Tratamientos"} en {biz.ciudad}
+                </h2>
+                <p className="text-slate-400">
+                  {hasPrices
+                    ? "Deslizá sobre cada trabajo para comparar los resultados reales. Detallado de motor, tratamiento cerámico, protección PPF, tapizados y más."
+                    : "Deslizá sobre cada trabajo para comparar los resultados reales. Consultanos por WhatsApp para recibir asesoramiento y presupuesto personalizado."}
+                </p>
+              </div>
+            );
+          })()}
 
           <div className="flex flex-wrap justify-center gap-6 max-w-7xl mx-auto">
             {((biz.servicios && biz.servicios.length > 0) ? biz.servicios : SERVICIOS_ARGENTINA).map((s, idx) => {
@@ -395,7 +419,9 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
                       <h3 className="font-bold text-lg text-white leading-tight" style={{ textTransform: "none", fontFamily: "inherit" }}>
                         {s.nombre}
                       </h3>
-                      <p className="text-base font-extrabold text-gold">{s.precio}</p>
+                      {s.precio && s.precio.trim() ? (
+                        <p className="text-base font-extrabold text-gold">{s.precio}</p>
+                      ) : null}
                       <p className="text-xs text-slate-300 leading-relaxed">{s.descripcion}</p>
 
                       {s.ideal_si && (

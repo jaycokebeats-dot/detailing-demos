@@ -49530,7 +49530,7 @@
       },
       {
         "nombre": "Limpieza de Interiores Completa",
-        "precio": "$390.000",
+        "precio": "Desde $390.000",
         "descripcion": "Higienización y desinfección total a vapor seco e inyección-extracción: butacas de tela o cuero, alfombras, techo, paneles de puerta, baúl y conductos de climatización. Acondicionado y nutrición de plásticos con acabado satinado original sin siliconas grasosas.",
         "ideal_si": "Desinfección profunda, eliminación de manchas difíciles, olores y recuperación de textura original.",
         "proteccion": "Desinfección 100% a Vapor & Nutrición",
@@ -49590,7 +49590,9 @@
         "proteccion": "Instalación Profesional Garantizada",
         "img": "/servicios/accesorios-4x4.jpg"
       }
-    ]
+    ],
+    "hero_titulo": "Estética Vehicular y Polarizados PPF,",
+    "hero_titulo_gold": "Iluminación LED y más."
   },
   {
     "slug": "estetica-vehicular-autospa",
