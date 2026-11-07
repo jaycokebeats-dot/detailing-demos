@@ -29,7 +29,7 @@ export const MC_DETAIL_SERVICIOS: ServiceItem[] = [
     despues_img: "/servicios/polarizado-despues.png",
   },
   {
-    nombre: "Lavados Premium Detailing",
+    nombre: "Lavados Premium",
     descripcion: "Lavado técnico artesanal con método de dos baldes, prelavado con espuma activa (snow foam) de pH neutro, limpieza al detalle de llantas, pasarruedas, parrillas y emblemas. Secado sin fricción con microfibras de alto gramaje para evitar microrrayones.",
     ideal_si: "Limpieza técnica a fondo y segura que resalta el brillo y cuida la pintura al 100% sin generar swirls.",
     precio: "",
@@ -111,5 +111,7 @@ export const MC_DETAIL_BUSINESS: Business = {
   template: "argentina",
   logo_url: "/logo/mc-detail-logo.png",
   video_hero: "/videos/hero-compilado-blanco.mp4",
+  hero_titulo: "Detailing Profesional, Polarizados & PPF,",
+  hero_titulo_gold: "Resultado de Showroom.",
   servicios: MC_DETAIL_SERVICIOS,
 };

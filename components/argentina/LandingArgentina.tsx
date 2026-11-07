@@ -139,7 +139,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
   ];
 
   return (
-    <div className="min-h-screen bg-black text-white selection:bg-amber-500/30 selection:text-amber-200">
+    <div className="min-h-screen bg-black text-white selection:bg-slate-500/30 selection:text-slate-200">
       {/* 1. NAVBAR */}
       <div className="fixed top-0 left-0 right-0 z-50 flex justify-center px-3 pointer-events-none">
         <header
@@ -170,7 +170,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
                 <img
                   src={biz.logo_url}
                   alt={biz.nombre}
-                  className={`${scrolled ? "h-9 sm:h-10 md:h-11" : "h-11 sm:h-13 md:h-14"} w-auto max-w-[220px] sm:max-w-[300px] object-contain transition-all duration-200 group-hover:scale-105 drop-shadow-[0_2px_14px_rgba(245,197,24,0.3)]`}
+                  className={`${scrolled ? "h-9 sm:h-10 md:h-11" : "h-11 sm:h-13 md:h-14"} w-auto max-w-[220px] sm:max-w-[300px] object-contain transition-all duration-200 group-hover:scale-105 drop-shadow-[0_2px_14px_rgba(195,205,220,0.35)]`}
                 />
               ) : nombreResto ? (
                 <span className="text-base font-bold tracking-widest text-white">
@@ -231,14 +231,14 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
               <div
                 className="absolute inset-0 rounded-full blur-2xl sm:blur-3xl opacity-75 sm:opacity-85 scale-125 sm:scale-150 pointer-events-none"
                 style={{
-                  background: "radial-gradient(ellipse at center, rgba(240,245,255,0.55) 0%, rgba(190,205,225,0.30) 40%, rgba(255,255,255,0.15) 65%, transparent 80%)",
+                  background: "radial-gradient(ellipse at center, rgba(195,205,220,0.50) 0%, rgba(150,165,185,0.25) 45%, rgba(100,115,135,0.10) 70%, transparent 85%)",
                 }}
               />
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={biz.logo_url}
                 alt={biz.nombre}
-                className="relative z-10 h-20 xs:h-24 sm:h-32 md:h-36 lg:h-40 w-auto max-w-[88vw] sm:max-w-[480px] object-contain drop-shadow-[0_10px_40px_rgba(0,0,0,0.95)] drop-shadow-[0_0_30px_rgba(210,225,245,0.35)] transition-transform hover:scale-105"
+                className="relative z-10 h-20 xs:h-24 sm:h-32 md:h-36 lg:h-40 w-auto max-w-[88vw] sm:max-w-[480px] object-contain drop-shadow-[0_10px_40px_rgba(0,0,0,0.95)] drop-shadow-[0_0_30px_rgba(195,205,220,0.35)] transition-transform hover:scale-105"
               />
             </div>
           )}
@@ -279,7 +279,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
               href={waHref(biz, msgPresupuesto)}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-gold group w-full xs:w-auto px-6 sm:px-7 py-2.5 sm:py-3 min-h-[42px] sm:min-h-[44px] rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wide active:scale-95 transition-all flex items-center justify-center gap-2 shadow-lg shadow-amber-500/10"
+              className="btn-gold group w-full xs:w-auto px-6 sm:px-7 py-2.5 sm:py-3 min-h-[42px] sm:min-h-[44px] rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wide active:scale-95 transition-all flex items-center justify-center gap-2 shadow-lg shadow-white/5"
             >
               <FaWhatsapp aria-hidden className="size-4" />
               <span>Pedir Presupuesto</span>
@@ -648,14 +648,14 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
               <div
                 className="absolute inset-0 rounded-full blur-2xl opacity-45 scale-125 pointer-events-none"
                 style={{
-                  background: "radial-gradient(ellipse at center, rgba(240,245,255,0.45) 0%, rgba(190,205,225,0.25) 40%, transparent 75%)",
+                  background: "radial-gradient(ellipse at center, rgba(195,205,220,0.40) 0%, rgba(150,165,185,0.20) 45%, transparent 75%)",
                 }}
               />
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={biz.logo_url}
                 alt={biz.nombre}
-                className="relative z-10 h-16 sm:h-22 md:h-28 w-auto max-w-[85vw] sm:max-w-[420px] object-contain opacity-95 hover:opacity-100 transition-all drop-shadow-[0_8px_30px_rgba(0,0,0,0.8)] drop-shadow-[0_0_25px_rgba(210,225,245,0.3)] hover:scale-105"
+                className="relative z-10 h-16 sm:h-22 md:h-28 w-auto max-w-[85vw] sm:max-w-[420px] object-contain opacity-95 hover:opacity-100 transition-all drop-shadow-[0_8px_30px_rgba(0,0,0,0.8)] drop-shadow-[0_0_25px_rgba(195,205,220,0.3)] hover:scale-105"
               />
             </div>
           </div>
