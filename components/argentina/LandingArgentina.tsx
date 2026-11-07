@@ -231,21 +231,21 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
               <div
                 className="absolute inset-0 rounded-full blur-2xl sm:blur-3xl opacity-75 sm:opacity-85 scale-125 sm:scale-150 pointer-events-none"
                 style={{
-                  background: "radial-gradient(ellipse at center, rgba(245,197,24,0.6) 0%, rgba(212,175,55,0.35) 40%, rgba(255,255,255,0.18) 65%, transparent 80%)",
+                  background: "radial-gradient(ellipse at center, rgba(240,245,255,0.55) 0%, rgba(190,205,225,0.30) 40%, rgba(255,255,255,0.15) 65%, transparent 80%)",
                 }}
               />
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={biz.logo_url}
                 alt={biz.nombre}
-                className="relative z-10 h-20 xs:h-24 sm:h-32 md:h-36 lg:h-40 w-auto max-w-[88vw] sm:max-w-[480px] object-contain drop-shadow-[0_10px_40px_rgba(0,0,0,0.95)] drop-shadow-[0_0_30px_rgba(245,197,24,0.35)] transition-transform hover:scale-105"
+                className="relative z-10 h-20 xs:h-24 sm:h-32 md:h-36 lg:h-40 w-auto max-w-[88vw] sm:max-w-[480px] object-contain drop-shadow-[0_10px_40px_rgba(0,0,0,0.95)] drop-shadow-[0_0_30px_rgba(210,225,245,0.35)] transition-transform hover:scale-105"
               />
             </div>
           )}
 
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-white/10 bg-white/5 text-[11px] sm:text-xs font-medium text-slate-300">
             <span className="flex size-1.5 sm:size-2 rounded-full shrink-0 animate-pulse bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
-            <span>{biz.ciudad} (Argentina)</span>
+            <span>{biz.ciudad}{biz.provincia ? `, ${biz.provincia}` : " (Argentina)"}</span>
             <span className="text-slate-500">·</span>
             <span>Turnos disponibles esta semana</span>
           </div>
@@ -538,7 +538,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
               <div>
                 <p className="text-xs text-slate-400 uppercase tracking-wider font-semibold">Dirección</p>
                 <p className="text-white text-base font-medium">{biz.direccion}</p>
-                <p className="text-slate-400 text-sm">{biz.ciudad}, Argentina</p>
+                <p className="text-slate-400 text-sm">{biz.ciudad}{biz.provincia ? `, ${biz.provincia}` : ", Argentina"}</p>
               </div>
             </div>
 
@@ -638,7 +638,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
           className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[1px]"
           style={{
             background:
-              "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.12) 20%, rgba(212,175,55,0.35) 50%, rgba(255,255,255,0.12) 80%, transparent 100%)",
+              "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.12) 20%, rgba(210,225,245,0.35) 50%, rgba(255,255,255,0.12) 80%, transparent 100%)",
           }}
         />
 
@@ -648,21 +648,21 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
               <div
                 className="absolute inset-0 rounded-full blur-2xl opacity-45 scale-125 pointer-events-none"
                 style={{
-                  background: "radial-gradient(ellipse at center, rgba(245,197,24,0.5) 0%, rgba(212,175,55,0.3) 40%, transparent 75%)",
+                  background: "radial-gradient(ellipse at center, rgba(240,245,255,0.45) 0%, rgba(190,205,225,0.25) 40%, transparent 75%)",
                 }}
               />
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={biz.logo_url}
                 alt={biz.nombre}
-                className="relative z-10 h-16 sm:h-22 md:h-28 w-auto max-w-[85vw] sm:max-w-[420px] object-contain opacity-95 hover:opacity-100 transition-all drop-shadow-[0_8px_30px_rgba(0,0,0,0.8)] drop-shadow-[0_0_25px_rgba(245,197,24,0.3)] hover:scale-105"
+                className="relative z-10 h-16 sm:h-22 md:h-28 w-auto max-w-[85vw] sm:max-w-[420px] object-contain opacity-95 hover:opacity-100 transition-all drop-shadow-[0_8px_30px_rgba(0,0,0,0.8)] drop-shadow-[0_0_25px_rgba(210,225,245,0.3)] hover:scale-105"
               />
             </div>
           </div>
         )}
 
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-slate-400 font-light">
-          <span>© {new Date().getFullYear()} {biz.nombre} · Detailing Automotriz en {biz.ciudad} (Argentina)</span>
+          <span>© {new Date().getFullYear()} {biz.nombre} · Detailing Automotriz en {biz.ciudad}{biz.provincia ? ` (${biz.provincia})` : " (Argentina)"}</span>
           <span>{biz.direccion} · {biz.telefono}</span>
         </div>
       </footer>

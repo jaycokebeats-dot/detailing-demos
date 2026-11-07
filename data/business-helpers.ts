@@ -102,6 +102,7 @@ export type Business = {
   horario?: string;
   servicios?: ServiceItem[];
   pais?: string;
+  provincia?: string;
   template?: string;
   video_hero?: string;
   hero_titulo?: string;
