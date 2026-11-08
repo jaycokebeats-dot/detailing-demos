@@ -15,6 +15,8 @@ const CUSTOM_CREDENTIALS_MAP: Record<string, string> = {
   "thezone": "pro-thezone",
   "platinum-detallado-automotriz-a-domicilio": "platinum0311",
   "platinum": "platinum0311",
+  "mc-detail-detailing": "mcdetail0811",
+  "mc-detail": "mcdetail0811",
 };
 
 const USERNAME_TO_SLUG_MAP: Record<string, string> = {
@@ -25,6 +27,8 @@ const USERNAME_TO_SLUG_MAP: Record<string, string> = {
   "platinum0311": "platinum-detallado-automotriz-a-domicilio",
   "platinum": "platinum-detallado-automotriz-a-domicilio",
   "pro-platinum-detallado-automotriz-a-domicilio": "platinum-detallado-automotriz-a-domicilio",
+  "mcdetail0811": "mc-detail-detailing",
+  "mc-detail": "mc-detail-detailing",
 };
 
 export function getWorkshopCredentials(slug: string): { username: string; password: string } {
@@ -75,7 +79,7 @@ export function validateWorkshopAuth(
       valid: false,
       isSuperAdmin: false,
       slug: "",
-      error: "La contraseña debe ser idéntica al usuario asignado.",
+      error: "Usuario o contraseña incorrectos.",
     };
   }
 
@@ -106,6 +110,6 @@ export function validateWorkshopAuth(
     valid: false,
     isSuperAdmin: false,
     slug: "",
-    error: "Usuario o contraseña no válidos. Formato: pro-nombredeltaller",
+    error: "Usuario o contraseña incorrectos.",
   };
 }

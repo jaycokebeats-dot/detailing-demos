@@ -427,18 +427,9 @@ export default function AdminPage() {
             >
               Panel de Autogestión
             </div>
-            {targetSlugFromUrl ? (
-              <p className="text-sm sm:text-base text-neutral-300 font-medium">
-                Acceso exclusivo para el taller:{" "}
-                <span className="text-white font-bold bg-neutral-800 px-2.5 py-1 rounded-lg border border-neutral-700 font-mono">
-                  {targetSlugFromUrl}
-                </span>
-              </p>
-            ) : (
-              <p className="text-sm sm:text-base text-neutral-300/90 leading-relaxed max-w-sm mx-auto">
-                Ingresá con las credenciales asignadas a tu taller para editar tu web en tiempo real.
-              </p>
-            )}
+            <p className="text-sm sm:text-base text-neutral-300/90 leading-relaxed max-w-sm mx-auto">
+              Ingresá con las credenciales asignadas a tu taller para editar tu web en tiempo real.
+            </p>
           </div>
 
           <form onSubmit={handleLogin} className="space-y-5">

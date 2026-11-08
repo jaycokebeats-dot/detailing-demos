@@ -21,6 +21,7 @@ export function normalizeSlug(slug: string): string {
   if (s === "taller-demo" || s === "demo") return "demo";
   if (s === "thezone" || s === "the-zone") return "the-zone-car-autospa-detailing";
   if (s === "shalom" || s === "shalom-detailing") return "shalom-estetica-automotriz";
+  if (s === "mc-detail" || s === "mc-detail-detailing") return "mc-detail-detailing";
   return s;
 }
 
