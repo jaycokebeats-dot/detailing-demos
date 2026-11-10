@@ -103,6 +103,7 @@ export type Business = {
   servicios?: ServiceItem[];
   pais?: string;
   provincia?: string;
+  color_theme?: string;
   template?: string;
   video_hero?: string;
   hero_titulo?: string;

@@ -103,6 +103,68 @@ h1, h2, h3 {
 }
 .btn-outline-gold:active { filter: brightness(0.96); }
 
+.btn-celeste {
+  text-wrap: nowrap;
+  border: 1.5px solid transparent;
+  background-image:
+    linear-gradient(289deg, #38bdf8 0%, #0ea5e9 35%, #0284c7 70%, #0369a1 100%),
+    linear-gradient(289deg, #bae6fd 0%, #ffffff 50%, #38bdf8 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  color: #021226;
+  font-weight: 700;
+  box-shadow: 0 4px 20px rgba(56, 189, 248, 0.4);
+  transition: filter 150ms ease, box-shadow 150ms ease, transform 150ms ease;
+}
+.btn-celeste:hover {
+  filter: brightness(1.12);
+  box-shadow: 0 8px 30px rgba(56, 189, 248, 0.65);
+  transform: translateY(-1px);
+}
+.btn-celeste:active { filter: brightness(0.95); }
+
+.btn-outline-celeste {
+  border: 1.5px solid transparent;
+  background-image:
+    linear-gradient(#07101a, #07101a),
+    linear-gradient(289deg, #0284c7 0%, #38bdf8 50%, #0369a1 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  color: #bae6fd;
+  letter-spacing: 0.04em;
+  transition: color 150ms ease, filter 150ms ease, box-shadow 150ms ease;
+}
+.btn-outline-celeste:hover {
+  background-image: linear-gradient(#0b1929, #0b1929), linear-gradient(289deg, #0284c7 0%, #7dd3fc 50%, #0369a1 100%);
+  color: #ffffff;
+  filter: brightness(1.1);
+  box-shadow: 0 4px 20px rgba(56, 189, 248, 0.3);
+}
+.btn-outline-celeste:active { filter: brightness(0.95); }
+
+.section-badge-celeste {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.375rem 0.875rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  background: rgba(56, 189, 248, 0.08);
+  color: #7dd3fc;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.text-celeste {
+  background-image: linear-gradient(289deg, #ffffff 0%, #bae6fd 25%, #38bdf8 55%, #0284c7 85%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+
 .section-badge {
   display: inline-flex;
   align-items: center;

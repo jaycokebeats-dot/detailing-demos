@@ -104,6 +104,7 @@ const ITEMS_PROBLEMA_ARGENTINA = [
 ];
 
 export default function LandingArgentina({ biz }: { biz: Business }) {
+  const isCeleste = biz.color_theme === "celeste" || biz.slug === "am-centro-de-estetica-vehicular";
   const [scrolled, setScrolled] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -139,7 +140,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
   ];
 
   return (
-    <div className="min-h-screen bg-black text-white selection:bg-slate-500/30 selection:text-slate-200">
+    <div className={`min-h-screen bg-black text-white ${isCeleste ? "selection:bg-sky-500/30 selection:text-sky-200" : "selection:bg-slate-500/30 selection:text-slate-200"}`}>
       {/* 1. NAVBAR */}
       <div className="fixed top-0 left-0 right-0 z-50 flex justify-center px-3 pointer-events-none">
         <header
@@ -170,12 +171,12 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
                 <img
                   src={biz.logo_url}
                   alt={biz.nombre}
-                  className={`${scrolled ? "h-9 sm:h-10 md:h-11" : "h-11 sm:h-13 md:h-14"} w-auto max-w-[220px] sm:max-w-[300px] object-contain transition-all duration-200 group-hover:scale-105 drop-shadow-[0_2px_14px_rgba(195,205,220,0.35)]`}
+                  className={`${scrolled ? "h-9 sm:h-10 md:h-11" : "h-11 sm:h-13 md:h-14"} w-auto max-w-[220px] sm:max-w-[300px] object-contain transition-all duration-200 group-hover:scale-105 ${isCeleste ? "drop-shadow-[0_2px_16px_rgba(56,189,248,0.55)]" : "drop-shadow-[0_2px_14px_rgba(195,205,220,0.35)]"}`}
                 />
               ) : nombreResto ? (
                 <span className="text-base font-bold tracking-widest text-white">
                   {`${primeraPalabra} `}
-                  <span className="text-gold">{nombreResto}</span>
+                  <span className={isCeleste ? "text-celeste" : "text-gold"}>{nombreResto}</span>
                 </span>
               ) : (
                 <span className="text-base font-bold tracking-widest text-white">
@@ -229,24 +230,35 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
           {biz.logo_url && (
             <div className="relative flex justify-center items-center -mt-2 sm:-mt-6 mb-2 sm:mb-4">
               <div
-                className="absolute inset-0 rounded-full blur-2xl sm:blur-3xl opacity-75 sm:opacity-85 scale-125 sm:scale-150 pointer-events-none"
+                className="absolute inset-0 rounded-full blur-2xl sm:blur-3xl opacity-75 sm:opacity-90 scale-125 sm:scale-150 pointer-events-none"
                 style={{
-                  background: "radial-gradient(ellipse at center, rgba(195,205,220,0.50) 0%, rgba(150,165,185,0.25) 45%, rgba(100,115,135,0.10) 70%, transparent 85%)",
+                  background: isCeleste
+                    ? "radial-gradient(ellipse at center, rgba(56,189,248,0.65) 0%, rgba(14,165,233,0.35) 40%, rgba(2,132,199,0.15) 65%, transparent 80%)"
+                    : "radial-gradient(ellipse at center, rgba(195,205,220,0.50) 0%, rgba(150,165,185,0.25) 45%, rgba(100,115,135,0.10) 70%, transparent 85%)",
                 }}
               />
+              {isCeleste && (
+                <div
+                  className="absolute inset-x-[-15%] h-[2px] top-1/2 -translate-y-1/2 blur-[1px] pointer-events-none opacity-80"
+                  style={{
+                    background:
+                      "linear-gradient(90deg, transparent 0%, rgba(56,189,248,0.2) 20%, rgba(186,230,253,0.95) 50%, rgba(56,189,248,0.2) 80%, transparent 100%)",
+                  }}
+                />
+              )}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={biz.logo_url}
                 alt={biz.nombre}
-                className="relative z-10 h-20 xs:h-24 sm:h-32 md:h-36 lg:h-40 w-auto max-w-[88vw] sm:max-w-[480px] object-contain drop-shadow-[0_10px_40px_rgba(0,0,0,0.95)] drop-shadow-[0_0_30px_rgba(195,205,220,0.35)] transition-transform hover:scale-105"
+                className={`relative z-10 h-20 xs:h-24 sm:h-32 md:h-36 lg:h-40 w-auto max-w-[88vw] sm:max-w-[480px] object-contain drop-shadow-[0_10px_40px_rgba(0,0,0,0.95)] ${isCeleste ? "drop-shadow-[0_0_38px_rgba(56,189,248,0.6)]" : "drop-shadow-[0_0_30px_rgba(195,205,220,0.35)]"} transition-transform hover:scale-105`}
               />
             </div>
           )}
 
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-white/10 bg-white/5 text-[11px] sm:text-xs font-medium text-slate-300">
-            <span className="flex size-1.5 sm:size-2 rounded-full shrink-0 animate-pulse bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
+          <div className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full border text-[11px] sm:text-xs font-medium ${isCeleste ? "border-sky-500/30 bg-sky-950/40 text-sky-200" : "border-white/10 bg-white/5 text-slate-300"}`}>
+            <span className={`flex size-1.5 sm:size-2 rounded-full shrink-0 animate-pulse ${isCeleste ? "bg-sky-400 shadow-[0_0_8px_rgba(56,189,248,0.9)]" : "bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]"}`} />
             <span>{biz.ciudad}{biz.provincia ? `, ${biz.provincia}` : " (Argentina)"}</span>
-            <span className="text-slate-500">·</span>
+            <span className={isCeleste ? "text-sky-500" : "text-slate-500"}>·</span>
             <span>Turnos disponibles esta semana</span>
           </div>
 
@@ -257,7 +269,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
                 {biz.hero_titulo_gold && (
                   <>
                     <br />
-                    <span className="text-gold">{biz.hero_titulo_gold}</span>
+                    <span className={isCeleste ? "text-celeste drop-shadow-[0_0_20px_rgba(56,189,248,0.4)]" : "text-gold"}>{biz.hero_titulo_gold}</span>
                   </>
                 )}
               </>
@@ -265,13 +277,13 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
               <>
                 Detailing Profesional, Polarizados & PPF,
                 <br />
-                <span className="text-gold">Resultado de Showroom.</span>
+                <span className={isCeleste ? "text-celeste" : "text-gold"}>Resultado de Showroom.</span>
               </>
             )}
           </h1>
 
           <p className="text-[11px] xs:text-xs sm:text-sm text-slate-300 max-w-lg mx-auto font-light leading-snug text-pretty mt-1 sm:mt-1.5 line-clamp-2 sm:line-clamp-none">
-            Corrección de pintura, protección cerámica y estética interior en {biz.ciudad}. Cuidado artesanal sin microrrayones ni atajos.
+            {biz.hero_subtitulo ?? `Corrección de pintura, protección cerámica y estética interior en ${biz.ciudad}. Cuidado artesanal sin microrrayones ni atajos.`}
           </p>
 
           <div className="flex flex-row items-center justify-center gap-2 sm:gap-3 w-full max-w-sm sm:max-w-md mx-auto pt-2 sm:pt-2.5 px-1">
@@ -279,14 +291,14 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
               href={waHref(biz, msgPresupuesto)}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-gold group flex-1 px-3 sm:px-6 py-2.5 sm:py-3 min-h-[42px] sm:min-h-[44px] rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wide active:scale-95 transition-all flex items-center justify-center gap-1.5 sm:gap-2 shadow-lg shadow-white/5 whitespace-nowrap text-center"
+              className={`${isCeleste ? "btn-celeste" : "btn-gold"} group flex-1 px-3 sm:px-6 py-2.5 sm:py-3 min-h-[42px] sm:min-h-[44px] rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wide active:scale-95 transition-all flex items-center justify-center gap-1.5 sm:gap-2 whitespace-nowrap text-center`}
             >
               <FaWhatsapp aria-hidden className="size-3.5 sm:size-4 shrink-0" />
               <span className="whitespace-nowrap">Pedir Presupuesto</span>
             </a>
             <a
               href="#servicios"
-              className="btn-outline-gold group flex-1 px-3 sm:px-6 py-2.5 sm:py-3 min-h-[42px] sm:min-h-[44px] rounded-full text-xs sm:text-sm font-semibold uppercase active:scale-95 transition-all flex items-center justify-center gap-1.5 sm:gap-2 whitespace-nowrap text-center"
+              className={`${isCeleste ? "btn-outline-celeste" : "btn-outline-gold"} group flex-1 px-3 sm:px-6 py-2.5 sm:py-3 min-h-[42px] sm:min-h-[44px] rounded-full text-xs sm:text-sm font-semibold uppercase active:scale-95 transition-all flex items-center justify-center gap-1.5 sm:gap-2 whitespace-nowrap text-center`}
             >
               <HiOutlineSparkles aria-hidden className="size-3.5 sm:size-4 shrink-0" />
               <span className="whitespace-nowrap">Ver Servicios</span>
@@ -296,7 +308,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
           <div className="flex flex-wrap items-center justify-center gap-x-3 sm:gap-x-5 gap-y-1 pt-1.5 sm:pt-2.5 text-[11px] sm:text-xs text-slate-300">
             {stats.map((item) => (
               <span key={item} className="inline-flex items-center gap-1">
-                <HiOutlineCheckCircle aria-hidden className="size-3.5 sm:size-4 shrink-0 text-gold" />
+                <HiOutlineCheckCircle aria-hidden className={`size-3.5 sm:size-4 shrink-0 ${isCeleste ? "text-sky-400" : "text-gold"}`} />
                 {item}
               </span>
             ))}
@@ -309,7 +321,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
         <SectionDivider edge="top" />
         <div className="max-w-3xl mx-auto text-center">
           <span className="section-badge mb-5">El problema real</span>
-          <h2 className="text-3xl md:text-4xl font-medium text-gold mb-3">Lavar el Auto no es lo Mismo que un Detailing</h2>
+          <h2 className={`text-3xl md:text-4xl font-medium ${isCeleste ? "text-celeste" : "text-gold"} mb-3`}>Lavar el Auto no es lo Mismo que un Detailing</h2>
           <p className="text-slate-400 max-w-xl mx-auto mb-10">
             Un auto puede salir limpio de un lavadero convencional y seguir viéndose opaco o rayado. Señales habituales:
           </p>
@@ -328,7 +340,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
           <div className="max-w-6xl mx-auto mt-16">
             <div className="text-center mb-8">
               <span className="section-badge mb-4">Nuestro trabajo</span>
-              <h3 className="text-2xl md:text-3xl font-medium text-gold" style={{ textTransform: "none", fontFamily: "inherit" }}>
+              <h3 className={`text-2xl md:text-3xl font-medium ${isCeleste ? "text-celeste" : "text-gold"}`} style={{ textTransform: "none", fontFamily: "inherit" }}>
                 Así trabajamos en {biz.nombre}
               </h3>
             </div>
@@ -354,7 +366,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
             return (
               <div className="text-center mb-14 max-w-2xl mx-auto">
                 <span className="section-badge mb-5">Nuestros servicios</span>
-                <h2 className="text-3xl md:text-5xl font-medium text-gold mb-4">
+                <h2 className={`text-3xl md:text-5xl font-medium ${isCeleste ? "text-celeste" : "text-gold"} mb-4`}>
                   {hasPrices ? "Servicios & Tarifas" : "Servicios & Tratamientos"} en {biz.ciudad}
                 </h2>
                 <p className="text-slate-400">
@@ -375,7 +387,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
               return (
                 <div
                   key={`${s.nombre}-${idx}`}
-                  className="product-card rounded-[24px] overflow-hidden flex flex-col relative border border-white/10 hover:border-white/25 transition w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] max-w-md justify-between"
+                  className={`product-card rounded-[24px] overflow-hidden flex flex-col relative border ${isCeleste ? "border-white/10 hover:border-sky-500/40 hover:shadow-[0_0_20px_rgba(56,189,248,0.15)]" : "border-white/10 hover:border-white/25"} transition w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] max-w-md justify-between`}
                   style={{ background: "#101010" }}
                 >
                   <div className="aspect-[4/3] overflow-hidden relative" style={{ background: "#141414" }}>
@@ -420,7 +432,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
                         {s.nombre}
                       </h3>
                       {s.precio && s.precio.trim() ? (
-                        <p className="text-base font-extrabold text-gold">{s.precio}</p>
+                        <p className={`text-base font-extrabold ${isCeleste ? "text-sky-400" : "text-gold"}`}>{s.precio}</p>
                       ) : null}
                       <p className="text-xs text-slate-300 leading-relaxed">{s.descripcion}</p>
 
@@ -435,7 +447,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
                       href={waHref(biz, reservaMsg)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn-outline-gold mt-4 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider"
+                      className={`${isCeleste ? "btn-outline-celeste" : "btn-outline-gold"} mt-4 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider`}
                     >
                       <FaWhatsapp aria-hidden className="size-3.5 text-emerald-400" />
                       Pedir Presupuesto por WhatsApp
@@ -461,7 +473,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
               href={waHref(biz, msgFotos)}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-gold shrink-0 inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold uppercase tracking-wide whitespace-nowrap"
+              className={`${isCeleste ? "btn-celeste" : "btn-gold"} shrink-0 inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold uppercase tracking-wide whitespace-nowrap`}
             >
               <FaWhatsapp aria-hidden className="size-4" />
               Enviar Fotos por WhatsApp
@@ -477,7 +489,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14 max-w-2xl mx-auto">
             <span className="section-badge mb-5">Compromiso de calidad</span>
-            <h2 className="text-3xl md:text-4xl font-medium text-gold mb-4">Tratamientos con Garantía Escrita</h2>
+            <h2 className={`text-3xl md:text-4xl font-medium ${isCeleste ? "text-celeste" : "text-gold"} mb-4`}>Tratamientos con Garantía Escrita</h2>
             <p className="text-slate-400 max-w-xl mx-auto text-sm">
               Cada vehículo se atiende de forma individual, dedicando el tiempo necesario para alcanzar el estándar más exigente.
             </p>
@@ -528,13 +540,13 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <div>
             <span className="section-badge mb-5">Ubicación</span>
-            <h2 className="text-3xl md:text-4xl font-medium text-gold mb-3">Dónde Encontrarnos</h2>
+            <h2 className={`text-3xl md:text-4xl font-medium ${isCeleste ? "text-celeste" : "text-gold"} mb-3`}>Dónde Encontrarnos</h2>
             <p className="text-slate-400 text-sm">Visitanos en nuestras instalaciones o coordiná tu turno previo</p>
           </div>
 
           <div className="glass-panel rounded-[28px] p-8 md:p-10 border border-white/10 text-left max-w-2xl mx-auto space-y-6" style={{ background: "#101010" }}>
             <div className="flex items-start gap-4">
-              <FaMapMarkerAlt className="size-5 text-gold shrink-0 mt-1" />
+              <FaMapMarkerAlt className={`size-5 ${isCeleste ? "text-sky-400" : "text-gold"} shrink-0 mt-1`} />
               <div>
                 <p className="text-xs text-slate-400 uppercase tracking-wider font-semibold">Dirección</p>
                 <p className="text-white text-base font-medium">{biz.direccion}</p>
@@ -543,7 +555,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
             </div>
 
             <div className="flex items-start gap-4">
-              <FaClock className="size-5 text-gold shrink-0 mt-1" />
+              <FaClock className={`size-5 ${isCeleste ? "text-sky-400" : "text-gold"} shrink-0 mt-1`} />
               <div>
                 <p className="text-xs text-slate-400 uppercase tracking-wider font-semibold">Horario de Atención</p>
                 <p className="text-white text-sm">
@@ -554,7 +566,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
 
             {biz.instagram && (
               <div className="flex items-start gap-4">
-                <FaInstagram className="size-5 text-gold shrink-0 mt-1" />
+                <FaInstagram className={`size-5 ${isCeleste ? "text-sky-400" : "text-gold"} shrink-0 mt-1`} />
                 <div>
                   <p className="text-xs text-slate-400 uppercase tracking-wider font-semibold">Instagram</p>
                   <a
@@ -574,7 +586,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
                 href={mapsHref(biz)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-outline-gold flex-1 text-center py-3 rounded-full text-xs font-semibold uppercase tracking-wider"
+                className={`${isCeleste ? "btn-outline-celeste" : "btn-outline-gold"} flex-1 text-center py-3 rounded-full text-xs font-semibold uppercase tracking-wider`}
               >
                 Ver en Google Maps ↗
               </a>
@@ -582,7 +594,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
                 href={waHref(biz, msgPresupuesto)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-gold flex-1 inline-flex items-center justify-center gap-2 py-3 rounded-full text-xs font-semibold uppercase tracking-wider"
+                className={`${isCeleste ? "btn-celeste" : "btn-gold"} flex-1 inline-flex items-center justify-center gap-2 py-3 rounded-full text-xs font-semibold uppercase tracking-wider`}
               >
                 <FaWhatsapp className="size-4" />
                 Escribinos por WhatsApp
@@ -597,7 +609,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
         <SectionDivider edge="top" />
         <div className="max-w-3xl mx-auto text-center space-y-6">
           <span className="section-badge mb-3">Sobre nosotros</span>
-          <h2 className="text-3xl md:text-4xl font-medium text-gold mb-3">
+          <h2 className={`text-3xl md:text-4xl font-medium ${isCeleste ? "text-celeste" : "text-gold"} mb-3`}>
             Pasión por la Estética Automotriz en {biz.ciudad}
           </h2>
 
@@ -623,7 +635,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
               href={mapsHref(biz)}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-gold inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-xs font-semibold uppercase tracking-wider active:scale-95 transition-transform"
+              className={`${isCeleste ? "btn-celeste" : "btn-gold"} inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-xs font-semibold uppercase tracking-wider active:scale-95 transition-transform`}
             >
               <FaStar className="size-3.5" />
               Ver Opiniones en Google Maps ↗
@@ -637,8 +649,9 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
         <div
           className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[1px]"
           style={{
-            background:
-              "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.12) 20%, rgba(210,225,245,0.35) 50%, rgba(255,255,255,0.12) 80%, transparent 100%)",
+            background: isCeleste
+              ? "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.12) 20%, rgba(56,189,248,0.5) 50%, rgba(255,255,255,0.12) 80%, transparent 100%)"
+              : "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.12) 20%, rgba(210,225,245,0.35) 50%, rgba(255,255,255,0.12) 80%, transparent 100%)",
           }}
         />
 
