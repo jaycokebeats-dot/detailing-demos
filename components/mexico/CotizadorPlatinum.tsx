@@ -1329,7 +1329,7 @@ ${bloqueServicios}${bloqueComplementos}
                 if (isExtra) {
                   botonEstilo = "bg-gradient-to-r from-cyan-400 to-sky-400 text-black border-cyan-300 shadow-[0_4px_22px_rgba(6,182,212,0.4)]";
                 } else {
-                  botonEstilo = "bg-amber-400 text-black border-amber-300 shadow-[0_4px_18px_rgba(245,158,11,0.28)]";
+                  botonEstilo = "bg-amber-400 text-black border-amber-300 shadow-md shadow-black/30";
                 }
               } else {
                 if (isExtra) {
@@ -1417,7 +1417,7 @@ ${bloqueServicios}${bloqueComplementos}
 
           {/* Banner de Notificación Dinámica / Acción Inteligente */}
           {notificacion && (
-            <div className="p-3.5 sm:p-4 rounded-xl bg-gradient-to-r from-[#1c1c24] via-[#16161b] to-[#1c1c24] border border-amber-400/60 shadow-[0_0_25px_rgba(245,158,11,0.15)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs sm:text-sm text-white">
+            <div className="p-3.5 sm:p-4 rounded-xl bg-gradient-to-r from-[#1c1c24] via-[#16161b] to-[#1c1c24] border border-amber-400/60 shadow-lg shadow-black/50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs sm:text-sm text-white">
               <div className="flex items-start sm:items-center gap-2.5">
                 <LuSparkles className="text-amber-400 text-base shrink-0 mt-0.5 sm:mt-0" />
                 <div>
@@ -2242,7 +2242,7 @@ ${bloqueServicios}${bloqueComplementos}
                       toggleServicio(servicioModalVideo.id);
                       cerrarModalVideo();
                     }}
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-black text-xs font-black uppercase tracking-wider transition-all cursor-pointer shadow-md shadow-amber-400/20 active:scale-95"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-black text-xs font-black uppercase tracking-wider transition-all cursor-pointer shadow-md shadow-black/30 active:scale-95"
                   >
                     <LuPlus className="text-sm stroke-[3]" />
                     <span>Agregar a mi cotización</span>

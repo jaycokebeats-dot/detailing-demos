@@ -492,7 +492,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
               {biz.slug === "platinum-detallado-automotriz-a-domicilio" ? (
                 <a
                   href="#cotizador"
-                  className="w-full sm:w-auto px-8 sm:px-10 py-3.5 sm:py-4 min-h-[46px] rounded-full text-xs sm:text-sm font-extrabold uppercase tracking-wider bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 hover:from-amber-300 hover:to-amber-500 text-neutral-950 active:scale-95 transition-all flex items-center justify-center gap-2.5 shadow-[0_8px_30px_rgba(245,158,11,0.35)] hover:scale-105 cursor-pointer"
+                  className="w-full sm:w-auto px-8 sm:px-10 py-3.5 sm:py-4 min-h-[46px] rounded-full text-xs sm:text-sm font-extrabold uppercase tracking-wider bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 hover:from-amber-300 hover:to-amber-500 text-neutral-950 active:scale-95 transition-all flex items-center justify-center gap-2.5 shadow-lg shadow-black/50 hover:scale-105 cursor-pointer"
                 >
                   <LuSparkles className="size-4 text-black" />
                   <span>Cotizar Servicio a Domicilio</span>
@@ -503,7 +503,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                     href={waHref(biz, msgPresupuesto)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`${isTheZone ? "btn-thezone" : isShalom ? "btn-shalom" : "btn-gold"} group flex-1 sm:flex-initial px-4 sm:px-7 py-2.5 sm:py-3.5 min-h-[40px] sm:min-h-[44px] rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wide active:scale-95 transition-[transform,filter,box-shadow] duration-150 flex items-center justify-center gap-2 ${isTheZone ? "shadow-[0_4px_20px_rgba(0,102,255,0.35)]" : isShalom ? "shadow-[0_4px_20px_rgba(16,185,129,0.35)]" : "shadow-[0_4px_20px_rgba(245,158,11,0.25)]"}`}
+                    className={`${isTheZone ? "btn-thezone" : isShalom ? "btn-shalom" : "btn-gold"} group flex-1 sm:flex-initial px-4 sm:px-7 py-2.5 sm:py-3.5 min-h-[40px] sm:min-h-[44px] rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wide active:scale-95 transition-[transform,filter,box-shadow] duration-150 flex items-center justify-center gap-2 ${isTheZone ? "shadow-[0_4px_20px_rgba(0,102,255,0.35)]" : isShalom ? "shadow-[0_4px_20px_rgba(16,185,129,0.35)]" : ""}`}
                   >
                     <FaWhatsapp aria-hidden className="size-4 shrink-0" />
                     <span className="whitespace-nowrap">Cotizar por WhatsApp</span>
@@ -688,7 +688,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                               window.dispatchEvent(new CustomEvent("platinum:cotizar", { detail: { servicioId: targetId } }));
                             }
                           }}
-                          className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wider bg-amber-400 hover:bg-amber-300 text-black transition-all shadow-[0_4px_15px_rgba(245,158,11,0.2)] hover:scale-[1.02] active:scale-[0.99] cursor-pointer"
+                          className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wider bg-amber-400 hover:bg-amber-300 text-black transition-all shadow-md shadow-black/30 hover:scale-[1.02] active:scale-[0.99] cursor-pointer"
                         >
                           <LuSparkles className="size-3.5 text-black" />
                           <span>Cotizar este resultado</span>
