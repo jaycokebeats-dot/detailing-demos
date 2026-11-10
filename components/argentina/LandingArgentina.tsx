@@ -504,7 +504,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
                 Marcas Premium Mundiales
               </h4>
               <p className="text-xs text-slate-300 leading-relaxed">
-                Utilizamos recubrimientos nanocerámicos y compuestos de pulido de marcas líderes globales (Koch Chemie, Gyeon, CarPro, Menzerna, Vonixx).
+                Utilizamos recubrimientos nanocerámicos y compuestos de pulido de marcas líderes globales.
               </p>
             </div>
 
