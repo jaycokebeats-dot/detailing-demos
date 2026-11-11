@@ -3,7 +3,7 @@
 import { useEffect, useState, useMemo, useRef } from "react";
 import type { Business } from "@/data/business-helpers";
 import { DEFAULT_DEMO_BUSINESS } from "@/data/demo-business";
-import { getBusinessData } from "@/lib/supabase";
+import { getBusinessData, resolveWorkshopSlug } from "@/lib/supabase";
 import {
   MedioPago,
   ChequeInfo,
@@ -313,10 +313,7 @@ export default function TallerGestionPage() {
 
     async function loadWorkshop() {
       try {
-        const params = new URLSearchParams(window.location.search);
-        const slug = (params.get("slug") || params.get("taller") || "am-centro-de-estetica-vehicular")
-          .toLowerCase()
-          .trim();
+        const slug = resolveWorkshopSlug("am-centro-de-estetica-vehicular");
         setCurrentSlug(slug);
 
         // Supabase o API para info general del taller

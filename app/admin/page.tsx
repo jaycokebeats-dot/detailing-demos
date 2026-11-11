@@ -5,7 +5,7 @@ import type { Business, ServiceItem } from "@/data/business-helpers";
 import { DEFAULT_DEMO_BUSINESS } from "@/data/demo-business";
 import { SERVICIOS_MEXICO } from "@/components/mexico/LandingMexico";
 import { SERVICIOS_ESPANA } from "@/components/spain/LandingSpain";
-import { getBusinessData, saveBusinessData, resetBusinessData } from "@/lib/supabase";
+import { getBusinessData, saveBusinessData, resetBusinessData, resolveWorkshopSlug } from "@/lib/supabase";
 import { validateWorkshopAuth, getWorkshopCredentials } from "@/lib/workshop-auth";
 import CotizadorPlatinumAdmin from "@/components/mexico/CotizadorPlatinumAdmin";
 
@@ -175,7 +175,8 @@ export default function AdminPage() {
   useEffect(() => {
     if (typeof window !== "undefined") {
       const params = new URLSearchParams(window.location.search);
-      const urlSlug = params.get("taller") || params.get("slug");
+      const detected = resolveWorkshopSlug("");
+      const urlSlug = params.get("taller") || params.get("slug") || (detected !== "demo" ? detected : "");
       if (urlSlug) {
         const clean = urlSlug.toLowerCase().trim();
         setTargetSlugFromUrl(clean);

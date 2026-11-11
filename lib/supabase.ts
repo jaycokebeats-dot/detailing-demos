@@ -1,6 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 import type { Business } from "@/data/business-helpers";
 import { DEFAULT_DEMO_BUSINESS } from "@/data/demo-business";
+import { MC_DETAIL_BUSINESS } from "@/data/mc-detail-data";
 
 const supabaseUrl =
   process.env.NEXT_PUBLIC_SUPABASE_URL ||
@@ -27,6 +28,83 @@ export function normalizeSlug(slug: string): string {
 
 export function getStorageKey(slug: string): string {
   return `black_line_biz_data_${normalizeSlug(slug)}_v1`;
+}
+
+/**
+ * Resuelve el taller activo priorizando:
+ * 1. Parámetros explícitos de URL (?taller= o ?slug=)
+ * 2. Hostname / Dominio Propio (ej: mcdetail.com.ar -> mc-detail-detailing)
+ * 3. Referrer si navega desde la landing de un taller
+ * 4. Sesión activa en sessionStorage o cookies
+ * 5. Fallback por defecto ("demo")
+ */
+export function resolveWorkshopSlug(defaultFallback: string = "demo"): string {
+  if (typeof window === "undefined") return defaultFallback;
+
+  // 1. Parámetros de URL
+  const params = new URLSearchParams(window.location.search);
+  const fromQuery = params.get("taller") || params.get("slug");
+  if (fromQuery && fromQuery.trim()) {
+    const clean = fromQuery.toLowerCase().trim();
+    try {
+      sessionStorage.setItem("black_line_active_slug", clean);
+    } catch {}
+    return normalizeSlug(clean);
+  }
+
+  // 2. Detección por Hostname
+  const host = (window.location.hostname || "").toLowerCase();
+  if (host.includes("mcdetail.com.ar") || host.includes("mc-detail")) {
+    return "mc-detail-detailing";
+  }
+  if (host.includes("platinumdetallado.com")) {
+    return "platinum-detallado-automotriz-a-domicilio";
+  }
+  if (host.includes("dentisaludgroup.com.ar")) {
+    return "dentisalud";
+  }
+  if (host.includes("borgesppf.com")) {
+    return "borges-ppf-detailing";
+  }
+
+  // 3. Referrer (si viene navegando desde la web de un taller)
+  if (typeof document !== "undefined" && document.referrer) {
+    try {
+      const refUrl = new URL(document.referrer);
+      if (refUrl.hostname.includes("mcdetail.com.ar") || refUrl.pathname.includes("mc-detail")) {
+        return "mc-detail-detailing";
+      }
+      if (refUrl.hostname.includes("platinumdetallado.com") || refUrl.pathname.includes("platinum-detallado")) {
+        return "platinum-detallado-automotriz-a-domicilio";
+      }
+      if (refUrl.pathname.includes("/d/")) {
+        const parts = refUrl.pathname.split("/d/")[1]?.split("/")[0]?.split("?")[0];
+        if (parts) return normalizeSlug(parts);
+      }
+    } catch {}
+  }
+
+  // 4. Recordar slug activo de la sesión
+  try {
+    const sessionActive = sessionStorage.getItem("black_line_active_slug");
+    if (sessionActive && sessionActive !== "demo") {
+      return normalizeSlug(sessionActive);
+    }
+    const adminSlug = sessionStorage.getItem("black_line_admin_slug");
+    if (adminSlug && adminSlug !== "demo") {
+      return normalizeSlug(adminSlug);
+    }
+  } catch {}
+
+  // 5. Cookies
+  try {
+    const match = document.cookie.match(/(?:^|;\s*)black_line_active_slug=([^;]+)/);
+    if (match && match[1] && match[1] !== "demo") {
+      return normalizeSlug(decodeURIComponent(match[1]));
+    }
+  } catch {}
+
+  return defaultFallback;
 }
 
 /**
@@ -73,6 +151,10 @@ export async function getBusinessData(slug: string = "demo"): Promise<Business |
     } catch (e) {
       console.warn("[Storage] Error leyendo local:", e);
     }
+  }
+
+  if (normSlug === "mc-detail-detailing") {
+    return MC_DETAIL_BUSINESS;
   }
 
   if (normSlug === "demo" && slug !== "taller-demo") {

@@ -3,7 +3,7 @@
 import { useEffect, useState, useMemo } from "react";
 import type { Business, ServiceItem } from "@/data/business-helpers";
 import { DEFAULT_DEMO_BUSINESS } from "@/data/demo-business";
-import { getBusinessData } from "@/lib/supabase";
+import { getBusinessData, resolveWorkshopSlug } from "@/lib/supabase";
 import { SERVICIOS_MEXICO } from "@/components/mexico/LandingMexico";
 import { SERVICIOS_ESPANA } from "@/components/spain/LandingSpain";
 
@@ -165,8 +165,7 @@ export default function PresupuestoPage() {
   // Carga del taller desde URL o Supabase
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const params = new URLSearchParams(window.location.search);
-      const slug = (params.get("taller") || params.get("slug") || "demo").toLowerCase().trim();
+      const slug = resolveWorkshopSlug("demo");
       setCurrentSlug(slug);
 
       async function load() {
@@ -421,9 +420,18 @@ export default function PresupuestoPage() {
           {/* Cabecera de la App */}
           <header className="bg-[#121212] border border-neutral-800 rounded-3xl p-5 sm:p-7 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-xl">
             <div className="flex items-center gap-3.5">
-              <div className="w-12 h-12 rounded-2xl bg-neutral-900 border border-neutral-700 flex items-center justify-center text-2xl shadow-sm shrink-0">
-                🧾
-              </div>
+              {biz.logo_url ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={biz.logo_url}
+                  alt={biz.nombre}
+                  className="h-10 sm:h-12 w-auto max-w-[160px] object-contain shrink-0"
+                />
+              ) : (
+                <div className="w-12 h-12 rounded-2xl bg-neutral-900 border border-neutral-700 flex items-center justify-center text-2xl shadow-sm shrink-0">
+                  🧾
+                </div>
+              )}
               <div>
                 <div className="flex items-center gap-2 flex-wrap">
                   <span className="text-sm sm:text-base font-extrabold text-white">

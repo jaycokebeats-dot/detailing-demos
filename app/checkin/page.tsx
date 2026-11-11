@@ -3,7 +3,7 @@
 import { useEffect, useState, useMemo, useRef, useCallback } from "react";
 import type { Business } from "@/data/business-helpers";
 import { DEFAULT_DEMO_BUSINESS } from "@/data/demo-business";
-import { getBusinessData } from "@/lib/supabase";
+import { getBusinessData, resolveWorkshopSlug } from "@/lib/supabase";
 
 type CountryCode = "AR" | "MX" | "ES";
 
@@ -202,8 +202,7 @@ export default function CheckinPage() {
   // Carga del taller desde URL
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const params = new URLSearchParams(window.location.search);
-      const slug = (params.get("taller") || params.get("slug") || "demo").toLowerCase().trim();
+      const slug = resolveWorkshopSlug("demo");
       setCurrentSlug(slug);
       if (typeof navigator !== "undefined" && typeof (navigator as any).canShare === "function") {
         setCanShare(true);
@@ -753,23 +752,33 @@ export default function CheckinPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-6 sm:pt-8">
         {/* HEADER PRINCIPAL */}
         <header className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-neutral-800">
-          <div>
-            <div className="flex items-center gap-2 mb-1.5 flex-wrap">
-              <span className="text-xs font-mono uppercase tracking-wider text-amber-400 px-2.5 py-0.5 rounded-full bg-gold/10 border border-amber-400/20 font-bold">
-                Control de Ingreso & Daños
-              </span>
-              <span className="text-xs font-mono text-neutral-400">
-                Folio: <strong className="text-neutral-200">{folio}</strong>
-              </span>
-              <span className="text-xs text-neutral-500">• {fechaIngreso}</span>
+          <div className="flex items-start gap-4">
+            {biz.logo_url && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={biz.logo_url}
+                alt={biz.nombre}
+                className="h-10 sm:h-12 w-auto max-w-[170px] object-contain shrink-0 mt-1"
+              />
+            )}
+            <div>
+              <div className="flex items-center gap-2 mb-1.5 flex-wrap">
+                <span className="text-xs font-mono uppercase tracking-wider text-amber-400 px-2.5 py-0.5 rounded-full bg-gold/10 border border-amber-400/20 font-bold">
+                  Control de Ingreso & Daños
+                </span>
+                <span className="text-xs font-mono text-neutral-400">
+                  Folio: <strong className="text-neutral-200">{folio}</strong>
+                </span>
+                <span className="text-xs text-neutral-500">• {fechaIngreso}</span>
+              </div>
+              <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                Ficha de Recepción del {config.terminoVehiculo}
+              </h1>
+              <p className="text-xs sm:text-sm text-neutral-400 mt-0.5">
+                Inspección técnica visual, registro de daños preexistentes y pertenencias para{" "}
+                <span className="text-neutral-200 font-bold">{biz.nombre || "Taller Piloto"}</span>.
+              </p>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-              Ficha de Recepción del {config.terminoVehiculo}
-            </h1>
-            <p className="text-xs sm:text-sm text-neutral-400 mt-0.5">
-              Inspección técnica visual, registro de daños preexistentes y pertenencias para{" "}
-              <span className="text-neutral-200 font-bold">{biz.nombre || "Taller Piloto"}</span>.
-            </p>
           </div>
 
           <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
