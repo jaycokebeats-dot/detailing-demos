@@ -413,9 +413,11 @@ export default function LandingMexico({ biz }: { biz: Business }) {
 
             <h1 className={`${
               isTheZone || isPlatinum
-                  ? "text-[20px] sm:text-[26px] md:text-[30px]"
-                  : "text-[32px] sm:text-[42px]"
-            } font-bold tracking-tight leading-snug sm:leading-tight text-balance`}>
+                  ? "text-[20px] sm:text-[26px] md:text-[30px] font-bold"
+                  : isShalom
+                    ? "text-[20px] xs:text-[23px] sm:text-[27px] md:text-[31px] font-normal leading-snug sm:leading-snug"
+                    : "text-[32px] sm:text-[42px] font-bold"
+            } tracking-tight text-balance`}>
               {isTheZone ? (
                 <>
                   Estética y Detallado Automotriz en San Luis Potosí.
@@ -431,9 +433,11 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                 </>
               ) : isShalom ? (
                 <>
-                  Estática y Detallado Automotriz en Toluca.
+                  <span className="font-light tracking-wide text-slate-100">
+                    Estética y Detallado Automotriz en Toluca.
+                  </span>
                   <br />
-                  <span className="text-gold">
+                  <span className="text-gold font-medium tracking-normal">
                     Protección y Brillo de Exposición.
                   </span>
                 </>
@@ -449,7 +453,9 @@ export default function LandingMexico({ biz }: { biz: Business }) {
             <p className={`${
               isTheZone || isPlatinum
                   ? "text-xs sm:text-sm max-w-xl line-clamp-2 sm:line-clamp-none text-slate-300 font-light leading-relaxed mx-auto text-pretty"
-                  : "text-base md:text-lg max-w-2xl text-slate-300 font-light leading-relaxed mx-auto text-pretty"
+                  : isShalom
+                    ? "text-xs sm:text-sm md:text-base max-w-xl text-slate-300 font-light leading-relaxed mx-auto text-pretty"
+                    : "text-base md:text-lg max-w-2xl text-slate-300 font-light leading-relaxed mx-auto text-pretty"
             }`}>
               Corrección de pintura, recubrimiento cerámico y estética interior en {isPlatinum ? "Querétaro" : biz.ciudad}. Tratamiento artesanal sin microrrayones ni atajos.
             </p>
