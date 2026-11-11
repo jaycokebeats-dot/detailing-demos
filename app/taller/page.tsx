@@ -1,9 +1,20 @@
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useRef } from "react";
 import type { Business } from "@/data/business-helpers";
 import { DEFAULT_DEMO_BUSINESS } from "@/data/demo-business";
 import { getBusinessData } from "@/lib/supabase";
+import {
+  MedioPago,
+  ChequeInfo,
+  Trabajo,
+  GastoCategoria,
+  Gasto,
+  TallerStoreData,
+  fetchTallerCloudData,
+  saveTallerCloudData,
+  subscribeToTallerRealtime,
+} from "@/lib/taller-sync";
 import {
   FaCar,
   FaMoneyBillWave,
@@ -28,51 +39,11 @@ import {
   FaTabletAlt,
   FaTimes,
   FaShieldAlt,
+  FaCloud,
+  FaSyncAlt,
 } from "react-icons/fa";
 
-export type MedioPago = "efectivo" | "transferencia" | "cheque" | "tarjeta";
-
-export type ChequeInfo = {
-  nroCheque: string;
-  banco: string;
-  fechaCobro: string; // YYYY-MM-DD
-  cobrado: boolean;
-};
-
-export type Trabajo = {
-  id: string;
-  fecha: string; // YYYY-MM-DD
-  vehiculo: string;
-  cliente?: string;
-  telefono?: string;
-  servicios: string[];
-  monto: number;
-  medioPago: MedioPago;
-  chequeData?: ChequeInfo;
-  estadoPago: "cobrado" | "pendiente";
-  notas?: string;
-};
-
-export type GastoCategoria =
-  | "alquiler"
-  | "luz"
-  | "internet"
-  | "insumos"
-  | "polarizado_ppf"
-  | "proveedor"
-  | "impuestos"
-  | "mantenimiento"
-  | "otro";
-
-export type Gasto = {
-  id: string;
-  fecha: string; // YYYY-MM-DD
-  categoria: GastoCategoria;
-  concepto: string;
-  monto: number;
-  medioPago: "efectivo" | "transferencia" | "cheque";
-  notas?: string;
-};
+// Tipos importados desde @/lib/taller-sync
 
 const CATEGORIAS_GASTO_CONFIG: Record<
   GastoCategoria,
@@ -210,6 +181,17 @@ export default function TallerGestionPage() {
   // Estados de datos principales
   const [trabajos, setTrabajos] = useState<Trabajo[]>([]);
   const [gastos, setGastos] = useState<Gasto[]>([]);
+  const [syncStatus, setSyncStatus] = useState<"synced" | "saving" | "offline">("synced");
+  const trabajosRef = useRef<Trabajo[]>([]);
+  const gastosRef = useRef<Gasto[]>([]);
+
+  useEffect(() => {
+    trabajosRef.current = trabajos;
+  }, [trabajos]);
+
+  useEffect(() => {
+    gastosRef.current = gastos;
+  }, [gastos]);
 
   // Pestaña activa: trabajos, gastos, cheques, balance
   const [activeTab, setActiveTab] = useState<"trabajos" | "gastos" | "cheques" | "balance">("trabajos");
@@ -260,8 +242,35 @@ export default function TallerGestionPage() {
     setTimeout(() => setToastMsg(null), 3500);
   };
 
-  // 1. Cargar datos del taller por Slug (AM Centro por defecto)
+  // Guardar de forma sincronizada en Supabase (Nube) y LocalStorage (Caché local)
+  const guardarDatos = async (nuevosTrabajos: Trabajo[], nuevosGastos: Gasto[]) => {
+    setTrabajos(nuevosTrabajos);
+    setGastos(nuevosGastos);
+    setSyncStatus("saving");
+    const res = await saveTallerCloudData(currentSlug, {
+      trabajos: nuevosTrabajos,
+      gastos: nuevosGastos,
+    });
+    if (res.success) {
+      setSyncStatus("synced");
+    } else {
+      setSyncStatus("offline");
+      showToast("⚠️ Guardado en este equipo (sin internet a la base de datos)");
+    }
+  };
+
+  const guardarTrabajos = (nuevos: Trabajo[]) => {
+    guardarDatos(nuevos, gastosRef.current);
+  };
+
+  const guardarGastos = (nuevos: Gasto[]) => {
+    guardarDatos(trabajosRef.current, nuevos);
+  };
+
+  // 1. Cargar datos del taller por Slug y sincronizar en Tiempo Real
   useEffect(() => {
+    let unsubscribe: (() => void) | null = null;
+
     async function loadWorkshop() {
       try {
         const params = new URLSearchParams(window.location.search);
@@ -270,7 +279,7 @@ export default function TallerGestionPage() {
           .trim();
         setCurrentSlug(slug);
 
-        // Supabase o API
+        // Supabase o API para info general del taller
         const sbData = await getBusinessData(slug);
         if (sbData && sbData.nombre) {
           setBiz(sbData);
@@ -282,45 +291,62 @@ export default function TallerGestionPage() {
           }
         }
 
-        // Cargar registros locales
+        // Paso A: Cargar inmediatamente de caché local (para 0ms de espera visual)
         const storageKeyTrabajos = `taller_trabajos_${slug}`;
         const storageKeyGastos = `taller_gastos_${slug}`;
-
         const savedTrabajos = localStorage.getItem(storageKeyTrabajos);
         const savedGastos = localStorage.getItem(storageKeyGastos);
 
         if (savedTrabajos && savedGastos) {
-          setTrabajos(JSON.parse(savedTrabajos));
-          setGastos(JSON.parse(savedGastos));
+          try {
+            setTrabajos(JSON.parse(savedTrabajos));
+            setGastos(JSON.parse(savedGastos));
+          } catch (err) {
+            // ignore
+          }
         } else {
-          // Inicializar con datos de demostración
           const init = getInitialData(slug);
           setTrabajos(init.trabajos);
           setGastos(init.gastos);
-          localStorage.setItem(storageKeyTrabajos, JSON.stringify(init.trabajos));
-          localStorage.setItem(storageKeyGastos, JSON.stringify(init.gastos));
         }
+
+        // Paso B: Conectar a la base de datos en la nube (Supabase)
+        setSyncStatus("saving");
+        const cloudData = await fetchTallerCloudData(slug);
+        if (cloudData && Array.isArray(cloudData.trabajos) && Array.isArray(cloudData.gastos)) {
+          setTrabajos(cloudData.trabajos);
+          setGastos(cloudData.gastos);
+          setSyncStatus("synced");
+        } else {
+          // Si es la primera vez que entra, sembramos en la base de datos
+          const init = getInitialData(slug);
+          await saveTallerCloudData(slug, init);
+          setTrabajos(init.trabajos);
+          setGastos(init.gastos);
+          setSyncStatus("synced");
+        }
+
+        // Paso C: Suscribirse en Tiempo Real (si alguien borra/agrega en celu, se refleja en tablet)
+        unsubscribe = subscribeToTallerRealtime(slug, (fresh) => {
+          setTrabajos(fresh.trabajos);
+          setGastos(fresh.gastos);
+          setSyncStatus("synced");
+          showToast("🔄 Sincronizado en vivo con otro dispositivo");
+        });
       } catch (e) {
         console.error("Error al cargar datos del taller:", e);
+        setSyncStatus("offline");
       } finally {
         setLoading(false);
       }
     }
 
     loadWorkshop();
+
+    return () => {
+      if (unsubscribe) unsubscribe();
+    };
   }, []);
-
-  // Guardar en localStorage cuando cambian trabajos
-  const guardarTrabajos = (nuevos: Trabajo[]) => {
-    setTrabajos(nuevos);
-    localStorage.setItem(`taller_trabajos_${currentSlug}`, JSON.stringify(nuevos));
-  };
-
-  // Guardar en localStorage cuando cambian gastos
-  const guardarGastos = (nuevos: Gasto[]) => {
-    setGastos(nuevos);
-    localStorage.setItem(`taller_gastos_${currentSlug}`, JSON.stringify(nuevos));
-  };
 
   // Lista de servicios sugeridos (usa los servicios reales del taller si existen)
   const serviciosOpciones = useMemo(() => {
@@ -627,6 +653,39 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
 
         {/* Controles de cabecera */}
         <div className="flex items-center gap-2 sm:gap-3">
+          {/* Indicador de Base de Datos en la Nube */}
+          <div
+            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold border transition-all ${
+              syncStatus === "synced"
+                ? "bg-emerald-950/50 border-emerald-500/40 text-emerald-300 shadow-[0_0_12px_rgba(16,185,129,0.15)]"
+                : syncStatus === "saving"
+                ? "bg-sky-950/50 border-sky-500/40 text-sky-300"
+                : "bg-amber-950/50 border-amber-500/40 text-amber-300"
+            }`}
+            title={
+              syncStatus === "synced"
+                ? "Conectado a la base de datos en la nube. Tablet, celular y PC sincronizados en vivo."
+                : syncStatus === "saving"
+                ? "Guardando cambios en la nube..."
+                : "Modo sin conexión. Guardado en la memoria de este equipo."
+            }
+          >
+            {syncStatus === "saving" ? (
+              <FaSyncAlt className="size-2.5 animate-spin text-sky-400" />
+            ) : (
+              <span
+                className={`size-1.5 rounded-full ${
+                  syncStatus === "synced"
+                    ? "bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.9)] animate-pulse"
+                    : "bg-amber-400"
+                }`}
+              />
+            )}
+            <span className="hidden sm:inline">
+              {syncStatus === "synced" ? "En la Nube" : syncStatus === "saving" ? "Guardando..." : "Sin Conexión"}
+            </span>
+            <FaCloud className="size-3 opacity-80" />
+          </div>
           {/* Selector de Mes */}
           <div className="flex items-center gap-1.5 bg-[#121c2e] border border-sky-500/25 rounded-xl px-2.5 py-1.5 text-xs text-sky-200">
             <FaCalendarAlt className="size-3.5 text-sky-400 shrink-0" />
