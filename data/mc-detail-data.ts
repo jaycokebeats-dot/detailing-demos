@@ -100,7 +100,7 @@ export const MC_DETAIL_BUSINESS: Business = {
   telefono: "0299 15-413-4806",
   whatsapp: "5492994134806",
   instagram: null,
-  direccion: "La Sirena, Neuquén",
+  direccion: "Gdor. Anaya 614, Barrio La Sirena, Neuquén",
   ciudad: "Neuquén",
   rating: 5,
   reviews_count: 25,

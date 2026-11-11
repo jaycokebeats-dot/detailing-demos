@@ -217,7 +217,7 @@ export default async function BusinessPage({ params }: Props) {
         : `Detailing profesional y estética automotriz en ${biz.ciudad}.`,
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": biz.direccion || (isMcDetail ? "La Sirena" : "Servicio a Domicilio"),
+      "streetAddress": biz.direccion || (isMcDetail ? "Gdor. Anaya 614, Barrio La Sirena" : "Servicio a Domicilio"),
       "addressLocality": biz.ciudad || (isMcDetail ? "Neuquén" : "Querétaro"),
       "addressRegion": isPlatinum ? "Querétaro" : (isMcDetail ? "Neuquén" : (biz.ciudad || "")),
       "addressCountry": biz.pais || (isMcDetail ? "AR" : (isPlatinum ? "MX" : "AR")),
