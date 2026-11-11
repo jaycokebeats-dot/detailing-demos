@@ -38,6 +38,27 @@ export function middleware(request: NextRequest) {
       url.searchParams.set("taller", "mc-detail-detailing");
       return NextResponse.rewrite(url);
     }
+
+    // Si acceden al presupuestador '/presupuesto'
+    if (pathname === "/presupuesto") {
+      const url = new URL("/presupuesto", request.url);
+      url.searchParams.set("taller", "mc-detail-detailing");
+      return NextResponse.rewrite(url);
+    }
+
+    // Si acceden a la ficha de recepción '/checkin'
+    if (pathname === "/checkin") {
+      const url = new URL("/checkin", request.url);
+      url.searchParams.set("taller", "mc-detail-detailing");
+      return NextResponse.rewrite(url);
+    }
+
+    // Si acceden al panel de gestión '/gestion' o '/taller'
+    if (pathname === "/gestion" || pathname === "/taller") {
+      const url = new URL(pathname, request.url);
+      url.searchParams.set("taller", "mc-detail-detailing");
+      return NextResponse.rewrite(url);
+    }
   }
 
   return NextResponse.next();
