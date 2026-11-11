@@ -51,7 +51,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const ogImageUrl = isPlatinum
     ? "https://platinumdetallado.com/og-platinum.jpg"
     : isMcDetail
-      ? "https://detailing-demos-three.vercel.app/og-mcdetail.jpg"
+      ? "https://mcdetail.com.ar/og-mcdetail.jpg"
       : isShalom
         ? "https://detailing-demos-three.vercel.app/logo/shalom-og.jpg"
         : (biz.fotos && biz.fotos.length > 0 && biz.fotos[0])
@@ -206,7 +206,7 @@ export default async function BusinessPage({ params }: Props) {
   const defaultImage = isPlatinum
     ? "https://platinumdetallado.com/og-platinum.jpg"
     : isMcDetail
-      ? "https://detailing-demos-three.vercel.app/og-mcdetail.jpg"
+      ? "https://mcdetail.com.ar/og-mcdetail.jpg"
       : "https://detailing-demos-three.vercel.app/og-detailing.jpg";
   const primaryImage = (biz.fotos && biz.fotos.length > 0)
     ? (biz.fotos[0].startsWith("http") ? biz.fotos[0] : `${canonicalBizUrl}${biz.fotos[0].startsWith("/") ? "" : "/"}${biz.fotos[0]}`)
