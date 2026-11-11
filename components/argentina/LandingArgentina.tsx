@@ -321,7 +321,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
         <SectionDivider edge="top" />
         <div className="max-w-3xl mx-auto text-center">
           <span className="section-badge mb-5">El problema real</span>
-          <h2 className={`text-3xl md:text-4xl font-medium ${isCeleste ? "text-celeste" : "text-gold"} mb-3`}>Lavar el Auto no es lo Mismo que un Detailing</h2>
+          <h2 className={`text-3xl md:text-4xl font-medium ${isCeleste ? "text-celeste" : "text-gold"} mb-3`}>{isCeleste ? "Lavar el Auto no es lo Mismo que Estética Vehicular" : "Lavar el Auto no es lo Mismo que un Detailing"}</h2>
           <p className="text-slate-400 max-w-xl mx-auto mb-10">
             Un auto puede salir limpio de un lavadero convencional y seguir viéndose opaco o rayado. Señales habituales:
           </p>
@@ -675,7 +675,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
         )}
 
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-slate-400 font-light">
-          <span>© {new Date().getFullYear()} {biz.nombre} · Detailing Automotriz en {biz.ciudad}{biz.provincia ? ` (${biz.provincia})` : " (Argentina)"}</span>
+          <span>© {new Date().getFullYear()} {biz.nombre} · {isCeleste ? "Estética Vehicular" : "Detailing Automotriz"} en {biz.ciudad}{biz.provincia ? `, ${biz.provincia}` : ""}</span>
           <span>{biz.direccion} · {biz.telefono}</span>
         </div>
       </footer>
