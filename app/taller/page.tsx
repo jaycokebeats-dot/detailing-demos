@@ -219,6 +219,17 @@ export default function TallerGestionPage() {
   // Modales
   const [modalTrabajoOpen, setModalTrabajoOpen] = useState<boolean>(false);
   const [modalGastoOpen, setModalGastoOpen] = useState<boolean>(false);
+  const [modalChequeOpen, setModalChequeOpen] = useState<boolean>(false);
+
+  // Formulario de Cheque Directo
+  const [formChequeBanco, setFormChequeBanco] = useState<string>("");
+  const [formChequeNro, setFormChequeNro] = useState<string>("");
+  const [formChequeMonto, setFormChequeMonto] = useState<string>("");
+  const [formChequeFechaCobro, setFormChequeFechaCobro] = useState<string>("");
+  const [formChequeConcepto, setFormChequeConcepto] = useState<string>("");
+  const [formChequeCliente, setFormChequeCliente] = useState<string>("");
+  const [formChequeTelefono, setFormChequeTelefono] = useState<string>("");
+  const [formChequeNotas, setFormChequeNotas] = useState<string>("");
   const [modalInstallOpen, setModalInstallOpen] = useState<boolean>(false);
   const [toastMsg, setToastMsg] = useState<string | null>(null);
 
@@ -526,6 +537,57 @@ export default function TallerGestionPage() {
     setModalTrabajoOpen(false);
 
     showToast(`✅ ¡${nuevoTrabajo.vehiculo} registrado con éxito!`);
+  };
+
+  // Manejar creación de Cheque directo en Cartera
+  const handleCrearChequeDirecto = (e: React.FormEvent) => {
+    e.preventDefault();
+    const montoNum = parseFloat(formChequeMonto.replace(/[^\d]/g, "")) || 0;
+    if (montoNum <= 0) {
+      showToast("⚠️ Ingresá un monto válido para el cheque.");
+      return;
+    }
+    if (!formChequeBanco.trim()) {
+      showToast("⚠️ Ingresá el banco emisor del cheque.");
+      return;
+    }
+
+    const hoyIso = new Date().toISOString().split("T")[0];
+    const fechaCobroFinal = formChequeFechaCobro || hoyIso;
+
+    const nuevoChequeTrabajo: Trabajo = {
+      id: `cheque-${Date.now()}`,
+      fecha: fechaCobroFinal,
+      vehiculo: formChequeConcepto.trim() || `Cheque ${formChequeBanco.trim()}`,
+      cliente: formChequeCliente.trim() || undefined,
+      telefono: formChequeTelefono.trim() || undefined,
+      servicios: ["Cheque en Cartera"],
+      monto: montoNum,
+      medioPago: "cheque",
+      chequeData: {
+        nroCheque: formChequeNro.trim() || "S/N",
+        banco: formChequeBanco.trim(),
+        fechaCobro: fechaCobroFinal,
+        cobrado: false,
+      },
+      estadoPago: "pendiente",
+      notas: formChequeNotas.trim() || undefined,
+    };
+
+    guardarTrabajos([nuevoChequeTrabajo, ...trabajos]);
+    setModalChequeOpen(false);
+
+    // Reset form
+    setFormChequeBanco("");
+    setFormChequeNro("");
+    setFormChequeMonto("");
+    setFormChequeConcepto("");
+    setFormChequeCliente("");
+    setFormChequeTelefono("");
+    setFormChequeFechaCobro("");
+    setFormChequeNotas("");
+
+    showToast(`✅ Cheque de ${nuevoChequeTrabajo.chequeData?.banco} N° ${nuevoChequeTrabajo.chequeData?.nroCheque} cargado en cartera.`);
   };
 
   // Manejar creación de nuevo Gasto
@@ -1132,11 +1194,25 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
                   Visualizá los cheques que tenés en cartera, sus fechas de vencimiento y cobro.
                 </p>
               </div>
-              <div className="text-left sm:text-right">
-                <span className="text-xs font-semibold text-slate-400 uppercase">Total en cartera</span>
-                <p className="text-xl sm:text-2xl font-extrabold text-amber-300">
-                  {formatPesos(metricas.chequesEnCarteraMonto, ocultarMontos)}
-                </p>
+              <div className="flex items-center gap-3">
+                <div className="text-left sm:text-right">
+                  <span className="text-xs font-semibold text-slate-400 uppercase">Total en cartera</span>
+                  <p className="text-xl sm:text-2xl font-extrabold text-amber-300">
+                    {formatPesos(metricas.chequesEnCarteraMonto, ocultarMontos)}
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const hoy = new Date().toISOString().split("T")[0];
+                    setFormChequeFechaCobro(hoy);
+                    setModalChequeOpen(true);
+                  }}
+                  className="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wide flex items-center gap-2 cursor-pointer shadow-[0_0_15px_rgba(245,158,11,0.25)] transition-all shrink-0"
+                >
+                  <FaPlus className="size-3.5" />
+                  <span>+ Cargar Cheque</span>
+                </button>
               </div>
             </div>
 
@@ -1204,18 +1280,29 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
                           </p>
                         </div>
 
-                        <button
-                          type="button"
-                          onClick={() => toggleCobroCheque(c.trabajoId)}
-                          className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1.5 cursor-pointer ${
-                            c.cheque.cobrado
-                              ? "bg-slate-800 text-slate-300 hover:bg-slate-700"
-                              : "btn-celeste"
-                          }`}
-                        >
-                          <FaCheckCircle className="size-3.5" />
-                          <span>{c.cheque.cobrado ? "Marcar Pendiente" : "Marcar Cobrado"}</span>
-                        </button>
+                        <div className="flex items-center gap-2">
+                          <button
+                            type="button"
+                            onClick={() => toggleCobroCheque(c.trabajoId)}
+                            className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1.5 cursor-pointer ${
+                              c.cheque.cobrado
+                                ? "bg-slate-800 text-slate-300 hover:bg-slate-700"
+                                : "btn-celeste"
+                            }`}
+                          >
+                            <FaCheckCircle className="size-3.5" />
+                            <span>{c.cheque.cobrado ? "Marcar Pendiente" : "Marcar Cobrado"}</span>
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={() => handleEliminarTrabajo(c.trabajoId, `Cheque ${c.cheque.banco} N° ${c.cheque.nroCheque}`)}
+                            className="p-2.5 rounded-xl bg-white/5 hover:bg-red-500/20 text-slate-400 hover:text-red-400 transition-colors border border-white/5 hover:border-red-500/30 cursor-pointer"
+                            title="Eliminar cheque de la cartera"
+                          >
+                            <FaTrash className="size-3.5" />
+                          </button>
+                        </div>
                       </div>
                     </div>
                   );
@@ -1627,6 +1714,143 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
                   className="px-6 py-2 rounded-xl font-bold uppercase tracking-wider bg-red-500 hover:bg-red-400 text-slate-950 cursor-pointer"
                 >
                   Guardar Gasto
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* MODAL: CARGAR CHEQUE DIRECTO EN CARTERA */}
+      {modalChequeOpen && (
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+          <div className="bg-[#0f1728] border border-amber-500/30 rounded-3xl w-full max-w-lg p-5 sm:p-7 space-y-4 shadow-2xl relative my-auto">
+            <div className="flex items-center justify-between border-b border-white/10 pb-3">
+              <div className="flex items-center gap-2">
+                <FaMoneyCheckAlt className="size-5 text-amber-400" />
+                <h3 className="font-extrabold text-lg text-white">Ingresar Cheque a Cartera</h3>
+              </div>
+              <button
+                type="button"
+                onClick={() => setModalChequeOpen(false)}
+                className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 cursor-pointer"
+              >
+                <FaTimes className="size-4" />
+              </button>
+            </div>
+
+            <form onSubmit={handleCrearChequeDirecto} className="space-y-4 text-xs">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label className="block font-semibold text-slate-300 mb-1">Banco Emisor *</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="ej. Banco Macro, Santander, Nación"
+                    value={formChequeBanco}
+                    onChange={(e) => setFormChequeBanco(e.target.value)}
+                    className="w-full bg-[#141f33] border border-amber-500/25 rounded-xl px-3 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                  />
+                </div>
+
+                <div>
+                  <label className="block font-semibold text-slate-300 mb-1">Número de Cheque *</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="ej. 04829102"
+                    value={formChequeNro}
+                    onChange={(e) => setFormChequeNro(e.target.value)}
+                    className="w-full bg-[#141f33] border border-amber-500/25 rounded-xl px-3 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label className="block font-semibold text-slate-300 mb-1">Fecha de Cobro / Vencimiento *</label>
+                  <input
+                    type="date"
+                    required
+                    value={formChequeFechaCobro}
+                    onChange={(e) => setFormChequeFechaCobro(e.target.value)}
+                    className="w-full bg-[#141f33] border border-amber-500/25 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-amber-400"
+                  />
+                </div>
+
+                <div>
+                  <label className="block font-semibold text-slate-300 mb-1">Importe del Cheque ($ ARS) *</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="ej. 450000"
+                    value={formChequeMonto}
+                    onChange={(e) => setFormChequeMonto(e.target.value)}
+                    className="w-full bg-[#141f33] border border-amber-500/25 rounded-xl px-3 py-2.5 text-amber-300 font-bold text-sm placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block font-semibold text-slate-300 mb-1">Concepto / Vehículo / Trabajo</label>
+                <input
+                  type="text"
+                  placeholder="ej. Seña Ford Ranger, Polarizado Hilux, Venta de llantas"
+                  value={formChequeConcepto}
+                  onChange={(e) => setFormChequeConcepto(e.target.value)}
+                  className="w-full bg-[#141f33] border border-amber-500/25 rounded-xl px-3 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                />
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label className="block font-semibold text-slate-300 mb-1">Titular / Cliente (opcional)</label>
+                  <input
+                    type="text"
+                    placeholder="ej. Martín Rossi"
+                    value={formChequeCliente}
+                    onChange={(e) => setFormChequeCliente(e.target.value)}
+                    className="w-full bg-[#141f33] border border-white/15 rounded-xl px-3 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                  />
+                </div>
+
+                <div>
+                  <label className="block font-semibold text-slate-300 mb-1">Teléfono (opcional)</label>
+                  <input
+                    type="tel"
+                    placeholder="ej. 3534123456"
+                    value={formChequeTelefono}
+                    onChange={(e) => setFormChequeTelefono(e.target.value)}
+                    className="w-full bg-[#141f33] border border-white/15 rounded-xl px-3 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block font-semibold text-slate-300 mb-1">Notas u Observaciones (opcional)</label>
+                <input
+                  type="text"
+                  placeholder="ej. Cheque cruzado no a la orden / Entregado por tercero"
+                  value={formChequeNotas}
+                  onChange={(e) => setFormChequeNotas(e.target.value)}
+                  className="w-full bg-[#141f33] border border-white/15 rounded-xl px-3 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                />
+              </div>
+
+              <div className="flex items-center justify-end gap-2 pt-3 border-t border-white/10">
+                <button
+                  type="button"
+                  onClick={() => setModalChequeOpen(false)}
+                  className="px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 font-bold cursor-pointer"
+                >
+                  Cancelar
+                </button>
+                <button
+                  type="submit"
+                  className="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-[0_0_15px_rgba(245,158,11,0.3)] cursor-pointer"
+                >
+                  <FaPlus className="size-3" />
+                  <span>Ingresar a Cartera</span>
                 </button>
               </div>
             </form>
