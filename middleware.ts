@@ -23,6 +23,23 @@ export function middleware(request: NextRequest) {
     }
   }
 
+  // Si acceden desde el dominio exclusivo de Mc Detail
+  if (cleanHost === "mcdetail.com.ar" || cleanHost === "www.mcdetail.com.ar") {
+    // Si acceden a la raíz '/', servir la landing de Mc Detail directamente en la raíz
+    if (pathname === "/") {
+      return NextResponse.rewrite(
+        new URL("/d/mc-detail-detailing", request.url)
+      );
+    }
+
+    // Si acceden al admin '/admin', preseleccionar el taller de Mc Detail
+    if (pathname === "/admin") {
+      const url = new URL("/admin", request.url);
+      url.searchParams.set("taller", "mc-detail-detailing");
+      return NextResponse.rewrite(url);
+    }
+  }
+
   return NextResponse.next();
 }
 

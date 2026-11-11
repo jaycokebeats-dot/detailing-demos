@@ -37,10 +37,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
+  // Landing destacada y dominio propio de Mc Detail Neuquén
+  const mcDetailRoute: MetadataRoute.Sitemap = [
+    {
+      url: "https://mcdetail.com.ar",
+      lastModified: now,
+      changeFrequency: "daily",
+      priority: 1.0,
+    },
+    {
+      url: `${baseUrl}/d/mc-detail-detailing`,
+      lastModified: now,
+      changeFrequency: "daily",
+      priority: 0.9,
+    },
+  ];
+
   // Catálogo de talleres detalladores
   const businesses = getAllBusinesses();
   const businessRoutes: MetadataRoute.Sitemap = businesses
-    .filter((b) => b.slug && b.slug !== "platinum-detallado-automotriz-a-domicilio" && !b.slug.includes("demo"))
+    .filter((b) => b.slug && b.slug !== "platinum-detallado-automotriz-a-domicilio" && b.slug !== "mc-detail-detailing" && !b.slug.includes("demo"))
     .map((b) => ({
       url: `${baseUrl}/d/${b.slug}`,
       lastModified: now,
@@ -48,5 +64,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     }));
 
-  return [...staticRoutes, ...platinumRoute, ...businessRoutes];
+  return [...staticRoutes, ...platinumRoute, ...mcDetailRoute, ...businessRoutes];
 }

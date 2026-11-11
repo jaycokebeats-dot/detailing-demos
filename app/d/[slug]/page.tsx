@@ -58,13 +58,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const canonicalUrl = isPlatinum
     ? "https://platinumdetallado.com"
-    : `https://detailing-demos-three.vercel.app/d/${biz.slug}`;
+    : isMcDetail
+      ? "https://mcdetail.com.ar"
+      : `https://detailing-demos-three.vercel.app/d/${biz.slug}`;
 
   const cleanNombre = biz.nombre.replace(/[^\p{L}\p{N}\s.,&|/'-]/gu, "").replace(/\s+/g, " ").trim();
   const brandName = isMcDetail ? "Mc Detail Detailing" : (isPlatinum ? "Platinum Detallado Automotriz" : cleanNombre);
 
   return {
-    metadataBase: new URL(isPlatinum ? "https://platinumdetallado.com" : "https://detailing-demos-three.vercel.app"),
+    metadataBase: new URL(
+      isPlatinum
+        ? "https://platinumdetallado.com"
+        : isMcDetail
+          ? "https://mcdetail.com.ar"
+          : "https://detailing-demos-three.vercel.app"
+    ),
     title: {
       absolute: titulo,
     },
@@ -188,11 +196,15 @@ export default async function BusinessPage({ params }: Props) {
   const isMcDetail = slug === "mc-detail-detailing" || slug === "mc-detail" || biz.slug === "mc-detail-detailing";
 
   // Schema.org JSON-LD para posicionamiento SEO local y Google Rich Results
-  const canonicalBizUrl = isPlatinum ? "https://platinumdetallado.com" : `https://detailing-demos-three.vercel.app/d/${biz.slug}`;
+  const canonicalBizUrl = isPlatinum
+    ? "https://platinumdetallado.com"
+    : isMcDetail
+      ? "https://mcdetail.com.ar"
+      : `https://detailing-demos-three.vercel.app/d/${biz.slug}`;
   const defaultImage = isPlatinum
     ? "https://platinumdetallado.com/og-platinum.jpg"
     : isMcDetail
-      ? "https://detailing-demos-three.vercel.app/logo/mc-detail-logo.png"
+      ? "https://mcdetail.com.ar/logo/mc-detail-logo.png"
       : "https://detailing-demos-three.vercel.app/og-detailing.jpg";
   const primaryImage = (biz.fotos && biz.fotos.length > 0)
     ? (biz.fotos[0].startsWith("http") ? biz.fotos[0] : `${canonicalBizUrl}${biz.fotos[0].startsWith("/") ? "" : "/"}${biz.fotos[0]}`)
