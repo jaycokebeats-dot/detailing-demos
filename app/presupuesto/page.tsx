@@ -109,7 +109,7 @@ interface SelectedServiceState {
   nombre: string;
   precioNum: number;
   precioManual: string;
-  proteccion?: string;
+  detalle?: string;
   activo: boolean;
 }
 
@@ -200,7 +200,7 @@ export default function PresupuestoPage() {
         nombre: s.nombre,
         precioNum: num,
         precioManual: num > 0 ? num.toString() : "",
-        proteccion: s.proteccion,
+        detalle: "",
         activo: idx === 0, // El primer servicio marcado por defecto
       };
     });
@@ -229,6 +229,17 @@ export default function PresupuestoPage() {
     });
   };
 
+  const handleDetailChange = (index: number, val: string) => {
+    setServiciosState((prev) => {
+      const next = [...prev];
+      next[index] = {
+        ...next[index],
+        detalle: val,
+      };
+      return next;
+    });
+  };
+
   const handleAddCustomService = () => {
     const customNombre = prompt("Nombre del servicio extra (Ej: Pulido de Ópticas, Sellado de Llantas):");
     if (!customNombre || !customNombre.trim()) return;
@@ -239,6 +250,7 @@ export default function PresupuestoPage() {
         nombre: customNombre.trim(),
         precioNum: 0,
         precioManual: "",
+        detalle: "",
         activo: true,
       },
     ]);
@@ -284,14 +296,17 @@ export default function PresupuestoPage() {
       ? serviciosActivos
           .map((s) => {
             const precioFormatted = formatAmount(s.precioNum);
-            const extra = s.proteccion ? ` _(${s.proteccion})_` : "";
+            const extra = s.detalle && s.detalle.trim() ? ` _(${s.detalle.trim()})_` : "";
             return `▪️ *${s.nombre}*: ${precioFormatted}${extra}`;
           })
           .join("\n")
       : `▪️ A coordinar según estado de la pintura.`;
 
+    const articulo = config.terminoCotizacion.toLowerCase() === "cotización" ? "la" : "el";
+    const adjetivo = config.terminoCotizacion.toLowerCase() === "cotización" ? "detallada" : "detallado";
+
     const bloques: string[] = [
-      `${saludo} Te paso el *${config.terminoCotizacion.toLowerCase()}* detallado${infoAuto} en *${nombreTaller}*:\n`,
+      `${saludo} Te paso ${articulo} *${config.terminoCotizacion.toLowerCase()}* ${adjetivo}${infoAuto} en *${nombreTaller}*:\n`,
       `📋 *TRABAJOS INCLUIDOS:*`,
       lineasServicios,
       `\n💰 *TOTAL:* ${formatAmount(totalCotizado)}`,
@@ -523,52 +538,60 @@ export default function PresupuestoPage() {
                     return (
                       <div
                         key={idx}
-                        className={`p-3.5 rounded-2xl border transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${
+                        className={`p-3.5 rounded-2xl border transition-all ${
                           srv.activo
                             ? "bg-[#171717] border-neutral-700 shadow-sm"
                             : "bg-[#101010]/80 border-neutral-800/80 opacity-60"
                         }`}
                       >
-                        <div
-                          onClick={() => handleToggleService(idx)}
-                          className="flex items-center gap-3 cursor-pointer flex-1 select-none"
-                        >
-                          <input
-                            type="checkbox"
-                            checked={srv.activo}
-                            onChange={() => {}}
-                            className="w-4 h-4 rounded border-neutral-600 bg-neutral-900 text-white cursor-pointer accent-neutral-300 shrink-0"
-                          />
-                          <div>
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                          <div
+                            onClick={() => handleToggleService(idx)}
+                            className="flex items-center gap-3 cursor-pointer flex-1 select-none"
+                          >
+                            <input
+                              type="checkbox"
+                              checked={srv.activo}
+                              onChange={() => {}}
+                              className="w-4 h-4 rounded border-neutral-600 bg-neutral-900 text-white cursor-pointer accent-neutral-300 shrink-0"
+                            />
                             <div className="text-xs sm:text-sm font-bold text-neutral-100">
                               {srv.nombre}
                             </div>
-                            {srv.proteccion && (
-                              <div className="text-[10px] text-neutral-400 mt-0.5">
-                                {srv.proteccion}
-                              </div>
-                            )}
+                          </div>
+
+                          {/* Casillero de Precio Editable */}
+                          <div className="flex items-center gap-2 shrink-0 self-end sm:self-center">
+                            <span className="text-xs text-neutral-400 font-mono">
+                              {config.monedaSimbolo}
+                            </span>
+                            <input
+                              type="text"
+                              value={srv.precioManual}
+                              onChange={(e) => handlePriceChange(idx, e.target.value)}
+                              placeholder="Precio"
+                              disabled={!srv.activo}
+                              className={`w-28 sm:w-32 bg-[#0c0c0c] border rounded-xl px-3 py-1.5 text-xs sm:text-sm font-mono font-bold text-right transition-colors ${
+                                srv.activo
+                                  ? "border-neutral-600 text-white focus:border-neutral-300"
+                                  : "border-neutral-800 text-neutral-600"
+                              }`}
+                            />
                           </div>
                         </div>
 
-                        {/* Casillero de Precio Editable */}
-                        <div className="flex items-center gap-2 shrink-0 self-end sm:self-center">
-                          <span className="text-xs text-neutral-400 font-mono">
-                            {config.monedaSimbolo}
-                          </span>
-                          <input
-                            type="text"
-                            value={srv.precioManual}
-                            onChange={(e) => handlePriceChange(idx, e.target.value)}
-                            placeholder="Precio"
-                            disabled={!srv.activo}
-                            className={`w-28 sm:w-32 bg-[#0c0c0c] border rounded-xl px-3 py-1.5 text-xs sm:text-sm font-mono font-bold text-right transition-colors ${
-                              srv.activo
-                                ? "border-neutral-600 text-white focus:border-neutral-300"
-                                : "border-neutral-800 text-neutral-600"
-                            }`}
-                          />
-                        </div>
+                        {/* Aclaración o detalle opcional cuando el servicio está activo */}
+                        {srv.activo && (
+                          <div className="mt-2.5 pt-2 border-t border-neutral-800/80 pl-7">
+                            <input
+                              type="text"
+                              value={srv.detalle || ""}
+                              onChange={(e) => handleDetailChange(idx, e.target.value)}
+                              placeholder="+ Aclaración o detalle opcional (ej: 2 pasos de corte, sellador 3 años, incluye llantas...)"
+                              className="w-full bg-[#0d0d0d] border border-neutral-800 hover:border-neutral-700 focus:border-neutral-500 rounded-xl px-3 py-1.5 text-[11px] text-neutral-200 placeholder:text-neutral-500 focus:outline-none transition-colors"
+                            />
+                          </div>
+                        )}
                       </div>
                     );
                   })}
@@ -672,7 +695,7 @@ export default function PresupuestoPage() {
               <div className="bg-[#121212] border border-neutral-800 rounded-3xl p-5 sm:p-6 space-y-4 shadow-xl">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold text-neutral-400 uppercase tracking-wider">
-                    Total del {config.terminoCotizacion}
+                    {config.terminoCotizacion === "Cotización" ? "Total de la Cotización" : "Total del Presupuesto"}
                   </span>
                   <span className="text-[10px] font-bold bg-neutral-800 text-neutral-300 px-2 py-0.5 rounded-full font-mono">
                     {serviciosState.filter((s) => s.activo).length} servicios
