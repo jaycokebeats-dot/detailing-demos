@@ -112,6 +112,6 @@ export const MC_DETAIL_BUSINESS: Business = {
   logo_url: "/logo/mc-detail-logo.png",
   video_hero: "/videos/hero-compilado-blanco.mp4",
   hero_titulo: "Detailing Profesional, Polarizados & PPF,",
-  hero_titulo_gold: "Resultado de Showroom.",
+  hero_titulo_gold: "Tu Auto Mejor que un 0km.",
   servicios: MC_DETAIL_SERVICIOS,
 };
