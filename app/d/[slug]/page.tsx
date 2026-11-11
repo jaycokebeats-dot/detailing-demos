@@ -50,11 +50,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const ogImageUrl = isPlatinum
     ? "https://platinumdetallado.com/og-platinum.jpg"
-    : isShalom
-      ? "https://detailing-demos-three.vercel.app/logo/shalom-og.jpg"
-      : (biz.fotos && biz.fotos.length > 0 && biz.fotos[0])
-        ? (biz.fotos[0].startsWith("http") ? biz.fotos[0] : `https://detailing-demos-three.vercel.app${biz.fotos[0].startsWith("/") ? "" : "/"}${biz.fotos[0]}`)
-        : "https://detailing-demos-three.vercel.app/og-detailing.jpg";
+    : isMcDetail
+      ? "https://detailing-demos-three.vercel.app/og-mcdetail.jpg"
+      : isShalom
+        ? "https://detailing-demos-three.vercel.app/logo/shalom-og.jpg"
+        : (biz.fotos && biz.fotos.length > 0 && biz.fotos[0])
+          ? (biz.fotos[0].startsWith("http") ? biz.fotos[0] : `https://detailing-demos-three.vercel.app${biz.fotos[0].startsWith("/") ? "" : "/"}${biz.fotos[0]}`)
+          : "https://detailing-demos-three.vercel.app/og-detailing.jpg";
 
   const canonicalUrl = isPlatinum
     ? "https://platinumdetallado.com"
@@ -204,7 +206,7 @@ export default async function BusinessPage({ params }: Props) {
   const defaultImage = isPlatinum
     ? "https://platinumdetallado.com/og-platinum.jpg"
     : isMcDetail
-      ? "https://mcdetail.com.ar/logo/mc-detail-logo.png"
+      ? "https://detailing-demos-three.vercel.app/og-mcdetail.jpg"
       : "https://detailing-demos-three.vercel.app/og-detailing.jpg";
   const primaryImage = (biz.fotos && biz.fotos.length > 0)
     ? (biz.fotos[0].startsWith("http") ? biz.fotos[0] : `${canonicalBizUrl}${biz.fotos[0].startsWith("/") ? "" : "/"}${biz.fotos[0]}`)
