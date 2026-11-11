@@ -41,6 +41,7 @@ import {
   FaShieldAlt,
   FaCloud,
   FaSyncAlt,
+  FaUndo,
 } from "react-icons/fa";
 
 // Tipos importados desde @/lib/taller-sync
@@ -182,6 +183,12 @@ export default function TallerGestionPage() {
   const [trabajos, setTrabajos] = useState<Trabajo[]>([]);
   const [gastos, setGastos] = useState<Gasto[]>([]);
   const [syncStatus, setSyncStatus] = useState<"synced" | "saving" | "offline">("synced");
+  const [ultimoEliminado, setUltimoEliminado] = useState<{
+    tipo: "trabajo" | "gasto";
+    itemTrabajo?: Trabajo;
+    itemGasto?: Gasto;
+  } | null>(null);
+  const toastTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const trabajosRef = useRef<Trabajo[]>([]);
   const gastosRef = useRef<Gasto[]>([]);
 
@@ -237,9 +244,31 @@ export default function TallerGestionPage() {
   const [formGastoMedioPago, setFormGastoMedioPago] = useState<"efectivo" | "transferencia" | "cheque">("transferencia");
   const [formGastoNotas, setFormGastoNotas] = useState<string>("");
 
-  const showToast = (msg: string) => {
+  const showToast = (msg: string, durationMs = 3500) => {
+    if (toastTimeoutRef.current) clearTimeout(toastTimeoutRef.current);
     setToastMsg(msg);
-    setTimeout(() => setToastMsg(null), 3500);
+    toastTimeoutRef.current = setTimeout(() => {
+      setToastMsg(null);
+      setUltimoEliminado(null);
+    }, durationMs);
+  };
+
+  const handleDeshacer = () => {
+    if (!ultimoEliminado) return;
+    if (toastTimeoutRef.current) clearTimeout(toastTimeoutRef.current);
+
+    if (ultimoEliminado.tipo === "trabajo" && ultimoEliminado.itemTrabajo) {
+      const restaurado = [ultimoEliminado.itemTrabajo, ...trabajosRef.current];
+      guardarTrabajos(restaurado);
+      setToastMsg(`✅ ${ultimoEliminado.itemTrabajo.vehiculo} recuperado con éxito.`);
+    } else if (ultimoEliminado.tipo === "gasto" && ultimoEliminado.itemGasto) {
+      const restaurado = [ultimoEliminado.itemGasto, ...gastosRef.current];
+      guardarGastos(restaurado);
+      setToastMsg(`✅ Gasto "${ultimoEliminado.itemGasto.concepto}" recuperado.`);
+    }
+
+    setUltimoEliminado(null);
+    toastTimeoutRef.current = setTimeout(() => setToastMsg(null), 3000);
   };
 
   // Guardar de forma sincronizada en Supabase (Nube) y LocalStorage (Caché local)
@@ -557,19 +586,42 @@ export default function TallerGestionPage() {
     showToast("💳 Estado del cheque actualizado.");
   };
 
-  // Eliminar Trabajo
+  // Eliminar Trabajo (con confirmación rápida y opción de Deshacer)
   const handleEliminarTrabajo = (id: string, vehiculo: string) => {
+    const item = trabajos.find((t) => t.id === id);
+    if (!item) return;
+
     if (window.confirm(`¿Seguro que querés eliminar el registro de ${vehiculo}?`)) {
-      guardarTrabajos(trabajos.filter((t) => t.id !== id));
-      showToast("🗑️ Trabajo eliminado.");
+      const nuevos = trabajos.filter((t) => t.id !== id);
+      guardarTrabajos(nuevos);
+      setUltimoEliminado({ tipo: "trabajo", itemTrabajo: item });
+      showToast(`🗑️ ${vehiculo} eliminado. ¿Fue un error? Podés deshacerlo 👉`, 7000);
     }
   };
 
   // Eliminar Gasto
   const handleEliminarGasto = (id: string, concepto: string) => {
+    const item = gastos.find((g) => g.id === id);
+    if (!item) return;
+
     if (window.confirm(`¿Seguro que querés eliminar el gasto "${concepto}"?`)) {
-      guardarGastos(gastos.filter((g) => g.id !== id));
-      showToast("🗑️ Gasto eliminado.");
+      const nuevos = gastos.filter((g) => g.id !== id);
+      guardarGastos(nuevos);
+      setUltimoEliminado({ tipo: "gasto", itemGasto: item });
+      showToast(`🗑️ Gasto "${concepto}" eliminado. ¿Fue un error? Podés deshacerlo 👉`, 7000);
+    }
+  };
+
+  // Restablecer datos de ejemplo para demostración
+  const handleRestablecerEjemplos = async () => {
+    if (
+      window.confirm(
+        "¿Querés restablecer los datos de ejemplo (Ford Ranger con cheque en cartera, Toyota Hilux y VW Vento)?"
+      )
+    ) {
+      const init = getInitialData(currentSlug);
+      await guardarDatos(init.trabajos, init.gastos);
+      showToast("✅ Datos de demostración restablecidos con éxito.");
     }
   };
 
@@ -621,10 +673,20 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
 
   return (
     <div className="min-h-screen bg-[#070b12] text-slate-100 flex flex-col font-sans selection:bg-sky-500/30 selection:text-sky-200">
-      {/* Toast flotante */}
+      {/* Toast flotante con botón de Deshacer */}
       {toastMsg && (
-        <div className="fixed top-4 right-4 z-50 bg-[#0e1726] border border-sky-500/40 text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 animate-fade-in text-sm font-semibold">
+        <div className="fixed top-4 right-4 z-50 bg-[#0e1726] border border-sky-500/50 text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 animate-fade-in text-sm font-semibold">
           <span>{toastMsg}</span>
+          {ultimoEliminado && (
+            <button
+              type="button"
+              onClick={handleDeshacer}
+              className="px-3 py-1 bg-sky-400 hover:bg-sky-300 text-slate-950 font-bold text-xs rounded-lg transition-transform active:scale-95 flex items-center gap-1.5 shadow-[0_0_12px_rgba(56,189,248,0.5)] cursor-pointer"
+            >
+              <FaUndo className="size-3" />
+              <span>Deshacer</span>
+            </button>
+          )}
         </div>
       )}
 
@@ -1190,6 +1252,16 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
                   >
                     <FaDownload className="size-3.5" />
                     <span>Descargar Backup</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={handleRestablecerEjemplos}
+                    className="px-3.5 py-2 rounded-xl bg-sky-950/40 hover:bg-sky-900/50 text-sky-300 font-bold text-xs uppercase tracking-wide flex items-center gap-1.5 border border-sky-500/30 cursor-pointer transition-all"
+                    title="Recargar ejemplos de prueba (Ranger con cheque, Hilux, Vento)"
+                  >
+                    <FaUndo className="size-3" />
+                    <span>Restablecer Ejemplos</span>
                   </button>
                 </div>
               </div>
