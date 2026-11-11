@@ -110,6 +110,8 @@ interface SelectedServiceState {
   precioNum: number;
   precioManual: string;
   detalle?: string;
+  descripcion?: string;
+  proteccion?: string;
   activo: boolean;
 }
 
@@ -134,6 +136,10 @@ export default function PresupuestoPage() {
   const [copied, setCopied] = useState(false);
   const [toastMsg, setToastMsg] = useState<string | null>(null);
 
+  // Metadatos para PDF / Impresión formal
+  const [folio, setFolio] = useState<string>("");
+  const [fechaEmision, setFechaEmision] = useState<string>("");
+
   // Detectar país del taller
   const countryCode: CountryCode = useMemo(() => {
     const p = (biz.pais || "").toUpperCase();
@@ -143,6 +149,18 @@ export default function PresupuestoPage() {
   }, [biz]);
 
   const config = COUNTRY_CONFIGS[countryCode] || COUNTRY_CONFIGS.AR;
+
+  // Generar folio y fecha de emisión formal
+  useEffect(() => {
+    const prefix = config.terminoCotizacion === "Cotización" ? "COT" : "PRE";
+    const year = new Date().getFullYear().toString().slice(-2);
+    const randomNum = Math.floor(1000 + Math.random() * 9000);
+    setFolio(`${prefix}-${year}${randomNum}`);
+
+    const today = new Date();
+    const options: Intl.DateTimeFormatOptions = { day: "numeric", month: "long", year: "numeric" };
+    setFechaEmision(today.toLocaleDateString("es-ES", options));
+  }, [config.terminoCotizacion]);
 
   // Carga del taller desde URL o Supabase
   useEffect(() => {
@@ -201,6 +219,8 @@ export default function PresupuestoPage() {
         precioNum: num,
         precioManual: num > 0 ? num.toString() : "",
         detalle: "",
+        descripcion: s.descripcion || "",
+        proteccion: s.proteccion || "",
         activo: idx === 0, // El primer servicio marcado por defecto
       };
     });
@@ -251,9 +271,17 @@ export default function PresupuestoPage() {
         precioNum: 0,
         precioManual: "",
         detalle: "",
+        descripcion: "Tratamiento personalizado acordado según requerimiento del vehículo.",
+        proteccion: "",
         activo: true,
       },
     ]);
+  };
+
+  const handlePrint = () => {
+    if (typeof window !== "undefined") {
+      window.print();
+    }
   };
 
   // Calcular total
@@ -375,59 +403,72 @@ export default function PresupuestoPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#070707] text-neutral-100 p-4 sm:p-6 pb-24 admin-scope">
+    <main className="min-h-screen bg-[#070707] text-neutral-100 p-4 sm:p-6 pb-24 admin-scope print:bg-white print:p-0 print:m-0 print:pb-0">
       {/* Toast Notification */}
       {toastMsg && (
-        <div className="fixed top-5 right-5 z-50 bg-[#161616] border border-neutral-600 text-neutral-100 px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3 animate-fade-in text-xs sm:text-sm font-medium">
+        <div className="fixed top-5 right-5 z-50 bg-[#161616] border border-neutral-600 text-neutral-100 px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3 animate-fade-in text-xs sm:text-sm font-medium no-print">
           <span className="text-base">✨</span>
           <span>{toastMsg}</span>
         </div>
       )}
 
-      {/* Contenedor Principal */}
-      <div className="max-w-4xl mx-auto space-y-6">
-        {/* Cabecera de la App */}
-        <header className="bg-[#121212] border border-neutral-800 rounded-3xl p-5 sm:p-7 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-xl">
-          <div className="flex items-center gap-3.5">
-            <div className="w-12 h-12 rounded-2xl bg-neutral-900 border border-neutral-700 flex items-center justify-center text-2xl shadow-sm shrink-0">
-              🧾
-            </div>
-            <div>
-              <div className="flex items-center gap-2 flex-wrap">
-                <span className="text-sm sm:text-base font-extrabold text-white">
-                  {biz.nombre}
-                </span>
-                <span className="text-xs px-2.5 py-0.5 rounded-full bg-neutral-800 text-neutral-300 border border-neutral-700 font-mono">
-                  {config.bandera} {config.nombrePais}
-                </span>
+      {/* =========================================================================
+          VISTA DE PANTALLA WEB (Oculta en modo impresión / PDF)
+         ========================================================================= */}
+      <div className="screen-only print:hidden">
+        {/* Contenedor Principal */}
+        <div className="max-w-4xl mx-auto space-y-6">
+          {/* Cabecera de la App */}
+          <header className="bg-[#121212] border border-neutral-800 rounded-3xl p-5 sm:p-7 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-xl">
+            <div className="flex items-center gap-3.5">
+              <div className="w-12 h-12 rounded-2xl bg-neutral-900 border border-neutral-700 flex items-center justify-center text-2xl shadow-sm shrink-0">
+                🧾
               </div>
-              <p className="text-xs text-neutral-400 mt-0.5">
-                App de {config.terminoCotizacion} Rápida para WhatsApp
-              </p>
+              <div>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className="text-sm sm:text-base font-extrabold text-white">
+                    {biz.nombre}
+                  </span>
+                  <span className="text-xs px-2.5 py-0.5 rounded-full bg-neutral-800 text-neutral-300 border border-neutral-700 font-mono">
+                    {config.bandera} {config.nombrePais}
+                  </span>
+                </div>
+                <p className="text-xs text-neutral-400 mt-0.5">
+                  App de {config.terminoCotizacion} Rápida para WhatsApp & PDF
+                </p>
+              </div>
             </div>
-          </div>
 
-          <div className="flex items-center gap-2 self-start sm:self-auto">
-            <button
-              type="button"
-              onClick={handleResetForm}
-              className="bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 text-neutral-300 hover:text-white text-xs font-semibold px-3 py-2 rounded-xl transition-all cursor-pointer flex items-center gap-1.5"
-              title="Limpiar campos"
-            >
-              <span>🔄</span>
-              <span>Nuevo</span>
-            </button>
-            <a
-              href={`/d/${currentSlug}/`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 text-neutral-300 hover:text-white text-xs font-semibold px-3 py-2 rounded-xl transition-all flex items-center gap-1.5"
-            >
-              <span>🔗</span>
-              <span>Ver Web</span>
-            </a>
-          </div>
-        </header>
+            <div className="flex items-center gap-2 self-start sm:self-auto flex-wrap">
+              <button
+                type="button"
+                onClick={handleResetForm}
+                className="bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 text-neutral-300 hover:text-white text-xs font-semibold px-3 py-2 rounded-xl transition-all cursor-pointer flex items-center gap-1.5"
+                title="Limpiar campos"
+              >
+                <span>🔄</span>
+                <span>Nuevo</span>
+              </button>
+              <button
+                type="button"
+                onClick={handlePrint}
+                className="bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 hover:border-neutral-500 text-neutral-200 hover:text-white text-xs font-semibold px-3 py-2 rounded-xl transition-all cursor-pointer flex items-center gap-1.5"
+                title="Descargar o imprimir presupuesto formal en PDF"
+              >
+                <span>📄</span>
+                <span>Descargar PDF</span>
+              </button>
+              <a
+                href={`/d/${currentSlug}/`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 text-neutral-300 hover:text-white text-xs font-semibold px-3 py-2 rounded-xl transition-all flex items-center gap-1.5"
+              >
+                <span>🔗</span>
+                <span>Ver Web</span>
+              </a>
+            </div>
+          </header>
 
         {loading ? (
           <div className="py-20 text-center text-neutral-400 text-sm flex flex-col items-center gap-2">
@@ -728,6 +769,17 @@ export default function PresupuestoPage() {
                     </>
                   )}
                 </button>
+
+                {/* Botón Secundario: Descargar / Imprimir Presupuesto Formal en PDF */}
+                <button
+                  type="button"
+                  onClick={handlePrint}
+                  className="w-full py-3.5 rounded-2xl font-bold text-xs sm:text-sm bg-[#181818] hover:bg-[#222222] border border-neutral-700 hover:border-neutral-500 text-neutral-200 hover:text-white transition-all cursor-pointer flex items-center justify-center gap-2 shadow-lg active:scale-98"
+                  title={`Descargar ${config.terminoCotizacion} Formal en formato PDF listo para enviar o imprimir`}
+                >
+                  <span className="text-base">📄</span>
+                  <span>Descargar / Imprimir {config.terminoCotizacion} Formal (PDF)</span>
+                </button>
               </div>
 
               {/* Burbuja de Vista Previa de WhatsApp */}
@@ -753,6 +805,234 @@ export default function PresupuestoPage() {
             </div>
           </div>
         )}
+        </div>
+      </div>
+
+      {/* =========================================================================
+          DOCUMENTO OFICIAL IMPRIMIBLE / PDF (SOLO VISIBLE EN @MEDIA PRINT)
+          Diseñado estrictamente para A4: 1 página ejecutiva y nítida.
+         ========================================================================= */}
+      <div className="print-document hidden print:block bg-white text-slate-900 font-sans p-0 m-0">
+        {/* ENCABEZADO / MEMBRETE */}
+        <div className="print-page-break-avoid border-b-2 border-slate-900 pb-2.5 mb-2.5 flex justify-between items-start">
+          <div>
+            <div className="flex items-center gap-2">
+              <h1 className="text-xl font-black uppercase tracking-tight text-slate-900 m-0 p-0">
+                {biz.nombre || "Taller de Detailing Profesional"}
+              </h1>
+              <span className="text-[9px] font-bold px-2 py-0.5 rounded bg-slate-100 border border-slate-300 text-slate-700">
+                {config.bandera} {config.nombrePais}
+              </span>
+            </div>
+            <p className="text-[10px] font-bold text-slate-700 uppercase tracking-wider mt-0.5 m-0">
+              {config.terminoCotizacion === "Cotización"
+                ? "Cotización Formal de Servicios & Tratamientos"
+                : "Presupuesto Formal de Servicios & Tratamientos"}
+            </p>
+            <div className="text-[8.5px] text-slate-600 flex flex-wrap items-center gap-x-3 gap-y-0.5 mt-1">
+              {biz.direccion && <span>📍 {biz.direccion}</span>}
+              {biz.ciudad && !biz.direccion && <span>📍 {biz.ciudad}</span>}
+              {(biz.whatsapp || biz.telefono) && <span>📞 Tel / WhatsApp: {biz.whatsapp || biz.telefono}</span>}
+              {biz.instagram && <span>📸 Instagram: @{biz.instagram.replace(/^@/, "")}</span>}
+            </div>
+          </div>
+
+          <div className="text-right border border-slate-300 rounded-lg p-2 bg-slate-50 min-w-[170px]">
+            <div className="text-[8px] font-bold text-slate-500 uppercase tracking-wider">Folio Oficial</div>
+            <div className="text-xs font-mono font-black text-slate-900">{folio || "COT-2026"}</div>
+            <div className="text-[8px] text-slate-600 mt-0.5">
+              <span>Fecha: </span>
+              <strong>{fechaEmision || "Fecha actual"}</strong>
+            </div>
+            <div className="text-[7.5px] text-slate-500 mt-0.5">
+              Validez: <strong>15 días corridos</strong>
+            </div>
+          </div>
+        </div>
+
+        {/* 1. DATOS DEL CLIENTE Y VEHÍCULO */}
+        <div className="print-page-break-avoid border border-slate-300 rounded-lg p-2 bg-slate-50/60 mb-2.5 text-[8.5px]">
+          <div className="font-bold text-slate-800 uppercase tracking-wider text-[8px] border-b border-slate-200 pb-1 mb-1.5">
+            1. Datos del Cliente & Vehículo Cotizado
+          </div>
+          <div className="grid grid-cols-3 gap-2">
+            <div>
+              <span className="text-slate-500 block text-[7.5px] uppercase font-semibold">Cliente:</span>
+              <span className="font-bold text-slate-900 text-[9.5px]">
+                {clienteNombre.trim() ? clienteNombre.trim() : "Consumidor Final / A designar"}
+              </span>
+            </div>
+            <div>
+              <span className="text-slate-500 block text-[7.5px] uppercase font-semibold">
+                {config.terminoVehiculo} / Modelo:
+              </span>
+              <span className="font-bold text-slate-900 text-[9.5px]">
+                {vehiculoModelo.trim() ? vehiculoModelo.trim() : "No especificado"}
+              </span>
+            </div>
+            <div>
+              <span className="text-slate-500 block text-[7.5px] uppercase font-semibold">Segmento / Categoría:</span>
+              <span className="font-bold text-slate-900 text-[9px]">
+                {selectedTamanioObj.label}
+              </span>
+            </div>
+            <div>
+              <span className="text-slate-500 block text-[7.5px] uppercase font-semibold">Tiempo Estimado:</span>
+              <span className="font-semibold text-slate-800">
+                {tiempoEstimado.trim() ? tiempoEstimado.trim() : "A coordinar con el taller"}
+              </span>
+            </div>
+            <div>
+              <span className="text-slate-500 block text-[7.5px] uppercase font-semibold">Garantía / Sellado:</span>
+              <span className="font-semibold text-slate-800">
+                {garantia.trim() ? garantia.trim() : "Garantía oficial por escrito"}
+              </span>
+            </div>
+            <div>
+              <span className="text-slate-500 block text-[7.5px] uppercase font-semibold">Forma de Pago:</span>
+              <span className="font-semibold text-slate-800">
+                {formaPago.trim() ? formaPago.trim() : "Efectivo / Transferencia / Tarjetas"}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* 2. DESGLOSE DETALLADO DE TRABAJOS Y TRATAMIENTOS TÉCNICOS */}
+        <div className="print-page-break-avoid mb-2.5">
+          <div className="font-bold text-slate-800 uppercase tracking-wider text-[8px] mb-1 flex items-center justify-between">
+            <span>2. Desglose Detallado de Trabajos & Tratamientos Técnicos</span>
+            <span className="text-slate-500 text-[7.5px] font-normal">
+              {serviciosState.filter((s) => s.activo).length} tratamiento(s) seleccionados
+            </span>
+          </div>
+
+          <div className="border border-slate-300 rounded-lg overflow-hidden">
+            <table className="w-full text-left border-collapse text-[8px]">
+              <thead>
+                <tr className="bg-slate-900 text-white font-bold text-[7.5px] uppercase tracking-wider">
+                  <th className="py-1 px-1.5 w-6 text-center">#</th>
+                  <th className="py-1 px-2 w-44">Tratamiento / Servicio</th>
+                  <th className="py-1 px-2">Alcance Técnico & Procedimiento</th>
+                  <th className="py-1 px-2 w-24 text-right">Importe</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-200">
+                {serviciosState.filter((s) => s.activo).length === 0 ? (
+                  <tr>
+                    <td colSpan={4} className="py-2.5 px-2 text-center text-slate-500 italic">
+                      No se han seleccionado servicios aún para esta cotización.
+                    </td>
+                  </tr>
+                ) : (
+                  serviciosState
+                    .filter((s) => s.activo)
+                    .map((srv, idx) => (
+                      <tr key={idx} className="hover:bg-slate-50/50">
+                        <td className="py-1.5 px-1.5 text-center font-bold text-slate-500 align-top">
+                          {idx + 1}
+                        </td>
+                        <td className="py-1.5 px-2 align-top">
+                          <div className="font-bold text-slate-900 text-[9px]">
+                            {srv.nombre}
+                          </div>
+                          {srv.detalle && srv.detalle.trim() && (
+                            <div className="text-[7.5px] text-amber-800 bg-amber-50 border border-amber-200 rounded px-1.5 py-0.5 mt-0.5 inline-block font-medium">
+                              Detalle: {srv.detalle.trim()}
+                            </div>
+                          )}
+                        </td>
+                        <td className="py-1.5 px-2 text-slate-600 align-top leading-relaxed text-[8px]">
+                          <p className="m-0">
+                            {srv.descripcion && srv.descripcion.trim()
+                              ? srv.descripcion.trim()
+                              : "Procedimiento profesional de descontaminación de carrocería, preparación intensiva de superficie y sellado técnico acorde a estándares de detailing."}
+                          </p>
+                          {srv.proteccion && srv.proteccion.trim() && (
+                            <div className="mt-0.5 flex items-center gap-1 text-[7.5px] font-bold text-emerald-800">
+                              <span>🛡️ Durabilidad / Especificación:</span>
+                              <span className="font-semibold text-slate-700">{srv.proteccion.trim()}</span>
+                            </div>
+                          )}
+                        </td>
+                        <td className="py-1.5 px-2 text-right font-mono font-bold text-slate-900 text-[9.5px] align-top whitespace-nowrap">
+                          {formatAmount(srv.precioNum)}
+                        </td>
+                      </tr>
+                    ))
+                )}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Caja de Total */}
+          <div className="mt-1.5 flex justify-end">
+            <div className="border border-slate-900 bg-slate-50 rounded-lg p-2 min-w-[220px] text-right">
+              <div className="text-[8px] font-bold text-slate-600 uppercase tracking-wider">
+                TOTAL {config.terminoCotizacion.toUpperCase()}
+              </div>
+              <div className="text-sm font-black text-slate-900 font-mono tracking-tight mt-0.5">
+                {formatAmount(totalCotizado)}
+              </div>
+              <div className="text-[7px] text-slate-500 mt-0.5">
+                Moneda: {countryCode === "MX" ? "MXN (Pesos Mexicanos)" : countryCode === "ES" ? "EUR (€)" : "ARS (Pesos Argentinos)"}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* 3. OBSERVACIONES & CONDICIONES TÉCNICAS */}
+        <div className="print-page-break-avoid border border-slate-300 rounded-lg p-2 bg-white mb-2.5 text-[8px]">
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <div className="font-bold text-slate-800 uppercase tracking-wider text-[7.5px] border-b border-slate-200 pb-1 mb-1">
+                Observaciones Particulares
+              </div>
+              <p className="text-slate-600 m-0 leading-relaxed text-[7.5px]">
+                {notasExtras.trim()
+                  ? notasExtras.trim()
+                  : "Trabajo coordinado conforme al relevamiento visual y especificaciones técnicas acordadas con el cliente. Incluye acondicionamiento estético y entrega controlada."}
+              </p>
+            </div>
+
+            <div>
+              <div className="font-bold text-slate-800 uppercase tracking-wider text-[7.5px] border-b border-slate-200 pb-1 mb-1">
+                Términos del Servicio & Garantía
+              </div>
+              <ul className="text-slate-600 m-0 p-0 pl-3 leading-relaxed text-[7px] space-y-0.5 list-disc">
+                <li>Esta cotización posee una validez de 15 días corridos a partir de su emisión.</li>
+                <li>En tratamientos cerámicos, no mojar ni lavar el vehículo con químicos durante los primeros 7 días de curado.</li>
+                <li>El presupuesto contempla los tratamientos indicados; cualquier reparación adicional no prevista se cotizará con aprobación previa.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* 4. BLOQUE DE FIRMAS Y ACEPTACIÓN */}
+        <div className="print-page-break-avoid pt-2 mt-1 border-t border-slate-300">
+          <div className="grid grid-cols-2 gap-10 text-center text-[8px]">
+            <div>
+              <div className="h-8"></div>
+              <div className="border-t border-slate-400 pt-1">
+                <span className="font-bold text-slate-900 block">Firma y Conformidad del Cliente</span>
+                <span className="text-slate-500 text-[7.5px]">
+                  Aclaración: {clienteNombre.trim() ? clienteNombre.trim() : "..........................................................."}
+                </span>
+              </div>
+            </div>
+
+            <div>
+              <div className="h-8"></div>
+              <div className="border-t border-slate-400 pt-1">
+                <span className="font-bold text-slate-900 block">Responsable Técnico de Taller</span>
+                <span className="text-slate-500 text-[7.5px]">{biz.nombre || "Estudio de Detailing"}</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center text-[7px] text-slate-400 mt-2">
+            Documento emitido electrónicamente por el sistema de presupuestos y cotizaciones de {biz.nombre || "Detailing Studio"}.
+          </div>
+        </div>
       </div>
     </main>
   );
