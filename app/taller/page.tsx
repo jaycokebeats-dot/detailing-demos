@@ -252,6 +252,22 @@ function getInitialData(slug: string): { trabajos: Trabajo[]; gastos: Gasto[]; p
   return { trabajos: trabajosIniciales, gastos: gastosIniciales, presupuestos: presupuestosIniciales };
 }
 
+// Estilos visuales dinámicos según el estado del vehículo en el taller
+function getEstadoCardClasses(estadoTrabajo?: EstadoTrabajo): string {
+  switch (estadoTrabajo) {
+    case "agendado":
+      return "border-l-4 border-l-sky-400 bg-gradient-to-r from-sky-950/25 via-[#0f1728] to-[#0f1728] border-t border-r border-b border-sky-500/20 hover:border-sky-400/40 shadow-sm";
+    case "en_taller":
+      return "border-l-4 border-l-indigo-400 bg-gradient-to-r from-indigo-950/25 via-[#0f1728] to-[#0f1728] border-t border-r border-b border-indigo-500/20 hover:border-indigo-400/40 shadow-sm";
+    case "listo":
+      return "border-l-4 border-l-emerald-400 bg-gradient-to-r from-emerald-950/30 via-[#0f1728] to-[#0f1728] border-t border-r border-b border-emerald-500/35 hover:border-emerald-400/50 shadow-[0_0_16px_rgba(16,185,129,0.12)]";
+    case "entregado":
+      return "border-l-4 border-l-slate-600 bg-[#0c121e]/85 border-t border-r border-b border-slate-700/40 opacity-80 hover:opacity-100 shadow-sm";
+    default:
+      return "border-l-4 border-l-sky-500/40 bg-[#0f1728] border-sky-500/15 hover:border-sky-500/35 shadow-md";
+  }
+}
+
 export default function TallerGestionPage() {
   const [biz, setBiz] = useState<Business>(DEFAULT_DEMO_BUSINESS);
   const [currentSlug, setCurrentSlug] = useState<string>("am-centro-de-estetica-vehicular");
@@ -700,22 +716,46 @@ ${biz.direccion ? `• *Taller:* ${biz.direccion}, ${biz.ciudad}\n` : ""}
     return todosCheques.filter((c) => !c.cheque.cobrado);
   }, [todosCheques]);
 
-  // Métricas financieras del mes
+  // Métricas financieras del mes (Diferenciando Cobrado en Mano vs. Pendiente de Cobro)
   const metricas = useMemo(() => {
-    const totalIngresos = trabajosMes.reduce((acc, t) => acc + t.monto, 0);
+    const totalFacturado = trabajosMes.reduce((acc, t) => acc + t.monto, 0);
+    const totalCobrado = trabajosMes
+      .filter((t) => t.estadoPago === "cobrado")
+      .reduce((acc, t) => acc + t.monto, 0);
+    const totalPendiente = trabajosMes
+      .filter((t) => t.estadoPago === "pendiente")
+      .reduce((acc, t) => acc + t.monto, 0);
     const totalGastos = gastosMes.reduce((acc, g) => acc + g.monto, 0);
-    const gananciaNeta = totalIngresos - totalGastos;
-    const margen = totalIngresos > 0 ? Math.round((gananciaNeta / totalIngresos) * 100) : 0;
+
+    // Ganancia real en mano (lo efectivamente cobrado menos los gastos)
+    const gananciaNetaReal = totalCobrado - totalGastos;
+    const margenReal = totalCobrado > 0 ? Math.round((gananciaNetaReal / totalCobrado) * 100) : 0;
+
+    // Ganancia proyectada (al cobrar todo lo pendiente)
+    const gananciaNetaProyectada = totalFacturado - totalGastos;
+    const margenProyectado = totalFacturado > 0 ? Math.round((gananciaNetaProyectada / totalFacturado) * 100) : 0;
 
     const chequesEnCarteraMonto = chequesPendientes.reduce((acc, c) => acc + c.monto, 0);
+    const cantPendientes = trabajosMes.filter((t) => t.estadoPago === "pendiente").length;
+    const cantCobrados = trabajosMes.filter((t) => t.estadoPago === "cobrado").length;
     const totalAutos = trabajosMes.length;
 
     return {
-      totalIngresos,
+      totalFacturado,
+      totalCobrado,
+      totalPendiente,
       totalGastos,
-      gananciaNeta,
-      margen,
+      gananciaNetaReal,
+      margenReal,
+      gananciaNetaProyectada,
+      margenProyectado,
+      // Compatibilidad con vistas previas
+      totalIngresos: totalCobrado,
+      gananciaNeta: gananciaNetaReal,
+      margen: margenReal,
       chequesEnCarteraMonto,
+      cantPendientes,
+      cantCobrados,
       totalAutos,
     };
   }, [trabajosMes, gastosMes, chequesPendientes]);
@@ -1081,11 +1121,14 @@ ${t.notas ? `• Nota: ${t.notas}\n` : ""}${biz.direccion ? `• Taller: ${biz.d
     const texto = `📊 *RESUMEN MENSUAL DE TALLER - ${biz.nombre.toUpperCase()}*
 🗓️ *Período:* ${nombreMes} ${y}
 
-🚗 *Vehículos Atendidos:* ${metricas.totalAutos}
-💰 *Total Facturado:* ${formatPesos(metricas.totalIngresos)}
+🚗 *Vehículos:* ${metricas.totalAutos} (${metricas.cantCobrados} cobrados, ${metricas.cantPendientes} pendientes)
+💵 *Ingresos Cobrados:* ${formatPesos(metricas.totalCobrado)}
+⏳ *Pendiente de Cobro:* ${formatPesos(metricas.totalPendiente)}
+📑 *Total Facturado:* ${formatPesos(metricas.totalFacturado)}
 📉 *Total Gastos:* ${formatPesos(metricas.totalGastos)}
 ━━━━━━━━━━━━━━━━━━━
-💎 *GANANCIA NETA:* ${formatPesos(metricas.gananciaNeta)} (${metricas.margen}% margen)
+💎 *GANANCIA REAL EN MANO:* ${formatPesos(metricas.gananciaNetaReal)} (${metricas.margenReal}% margen)
+📈 *Ganancia Proyectada:* ${formatPesos(metricas.gananciaNetaProyectada)} (al cobrar todo)
 
 💳 *Cheques en Cartera:* ${formatPesos(metricas.chequesEnCarteraMonto)} (${chequesPendientes.length} pendientes)
 
@@ -1215,26 +1258,28 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
       <main className="flex-1 max-w-7xl w-full mx-auto p-3 sm:p-6 lg:p-8 space-y-6">
         {/* BARRA DE KPIS DEL MES */}
         <section className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
-          {/* Facturado */}
-          <div className="bg-[#0f1728] border border-sky-500/20 rounded-2xl p-4 sm:p-5 shadow-lg relative overflow-hidden group">
+          {/* Tarjeta 1: Ingresos Cobrados */}
+          <div className="bg-[#0f1728] border border-sky-500/25 rounded-2xl p-4 sm:p-5 shadow-lg relative overflow-hidden group">
             <div className="absolute top-0 right-0 w-24 h-24 bg-sky-500/5 rounded-full blur-xl group-hover:bg-sky-500/10 transition-colors pointer-events-none" />
             <div className="flex items-center justify-between text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
-              <span>Ingresos ({trabajosMes.length} autos)</span>
-              <span className="size-7 rounded-lg bg-sky-500/15 text-sky-400 flex items-center justify-center">
-                <FaArrowUp className="size-3" />
+              <span>Ingresos Cobrados</span>
+              <span className="px-2 py-0.5 rounded-full bg-sky-500/15 text-sky-300 text-[10px] font-bold">
+                {metricas.cantCobrados} de {metricas.totalAutos} cobrados
               </span>
             </div>
             <p className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white tracking-tight">
-              {formatPesos(metricas.totalIngresos, ocultarMontos)}
+              {formatPesos(metricas.totalCobrado, ocultarMontos)}
             </p>
-            <span className="text-[11px] text-sky-400/80 font-medium mt-1 inline-block">Total facturado en el mes</span>
+            <span className="text-[11px] text-sky-400/80 font-medium mt-1 inline-block">
+              Total facturado: {formatPesos(metricas.totalFacturado, ocultarMontos)}
+            </span>
           </div>
 
-          {/* Gastos */}
+          {/* Tarjeta 2: Gastos del Mes */}
           <div className="bg-[#0f1728] border border-red-500/20 rounded-2xl p-4 sm:p-5 shadow-lg relative overflow-hidden group">
             <div className="absolute top-0 right-0 w-24 h-24 bg-red-500/5 rounded-full blur-xl group-hover:bg-red-500/10 transition-colors pointer-events-none" />
             <div className="flex items-center justify-between text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
-              <span>Gastos ({gastosMes.length})</span>
+              <span>Gastos del Mes ({gastosMes.length})</span>
               <span className="size-7 rounded-lg bg-red-500/15 text-red-400 flex items-center justify-center">
                 <FaArrowDown className="size-3" />
               </span>
@@ -1245,34 +1290,40 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
             <span className="text-[11px] text-red-400/80 font-medium mt-1 inline-block">Egresos e insumos</span>
           </div>
 
-          {/* Ganancia Neta */}
+          {/* Tarjeta 3: Ganancia Real en Mano */}
           <div className="bg-[#0f1728] border border-emerald-500/30 rounded-2xl p-4 sm:p-5 shadow-lg relative overflow-hidden group">
             <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-500/10 rounded-full blur-xl group-hover:bg-emerald-500/15 transition-colors pointer-events-none" />
             <div className="flex items-center justify-between text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
-              <span>Ganancia Neta</span>
+              <span>Ganancia Real en Mano</span>
               <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px] font-bold">
-                {metricas.margen}% margen
+                {metricas.margenReal}% margen
               </span>
             </div>
             <p className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-emerald-400 tracking-tight">
-              {formatPesos(metricas.gananciaNeta, ocultarMontos)}
+              {formatPesos(metricas.gananciaNetaReal, ocultarMontos)}
             </p>
-            <span className="text-[11px] text-emerald-400/80 font-medium mt-1 inline-block">Bolsillo libre del taller</span>
+            <span className="text-[11px] text-emerald-400/80 font-medium mt-1 inline-block">
+              Proyectada: {formatPesos(metricas.gananciaNetaProyectada, ocultarMontos)} al cobrar todo
+            </span>
           </div>
 
-          {/* Cheques en Cartera */}
+          {/* Tarjeta 4: Pendiente de Cobro */}
           <div className="bg-[#0f1728] border border-amber-500/25 rounded-2xl p-4 sm:p-5 shadow-lg relative overflow-hidden group">
             <div className="absolute top-0 right-0 w-24 h-24 bg-amber-500/10 rounded-full blur-xl group-hover:bg-amber-500/15 transition-colors pointer-events-none" />
             <div className="flex items-center justify-between text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
-              <span>Cheques en Cartera</span>
-              <span className="size-7 rounded-lg bg-amber-500/20 text-amber-300 flex items-center justify-center font-bold text-xs">
-                {chequesPendientes.length}
+              <span>Pendiente de Cobro</span>
+              <span className="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 text-[10px] font-bold">
+                {metricas.cantPendientes} por cobrar
               </span>
             </div>
             <p className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-amber-300 tracking-tight">
-              {formatPesos(metricas.chequesEnCarteraMonto, ocultarMontos)}
+              {formatPesos(metricas.totalPendiente, ocultarMontos)}
             </p>
-            <span className="text-[11px] text-amber-300/80 font-medium mt-1 inline-block">Cobros pendientes</span>
+            <span className="text-[11px] text-amber-300/80 font-medium mt-1 inline-block">
+              {metricas.chequesEnCarteraMonto > 0
+                ? `Incluye ${formatPesos(metricas.chequesEnCarteraMonto, ocultarMontos)} en cheques`
+                : "Turnos y trabajos sin abonar"}
+            </span>
           </div>
         </section>
 
@@ -1567,7 +1618,9 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
                 {trabajosMesFiltrados.map((t) => (
                   <div
                     key={t.id}
-                    className="bg-[#0f1728] border border-sky-500/15 hover:border-sky-500/35 rounded-2xl p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 transition-all shadow-md group"
+                    className={`rounded-2xl p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 transition-all ${getEstadoCardClasses(
+                      t.estadoTrabajo
+                    )}`}
                   >
                     {/* COLUMNA 1: Datos del Vehículo, Cliente, Servicios y Notas (Flexible) */}
                     <div className="space-y-1.5 flex-1 min-w-0">
@@ -2159,45 +2212,53 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
                 </div>
               </div>
 
-              {/* Comparativa visual */}
-              <div className="grid sm:grid-cols-3 gap-4">
+              {/* Comparativa visual de Caja Real vs. Proyectado */}
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div className="p-4 rounded-2xl bg-[#090e18] border border-sky-500/20">
-                  <span className="text-xs font-semibold text-slate-400 block mb-1">TOTAL INGRESOS</span>
-                  <p className="text-2xl font-extrabold text-white">{formatPesos(metricas.totalIngresos, ocultarMontos)}</p>
-                  <p className="text-xs text-sky-400 mt-1">+{trabajosMes.length} vehículos terminados</p>
+                  <span className="text-xs font-semibold text-slate-400 block mb-1">TOTAL COBRADO</span>
+                  <p className="text-2xl font-extrabold text-white">{formatPesos(metricas.totalCobrado, ocultarMontos)}</p>
+                  <p className="text-xs text-sky-400 mt-1">+{metricas.cantCobrados} autos abonados</p>
+                </div>
+
+                <div className="p-4 rounded-2xl bg-[#090e18] border border-amber-500/20">
+                  <span className="text-xs font-semibold text-slate-400 block mb-1">PENDIENTE DE COBRO</span>
+                  <p className="text-2xl font-extrabold text-amber-300">{formatPesos(metricas.totalPendiente, ocultarMontos)}</p>
+                  <p className="text-xs text-amber-400 mt-1">{metricas.cantPendientes} autos por cobrar</p>
                 </div>
 
                 <div className="p-4 rounded-2xl bg-[#090e18] border border-red-500/20">
-                  <span className="text-xs font-semibold text-slate-400 block mb-1">TOTAL EGRESOS / COSTOS</span>
+                  <span className="text-xs font-semibold text-slate-400 block mb-1">TOTAL GASTOS</span>
                   <p className="text-2xl font-extrabold text-red-300">{formatPesos(metricas.totalGastos, ocultarMontos)}</p>
                   <p className="text-xs text-red-400 mt-1">{gastosMes.length} gastos cargados</p>
                 </div>
 
                 <div className="p-4 rounded-2xl bg-[#090e18] border border-emerald-500/30">
-                  <span className="text-xs font-semibold text-slate-400 block mb-1">RESULTADO FINAL (NETO)</span>
-                  <p className="text-2xl font-extrabold text-emerald-400">{formatPesos(metricas.gananciaNeta, ocultarMontos)}</p>
-                  <p className="text-xs text-emerald-300 mt-1">Margen operativo: {metricas.margen}%</p>
+                  <span className="text-xs font-semibold text-slate-400 block mb-1">GANANCIA REAL EN MANO</span>
+                  <p className="text-2xl font-extrabold text-emerald-400">{formatPesos(metricas.gananciaNetaReal, ocultarMontos)}</p>
+                  <p className="text-xs text-emerald-300 mt-1">Margen real: {metricas.margenReal}%</p>
                 </div>
               </div>
 
-              {/* Barra de progreso de costos */}
+              {/* Barra de progreso y proyección */}
               <div className="space-y-2 pt-2">
-                <div className="flex justify-between text-xs font-semibold">
-                  <span className="text-slate-400">Distribución de Facturación</span>
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs font-semibold gap-1">
+                  <span className="text-slate-300">
+                    Facturación Total: <strong className="text-white">{formatPesos(metricas.totalFacturado, ocultarMontos)}</strong> · Ganancia Proyectada al cobrar todo: <strong className="text-emerald-400">{formatPesos(metricas.gananciaNetaProyectada, ocultarMontos)}</strong> ({metricas.margenProyectado}% margen)
+                  </span>
                   <span className="text-sky-300">
-                    Costos: {metricas.totalIngresos > 0 ? Math.round((metricas.totalGastos / metricas.totalIngresos) * 100) : 0}% · Margen: {metricas.margen}%
+                    Cobrado: {metricas.totalFacturado > 0 ? Math.round((metricas.totalCobrado / metricas.totalFacturado) * 100) : 0}% · Pendiente: {metricas.totalFacturado > 0 ? Math.round((metricas.totalPendiente / metricas.totalFacturado) * 100) : 0}%
                   </span>
                 </div>
                 <div className="h-3 w-full bg-slate-800 rounded-full overflow-hidden flex">
                   <div
                     className="h-full bg-emerald-500 transition-all duration-500"
-                    style={{ width: `${Math.max(0, Math.min(100, metricas.margen))}%` }}
-                    title="Margen neto"
+                    style={{ width: `${metricas.totalFacturado > 0 ? Math.round((metricas.totalCobrado / metricas.totalFacturado) * 100) : 0}%` }}
+                    title="Cobrado"
                   />
                   <div
-                    className="h-full bg-red-500 transition-all duration-500"
-                    style={{ width: `${Math.max(0, Math.min(100, 100 - metricas.margen))}%` }}
-                    title="Gastos / Costos"
+                    className="h-full bg-amber-500 transition-all duration-500"
+                    style={{ width: `${metricas.totalFacturado > 0 ? Math.round((metricas.totalPendiente / metricas.totalFacturado) * 100) : 0}%` }}
+                    title="Pendiente de Cobro"
                   />
                 </div>
               </div>
