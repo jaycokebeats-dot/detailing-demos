@@ -352,6 +352,9 @@ export default function TallerGestionPage() {
 
   // Formulario de Nuevo Trabajo
   const [formTrabajoFecha, setFormTrabajoFecha] = useState<string>("");
+  const [formTrabajoHoraTurno, setFormTrabajoHoraTurno] = useState<string>("09:00");
+  const [formTrabajoEstadoTrabajo, setFormTrabajoEstadoTrabajo] = useState<EstadoTrabajo>("agendado");
+  const [formTrabajoEstadoPago, setFormTrabajoEstadoPago] = useState<"pendiente" | "cobrado">("pendiente");
   const [formTrabajoVehiculo, setFormTrabajoVehiculo] = useState<string>("");
   const [formTrabajoCliente, setFormTrabajoCliente] = useState<string>("");
   const [formTrabajoTelefono, setFormTrabajoTelefono] = useState<string>("");
@@ -387,7 +390,15 @@ export default function TallerGestionPage() {
 
     if (ultimoEliminado.tipo === "trabajo" && ultimoEliminado.itemTrabajo) {
       const restaurado = [ultimoEliminado.itemTrabajo, ...trabajosRef.current];
-      guardarTrabajos(restaurado);
+      // Si el trabajo restaurado vino de un presupuesto, volver a marcar el presupuesto como "agendado"
+      let presRestaurados = presupuestosRef.current;
+      const presId = ultimoEliminado.itemTrabajo.presupuestoId;
+      if (presId) {
+        presRestaurados = presupuestosRef.current.map((p) =>
+          p.id === presId ? { ...p, estado: "agendado" as const, trabajoId: ultimoEliminado.itemTrabajo?.id } : p
+        );
+      }
+      guardarDatos(restaurado, gastosRef.current, presRestaurados);
       setToastMsg(`✅ ${ultimoEliminado.itemTrabajo.vehiculo} recuperado con éxito.`);
     } else if (ultimoEliminado.tipo === "gasto" && ultimoEliminado.itemGasto) {
       const restaurado = [ultimoEliminado.itemGasto, ...gastosRef.current];
@@ -535,10 +546,13 @@ ${biz.direccion ? `• *Taller:* ${biz.direccion}, ${biz.ciudad}\n` : ""}
   };
 
   const handleEliminarPresupuesto = (id: string) => {
-    if (confirm("¿Eliminar este presupuesto del historial?")) {
+    const target = presupuestos.find((p) => p.id === id);
+    if (!target) return;
+
+    if (window.confirm(`¿Seguro que querés eliminar el presupuesto de "${target.cliente || target.vehiculo}"?`)) {
       const updated = presupuestos.filter((p) => p.id !== id);
       guardarPresupuestos(updated);
-      showToast("Presupuesto eliminado.");
+      showToast(`🗑️ Presupuesto de ${target.vehiculo} eliminado.`);
     }
   };
 
@@ -797,6 +811,7 @@ ${biz.direccion ? `• *Taller:* ${biz.direccion}, ${biz.ciudad}\n` : ""}
     const nuevoTrabajo: Trabajo = {
       id: `trabajo-${Date.now()}`,
       fecha: fechaFinal,
+      horaTurno: formTrabajoEstadoTrabajo === "agendado" ? (formTrabajoHoraTurno || "09:00") : undefined,
       vehiculo: formTrabajoVehiculo.trim(),
       cliente: formTrabajoCliente.trim() || undefined,
       telefono: formTrabajoTelefono.trim() || undefined,
@@ -804,7 +819,8 @@ ${biz.direccion ? `• *Taller:* ${biz.direccion}, ${biz.ciudad}\n` : ""}
       monto: montoNum,
       medioPago: formTrabajoMedioPago,
       chequeData: chequeFinal,
-      estadoPago: formTrabajoMedioPago === "cheque" ? "pendiente" : "cobrado",
+      estadoPago: formTrabajoMedioPago === "cheque" ? "pendiente" : formTrabajoEstadoPago,
+      estadoTrabajo: formTrabajoEstadoTrabajo,
       notas: formTrabajoNotas.trim() || undefined,
     };
 
@@ -822,9 +838,26 @@ ${biz.direccion ? `• *Taller:* ${biz.direccion}, ${biz.ciudad}\n` : ""}
     setFormTrabajoChequeBanco("");
     setFormTrabajoChequeVencimiento("");
     setFormTrabajoMedioPago("efectivo");
+    setFormTrabajoHoraTurno("09:00");
+    setFormTrabajoEstadoTrabajo("agendado");
+    setFormTrabajoEstadoPago("pendiente");
     setModalTrabajoOpen(false);
 
-    showToast(`✅ ¡${nuevoTrabajo.vehiculo} registrado con éxito!`);
+    showToast(
+      formTrabajoEstadoTrabajo === "agendado"
+        ? `📅 ¡Turno agendado para ${nuevoTrabajo.vehiculo} (${nuevoTrabajo.horaTurno} hs)!`
+        : `✅ ¡${nuevoTrabajo.vehiculo} registrado en el taller!`
+    );
+
+    // Si agendó turno y cargó teléfono, opcionalmente abrir WhatsApp de confirmación
+    if (formTrabajoEstadoTrabajo === "agendado" && formTrabajoTelefono.trim()) {
+      const cleanPhone = cleanWhatsAppPhone(formTrabajoTelefono);
+      const textoConfirmacion = getMensajeConfirmacionTurno(nuevoTrabajo);
+      const url = cleanPhone
+        ? `https://wa.me/${cleanPhone}?text=${encodeURIComponent(textoConfirmacion)}`
+        : `https://wa.me/?text=${encodeURIComponent(textoConfirmacion)}`;
+      window.open(url, "_blank");
+    }
   };
 
   // Manejar creación de Cheque directo en Cartera
@@ -1050,16 +1083,36 @@ ${t.notas ? `• Nota: ${t.notas}\n` : ""}${biz.direccion ? `• Taller: ${biz.d
     }
   };
 
-  // Eliminar Trabajo (con confirmación rápida y opción de Deshacer)
+  // Eliminar Trabajo (con confirmación rápida, desvinculación de presupuestos y opción de Deshacer)
   const handleEliminarTrabajo = (id: string, vehiculo: string) => {
     const item = trabajos.find((t) => t.id === id);
     if (!item) return;
 
     if (window.confirm(`¿Seguro que querés eliminar el registro de ${vehiculo}?`)) {
       const nuevos = trabajos.filter((t) => t.id !== id);
-      guardarTrabajos(nuevos);
+
+      // Si este trabajo estaba vinculado a un presupuesto, devolver el presupuesto a "pendiente"
+      let nuevosPresupuestos = presupuestosRef.current;
+      const presupuestoVinculado = presupuestosRef.current.find(
+        (p) => (item.presupuestoId && p.id === item.presupuestoId) || p.trabajoId === id
+      );
+
+      if (presupuestoVinculado) {
+        nuevosPresupuestos = presupuestosRef.current.map((p) =>
+          p.id === presupuestoVinculado.id
+            ? { ...p, estado: "pendiente" as const, trabajoId: undefined }
+            : p
+        );
+      }
+
+      guardarDatos(nuevos, gastosRef.current, nuevosPresupuestos);
       setUltimoEliminado({ tipo: "trabajo", itemTrabajo: item });
-      showToast(`🗑️ ${vehiculo} eliminado. ¿Fue un error? Podés deshacerlo 👉`, 7000);
+      showToast(
+        presupuestoVinculado
+          ? `🗑️ ${vehiculo} eliminado del taller. Su cotización volvió a figurar como "Pendiente".`
+          : `🗑️ ${vehiculo} eliminado. ¿Fue un error? Podés deshacerlo 👉`,
+        7000
+      );
     }
   };
 
@@ -1499,6 +1552,9 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
                 type="button"
                 onClick={() => {
                   setFormTrabajoFecha(new Date().toISOString().split("T")[0]);
+                  setFormTrabajoHoraTurno("09:00");
+                  setFormTrabajoEstadoTrabajo("agendado");
+                  setFormTrabajoEstadoPago("pendiente");
                   setModalTrabajoOpen(true);
                 }}
                 className="btn-celeste px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg cursor-pointer active:scale-95 transition-transform"
@@ -1937,25 +1993,25 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
                           )}
 
                           {p.estado === "descartado" && (
-                            <>
-                              <button
-                                type="button"
-                                onClick={() => handleRecuperarPresupuesto(p.id)}
-                                className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-xl transition-all cursor-pointer flex items-center gap-1"
-                              >
-                                <FaRedo className="size-3" />
-                                <span>Reabrir</span>
-                              </button>
-                              <button
-                                type="button"
-                                onClick={() => handleEliminarPresupuesto(p.id)}
-                                className="p-2 rounded-xl bg-red-950/30 hover:bg-red-900/50 text-red-400 border border-red-500/20 transition-all cursor-pointer"
-                                title="Eliminar definitivamente"
-                              >
-                                <FaTrash className="size-3.5" />
-                              </button>
-                            </>
+                            <button
+                              type="button"
+                              onClick={() => handleRecuperarPresupuesto(p.id)}
+                              className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-xl transition-all cursor-pointer flex items-center gap-1"
+                            >
+                              <FaRedo className="size-3" />
+                              <span>Reabrir</span>
+                            </button>
                           )}
+
+                          {/* Botón de eliminación disponible en cualquier estado */}
+                          <button
+                            type="button"
+                            onClick={() => handleEliminarPresupuesto(p.id)}
+                            className="p-2 rounded-xl bg-red-950/30 hover:bg-red-900/50 text-red-400 border border-red-500/20 transition-all cursor-pointer"
+                            title="Eliminar presupuesto definitivamente"
+                          >
+                            <FaTrash className="size-3.5" />
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -2286,16 +2342,63 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
             </div>
 
             <form onSubmit={handleCrearTrabajo} className="space-y-4 text-xs">
+              {/* Selector de Entrada: ¿Es un Turno a futuro o ya está en el taller? */}
+              <div className="p-3 bg-[#111a2c] border border-sky-500/20 rounded-2xl space-y-2">
+                <span className="block font-semibold text-slate-200 text-xs">
+                  ¿Cómo ingresa este vehículo al sistema?
+                </span>
+                <div className="grid grid-cols-2 gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setFormTrabajoEstadoTrabajo("agendado")}
+                    className={`py-2 px-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2 border transition-all cursor-pointer ${
+                      formTrabajoEstadoTrabajo === "agendado"
+                        ? "bg-sky-500 text-slate-950 border-sky-400 shadow-md shadow-sky-500/30"
+                        : "bg-[#0b1220] text-sky-300 border-sky-500/30 hover:border-sky-400"
+                    }`}
+                  >
+                    <span>📅 Turno Agendado</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setFormTrabajoEstadoTrabajo("en_taller")}
+                    className={`py-2 px-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2 border transition-all cursor-pointer ${
+                      formTrabajoEstadoTrabajo === "en_taller"
+                        ? "bg-indigo-500 text-white border-indigo-400 shadow-md shadow-indigo-500/30"
+                        : "bg-[#0b1220] text-indigo-300 border-indigo-500/30 hover:border-indigo-400"
+                    }`}
+                  >
+                    <span>🔧 Ya en Taller</span>
+                  </button>
+                </div>
+              </div>
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div>
-                  <label className="block font-semibold text-slate-300 mb-1">Fecha de Ingreso *</label>
-                  <input
-                    type="date"
-                    required
-                    value={formTrabajoFecha}
-                    onChange={(e) => setFormTrabajoFecha(e.target.value)}
-                    className="w-full bg-[#141f33] border border-sky-500/25 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-sky-400"
-                  />
+                <div className={formTrabajoEstadoTrabajo === "agendado" ? "grid grid-cols-2 gap-2" : ""}>
+                  <div>
+                    <label className="block font-semibold text-slate-300 mb-1">
+                      {formTrabajoEstadoTrabajo === "agendado" ? "Fecha del Turno *" : "Fecha de Ingreso *"}
+                    </label>
+                    <input
+                      type="date"
+                      required
+                      value={formTrabajoFecha}
+                      onChange={(e) => setFormTrabajoFecha(e.target.value)}
+                      className="w-full bg-[#141f33] border border-sky-500/25 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-sky-400 text-xs"
+                    />
+                  </div>
+                  {formTrabajoEstadoTrabajo === "agendado" && (
+                    <div>
+                      <label className="block font-semibold text-slate-300 mb-1">Hora Turno *</label>
+                      <input
+                        type="time"
+                        required
+                        value={formTrabajoHoraTurno}
+                        onChange={(e) => setFormTrabajoHoraTurno(e.target.value)}
+                        className="w-full bg-[#141f33] border border-sky-500/25 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-sky-400 text-xs"
+                      />
+                    </div>
+                  )}
                 </div>
 
                 <div>
@@ -2306,7 +2409,7 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
                     placeholder="ej. Ford Ranger XLT, VW Golf, Hilux"
                     value={formTrabajoVehiculo}
                     onChange={(e) => setFormTrabajoVehiculo(e.target.value)}
-                    className="w-full bg-[#141f33] border border-sky-500/25 rounded-xl px-3 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:border-sky-400"
+                    className="w-full bg-[#141f33] border border-sky-500/25 rounded-xl px-3 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:border-sky-400 text-xs"
                   />
                 </div>
               </div>
@@ -2367,16 +2470,16 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
               </div>
 
               {/* Monto y medio de pago */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
                 <div>
-                  <label className="block font-semibold text-slate-300 mb-1">Monto Total Cobrado ($ ARS) *</label>
+                  <label className="block font-semibold text-slate-300 mb-1">Monto Presupuestado ($) *</label>
                   <input
                     type="text"
                     required
                     placeholder="ej. 450000"
                     value={formTrabajoMonto}
                     onChange={(e) => setFormTrabajoMonto(e.target.value)}
-                    className="w-full bg-[#141f33] border border-sky-500/35 rounded-xl px-3 py-2.5 text-base font-extrabold text-sky-400 placeholder-slate-600 focus:outline-none focus:border-sky-400"
+                    className="w-full bg-[#141f33] border border-sky-500/35 rounded-xl px-3 py-2 text-base font-extrabold text-sky-400 placeholder-slate-600 focus:outline-none focus:border-sky-400"
                   />
                 </div>
 
@@ -2385,12 +2488,28 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
                   <select
                     value={formTrabajoMedioPago}
                     onChange={(e) => setFormTrabajoMedioPago(e.target.value as MedioPago)}
-                    className="w-full bg-[#141f33] border border-sky-500/25 rounded-xl px-3 py-2.5 text-white font-semibold focus:outline-none focus:border-sky-400"
+                    className="w-full bg-[#141f33] border border-sky-500/25 rounded-xl px-3 py-2.5 text-white font-semibold focus:outline-none focus:border-sky-400 text-xs"
                   >
                     <option value="efectivo">Efectivo</option>
                     <option value="transferencia">Transferencia Bancaria</option>
                     <option value="cheque">Cheque (A fecha / Cartera)</option>
                     <option value="tarjeta">Tarjeta / Posnet</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block font-semibold text-slate-300 mb-1">Estado del Pago</label>
+                  <select
+                    value={formTrabajoEstadoPago}
+                    onChange={(e) => setFormTrabajoEstadoPago(e.target.value as "pendiente" | "cobrado")}
+                    className={`w-full border rounded-xl px-3 py-2.5 font-bold focus:outline-none text-xs ${
+                      formTrabajoEstadoPago === "cobrado"
+                        ? "bg-emerald-950/80 text-emerald-300 border-emerald-500/40"
+                        : "bg-amber-950/80 text-amber-300 border-amber-500/40"
+                    }`}
+                  >
+                    <option value="pendiente">⏳ Pendiente (al retirar)</option>
+                    <option value="cobrado">✓ Cobrado (ya abonado)</option>
                   </select>
                 </div>
               </div>
