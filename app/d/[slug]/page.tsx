@@ -84,7 +84,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ? {
           google: "8KSKdnhVp7_r_zufW5NJuW-O4bCwpQ4t7Gsen_A02VE",
         }
-      : undefined,
+      : isMcDetail
+        ? {
+            google: "_PneSsBs5qthk7KOsRQyAHCjfsqCLE2nIt3Bm__STbE",
+          }
+        : undefined,
     alternates: {
       canonical: canonicalUrl,
     },

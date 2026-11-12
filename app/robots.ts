@@ -1,8 +1,6 @@
 import type { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = "https://platinumdetallado.com";
-
   return {
     rules: [
       {
@@ -20,6 +18,10 @@ export default function robots(): MetadataRoute.Robots {
         allow: ["/", "/favicon*", "/favicon.ico", "/*.png", "/*.svg"],
       },
     ],
-    sitemap: `${baseUrl}/sitemap.xml`,
+    sitemap: [
+      "https://mcdetail.com.ar/sitemap.xml",
+      "https://platinumdetallado.com/sitemap.xml",
+      "https://detailing-demos-three.vercel.app/sitemap.xml",
+    ],
   };
 }
