@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useMemo } from "react";
+import { FaWhatsapp, FaCopy, FaFilePdf, FaCheck } from "react-icons/fa";
 import type { Business, ServiceItem } from "@/data/business-helpers";
 import { DEFAULT_DEMO_BUSINESS } from "@/data/demo-business";
 import { getBusinessData, resolveWorkshopSlug } from "@/lib/supabase";
@@ -115,6 +116,35 @@ interface SelectedServiceState {
   activo: boolean;
 }
 
+function cleanWhatsAppPhone(phone: string, pais: CountryCode = "AR"): string {
+  let digits = (phone || "").replace(/\D/g, "");
+  if (!digits) return "";
+
+  if (pais === "AR") {
+    if (digits.startsWith("549")) return digits;
+    if (digits.startsWith("54") && !digits.startsWith("549")) {
+      return "549" + digits.slice(2);
+    }
+    if (digits.startsWith("0")) {
+      digits = digits.slice(1);
+    }
+    digits = digits.replace(/^(11|[23]\d{1,3})15(\d+)$/, "$1$2");
+    return `549${digits}`;
+  }
+
+  if (pais === "MX") {
+    if (digits.startsWith("52")) return digits;
+    return `52${digits}`;
+  }
+
+  if (pais === "ES") {
+    if (digits.startsWith("34")) return digits;
+    return `34${digits}`;
+  }
+
+  return digits;
+}
+
 export default function PresupuestoPage() {
   const [biz, setBiz] = useState<Business>(DEFAULT_DEMO_BUSINESS);
   const [currentSlug, setCurrentSlug] = useState<string>("demo");
@@ -122,6 +152,7 @@ export default function PresupuestoPage() {
 
   // Formulario del cliente
   const [clienteNombre, setClienteNombre] = useState("");
+  const [clienteTelefono, setClienteTelefono] = useState("");
   const [vehiculoModelo, setVehiculoModelo] = useState("");
   const [vehiculoTamanio, setVehiculoTamanio] = useState("mediano");
   const [tiempoEstimado, setTiempoEstimado] = useState("");
@@ -374,6 +405,16 @@ export default function PresupuestoPage() {
     config,
   ]);
 
+  // URL directa de WhatsApp al cliente
+  const whatsAppUrl = useMemo(() => {
+    const cleaned = cleanWhatsAppPhone(clienteTelefono, (biz.pais as CountryCode) || "AR");
+    const encoded = encodeURIComponent(whatsAppMessage);
+    if (cleaned) {
+      return `https://wa.me/${cleaned}?text=${encoded}`;
+    }
+    return `https://wa.me/?text=${encoded}`;
+  }, [clienteTelefono, biz.pais, whatsAppMessage]);
+
   const handleCopyMessage = () => {
     if (typeof navigator !== "undefined" && navigator.clipboard) {
       navigator.clipboard.writeText(whatsAppMessage);
@@ -389,6 +430,7 @@ export default function PresupuestoPage() {
   const handleResetForm = () => {
     if (confirm("¿Limpiar los datos para armar un presupuesto nuevo?")) {
       setClienteNombre("");
+      setClienteTelefono("");
       setVehiculoModelo("");
       setVehiculoTamanio("mediano");
       setTiempoEstimado("");
@@ -498,7 +540,7 @@ export default function PresupuestoPage() {
                   </span>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
                   <div>
                     <label className="block text-xs font-bold text-neutral-300 mb-1.5">
                       Nombre del Cliente
@@ -507,8 +549,22 @@ export default function PresupuestoPage() {
                       type="text"
                       value={clienteNombre}
                       onChange={(e) => setClienteNombre(e.target.value)}
-                      placeholder="Ej: Martín / Lucas"
+                      placeholder="Ej: Martín Rossi"
                       className="w-full bg-[#181818] border border-neutral-700 rounded-xl px-3.5 py-2.5 text-sm text-neutral-100 placeholder:text-neutral-500 focus:outline-none focus:border-neutral-400"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-neutral-300 mb-1.5 flex items-center justify-between">
+                      <span>WhatsApp del Cliente</span>
+                      <span className="text-[10px] text-emerald-400 font-normal">Abre chat directo</span>
+                    </label>
+                    <input
+                      type="tel"
+                      value={clienteTelefono}
+                      onChange={(e) => setClienteTelefono(e.target.value)}
+                      placeholder="Ej: 353 414 1738"
+                      className="w-full bg-[#181818] border border-emerald-500/30 rounded-xl px-3.5 py-2.5 text-sm text-neutral-100 placeholder:text-neutral-500 focus:outline-none focus:border-emerald-400"
                     />
                   </div>
 
@@ -520,7 +576,7 @@ export default function PresupuestoPage() {
                       type="text"
                       value={vehiculoModelo}
                       onChange={(e) => setVehiculoModelo(e.target.value)}
-                      placeholder="Ej: Toyota Hilux / Audi A3"
+                      placeholder="Ej: Toyota Hilux / Ford Ranger"
                       className="w-full bg-[#181818] border border-neutral-700 rounded-xl px-3.5 py-2.5 text-sm text-neutral-100 placeholder:text-neutral-500 focus:outline-none focus:border-neutral-400"
                     />
                   </div>
@@ -806,7 +862,7 @@ export default function PresupuestoPage() {
 
                 <div className="mt-3 text-center">
                   <p className="text-[10px] text-neutral-400">
-                    Al tocar <strong>"Copiar Mensaje"</strong> podés ir a WhatsApp y pegarlo directo en el chat con tu cliente.
+                    Al tocar <strong>"Enviar Presupuesto por WhatsApp"</strong> se abre automáticamente la conversación con el cliente con el texto listo para enviar.
                   </p>
                 </div>
               </div>
@@ -868,6 +924,7 @@ export default function PresupuestoPage() {
               <span className="text-slate-500 block text-[7.5px] uppercase font-semibold">Cliente:</span>
               <span className="font-bold text-slate-900 text-[9.5px]">
                 {clienteNombre.trim() ? clienteNombre.trim() : "Consumidor Final / A designar"}
+                {clienteTelefono.trim() ? ` · Tel/Wsp: ${clienteTelefono.trim()}` : ""}
               </span>
             </div>
             <div>

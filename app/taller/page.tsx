@@ -645,6 +645,44 @@ export default function TallerGestionPage() {
     showToast("💳 Estado del cheque actualizado.");
   };
 
+  // Enviar detalle / aviso del trabajo por WhatsApp al cliente
+  const handleEnviarWhatsAppTrabajo = (t: Trabajo) => {
+    const saludo = t.cliente ? `¡Hola ${t.cliente}! 👋` : "¡Hola! 👋";
+    const estado = t.estadoPago === "cobrado" ? "Abonado" : "Pendiente de pago";
+    const serviciosTexto = t.servicios && t.servicios.length > 0 
+      ? t.servicios.map((s) => `  • ${s}`).join("\n")
+      : "  • Servicio General";
+
+    const texto = `${saludo} Te escribimos desde *${biz.nombre}*.
+
+🚗 *Vehículo:* ${t.vehiculo}
+🛠️ *Servicios realizados / presupuestados:*
+${serviciosTexto}
+💰 *Total:* ${formatPesos(t.monto)} (${estado} - ${t.medioPago.toUpperCase()})
+${t.notas ? `📝 *Nota:* ${t.notas}\n` : ""}${biz.direccion ? `📍 *Taller:* ${biz.direccion}, ${biz.ciudad}\n` : ""}
+¡Quedamos a tu disposición por cualquier consulta! Muchas gracias.`;
+
+    let digits = (t.telefono || "").replace(/\D/g, "");
+    let cleanPhone = "";
+    if (digits) {
+      if (digits.startsWith("549")) {
+        cleanPhone = digits;
+      } else if (digits.startsWith("54") && !digits.startsWith("549")) {
+        cleanPhone = "549" + digits.slice(2);
+      } else {
+        if (digits.startsWith("0")) digits = digits.slice(1);
+        digits = digits.replace(/^(11|[23]\d{1,3})15(\d+)$/, "$1$2");
+        cleanPhone = `549${digits}`;
+      }
+    }
+
+    const url = cleanPhone
+      ? `https://wa.me/${cleanPhone}?text=${encodeURIComponent(texto)}`
+      : `https://wa.me/?text=${encodeURIComponent(texto)}`;
+
+    window.open(url, "_blank");
+  };
+
   // Eliminar Trabajo (con confirmación rápida y opción de Deshacer)
   const handleEliminarTrabajo = (id: string, vehiculo: string) => {
     const item = trabajos.find((t) => t.id === id);
@@ -1071,6 +1109,15 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
                       </div>
 
                       <div className="flex items-center gap-1.5">
+                        <button
+                          type="button"
+                          onClick={() => handleEnviarWhatsAppTrabajo(t)}
+                          className="p-2 rounded-xl bg-emerald-950/40 hover:bg-emerald-900/60 text-emerald-300 border border-emerald-500/30 transition-all cursor-pointer shadow-sm hover:scale-105"
+                          title={t.telefono ? `Enviar detalle x WhatsApp a ${t.cliente || "cliente"} (${t.telefono})` : "Enviar detalle x WhatsApp"}
+                        >
+                          <FaWhatsapp className="size-4 text-emerald-400" />
+                        </button>
+
                         {t.medioPago === "cheque" && (
                           <button
                             type="button"
