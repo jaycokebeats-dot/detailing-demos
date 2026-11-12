@@ -540,7 +540,7 @@ export default function PresupuestoPage() {
                   </span>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-bold text-neutral-300 mb-1.5">
                       Nombre del Cliente
@@ -550,25 +550,24 @@ export default function PresupuestoPage() {
                       value={clienteNombre}
                       onChange={(e) => setClienteNombre(e.target.value)}
                       placeholder="Ej: Martín Rossi"
-                      className="w-full bg-[#181818] border border-neutral-700 rounded-xl px-3.5 py-2.5 text-sm text-neutral-100 placeholder:text-neutral-500 focus:outline-none focus:border-neutral-400"
+                      className="w-full bg-[#181818] border border-neutral-700 hover:border-neutral-600 focus:border-sky-400 rounded-xl px-3.5 py-2.5 text-sm text-neutral-100 placeholder:text-neutral-500 focus:outline-none transition-colors"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-neutral-300 mb-1.5 flex items-center justify-between">
-                      <span>WhatsApp del Cliente</span>
-                      <span className="text-[10px] text-emerald-400 font-normal">Abre chat directo</span>
+                    <label className="block text-xs font-bold text-neutral-300 mb-1.5">
+                      WhatsApp / Celular
                     </label>
                     <input
                       type="tel"
                       value={clienteTelefono}
                       onChange={(e) => setClienteTelefono(e.target.value)}
                       placeholder="Ej: 353 414 1738"
-                      className="w-full bg-[#181818] border border-emerald-500/30 rounded-xl px-3.5 py-2.5 text-sm text-neutral-100 placeholder:text-neutral-500 focus:outline-none focus:border-emerald-400"
+                      className="w-full bg-[#181818] border border-neutral-700 hover:border-neutral-600 focus:border-emerald-400 rounded-xl px-3.5 py-2.5 text-sm text-neutral-100 placeholder:text-neutral-500 focus:outline-none transition-colors"
                     />
                   </div>
 
-                  <div>
+                  <div className="sm:col-span-2">
                     <label className="block text-xs font-bold text-neutral-300 mb-1.5">
                       Modelo del {config.terminoVehiculo}
                     </label>
@@ -576,8 +575,8 @@ export default function PresupuestoPage() {
                       type="text"
                       value={vehiculoModelo}
                       onChange={(e) => setVehiculoModelo(e.target.value)}
-                      placeholder="Ej: Toyota Hilux / Ford Ranger"
-                      className="w-full bg-[#181818] border border-neutral-700 rounded-xl px-3.5 py-2.5 text-sm text-neutral-100 placeholder:text-neutral-500 focus:outline-none focus:border-neutral-400"
+                      placeholder="Ej: Ford Ranger XLT / Toyota Hilux SRV"
+                      className="w-full bg-[#181818] border border-neutral-700 hover:border-neutral-600 focus:border-sky-400 rounded-xl px-3.5 py-2.5 text-sm text-neutral-100 placeholder:text-neutral-500 focus:outline-none transition-colors"
                     />
                   </div>
                 </div>
@@ -811,39 +810,51 @@ export default function PresupuestoPage() {
                   {formatAmount(totalCotizado)}
                 </div>
 
-                {/* Botón Principal: Copiar para WhatsApp */}
-                <button
-                  type="button"
-                  onClick={handleCopyMessage}
-                  className={`w-full py-4 rounded-2xl font-black text-sm sm:text-base transition-all cursor-pointer flex items-center justify-center gap-2 shadow-xl active:scale-95 ${
-                    copied
-                      ? "bg-emerald-500 text-neutral-950 border border-emerald-400"
-                      : "bg-gradient-to-r from-emerald-400 via-emerald-300 to-teal-400 hover:from-emerald-300 hover:to-teal-300 text-neutral-950 border border-emerald-300/40"
-                  }`}
+                {/* Botón Principal: Enviar Directo a WhatsApp */}
+                <a
+                  href={whatsAppUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-4 rounded-2xl font-black text-sm sm:text-base transition-all cursor-pointer flex items-center justify-center gap-2.5 shadow-xl shadow-emerald-950/40 active:scale-95 bg-emerald-500 hover:bg-emerald-400 text-neutral-950 border border-emerald-400"
                 >
-                  {copied ? (
-                    <>
-                      <span className="text-lg">✓</span>
-                      <span>¡Mensaje Copiado!</span>
-                    </>
-                  ) : (
-                    <>
-                      <span className="text-lg">💬</span>
-                      <span>Copiar Mensaje para WhatsApp</span>
-                    </>
-                  )}
-                </button>
+                  <FaWhatsapp className="size-5 text-neutral-950 shrink-0" />
+                  <span>
+                    {clienteTelefono.trim()
+                      ? `Enviar Presupuesto por WhatsApp ${clienteNombre.trim() ? `a ${clienteNombre.trim()}` : ""}`
+                      : "Abrir WhatsApp y Enviar Presupuesto"}
+                  </span>
+                </a>
 
-                {/* Botón Secundario: Descargar / Imprimir Presupuesto Formal en PDF */}
-                <button
-                  type="button"
-                  onClick={handlePrint}
-                  className="w-full py-3.5 rounded-2xl font-bold text-xs sm:text-sm bg-[#181818] hover:bg-[#222222] border border-neutral-700 hover:border-neutral-500 text-neutral-200 hover:text-white transition-all cursor-pointer flex items-center justify-center gap-2 shadow-lg active:scale-98"
-                  title={`Descargar ${config.terminoCotizacion} Formal en formato PDF listo para enviar o imprimir`}
-                >
-                  <span className="text-base">📄</span>
-                  <span>Descargar / Imprimir {config.terminoCotizacion} Formal (PDF)</span>
-                </button>
+                {/* Botones Secundarios: Copiar Mensaje & Descargar PDF */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  <button
+                    type="button"
+                    onClick={handleCopyMessage}
+                    className="w-full py-3 rounded-xl font-bold text-xs bg-[#181818] hover:bg-[#222222] border border-neutral-700 hover:border-neutral-500 text-neutral-200 hover:text-white transition-all cursor-pointer flex items-center justify-center gap-2 active:scale-95"
+                  >
+                    {copied ? (
+                      <>
+                        <FaCheck className="size-3.5 text-emerald-400" />
+                        <span className="text-emerald-400 font-bold">¡Copiado!</span>
+                      </>
+                    ) : (
+                      <>
+                        <FaCopy className="size-3.5 text-slate-400" />
+                        <span>Copiar Mensaje</span>
+                      </>
+                    )}
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={handlePrint}
+                    className="w-full py-3 rounded-xl font-bold text-xs bg-[#181818] hover:bg-[#222222] border border-neutral-700 hover:border-neutral-500 text-neutral-200 hover:text-white transition-all cursor-pointer flex items-center justify-center gap-2 active:scale-95"
+                    title={`Descargar ${config.terminoCotizacion} Formal en formato PDF listo para enviar o imprimir`}
+                  >
+                    <FaFilePdf className="size-3.5 text-red-400" />
+                    <span>Descargar PDF</span>
+                  </button>
+                </div>
               </div>
 
               {/* Burbuja de Vista Previa de WhatsApp */}
