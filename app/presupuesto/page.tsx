@@ -541,6 +541,14 @@ export default function PresupuestoPage() {
                 <span>Descargar PDF</span>
               </button>
               <a
+                href={`/taller?slug=${encodeURIComponent(currentSlug)}`}
+                className="bg-sky-950/60 hover:bg-sky-900/80 border border-sky-500/40 text-sky-200 hover:text-white text-xs font-semibold px-3 py-2 rounded-xl transition-all cursor-pointer flex items-center gap-1.5 shadow-sm"
+                title="Ir al Control de Taller & Caja"
+              >
+                <span>🏢</span>
+                <span>Ir al Taller</span>
+              </a>
+              <a
                 href={`/d/${currentSlug}/`}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -891,19 +899,7 @@ export default function PresupuestoPage() {
                   </button>
                 </div>
 
-                {/* Botón Puente: Ir al Taller & Agendar Turno */}
-                <button
-                  type="button"
-                  onClick={async () => {
-                    const guardado = await guardarPresupuestoSilencioso();
-                    const idParam = guardado ? `&agendar=${encodeURIComponent(guardado.id)}` : "";
-                    window.location.href = `/taller?slug=${encodeURIComponent(currentSlug)}${idParam}`;
-                  }}
-                  className="w-full py-3 rounded-xl font-bold text-xs bg-sky-950/50 hover:bg-sky-900/70 border border-sky-500/40 text-sky-200 hover:text-white transition-all cursor-pointer flex items-center justify-center gap-2 active:scale-95 shadow-md shadow-sky-950/30"
-                >
-                  <FaCalendarCheck className="size-3.5 text-sky-400" />
-                  <span>Pasar al Taller y Agendar Turno</span>
-                </button>
+
               </div>
 
               {/* Burbuja de Vista Previa de WhatsApp */}

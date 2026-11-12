@@ -570,8 +570,12 @@ ${biz.direccion ? `• *Taller:* ${biz.direccion}, ${biz.ciudad}\n` : ""}
         if (cloudData && Array.isArray(cloudData.trabajos) && Array.isArray(cloudData.gastos)) {
           setTrabajos(cloudData.trabajos);
           setGastos(cloudData.gastos);
-          if (Array.isArray(cloudData.presupuestos)) {
+          if (Array.isArray(cloudData.presupuestos) && cloudData.presupuestos.length > 0) {
             setPresupuestos(cloudData.presupuestos);
+          } else {
+            // Si en la nube no hay presupuestos aún, sembrar el de ejemplo
+            const init = getInitialData(slug);
+            setPresupuestos(init.presupuestos);
           }
           setSyncStatus("synced");
         } else {
