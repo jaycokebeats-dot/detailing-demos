@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState, useMemo } from "react";
-import { FaWhatsapp, FaCopy, FaFilePdf, FaCheck } from "react-icons/fa";
+import { FaWhatsapp, FaCopy, FaFilePdf, FaCheck, FaCalendarCheck } from "react-icons/fa";
+import { guardarPresupuestoCloud, PresupuestoGuardado } from "@/lib/taller-sync";
 import type { Business, ServiceItem } from "@/data/business-helpers";
 import { DEFAULT_DEMO_BUSINESS } from "@/data/demo-business";
 import { getBusinessData, resolveWorkshopSlug } from "@/lib/supabase";
@@ -308,7 +309,8 @@ export default function PresupuestoPage() {
     ]);
   };
 
-  const handlePrint = () => {
+  const handlePrint = async () => {
+    await guardarPresupuestoSilencioso();
     if (typeof window !== "undefined") {
       window.print();
     }
@@ -415,11 +417,41 @@ export default function PresupuestoPage() {
     return `https://wa.me/?text=${encoded}`;
   }, [clienteTelefono, biz.pais, whatsAppMessage]);
 
-  const handleCopyMessage = () => {
+  // Guardar presupuesto automáticamente en la nube del Taller
+  const guardarPresupuestoSilencioso = async (): Promise<PresupuestoGuardado | null> => {
+    const serviciosActivos = serviciosState.filter((s) => s.activo);
+    if (serviciosActivos.length === 0 && !clienteNombre.trim() && !vehiculoModelo.trim()) {
+      return null;
+    }
+
+    const nuevo: PresupuestoGuardado = {
+      id: `presupuesto-${Date.now()}`,
+      fechaCreacion: new Date().toISOString(),
+      cliente: clienteNombre.trim() || "Cliente",
+      telefono: clienteTelefono.trim(),
+      vehiculo: vehiculoModelo.trim() || `Vehículo (${selectedTamanioObj.label})`,
+      tamanio: vehiculoTamanio,
+      servicios: serviciosActivos.map((s) => `${s.nombre} (${formatAmount(s.precioNum)})`),
+      monto: totalCotizado,
+      estado: "pendiente",
+      notas: notasExtras.trim() || undefined,
+    };
+
+    try {
+      await guardarPresupuestoCloud(currentSlug, nuevo);
+      return nuevo;
+    } catch (err) {
+      console.warn("No se pudo guardar presupuesto en nube:", err);
+      return null;
+    }
+  };
+
+  const handleCopyMessage = async () => {
     if (typeof navigator !== "undefined" && navigator.clipboard) {
       navigator.clipboard.writeText(whatsAppMessage);
       setCopied(true);
-      setToastMsg("✨ ¡Mensaje copiado! Pegalo en el chat de WhatsApp de tu cliente.");
+      await guardarPresupuestoSilencioso();
+      setToastMsg("✨ ¡Mensaje copiado y guardado en el Taller!");
       setTimeout(() => {
         setCopied(false);
         setToastMsg(null);
@@ -815,6 +847,9 @@ export default function PresupuestoPage() {
                   href={whatsAppUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={async () => {
+                    await guardarPresupuestoSilencioso();
+                  }}
                   className="w-full py-4 rounded-2xl font-black text-sm sm:text-base transition-all cursor-pointer flex items-center justify-center gap-2.5 shadow-xl shadow-emerald-950/40 active:scale-95 bg-emerald-500 hover:bg-emerald-400 text-neutral-950 border border-emerald-400"
                 >
                   <FaWhatsapp className="size-5 text-neutral-950 shrink-0" />
@@ -855,6 +890,20 @@ export default function PresupuestoPage() {
                     <span>Descargar PDF</span>
                   </button>
                 </div>
+
+                {/* Botón Puente: Ir al Taller & Agendar Turno */}
+                <button
+                  type="button"
+                  onClick={async () => {
+                    const guardado = await guardarPresupuestoSilencioso();
+                    const idParam = guardado ? `&agendar=${encodeURIComponent(guardado.id)}` : "";
+                    window.location.href = `/taller?slug=${encodeURIComponent(currentSlug)}${idParam}`;
+                  }}
+                  className="w-full py-3 rounded-xl font-bold text-xs bg-sky-950/50 hover:bg-sky-900/70 border border-sky-500/40 text-sky-200 hover:text-white transition-all cursor-pointer flex items-center justify-center gap-2 active:scale-95 shadow-md shadow-sky-950/30"
+                >
+                  <FaCalendarCheck className="size-3.5 text-sky-400" />
+                  <span>Pasar al Taller y Agendar Turno</span>
+                </button>
               </div>
 
               {/* Burbuja de Vista Previa de WhatsApp */}

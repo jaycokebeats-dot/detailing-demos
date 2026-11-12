@@ -9,9 +9,12 @@ export type ChequeInfo = {
   cobrado: boolean;
 };
 
+export type EstadoTrabajo = "agendado" | "en_taller" | "listo" | "entregado";
+
 export type Trabajo = {
   id: string;
   fecha: string; // YYYY-MM-DD
+  horaTurno?: string; // HH:mm ej. "09:00"
   vehiculo: string;
   cliente?: string;
   telefono?: string;
@@ -20,7 +23,23 @@ export type Trabajo = {
   medioPago: MedioPago;
   chequeData?: ChequeInfo;
   estadoPago: "cobrado" | "pendiente";
+  estadoTrabajo?: EstadoTrabajo;
   notas?: string;
+  presupuestoId?: string;
+};
+
+export type PresupuestoGuardado = {
+  id: string;
+  fechaCreacion: string; // ISO string
+  cliente: string;
+  telefono: string;
+  vehiculo: string;
+  tamanio?: string;
+  servicios: string[];
+  monto: number;
+  estado: "pendiente" | "agendado" | "descartado";
+  notas?: string;
+  trabajoId?: string;
 };
 
 export type GastoCategoria =
@@ -47,6 +66,7 @@ export type Gasto = {
 export type TallerStoreData = {
   trabajos: Trabajo[];
   gastos: Gasto[];
+  presupuestos?: PresupuestoGuardado[];
   version?: number;
 };
 
@@ -55,7 +75,7 @@ export function getTallerDbKey(slug: string): string {
   return `taller_${cleanSlug}`;
 }
 
-export function getTallerLocalKey(slug: string, type: "trabajos" | "gastos"): string {
+export function getTallerLocalKey(slug: string, type: "trabajos" | "gastos" | "presupuestos"): string {
   const cleanSlug = (slug || "am-centro-de-estetica-vehicular").toLowerCase().trim();
   return `taller_${type}_${cleanSlug}`;
 }
@@ -77,16 +97,21 @@ export async function fetchTallerCloudData(slug: string): Promise<TallerStoreDat
       if (!error && data?.data) {
         const payload = data.data as TallerStoreData;
         if (Array.isArray(payload.trabajos) && Array.isArray(payload.gastos)) {
+          const presupuestos = Array.isArray(payload.presupuestos) ? payload.presupuestos : [];
           // Guardar en caché local para próximas cargas ultra rápidas
           if (typeof window !== "undefined") {
             try {
               localStorage.setItem(getTallerLocalKey(slug, "trabajos"), JSON.stringify(payload.trabajos));
               localStorage.setItem(getTallerLocalKey(slug, "gastos"), JSON.stringify(payload.gastos));
+              localStorage.setItem(getTallerLocalKey(slug, "presupuestos"), JSON.stringify(presupuestos));
             } catch (err) {
               console.warn("[TallerSync] Error actualizando cache local:", err);
             }
           }
-          return payload;
+          return {
+            ...payload,
+            presupuestos,
+          };
         }
       }
     } catch (e) {
@@ -99,10 +124,12 @@ export async function fetchTallerCloudData(slug: string): Promise<TallerStoreDat
     try {
       const localTrabajos = localStorage.getItem(getTallerLocalKey(slug, "trabajos"));
       const localGastos = localStorage.getItem(getTallerLocalKey(slug, "gastos"));
-      if (localTrabajos || localGastos) {
+      const localPresupuestos = localStorage.getItem(getTallerLocalKey(slug, "presupuestos"));
+      if (localTrabajos || localGastos || localPresupuestos) {
         return {
           trabajos: localTrabajos ? JSON.parse(localTrabajos) : [],
           gastos: localGastos ? JSON.parse(localGastos) : [],
+          presupuestos: localPresupuestos ? JSON.parse(localPresupuestos) : [],
         };
       }
     } catch (err) {
@@ -121,12 +148,14 @@ export async function saveTallerCloudData(
   store: TallerStoreData
 ): Promise<{ success: boolean; error?: string }> {
   const dbKey = getTallerDbKey(slug);
+  const presupuestos = Array.isArray(store.presupuestos) ? store.presupuestos : [];
 
   // 1. Guardar de inmediato en LocalStorage para respuesta instantánea (optimistic UI)
   if (typeof window !== "undefined") {
     try {
       localStorage.setItem(getTallerLocalKey(slug, "trabajos"), JSON.stringify(store.trabajos));
       localStorage.setItem(getTallerLocalKey(slug, "gastos"), JSON.stringify(store.gastos));
+      localStorage.setItem(getTallerLocalKey(slug, "presupuestos"), JSON.stringify(presupuestos));
       window.dispatchEvent(new CustomEvent("taller_data_local_updated", { detail: { slug } }));
     } catch (err) {
       console.warn("[TallerSync] Error escribiendo en localStorage:", err);
@@ -141,7 +170,10 @@ export async function saveTallerCloudData(
         .upsert(
           {
             slug: dbKey,
-            data: store,
+            data: {
+              ...store,
+              presupuestos,
+            },
             updated_at: new Date().toISOString(),
           },
           { onConflict: "slug" }
@@ -160,8 +192,40 @@ export async function saveTallerCloudData(
 }
 
 /**
+ * Guardar o actualizar un presupuesto individual directamente desde la pantalla de presupuestos
+ */
+export async function guardarPresupuestoCloud(
+  slug: string,
+  presupuesto: PresupuestoGuardado
+): Promise<{ success: boolean; error?: string }> {
+  try {
+    const current = (await fetchTallerCloudData(slug)) || { trabajos: [], gastos: [], presupuestos: [] };
+    const currentPresupuestos = current.presupuestos || [];
+
+    const idx = currentPresupuestos.findIndex((p) => p.id === presupuesto.id);
+    let updatedPresupuestos: PresupuestoGuardado[];
+    if (idx >= 0) {
+      updatedPresupuestos = [...currentPresupuestos];
+      updatedPresupuestos[idx] = presupuesto;
+    } else {
+      updatedPresupuestos = [presupuesto, ...currentPresupuestos];
+    }
+
+    const updatedStore: TallerStoreData = {
+      ...current,
+      presupuestos: updatedPresupuestos,
+    };
+
+    return await saveTallerCloudData(slug, updatedStore);
+  } catch (err: any) {
+    console.error("[TallerSync] Error al guardar presupuesto en la nube:", err);
+    return { success: false, error: err?.message || "Error al guardar presupuesto" };
+  }
+}
+
+/**
  * Suscripción en Tiempo Real:
- * Si alguien borra, edita o agrega un auto o gasto en el celular o la compu,
+ * Si alguien borra, edita o agrega un auto, presupuesto o gasto en el celular o la compu,
  * la tablet se actualiza en vivo al segundo sin tener que recargar la página.
  */
 export function subscribeToTallerRealtime(
@@ -186,16 +250,21 @@ export function subscribeToTallerRealtime(
           if (payload.new && (payload.new as any).data) {
             const fresh = (payload.new as any).data as TallerStoreData;
             if (fresh && Array.isArray(fresh.trabajos) && Array.isArray(fresh.gastos)) {
+              const freshPresupuestos = Array.isArray(fresh.presupuestos) ? fresh.presupuestos : [];
               // Actualizar caché local
               if (typeof window !== "undefined") {
                 try {
                   localStorage.setItem(getTallerLocalKey(slug, "trabajos"), JSON.stringify(fresh.trabajos));
                   localStorage.setItem(getTallerLocalKey(slug, "gastos"), JSON.stringify(fresh.gastos));
+                  localStorage.setItem(getTallerLocalKey(slug, "presupuestos"), JSON.stringify(freshPresupuestos));
                 } catch (e) {
                   // ignore
                 }
               }
-              onRemoteUpdate(fresh);
+              onRemoteUpdate({
+                ...fresh,
+                presupuestos: freshPresupuestos,
+              });
             }
           }
         }
