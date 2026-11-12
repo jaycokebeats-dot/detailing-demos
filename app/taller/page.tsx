@@ -647,19 +647,19 @@ export default function TallerGestionPage() {
 
   // Enviar detalle / aviso del trabajo por WhatsApp al cliente
   const handleEnviarWhatsAppTrabajo = (t: Trabajo) => {
-    const saludo = t.cliente ? `¡Hola ${t.cliente}! 👋` : "¡Hola! 👋";
+    const saludo = t.cliente ? `¡Hola ${t.cliente}!` : "¡Hola!";
     const estado = t.estadoPago === "cobrado" ? "Abonado" : "Pendiente de pago";
     const serviciosTexto = t.servicios && t.servicios.length > 0 
-      ? t.servicios.map((s) => `  • ${s}`).join("\n")
-      : "  • Servicio General";
+      ? t.servicios.map((s) => `• ${s}`).join("\n")
+      : "• Servicio General";
 
     const texto = `${saludo} Te escribimos desde *${biz.nombre}*.
 
-🚗 *Vehículo:* ${t.vehiculo}
-🛠️ *Servicios realizados / presupuestados:*
+*Vehículo:* ${t.vehiculo}
+*Trabajos:*
 ${serviciosTexto}
-💰 *Total:* ${formatPesos(t.monto)} (${estado} - ${t.medioPago.toUpperCase()})
-${t.notas ? `📝 *Nota:* ${t.notas}\n` : ""}${biz.direccion ? `📍 *Taller:* ${biz.direccion}, ${biz.ciudad}\n` : ""}
+*Total:* ${formatPesos(t.monto)} (${estado} - ${t.medioPago.toUpperCase()})
+${t.notas ? `• Nota: ${t.notas}\n` : ""}${biz.direccion ? `• Taller: ${biz.direccion}, ${biz.ciudad}\n` : ""}
 ¡Quedamos a tu disposición por cualquier consulta! Muchas gracias.`;
 
     let digits = (t.telefono || "").replace(/\D/g, "");

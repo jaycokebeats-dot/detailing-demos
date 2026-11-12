@@ -343,7 +343,7 @@ export default function PresupuestoPage() {
   // Mensaje de WhatsApp generado
   const whatsAppMessage = useMemo(() => {
     const nombreTaller = biz.nombre || "Taller de Detailing";
-    const saludo = clienteNombre.trim() ? `¡Hola ${clienteNombre.trim()}! 👋` : `¡Hola! 👋`;
+    const saludo = clienteNombre.trim() ? `¡Hola ${clienteNombre.trim()}!` : `¡Hola!`;
     const infoAuto = vehiculoModelo.trim()
       ? ` para tu *${vehiculoModelo.trim()}* (${selectedTamanioObj.label})`
       : ``;
@@ -355,32 +355,32 @@ export default function PresupuestoPage() {
           .map((s) => {
             const precioFormatted = formatAmount(s.precioNum);
             const extra = s.detalle && s.detalle.trim() ? ` _(${s.detalle.trim()})_` : "";
-            return `▪️ *${s.nombre}*: ${precioFormatted}${extra}`;
+            return `• *${s.nombre}:* ${precioFormatted}${extra}`;
           })
           .join("\n")
-      : `▪️ A coordinar según estado de la pintura.`;
+      : `• A coordinar según estado de la pintura.`;
 
     const articulo = config.terminoCotizacion.toLowerCase() === "cotización" ? "la" : "el";
     const adjetivo = config.terminoCotizacion.toLowerCase() === "cotización" ? "detallada" : "detallado";
 
     const bloques: string[] = [
       `${saludo} Te paso ${articulo} *${config.terminoCotizacion.toLowerCase()}* ${adjetivo}${infoAuto} en *${nombreTaller}*:\n`,
-      `📋 *TRABAJOS INCLUIDOS:*`,
+      `*DETALLE DE TRABAJOS:*`,
       lineasServicios,
-      `\n💰 *TOTAL:* ${formatAmount(totalCotizado)}`,
+      `\n*TOTAL:* *${formatAmount(totalCotizado)}*`,
     ];
 
     if (tiempoEstimado.trim()) {
-      bloques.push(`⏱️ *Tiempo de entrega:* ${tiempoEstimado.trim()}`);
+      bloques.push(`• Tiempo de entrega: ${tiempoEstimado.trim()}`);
     }
     if (garantia.trim()) {
-      bloques.push(`🛡️ *Garantía:* ${garantia.trim()}`);
+      bloques.push(`• Garantía: ${garantia.trim()}`);
     }
     if (formaPago.trim()) {
-      bloques.push(`💳 *Forma de pago:* ${formaPago.trim()}`);
+      bloques.push(`• Forma de pago: ${formaPago.trim()}`);
     }
     if (notasExtras.trim()) {
-      bloques.push(`📌 *Nota:* ${notasExtras.trim()}`);
+      bloques.push(`• Nota: ${notasExtras.trim()}`);
     }
 
     const despedida =
