@@ -585,11 +585,11 @@ ${biz.direccion ? `• *Taller:* ${biz.direccion}, ${biz.ciudad}\n` : ""}
         const savedGastos = localStorage.getItem(storageKeyGastos);
         const savedPresupuestos = localStorage.getItem(storageKeyPresupuestos);
 
-        if (savedTrabajos || savedGastos || savedPresupuestos) {
+        if (savedTrabajos !== null || savedGastos !== null || savedPresupuestos !== null) {
           try {
-            if (savedTrabajos) setTrabajos(JSON.parse(savedTrabajos));
-            if (savedGastos) setGastos(JSON.parse(savedGastos));
-            if (savedPresupuestos) setPresupuestos(JSON.parse(savedPresupuestos));
+            if (savedTrabajos !== null) setTrabajos(JSON.parse(savedTrabajos));
+            if (savedGastos !== null) setGastos(JSON.parse(savedGastos));
+            if (savedPresupuestos !== null) setPresupuestos(JSON.parse(savedPresupuestos));
           } catch (err) {
             // ignore
           }
@@ -606,12 +606,11 @@ ${biz.direccion ? `• *Taller:* ${biz.direccion}, ${biz.ciudad}\n` : ""}
         if (cloudData && Array.isArray(cloudData.trabajos) && Array.isArray(cloudData.gastos)) {
           setTrabajos(cloudData.trabajos);
           setGastos(cloudData.gastos);
-          if (Array.isArray(cloudData.presupuestos) && cloudData.presupuestos.length > 0) {
+          // Si en la nube existe el array de presupuestos (incluso vacío si el usuario los borró todos), respetarlo estrictamente
+          if (Array.isArray(cloudData.presupuestos)) {
             setPresupuestos(cloudData.presupuestos);
           } else {
-            // Si en la nube no hay presupuestos aún, sembrar el de ejemplo
-            const init = getInitialData(slug);
-            setPresupuestos(init.presupuestos);
+            setPresupuestos([]);
           }
           setSyncStatus("synced");
         } else {

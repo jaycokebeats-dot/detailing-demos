@@ -125,7 +125,7 @@ export async function fetchTallerCloudData(slug: string): Promise<TallerStoreDat
       const localTrabajos = localStorage.getItem(getTallerLocalKey(slug, "trabajos"));
       const localGastos = localStorage.getItem(getTallerLocalKey(slug, "gastos"));
       const localPresupuestos = localStorage.getItem(getTallerLocalKey(slug, "presupuestos"));
-      if (localTrabajos || localGastos || localPresupuestos) {
+      if (localTrabajos !== null || localGastos !== null || localPresupuestos !== null) {
         return {
           trabajos: localTrabajos ? JSON.parse(localTrabajos) : [],
           gastos: localGastos ? JSON.parse(localGastos) : [],
