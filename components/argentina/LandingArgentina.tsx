@@ -196,7 +196,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-white hover:opacity-70 transition-opacity"
             >
-              <FaWhatsapp aria-hidden className="size-4 text-emerald-400" />
+              <FaWhatsapp aria-hidden className={`size-4 ${isCeleste ? "text-sky-400" : "text-emerald-400"}`} />
               Pedir Turno
             </a>
           </div>
@@ -686,7 +686,11 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
           href={waHref(biz, "¡Hola! Vi su página web y quería hacerles una consulta.")}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-black px-4 py-3 font-bold text-xs uppercase tracking-wider shadow-2xl hover:scale-105 active:scale-95 transition-all"
+          className={`flex items-center gap-2.5 rounded-full ${
+            isCeleste
+              ? "bg-sky-500 hover:bg-sky-400 text-slate-950 shadow-[0_0_25px_rgba(56,189,248,0.55)] border border-sky-300/40"
+              : "bg-emerald-500 hover:bg-emerald-400 text-black shadow-2xl"
+          } px-4 py-3 font-bold text-xs uppercase tracking-wider hover:scale-105 active:scale-95 transition-all`}
           aria-label="Contactar por WhatsApp"
         >
           <FaWhatsapp className="size-5" />
