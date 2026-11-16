@@ -54,6 +54,9 @@ export function resolveWorkshopSlug(defaultFallback: string = "demo"): string {
 
   // 2. Detección por Hostname
   const host = (window.location.hostname || "").toLowerCase();
+  if (host.includes("amesteticavehicular.com.ar") || host.includes("amesteticavehicular")) {
+    return "am-centro-de-estetica-vehicular";
+  }
   if (host.includes("mcdetail.com.ar") || host.includes("mc-detail")) {
     return "mc-detail-detailing";
   }

@@ -23,6 +23,59 @@ export function middleware(request: NextRequest) {
     }
   }
 
+  // Si acceden desde el dominio exclusivo de AM Centro de Estética Vehicular
+  if (cleanHost === "amesteticavehicular.com.ar" || cleanHost === "www.amesteticavehicular.com.ar") {
+    const amSlug = "am-centro-de-estetica-vehicular";
+
+    // Si acceden a la raíz '/', servir la landing de AM directamente en la raíz
+    if (pathname === "/") {
+      const res = NextResponse.rewrite(
+        new URL(`/d/${amSlug}`, request.url)
+      );
+      res.cookies.set("black_line_active_slug", amSlug, { path: "/" });
+      return res;
+    }
+
+    // Si acceden al admin '/admin'
+    if (pathname === "/admin") {
+      const url = new URL("/admin", request.url);
+      url.searchParams.set("taller", amSlug);
+      const res = NextResponse.rewrite(url);
+      res.cookies.set("black_line_active_slug", amSlug, { path: "/" });
+      return res;
+    }
+
+    // Si acceden al cotizador: '/cotizador' o '/presupuesto'
+    if (pathname === "/cotizador" || pathname === "/presupuesto") {
+      const url = new URL("/presupuesto", request.url);
+      url.searchParams.set("slug", amSlug);
+      url.searchParams.set("taller", amSlug);
+      const res = NextResponse.rewrite(url);
+      res.cookies.set("black_line_active_slug", amSlug, { path: "/" });
+      return res;
+    }
+
+    // Si acceden a la ficha de recepción: '/checkin' o '/recepcion'
+    if (pathname === "/checkin" || pathname === "/recepcion") {
+      const url = new URL("/checkin", request.url);
+      url.searchParams.set("slug", amSlug);
+      url.searchParams.set("taller", amSlug);
+      const res = NextResponse.rewrite(url);
+      res.cookies.set("black_line_active_slug", amSlug, { path: "/" });
+      return res;
+    }
+
+    // Si acceden al panel de control de taller: '/panel' o '/taller' o '/gestion'
+    if (pathname === "/panel" || pathname === "/taller" || pathname === "/gestion") {
+      const url = new URL("/taller", request.url);
+      url.searchParams.set("slug", amSlug);
+      url.searchParams.set("taller", amSlug);
+      const res = NextResponse.rewrite(url);
+      res.cookies.set("black_line_active_slug", amSlug, { path: "/" });
+      return res;
+    }
+  }
+
   // Si acceden desde el dominio exclusivo de Mc Detail
   if (cleanHost === "mcdetail.com.ar" || cleanHost === "www.mcdetail.com.ar") {
     // Si acceden a la raíz '/', servir la landing de Mc Detail directamente en la raíz
