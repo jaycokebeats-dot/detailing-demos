@@ -26,6 +26,7 @@ import {
   FaFileInvoiceDollar,
   FaPlus,
   FaTrash,
+  FaEdit,
   FaEye,
   FaEyeSlash,
   FaDownload,
@@ -83,6 +84,21 @@ const SERVICIOS_SUGERIDOS_DEFAULT = [
   "Iluminación LED y Ópticas",
   "Accesorios 4x4",
 ];
+
+// Helper: Parsear precios como "$ 160.000" a número puro 160000
+function parseNumericPrice(precioStr: string): number {
+  if (!precioStr) return 0;
+  const digits = String(precioStr).replace(/[^\d]/g, "");
+  return digits ? parseInt(digits, 10) : 0;
+}
+
+export type ServicioFormItem = {
+  nombre: string;
+  precioNum: number;
+  precioManual: string;
+  detalle: string;
+  activo: boolean;
+};
 
 // Helper: Formato Pesos Argentinos ($ 450.000)
 function formatPesos(monto: number, ocultar = false): string {
@@ -350,7 +366,8 @@ export default function TallerGestionPage() {
   const [modalInstallOpen, setModalInstallOpen] = useState<boolean>(false);
   const [toastMsg, setToastMsg] = useState<string | null>(null);
 
-  // Formulario de Nuevo Trabajo
+  // Formulario de Trabajo (Crear o Editar)
+  const [formTrabajoId, setFormTrabajoId] = useState<string | null>(null);
   const [formTrabajoFecha, setFormTrabajoFecha] = useState<string>("");
   const [formTrabajoHoraTurno, setFormTrabajoHoraTurno] = useState<string>("09:00");
   const [formTrabajoEstadoTrabajo, setFormTrabajoEstadoTrabajo] = useState<EstadoTrabajo>("agendado");
@@ -358,8 +375,7 @@ export default function TallerGestionPage() {
   const [formTrabajoVehiculo, setFormTrabajoVehiculo] = useState<string>("");
   const [formTrabajoCliente, setFormTrabajoCliente] = useState<string>("");
   const [formTrabajoTelefono, setFormTrabajoTelefono] = useState<string>("");
-  const [formTrabajoServicios, setFormTrabajoServicios] = useState<string[]>([]);
-  const [formTrabajoOtroServicio, setFormTrabajoOtroServicio] = useState<string>("");
+  const [formServiciosList, setFormServiciosList] = useState<ServicioFormItem[]>([]);
   const [formTrabajoMonto, setFormTrabajoMonto] = useState<string>("");
   const [formTrabajoMedioPago, setFormTrabajoMedioPago] = useState<MedioPago>("efectivo");
   const [formTrabajoChequeNro, setFormTrabajoChequeNro] = useState<string>("");
@@ -773,8 +789,218 @@ ${biz.direccion ? `• *Taller:* ${biz.direccion}, ${biz.ciudad}\n` : ""}
     };
   }, [trabajosMes, gastosMes, chequesPendientes]);
 
-  // Manejar creación de nuevo Trabajo
-  const handleCrearTrabajo = (e: React.FormEvent) => {
+  // Obtener catálogo base de servicios con sus precios preestablecidos
+  const getCatalogServiciosBase = (): ServicioFormItem[] => {
+    const rawList = biz.servicios && biz.servicios.length > 0
+      ? biz.servicios
+      : SERVICIOS_SUGERIDOS_DEFAULT.map((nom) => ({ nombre: nom, precio: "" }));
+    return rawList.map((s) => {
+      const nom = typeof s === "string" ? s : s.nombre;
+      const precioStr = typeof s === "string" ? "" : (s.precio || "");
+      const num = parseNumericPrice(precioStr);
+      return {
+        nombre: nom,
+        precioNum: num,
+        precioManual: num > 0 ? num.toString() : "",
+        detalle: "",
+        activo: false,
+      };
+    });
+  };
+
+  // Abrir modal para CARGAR NUEVO TRABAJO
+  const handleAbrirModalNuevoTrabajo = () => {
+    setFormTrabajoId(null);
+    setFormTrabajoFecha(new Date().toISOString().split("T")[0]);
+    setFormTrabajoHoraTurno("09:00");
+    setFormTrabajoEstadoTrabajo("agendado");
+    setFormTrabajoEstadoPago("pendiente");
+    setFormTrabajoVehiculo("");
+    setFormTrabajoCliente("");
+    setFormTrabajoTelefono("");
+    setFormTrabajoNotas("");
+    setFormTrabajoMonto("");
+    setFormTrabajoMedioPago("efectivo");
+    setFormTrabajoChequeBanco("");
+    setFormTrabajoChequeNro("");
+    setFormTrabajoChequeVencimiento("");
+    setFormServiciosList(getCatalogServiciosBase());
+    setModalTrabajoOpen(true);
+  };
+
+  // Abrir modal para EDITAR TRABAJO EXISTENTE
+  const handleAbrirModalEditarTrabajo = (t: Trabajo) => {
+    setFormTrabajoId(t.id);
+    setFormTrabajoFecha(t.fecha);
+    setFormTrabajoHoraTurno(t.horaTurno || "09:00");
+    setFormTrabajoEstadoTrabajo(t.estadoTrabajo || "en_taller");
+    setFormTrabajoEstadoPago(t.estadoPago);
+    setFormTrabajoVehiculo(t.vehiculo);
+    setFormTrabajoCliente(t.cliente || "");
+    setFormTrabajoTelefono(t.telefono || "");
+    setFormTrabajoMonto(t.monto ? t.monto.toString() : "");
+    setFormTrabajoMedioPago(t.medioPago);
+    setFormTrabajoNotas(t.notas || "");
+
+    if (t.chequeData) {
+      setFormTrabajoChequeBanco(t.chequeData.banco || "");
+      setFormTrabajoChequeNro(t.chequeData.nroCheque || "");
+      setFormTrabajoChequeVencimiento(t.chequeData.fechaCobro || "");
+    } else {
+      setFormTrabajoChequeBanco("");
+      setFormTrabajoChequeNro("");
+      setFormTrabajoChequeVencimiento("");
+    }
+
+    const base = getCatalogServiciosBase();
+
+    if (t.serviciosDetalle && t.serviciosDetalle.length > 0) {
+      const activeNames = new Set(t.serviciosDetalle.map((sd) => sd.nombre.toLowerCase().trim()));
+      const detailMap = new Map(t.serviciosDetalle.map((sd) => [sd.nombre.toLowerCase().trim(), sd]));
+
+      const updated = base.map((item) => {
+        const key = item.nombre.toLowerCase().trim();
+        if (activeNames.has(key)) {
+          const sd = detailMap.get(key);
+          const p = sd?.precio !== undefined && sd.precio > 0 ? sd.precio : item.precioNum;
+          return {
+            ...item,
+            activo: true,
+            precioNum: p,
+            precioManual: p > 0 ? p.toString() : item.precioManual,
+            detalle: sd?.detalle || "",
+          };
+        }
+        return item;
+      });
+
+      t.serviciosDetalle.forEach((sd) => {
+        const key = sd.nombre.toLowerCase().trim();
+        const exists = base.some((b) => b.nombre.toLowerCase().trim() === key);
+        if (!exists) {
+          const p = sd.precio || 0;
+          updated.push({
+            nombre: sd.nombre,
+            precioNum: p,
+            precioManual: p > 0 ? p.toString() : "",
+            detalle: sd.detalle || "",
+            activo: true,
+          });
+        }
+      });
+
+      setFormServiciosList(updated);
+    } else if (t.servicios && t.servicios.length > 0) {
+      const parsedItems = t.servicios.map((str) => {
+        const match = str.match(/^(.*?)\s*\((.*?)\)$/);
+        if (match) {
+          return { nombre: match[1].trim(), detalle: match[2].trim() };
+        }
+        return { nombre: str.trim(), detalle: "" };
+      });
+
+      const parsedMap = new Map(parsedItems.map((p) => [p.nombre.toLowerCase().trim(), p.detalle]));
+      const updated = base.map((item) => {
+        const key = item.nombre.toLowerCase().trim();
+        if (parsedMap.has(key)) {
+          return {
+            ...item,
+            activo: true,
+            detalle: parsedMap.get(key) || "",
+          };
+        }
+        return item;
+      });
+
+      parsedItems.forEach((p) => {
+        const key = p.nombre.toLowerCase().trim();
+        const exists = base.some((b) => b.nombre.toLowerCase().trim() === key);
+        if (!exists) {
+          updated.push({
+            nombre: p.nombre,
+            precioNum: 0,
+            precioManual: "",
+            detalle: p.detalle,
+            activo: true,
+          });
+        }
+      });
+
+      setFormServiciosList(updated);
+    } else {
+      setFormServiciosList(base);
+    }
+
+    setModalTrabajoOpen(true);
+  };
+
+  const handleToggleFormServicio = (index: number) => {
+    setFormServiciosList((prev) => {
+      const next = [...prev];
+      const target = next[index];
+      const willBeActive = !target.activo;
+      next[index] = { ...target, activo: willBeActive };
+
+      const sumActive = next
+        .filter((s) => s.activo)
+        .reduce((acc, curr) => acc + (curr.precioNum || 0), 0);
+      if (sumActive > 0) {
+        setFormTrabajoMonto(sumActive.toString());
+      }
+      return next;
+    });
+  };
+
+  const handlePrecioFormServicioChange = (index: number, val: string) => {
+    const cleanNum = val.replace(/[^\d]/g, "");
+    const parsed = cleanNum ? parseInt(cleanNum, 10) : 0;
+    setFormServiciosList((prev) => {
+      const next = [...prev];
+      next[index] = {
+        ...next[index],
+        precioManual: cleanNum,
+        precioNum: parsed,
+      };
+
+      const sumActive = next
+        .filter((s) => s.activo)
+        .reduce((acc, curr) => acc + (curr.precioNum || 0), 0);
+      if (sumActive > 0) {
+        setFormTrabajoMonto(sumActive.toString());
+      }
+      return next;
+    });
+  };
+
+  const handleDetalleFormServicioChange = (index: number, val: string) => {
+    setFormServiciosList((prev) => {
+      const next = [...prev];
+      next[index] = {
+        ...next[index],
+        detalle: val,
+      };
+      return next;
+    });
+  };
+
+  const handleAddCustomServicioForm = () => {
+    const customNombre = prompt("Nombre del tratamiento / servicio extra (Ej: Pulido de Ópticas, Sellado de Llantas, PPF):");
+    if (!customNombre || !customNombre.trim()) return;
+
+    setFormServiciosList((prev) => [
+      ...prev,
+      {
+        nombre: customNombre.trim(),
+        precioNum: 0,
+        precioManual: "",
+        detalle: "",
+        activo: true,
+      },
+    ]);
+  };
+
+  // Manejar creación o edición de Trabajo
+  const handleGuardarTrabajo = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formTrabajoVehiculo.trim()) {
       showToast("⚠️ Ingresá el modelo del vehículo.");
@@ -789,10 +1015,20 @@ ${biz.direccion ? `• *Taller:* ${biz.direccion}, ${biz.ciudad}\n` : ""}
     const hoyIso = new Date().toISOString().split("T")[0];
     const fechaFinal = formTrabajoFecha || hoyIso;
 
-    let serviciosFinales = [...formTrabajoServicios];
-    if (formTrabajoOtroServicio.trim()) {
-      serviciosFinales.push(formTrabajoOtroServicio.trim());
-    }
+    const activos = formServiciosList.filter((s) => s.activo);
+    const serviciosDetalle = activos.map((s) => ({
+      nombre: s.nombre,
+      precio: s.precioNum > 0 ? s.precioNum : undefined,
+      detalle: s.detalle.trim() || undefined,
+    }));
+
+    let serviciosFinales = activos.map((s) => {
+      if (s.detalle.trim()) {
+        return `${s.nombre} (${s.detalle.trim()})`;
+      }
+      return s.nombre;
+    });
+
     if (serviciosFinales.length === 0) {
       serviciosFinales = ["Servicio General"];
     }
@@ -807,57 +1043,74 @@ ${biz.direccion ? `• *Taller:* ${biz.direccion}, ${biz.ciudad}\n` : ""}
       };
     }
 
-    const nuevoTrabajo: Trabajo = {
-      id: `trabajo-${Date.now()}`,
-      fecha: fechaFinal,
-      horaTurno: formTrabajoEstadoTrabajo === "agendado" ? (formTrabajoHoraTurno || "09:00") : undefined,
-      vehiculo: formTrabajoVehiculo.trim(),
-      cliente: formTrabajoCliente.trim() || undefined,
-      telefono: formTrabajoTelefono.trim() || undefined,
-      servicios: serviciosFinales,
-      monto: montoNum,
-      medioPago: formTrabajoMedioPago,
-      chequeData: chequeFinal,
-      estadoPago: formTrabajoMedioPago === "cheque" ? "pendiente" : formTrabajoEstadoPago,
-      estadoTrabajo: formTrabajoEstadoTrabajo,
-      notas: formTrabajoNotas.trim() || undefined,
-    };
+    let trabajoFinal: Trabajo;
 
-    guardarTrabajos([nuevoTrabajo, ...trabajos]);
+    if (formTrabajoId) {
+      // Modo Edición
+      const trabajoExistente = trabajos.find((t) => t.id === formTrabajoId);
+      const trabajoActualizado: Trabajo = {
+        id: formTrabajoId,
+        fecha: fechaFinal,
+        horaTurno: formTrabajoEstadoTrabajo === "agendado" ? (formTrabajoHoraTurno || "09:00") : undefined,
+        vehiculo: formTrabajoVehiculo.trim(),
+        cliente: formTrabajoCliente.trim() || undefined,
+        telefono: formTrabajoTelefono.trim() || undefined,
+        servicios: serviciosFinales,
+        serviciosDetalle: serviciosDetalle.length > 0 ? serviciosDetalle : undefined,
+        monto: montoNum,
+        medioPago: formTrabajoMedioPago,
+        chequeData: chequeFinal || trabajoExistente?.chequeData,
+        estadoPago: formTrabajoMedioPago === "cheque" ? (trabajoExistente?.estadoPago || "pendiente") : formTrabajoEstadoPago,
+        estadoTrabajo: formTrabajoEstadoTrabajo,
+        notas: formTrabajoNotas.trim() || undefined,
+        presupuestoId: trabajoExistente?.presupuestoId,
+      };
 
-    // Reset form
-    setFormTrabajoVehiculo("");
-    setFormTrabajoCliente("");
-    setFormTrabajoTelefono("");
-    setFormTrabajoServicios([]);
-    setFormTrabajoOtroServicio("");
-    setFormTrabajoMonto("");
-    setFormTrabajoNotas("");
-    setFormTrabajoChequeNro("");
-    setFormTrabajoChequeBanco("");
-    setFormTrabajoChequeVencimiento("");
-    setFormTrabajoMedioPago("efectivo");
-    setFormTrabajoHoraTurno("09:00");
-    setFormTrabajoEstadoTrabajo("agendado");
-    setFormTrabajoEstadoPago("pendiente");
-    setModalTrabajoOpen(false);
+      trabajoFinal = trabajoActualizado;
+      guardarTrabajos(trabajos.map((t) => (t.id === formTrabajoId ? trabajoActualizado : t)));
+      showToast(`✅ Trabajo de ${trabajoActualizado.vehiculo} actualizado.`);
+    } else {
+      // Modo Nuevo
+      const nuevoTrabajo: Trabajo = {
+        id: `trabajo-${Date.now()}`,
+        fecha: fechaFinal,
+        horaTurno: formTrabajoEstadoTrabajo === "agendado" ? (formTrabajoHoraTurno || "09:00") : undefined,
+        vehiculo: formTrabajoVehiculo.trim(),
+        cliente: formTrabajoCliente.trim() || undefined,
+        telefono: formTrabajoTelefono.trim() || undefined,
+        servicios: serviciosFinales,
+        serviciosDetalle: serviciosDetalle.length > 0 ? serviciosDetalle : undefined,
+        monto: montoNum,
+        medioPago: formTrabajoMedioPago,
+        chequeData: chequeFinal,
+        estadoPago: formTrabajoMedioPago === "cheque" ? "pendiente" : formTrabajoEstadoPago,
+        estadoTrabajo: formTrabajoEstadoTrabajo,
+        notas: formTrabajoNotas.trim() || undefined,
+      };
 
-    showToast(
-      formTrabajoEstadoTrabajo === "agendado"
-        ? `📅 ¡Turno agendado para ${nuevoTrabajo.vehiculo} (${nuevoTrabajo.horaTurno} hs)!`
-        : `✅ ¡${nuevoTrabajo.vehiculo} registrado en el taller!`
-    );
+      trabajoFinal = nuevoTrabajo;
+      guardarTrabajos([nuevoTrabajo, ...trabajos]);
+      showToast(
+        formTrabajoEstadoTrabajo === "agendado"
+          ? `📅 ¡Turno agendado para ${nuevoTrabajo.vehiculo} (${nuevoTrabajo.horaTurno} hs)!`
+          : `✅ ¡${nuevoTrabajo.vehiculo} registrado en el taller!`
+      );
+    }
 
     // Si agendó turno y cargó teléfono, opcionalmente abrir WhatsApp de confirmación
     if (formTrabajoEstadoTrabajo === "agendado" && formTrabajoTelefono.trim()) {
       const cleanPhone = cleanWhatsAppPhone(formTrabajoTelefono);
-      const textoConfirmacion = getMensajeConfirmacionTurno(nuevoTrabajo);
+      const textoConfirmacion = getMensajeConfirmacionTurno(trabajoFinal);
       const url = cleanPhone
         ? `https://wa.me/${cleanPhone}?text=${encodeURIComponent(textoConfirmacion)}`
         : `https://wa.me/?text=${encodeURIComponent(textoConfirmacion)}`;
       window.open(url, "_blank");
     }
+
+    setModalTrabajoOpen(false);
   };
+
+  const handleCrearTrabajo = handleGuardarTrabajo;
 
   // Manejar creación de Cheque directo en Cartera
   const handleCrearChequeDirecto = (e: React.FormEvent) => {
@@ -1551,13 +1804,7 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
 
               <button
                 type="button"
-                onClick={() => {
-                  setFormTrabajoFecha(new Date().toISOString().split("T")[0]);
-                  setFormTrabajoHoraTurno("09:00");
-                  setFormTrabajoEstadoTrabajo("agendado");
-                  setFormTrabajoEstadoPago("pendiente");
-                  setModalTrabajoOpen(true);
-                }}
+                onClick={handleAbrirModalNuevoTrabajo}
                 className="btn-celeste px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg cursor-pointer active:scale-95 transition-transform"
               >
                 <FaPlus className="size-3.5" />
@@ -1820,6 +2067,17 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
                             <FaMoneyCheckAlt className="size-4" />
                           </button>
                         )}
+
+                        {/* Botón Editar Trabajo */}
+                        <button
+                          type="button"
+                          onClick={() => handleAbrirModalEditarTrabajo(t)}
+                          className="px-2.5 py-1.5 rounded-xl bg-sky-950/40 hover:bg-sky-900/60 text-sky-300 hover:text-sky-200 border border-sky-500/30 transition-all cursor-pointer shadow-sm active:scale-95 flex items-center gap-1.5"
+                          title="Editar datos, precio o servicios del trabajo"
+                        >
+                          <FaEdit className="size-3.5 shrink-0 text-sky-400" />
+                          <span className="hidden sm:inline text-xs font-bold">Editar</span>
+                        </button>
 
                         <button
                           type="button"
@@ -2342,8 +2600,17 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
           <div className="bg-[#0f1728] border border-sky-500/30 rounded-3xl w-full max-w-xl p-4 sm:p-7 space-y-4 shadow-2xl relative my-auto max-h-[92vh] overflow-y-auto">
             <div className="flex items-center justify-between border-b border-white/10 pb-3">
               <div className="flex items-center gap-2">
-                <FaCar className="size-5 text-sky-400" />
-                <h3 className="font-extrabold text-lg text-white">Cargar Vehículo / Trabajo</h3>
+                {formTrabajoId ? (
+                  <>
+                    <FaEdit className="size-5 text-sky-400" />
+                    <h3 className="font-extrabold text-lg text-white">Editar Vehículo / Trabajo</h3>
+                  </>
+                ) : (
+                  <>
+                    <FaCar className="size-5 text-sky-400" />
+                    <h3 className="font-extrabold text-lg text-white">Cargar Vehículo / Trabajo</h3>
+                  </>
+                )}
               </div>
               <button
                 type="button"
@@ -2354,7 +2621,7 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
               </button>
             </div>
 
-            <form onSubmit={handleCrearTrabajo} className="space-y-4 text-xs">
+            <form onSubmit={handleGuardarTrabajo} className="space-y-4 text-xs">
               {/* Selector de Entrada: ¿Es un Turno a futuro o ya está en el taller? */}
               <div className="p-3 bg-[#111a2c] border border-sky-500/20 rounded-2xl space-y-2">
                 <span className="block font-semibold text-slate-200 text-xs">
@@ -2451,48 +2718,104 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
                 </div>
               </div>
 
-              {/* Selector de servicios táctil */}
-              <div>
-                <label className="block font-semibold text-slate-300 mb-1.5">Servicios Realizados (Tocá los que apliquen)</label>
-                <div className="flex flex-wrap gap-1.5 max-h-36 overflow-y-auto p-1 bg-[#0a0f1a] rounded-xl border border-white/5">
-                  {serviciosOpciones.map((s, idx) => {
-                    const sel = formTrabajoServicios.includes(s);
-                    return (
-                      <button
-                        key={idx}
-                        type="button"
-                        onClick={() => {
-                          if (sel) {
-                            setFormTrabajoServicios(formTrabajoServicios.filter((item) => item !== s));
-                          } else {
-                            setFormTrabajoServicios([...formTrabajoServicios, s]);
-                          }
-                        }}
-                        className={`px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
-                          sel
-                            ? "bg-sky-500 text-slate-950 shadow-sm"
-                            : "bg-[#162238] text-slate-300 hover:text-white border border-white/5"
-                        }`}
-                      >
-                        {sel ? "✓ " : "+ "}
-                        {s}
-                      </button>
-                    );
-                  })}
+              {/* SELECTOR DE SERVICIOS CON PRECIO PREESTABLECIDO EDITABLE Y DETALLE */}
+              <div className="space-y-2 pt-1">
+                <div className="flex items-center justify-between border-b border-sky-500/20 pb-1.5">
+                  <div>
+                    <label className="block font-bold text-slate-200 text-xs">
+                      Tratamientos & Servicios a Incluir
+                    </label>
+                    <span className="text-[11px] text-slate-400">
+                      Tildá los servicios. Podés editar el precio preestablecido y agregar detalles:
+                    </span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={handleAddCustomServicioForm}
+                    className="text-xs text-sky-300 hover:text-white bg-sky-950/60 border border-sky-500/30 hover:border-sky-400 px-2.5 py-1 rounded-xl transition-all cursor-pointer flex items-center gap-1 shrink-0 active:scale-95"
+                    title="Agregar un servicio o tratamiento personalizado"
+                  >
+                    <span>➕</span>
+                    <span>Extra</span>
+                  </button>
+                </div>
+
+                <div className="space-y-2 max-h-56 overflow-y-auto pr-1">
+                  {formServiciosList.map((srv, idx) => (
+                    <div
+                      key={idx}
+                      className={`p-2.5 sm:p-3 rounded-xl border transition-all ${
+                        srv.activo
+                          ? "bg-[#111c2e] border-sky-500/40 shadow-sm"
+                          : "bg-[#0c1322]/80 border-white/5 opacity-70 hover:opacity-100"
+                      }`}
+                    >
+                      <div className="flex items-center justify-between gap-2.5">
+                        <div
+                          className="flex items-center gap-2.5 cursor-pointer flex-1 select-none min-w-0"
+                          onClick={() => handleToggleFormServicio(idx)}
+                        >
+                          <input
+                            type="checkbox"
+                            checked={srv.activo}
+                            onChange={() => {}}
+                            className="w-4 h-4 rounded border-slate-600 bg-slate-900 text-sky-500 cursor-pointer accent-sky-400 shrink-0"
+                          />
+                          <span className="text-xs sm:text-sm font-bold text-white truncate">
+                            {srv.nombre}
+                          </span>
+                        </div>
+
+                        {/* Input de Precio del Servicio */}
+                        <div className="flex items-center gap-1.5 shrink-0">
+                          <span className="text-xs text-slate-400 font-mono font-bold">$</span>
+                          <input
+                            type="text"
+                            value={srv.precioManual}
+                            onChange={(e) => handlePrecioFormServicioChange(idx, e.target.value)}
+                            placeholder="0"
+                            disabled={!srv.activo}
+                            className={`w-24 sm:w-28 bg-[#090e18] border rounded-lg px-2.5 py-1 text-xs font-mono font-bold text-right transition-colors ${
+                              srv.activo
+                                ? "border-sky-500/40 text-sky-300 focus:border-sky-400 focus:outline-none"
+                                : "border-white/5 text-slate-600 cursor-not-allowed"
+                            }`}
+                            title="Precio de este servicio"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Campo de Detalle / Aclaración opcional */}
+                      {srv.activo && (
+                        <div className="mt-2 pt-1.5 border-t border-sky-500/15 pl-6">
+                          <input
+                            type="text"
+                            value={srv.detalle}
+                            onChange={(e) => handleDetalleFormServicioChange(idx, e.target.value)}
+                            placeholder="+ Detalle / aclaración (ej: 2 pasos de corte, sellador 3 años, incluye llantas...)"
+                            className="w-full bg-[#090e18] border border-sky-500/20 hover:border-sky-500/40 focus:border-sky-400 rounded-lg px-2.5 py-1 text-[11px] text-slate-200 placeholder:text-slate-500 focus:outline-none transition-colors"
+                          />
+                        </div>
+                      )}
+                    </div>
+                  ))}
                 </div>
               </div>
 
               {/* Monto y medio de pago */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
                 <div>
-                  <label className="block font-semibold text-slate-300 mb-1">Monto Presupuestado ($) *</label>
+                  <div className="flex items-center justify-between mb-1">
+                    <label className="block font-semibold text-slate-300 text-xs">Monto Total ($) *</label>
+                    <span className="text-[10px] text-sky-400 font-medium">Suma automática</span>
+                  </div>
                   <input
                     type="text"
                     required
                     placeholder="ej. 450000"
                     value={formTrabajoMonto}
                     onChange={(e) => setFormTrabajoMonto(e.target.value)}
-                    className="w-full bg-[#141f33] border border-sky-500/35 rounded-xl px-3 py-2 text-base font-extrabold text-sky-400 placeholder-slate-600 focus:outline-none focus:border-sky-400"
+                    className="w-full bg-[#141f33] border border-sky-500/35 rounded-xl px-3 py-2 text-base font-extrabold text-sky-400 placeholder-slate-600 focus:outline-none focus:border-sky-400 font-mono"
                   />
                 </div>
 
@@ -2593,9 +2916,9 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
                 </button>
                 <button
                   type="submit"
-                  className="btn-celeste px-6 py-2 rounded-xl font-bold uppercase tracking-wider cursor-pointer"
+                  className="btn-celeste px-6 py-2 rounded-xl font-bold uppercase tracking-wider cursor-pointer shadow-lg"
                 >
-                  Guardar Trabajo
+                  {formTrabajoId ? "Guardar Cambios" : "Guardar Trabajo"}
                 </button>
               </div>
             </form>

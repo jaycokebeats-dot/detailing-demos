@@ -11,6 +11,12 @@ export type ChequeInfo = {
 
 export type EstadoTrabajo = "agendado" | "en_taller" | "listo" | "entregado";
 
+export type TrabajoServicioDetalle = {
+  nombre: string;
+  precio?: number;
+  detalle?: string;
+};
+
 export type Trabajo = {
   id: string;
   fecha: string; // YYYY-MM-DD
@@ -19,6 +25,7 @@ export type Trabajo = {
   cliente?: string;
   telefono?: string;
   servicios: string[];
+  serviciosDetalle?: TrabajoServicioDetalle[];
   monto: number;
   medioPago: MedioPago;
   chequeData?: ChequeInfo;
