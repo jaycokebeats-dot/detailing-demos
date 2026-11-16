@@ -1,0 +1,22 @@
+{
+  "name": "Cotizador de Servicios — AM Estética Vehicular",
+  "short_name": "Cotizador AM",
+  "description": "Cotizador interactivo de servicios y presupuestos de estética vehicular",
+  "start_url": "/presupuesto",
+  "display": "standalone",
+  "background_color": "#050f0a",
+  "theme_color": "#050f0a",
+  "icons": [
+    {
+      "src": "/apple-touch-icon-cotizador.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-cotizador.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

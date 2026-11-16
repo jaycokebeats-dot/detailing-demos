@@ -29,11 +29,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const isPlatinum = slug === "platinum-detallado-automotriz-a-domicilio" || biz.slug === "platinum-detallado-automotriz-a-domicilio";
   const isShalom = slug === "shalom-estetica-automotriz" || slug === "shalom" || biz.slug === "shalom-estetica-automotriz";
   const isMcDetail = slug === "mc-detail-detailing" || slug === "mc-detail" || biz.slug === "mc-detail-detailing";
+  const isAmCentro = slug === "am-centro-de-estetica-vehicular" || slug === "am-centro" || biz.slug === "am-centro-de-estetica-vehicular";
 
   let titulo = `${biz.nombre.replace(/[^\p{L}\p{N}\s.,&|/'-]/gu, "").replace(/\s+/g, " ").trim()} — Detailing Profesional en ${biz.ciudad}`;
   let descripcion = `Detailing profesional a mano en ${biz.ciudad}: lavado sin remolinos, corrección de pintura y recubrimiento cerámico. Pedí tu turno por WhatsApp.`;
 
-  if (isPlatinum) {
+  if (isAmCentro) {
+    titulo = "AM Centro de Estética Vehicular | Detailing, Polarizados & PPF en Villa María";
+    descripcion = "Centro profesional de estética vehicular en Villa María, Córdoba: tratamientos cerámicos, corrección de laca, polarizados nano-cerámicos y protección PPF. Turnos y presupuestos online.";
+  } else if (isPlatinum) {
     titulo = "Platinum Detallado Automotriz a Domicilio | Detailing & Cerámico en Querétaro";
     descripcion = "Servicio exclusivo de detallado automotriz a domicilio en Querétaro: tratamientos cerámicos Gyeon®, pulido de pintura, interiores a vapor y paquetes express. Zibatá, Juriquilla, El Campanario. ¡Cotiza tu auto al instante!";
   } else if (isMcDetail) {
@@ -48,7 +52,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     descripcion = `Detailing profesional en ${biz.ciudad}: corrección de pintura, recubrimiento cerámico y estética interior. Cotiza por WhatsApp.`;
   }
 
-  const ogImageUrl = isPlatinum
+  const ogImageUrl = isAmCentro
+    ? "https://amesteticavehicular.com.ar/og-am-centro.jpg"
+    : isPlatinum
     ? "https://platinumdetallado.com/og-platinum.jpg"
     : isMcDetail
       ? "https://mcdetail.com.ar/og-mcdetail.jpg"
@@ -58,18 +64,28 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
           ? (biz.fotos[0].startsWith("http") ? biz.fotos[0] : `https://detailing-demos-three.vercel.app${biz.fotos[0].startsWith("/") ? "" : "/"}${biz.fotos[0]}`)
           : "https://detailing-demos-three.vercel.app/og-detailing.jpg";
 
-  const canonicalUrl = isPlatinum
+  const canonicalUrl = isAmCentro
+    ? "https://amesteticavehicular.com.ar"
+    : isPlatinum
     ? "https://platinumdetallado.com"
     : isMcDetail
       ? "https://mcdetail.com.ar"
       : `https://detailing-demos-three.vercel.app/d/${biz.slug}`;
 
   const cleanNombre = biz.nombre.replace(/[^\p{L}\p{N}\s.,&|/'-]/gu, "").replace(/\s+/g, " ").trim();
-  const brandName = isMcDetail ? "Mc Detail Detailing" : (isPlatinum ? "Platinum Detallado Automotriz" : cleanNombre);
+  const brandName = isAmCentro
+    ? "AM Centro de Estética Vehicular"
+    : isMcDetail
+    ? "Mc Detail Detailing"
+    : isPlatinum
+    ? "Platinum Detallado Automotriz"
+    : cleanNombre;
 
   return {
     metadataBase: new URL(
-      isPlatinum
+      isAmCentro
+        ? "https://amesteticavehicular.com.ar"
+        : isPlatinum
         ? "https://platinumdetallado.com"
         : isMcDetail
           ? "https://mcdetail.com.ar"
@@ -92,7 +108,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: {
       canonical: canonicalUrl,
     },
-    keywords: isPlatinum
+    manifest: isAmCentro ? "/manifest-am.json" : undefined,
+    keywords: isAmCentro
+      ? [
+          "am estetica vehicular",
+          "am centro de estetica vehicular",
+          "detailing villa maria",
+          "polarizados villa maria",
+          "tratamiento ceramico villa maria",
+          "ppf villa maria",
+          "estetica vehicular villa maria cordoba",
+          "pulido de autos villa maria",
+          "correccion de pintura villa maria",
+          "limpieza de tapizados villa maria",
+        ]
+      : isPlatinum
       ? [
           "detailing queretaro",
           "detallado automotriz a domicilio queretaro",
@@ -119,7 +149,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             "detailing alto valle",
           ]
       : ["detailing", "pulido de autos", "tratamiento ceramico", biz.ciudad],
-    icons: isPlatinum
+    icons: isAmCentro
+      ? {
+          icon: [
+            { url: "/favicon-am-32.png", sizes: "32x32", type: "image/png" },
+            { url: "/favicon-am-48.png", sizes: "48x48", type: "image/png" },
+            { url: "/favicon-am-192.png", sizes: "192x192", type: "image/png" },
+            { url: "/favicon-am-512.png", sizes: "512x512", type: "image/png" },
+            { url: "/favicon-am.ico" },
+          ],
+          apple: [
+            { url: "/apple-touch-icon-am.png", sizes: "180x180", type: "image/png" },
+          ],
+        }
+      : isPlatinum
       ? {
           icon: [
             { url: "/favicon-platinum-48.png", sizes: "48x48", type: "image/png" },

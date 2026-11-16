@@ -1,0 +1,22 @@
+{
+  "name": "Panel de Taller & Caja — AM Estética Vehicular",
+  "short_name": "Taller AM",
+  "description": "Panel de control operativo de taller, recepción y arqueo de caja",
+  "start_url": "/taller",
+  "display": "standalone",
+  "background_color": "#06090f",
+  "theme_color": "#06090f",
+  "icons": [
+    {
+      "src": "/apple-touch-icon-taller.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-taller.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
