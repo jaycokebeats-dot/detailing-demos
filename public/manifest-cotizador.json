@@ -1,8 +1,10 @@
 {
+  "id": "/presupuestador-1611",
   "name": "Presupuestador — AM Estética Vehicular",
   "short_name": "Presupuestador AM",
   "description": "Presupuestador rápido de servicios y cotizaciones de estética vehicular",
   "start_url": "/presupuestador-1611",
+  "scope": "/presupuestador-1611",
   "display": "standalone",
   "background_color": "#050f0a",
   "theme_color": "#050f0a",

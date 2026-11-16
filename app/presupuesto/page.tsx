@@ -164,6 +164,38 @@ export default function PresupuestoPage() {
   // Servicios seleccionables
   const [serviciosState, setServiciosState] = useState<SelectedServiceState[]>([]);
 
+  // PWA Install prompt
+  const [installPrompt, setInstallPrompt] = useState<any>(null);
+  const [isStandalone, setIsStandalone] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setIsStandalone(
+        window.matchMedia("(display-mode: standalone)").matches ||
+        (window.navigator as any).standalone === true
+      );
+      const handler = (e: any) => {
+        e.preventDefault();
+        setInstallPrompt(e);
+      };
+      window.addEventListener("beforeinstallprompt", handler);
+      return () => window.removeEventListener("beforeinstallprompt", handler);
+    }
+  }, []);
+
+  const handleInstallApp = async () => {
+    if (installPrompt) {
+      installPrompt.prompt();
+      const { outcome } = await installPrompt.userChoice;
+      if (outcome === "accepted") {
+        setInstallPrompt(null);
+        setIsStandalone(true);
+      }
+    } else {
+      alert("Para agregar a la pantalla de tu celu:\n\n1. Abrí esta página en Google Chrome (no dentro de otra app).\n2. Tocá los 3 puntitos arriba a la derecha.\n3. Elegí 'Agregar a pantalla principal' o 'Instalar aplicación'.");
+    }
+  };
+
   // Estados visuales
   const [copied, setCopied] = useState(false);
   const [toastMsg, setToastMsg] = useState<string | null>(null);
@@ -522,6 +554,17 @@ export default function PresupuestoPage() {
             </div>
 
             <div className="flex items-center gap-2 self-start sm:self-auto flex-wrap">
+              {!isStandalone && (
+                <button
+                  type="button"
+                  onClick={handleInstallApp}
+                  className="bg-emerald-600/90 hover:bg-emerald-500 text-white border border-emerald-400/30 text-xs font-bold px-3 py-2 rounded-xl flex items-center gap-1.5 shadow-lg active:scale-95 transition-all"
+                  title="Agregar a la pantalla de inicio"
+                >
+                  <span className="text-sm">📲</span>
+                  <span>Instalar en Celular</span>
+                </button>
+              )}
               <button
                 type="button"
                 onClick={handleResetForm}
