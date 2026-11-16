@@ -1,8 +1,8 @@
 {
-  "name": "Cotizador de Servicios — AM Estética Vehicular",
-  "short_name": "Cotizador AM",
-  "description": "Cotizador interactivo de servicios y presupuestos de estética vehicular",
-  "start_url": "/presupuesto",
+  "name": "Presupuestador — AM Estética Vehicular",
+  "short_name": "Presupuestador AM",
+  "description": "Presupuestador rápido de servicios y cotizaciones de estética vehicular",
+  "start_url": "/presupuestador-1611",
   "display": "standalone",
   "background_color": "#050f0a",
   "theme_color": "#050f0a",

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Cotizador de Servicios — AM Estética Vehicular",
-  description: "Cotizador interactivo y generador de presupuestos oficiales",
+  title: "Presupuestador — AM Estética Vehicular",
+  description: "Presupuestador rápido de servicios y presupuestos oficiales",
   manifest: "/manifest-cotizador.json",
   icons: {
     icon: [
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "Cotizador AM",
+    title: "Presupuestador AM",
   },
 };
 

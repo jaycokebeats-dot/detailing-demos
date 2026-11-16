@@ -2,7 +2,7 @@
   "name": "Panel de Taller & Caja — AM Estética Vehicular",
   "short_name": "Taller AM",
   "description": "Panel de control operativo de taller, recepción y arqueo de caja",
-  "start_url": "/taller",
+  "start_url": "/panel-caja-1611",
   "display": "standalone",
   "background_color": "#06090f",
   "theme_color": "#06090f",

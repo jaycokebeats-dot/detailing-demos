@@ -45,8 +45,9 @@ export function middleware(request: NextRequest) {
       return res;
     }
 
-    // Si acceden al cotizador: '/cotizador' o '/presupuesto'
-    if (pathname === "/cotizador" || pathname === "/presupuesto") {
+    // Rutas protegidas / discretas para las herramientas del taller (no expuestas en URLs genéricas)
+    // 1. Presupuestador: '/presupuestador-1611' (y '/cotizador-1611')
+    if (pathname === "/presupuestador-1611" || pathname === "/cotizador-1611") {
       const url = new URL("/presupuesto", request.url);
       url.searchParams.set("slug", amSlug);
       url.searchParams.set("taller", amSlug);
@@ -55,8 +56,18 @@ export function middleware(request: NextRequest) {
       return res;
     }
 
-    // Si acceden a la ficha de recepción: '/checkin' o '/recepcion'
-    if (pathname === "/checkin" || pathname === "/recepcion") {
+    // 2. Panel de Taller y Caja: '/panel-caja-1611' (y '/taller-1611')
+    if (pathname === "/panel-caja-1611" || pathname === "/taller-1611") {
+      const url = new URL("/taller", request.url);
+      url.searchParams.set("slug", amSlug);
+      url.searchParams.set("taller", amSlug);
+      const res = NextResponse.rewrite(url);
+      res.cookies.set("black_line_active_slug", amSlug, { path: "/" });
+      return res;
+    }
+
+    // 3. Ficha de recepción / Check-in: '/checkin-1611' (y '/checkin')
+    if (pathname === "/checkin-1611" || pathname === "/checkin" || pathname === "/recepcion") {
       const url = new URL("/checkin", request.url);
       url.searchParams.set("slug", amSlug);
       url.searchParams.set("taller", amSlug);
@@ -65,14 +76,16 @@ export function middleware(request: NextRequest) {
       return res;
     }
 
-    // Si acceden al panel de control de taller: '/panel' o '/taller' o '/gestion'
-    if (pathname === "/panel" || pathname === "/taller" || pathname === "/gestion") {
-      const url = new URL("/taller", request.url);
-      url.searchParams.set("slug", amSlug);
-      url.searchParams.set("taller", amSlug);
-      const res = NextResponse.rewrite(url);
-      res.cookies.set("black_line_active_slug", amSlug, { path: "/" });
-      return res;
+    // Si alguien intenta adivinar las URLs obvias genéricas (/panel, /cotizador, /taller, /presupuesto, /gestion)
+    // redirigir silenciosamente al inicio público '/' para proteger la privacidad del taller
+    if (
+      pathname === "/panel" ||
+      pathname === "/taller" ||
+      pathname === "/cotizador" ||
+      pathname === "/presupuesto" ||
+      pathname === "/gestion"
+    ) {
+      return NextResponse.redirect(new URL("/", request.url));
     }
   }
 
