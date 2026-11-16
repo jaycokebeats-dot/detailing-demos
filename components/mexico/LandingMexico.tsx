@@ -375,7 +375,9 @@ export default function LandingMexico({ biz }: { biz: Business }) {
           <div className={`max-w-3xl text-center ${
             isTheZone || isPlatinum
               ? "space-y-3 sm:space-y-4 py-3 sm:py-6 lg:py-8"
-              : "space-y-5 py-12 lg:py-8"
+              : isShalom
+                ? "space-y-5 py-12 lg:py-8"
+                : "space-y-3.5 sm:space-y-4 py-6 sm:py-8 lg:py-6"
           } mx-auto`}>
             {/* Logo oficial centrado para The Zone, Platinum y Shalom */}
             {isTheZone ? (
@@ -416,7 +418,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                   ? "text-[20px] sm:text-[26px] md:text-[30px] font-bold"
                   : isShalom
                     ? "text-[20px] xs:text-[23px] sm:text-[27px] md:text-[31px] font-normal leading-snug sm:leading-snug"
-                    : "text-[32px] sm:text-[42px] font-bold"
+                    : "text-[22px] xs:text-[25px] sm:text-[28px] md:text-[32px] font-medium leading-snug sm:leading-tight"
             } tracking-tight text-balance`}>
               {isTheZone ? (
                 <>
@@ -443,9 +445,13 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                 </>
               ) : (
                 <>
-                  Detailing Profesional a Mano,
+                  <span className="font-light tracking-wide text-slate-100">
+                    Detailing Profesional a Mano,
+                  </span>
                   <br />
-                  <span className="text-gold">Acabado de Exposición.</span>
+                  <span className="text-gold font-medium tracking-normal">
+                    Acabado de Exposición.
+                  </span>
                 </>
               )}
             </h1>
@@ -455,7 +461,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                   ? "text-xs sm:text-sm max-w-xl line-clamp-2 sm:line-clamp-none text-slate-300 font-light leading-relaxed mx-auto text-pretty"
                   : isShalom
                     ? "text-xs sm:text-sm md:text-base max-w-xl text-slate-300 font-light leading-relaxed mx-auto text-pretty"
-                    : "text-base md:text-lg max-w-2xl text-slate-300 font-light leading-relaxed mx-auto text-pretty"
+                    : "text-xs sm:text-sm md:text-[15px] max-w-xl text-slate-300/90 font-light leading-relaxed mx-auto text-pretty"
             }`}>
               Corrección de pintura, recubrimiento cerámico y estética interior en {isPlatinum ? "Querétaro" : biz.ciudad}. Tratamiento artesanal sin microrrayones ni atajos.
             </p>

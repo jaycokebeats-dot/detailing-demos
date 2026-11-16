@@ -217,7 +217,7 @@ export default function LandingSpain({ biz }: { biz: Business }) {
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/70" />
 
         <div className="relative z-10 max-w-6xl mx-auto w-full h-full flex items-center justify-center">
-          <div className="max-w-2xl text-center space-y-5 mx-auto py-12 lg:py-8">
+          <div className="max-w-2xl text-center space-y-3.5 sm:space-y-4 mx-auto py-6 sm:py-8 lg:py-6">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs sm:text-sm font-medium text-slate-300">
               <span className="flex size-2 rounded-full shrink-0 animate-pulse bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
               <span>{biz.ciudad}</span>
@@ -225,13 +225,17 @@ export default function LandingSpain({ biz }: { biz: Business }) {
               <span>Citas disponibles esta semana</span>
             </div>
 
-            <h1 className="text-[32px] sm:text-[42px] font-medium tracking-tight leading-tight text-balance">
-              Detailing Profesional a Mano,
+            <h1 className="text-[22px] xs:text-[25px] sm:text-[28px] md:text-[32px] font-medium tracking-tight leading-snug sm:leading-tight text-balance">
+              <span className="font-light tracking-wide text-slate-100">
+                Detailing Profesional a Mano,
+              </span>
               <br />
-              <span className="text-gold">Acabado de Exposición.</span>
+              <span className="text-gold font-medium tracking-normal">
+                Acabado de Exposición.
+              </span>
             </h1>
 
-            <p className="text-base md:text-lg text-slate-300 max-w-2xl font-light leading-relaxed text-pretty">
+            <p className="text-xs sm:text-sm md:text-[15px] text-slate-300/90 max-w-xl font-light leading-relaxed text-pretty">
               Corrección de pintura, tratamiento cerámico y limpieza de tapicería en {biz.ciudad}. Tratamiento artesanal sin microarañazos ni atajos.
             </p>
 

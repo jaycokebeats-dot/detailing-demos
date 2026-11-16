@@ -116,7 +116,11 @@ export default function Hero({ biz }: { biz: Business }) {
             <span>{isBorges ? "Tecnología XPEL Americana" : "Estética Vehicular Profesional"}</span>
           </div>
 
-          <h1 className="text-[32px] sm:text-[38px] font-medium tracking-tight leading-tight text-balance">
+          <h1 className={`${
+            isBorges
+              ? "text-[32px] sm:text-[38px] font-medium leading-tight"
+              : "text-[22px] xs:text-[25px] sm:text-[28px] md:text-[32px] font-medium leading-snug sm:leading-tight"
+          } tracking-tight text-balance`}>
             {isBorges ? (
               <>
                 Somos Líderes en la Colocación de
@@ -125,14 +129,22 @@ export default function Hero({ biz }: { biz: Business }) {
               </>
             ) : (
               <>
-                Detailing Profesional y
+                <span className="font-light tracking-wide text-slate-100">
+                  Detailing Profesional y
+                </span>
                 <br />
-                <span className="text-gold">Protección en {biz.ciudad}.</span>
+                <span className="text-gold font-medium tracking-normal">
+                  Protección en {biz.ciudad}.
+                </span>
               </>
             )}
           </h1>
 
-          <p className="text-base md:text-lg text-slate-400 max-w-2xl font-light leading-relaxed text-pretty">
+          <p className={`${
+            isBorges
+              ? "text-base md:text-lg max-w-2xl text-slate-400"
+              : "text-xs sm:text-sm md:text-[15px] max-w-xl text-slate-300/90"
+          } font-light leading-relaxed text-pretty`}>
             {isBorges
               ? "Protección de pintura con tecnología americana XPEL, recubrimiento cerámico y detailing interior. Hecho a mano en Canning."
               : `Corrección de pintura, recubrimiento cerámico y detailing interior. Cuidado artesanal a mano en ${biz.ciudad}.`}
