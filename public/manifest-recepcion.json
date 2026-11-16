@@ -1,0 +1,24 @@
+{
+  "id": "/ficha-recepcion-1611",
+  "name": "Ficha de Recepción — AM Estética Vehicular",
+  "short_name": "Recepción AM",
+  "description": "Ficha digital de recepción, inspección 360 y firma de ingreso de vehículos",
+  "start_url": "/ficha-recepcion-1611",
+  "scope": "/ficha-recepcion-1611",
+  "display": "standalone",
+  "background_color": "#0d0b05",
+  "theme_color": "#0d0b05",
+  "icons": [
+    {
+      "src": "/apple-touch-icon-recepcion.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-recepcion.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

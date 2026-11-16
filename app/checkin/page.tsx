@@ -121,6 +121,38 @@ export default function CheckinPage() {
   const [loading, setLoading] = useState(true);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
+  // PWA Install prompt
+  const [installPrompt, setInstallPrompt] = useState<any>(null);
+  const [isStandalone, setIsStandalone] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setIsStandalone(
+        window.matchMedia("(display-mode: standalone)").matches ||
+        (window.navigator as any).standalone === true
+      );
+      const handler = (e: any) => {
+        e.preventDefault();
+        setInstallPrompt(e);
+      };
+      window.addEventListener("beforeinstallprompt", handler);
+      return () => window.removeEventListener("beforeinstallprompt", handler);
+    }
+  }, []);
+
+  const handleInstallApp = async () => {
+    if (installPrompt) {
+      installPrompt.prompt();
+      const { outcome } = await installPrompt.userChoice;
+      if (outcome === "accepted") {
+        setInstallPrompt(null);
+        setIsStandalone(true);
+      }
+    } else {
+      alert("Para agregar a la pantalla de tu celu:\n\n1. Abrí esta página en Google Chrome (no dentro de otra app).\n2. Tocá los 3 puntitos arriba a la derecha.\n3. Elegí 'Agregar a pantalla principal' o 'Instalar aplicación'.");
+    }
+  };
+
   // Selector de país manual o automático
   const [manualCountry, setManualCountry] = useState<CountryCode | null>(null);
 
@@ -801,6 +833,18 @@ export default function CheckinPage() {
                 </button>
               ))}
             </div>
+
+            {!isStandalone && (
+              <button
+                type="button"
+                onClick={handleInstallApp}
+                className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs px-3.5 py-2 rounded-xl flex items-center gap-1.5 shadow-lg active:scale-95 transition-all"
+                title="Agregar a la pantalla de inicio"
+              >
+                <span className="text-sm">📲</span>
+                <span>Instalar en Celular</span>
+              </button>
+            )}
 
             <button
               type="button"

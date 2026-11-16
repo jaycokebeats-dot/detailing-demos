@@ -66,8 +66,8 @@ export function middleware(request: NextRequest) {
       return res;
     }
 
-    // 3. Ficha de recepción / Check-in: '/checkin-1611' (y '/checkin')
-    if (pathname === "/checkin-1611" || pathname === "/checkin" || pathname === "/recepcion") {
+    // 3. Ficha de recepción / Check-in: '/ficha-recepcion-1611' (y '/checkin-1611')
+    if (pathname === "/ficha-recepcion-1611" || pathname === "/checkin-1611") {
       const url = new URL("/checkin", request.url);
       url.searchParams.set("slug", amSlug);
       url.searchParams.set("taller", amSlug);
@@ -76,14 +76,16 @@ export function middleware(request: NextRequest) {
       return res;
     }
 
-    // Si alguien intenta adivinar las URLs obvias genéricas (/panel, /cotizador, /taller, /presupuesto, /gestion)
+    // Si alguien intenta adivinar las URLs obvias genéricas (/panel, /cotizador, /taller, /presupuesto, /gestion, /checkin, /recepcion)
     // redirigir silenciosamente al inicio público '/' para proteger la privacidad del taller
     if (
       pathname === "/panel" ||
       pathname === "/taller" ||
       pathname === "/cotizador" ||
       pathname === "/presupuesto" ||
-      pathname === "/gestion"
+      pathname === "/gestion" ||
+      pathname === "/checkin" ||
+      pathname === "/recepcion"
     ) {
       return NextResponse.redirect(new URL("/", request.url));
     }

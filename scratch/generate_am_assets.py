@@ -44,10 +44,11 @@ def recolor_emblem(img, target_hue):
 
 diamond_cyan = diamond_orig
 diamond_emerald = recolor_emblem(diamond_orig, 0.38) # Emerald Green (~137°)
+diamond_yellow = recolor_emblem(diamond_orig, 0.125) # Vibrant Racing Gold / Yellow (~45°)
 
 # 2. Generator for App Icons (512x512)
 def create_app_icon(mode="main", size=512):
-    # mode: "main" (web/search console), "taller" (cyan/indigo), "cotizador" (emerald)
+    # mode: "main" (web/search console), "taller" (cyan/indigo), "cotizador" (emerald), "recepcion" (yellow/gold)
     img = Image.new("RGBA", (size, size), (0, 0, 0, 0))
     draw = ImageDraw.Draw(img)
     
@@ -71,6 +72,16 @@ def create_app_icon(mode="main", size=512):
         badge_text_color = (235, 255, 242)
         badge_text = "PRESUPUESTADOR"
         active_diamond = diamond_emerald
+    elif mode == "recepcion":
+        bg_center = (32, 26, 8)
+        bg_edge = (14, 11, 4)
+        glow_color = (255, 200, 10, 75)
+        border_color = (245, 185, 15, 140)
+        badge_bg = (42, 32, 10, 230)
+        badge_border = (245, 185, 15, 180)
+        badge_text_color = (255, 250, 230)
+        badge_text = "RECEPCIÓN"
+        active_diamond = diamond_yellow
     else: # "main"
         bg_center = (10, 18, 30)
         bg_edge = (5, 8, 14)
@@ -174,6 +185,10 @@ icon_taller_512.resize((180, 180), Image.Resampling.LANCZOS).save(os.path.join(P
 
 icon_cotizador_512.save(os.path.join(PUBLIC_DIR, "icon-cotizador.png"))
 icon_cotizador_512.resize((180, 180), Image.Resampling.LANCZOS).save(os.path.join(PUBLIC_DIR, "apple-touch-icon-cotizador.png"))
+
+icon_recepcion_512 = create_app_icon("recepcion", 512)
+icon_recepcion_512.save(os.path.join(PUBLIC_DIR, "icon-recepcion.png"))
+icon_recepcion_512.resize((180, 180), Image.Resampling.LANCZOS).save(os.path.join(PUBLIC_DIR, "apple-touch-icon-recepcion.png"))
 
 print("Icons saved successfully!")
 
