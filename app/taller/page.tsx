@@ -1309,88 +1309,90 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
       {/* CONTENIDO PRINCIPAL */}
       <main className="flex-1 max-w-7xl w-full mx-auto p-3 sm:p-6 lg:p-8 space-y-6">
         {/* BARRA DE KPIS DEL MES */}
-        <section className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+        <section className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4">
           {/* Tarjeta 1: Ingresos Cobrados */}
-          <div className="bg-[#0f1728] border border-sky-500/25 rounded-2xl p-4 sm:p-5 shadow-lg relative overflow-hidden group">
+          <div className="bg-[#0f1728] border border-sky-500/25 rounded-2xl p-3 sm:p-4.5 shadow-lg relative overflow-hidden group">
             <div className="absolute top-0 right-0 w-24 h-24 bg-sky-500/5 rounded-full blur-xl group-hover:bg-sky-500/10 transition-colors pointer-events-none" />
-            <div className="flex items-center justify-between text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
-              <span>Ingresos Cobrados</span>
-              <span className="px-2 py-0.5 rounded-full bg-sky-500/15 text-sky-300 text-[10px] font-bold">
-                {metricas.cantCobrados} de {metricas.totalAutos} cobrados
+            <div className="flex items-center justify-between text-[11px] sm:text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5 gap-1">
+              <span className="truncate">Ingresos</span>
+              <span className="px-1.5 py-0.5 rounded-full bg-sky-500/15 text-sky-300 text-[9px] sm:text-[10px] font-bold shrink-0">
+                {metricas.cantCobrados}/{metricas.totalAutos}
               </span>
             </div>
-            <p className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white tracking-tight">
+            <p className="text-base sm:text-2xl lg:text-3xl font-extrabold text-white tracking-tight truncate font-mono">
               {formatPesos(metricas.totalCobrado, ocultarMontos)}
             </p>
-            <span className="text-[11px] text-sky-400/80 font-medium mt-1 inline-block">
-              Total facturado: {formatPesos(metricas.totalFacturado, ocultarMontos)}
+            <span className="text-[10px] sm:text-[11px] text-sky-400/80 font-medium mt-1 truncate block">
+              Total: {formatPesos(metricas.totalFacturado, ocultarMontos)}
             </span>
           </div>
 
           {/* Tarjeta 2: Gastos del Mes */}
-          <div className="bg-[#0f1728] border border-red-500/20 rounded-2xl p-4 sm:p-5 shadow-lg relative overflow-hidden group">
+          <div className="bg-[#0f1728] border border-red-500/20 rounded-2xl p-3 sm:p-4.5 shadow-lg relative overflow-hidden group">
             <div className="absolute top-0 right-0 w-24 h-24 bg-red-500/5 rounded-full blur-xl group-hover:bg-red-500/10 transition-colors pointer-events-none" />
-            <div className="flex items-center justify-between text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
-              <span>Gastos del Mes ({gastosMes.length})</span>
-              <span className="size-7 rounded-lg bg-red-500/15 text-red-400 flex items-center justify-center">
-                <FaArrowDown className="size-3" />
+            <div className="flex items-center justify-between text-[11px] sm:text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5 gap-1">
+              <span className="truncate">Gastos</span>
+              <span className="size-5 sm:size-6 rounded-md bg-red-500/15 text-red-400 flex items-center justify-center shrink-0">
+                <FaArrowDown className="size-2.5 sm:size-3" />
               </span>
             </div>
-            <p className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-red-200 tracking-tight">
+            <p className="text-base sm:text-2xl lg:text-3xl font-extrabold text-red-200 tracking-tight truncate font-mono">
               {formatPesos(metricas.totalGastos, ocultarMontos)}
             </p>
-            <span className="text-[11px] text-red-400/80 font-medium mt-1 inline-block">Egresos e insumos</span>
+            <span className="text-[10px] sm:text-[11px] text-red-400/80 font-medium mt-1 truncate block">
+              {gastosMes.length} compras / insumos
+            </span>
           </div>
 
           {/* Tarjeta 3: Ganancia Real en Mano */}
-          <div className="bg-[#0f1728] border border-emerald-500/30 rounded-2xl p-4 sm:p-5 shadow-lg relative overflow-hidden group">
+          <div className="bg-[#0f1728] border border-emerald-500/30 rounded-2xl p-3 sm:p-4.5 shadow-lg relative overflow-hidden group">
             <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-500/10 rounded-full blur-xl group-hover:bg-emerald-500/15 transition-colors pointer-events-none" />
-            <div className="flex items-center justify-between text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
-              <span>Ganancia Real en Mano</span>
-              <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px] font-bold">
-                {metricas.margenReal}% margen
+            <div className="flex items-center justify-between text-[11px] sm:text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5 gap-1">
+              <span className="truncate">Ganancia Real</span>
+              <span className="px-1.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[9px] sm:text-[10px] font-bold shrink-0">
+                {metricas.margenReal}%
               </span>
             </div>
-            <p className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-emerald-400 tracking-tight">
+            <p className="text-base sm:text-2xl lg:text-3xl font-extrabold text-emerald-400 tracking-tight truncate font-mono">
               {formatPesos(metricas.gananciaNetaReal, ocultarMontos)}
             </p>
-            <span className="text-[11px] text-emerald-400/80 font-medium mt-1 inline-block">
-              Proyectada: {formatPesos(metricas.gananciaNetaProyectada, ocultarMontos)} al cobrar todo
+            <span className="text-[10px] sm:text-[11px] text-emerald-400/80 font-medium mt-1 truncate block">
+              Proy: {formatPesos(metricas.gananciaNetaProyectada, ocultarMontos)}
             </span>
           </div>
 
           {/* Tarjeta 4: Pendiente de Cobro */}
-          <div className="bg-[#0f1728] border border-amber-500/25 rounded-2xl p-4 sm:p-5 shadow-lg relative overflow-hidden group">
+          <div className="bg-[#0f1728] border border-amber-500/25 rounded-2xl p-3 sm:p-4.5 shadow-lg relative overflow-hidden group">
             <div className="absolute top-0 right-0 w-24 h-24 bg-amber-500/10 rounded-full blur-xl group-hover:bg-amber-500/15 transition-colors pointer-events-none" />
-            <div className="flex items-center justify-between text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
-              <span>Pendiente de Cobro</span>
-              <span className="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 text-[10px] font-bold">
-                {metricas.cantPendientes} por cobrar
+            <div className="flex items-center justify-between text-[11px] sm:text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5 gap-1">
+              <span className="truncate">Por Cobrar</span>
+              <span className="px-1.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 text-[9px] sm:text-[10px] font-bold shrink-0">
+                {metricas.cantPendientes} autos
               </span>
             </div>
-            <p className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-amber-300 tracking-tight">
+            <p className="text-base sm:text-2xl lg:text-3xl font-extrabold text-amber-300 tracking-tight truncate font-mono">
               {formatPesos(metricas.totalPendiente, ocultarMontos)}
             </p>
-            <span className="text-[11px] text-amber-300/80 font-medium mt-1 inline-block">
+            <span className="text-[10px] sm:text-[11px] text-amber-300/80 font-medium mt-1 truncate block">
               {metricas.chequesEnCarteraMonto > 0
-                ? `Incluye ${formatPesos(metricas.chequesEnCarteraMonto, ocultarMontos)} en cheques`
-                : "Turnos y trabajos sin abonar"}
+                ? `${formatPesos(metricas.chequesEnCarteraMonto, ocultarMontos)} en cheques`
+                : "Trabajos sin cobrar"}
             </span>
           </div>
         </section>
 
         {/* NAVEGACIÓN DE SOLAPAS (PESTAÑAS GRANDES TÁCTILES) */}
-        <div className="flex items-center gap-2 border-b border-sky-500/15 pb-2 overflow-x-auto scrollbar-none">
+        <div className="flex items-center gap-2 border-b border-sky-500/15 pb-2 overflow-x-auto scrollbar-none max-w-full">
           <button
             type="button"
             onClick={() => setActiveTab("trabajos")}
-            className={`px-4 sm:px-6 py-2.5 rounded-xl font-bold text-xs sm:text-sm tracking-wide transition-all flex items-center gap-2 cursor-pointer shrink-0 ${
+            className={`px-3.5 sm:px-6 py-2 sm:py-2.5 rounded-xl font-bold text-xs sm:text-sm tracking-wide transition-all flex items-center gap-2 cursor-pointer shrink-0 ${
               activeTab === "trabajos"
                 ? "bg-sky-500 text-slate-950 shadow-lg shadow-sky-500/30"
                 : "bg-[#111927] text-slate-300 hover:text-white border border-white/5"
             }`}
           >
-            <FaCar className="size-4" />
+            <FaCar className="size-3.5 sm:size-4" />
             <span>Trabajos & Autos ({trabajosMes.length})</span>
           </button>
 
@@ -1673,96 +1675,23 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
                 {trabajosMesFiltrados.map((t) => (
                   <div
                     key={t.id}
-                    className={`rounded-2xl p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 transition-all ${getEstadoCardClasses(
+                    className={`rounded-2xl p-3 sm:p-4 transition-all duration-200 border overflow-hidden max-w-full ${getEstadoCardClasses(
                       t.estadoTrabajo
                     )}`}
                   >
-                    {/* COLUMNA 1: Datos del Vehículo, Cliente, Servicios y Notas (Flexible) */}
-                    <div className="space-y-1.5 flex-1 min-w-0">
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <span className="text-xs font-mono font-bold text-sky-400 px-2 py-0.5 rounded-md bg-sky-950/60 border border-sky-500/30">
+                    {/* FILA SUPERIOR: FECHA, HORA, MEDIO DE PAGO & SELECTOR DE ESTADO */}
+                    <div className="flex items-center justify-between gap-2 pb-2.5 border-b border-white/5 flex-wrap">
+                      <div className="flex items-center gap-1.5 flex-wrap">
+                        <span className="text-[11px] font-mono font-bold text-sky-400 px-2 py-0.5 rounded-md bg-sky-950/70 border border-sky-500/30">
                           {formatFechaVisual(t.fecha)}
                         </span>
                         {t.horaTurno && (
-                          <span className="text-xs font-mono font-bold text-emerald-400 px-2 py-0.5 rounded-md bg-emerald-950/60 border border-emerald-500/30 flex items-center gap-1">
+                          <span className="text-[11px] font-mono font-bold text-emerald-400 px-2 py-0.5 rounded-md bg-emerald-950/70 border border-emerald-500/30 flex items-center gap-1">
                             <FaClock className="size-2.5" />
                             <span>{t.horaTurno} hs</span>
                           </span>
                         )}
-                        <h3 className="font-extrabold text-base sm:text-lg text-white tracking-tight flex items-center gap-2 truncate">
-                          <FaCar className="size-4 text-sky-400 shrink-0" />
-                          <span>{t.vehiculo}</span>
-                        </h3>
-                        {t.cliente && (
-                          <span className="text-xs text-slate-400 font-medium truncate">· Cliente: {t.cliente}</span>
-                        )}
-                      </div>
-
-                      {/* Tags de servicios */}
-                      <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
-                        {t.servicios.map((s, idx) => (
-                          <span
-                            key={idx}
-                            className="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-[#182338] text-slate-200 border border-white/5"
-                          >
-                            {s}
-                          </span>
-                        ))}
-                      </div>
-
-                      {/* Cheque detalle si aplica */}
-                      {t.medioPago === "cheque" && t.chequeData && (
-                        <div className="inline-flex items-center gap-2 mt-1 text-xs px-2.5 py-1 rounded-lg bg-amber-950/30 border border-amber-500/30 text-amber-200">
-                          <FaMoneyCheckAlt className="size-3.5 text-amber-400" />
-                          <span>
-                            Cheque {t.chequeData.banco} (N° {t.chequeData.nroCheque}) · Vence:{" "}
-                            <strong>{formatFechaVisual(t.chequeData.fechaCobro)}</strong>
-                          </span>
-                          <span
-                            className={`text-[10px] font-bold uppercase px-1.5 py-0.5 rounded ${
-                              t.chequeData.cobrado
-                                ? "bg-emerald-500/30 text-emerald-300 border border-emerald-500/40"
-                                : "bg-amber-500/30 text-amber-300 border border-amber-500/40"
-                            }`}
-                          >
-                            {t.chequeData.cobrado ? "Cobrado" : "En cartera"}
-                          </span>
-                        </div>
-                      )}
-
-                      {t.notas && <p className="text-xs text-slate-400 italic pt-0.5">Nota: {t.notas}</p>}
-                    </div>
-
-                    {/* COLUMNA 2: SELECTOR DE ESTADO DEL TRABAJO (COLUMNA FIJA, PERFECTAMENTE ALINEADA EN TODAS LAS CARDS) */}
-                    <div className="w-full md:w-48 shrink-0 flex items-center justify-start md:justify-center">
-                      <select
-                        value={t.estadoTrabajo || "en_taller"}
-                        onChange={(e) => handleCambiarEstadoTrabajo(t.id, e.target.value as EstadoTrabajo)}
-                        className={`w-full max-w-[190px] text-xs font-bold px-3 py-2 rounded-xl border transition-all cursor-pointer focus:outline-none text-center shadow-sm ${
-                          t.estadoTrabajo === "agendado"
-                            ? "bg-sky-950/90 text-sky-300 border-sky-500/40 hover:border-sky-400"
-                            : t.estadoTrabajo === "en_taller"
-                            ? "bg-indigo-950/90 text-indigo-300 border-indigo-500/40 hover:border-indigo-400"
-                            : t.estadoTrabajo === "listo"
-                            ? "bg-emerald-950/90 text-emerald-300 border-emerald-500/50 shadow-[0_0_12px_rgba(16,185,129,0.25)] hover:border-emerald-400 font-extrabold"
-                            : "bg-slate-900/90 text-slate-400 border-slate-700 hover:border-slate-600"
-                        }`}
-                        title="Cambiar estado del auto en el taller"
-                      >
-                        <option value="agendado">📅 Turno Agendado</option>
-                        <option value="en_taller">🔧 En Taller</option>
-                        <option value="listo">🚗 Listo para Retirar</option>
-                        <option value="entregado">✅ Entregado</option>
-                      </select>
-                    </div>
-
-                    {/* COLUMNA 3: COBROS, MONTO Y BOTONES DE ACCIÓN (ANCHO FIJO Y ALINEADO A LA DERECHA) */}
-                    <div className="w-full md:w-60 shrink-0 flex flex-col justify-center items-stretch md:items-end gap-1.5 pt-3 md:pt-0 border-t md:border-t-0 border-white/5">
-                      <div className="flex items-center justify-between md:justify-end gap-2 w-full">
-                        <span className="text-[10px] uppercase font-semibold text-slate-400 tracking-wider">
-                          {t.medioPago.toUpperCase()}
-                        </span>
-                        {/* BOTÓN INTERACTIVO DE COBRO */}
+                        {/* Botón interactivo de cobro directo en cabecera */}
                         <button
                           type="button"
                           onClick={() => toggleEstadoPago(t.id)}
@@ -1777,45 +1706,130 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
                         </button>
                       </div>
 
-                      <div className="flex items-center justify-between md:justify-end gap-3 w-full">
-                        <p className="text-lg sm:text-xl font-extrabold text-sky-400 font-mono tracking-tight">
+                      {/* SELECTOR DE ESTADO DEL TRABAJO (COMPACTO Y MODERNO) */}
+                      <div className="shrink-0">
+                        <select
+                          value={t.estadoTrabajo || "en_taller"}
+                          onChange={(e) => handleCambiarEstadoTrabajo(t.id, e.target.value as EstadoTrabajo)}
+                          className={`text-xs font-bold px-2.5 py-1 sm:py-1.5 rounded-xl border transition-all cursor-pointer focus:outline-none text-center shadow-sm ${
+                            t.estadoTrabajo === "agendado"
+                              ? "bg-sky-950/90 text-sky-300 border-sky-500/40 hover:border-sky-400"
+                              : t.estadoTrabajo === "en_taller"
+                              ? "bg-indigo-950/90 text-indigo-300 border-indigo-500/40 hover:border-indigo-400"
+                              : t.estadoTrabajo === "listo"
+                              ? "bg-emerald-950/90 text-emerald-300 border-emerald-500/50 shadow-[0_0_12px_rgba(16,185,129,0.25)] hover:border-emerald-400 font-extrabold"
+                              : "bg-slate-900/90 text-slate-400 border-slate-700 hover:border-slate-600"
+                          }`}
+                          title="Cambiar estado del auto en el taller"
+                        >
+                          <option value="agendado">📅 Agendado</option>
+                          <option value="en_taller">🔧 En Taller</option>
+                          <option value="listo">🚗 Listo p/ Retirar</option>
+                          <option value="entregado">✅ Entregado</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    {/* CUERPO CENTRAL: VEHÍCULO, CLIENTE, SERVICIOS & DETALLES */}
+                    <div className="py-2.5 space-y-1.5 min-w-0">
+                      <div className="flex items-start sm:items-center justify-between gap-2 min-w-0">
+                        <div className="min-w-0 flex-1">
+                          <h3 className="font-extrabold text-base sm:text-lg text-white tracking-tight flex items-center gap-2 break-words">
+                            <FaCar className="size-4 text-sky-400 shrink-0" />
+                            <span className="break-words">{t.vehiculo}</span>
+                          </h3>
+                          {t.cliente && (
+                            <p className="text-xs text-slate-400 font-medium mt-0.5 break-words">
+                              Cliente: <strong className="text-slate-300">{t.cliente}</strong>
+                              {t.telefono && <span className="text-slate-500 font-mono ml-1.5">({t.telefono})</span>}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Tags de servicios */}
+                      <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
+                        {t.servicios.map((s, idx) => (
+                          <span
+                            key={idx}
+                            className="text-[10px] sm:text-[11px] font-semibold px-2 py-0.5 rounded-full bg-[#182338] text-slate-200 border border-white/5"
+                          >
+                            {s}
+                          </span>
+                        ))}
+                      </div>
+
+                      {/* Cheque detalle si aplica */}
+                      {t.medioPago === "cheque" && t.chequeData && (
+                        <div className="flex flex-wrap items-center gap-2 mt-1 text-xs p-2 rounded-xl bg-amber-950/30 border border-amber-500/30 text-amber-200 break-words">
+                          <div className="flex items-center gap-1.5 shrink-0">
+                            <FaMoneyCheckAlt className="size-3.5 text-amber-400" />
+                            <span>Cheque {t.chequeData.banco} (N° {t.chequeData.nroCheque})</span>
+                          </div>
+                          <span className="text-amber-300/80">· Vence: <strong>{formatFechaVisual(t.chequeData.fechaCobro)}</strong></span>
+                          <span
+                            className={`text-[10px] font-bold uppercase px-1.5 py-0.5 rounded ${
+                              t.chequeData.cobrado
+                                ? "bg-emerald-500/30 text-emerald-300 border border-emerald-500/40"
+                                : "bg-amber-500/30 text-amber-300 border border-amber-500/40"
+                            }`}
+                          >
+                            {t.chequeData.cobrado ? "Cobrado" : "En cartera"}
+                          </span>
+                        </div>
+                      )}
+
+                      {t.notas && <p className="text-xs text-slate-400 italic pt-0.5 break-words">Nota: {t.notas}</p>}
+                    </div>
+
+                    {/* BARRA INFERIOR DE ACCIÓN: PRECIO + MEDIO + BOTONES (WHATSAPP, CHEQUE, BORRAR) */}
+                    <div className="pt-2.5 border-t border-white/5 flex items-center justify-between gap-2 w-full">
+                      {/* Monto & Medio de pago */}
+                      <div className="flex items-center gap-2 min-w-0">
+                        <p className="text-base sm:text-lg font-black text-sky-400 font-mono tracking-tight shrink-0">
                           {formatPesos(t.monto, ocultarMontos)}
                         </p>
+                        <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider px-1.5 py-0.5 rounded bg-white/5 border border-white/5 shrink-0">
+                          {t.medioPago.toUpperCase()}
+                        </span>
+                      </div>
 
-                        <div className="flex items-center gap-1.5 shrink-0">
+                      {/* Botones de acción (WhatsApp, Cheque, Eliminar) - SIEMPRE VISIBLES Y ACCESIBLES */}
+                      <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+                        <button
+                          type="button"
+                          onClick={() => setTrabajoWhatsAppModal(t)}
+                          className="px-2.5 py-1.5 rounded-xl bg-emerald-950/40 hover:bg-emerald-900/60 text-emerald-300 border border-emerald-500/30 transition-all cursor-pointer shadow-sm active:scale-95 flex items-center gap-1.5"
+                          title={t.telefono ? `Mensajes rápidos x WhatsApp a ${t.cliente || "cliente"} (${t.telefono})` : "Mensajes rápidos x WhatsApp"}
+                        >
+                          <FaWhatsapp className="size-4 text-emerald-400 shrink-0" />
+                          <span className="hidden sm:inline text-xs font-bold text-emerald-300">WhatsApp</span>
+                        </button>
+
+                        {t.medioPago === "cheque" && (
                           <button
                             type="button"
-                            onClick={() => setTrabajoWhatsAppModal(t)}
-                            className="p-2 rounded-xl bg-emerald-950/40 hover:bg-emerald-900/60 text-emerald-300 border border-emerald-500/30 transition-all cursor-pointer shadow-sm hover:scale-105"
-                            title={t.telefono ? `Mensajes rápidos x WhatsApp a ${t.cliente || "cliente"} (${t.telefono})` : "Mensajes rápidos x WhatsApp"}
+                            onClick={() => toggleCobroCheque(t.id)}
+                            className={`p-2 rounded-xl text-xs font-bold transition-all cursor-pointer active:scale-95 ${
+                              t.chequeData?.cobrado
+                                ? "bg-emerald-950/40 text-emerald-300 border border-emerald-500/30"
+                                : "bg-amber-950/40 text-amber-300 border border-amber-500/30 hover:bg-emerald-950/60"
+                            }`}
+                            title={t.chequeData?.cobrado ? "Cheque marcado como cobrado" : "Marcar como cobrado"}
                           >
-                            <FaWhatsapp className="size-4 text-emerald-400" />
+                            <FaMoneyCheckAlt className="size-4" />
                           </button>
+                        )}
 
-                          {t.medioPago === "cheque" && (
-                            <button
-                              type="button"
-                              onClick={() => toggleCobroCheque(t.id)}
-                              className={`p-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                                t.chequeData?.cobrado
-                                  ? "bg-emerald-950/40 text-emerald-300 border border-emerald-500/30"
-                                  : "bg-amber-950/40 text-amber-300 border border-amber-500/30 hover:bg-emerald-950/60"
-                              }`}
-                              title={t.chequeData?.cobrado ? "Cheque marcado como cobrado" : "Marcar como cobrado"}
-                            >
-                              <FaMoneyCheckAlt className="size-4" />
-                            </button>
-                          )}
-
-                          <button
-                            type="button"
-                            onClick={() => handleEliminarTrabajo(t.id, t.vehiculo)}
-                            className="p-2 rounded-xl bg-red-950/30 hover:bg-red-900/50 text-red-400 border border-red-500/20 transition-all cursor-pointer"
-                            title="Eliminar trabajo"
-                          >
-                            <FaTrash className="size-3.5" />
-                          </button>
-                        </div>
+                        <button
+                          type="button"
+                          onClick={() => handleEliminarTrabajo(t.id, t.vehiculo)}
+                          className="px-2.5 py-1.5 rounded-xl bg-red-950/40 hover:bg-red-900/70 text-red-400 hover:text-red-300 border border-red-500/30 transition-all cursor-pointer active:scale-95 flex items-center gap-1.5 shadow-sm"
+                          title="Eliminar trabajo"
+                        >
+                          <FaTrash className="size-3.5 shrink-0" />
+                          <span className="hidden sm:inline text-xs font-bold">Borrar</span>
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -1953,27 +1967,27 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
                       </div>
 
                       {/* Footer: Monto y Botones */}
-                      <div className="pt-2 border-t border-white/5 flex items-center justify-between gap-2">
-                        <div>
+                      <div className="pt-2.5 border-t border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 w-full">
+                        <div className="flex items-center justify-between sm:block">
                           <span className="text-[10px] uppercase text-slate-400 font-semibold block">Total Cotizado</span>
-                          <p className="text-lg font-black text-emerald-400 font-mono">{formatPesos(p.monto)}</p>
+                          <p className="text-base sm:text-lg font-black text-emerald-400 font-mono">{formatPesos(p.monto)}</p>
                         </div>
 
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center justify-end gap-1.5 shrink-0 flex-wrap">
                           {p.estado === "pendiente" && (
                             <>
                               <button
                                 type="button"
                                 onClick={() => handleAbrirModalAgendar(p)}
-                                className="px-3.5 py-2 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs rounded-xl shadow-md transition-transform active:scale-95 flex items-center gap-1.5 cursor-pointer"
+                                className="px-3 py-1.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs rounded-xl shadow-md transition-transform active:scale-95 flex items-center gap-1 cursor-pointer"
                               >
-                                <FaCalendarCheck className="size-3.5" />
+                                <FaCalendarCheck className="size-3" />
                                 <span>Agendar Turno</span>
                               </button>
                               <button
                                 type="button"
                                 onClick={() => handleDescartarPresupuesto(p.id)}
-                                className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition-all cursor-pointer"
+                                className="p-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition-all cursor-pointer"
                                 title="Descartar presupuesto"
                               >
                                 <FaTimes className="size-3.5" />
@@ -2006,7 +2020,7 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
                           <button
                             type="button"
                             onClick={() => handleEliminarPresupuesto(p.id)}
-                            className="p-2 rounded-xl bg-red-950/30 hover:bg-red-900/50 text-red-400 border border-red-500/20 transition-all cursor-pointer"
+                            className="p-1.5 rounded-xl bg-red-950/40 hover:bg-red-900/70 text-red-400 hover:text-red-300 border border-red-500/30 transition-all cursor-pointer active:scale-95 shadow-sm"
                             title="Eliminar presupuesto definitivamente"
                           >
                             <FaTrash className="size-3.5" />
@@ -2054,34 +2068,34 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
                   return (
                     <div
                       key={g.id}
-                      className="bg-[#0f1728] border border-red-500/15 hover:border-red-500/35 rounded-2xl p-4 sm:p-5 flex items-center justify-between gap-4 transition-all shadow-md"
+                      className="bg-[#0f1728] border border-red-500/15 hover:border-red-500/35 rounded-2xl p-3 sm:p-4 flex items-center justify-between gap-3 transition-all shadow-md overflow-hidden max-w-full"
                     >
-                      <div className="flex items-center gap-3">
-                        <span className="text-2xl p-2 rounded-xl bg-white/5 border border-white/5 shrink-0">
+                      <div className="flex items-center gap-2.5 sm:gap-3 min-w-0 flex-1">
+                        <span className="text-xl sm:text-2xl p-2 rounded-xl bg-white/5 border border-white/5 shrink-0">
                           {catCfg.icon}
                         </span>
-                        <div>
-                          <div className="flex items-center gap-2 flex-wrap">
+                        <div className="min-w-0 flex-1">
+                          <div className="flex items-center gap-1.5 flex-wrap">
                             <span className="text-xs font-mono font-bold text-slate-400">
                               {formatFechaVisual(g.fecha)}
                             </span>
-                            <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded bg-white/5 text-slate-300 border border-white/10">
+                            <span className="text-[10px] uppercase font-bold px-1.5 py-0.2 rounded bg-white/5 text-slate-300 border border-white/10">
                               {catCfg.label}
                             </span>
                           </div>
-                          <h4 className="font-bold text-base text-white mt-0.5">{g.concepto}</h4>
-                          {g.notas && <p className="text-xs text-slate-400 italic">Nota: {g.notas}</p>}
+                          <h4 className="font-bold text-sm sm:text-base text-white mt-0.5 truncate">{g.concepto}</h4>
+                          {g.notas && <p className="text-xs text-slate-400 italic truncate">Nota: {g.notas}</p>}
                         </div>
                       </div>
 
-                      <div className="flex items-center gap-4 shrink-0">
-                        <p className="text-base sm:text-lg font-extrabold text-red-300">
+                      <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
+                        <p className="text-sm sm:text-base font-extrabold text-red-300 font-mono">
                           {formatPesos(g.monto, ocultarMontos)}
                         </p>
                         <button
                           type="button"
                           onClick={() => handleEliminarGasto(g.id, g.concepto)}
-                          className="p-2 rounded-xl bg-red-950/30 hover:bg-red-900/50 text-red-400 border border-red-500/20 transition-all cursor-pointer"
+                          className="p-2 rounded-xl bg-red-950/40 hover:bg-red-900/60 text-red-400 border border-red-500/30 transition-all cursor-pointer active:scale-95 shadow-sm"
                           title="Eliminar gasto"
                         >
                           <FaTrash className="size-3.5" />
@@ -2146,7 +2160,7 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
                   return (
                     <div
                       key={c.trabajoId}
-                      className={`bg-[#0f1728] border rounded-2xl p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 transition-all shadow-md ${
+                      className={`bg-[#0f1728] border rounded-2xl p-3 sm:p-4 flex flex-col md:flex-row md:items-center justify-between gap-3.5 transition-all shadow-md overflow-hidden max-w-full ${
                         c.cheque.cobrado
                           ? "border-emerald-500/20 opacity-80"
                           : esVencido || esHoy
@@ -2154,9 +2168,9 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
                           : "border-sky-500/20"
                       }`}
                     >
-                      <div className="space-y-1">
-                        <div className="flex items-center gap-2 flex-wrap">
-                          <span className="font-bold text-base text-white">{c.cheque.banco}</span>
+                      <div className="space-y-1 min-w-0 flex-1">
+                        <div className="flex items-center gap-1.5 flex-wrap">
+                          <span className="font-bold text-sm sm:text-base text-white">{c.cheque.banco}</span>
                           <span className="text-xs font-mono px-2 py-0.5 rounded bg-white/5 border border-white/10 text-slate-300">
                             N° {c.cheque.nroCheque}
                           </span>
@@ -2175,7 +2189,7 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
                           </span>
                         </div>
 
-                        <p className="text-xs text-slate-300">
+                        <p className="text-xs text-slate-300 truncate">
                           Auto: <strong className="text-white">{c.vehiculo}</strong>
                           {c.cliente ? ` · Titular: ${c.cliente}` : ""}
                         </p>
@@ -2186,32 +2200,32 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
                         </p>
                       </div>
 
-                      <div className="flex items-center justify-between md:justify-end gap-4 shrink-0 pt-2 md:pt-0 border-t md:border-t-0 border-white/5">
-                        <div className="text-left md:text-right">
-                          <span className="text-[11px] uppercase font-semibold text-slate-400 block">Monto Cheque</span>
-                          <p className="text-lg sm:text-xl font-extrabold text-amber-300">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between md:justify-end gap-2.5 shrink-0 pt-2.5 md:pt-0 border-t md:border-t-0 border-white/5">
+                        <div className="flex items-center justify-between sm:block text-left md:text-right">
+                          <span className="text-[10px] uppercase font-semibold text-slate-400 block">Monto Cheque</span>
+                          <p className="text-base sm:text-lg font-extrabold text-amber-300 font-mono">
                             {formatPesos(c.monto, ocultarMontos)}
                           </p>
                         </div>
 
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center justify-end gap-1.5 sm:gap-2 shrink-0">
                           <button
                             type="button"
                             onClick={() => toggleCobroCheque(c.trabajoId)}
-                            className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1.5 cursor-pointer ${
+                            className={`px-3 py-1.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1.5 cursor-pointer active:scale-95 ${
                               c.cheque.cobrado
                                 ? "bg-slate-800 text-slate-300 hover:bg-slate-700"
                                 : "btn-celeste"
                             }`}
                           >
-                            <FaCheckCircle className="size-3.5" />
-                            <span>{c.cheque.cobrado ? "Marcar Pendiente" : "Marcar Cobrado"}</span>
+                            <FaCheckCircle className="size-3" />
+                            <span>{c.cheque.cobrado ? "Pendiente" : "Cobrado"}</span>
                           </button>
 
                           <button
                             type="button"
                             onClick={() => handleEliminarTrabajo(c.trabajoId, `Cheque ${c.cheque.banco} N° ${c.cheque.nroCheque}`)}
-                            className="p-2.5 rounded-xl bg-white/5 hover:bg-red-500/20 text-slate-400 hover:text-red-400 transition-colors border border-white/5 hover:border-red-500/30 cursor-pointer"
+                            className="p-2 rounded-xl bg-red-950/40 hover:bg-red-900/60 text-red-400 hover:text-red-300 border border-red-500/30 transition-all cursor-pointer active:scale-95 shadow-sm"
                             title="Eliminar cheque de la cartera"
                           >
                             <FaTrash className="size-3.5" />
@@ -2325,7 +2339,7 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
       {/* MODAL: CARGAR NUEVO TRABAJO */}
       {modalTrabajoOpen && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
-          <div className="bg-[#0f1728] border border-sky-500/30 rounded-3xl w-full max-w-xl p-5 sm:p-7 space-y-4 shadow-2xl relative my-auto">
+          <div className="bg-[#0f1728] border border-sky-500/30 rounded-3xl w-full max-w-xl p-4 sm:p-7 space-y-4 shadow-2xl relative my-auto max-h-[92vh] overflow-y-auto">
             <div className="flex items-center justify-between border-b border-white/10 pb-3">
               <div className="flex items-center gap-2">
                 <FaCar className="size-5 text-sky-400" />
@@ -2592,7 +2606,7 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
       {/* MODAL: REGISTRAR NUEVO GASTO */}
       {modalGastoOpen && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
-          <div className="bg-[#0f1728] border border-red-500/30 rounded-3xl w-full max-w-lg p-5 sm:p-7 space-y-4 shadow-2xl relative my-auto">
+          <div className="bg-[#0f1728] border border-red-500/30 rounded-3xl w-full max-w-lg p-4 sm:p-7 space-y-4 shadow-2xl relative my-auto max-h-[92vh] overflow-y-auto">
             <div className="flex items-center justify-between border-b border-white/10 pb-3">
               <div className="flex items-center gap-2">
                 <FaFileInvoiceDollar className="size-5 text-red-400" />
@@ -2709,7 +2723,7 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
       {/* MODAL: CARGAR CHEQUE DIRECTO EN CARTERA */}
       {modalChequeOpen && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
-          <div className="bg-[#0f1728] border border-amber-500/30 rounded-3xl w-full max-w-lg p-5 sm:p-7 space-y-4 shadow-2xl relative my-auto">
+          <div className="bg-[#0f1728] border border-amber-500/30 rounded-3xl w-full max-w-lg p-4 sm:p-7 space-y-4 shadow-2xl relative my-auto max-h-[92vh] overflow-y-auto">
             <div className="flex items-center justify-between border-b border-white/10 pb-3">
               <div className="flex items-center gap-2">
                 <FaMoneyCheckAlt className="size-5 text-amber-400" />
@@ -2846,7 +2860,7 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
       {/* MODAL: INSTRUCCIONES MODO TABLET / PWA */}
       {modalInstallOpen && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
-          <div className="bg-[#0f1728] border border-sky-500/40 rounded-3xl w-full max-w-md p-6 space-y-4 shadow-2xl relative my-auto">
+          <div className="bg-[#0f1728] border border-sky-500/40 rounded-3xl w-full max-w-md p-4 sm:p-6 space-y-4 shadow-2xl relative my-auto max-h-[92vh] overflow-y-auto">
             <div className="flex items-center justify-between border-b border-white/10 pb-3">
               <div className="flex items-center gap-2">
                 <FaTabletAlt className="size-5 text-sky-400" />
@@ -2896,7 +2910,7 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
       {/* MODAL: AGENDAR TURNO DESDE PRESUPUESTO */}
       {modalAgendarPresupuesto && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
-          <div className="bg-[#0f1728] border border-emerald-500/40 rounded-3xl w-full max-w-lg p-5 sm:p-7 space-y-4 shadow-2xl relative my-auto">
+          <div className="bg-[#0f1728] border border-emerald-500/40 rounded-3xl w-full max-w-lg p-4 sm:p-7 space-y-4 shadow-2xl relative my-auto max-h-[92vh] overflow-y-auto">
             <div className="flex items-center justify-between border-b border-white/10 pb-3">
               <div className="flex items-center gap-2">
                 <FaCalendarCheck className="size-5 text-emerald-400" />
@@ -3038,7 +3052,7 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
       {/* MODAL: ACCIONES RÁPIDAS DE WHATSAPP PARA UN TRABAJO */}
       {trabajoWhatsAppModal && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
-          <div className="bg-[#0f1728] border border-emerald-500/40 rounded-3xl w-full max-w-2xl p-5 sm:p-7 space-y-4 shadow-2xl relative my-auto">
+          <div className="bg-[#0f1728] border border-emerald-500/40 rounded-3xl w-full max-w-2xl p-4 sm:p-7 space-y-4 shadow-2xl relative my-auto max-h-[92vh] overflow-y-auto">
             <div className="flex items-center justify-between border-b border-white/10 pb-3">
               <div className="flex items-center gap-2.5">
                 <FaWhatsapp className="size-6 text-emerald-400" />
