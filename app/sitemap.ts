@@ -10,6 +10,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const cleanHost = host.split(":")[0].toLowerCase();
   const now = new Date();
 
+  // Si acceden desde el dominio de AM Centro de Estética Vehicular (Google Search Console amesteticavehicular.com.ar)
+  if (cleanHost === "amesteticavehicular.com.ar" || cleanHost === "www.amesteticavehicular.com.ar") {
+    return [
+      {
+        url: "https://amesteticavehicular.com.ar",
+        lastModified: now,
+        changeFrequency: "daily",
+        priority: 1.0,
+      },
+    ];
+  }
+
   // Si acceden desde el dominio de Mc Detail Neuquén (Google Search Console mcdetail.com.ar)
   if (cleanHost === "mcdetail.com.ar" || cleanHost === "www.mcdetail.com.ar") {
     return [
@@ -27,6 +39,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     return [
       {
         url: "https://platinumdetallado.com",
+        lastModified: now,
+        changeFrequency: "daily",
+        priority: 1.0,
+      },
+    ];
+  }
+
+  // Si acceden desde el dominio exclusivo de JDS Detailing Car Studio
+  if (cleanHost.includes("jdsdetailing") || cleanHost.includes("jdscardetail")) {
+    return [
+      {
+        url: `https://${cleanHost}`,
         lastModified: now,
         changeFrequency: "daily",
         priority: 1.0,

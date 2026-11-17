@@ -15,6 +15,8 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
     sitemapUrl = "https://mcdetail.com.ar/sitemap.xml";
   } else if (cleanHost === "platinumdetallado.com" || cleanHost === "www.platinumdetallado.com") {
     sitemapUrl = "https://platinumdetallado.com/sitemap.xml";
+  } else if (cleanHost.includes("jdsdetailing") || cleanHost.includes("jdscardetail")) {
+    sitemapUrl = `https://${cleanHost}/sitemap.xml`;
   }
 
   return {

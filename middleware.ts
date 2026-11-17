@@ -17,6 +17,9 @@ export function middleware(request: NextRequest) {
     if (cleanHost === "platinumdetallado.com" || cleanHost === "www.platinumdetallado.com") {
       return NextResponse.rewrite(new URL("/favicon-platinum.ico", request.url));
     }
+    if (cleanHost.includes("jds") || cleanHost.includes("jdscardetail")) {
+      return NextResponse.rewrite(new URL("/favicon-jds.ico", request.url));
+    }
     return NextResponse.rewrite(new URL("/favicon-platinum.ico", request.url));
   }
 
@@ -149,6 +152,23 @@ export function middleware(request: NextRequest) {
       url.searchParams.set("taller", "mc-detail-detailing");
       const res = NextResponse.rewrite(url);
       res.cookies.set("black_line_active_slug", "mc-detail-detailing", { path: "/" });
+      return res;
+    }
+  }
+
+  // Si acceden desde el dominio exclusivo de JDS Detailing Car Studio
+  if (cleanHost.includes("jdsdetailing") || cleanHost.includes("jdscardetail")) {
+    const jdsSlug = "jds-detailing";
+    if (pathname === "/") {
+      const res = NextResponse.rewrite(new URL(`/d/${jdsSlug}`, request.url));
+      res.cookies.set("black_line_active_slug", jdsSlug, { path: "/" });
+      return res;
+    }
+    if (pathname === "/admin") {
+      const url = new URL("/admin", request.url);
+      url.searchParams.set("taller", jdsSlug);
+      const res = NextResponse.rewrite(url);
+      res.cookies.set("black_line_active_slug", jdsSlug, { path: "/" });
       return res;
     }
   }
