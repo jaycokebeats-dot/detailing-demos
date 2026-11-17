@@ -260,14 +260,14 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
             </div>
           )}
 
-          <div className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full border text-[11px] sm:text-xs font-medium ${isRojo ? "border-red-500/30 bg-red-950/40 text-red-200" : isCeleste ? "border-sky-500/30 bg-sky-950/40 text-sky-200" : "border-white/10 bg-white/5 text-slate-300"}`}>
+          <div className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border text-[11px] sm:text-xs font-medium ${isRojo ? "border-red-500/30 bg-red-950/40 text-red-200" : isCeleste ? "border-sky-500/30 bg-sky-950/40 text-sky-200" : "border-white/10 bg-white/5 text-slate-300"} mt-2 sm:mt-4 mb-2 sm:mb-3`}>
             <span className={`flex size-1.5 sm:size-2 rounded-full shrink-0 animate-pulse ${isRojo ? "bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.9)]" : isCeleste ? "bg-sky-400 shadow-[0_0_8px_rgba(56,189,248,0.9)]" : "bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]"}`} />
             <span>{biz.ciudad}{biz.provincia ? `, ${biz.provincia}` : " (Argentina)"}</span>
             <span className={isRojo ? "text-red-500" : isCeleste ? "text-sky-500" : "text-slate-500"}>·</span>
             <span>Turnos disponibles esta semana</span>
           </div>
 
-          <h1 className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-semibold tracking-tight leading-snug sm:leading-tight text-balance text-white mt-1.5 sm:mt-2">
+          <h1 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight leading-snug sm:leading-tight text-balance text-white mt-1 sm:mt-2 mb-5 sm:mb-7">
             {biz.hero_titulo ? (
               <>
                 {biz.hero_titulo}
@@ -280,37 +280,39 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
               </>
             ) : (
               <>
-                Detailing Profesional, Polarizados & PPF,
+                Detailing Profesional, Polarizados & PPF
                 <br />
                 <span className={isRojo ? "text-jds drop-shadow-[0_0_20px_rgba(239,68,68,0.4)]" : isCeleste ? "text-celeste" : "text-gold"}>Resultado de Showroom.</span>
               </>
             )}
           </h1>
 
-          <p className="text-[11px] xs:text-xs sm:text-sm text-slate-300 max-w-lg mx-auto font-light leading-snug text-pretty mt-1 sm:mt-1.5 line-clamp-2 sm:line-clamp-none">
-            {biz.hero_subtitulo ?? `Corrección de pintura, protección cerámica y estética interior en ${biz.ciudad}. Cuidado artesanal sin microrrayones ni atajos.`}
-          </p>
+          {biz.hero_subtitulo && !isRojo && (
+            <p className="text-[11px] xs:text-xs sm:text-sm text-slate-300 max-w-lg mx-auto font-light leading-snug text-pretty mb-5 sm:mb-7 line-clamp-2 sm:line-clamp-none">
+              {biz.hero_subtitulo}
+            </p>
+          )}
 
-          <div className="flex flex-row items-center justify-center gap-2 sm:gap-3 w-full max-w-sm sm:max-w-md mx-auto pt-2 sm:pt-2.5 px-1">
+          <div className="flex flex-row items-center justify-center gap-2.5 sm:gap-4 w-full max-w-xs sm:max-w-md mx-auto mb-4 sm:mb-6 px-1">
             <a
               href={waHref(biz, msgPresupuesto)}
               target="_blank"
               rel="noopener noreferrer"
-              className={`${isRojo ? "btn-jds" : isCeleste ? "btn-celeste" : "btn-gold"} group flex-1 px-3 sm:px-6 py-2.5 sm:py-3 min-h-[42px] sm:min-h-[44px] rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wide active:scale-95 transition-all flex items-center justify-center gap-1.5 sm:gap-2 whitespace-nowrap text-center`}
+              className={`${isRojo ? "btn-jds" : isCeleste ? "btn-celeste" : "btn-gold"} group flex-1 px-4 sm:px-6 py-2.5 sm:py-3.5 min-h-[44px] sm:min-h-[48px] rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wider active:scale-95 transition-all flex items-center justify-center gap-1.5 sm:gap-2 whitespace-nowrap text-center`}
             >
               <FaWhatsapp aria-hidden className="size-3.5 sm:size-4 shrink-0" />
               <span className="whitespace-nowrap">Pedir Presupuesto</span>
             </a>
             <a
               href="#servicios"
-              className={`${isRojo ? "btn-outline-jds" : isCeleste ? "btn-outline-celeste" : "btn-outline-gold"} group flex-1 px-3 sm:px-6 py-2.5 sm:py-3 min-h-[42px] sm:min-h-[44px] rounded-full text-xs sm:text-sm font-semibold uppercase active:scale-95 transition-all flex items-center justify-center gap-1.5 sm:gap-2 whitespace-nowrap text-center`}
+              className={`${isRojo ? "btn-outline-jds" : isCeleste ? "btn-outline-celeste" : "btn-outline-gold"} group flex-1 px-4 sm:px-6 py-2.5 sm:py-3.5 min-h-[44px] sm:min-h-[48px] rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wider active:scale-95 transition-all flex items-center justify-center gap-1.5 sm:gap-2 whitespace-nowrap text-center`}
             >
               <HiOutlineSparkles aria-hidden className="size-3.5 sm:size-4 shrink-0" />
               <span className="whitespace-nowrap">Ver Servicios</span>
             </a>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-x-3 sm:gap-x-5 gap-y-1 pt-1.5 sm:pt-2.5 text-[11px] sm:text-xs text-slate-300">
+          <div className="flex flex-wrap items-center justify-center gap-x-4 sm:gap-x-6 gap-y-1.5 text-[11px] sm:text-xs text-slate-300">
             {stats.map((item) => (
               <span key={item} className="inline-flex items-center gap-1">
                 <HiOutlineCheckCircle aria-hidden className={`size-3.5 sm:size-4 shrink-0 ${isRojo ? "text-red-400" : isCeleste ? "text-sky-400" : "text-gold"}`} />
@@ -862,14 +864,14 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
           rel="noopener noreferrer"
           className={`flex items-center gap-2.5 rounded-full ${
             isRojo
-              ? "bg-red-600 hover:bg-red-500 text-white shadow-[0_0_25px_rgba(239,68,68,0.55)] border border-red-400/40"
+              ? "bg-neutral-950/90 hover:bg-neutral-900 text-white shadow-[0_10px_35px_rgba(0,0,0,0.8),0_0_20px_rgba(220,38,38,0.25)] border border-red-500/40 hover:border-red-500/70 backdrop-blur-md"
               : isCeleste
               ? "bg-sky-500 hover:bg-sky-400 text-slate-950 shadow-[0_0_25px_rgba(56,189,248,0.55)] border border-sky-300/40"
               : "bg-emerald-500 hover:bg-emerald-400 text-black shadow-2xl"
-          } px-4 py-3 font-bold text-xs uppercase tracking-wider hover:scale-105 active:scale-95 transition-all`}
+          } px-4 py-3 font-semibold text-xs uppercase tracking-wider hover:scale-105 active:scale-95 transition-all`}
           aria-label="Contactar por WhatsApp"
         >
-          <FaWhatsapp className="size-5" />
+          <FaWhatsapp className={`size-5 ${isRojo ? "text-red-500" : ""}`} />
           <span className="hidden sm:inline">¿Dudas? Escribinos</span>
         </a>
       </div>

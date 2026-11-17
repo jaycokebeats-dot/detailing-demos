@@ -20,9 +20,9 @@ export const JDS_DETAILING_BUSINESS: Business = {
   pais: "AR",
   template: "argentina",
   video_hero: "/videos/hero-compilado-blanco.mp4",
-  hero_titulo: "Detailing Profesional & Estética del Automotor,",
+  hero_titulo: "Detailing Profesional & Estética del Automotor",
   hero_titulo_gold: "Tu Auto, en las Mejores Manos",
-  hero_subtitulo: "Tratamientos cerámicos, pulido de pintura, PPF brillante, restauración de ópticas y limpieza de motor a vapor en Villa Ballester. Cuidado artesanal sin atajos.",
+  hero_subtitulo: "",
   servicios: [
     {
       nombre: "Tratamiento Cerámico",
