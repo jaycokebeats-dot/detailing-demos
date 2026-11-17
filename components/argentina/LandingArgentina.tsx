@@ -370,7 +370,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
 
       {/* 2. HERO */}
       <section id="hero" className="relative min-h-[100dvh] h-[100dvh] pt-14 sm:pt-20 pb-4 sm:pb-8 px-4 sm:px-6 overflow-hidden flex items-center justify-center">
-        {biz.fotos && biz.fotos.length > 0 ? (
+        {!biz.video_hero && biz.fotos && biz.fotos.length > 0 ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={biz.fotos[0]}

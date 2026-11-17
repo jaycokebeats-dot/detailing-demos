@@ -226,11 +226,11 @@ def make_og_preview():
 
     # 6. Bottom Trust Bar
     trust_items = [
-        ("⭐ 5.0 en Google", (250, 204, 21)),
+        ("⭐ 5.0 en Google (20 opiniones)", (250, 204, 21)),
         ("•", (113, 113, 122)),
-        ("💳 3 Cuotas Fijas con Tarjeta", (228, 228, 231)),
+        ("🛡️ Garantía Escrita", (228, 228, 231)),
         ("•", (113, 113, 122)),
-        ("🛡️ Garantía Escrita & Cuidado Artesanal", (228, 228, 231)),
+        ("🚗 Cuidado Artesanal Sin Atajos", (228, 228, 231)),
         ("•", (113, 113, 122)),
         ("📲 11 5451-4393", (52, 211, 153)),
     ]
