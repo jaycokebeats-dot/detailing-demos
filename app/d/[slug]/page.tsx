@@ -104,7 +104,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     description: descripcion,
     applicationName: brandName,
-    verification: isPlatinum
+    verification: isAmCentro
+      ? {
+          google: "leuXV1SO0PdllU83kfZAlQC9p3-lUAprpCfAFzv5e38",
+        }
+      : isPlatinum
       ? {
           google: "8KSKdnhVp7_r_zufW5NJuW-O4bCwpQ4t7Gsen_A02VE",
         }

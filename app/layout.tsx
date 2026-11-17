@@ -21,6 +21,9 @@ const DESCRIPCION = "Detailing profesional de alta gama: tratamientos cerámicos
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
+  verification: {
+    google: "leuXV1SO0PdllU83kfZAlQC9p3-lUAprpCfAFzv5e38",
+  },
   title: {
     default: TITULO,
     template: "%s | Detailing Profesional",
