@@ -260,11 +260,16 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
             </div>
           )}
 
-          <div className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border text-[11px] sm:text-xs font-medium ${isRojo ? "border-red-500/30 bg-red-950/40 text-red-200" : isCeleste ? "border-sky-500/30 bg-sky-950/40 text-sky-200" : "border-white/10 bg-white/5 text-slate-300"} mt-2 sm:mt-4 mb-2 sm:mb-3`}>
-            <span className={`flex size-1.5 sm:size-2 rounded-full shrink-0 animate-pulse ${isRojo ? "bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.9)]" : isCeleste ? "bg-sky-400 shadow-[0_0_8px_rgba(56,189,248,0.9)]" : "bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]"}`} />
-            <span>{biz.ciudad}{biz.provincia ? `, ${biz.provincia}` : " (Argentina)"}</span>
-            <span className={isRojo ? "text-red-500" : isCeleste ? "text-sky-500" : "text-slate-500"}>·</span>
-            <span>Turnos disponibles esta semana</span>
+          <div className={`inline-flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 px-4 py-2 sm:py-1.5 rounded-2xl sm:rounded-full border text-[11px] sm:text-xs font-medium ${isRojo ? "border-red-500/30 bg-red-950/40 text-red-200" : isCeleste ? "border-sky-500/30 bg-sky-950/40 text-sky-200" : "border-white/10 bg-white/5 text-slate-300"} mt-2 sm:mt-4 mb-2 sm:mb-3 text-center`}>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1.5">
+              <div className="flex items-center justify-center gap-1.5">
+                <span className={`flex size-1.5 sm:size-2 rounded-full shrink-0 animate-pulse ${isRojo ? "bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.9)]" : isCeleste ? "bg-sky-400 shadow-[0_0_8px_rgba(56,189,248,0.9)]" : "bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]"}`} />
+                <span className="whitespace-nowrap font-medium">{biz.ciudad},</span>
+              </div>
+              <span className="whitespace-nowrap font-medium">{biz.provincia ?? "Buenos Aires"}</span>
+            </div>
+            <span className="hidden sm:inline text-red-500/50">·</span>
+            <span className="text-[10px] sm:text-xs text-red-300/80 whitespace-nowrap">Turnos disponibles esta semana</span>
           </div>
 
           <h1 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight leading-snug sm:leading-tight text-balance text-white mt-1 sm:mt-2 mb-5 sm:mb-7">
@@ -324,78 +329,80 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
       </section>
 
       {/* 3. PROBLEMA VS SOLUCIÓN */}
-      <section className="relative px-5 sm:px-8 py-20" style={{ background: "#101010" }}>
-        <SectionDivider edge="top" />
-        <div className="max-w-3xl mx-auto text-center">
-          <span className={isRojo ? "section-badge-jds mb-5" : isCeleste ? "section-badge-celeste mb-5" : "section-badge mb-5"}>El problema real</span>
-          <h2 className={`text-3xl md:text-4xl font-medium ${isRojo ? "text-jds" : isCeleste ? "text-celeste" : "text-gold"} mb-3`}>{isCeleste ? "Lavar el Auto no es lo Mismo que Estética Vehicular" : "Lavar el Auto no es lo Mismo que un Detailing"}</h2>
-          <p className="text-slate-400 max-w-xl mx-auto mb-10">
-            Un auto puede salir limpio de un lavadero convencional y seguir viéndose opaco o rayado. Señales habituales:
-          </p>
-          <div className="grid sm:grid-cols-2 gap-3 text-left max-w-xl mx-auto">
-            {ITEMS_PROBLEMA_ARGENTINA.map((item) => (
-              <div key={item} className="glass-panel rounded-2xl px-4 py-3 flex items-start gap-3 border border-white/10">
-                <span className="shrink-0 w-1.5 h-1.5 rounded-full mt-2" style={{ backgroundColor: isRojo ? "#ef4444" : "#b8c2cc" }} />
-                <p className="text-sm text-slate-300">{item}</p>
+      {!isRojo && (
+        <>
+          <section className="relative px-5 sm:px-8 py-20" style={{ background: "#101010" }}>
+            <SectionDivider edge="top" />
+            <div className="max-w-3xl mx-auto text-center">
+              <span className={isCeleste ? "section-badge-celeste mb-5" : "section-badge mb-5"}>El problema real</span>
+              <h2 className={`text-3xl md:text-4xl font-medium ${isCeleste ? "text-celeste" : "text-gold"} mb-3`}>{isCeleste ? "Lavar el Auto no es lo Mismo que Estética Vehicular" : "Lavar el Auto no es lo Mismo que un Detailing"}</h2>
+              <p className="text-slate-400 max-w-xl mx-auto mb-10">
+                Un auto puede salir limpio de un lavadero convencional y seguir viéndose opaco o rayado. Señales habituales:
+              </p>
+              <div className="grid sm:grid-cols-2 gap-3 text-left max-w-xl mx-auto">
+                {ITEMS_PROBLEMA_ARGENTINA.map((item) => (
+                  <div key={item} className="glass-panel rounded-2xl px-4 py-3 flex items-start gap-3 border border-white/10">
+                    <span className="shrink-0 w-1.5 h-1.5 rounded-full mt-2" style={{ backgroundColor: "#b8c2cc" }} />
+                    <p className="text-sm text-slate-300">{item}</p>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Fotos reales del taller si las tiene */}
-        {biz.fotos && biz.fotos.length > 0 && (
-          <div className="max-w-6xl mx-auto mt-16">
-            <div className="text-center mb-8">
-              <span className={isRojo ? "section-badge-jds mb-4" : isCeleste ? "section-badge-celeste mb-4" : "section-badge mb-4"}>Nuestro trabajo</span>
-              <h3 className={`text-2xl md:text-3xl font-medium ${isRojo ? "text-jds" : isCeleste ? "text-celeste" : "text-gold"}`} style={{ textTransform: "none", fontFamily: "inherit" }}>
-                Así trabajamos en {biz.nombre}
-              </h3>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              {biz.fotos.slice(0, 8).map((src, i) => (
-                <div key={`${src}-${i}`} className="product-card rounded-[20px] overflow-hidden aspect-square border border-white/10" style={{ background: "#141414" }}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={src} alt={`${biz.nombre} — trabajo ${i + 1}`} className="w-full h-full object-cover" loading="lazy" />
+
+            {/* Fotos reales del taller si las tiene */}
+            {biz.fotos && biz.fotos.length > 0 && (
+              <div className="max-w-6xl mx-auto mt-16">
+                <div className="text-center mb-8">
+                  <span className={isCeleste ? "section-badge-celeste mb-4" : "section-badge mb-4"}>Nuestro trabajo</span>
+                  <h3 className={`text-2xl md:text-3xl font-medium ${isCeleste ? "text-celeste" : "text-gold"}`} style={{ textTransform: "none", fontFamily: "inherit" }}>
+                    Así trabajamos en {biz.nombre}
+                  </h3>
                 </div>
-              ))}
-            </div>
-          </div>
-        )}
-        <SectionDivider edge="bottom" shape="asymmetric" />
-      </section>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  {biz.fotos.slice(0, 8).map((src, i) => (
+                    <div key={`${src}-${i}`} className="product-card rounded-[20px] overflow-hidden aspect-square border border-white/10" style={{ background: "#141414" }}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={src} alt={`${biz.nombre} — trabajo ${i + 1}`} className="w-full h-full object-cover" loading="lazy" />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            <SectionDivider edge="bottom" shape="asymmetric" />
+          </section>
 
-      {/* BANNER DE MEDIOS DE PAGO & CONFIANZA */}
-      <div className="max-w-4xl mx-auto px-4 -mt-10 mb-10 relative z-20">
-        <div className="glass-panel rounded-3xl p-6 sm:p-8 border border-white/10 shadow-2xl flex flex-col items-center justify-center text-center gap-4" style={{ background: "rgba(16,16,16,0.92)", backdropFilter: "blur(16px)" }}>
-          <div className="space-y-1.5 flex flex-col items-center">
-            <span className={isRojo ? "section-badge-jds mb-1" : isCeleste ? "section-badge-celeste mb-1" : "section-badge mb-1"}>
-              {isRojo ? "Tu auto, en las mejores manos" : "Compromiso de Calidad"}
-            </span>
-            <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight" style={{ textTransform: "none", fontFamily: "inherit" }}>
-              {isRojo ? "Taller de Estética del Automotor en Villa Ballester" : "Servicio Profesional y Garantizado"}
-            </h3>
-            <p className="text-xs sm:text-sm text-slate-300 font-light max-w-2xl mx-auto leading-relaxed">
-              {isRojo
-                ? "Facilidades de pago: Tarjeta en 3 cuotas fijas (en algunos trabajos), Efectivo y Transferencia Bancaria."
-                : "Consultanos por formas de pago y planes de mantenimiento preventivo."}
-            </p>
+          {/* BANNER DE MEDIOS DE PAGO & CONFIANZA */}
+          <div className="max-w-4xl mx-auto px-4 -mt-10 mb-10 relative z-20">
+            <div className="glass-panel rounded-3xl p-6 sm:p-8 border border-white/10 shadow-2xl flex flex-col items-center justify-center text-center gap-4" style={{ background: "rgba(16,16,16,0.92)", backdropFilter: "blur(16px)" }}>
+              <div className="space-y-1.5 flex flex-col items-center">
+                <span className={isCeleste ? "section-badge-celeste mb-1" : "section-badge mb-1"}>
+                  Compromiso de Calidad
+                </span>
+                <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight" style={{ textTransform: "none", fontFamily: "inherit" }}>
+                  Servicio Profesional y Garantizado
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-300 font-light max-w-2xl mx-auto leading-relaxed">
+                  Consultanos por formas de pago y planes de mantenimiento preventivo.
+                </p>
+              </div>
+              <div className="flex flex-wrap items-center justify-center gap-3 pt-1 text-xs font-semibold">
+                <div className="px-4 py-2.5 rounded-2xl bg-white/5 border border-white/10 flex items-center gap-2 text-white">
+                  <span>💳</span>
+                  <span>Tarjeta 3 Cuotas Fijas</span>
+                </div>
+                <div className="px-4 py-2.5 rounded-2xl bg-white/5 border border-white/10 flex items-center gap-2 text-white">
+                  <span>💵</span>
+                  <span>Efectivo</span>
+                </div>
+                <div className="px-4 py-2.5 rounded-2xl bg-white/5 border border-white/10 flex items-center gap-2 text-white">
+                  <span>📲</span>
+                  <span>Transferencia Bancaria</span>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="flex flex-wrap items-center justify-center gap-3 pt-1 text-xs font-semibold">
-            <div className={`px-4 py-2.5 rounded-2xl bg-white/5 border ${isRojo ? "border-red-500/25 text-red-200 shadow-[0_0_15px_rgba(239,68,68,0.12)]" : "border-white/10 text-white"} flex items-center gap-2`}>
-              <span>💳</span>
-              <span>Tarjeta 3 Cuotas Fijas</span>
-            </div>
-            <div className="px-4 py-2.5 rounded-2xl bg-white/5 border border-white/10 flex items-center gap-2 text-white">
-              <span>💵</span>
-              <span>Efectivo</span>
-            </div>
-            <div className="px-4 py-2.5 rounded-2xl bg-white/5 border border-white/10 flex items-center gap-2 text-white">
-              <span>📲</span>
-              <span>Transferencia Bancaria</span>
-            </div>
-          </div>
-        </div>
-      </div>
+        </>
+      )}
 
       {/* 4. SERVICIOS CON SLIDERS INTERACTIVOS DE ANTES Y DESPUÉS ($ ARS) */}
       <section id="servicios" className="px-5 sm:px-8 py-20 bg-black">
@@ -499,28 +506,63 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
           </div>
 
           {/* Banner de fotos y asesoramiento */}
-          <div className="glass-panel rounded-[28px] mt-12 p-8 md:p-10 flex flex-col md:flex-row items-center gap-6 justify-between border border-white/10" style={{ background: "#101010" }}>
-            <div>
-              <span className={isRojo ? "section-badge-jds mb-3" : isCeleste ? "section-badge-celeste mb-3" : "section-badge mb-3"}>¿Dudas sobre qué necesita tu auto?</span>
-              <h3 className="font-semibold text-xl md:text-2xl mb-2 text-white" style={{ textTransform: "none", fontFamily: "inherit" }}>
-                Mandanos 3 Fotos por WhatsApp y te Asesoramos
-              </h3>
-              <p className="text-sm text-slate-400 max-w-xl">
-                Sacale fotos al capot, los laterales y el interior con buena luz. En {biz.nombre} te orientamos sin costo ni compromiso para elegir el tratamiento ideal.
-              </p>
+          {!isRojo && (
+            <div className="glass-panel rounded-[28px] mt-12 p-8 md:p-10 flex flex-col md:flex-row items-center gap-6 justify-between border border-white/10" style={{ background: "#101010" }}>
+              <div>
+                <span className={isCeleste ? "section-badge-celeste mb-3" : "section-badge mb-3"}>¿Dudas sobre qué necesita tu auto?</span>
+                <h3 className="font-semibold text-xl md:text-2xl mb-2 text-white" style={{ textTransform: "none", fontFamily: "inherit" }}>
+                  Mandanos 3 Fotos por WhatsApp y te Asesoramos
+                </h3>
+                <p className="text-sm text-slate-400 max-w-xl">
+                  Sacale fotos al capot, los laterales y el interior con buena luz. En {biz.nombre} te orientamos sin costo ni compromiso para elegir el tratamiento ideal.
+                </p>
+              </div>
+              <a
+                href={waHref(biz, msgFotos)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`${isCeleste ? "btn-celeste" : "btn-gold"} shrink-0 inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold uppercase tracking-wide whitespace-nowrap`}
+              >
+                <FaWhatsapp aria-hidden className="size-4" />
+                Enviar Fotos por WhatsApp
+              </a>
             </div>
-            <a
-              href={waHref(biz, msgFotos)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`${isRojo ? "btn-jds" : isCeleste ? "btn-celeste" : "btn-gold"} shrink-0 inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold uppercase tracking-wide whitespace-nowrap`}
-            >
-              <FaWhatsapp aria-hidden className="size-4" />
-              Enviar Fotos por WhatsApp
-            </a>
-          </div>
+          )}
         </div>
       </section>
+
+      {/* BANNER DE MEDIOS DE PAGO & CONFIANZA (Para JDS va inmediatamente después de Servicios) */}
+      {isRojo && (
+        <div className="max-w-4xl mx-auto px-4 -mt-6 sm:-mt-8 mb-16 relative z-20">
+          <div className="glass-panel rounded-3xl p-6 sm:p-8 border border-white/10 shadow-2xl flex flex-col items-center justify-center text-center gap-4" style={{ background: "rgba(16,16,16,0.92)", backdropFilter: "blur(16px)" }}>
+            <div className="space-y-1.5 flex flex-col items-center">
+              <span className="section-badge-jds mb-1">
+                Tu auto, en las mejores manos
+              </span>
+              <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight" style={{ textTransform: "none", fontFamily: "inherit" }}>
+                Taller de Estética del Automotor en Villa Ballester
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-300 font-light max-w-2xl mx-auto leading-relaxed">
+                Facilidades de pago: Tarjeta en 3 cuotas fijas (en algunos trabajos), Efectivo y Transferencia Bancaria.
+              </p>
+            </div>
+            <div className="flex flex-wrap items-center justify-center gap-3 pt-1 text-xs font-semibold">
+              <div className="px-4 py-2.5 rounded-2xl bg-white/5 border border-red-500/25 text-red-200 shadow-[0_0_15px_rgba(239,68,68,0.12)] flex items-center gap-2">
+                <span>💳</span>
+                <span>Tarjeta 3 Cuotas Fijas</span>
+              </div>
+              <div className="px-4 py-2.5 rounded-2xl bg-white/5 border border-white/10 flex items-center gap-2 text-white">
+                <span>💵</span>
+                <span>Efectivo</span>
+              </div>
+              <div className="px-4 py-2.5 rounded-2xl bg-white/5 border border-white/10 flex items-center gap-2 text-white">
+                <span>📲</span>
+                <span>Transferencia Bancaria</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* 4.1 SECCIÓN: TE MOSTRAMOS NUESTROS TRABAJOS */}
       <section id="trabajos" className="px-5 sm:px-8 py-24 bg-[#0a0a0a] relative border-t border-white/5">
