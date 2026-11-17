@@ -72,19 +72,110 @@ export type Gasto = {
   esFijo?: boolean;
 };
 
+export type ClienteFrecuente = {
+  id: string;
+  nombre: string;
+  telefono?: string;
+  vehiculo?: string;
+  fechaUltima?: string;
+};
+
 export type TallerStoreData = {
   trabajos: Trabajo[];
   gastos: Gasto[];
   presupuestos?: PresupuestoGuardado[];
+  clientes?: ClienteFrecuente[];
   version?: number;
 };
+
+/**
+ * Capitaliza de forma inteligente nombres de clientes y modelos de vehículos:
+ * - Primera letra mayúscula en cada palabra si el usuario lo escribió en minúsculas.
+ * - Respeta siglas automotrices reconocidas (BMW, VW, SW4, GTI, GLI, AMG, PPF, TDI, HDI, GR, RS, ST, etc.).
+ * - Respeta conectores en español (de, del, la, el, y, en).
+ * - Convierte textos en MAYÚSCULAS sostenidas a formato Título.
+ */
+export function autoCapitalizarTexto(texto: string): string {
+  if (!texto) return "";
+  const trim = texto.trim();
+  if (!trim) return "";
+
+  const conectores = new Set(["de", "del", "la", "el", "y", "en"]);
+  const siglas: Record<string, string> = {
+    bmw: "BMW",
+    vw: "VW",
+    sw4: "SW4",
+    gti: "GTI",
+    gli: "GLI",
+    amg: "AMG",
+    ppf: "PPF",
+    tdi: "TDI",
+    hdi: "HDI",
+    gr: "GR",
+    rs: "RS",
+    st: "ST",
+    gt: "GT",
+    xr: "XR",
+    glx: "GLX",
+    clx: "CLX",
+    xlt: "XLT",
+    xl: "XL",
+    xls: "XLS",
+    ram: "RAM",
+    crv: "CR-V",
+    hrv: "HR-V",
+    rav4: "RAV4",
+    hilux: "Hilux",
+    amarok: "Amarok",
+    ranger: "Ranger",
+    corolla: "Corolla",
+    corsa: "Corsa",
+    gol: "Gol",
+    vento: "Vento",
+    peugeot: "Peugeot",
+    chevrolet: "Chevrolet",
+    volkswagen: "Volkswagen",
+    ford: "Ford",
+    toyota: "Toyota",
+    honda: "Honda",
+    fiat: "Fiat",
+    renault: "Renault",
+    audi: "Audi",
+    mercedes: "Mercedes",
+    benz: "Benz",
+    nissan: "Nissan",
+    jeep: "Jeep",
+    citroen: "Citroën",
+    citroën: "Citroën",
+    hyundai: "Hyundai",
+    kia: "Kia",
+  };
+
+  return trim
+    .split(/\s+/)
+    .map((palabra, index) => {
+      if (!palabra) return "";
+      const lower = palabra.toLowerCase().replace(/[^a-záéíóúüñ0-9]/g, "");
+      if (siglas[lower]) {
+        return palabra.replace(new RegExp(lower, "i"), siglas[lower]);
+      }
+      if (index > 0 && conectores.has(palabra.toLowerCase())) {
+        return palabra.toLowerCase();
+      }
+      if (palabra === palabra.toUpperCase() && palabra.length > 3) {
+        return palabra.charAt(0).toUpperCase() + palabra.slice(1).toLowerCase();
+      }
+      return palabra.charAt(0).toUpperCase() + palabra.slice(1);
+    })
+    .join(" ");
+}
 
 export function getTallerDbKey(slug: string): string {
   const cleanSlug = (slug || "am-centro-de-estetica-vehicular").toLowerCase().trim();
   return `taller_${cleanSlug}`;
 }
 
-export function getTallerLocalKey(slug: string, type: "trabajos" | "gastos" | "presupuestos"): string {
+export function getTallerLocalKey(slug: string, type: "trabajos" | "gastos" | "presupuestos" | "clientes"): string {
   const cleanSlug = (slug || "am-centro-de-estetica-vehicular").toLowerCase().trim();
   return `taller_${type}_${cleanSlug}`;
 }
@@ -107,12 +198,14 @@ export async function fetchTallerCloudData(slug: string): Promise<TallerStoreDat
         const payload = data.data as TallerStoreData;
         if (Array.isArray(payload.trabajos) && Array.isArray(payload.gastos)) {
           const presupuestos = Array.isArray(payload.presupuestos) ? payload.presupuestos : [];
+          const clientes = Array.isArray(payload.clientes) ? payload.clientes : [];
           // Guardar en caché local para próximas cargas ultra rápidas
           if (typeof window !== "undefined") {
             try {
               localStorage.setItem(getTallerLocalKey(slug, "trabajos"), JSON.stringify(payload.trabajos));
               localStorage.setItem(getTallerLocalKey(slug, "gastos"), JSON.stringify(payload.gastos));
               localStorage.setItem(getTallerLocalKey(slug, "presupuestos"), JSON.stringify(presupuestos));
+              localStorage.setItem(getTallerLocalKey(slug, "clientes"), JSON.stringify(clientes));
             } catch (err) {
               console.warn("[TallerSync] Error actualizando cache local:", err);
             }
@@ -120,6 +213,7 @@ export async function fetchTallerCloudData(slug: string): Promise<TallerStoreDat
           return {
             ...payload,
             presupuestos,
+            clientes,
           };
         }
       }
@@ -134,11 +228,13 @@ export async function fetchTallerCloudData(slug: string): Promise<TallerStoreDat
       const localTrabajos = localStorage.getItem(getTallerLocalKey(slug, "trabajos"));
       const localGastos = localStorage.getItem(getTallerLocalKey(slug, "gastos"));
       const localPresupuestos = localStorage.getItem(getTallerLocalKey(slug, "presupuestos"));
-      if (localTrabajos !== null || localGastos !== null || localPresupuestos !== null) {
+      const localClientes = localStorage.getItem(getTallerLocalKey(slug, "clientes"));
+      if (localTrabajos !== null || localGastos !== null || localPresupuestos !== null || localClientes !== null) {
         return {
           trabajos: localTrabajos ? JSON.parse(localTrabajos) : [],
           gastos: localGastos ? JSON.parse(localGastos) : [],
           presupuestos: localPresupuestos ? JSON.parse(localPresupuestos) : [],
+          clientes: localClientes ? JSON.parse(localClientes) : [],
         };
       }
     } catch (err) {
@@ -158,6 +254,7 @@ export async function saveTallerCloudData(
 ): Promise<{ success: boolean; error?: string }> {
   const dbKey = getTallerDbKey(slug);
   const presupuestos = Array.isArray(store.presupuestos) ? store.presupuestos : [];
+  const clientes = Array.isArray(store.clientes) ? store.clientes : [];
 
   // 1. Guardar de inmediato en LocalStorage para respuesta instantánea (optimistic UI)
   if (typeof window !== "undefined") {
@@ -165,6 +262,7 @@ export async function saveTallerCloudData(
       localStorage.setItem(getTallerLocalKey(slug, "trabajos"), JSON.stringify(store.trabajos));
       localStorage.setItem(getTallerLocalKey(slug, "gastos"), JSON.stringify(store.gastos));
       localStorage.setItem(getTallerLocalKey(slug, "presupuestos"), JSON.stringify(presupuestos));
+      localStorage.setItem(getTallerLocalKey(slug, "clientes"), JSON.stringify(clientes));
       window.dispatchEvent(new CustomEvent("taller_data_local_updated", { detail: { slug } }));
     } catch (err) {
       console.warn("[TallerSync] Error escribiendo en localStorage:", err);
@@ -182,6 +280,7 @@ export async function saveTallerCloudData(
             data: {
               ...store,
               presupuestos,
+              clientes,
             },
             updated_at: new Date().toISOString(),
           },

@@ -13,6 +13,8 @@ import {
   GastoCategoria,
   Gasto,
   TallerStoreData,
+  ClienteFrecuente,
+  autoCapitalizarTexto,
   fetchTallerCloudData,
   saveTallerCloudData,
   subscribeToTallerRealtime,
@@ -321,6 +323,11 @@ export default function TallerGestionPage() {
   const [presupuestos, setPresupuestos] = useState<PresupuestoGuardado[]>([]);
   const [filtroEstadoPresupuesto, setFiltroEstadoPresupuesto] = useState<"todos" | "pendiente" | "agendado" | "descartado">("todos");
 
+  // Clientes frecuentes registrados y autocompletado
+  const [clientes, setClientes] = useState<ClienteFrecuente[]>([]);
+  const clientesRef = useRef<ClienteFrecuente[]>([]);
+  const [mostrarSugerenciasClientes, setMostrarSugerenciasClientes] = useState<boolean>(false);
+
   // Modal Agendar Turno desde Presupuesto
   const [modalAgendarPresupuesto, setModalAgendarPresupuesto] = useState<PresupuestoGuardado | null>(null);
   const [agendarFecha, setAgendarFecha] = useState<string>("");
@@ -343,6 +350,10 @@ export default function TallerGestionPage() {
   useEffect(() => {
     presupuestosRef.current = presupuestos;
   }, [presupuestos]);
+
+  useEffect(() => {
+    clientesRef.current = clientes;
+  }, [clientes]);
 
   // Pestaña activa: trabajos, presupuestos, gastos, cheques, balance
   const [activeTab, setActiveTab] = useState<"trabajos" | "presupuestos" | "gastos" | "cheques" | "balance">("trabajos");
@@ -457,19 +468,25 @@ export default function TallerGestionPage() {
   const guardarDatos = async (
     nuevosTrabajos: Trabajo[],
     nuevosGastos: Gasto[],
-    nuevosPresupuestos?: PresupuestoGuardado[]
+    nuevosPresupuestos?: PresupuestoGuardado[],
+    nuevosClientes?: ClienteFrecuente[]
   ) => {
     const presToSave = nuevosPresupuestos !== undefined ? nuevosPresupuestos : presupuestosRef.current;
+    const clientesToSave = nuevosClientes !== undefined ? nuevosClientes : clientesRef.current;
     setTrabajos(nuevosTrabajos);
     setGastos(nuevosGastos);
     if (nuevosPresupuestos !== undefined) {
       setPresupuestos(nuevosPresupuestos);
+    }
+    if (nuevosClientes !== undefined) {
+      setClientes(nuevosClientes);
     }
     setSyncStatus("saving");
     const res = await saveTallerCloudData(currentSlug, {
       trabajos: nuevosTrabajos,
       gastos: nuevosGastos,
       presupuestos: presToSave,
+      clientes: clientesToSave,
     });
     if (res.success) {
       setSyncStatus("synced");
@@ -479,8 +496,8 @@ export default function TallerGestionPage() {
     }
   };
 
-  const guardarTrabajos = (nuevos: Trabajo[]) => {
-    guardarDatos(nuevos, gastosRef.current, presupuestosRef.current);
+  const guardarTrabajos = (nuevos: Trabajo[], nuevosClientes?: ClienteFrecuente[]) => {
+    guardarDatos(nuevos, gastosRef.current, presupuestosRef.current, nuevosClientes);
   };
 
   const guardarGastos = (nuevos: Gasto[]) => {
@@ -528,8 +545,8 @@ export default function TallerGestionPage() {
       id: `trabajo-${Date.now()}`,
       fecha: agendarFecha || new Date().toISOString().split("T")[0],
       horaTurno: agendarHora || "09:00",
-      vehiculo: modalAgendarPresupuesto.vehiculo,
-      cliente: modalAgendarPresupuesto.cliente,
+      vehiculo: autoCapitalizarTexto(modalAgendarPresupuesto.vehiculo),
+      cliente: modalAgendarPresupuesto.cliente ? autoCapitalizarTexto(modalAgendarPresupuesto.cliente) : undefined,
       telefono: modalAgendarPresupuesto.telefono,
       servicios: modalAgendarPresupuesto.servicios,
       monto: modalAgendarPresupuesto.monto,
@@ -540,6 +557,26 @@ export default function TallerGestionPage() {
       presupuestoId: modalAgendarPresupuesto.id,
     };
 
+    // Actualizar también en la libreta de clientes frecuentes
+    let nuevosClientes = [...clientesRef.current];
+    if (modalAgendarPresupuesto.cliente) {
+      const cliNombre = autoCapitalizarTexto(modalAgendarPresupuesto.cliente);
+      const key = cliNombre.toLowerCase();
+      const idx = nuevosClientes.findIndex((c) => c.nombre.trim().toLowerCase() === key);
+      const clienteActualizado: ClienteFrecuente = {
+        id: idx >= 0 ? nuevosClientes[idx].id : `cli-${Date.now()}`,
+        nombre: cliNombre,
+        telefono: modalAgendarPresupuesto.telefono || (idx >= 0 ? nuevosClientes[idx].telefono : undefined),
+        vehiculo: autoCapitalizarTexto(modalAgendarPresupuesto.vehiculo),
+        fechaUltima: nuevoTrabajo.fecha,
+      };
+      if (idx >= 0) {
+        nuevosClientes[idx] = clienteActualizado;
+      } else {
+        nuevosClientes = [clienteActualizado, ...nuevosClientes];
+      }
+    }
+
     const updatedTrabajos = [nuevoTrabajo, ...trabajos];
     const updatedPresupuestos = presupuestos.map((p) =>
       p.id === modalAgendarPresupuesto.id
@@ -547,7 +584,7 @@ export default function TallerGestionPage() {
         : p
     );
 
-    guardarDatos(updatedTrabajos, gastos, updatedPresupuestos);
+    guardarDatos(updatedTrabajos, gastos, updatedPresupuestos, nuevosClientes);
 
     const nuevoMes = (agendarFecha || new Date().toISOString().split("T")[0]).slice(0, 7);
     if (nuevoMes !== mesFiltro) {
@@ -635,9 +672,9 @@ ${biz.direccion ? `• *Taller:* ${biz.direccion}, ${biz.ciudad}\n` : ""}
       p.id === formPresupuestoId
         ? {
             ...p,
-            cliente: formPresupuestoCliente.trim(),
+            cliente: autoCapitalizarTexto(formPresupuestoCliente),
             telefono: formPresupuestoTelefono.trim(),
-            vehiculo: formPresupuestoVehiculo.trim(),
+            vehiculo: autoCapitalizarTexto(formPresupuestoVehiculo),
             monto: montoNum,
             notas: formPresupuestoNotas.trim() || undefined,
             servicios: listaServicios.length > 0 ? listaServicios : ["Servicio personalizado"],
@@ -707,6 +744,11 @@ ${biz.direccion ? `• *Taller:* ${biz.direccion}, ${biz.ciudad}\n` : ""}
           } else {
             setPresupuestos([]);
           }
+          if (Array.isArray(cloudData.clientes)) {
+            setClientes(cloudData.clientes);
+          } else {
+            setClientes([]);
+          }
           setSyncStatus("synced");
         } else {
           // Si es la primera vez que entra, sembramos en la base de datos
@@ -715,6 +757,7 @@ ${biz.direccion ? `• *Taller:* ${biz.direccion}, ${biz.ciudad}\n` : ""}
           setTrabajos(init.trabajos);
           setGastos(init.gastos);
           setPresupuestos(init.presupuestos);
+          setClientes([]);
           setSyncStatus("synced");
         }
 
@@ -724,6 +767,9 @@ ${biz.direccion ? `• *Taller:* ${biz.direccion}, ${biz.ciudad}\n` : ""}
           setGastos(fresh.gastos);
           if (Array.isArray(fresh.presupuestos)) {
             setPresupuestos(fresh.presupuestos);
+          }
+          if (Array.isArray(fresh.clientes)) {
+            setClientes(fresh.clientes);
           }
           setSyncStatus("synced");
           showToast("🔄 Sincronizado en vivo con otro dispositivo");
@@ -757,6 +803,71 @@ ${biz.direccion ? `• *Taller:* ${biz.direccion}, ${biz.ciudad}\n` : ""}
       (t) => t.estadoTrabajo === "agendado" && !t.fecha.startsWith(mesFiltro)
     );
   }, [trabajos, mesFiltro]);
+
+  // Directorio unificado de clientes frecuentes (combina clientes guardados + historial de trabajos y presupuestos)
+  const clientesDirectorio = useMemo(() => {
+    const mapa = new Map<string, { nombre: string; telefono?: string; vehiculo?: string; fechaUltima?: string }>();
+
+    // 1. Clientes explícitamente guardados en la libreta
+    clientes.forEach((c) => {
+      if (!c.nombre) return;
+      const key = c.nombre.trim().toLowerCase();
+      if (key) {
+        mapa.set(key, {
+          nombre: autoCapitalizarTexto(c.nombre),
+          telefono: c.telefono?.trim(),
+          vehiculo: c.vehiculo ? autoCapitalizarTexto(c.vehiculo) : undefined,
+          fechaUltima: c.fechaUltima,
+        });
+      }
+    });
+
+    // 2. Historial de todos los trabajos registrados en cualquier mes
+    trabajos.forEach((t) => {
+      if (!t.cliente || !t.cliente.trim()) return;
+      const key = t.cliente.trim().toLowerCase();
+      const actual = mapa.get(key);
+      if (!actual || (t.fecha && (!actual.fechaUltima || t.fecha > actual.fechaUltima))) {
+        mapa.set(key, {
+          nombre: autoCapitalizarTexto(t.cliente),
+          telefono: t.telefono?.trim() || actual?.telefono,
+          vehiculo: autoCapitalizarTexto(t.vehiculo) || actual?.vehiculo,
+          fechaUltima: t.fecha || actual?.fechaUltima,
+        });
+      }
+    });
+
+    // 3. Clientes de presupuestos
+    presupuestos.forEach((p) => {
+      if (!p.cliente || !p.cliente.trim()) return;
+      const key = p.cliente.trim().toLowerCase();
+      const actual = mapa.get(key);
+      if (!actual) {
+        mapa.set(key, {
+          nombre: autoCapitalizarTexto(p.cliente),
+          telefono: p.telefono?.trim(),
+          vehiculo: autoCapitalizarTexto(p.vehiculo),
+          fechaUltima: p.fechaCreacion,
+        });
+      }
+    });
+
+    return Array.from(mapa.values()).sort((a, b) => a.nombre.localeCompare(b.nombre));
+  }, [clientes, trabajos, presupuestos]);
+
+  // Sugerencias de clientes en tiempo real mientras escribe en el formulario de trabajo
+  const sugerenciasClientes = useMemo(() => {
+    const q = formTrabajoCliente.trim().toLowerCase();
+    if (q.length < 2) return [];
+    return clientesDirectorio
+      .filter(
+        (c) =>
+          c.nombre.toLowerCase().includes(q) ||
+          (c.vehiculo && c.vehiculo.toLowerCase().includes(q)) ||
+          (c.telefono && c.telefono.includes(q))
+      )
+      .slice(0, 5);
+  }, [clientesDirectorio, formTrabajoCliente]);
 
   // Trabajos filtrados por mes actual y búsqueda
   const trabajosMes = useMemo(() => {
@@ -1139,6 +1250,30 @@ ${biz.direccion ? `• *Taller:* ${biz.direccion}, ${biz.ciudad}\n` : ""}
     const hoyIso = new Date().toISOString().split("T")[0];
     const fechaFinal = formTrabajoFecha || hoyIso;
 
+    // Capitalización automática e inteligente de vehículo y cliente
+    const vehiculoFinal = autoCapitalizarTexto(formTrabajoVehiculo);
+    const clienteFinal = formTrabajoCliente.trim() ? autoCapitalizarTexto(formTrabajoCliente) : undefined;
+    const telefonoFinal = formTrabajoTelefono.trim() || undefined;
+
+    // Actualizar o registrar en la libreta de clientes frecuentes en Supabase
+    let nuevosClientes = [...clientesRef.current];
+    if (clienteFinal) {
+      const key = clienteFinal.toLowerCase();
+      const idx = nuevosClientes.findIndex((c) => c.nombre.trim().toLowerCase() === key);
+      const clienteActualizado: ClienteFrecuente = {
+        id: idx >= 0 ? nuevosClientes[idx].id : `cli-${Date.now()}`,
+        nombre: clienteFinal,
+        telefono: telefonoFinal || (idx >= 0 ? nuevosClientes[idx].telefono : undefined),
+        vehiculo: vehiculoFinal,
+        fechaUltima: fechaFinal,
+      };
+      if (idx >= 0) {
+        nuevosClientes[idx] = clienteActualizado;
+      } else {
+        nuevosClientes = [clienteActualizado, ...nuevosClientes];
+      }
+    }
+
     const activos = formServiciosList.filter((s) => s.activo);
     const serviciosDetalle = activos.map((s) => ({
       nombre: s.nombre,
@@ -1176,9 +1311,9 @@ ${biz.direccion ? `• *Taller:* ${biz.direccion}, ${biz.ciudad}\n` : ""}
         id: formTrabajoId,
         fecha: fechaFinal,
         horaTurno: formTrabajoEstadoTrabajo === "agendado" ? (formTrabajoHoraTurno || "09:00") : undefined,
-        vehiculo: formTrabajoVehiculo.trim(),
-        cliente: formTrabajoCliente.trim() || undefined,
-        telefono: formTrabajoTelefono.trim() || undefined,
+        vehiculo: vehiculoFinal,
+        cliente: clienteFinal,
+        telefono: telefonoFinal,
         servicios: serviciosFinales,
         serviciosDetalle: serviciosDetalle.length > 0 ? serviciosDetalle : undefined,
         monto: montoNum,
@@ -1191,7 +1326,10 @@ ${biz.direccion ? `• *Taller:* ${biz.direccion}, ${biz.ciudad}\n` : ""}
       };
 
       trabajoFinal = trabajoActualizado;
-      guardarTrabajos(trabajos.map((t) => (t.id === formTrabajoId ? trabajoActualizado : t)));
+      guardarTrabajos(
+        trabajos.map((t) => (t.id === formTrabajoId ? trabajoActualizado : t)),
+        nuevosClientes
+      );
       showToast(`✅ Trabajo de ${trabajoActualizado.vehiculo} actualizado.`);
     } else {
       // Modo Nuevo
@@ -1199,9 +1337,9 @@ ${biz.direccion ? `• *Taller:* ${biz.direccion}, ${biz.ciudad}\n` : ""}
         id: `trabajo-${Date.now()}`,
         fecha: fechaFinal,
         horaTurno: formTrabajoEstadoTrabajo === "agendado" ? (formTrabajoHoraTurno || "09:00") : undefined,
-        vehiculo: formTrabajoVehiculo.trim(),
-        cliente: formTrabajoCliente.trim() || undefined,
-        telefono: formTrabajoTelefono.trim() || undefined,
+        vehiculo: vehiculoFinal,
+        cliente: clienteFinal,
+        telefono: telefonoFinal,
         servicios: serviciosFinales,
         serviciosDetalle: serviciosDetalle.length > 0 ? serviciosDetalle : undefined,
         monto: montoNum,
@@ -1213,7 +1351,7 @@ ${biz.direccion ? `• *Taller:* ${biz.direccion}, ${biz.ciudad}\n` : ""}
       };
 
       trabajoFinal = nuevoTrabajo;
-      guardarTrabajos([nuevoTrabajo, ...trabajos]);
+      guardarTrabajos([nuevoTrabajo, ...trabajos], nuevosClientes);
 
       // Si la fecha del trabajo es de otro mes, cambiamos automáticamente la vista a ese mes
       const nuevoMes = fechaFinal.slice(0, 7);
@@ -1262,8 +1400,8 @@ ${biz.direccion ? `• *Taller:* ${biz.direccion}, ${biz.ciudad}\n` : ""}
     const nuevoChequeTrabajo: Trabajo = {
       id: `cheque-${Date.now()}`,
       fecha: fechaCobroFinal,
-      vehiculo: formChequeConcepto.trim() || `Cheque ${formChequeBanco.trim()}`,
-      cliente: formChequeCliente.trim() || undefined,
+      vehiculo: autoCapitalizarTexto(formChequeConcepto.trim()) || `Cheque ${autoCapitalizarTexto(formChequeBanco.trim())}`,
+      cliente: formChequeCliente.trim() ? autoCapitalizarTexto(formChequeCliente) : undefined,
       telefono: formChequeTelefono.trim() || undefined,
       servicios: ["Cheque en Cartera"],
       monto: montoNum,
@@ -2994,38 +3132,102 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
                 </div>
 
                 <div>
-                  <label className="block font-semibold text-slate-300 mb-1">Modelo de Vehículo *</label>
+                  <label className="block font-semibold text-slate-300 mb-1 text-xs">Modelo de Vehículo *</label>
                   <input
                     type="text"
                     required
                     placeholder="ej. Ford Ranger XLT, VW Golf, Hilux"
                     value={formTrabajoVehiculo}
                     onChange={(e) => setFormTrabajoVehiculo(e.target.value)}
+                    onBlur={() => {
+                      if (formTrabajoVehiculo.trim()) {
+                        setFormTrabajoVehiculo(autoCapitalizarTexto(formTrabajoVehiculo));
+                      }
+                    }}
                     className="w-full bg-[#141f33] border border-sky-500/25 rounded-xl px-3 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:border-sky-400 text-xs"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div>
-                  <label className="block font-semibold text-slate-300 mb-1">Nombre del Cliente (Opcional)</label>
+                <div className="relative">
+                  <div className="flex items-center justify-between mb-1">
+                    <label className="block font-semibold text-slate-300 text-xs">Nombre del Cliente (Opcional)</label>
+                    {clientesDirectorio.length > 0 && (
+                      <span className="text-[10px] text-sky-400 font-medium">
+                        💡 Autocompleta frecuentes
+                      </span>
+                    )}
+                  </div>
                   <input
                     type="text"
                     placeholder="ej. Juan Pérez"
                     value={formTrabajoCliente}
-                    onChange={(e) => setFormTrabajoCliente(e.target.value)}
-                    className="w-full bg-[#141f33] border border-sky-500/25 rounded-xl px-3 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:border-sky-400"
+                    onChange={(e) => {
+                      setFormTrabajoCliente(e.target.value);
+                      setMostrarSugerenciasClientes(true);
+                    }}
+                    onFocus={() => {
+                      if (formTrabajoCliente.trim().length >= 1) {
+                        setMostrarSugerenciasClientes(true);
+                      }
+                    }}
+                    onBlur={() => {
+                      setTimeout(() => setMostrarSugerenciasClientes(false), 250);
+                      if (formTrabajoCliente.trim()) {
+                        setFormTrabajoCliente(autoCapitalizarTexto(formTrabajoCliente));
+                      }
+                    }}
+                    className="w-full bg-[#141f33] border border-sky-500/25 rounded-xl px-3 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:border-sky-400 text-xs"
                   />
+
+                  {/* MENÚ FLOTANTE DE CLIENTES FRECUENTES */}
+                  {mostrarSugerenciasClientes && sugerenciasClientes.length > 0 && (
+                    <div className="absolute left-0 right-0 top-full mt-1.5 z-50 bg-[#0c1424] border border-sky-500/40 rounded-2xl shadow-2xl overflow-hidden divide-y divide-white/5 max-h-56 overflow-y-auto">
+                      <div className="px-3 py-1.5 bg-sky-950/80 border-b border-sky-500/20 text-[10px] font-bold text-sky-300 uppercase tracking-wider flex items-center justify-between sticky top-0 backdrop-blur-md">
+                        <span>Clientes Frecuentes ({sugerenciasClientes.length})</span>
+                        <span className="text-[9px] text-slate-400">Tocá para autocompletar</span>
+                      </div>
+                      {sugerenciasClientes.map((c, i) => (
+                        <button
+                          key={i}
+                          type="button"
+                          onMouseDown={(e) => {
+                            e.preventDefault();
+                            setFormTrabajoCliente(autoCapitalizarTexto(c.nombre));
+                            if (c.telefono) setFormTrabajoTelefono(c.telefono);
+                            if (c.vehiculo) setFormTrabajoVehiculo(autoCapitalizarTexto(c.vehiculo));
+                            setMostrarSugerenciasClientes(false);
+                            showToast(`👤 Datos de ${autoCapitalizarTexto(c.nombre)} autocompletados.`);
+                          }}
+                          className="w-full text-left px-3 py-2.5 hover:bg-sky-500/15 transition-colors flex items-center justify-between gap-2 group cursor-pointer"
+                        >
+                          <div className="min-w-0">
+                            <p className="text-xs font-bold text-white group-hover:text-sky-300 transition-colors truncate">
+                              {c.nombre}
+                            </p>
+                            <p className="text-[11px] text-slate-400 truncate flex items-center gap-2 mt-0.5">
+                              {c.vehiculo && <span>🚗 {c.vehiculo}</span>}
+                              {c.telefono && <span>📞 {c.telefono}</span>}
+                            </p>
+                          </div>
+                          <span className="shrink-0 text-[10px] font-bold text-sky-300 bg-sky-950/80 px-2 py-0.5 rounded border border-sky-500/30 group-hover:bg-sky-500 group-hover:text-slate-950 transition-colors">
+                            Elegir ↵
+                          </span>
+                        </button>
+                      ))}
+                    </div>
+                  )}
                 </div>
 
                 <div>
-                  <label className="block font-semibold text-slate-300 mb-1">Teléfono / WhatsApp (Opcional)</label>
+                  <label className="block font-semibold text-slate-300 mb-1 text-xs">Teléfono / WhatsApp (Opcional)</label>
                   <input
                     type="text"
                     placeholder="ej. 3534123456"
                     value={formTrabajoTelefono}
                     onChange={(e) => setFormTrabajoTelefono(e.target.value)}
-                    className="w-full bg-[#141f33] border border-sky-500/25 rounded-xl px-3 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:border-sky-400"
+                    className="w-full bg-[#141f33] border border-sky-500/25 rounded-xl px-3 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:border-sky-400 text-xs"
                   />
                 </div>
               </div>
