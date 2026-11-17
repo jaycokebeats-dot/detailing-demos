@@ -229,6 +229,7 @@ function getInitialData(slug: string): { trabajos: Trabajo[]; gastos: Gasto[]; p
       monto: 320000,
       medioPago: "transferencia",
       notas: "Inmobiliaria Colón",
+      esFijo: true,
     },
     {
       id: "gasto-2",
@@ -247,6 +248,7 @@ function getInitialData(slug: string): { trabajos: Trabajo[]; gastos: Gasto[]; p
       monto: 28000,
       medioPago: "efectivo",
       notas: "Abono mensual",
+      esFijo: true,
     },
   ];
 
@@ -353,6 +355,7 @@ export default function TallerGestionPage() {
   const [modalTrabajoOpen, setModalTrabajoOpen] = useState<boolean>(false);
   const [modalGastoOpen, setModalGastoOpen] = useState<boolean>(false);
   const [modalChequeOpen, setModalChequeOpen] = useState<boolean>(false);
+  const [modalPresupuestoEditOpen, setModalPresupuestoEditOpen] = useState<boolean>(false);
 
   // Formulario de Cheque Directo
   const [formChequeBanco, setFormChequeBanco] = useState<string>("");
@@ -383,13 +386,25 @@ export default function TallerGestionPage() {
   const [formTrabajoChequeVencimiento, setFormTrabajoChequeVencimiento] = useState<string>("");
   const [formTrabajoNotas, setFormTrabajoNotas] = useState<string>("");
 
-  // Formulario de Nuevo Gasto
+  // Formulario de Gasto (Crear o Editar)
+  const [formGastoId, setFormGastoId] = useState<string | null>(null);
   const [formGastoFecha, setFormGastoFecha] = useState<string>("");
   const [formGastoCategoria, setFormGastoCategoria] = useState<GastoCategoria>("insumos");
   const [formGastoConcepto, setFormGastoConcepto] = useState<string>("");
   const [formGastoMonto, setFormGastoMonto] = useState<string>("");
   const [formGastoMedioPago, setFormGastoMedioPago] = useState<"efectivo" | "transferencia" | "cheque">("transferencia");
   const [formGastoNotas, setFormGastoNotas] = useState<string>("");
+  const [formGastoEsFijo, setFormGastoEsFijo] = useState<boolean>(false);
+
+  // Formulario de Edición de Presupuesto
+  const [formPresupuestoId, setFormPresupuestoId] = useState<string | null>(null);
+  const [formPresupuestoCliente, setFormPresupuestoCliente] = useState<string>("");
+  const [formPresupuestoTelefono, setFormPresupuestoTelefono] = useState<string>("");
+  const [formPresupuestoVehiculo, setFormPresupuestoVehiculo] = useState<string>("");
+  const [formPresupuestoMonto, setFormPresupuestoMonto] = useState<string>("");
+  const [formPresupuestoNotas, setFormPresupuestoNotas] = useState<string>("");
+  const [formPresupuestoServicios, setFormPresupuestoServicios] = useState<string>("");
+  const [formPresupuestoEstado, setFormPresupuestoEstado] = useState<"pendiente" | "agendado" | "descartado">("pendiente");
 
   const showToast = (msg: string, durationMs = 3500) => {
     if (toastTimeoutRef.current) clearTimeout(toastTimeoutRef.current);
@@ -572,6 +587,52 @@ ${biz.direccion ? `• *Taller:* ${biz.direccion}, ${biz.ciudad}\n` : ""}
     }
   };
 
+  // Abrir modal para EDITAR PRESUPUESTO
+  const handleAbrirModalEditarPresupuesto = (p: PresupuestoGuardado) => {
+    setFormPresupuestoId(p.id);
+    setFormPresupuestoCliente(p.cliente || "");
+    setFormPresupuestoTelefono(p.telefono || "");
+    setFormPresupuestoVehiculo(p.vehiculo || "");
+    setFormPresupuestoMonto(p.monto ? p.monto.toString() : "");
+    setFormPresupuestoNotas(p.notas || "");
+    setFormPresupuestoServicios(p.servicios && p.servicios.length > 0 ? p.servicios.join("\n") : "");
+    setFormPresupuestoEstado(p.estado);
+    setModalPresupuestoEditOpen(true);
+  };
+
+  // Guardar cambios en PRESUPUESTO
+  const handleGuardarPresupuestoEdit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formPresupuestoVehiculo.trim() && !formPresupuestoCliente.trim()) {
+      showToast("⚠️ Ingresá al menos el vehículo o el cliente.");
+      return;
+    }
+    const montoNum = parseFloat(formPresupuestoMonto.replace(/[^\d]/g, "")) || 0;
+    const listaServicios = formPresupuestoServicios
+      .split("\n")
+      .map((s) => s.trim().replace(/^[•\-\*]\s*/, ""))
+      .filter((s) => s.length > 0);
+
+    const actualizados = presupuestos.map((p) =>
+      p.id === formPresupuestoId
+        ? {
+            ...p,
+            cliente: formPresupuestoCliente.trim(),
+            telefono: formPresupuestoTelefono.trim(),
+            vehiculo: formPresupuestoVehiculo.trim(),
+            monto: montoNum,
+            notas: formPresupuestoNotas.trim() || undefined,
+            servicios: listaServicios.length > 0 ? listaServicios : ["Servicio personalizado"],
+            estado: formPresupuestoEstado,
+          }
+        : p
+    );
+
+    guardarPresupuestos(actualizados);
+    setModalPresupuestoEditOpen(false);
+    showToast(`✅ Presupuesto de ${formPresupuestoVehiculo.trim() || "cliente"} modificado con éxito.`);
+  };
+
   // 1. Cargar datos del taller por Slug y sincronizar en Tiempo Real
   useEffect(() => {
     let unsubscribe: (() => void) | null = null;
@@ -708,6 +769,44 @@ ${biz.direccion ? `• *Taller:* ${biz.direccion}, ${biz.ciudad}\n` : ""}
   const gastosMes = useMemo(() => {
     return gastos.filter((g) => g.fecha.startsWith(mesFiltro));
   }, [gastos, mesFiltro]);
+
+  // Gastos Fijos únicos registrados a lo largo del sistema
+  const gastosFijosUnicos = useMemo(() => {
+    const map = new Map<string, Gasto>();
+    gastos.filter((g) => g.esFijo).forEach((g) => {
+      const key = g.concepto.toLowerCase().trim();
+      if (!map.has(key)) {
+        map.set(key, g);
+      }
+    });
+    return Array.from(map.values());
+  }, [gastos]);
+
+  // Gastos fijos que aún no están cargados en el mes seleccionado (mesFiltro)
+  const gastosFijosFaltantesEnMes = useMemo(() => {
+    const conceptosEnMes = new Set(
+      gastosMes.map((g) => g.concepto.toLowerCase().trim())
+    );
+    return gastosFijosUnicos.filter(
+      (gf) => !conceptosEnMes.has(gf.concepto.toLowerCase().trim())
+    );
+  }, [gastosFijosUnicos, gastosMes]);
+
+  // Replicar gastos fijos en el mes actual con 1 clic
+  const handleReplicarGastosFijosEnMes = () => {
+    if (gastosFijosFaltantesEnMes.length === 0) return;
+    const nuevos: Gasto[] = gastosFijosFaltantesEnMes.map((gf, idx) => {
+      const diaOriginal = gf.fecha ? gf.fecha.split("-")[2] : "05";
+      return {
+        ...gf,
+        id: `gasto-fijo-${Date.now()}-${idx}`,
+        fecha: `${mesFiltro}-${diaOriginal}`,
+        esFijo: true,
+      };
+    });
+    guardarGastos([...nuevos, ...gastos]);
+    showToast(`✅ ${nuevos.length} gasto(s) fijo(s) cargado(s) en ${mesFiltro}.`);
+  };
 
   // Todos los cheques (en cartera y cobrados)
   const todosCheques = useMemo(() => {
@@ -1163,8 +1262,34 @@ ${biz.direccion ? `• *Taller:* ${biz.direccion}, ${biz.ciudad}\n` : ""}
     showToast(`✅ Cheque de ${nuevoChequeTrabajo.chequeData?.banco} N° ${nuevoChequeTrabajo.chequeData?.nroCheque} cargado en cartera.`);
   };
 
-  // Manejar creación de nuevo Gasto
-  const handleCrearGasto = (e: React.FormEvent) => {
+  // Abrir modal de Gasto (Nuevo)
+  const handleAbrirModalNuevoGasto = () => {
+    setFormGastoId(null);
+    setFormGastoFecha(new Date().toISOString().split("T")[0]);
+    setFormGastoCategoria("insumos");
+    setFormGastoConcepto("");
+    setFormGastoMonto("");
+    setFormGastoMedioPago("transferencia");
+    setFormGastoNotas("");
+    setFormGastoEsFijo(false);
+    setModalGastoOpen(true);
+  };
+
+  // Abrir modal de Gasto (Editar)
+  const handleAbrirModalEditarGasto = (g: Gasto) => {
+    setFormGastoId(g.id);
+    setFormGastoFecha(g.fecha);
+    setFormGastoCategoria(g.categoria);
+    setFormGastoConcepto(g.concepto);
+    setFormGastoMonto(g.monto ? g.monto.toString() : "");
+    setFormGastoMedioPago(g.medioPago);
+    setFormGastoNotas(g.notas || "");
+    setFormGastoEsFijo(!!g.esFijo);
+    setModalGastoOpen(true);
+  };
+
+  // Manejar creación o edición de Gasto
+  const handleGuardarGasto = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formGastoConcepto.trim()) {
       showToast("⚠️ Ingresá el concepto del gasto.");
@@ -1179,26 +1304,48 @@ ${biz.direccion ? `• *Taller:* ${biz.direccion}, ${biz.ciudad}\n` : ""}
     const hoyIso = new Date().toISOString().split("T")[0];
     const fechaFinal = formGastoFecha || hoyIso;
 
-    const nuevoGasto: Gasto = {
-      id: `gasto-${Date.now()}`,
-      fecha: fechaFinal,
-      categoria: formGastoCategoria,
-      concepto: formGastoConcepto.trim(),
-      monto: montoNum,
-      medioPago: formGastoMedioPago,
-      notas: formGastoNotas.trim() || undefined,
-    };
-
-    guardarGastos([nuevoGasto, ...gastos]);
+    if (formGastoId) {
+      const actualizados = gastos.map((g) =>
+        g.id === formGastoId
+          ? {
+              ...g,
+              fecha: fechaFinal,
+              categoria: formGastoCategoria,
+              concepto: formGastoConcepto.trim(),
+              monto: montoNum,
+              medioPago: formGastoMedioPago,
+              notas: formGastoNotas.trim() || undefined,
+              esFijo: formGastoEsFijo,
+            }
+          : g
+      );
+      guardarGastos(actualizados);
+      showToast(`✅ Gasto "${formGastoConcepto.trim()}" modificado con éxito.`);
+    } else {
+      const nuevoGasto: Gasto = {
+        id: `gasto-${Date.now()}`,
+        fecha: fechaFinal,
+        categoria: formGastoCategoria,
+        concepto: formGastoConcepto.trim(),
+        monto: montoNum,
+        medioPago: formGastoMedioPago,
+        notas: formGastoNotas.trim() || undefined,
+        esFijo: formGastoEsFijo,
+      };
+      guardarGastos([nuevoGasto, ...gastos]);
+      showToast(`✅ Gasto de ${formatPesos(nuevoGasto.monto)} guardado.`);
+    }
 
     // Reset
+    setFormGastoId(null);
     setFormGastoConcepto("");
     setFormGastoMonto("");
     setFormGastoNotas("");
+    setFormGastoEsFijo(false);
     setModalGastoOpen(false);
-
-    showToast(`✅ Gasto de ${formatPesos(nuevoGasto.monto)} guardado.`);
   };
+
+  const handleCrearGasto = handleGuardarGasto;
 
   // Marcar Cheque como Cobrado / Pendiente
   const toggleCobroCheque = (trabajoId: string) => {
@@ -2274,6 +2421,16 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
                             </button>
                           )}
 
+                          {/* Botón Editar Presupuesto */}
+                          <button
+                            type="button"
+                            onClick={() => handleAbrirModalEditarPresupuesto(p)}
+                            className="p-1.5 rounded-xl bg-sky-950/40 hover:bg-sky-900/60 text-sky-300 hover:text-sky-200 border border-sky-500/30 transition-all cursor-pointer active:scale-95 shadow-sm"
+                            title="Editar presupuesto (cliente, vehículo, servicios o monto)"
+                          >
+                            <FaEdit className="size-3.5" />
+                          </button>
+
                           {/* Botón de eliminación disponible en cualquier estado */}
                           <button
                             type="button"
@@ -2302,16 +2459,36 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
 
               <button
                 type="button"
-                onClick={() => {
-                  setFormGastoFecha(new Date().toISOString().split("T")[0]);
-                  setModalGastoOpen(true);
-                }}
+                onClick={handleAbrirModalNuevoGasto}
                 className="px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm uppercase tracking-wider bg-red-500 hover:bg-red-400 text-slate-950 flex items-center gap-2 shadow-lg cursor-pointer active:scale-95 transition-transform"
               >
                 <FaPlus className="size-3.5" />
                 <span>Registrar Gasto</span>
               </button>
             </div>
+
+            {/* Banner de Gastos Fijos pendientes de replicar en este mes */}
+            {gastosFijosFaltantesEnMes.length > 0 && (
+              <div className="bg-gradient-to-r from-red-950/40 via-red-900/20 to-[#0f1728] border border-red-500/30 rounded-2xl p-3 sm:p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-md">
+                <div className="space-y-0.5">
+                  <p className="text-xs font-bold text-white flex items-center gap-1.5">
+                    <span>📌</span>
+                    <span>Gastos Fijos ({gastosFijosFaltantesEnMes.length}): {gastosFijosFaltantesEnMes.map((g) => g.concepto).join(", ")}</span>
+                  </p>
+                  <p className="text-[11px] text-slate-400">
+                    Tenés gastos fijos recurrentes de otros meses que aún no fueron asentados en este mes ({mesFiltro}).
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={handleReplicarGastosFijosEnMes}
+                  className="px-3.5 py-2 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs uppercase tracking-wide flex items-center justify-center gap-1.5 shadow-md active:scale-95 transition-all cursor-pointer shrink-0"
+                >
+                  <FaRedo className="size-3" />
+                  <span>Cargar en {mesFiltro}</span>
+                </button>
+              </div>
+            )}
 
             {gastosMes.length === 0 ? (
               <div className="bg-[#0f1728] border border-dashed border-red-500/20 rounded-2xl p-10 text-center space-y-3">
@@ -2347,9 +2524,28 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
                       </div>
 
                       <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
-                        <p className="text-sm sm:text-base font-extrabold text-red-300 font-mono">
-                          {formatPesos(g.monto, ocultarMontos)}
-                        </p>
+                        <div className="text-right">
+                          <p className="text-sm sm:text-base font-extrabold text-red-300 font-mono">
+                            {formatPesos(g.monto, ocultarMontos)}
+                          </p>
+                          {g.esFijo && (
+                            <span className="text-[10px] font-bold px-1.5 py-0.2 rounded bg-red-500/20 text-red-300 border border-red-500/30 inline-flex items-center gap-1 mt-0.5">
+                              📌 Fijo
+                            </span>
+                          )}
+                        </div>
+
+                        {/* Botón Editar Gasto */}
+                        <button
+                          type="button"
+                          onClick={() => handleAbrirModalEditarGasto(g)}
+                          className="px-2.5 py-1.5 rounded-xl bg-red-950/40 hover:bg-red-900/60 text-red-300 hover:text-red-200 border border-red-500/30 transition-all cursor-pointer shadow-sm active:scale-95 flex items-center gap-1.5"
+                          title="Editar gasto, concepto o monto"
+                        >
+                          <FaEdit className="size-3.5 shrink-0 text-red-400" />
+                          <span className="hidden sm:inline text-xs font-bold">Editar</span>
+                        </button>
+
                         <button
                           type="button"
                           onClick={() => handleEliminarGasto(g.id, g.concepto)}
@@ -2926,14 +3122,16 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
         </div>
       )}
 
-      {/* MODAL: REGISTRAR NUEVO GASTO */}
+      {/* MODAL: REGISTRAR O EDITAR GASTO */}
       {modalGastoOpen && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
           <div className="bg-[#0f1728] border border-red-500/30 rounded-3xl w-full max-w-lg p-4 sm:p-7 space-y-4 shadow-2xl relative my-auto max-h-[92vh] overflow-y-auto">
             <div className="flex items-center justify-between border-b border-white/10 pb-3">
               <div className="flex items-center gap-2">
                 <FaFileInvoiceDollar className="size-5 text-red-400" />
-                <h3 className="font-extrabold text-lg text-white">Registrar Gasto / Compra</h3>
+                <h3 className="font-extrabold text-lg text-white">
+                  {formGastoId ? "Editar Gasto / Insumo" : "Registrar Gasto / Compra"}
+                </h3>
               </div>
               <button
                 type="button"
@@ -2944,7 +3142,7 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
               </button>
             </div>
 
-            <form onSubmit={handleCrearGasto} className="space-y-4 text-xs">
+            <form onSubmit={handleGuardarGasto} className="space-y-4 text-xs">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="block font-semibold text-slate-300 mb-1">Fecha *</label>
@@ -2994,7 +3192,7 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
                     placeholder="ej. 150000"
                     value={formGastoMonto}
                     onChange={(e) => setFormGastoMonto(e.target.value)}
-                    className="w-full bg-[#141f33] border border-red-500/35 rounded-xl px-3 py-2.5 text-base font-extrabold text-red-300 placeholder-slate-600 focus:outline-none focus:border-red-400"
+                    className="w-full bg-[#141f33] border border-red-500/35 rounded-xl px-3 py-2.5 text-base font-extrabold text-red-300 placeholder-slate-600 focus:outline-none focus:border-red-400 font-mono"
                   />
                 </div>
 
@@ -3010,6 +3208,20 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
                     <option value="cheque">Cheque propio emitido</option>
                   </select>
                 </div>
+              </div>
+
+              {/* Casilla de Gasto Fijo Mensual */}
+              <div className="flex items-center gap-2.5 p-3 rounded-xl bg-white/5 border border-white/10">
+                <input
+                  type="checkbox"
+                  id="chkGastoFijo"
+                  checked={formGastoEsFijo}
+                  onChange={(e) => setFormGastoEsFijo(e.target.checked)}
+                  className="size-4 accent-red-500 rounded cursor-pointer"
+                />
+                <label htmlFor="chkGastoFijo" className="text-xs font-semibold text-slate-300 cursor-pointer select-none">
+                  📌 <strong className="text-white">Gasto Fijo Mensual</strong> (se repite todos los meses: alquiler, luz, internet, etc.)
+                </label>
               </div>
 
               <div>
@@ -3035,7 +3247,7 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
                   type="submit"
                   className="px-6 py-2 rounded-xl font-bold uppercase tracking-wider bg-red-500 hover:bg-red-400 text-slate-950 cursor-pointer"
                 >
-                  Guardar Gasto
+                  {formGastoId ? "Guardar Cambios" : "Guardar Gasto"}
                 </button>
               </div>
             </form>
@@ -3226,6 +3438,134 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
             >
               Entendido
             </button>
+          </div>
+        </div>
+      )}
+
+      {/* MODAL: EDITAR PRESUPUESTO */}
+      {modalPresupuestoEditOpen && (
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+          <div className="bg-[#0f1728] border border-sky-500/30 rounded-3xl w-full max-w-lg p-4 sm:p-7 space-y-4 shadow-2xl relative my-auto max-h-[92vh] overflow-y-auto">
+            <div className="flex items-center justify-between border-b border-white/10 pb-3">
+              <div className="flex items-center gap-2">
+                <FaEdit className="size-5 text-sky-400" />
+                <h3 className="font-extrabold text-lg text-white">Editar Presupuesto</h3>
+              </div>
+              <button
+                type="button"
+                onClick={() => setModalPresupuestoEditOpen(false)}
+                className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 cursor-pointer"
+              >
+                <FaTimes className="size-4" />
+              </button>
+            </div>
+
+            <form onSubmit={handleGuardarPresupuestoEdit} className="space-y-4 text-xs">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label className="block font-semibold text-slate-300 mb-1">Vehículo *</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="ej. Toyota Hilux Gris"
+                    value={formPresupuestoVehiculo}
+                    onChange={(e) => setFormPresupuestoVehiculo(e.target.value)}
+                    className="w-full bg-[#141f33] border border-sky-500/25 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-sky-400"
+                  />
+                </div>
+
+                <div>
+                  <label className="block font-semibold text-slate-300 mb-1">Cliente</label>
+                  <input
+                    type="text"
+                    placeholder="Nombre del cliente"
+                    value={formPresupuestoCliente}
+                    onChange={(e) => setFormPresupuestoCliente(e.target.value)}
+                    className="w-full bg-[#141f33] border border-sky-500/25 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-sky-400"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label className="block font-semibold text-slate-300 mb-1">WhatsApp / Teléfono</label>
+                  <input
+                    type="tel"
+                    placeholder="ej. 3534123456"
+                    value={formPresupuestoTelefono}
+                    onChange={(e) => setFormPresupuestoTelefono(e.target.value)}
+                    className="w-full bg-[#141f33] border border-sky-500/25 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-sky-400 font-mono"
+                  />
+                </div>
+
+                <div>
+                  <label className="block font-semibold text-slate-300 mb-1">Monto Cotizado ($ ARS) *</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="ej. 160000"
+                    value={formPresupuestoMonto}
+                    onChange={(e) => setFormPresupuestoMonto(e.target.value)}
+                    className="w-full bg-[#141f33] border border-sky-500/35 rounded-xl px-3 py-2.5 text-base font-extrabold text-emerald-400 placeholder-slate-600 focus:outline-none focus:border-sky-400 font-mono"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block font-semibold text-slate-300 mb-1">
+                  Servicios Cotizados (uno por línea)
+                </label>
+                <textarea
+                  rows={3}
+                  value={formPresupuestoServicios}
+                  onChange={(e) => setFormPresupuestoServicios(e.target.value)}
+                  placeholder="• Tratamiento Cerámico&#10;• Limpieza de Tapizados"
+                  className="w-full bg-[#141f33] border border-sky-500/25 rounded-xl px-3 py-2 text-white placeholder-slate-500 font-mono text-xs focus:outline-none focus:border-sky-400 resize-none"
+                />
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label className="block font-semibold text-slate-300 mb-1">Estado</label>
+                  <select
+                    value={formPresupuestoEstado}
+                    onChange={(e) => setFormPresupuestoEstado(e.target.value as "pendiente" | "agendado" | "descartado")}
+                    className="w-full bg-[#141f33] border border-sky-500/25 rounded-xl px-3 py-2.5 text-white font-semibold focus:outline-none focus:border-sky-400"
+                  >
+                    <option value="pendiente">Pendiente</option>
+                    <option value="agendado">Agendado en Taller</option>
+                    <option value="descartado">Descartado</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block font-semibold text-slate-300 mb-1">Notas / Observaciones</label>
+                  <input
+                    type="text"
+                    placeholder="ej. Confirmar el jueves"
+                    value={formPresupuestoNotas}
+                    onChange={(e) => setFormPresupuestoNotas(e.target.value)}
+                    className="w-full bg-[#141f33] border border-sky-500/25 rounded-xl px-3 py-2.5 text-white placeholder-slate-500"
+                  />
+                </div>
+              </div>
+
+              <div className="flex items-center justify-end gap-2 pt-2 border-t border-white/10">
+                <button
+                  type="button"
+                  onClick={() => setModalPresupuestoEditOpen(false)}
+                  className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold cursor-pointer"
+                >
+                  Cancelar
+                </button>
+                <button
+                  type="submit"
+                  className="px-6 py-2 rounded-xl font-bold uppercase tracking-wider bg-sky-500 hover:bg-sky-400 text-slate-950 cursor-pointer shadow-lg"
+                >
+                  Guardar Cambios
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       )}

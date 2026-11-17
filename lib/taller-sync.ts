@@ -68,6 +68,7 @@ export type Gasto = {
   monto: number;
   medioPago: "efectivo" | "transferencia" | "cheque";
   notas?: string;
+  esFijo?: boolean;
 };
 
 export type TallerStoreData = {
