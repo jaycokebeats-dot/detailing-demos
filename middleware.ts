@@ -8,19 +8,29 @@ export function middleware(request: NextRequest) {
 
   // Servir favicon.ico específico según el dominio (para Google Search Console y navegadores)
   if (pathname === "/favicon.ico") {
-    if (cleanHost === "mcdetail.com.ar" || cleanHost === "www.mcdetail.com.ar") {
+    const referer = (request.headers.get("referer") || "").toLowerCase();
+    const activeSlug = (request.cookies.get("black_line_active_slug")?.value || "").toLowerCase();
+
+    if (cleanHost === "mcdetail.com.ar" || cleanHost === "www.mcdetail.com.ar" || referer.includes("mc-detail") || activeSlug.includes("mc-detail")) {
       return NextResponse.rewrite(new URL("/favicon-mcdetail.ico", request.url));
     }
-    if (cleanHost === "amesteticavehicular.com.ar" || cleanHost === "www.amesteticavehicular.com.ar") {
+    if (cleanHost === "amesteticavehicular.com.ar" || cleanHost === "www.amesteticavehicular.com.ar" || referer.includes("am-centro") || activeSlug.includes("am-centro")) {
       return NextResponse.rewrite(new URL("/favicon-am.ico", request.url));
+    }
+    if (cleanHost.includes("jds") || cleanHost.includes("jdscardetail") || referer.includes("jds") || activeSlug.includes("jds")) {
+      return NextResponse.rewrite(new URL("/favicon-jds.ico", request.url));
     }
     if (cleanHost === "platinumdetallado.com" || cleanHost === "www.platinumdetallado.com") {
       return NextResponse.rewrite(new URL("/favicon-platinum.ico", request.url));
     }
-    if (cleanHost.includes("jds") || cleanHost.includes("jdscardetail")) {
-      return NextResponse.rewrite(new URL("/favicon-jds.ico", request.url));
-    }
     return NextResponse.rewrite(new URL("/favicon-platinum.ico", request.url));
+  }
+
+  // Marcar cookie de taller activo para jds-detailing
+  if (pathname === "/d/jds-detailing" || pathname === "/jds-detailing") {
+    const res = NextResponse.next();
+    res.cookies.set("black_line_active_slug", "jds-detailing", { path: "/" });
+    return res;
   }
 
   // Si acceden desde el dominio exclusivo de Platinum
