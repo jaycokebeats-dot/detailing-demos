@@ -4,16 +4,16 @@ import { JDS_DETAILING_BUSINESS } from "@/data/jds-data";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://detailing-demos-three.vercel.app"),
-  title: "JDS Detail Car Estudio — Detailing Profesional en Villa Ballester",
+  title: "JDS Detailing Car Studio — Detailing Profesional en Villa Ballester",
   description:
-    "Taller de estética del auto en Villa Ballester: tratamientos cerámicos 9H, pulido y corrección de pintura, PPF brillante, restauración de ópticas y limpieza de motor a vapor. Tu auto, en las mejores manos.",
-  applicationName: "JDS Detail Car Estudio",
+    "Taller de estética del automotor en Villa Ballester: tratamientos cerámicos, pulido de pintura, PPF brillante, restauración de ópticas y limpieza de motor a vapor. Tu auto, en las mejores manos.",
+  applicationName: "JDS Detailing Car Studio",
   openGraph: {
-    title: "JDS Detail Car Estudio — Detailing Profesional en Villa Ballester",
+    title: "JDS Detailing Car Studio — Detailing Profesional en Villa Ballester",
     description:
-      "Taller de estética del auto en Villa Ballester: tratamientos cerámicos 9H, corrección de laca, PPF brillante, ópticas y motor a vapor. Pedí tu turno por WhatsApp al 11 5451-4393.",
+      "Taller de estética del automotor en Villa Ballester: tratamientos cerámicos, pulido de pintura, PPF brillante, restauración de ópticas y motor a vapor. Pedí tu turno por WhatsApp al 11 5451-4393.",
     url: "https://detailing-demos-three.vercel.app/d/jds-detailing/",
-    siteName: "JDS Detail Car Estudio",
+    siteName: "JDS Detailing Car Studio",
     locale: "es_AR",
     type: "website",
     images: [
@@ -21,15 +21,15 @@ export const metadata: Metadata = {
         url: "/logo/jds/jds-logo-square.jpg",
         width: 1200,
         height: 630,
-        alt: "JDS Detail Car Estudio — Villa Ballester",
+        alt: "JDS Detailing Car Studio — Villa Ballester",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "JDS Detail Car Estudio — Detailing Profesional en Villa Ballester",
+    title: "JDS Detailing Car Studio — Detailing Profesional en Villa Ballester",
     description:
-      "Taller de estética del auto en Villa Ballester: tratamientos cerámicos 9H, corrección de pintura, PPF brillante, ópticas y motor a vapor.",
+      "Taller de estética del automotor en Villa Ballester: tratamientos cerámicos, pulido de pintura, PPF brillante, ópticas y motor a vapor.",
     images: ["/logo/jds/jds-logo-square.jpg"],
   },
 };

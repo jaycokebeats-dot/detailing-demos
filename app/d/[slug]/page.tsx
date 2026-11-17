@@ -48,8 +48,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     titulo = "Shalom Estética Automotriz | Detailing Profesional en Toluca";
     descripcion = "Estética y detallado automotriz profesional en Toluca, Edo. Méx.: corrección de pintura, protección cerámica y estética de interiores sin microrrayones ni atajos. ¡Cotiza por WhatsApp!";
   } else if (isJds) {
-    titulo = "JDS Detail Car Estudio | Detailing Profesional & Estética en Villa Ballester";
-    descripcion = "Taller de estética del auto en Villa Ballester: tratamientos cerámicos 9H, pulido y corrección de pintura, PPF brillante, restauración de ópticas y limpieza de motor a vapor. Tu auto, en las mejores manos.";
+    titulo = "JDS Detailing Car Studio | Detailing Profesional & Estética en Villa Ballester";
+    descripcion = "Taller de estética del automotor en Villa Ballester: tratamientos cerámicos, pulido de pintura, PPF brillante, restauración de ópticas y limpieza de motor a vapor. Tu auto, en las mejores manos.";
   } else if (isSpain) {
     descripcion = `Detailing profesional de coches en ${biz.ciudad}: lavado a mano, corrección de pintura y tratamiento cerámico. Pide tu cita por WhatsApp.`;
   } else if (isMexico) {
@@ -82,7 +82,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const brandName = isAmCentro
     ? "AM Centro de Estética Vehicular"
     : isJds
-    ? "JDS Detail Car Estudio"
+    ? "JDS Detailing Car Studio"
     : isMcDetail
     ? "Mc Detail Detailing"
     : isPlatinum
@@ -271,7 +271,7 @@ export default async function BusinessPage({ params }: Props) {
     : defaultImage;
 
   const cleanBizNombre = biz.nombre.replace(/[^\p{L}\p{N}\s.,&|/'-]/gu, "").replace(/\s+/g, " ").trim();
-  const brandName = isJds ? "JDS Detail Car Estudio" : isMcDetail ? "Mc Detail Detailing" : (isPlatinum ? "Platinum Detallado Automotriz" : cleanBizNombre);
+  const brandName = isJds ? "JDS Detailing Car Studio" : isMcDetail ? "Mc Detail Detailing" : (isPlatinum ? "Platinum Detallado Automotriz" : cleanBizNombre);
 
   const jsonLd = {
     "@context": "https://schema.org",

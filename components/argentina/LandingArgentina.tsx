@@ -363,23 +363,23 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
       </section>
 
       {/* BANNER DE MEDIOS DE PAGO & CONFIANZA */}
-      <div className="max-w-6xl mx-auto px-4 -mt-10 mb-10 relative z-20">
-        <div className="glass-panel rounded-3xl p-6 md:p-8 border border-white/10 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6" style={{ background: "rgba(16,16,16,0.92)", backdropFilter: "blur(16px)" }}>
-          <div className="space-y-1.5 text-center md:text-left">
-            <span className={isRojo ? "section-badge-jds mb-2" : isCeleste ? "section-badge-celeste mb-2" : "section-badge mb-2"}>
+      <div className="max-w-4xl mx-auto px-4 -mt-10 mb-10 relative z-20">
+        <div className="glass-panel rounded-3xl p-6 sm:p-8 border border-white/10 shadow-2xl flex flex-col items-center justify-center text-center gap-4" style={{ background: "rgba(16,16,16,0.92)", backdropFilter: "blur(16px)" }}>
+          <div className="space-y-1.5 flex flex-col items-center">
+            <span className={isRojo ? "section-badge-jds mb-1" : isCeleste ? "section-badge-celeste mb-1" : "section-badge mb-1"}>
               {isRojo ? "Tu auto, en las mejores manos" : "Compromiso de Calidad"}
             </span>
-            <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight" style={{ textTransform: "none", fontFamily: "inherit" }}>
-              {isRojo ? "Taller de Estética del Auto en Villa Ballester" : "Servicio Profesional y Garantizado"}
+            <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight" style={{ textTransform: "none", fontFamily: "inherit" }}>
+              {isRojo ? "Taller de Estética del Automotor en Villa Ballester" : "Servicio Profesional y Garantizado"}
             </h3>
-            <p className="text-xs md:text-sm text-slate-300 font-light">
+            <p className="text-xs sm:text-sm text-slate-300 font-light max-w-2xl mx-auto leading-relaxed">
               {isRojo
                 ? "Facilidades de pago: Tarjeta en 3 cuotas fijas (en algunos trabajos), Efectivo y Transferencia Bancaria."
                 : "Consultanos por formas de pago y planes de mantenimiento preventivo."}
             </p>
           </div>
-          <div className="flex flex-wrap items-center justify-center md:justify-end gap-2.5 text-xs font-semibold">
-            <div className={`px-4 py-2.5 rounded-2xl bg-white/5 border ${isRojo ? "border-red-500/20 text-red-200" : "border-white/10 text-white"} flex items-center gap-2`}>
+          <div className="flex flex-wrap items-center justify-center gap-3 pt-1 text-xs font-semibold">
+            <div className={`px-4 py-2.5 rounded-2xl bg-white/5 border ${isRojo ? "border-red-500/25 text-red-200 shadow-[0_0_15px_rgba(239,68,68,0.12)]" : "border-white/10 text-white"} flex items-center gap-2`}>
               <span>💳</span>
               <span>Tarjeta 3 Cuotas Fijas</span>
             </div>
@@ -389,7 +389,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
             </div>
             <div className="px-4 py-2.5 rounded-2xl bg-white/5 border border-white/10 flex items-center gap-2 text-white">
               <span>📲</span>
-              <span>Transferencia</span>
+              <span>Transferencia Bancaria</span>
             </div>
           </div>
         </div>
@@ -538,8 +538,8 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
             {[
               {
-                titulo: "Audi A3 Sportback — Tratamiento Cerámico 9H",
-                categoria: "Cerámico 9H",
+                titulo: "Audi A3 Sportback — Tratamiento Cerámico",
+                categoria: "Cerámico",
                 descripcion: "Corrección técnica de laca y sellado nanocerámico con brillo cristalino tipo espejo en nuestro estudio.",
                 img: "/logo/jds/jds-taller-audi.jpg",
               },
@@ -571,7 +571,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
                 titulo: "Lavado Premium Artesanal & Cera Rápida",
                 categoria: "Lavado Premium",
                 descripcion: "Técnica de dos baldes con shampoo pH neutro, descontaminado de pintura y sellado de brillo profundo.",
-                img: "/servicios/lavado-premium-despues.jpg",
+                img: "/before-after/platinum-full-detail-despues.jpg",
               },
             ].map((trabajo) => (
               <div
