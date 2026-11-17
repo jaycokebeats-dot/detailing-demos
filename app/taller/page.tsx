@@ -537,6 +537,12 @@ export default function TallerGestionPage() {
 
     guardarDatos(updatedTrabajos, gastos, updatedPresupuestos);
 
+    const nuevoMes = (agendarFecha || new Date().toISOString().split("T")[0]).slice(0, 7);
+    if (nuevoMes !== mesFiltro) {
+      setMesFiltro(nuevoMes);
+    }
+    setFiltroEstadoTrabajo("todos");
+
     // Mensaje formal de confirmación de turno por WhatsApp
     const saludo = modalAgendarPresupuesto.cliente ? `¡Hola ${modalAgendarPresupuesto.cliente}!` : "¡Hola!";
     const serviciosTexto = modalAgendarPresupuesto.servicios.map((s) => `• ${s}`).join("\n");
@@ -733,23 +739,34 @@ ${biz.direccion ? `• *Taller:* ${biz.direccion}, ${biz.ciudad}\n` : ""}
     return SERVICIOS_SUGERIDOS_DEFAULT;
   }, [biz.servicios]);
 
+  // Turnos agendados en otros meses distintos al mes seleccionado
+  const turnosFuturosOtrosMeses = useMemo(() => {
+    return trabajos.filter(
+      (t) => t.estadoTrabajo === "agendado" && !t.fecha.startsWith(mesFiltro)
+    );
+  }, [trabajos, mesFiltro]);
+
   // Trabajos filtrados por mes actual y búsqueda
+  // Si busca texto en la barra de búsqueda, buscamos en TODOS los meses para que nunca se pierda un vehículo
   const trabajosMes = useMemo(() => {
-    return trabajos.filter((t) => {
-      const matchMes = t.fecha.startsWith(mesFiltro);
-      if (!matchMes) return false;
-      if (!busquedaTrabajos.trim()) return true;
+    if (busquedaTrabajos.trim()) {
       const q = busquedaTrabajos.toLowerCase();
-      return (
-        t.vehiculo.toLowerCase().includes(q) ||
-        (t.cliente && t.cliente.toLowerCase().includes(q)) ||
-        t.servicios.some((s) => s.toLowerCase().includes(q))
+      return trabajos.filter(
+        (t) =>
+          t.vehiculo.toLowerCase().includes(q) ||
+          (t.cliente && t.cliente.toLowerCase().includes(q)) ||
+          t.servicios.some((s) => s.toLowerCase().includes(q))
       );
-    });
+    }
+    return trabajos.filter((t) => t.fecha.startsWith(mesFiltro));
   }, [trabajos, mesFiltro, busquedaTrabajos]);
 
   // Contadores de estados para los filtros rápidos
-  const conteoAgendados = useMemo(() => trabajosMes.filter((t) => t.estadoTrabajo === "agendado").length, [trabajosMes]);
+  // Para Turnos agendados mostramos el total de turnos del taller
+  const conteoAgendados = useMemo(
+    () => trabajos.filter((t) => t.estadoTrabajo === "agendado").length,
+    [trabajos]
+  );
   const conteoEnTaller = useMemo(() => trabajosMes.filter((t) => (t.estadoTrabajo || "en_taller") === "en_taller").length, [trabajosMes]);
   const conteoListos = useMemo(() => trabajosMes.filter((t) => t.estadoTrabajo === "listo").length, [trabajosMes]);
   const conteoEntregados = useMemo(() => trabajosMes.filter((t) => t.estadoTrabajo === "entregado").length, [trabajosMes]);
@@ -757,13 +774,26 @@ ${biz.direccion ? `• *Taller:* ${biz.direccion}, ${biz.ciudad}\n` : ""}
 
   // Trabajos filtrados según el botón de estado seleccionado
   const trabajosMesFiltrados = useMemo(() => {
+    // Si toca la pestaña de Turnos, mostramos todos los turnos agendados activos
+    if (filtroEstadoTrabajo === "agendado") {
+      const turnosTodos = trabajos.filter((t) => t.estadoTrabajo === "agendado");
+      if (!busquedaTrabajos.trim()) return turnosTodos;
+      const q = busquedaTrabajos.toLowerCase();
+      return turnosTodos.filter(
+        (t) =>
+          t.vehiculo.toLowerCase().includes(q) ||
+          (t.cliente && t.cliente.toLowerCase().includes(q)) ||
+          t.servicios.some((s) => s.toLowerCase().includes(q))
+      );
+    }
+
     return trabajosMes.filter((t) => {
       if (filtroEstadoTrabajo === "todos") return true;
       if (filtroEstadoTrabajo === "pendiente_pago") return t.estadoPago === "pendiente";
       const estadoActual = t.estadoTrabajo || "en_taller";
       return estadoActual === filtroEstadoTrabajo;
     });
-  }, [trabajosMes, filtroEstadoTrabajo]);
+  }, [trabajos, trabajosMes, filtroEstadoTrabajo, busquedaTrabajos]);
 
   // Gastos filtrados por mes
   const gastosMes = useMemo(() => {
@@ -1189,6 +1219,13 @@ ${biz.direccion ? `• *Taller:* ${biz.direccion}, ${biz.ciudad}\n` : ""}
 
       trabajoFinal = nuevoTrabajo;
       guardarTrabajos([nuevoTrabajo, ...trabajos]);
+
+      // Si la fecha del trabajo es de otro mes, cambiamos automáticamente la vista a ese mes
+      const nuevoMes = fechaFinal.slice(0, 7);
+      if (nuevoMes !== mesFiltro) {
+        setMesFiltro(nuevoMes);
+      }
+      setFiltroEstadoTrabajo("todos");
       showToast(
         formTrabajoEstadoTrabajo === "agendado"
           ? `📅 ¡Turno agendado para ${nuevoTrabajo.vehiculo} (${nuevoTrabajo.horaTurno} hs)!`
@@ -2048,6 +2085,44 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
                 </span>
               </button>
             </div>
+
+            {/* AVISO DE TURNOS EN PRÓXIMOS MESES */}
+            {turnosFuturosOtrosMeses.length > 0 && filtroEstadoTrabajo !== "agendado" && !busquedaTrabajos.trim() && (
+              <div className="bg-gradient-to-r from-sky-950/70 via-[#101c33] to-indigo-950/70 border border-sky-500/35 rounded-2xl p-3 sm:p-3.5 flex items-center justify-between gap-3 text-xs text-sky-200 shadow-lg">
+                <div className="flex items-center gap-2.5 min-w-0">
+                  <div className="p-2 bg-sky-500/20 rounded-xl text-sky-400 shrink-0">
+                    <FaCalendarAlt className="size-4" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="font-bold text-white text-xs sm:text-sm truncate">
+                      Tenés {turnosFuturosOtrosMeses.length} turno(s) agendado(s) para próximos meses
+                    </p>
+                    <p className="text-[11px] text-sky-300/80 truncate">
+                      {turnosFuturosOtrosMeses.map((t) => `${t.vehiculo} (${formatFechaVisual(t.fecha)})`).join(" · ")}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-1.5 shrink-0">
+                  <button
+                    type="button"
+                    onClick={() => setFiltroEstadoTrabajo("agendado")}
+                    className="px-3 py-1.5 bg-sky-500 hover:bg-sky-400 text-slate-950 font-black rounded-xl text-xs transition-all shadow-md active:scale-95 cursor-pointer"
+                  >
+                    Ver Turnos
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const primerMes = turnosFuturosOtrosMeses[0].fecha.slice(0, 7);
+                      setMesFiltro(primerMes);
+                    }}
+                    className="px-3 py-1.5 bg-sky-900/60 hover:bg-sky-900 text-sky-200 border border-sky-500/30 rounded-xl text-xs font-semibold transition-all active:scale-95 cursor-pointer hidden sm:inline-block"
+                  >
+                    Ir a Diciembre
+                  </button>
+                </div>
+              </div>
+            )}
 
             {/* Listado de trabajos */}
             {trabajosMesFiltrados.length === 0 ? (
