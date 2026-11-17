@@ -225,7 +225,8 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
             src={biz.video_hero ?? "/videos/hero-compilado-blanco.mp4"}
           />
         )}
-        <div className={`absolute inset-0 ${isRojo ? "bg-gradient-to-t from-black via-black/40 to-black/55" : "bg-gradient-to-t from-black via-black/50 to-black/70"}`} />
+        <div className={`absolute inset-0 ${isRojo ? "bg-gradient-to-t from-[#101010] via-black/40 to-black/55" : "bg-gradient-to-t from-black via-black/50 to-black/70"}`} />
+        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#101010] to-transparent pointer-events-none" />
 
         <div className="relative z-10 max-w-4xl mx-auto w-full h-full flex flex-col justify-center items-center text-center px-2">
           {/* Logo oficial centrado con halo de luz premium */}
@@ -405,8 +406,8 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
       )}
 
       {/* 4. SERVICIOS CON SLIDERS INTERACTIVOS DE ANTES Y DESPUÉS ($ ARS) */}
-      <section id="servicios" className="relative px-5 sm:px-8 py-20 bg-black">
-        <SectionDivider edge="top" fill="#000000" />
+      <section id="servicios" className="relative px-5 sm:px-8 py-20" style={{ background: isRojo ? "#101010" : "#000000" }}>
+        <SectionDivider edge="top" fill={isRojo ? "#101010" : "#000000"} />
         <div className="max-w-7xl mx-auto">
           {(() => {
             const serviciosList = (biz.servicios && biz.servicios.length > 0) ? biz.servicios : SERVICIOS_ARGENTINA;
@@ -530,12 +531,12 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
             </div>
           )}
         </div>
-        <SectionDivider edge="bottom" shape="asymmetric" fill="#000000" />
+        <SectionDivider edge="bottom" shape="asymmetric" fill={isRojo ? "#101010" : "#000000"} />
       </section>
 
       {/* BANNER DE MEDIOS DE PAGO & CONFIANZA (Para JDS va inmediatamente después de Servicios) */}
       {isRojo && (
-        <div className="max-w-4xl mx-auto px-4 -mt-6 sm:-mt-8 mb-16 relative z-20">
+        <div className="max-w-4xl mx-auto px-4 -mt-10 mb-10 relative z-20">
           <div className="glass-panel rounded-3xl p-6 sm:p-8 border border-white/10 shadow-2xl flex flex-col items-center justify-center text-center gap-4" style={{ background: "rgba(16,16,16,0.92)", backdropFilter: "blur(16px)" }}>
             <div className="space-y-1.5 flex flex-col items-center">
               <span className="section-badge-jds mb-1">
@@ -567,7 +568,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
       )}
 
       {/* 4.1 SECCIÓN: TE MOSTRAMOS NUESTROS TRABAJOS */}
-      <section id="trabajos" className="px-5 sm:px-8 py-24 bg-[#0a0a0a] relative border-t border-white/5">
+      <section id="trabajos" className="px-5 sm:px-8 pt-10 pb-24 bg-black relative">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-14 max-w-2xl mx-auto">
             <span className={isRojo ? "section-badge-jds mb-5" : isCeleste ? "section-badge-celeste mb-5" : "section-badge mb-5"}>
