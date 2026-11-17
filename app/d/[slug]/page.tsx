@@ -65,7 +65,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       : isShalom
         ? "https://detailing-demos-three.vercel.app/logo/shalom-og.jpg"
         : isJds
-          ? "https://detailing-demos-three.vercel.app/logo/jds/jds-logo-square.jpg"
+          ? "https://detailing-demos-three.vercel.app/og-jds.jpg"
           : (biz.fotos && biz.fotos.length > 0 && biz.fotos[0])
           ? (biz.fotos[0].startsWith("http") ? biz.fotos[0] : `https://detailing-demos-three.vercel.app${biz.fotos[0].startsWith("/") ? "" : "/"}${biz.fotos[0]}`)
           : "https://detailing-demos-three.vercel.app/og-detailing.jpg";
@@ -160,16 +160,28 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             "estetica vehicular neuquen",
             "detailing alto valle",
           ]
+      : isJds
+        ? [
+            "detailing villa ballester",
+            "jds detailing car studio",
+            "tratamiento ceramico villa ballester",
+            "pulido de autos villa ballester",
+            "ppf villa ballester",
+            "limpieza de motor a vapor san martin",
+            "restauracion de opticas villa ballester",
+            "estetica vehicular villa ballester",
+            "taller de detailing buenos aires",
+          ]
       : ["detailing", "pulido de autos", "tratamiento ceramico", biz.ciudad],
     icons: isAmCentro
       ? {
           icon: [
-            { url: "/favicon-am-32.png", sizes: "32x32", type: "image/png" },
             { url: "/favicon-am-48.png", sizes: "48x48", type: "image/png" },
             { url: "/favicon-am-192.png", sizes: "192x192", type: "image/png" },
-            { url: "/favicon-am-512.png", sizes: "512x512", type: "image/png" },
             { url: "/favicon-am.ico" },
+            { url: "/favicon-am.svg", type: "image/svg+xml" },
           ],
+          shortcut: "/favicon-am.ico",
           apple: [
             { url: "/apple-touch-icon-am.png", sizes: "180x180", type: "image/png" },
           ],
@@ -179,8 +191,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
           icon: [
             { url: "/favicon-platinum-48.png", sizes: "48x48", type: "image/png" },
             { url: "/favicon-platinum-192.png", sizes: "192x192", type: "image/png" },
+            { url: "/favicon-platinum.ico" },
             { url: "/favicon-platinum.svg", type: "image/svg+xml" },
           ],
+          shortcut: "/favicon-platinum.ico",
           apple: [
             { url: "/apple-touch-icon-platinum.png", sizes: "180x180", type: "image/png" },
           ],
@@ -190,8 +204,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             icon: [
               { url: "/favicon-mcdetail-48.png", sizes: "48x48", type: "image/png" },
               { url: "/favicon-mcdetail-192.png", sizes: "192x192", type: "image/png" },
+              { url: "/favicon-mcdetail-512.png", sizes: "512x512", type: "image/png" },
+              { url: "/favicon-mcdetail.ico" },
               { url: "/favicon-mcdetail.svg", type: "image/svg+xml" },
             ],
+            shortcut: "/favicon-mcdetail.ico",
             apple: [
               { url: "/apple-touch-icon-mcdetail.png", sizes: "180x180", type: "image/png" },
             ],
@@ -203,6 +220,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             ],
             apple: [
               { url: "/logo/shalom-logo.png", sizes: "180x180", type: "image/png" },
+            ],
+          }
+      : isJds
+        ? {
+            icon: [
+              { url: "/favicon-jds-48.png", sizes: "48x48", type: "image/png" },
+              { url: "/favicon-jds-192.png", sizes: "192x192", type: "image/png" },
+              { url: "/favicon-jds.svg", type: "image/svg+xml" },
+            ],
+            apple: [
+              { url: "/apple-touch-icon-jds.png", sizes: "180x180", type: "image/png" },
             ],
           }
       : biz.logo_url
@@ -224,6 +252,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
           width: 1200,
           height: 630,
           alt: titulo,
+          type: "image/jpeg",
         },
       ],
     },
@@ -268,7 +297,7 @@ export default async function BusinessPage({ params }: Props) {
     : isMcDetail
       ? "https://mcdetail.com.ar/og-mcdetail.jpg"
       : isJds
-        ? "https://detailing-demos-three.vercel.app/logo/jds/jds-logo-square.jpg"
+        ? "https://detailing-demos-three.vercel.app/og-jds.jpg"
         : "https://detailing-demos-three.vercel.app/og-detailing.jpg";
   const primaryImage = (biz.fotos && biz.fotos.length > 0)
     ? (biz.fotos[0].startsWith("http") ? biz.fotos[0] : `${canonicalBizUrl}${biz.fotos[0].startsWith("/") ? "" : "/"}${biz.fotos[0]}`)
@@ -284,18 +313,21 @@ export default async function BusinessPage({ params }: Props) {
     "name": brandName,
     "image": primaryImage,
     "url": canonicalBizUrl,
-    "telephone": biz.telefono || (isPlatinum ? "+52-442-715-1535" : "+54 9 299 413-4806"),
+    "telephone": isJds ? "+54 9 11 5451-4393" : (biz.telefono || (isPlatinum ? "+52-442-715-1535" : "+54 9 299 413-4806")),
     "priceRange": "$$",
     "description": isPlatinum
       ? "Servicio profesional de detallado automotriz a domicilio en Querétaro: tratamientos cerámicos Gyeon®, pulido de pintura, interiores a vapor y paquetes express."
       : isMcDetail
         ? "Estudio profesional de detailing en Neuquén: polarizados nano cerámicos, protección PPF, tratamientos cerámicos 9H y estética vehicular completa."
-        : `Detailing profesional y estética automotriz en ${biz.ciudad}.`,
+        : isJds
+          ? "Taller de estética del automotor en Villa Ballester: tratamientos cerámicos, pulido de pintura, PPF brillante, restauración de ópticas y limpieza de motor a vapor."
+          : `Detailing profesional y estética automotriz en ${biz.ciudad}.`,
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": biz.direccion || (isMcDetail ? "Gdor. Anaya 614, Barrio La Sirena" : "Servicio a Domicilio"),
-      "addressLocality": biz.ciudad || (isMcDetail ? "Neuquén" : "Querétaro"),
-      "addressRegion": isPlatinum ? "Querétaro" : (isMcDetail ? "Neuquén" : (biz.ciudad || "")),
+      "streetAddress": isJds ? "Lynch Pueyrredón 4386" : (biz.direccion || (isMcDetail ? "Gdor. Anaya 614, Barrio La Sirena" : "Servicio a Domicilio")),
+      "addressLocality": isJds ? "Villa Ballester" : (biz.ciudad || (isMcDetail ? "Neuquén" : "Querétaro")),
+      "addressRegion": isJds ? "Buenos Aires" : (isPlatinum ? "Querétaro" : (isMcDetail ? "Neuquén" : (biz.ciudad || ""))),
+      "postalCode": isJds ? "B1653" : undefined,
       "addressCountry": biz.pais || (isMcDetail ? "AR" : (isPlatinum ? "MX" : "AR")),
     },
     ...(isPlatinum
@@ -331,15 +363,45 @@ export default async function BusinessPage({ params }: Props) {
               { "@type": "AdministrativeArea", "name": "Alto Valle" },
             ],
           }
-      : {}),
-    "openingHoursSpecification": [
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-        "opens": isMcDetail ? "08:30" : "08:00",
-        "closes": isMcDetail ? "19:30" : "19:00",
-      },
-    ],
+        : isJds
+          ? {
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": -34.5492,
+                "longitude": -58.5552,
+              },
+              "areaServed": [
+                { "@type": "City", "name": "Villa Ballester" },
+                { "@type": "AdministrativeArea", "name": "San Martín" },
+                { "@type": "AdministrativeArea", "name": "Vicente López" },
+                { "@type": "AdministrativeArea", "name": "San Isidro" },
+                { "@type": "AdministrativeArea", "name": "Zona Norte Gran Buenos Aires" },
+              ],
+            }
+          : {}),
+    "openingHoursSpecification": isJds
+      ? [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "10:00",
+            "closes": "18:00",
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Saturday"],
+            "opens": "10:00",
+            "closes": "16:00",
+          },
+        ]
+      : [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+            "opens": isMcDetail ? "08:30" : "08:00",
+            "closes": isMcDetail ? "19:30" : "19:00",
+          },
+        ],
   };
 
   return (

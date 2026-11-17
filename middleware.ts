@@ -6,6 +6,20 @@ export function middleware(request: NextRequest) {
   const cleanHost = hostname.split(":")[0].toLowerCase();
   const { pathname } = request.nextUrl;
 
+  // Servir favicon.ico específico según el dominio (para Google Search Console y navegadores)
+  if (pathname === "/favicon.ico") {
+    if (cleanHost === "mcdetail.com.ar" || cleanHost === "www.mcdetail.com.ar") {
+      return NextResponse.rewrite(new URL("/favicon-mcdetail.ico", request.url));
+    }
+    if (cleanHost === "amesteticavehicular.com.ar" || cleanHost === "www.amesteticavehicular.com.ar") {
+      return NextResponse.rewrite(new URL("/favicon-am.ico", request.url));
+    }
+    if (cleanHost === "platinumdetallado.com" || cleanHost === "www.platinumdetallado.com") {
+      return NextResponse.rewrite(new URL("/favicon-platinum.ico", request.url));
+    }
+    return NextResponse.rewrite(new URL("/favicon-platinum.ico", request.url));
+  }
+
   // Si acceden desde el dominio exclusivo de Platinum
   if (cleanHost === "platinumdetallado.com" || cleanHost === "www.platinumdetallado.com") {
     // Si acceden a la raíz '/', servir la landing de Platinum directamente en la raíz
@@ -144,9 +158,7 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    /*
-     * Interceptar rutas excepto archivos estáticos, imágenes y APIs
-     */
-    "/((?!api|_next/static|_next/image|favicon|.*\\..*).*)",
+    "/favicon.ico",
+    "/((?!api|_next/static|_next/image|.*\\..*).*)",
   ],
 };
