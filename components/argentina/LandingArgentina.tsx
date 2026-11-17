@@ -103,6 +103,169 @@ const ITEMS_PROBLEMA_ARGENTINA = [
   "Butacas de cuero resecas, agrietadas o con brillo grasoso por acumulación de suciedad",
 ];
 
+const TRABAJOS_VIDEOS_JDS = [
+  {
+    titulo: "Lavado Premium Artesanal",
+    servicio: "Lavado Premium",
+    descripcion: "Técnica de dos baldes con shampoo pH neutro, descontaminado de pintura y secado con microfibra de alta densidad.",
+    video: "/videos/jds/jds-trabajo-1.mp4",
+    poster: "/videos/jds/jds-trabajo-1-poster.jpg",
+    instagramUrl: "https://www.instagram.com/p/DMikCrrRxbw/",
+    whatsappMsg: "¡Hola! Vi el reel de Lavado Premium en su web y quisiera consultar para mi auto.",
+  },
+  {
+    titulo: "Lavado Detallado al Extremo",
+    servicio: "Lavado Premium",
+    descripcion: "Limpieza técnica profunda en llantas, pasarruedas, plásticos y carrocería con terminación brillante sin microrrayones.",
+    video: "/videos/jds/jds-trabajo-2.mp4",
+    poster: "/videos/jds/jds-trabajo-2-poster.jpg",
+    instagramUrl: "https://www.instagram.com/p/DfdUc3LO2bK/",
+    whatsappMsg: "¡Hola! Vi el video de Lavado Detallado en su web y quisiera pedir presupuesto.",
+  },
+  {
+    titulo: "Preparación Integral de Preventa",
+    servicio: "Trabajo de Preventa",
+    descripcion: "Detallado completo de interior y exterior para dejar el vehículo en estado showroom y maximizar su valor de venta.",
+    video: "/videos/jds/jds-trabajo-3.mp4",
+    poster: "/videos/jds/jds-trabajo-3-poster.jpg",
+    instagramUrl: "https://www.instagram.com/p/DfaSHCfMYju/",
+    whatsappMsg: "¡Hola! Vi el video de Trabajo de Preventa en su web y quisiera consultar presupuesto para mi auto.",
+  },
+];
+
+function JdsReelCard({
+  item,
+  biz,
+}: {
+  item: typeof TRABAJOS_VIDEOS_JDS[0];
+  biz: Business;
+}) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
+
+  const togglePlay = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (v.paused) {
+      v.play().catch(() => {});
+      setIsPlaying(true);
+    } else {
+      v.pause();
+      setIsPlaying(false);
+    }
+  };
+
+  const toggleMute = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = !v.muted;
+    setIsMuted(v.muted);
+  };
+
+  return (
+    <div className="group relative rounded-[28px] overflow-hidden border border-white/10 hover:border-red-500/50 bg-[#101010] shadow-2xl transition-all duration-300 flex flex-col hover:shadow-[0_0_35px_rgba(239,68,68,0.25)]">
+      {/* Video Container (Vertical Reel aspect ratio) */}
+      <div
+        className="relative aspect-[9/15] overflow-hidden bg-black cursor-pointer select-none"
+        onClick={togglePlay}
+      >
+        <video
+          ref={videoRef}
+          src={item.video}
+          poster={item.poster}
+          playsInline
+          loop
+          muted={isMuted}
+          preload="metadata"
+          onPlay={() => setIsPlaying(true)}
+          onPause={() => setIsPlaying(false)}
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+
+        {/* Top Badges */}
+        <div className="absolute top-4 inset-x-4 flex items-center justify-between z-20 pointer-events-none">
+          <span className="backdrop-blur-md px-3 py-1 rounded-full border text-[11px] font-bold uppercase tracking-wider bg-black/80 border-red-500/40 text-red-200 shadow-lg">
+            {item.servicio}
+          </span>
+          <div className="flex items-center gap-2 pointer-events-auto">
+            <button
+              type="button"
+              onClick={toggleMute}
+              className="size-9 rounded-full bg-black/75 hover:bg-black backdrop-blur-md border border-white/20 hover:border-red-500/60 text-white flex items-center justify-center text-xs transition-all shadow-lg active:scale-90"
+              aria-label={isMuted ? "Activar audio" : "Silenciar"}
+              title={isMuted ? "Activar audio" : "Silenciar"}
+            >
+              {isMuted ? "🔇" : "🔊"}
+            </button>
+            <a
+              href={item.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="size-9 rounded-full bg-black/75 hover:bg-black backdrop-blur-md border border-white/20 hover:border-red-500/60 text-white flex items-center justify-center text-sm transition-all shadow-lg active:scale-90"
+              aria-label="Ver reel en Instagram"
+              title="Ver reel en Instagram"
+            >
+              <FaInstagram className="size-4 text-red-400" />
+            </a>
+          </div>
+        </div>
+
+        {/* Play Icon Overlay if paused */}
+        {!isPlaying && (
+          <div className="absolute inset-0 flex items-center justify-center bg-black/40 z-10 transition-opacity">
+            <div className="size-16 sm:size-20 rounded-full bg-red-600/90 text-white flex items-center justify-center shadow-[0_0_35px_rgba(239,68,68,0.7)] backdrop-blur-sm group-hover:scale-110 transition-transform">
+              <svg className="size-8 sm:size-10 translate-x-0.5 fill-current" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </div>
+          </div>
+        )}
+
+        {/* Dark Gradient Bottom */}
+        <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-black via-black/85 to-transparent pointer-events-none z-10" />
+
+        {/* Bottom Content inside Video Overlay */}
+        <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6 z-20 flex flex-col gap-3">
+          <div>
+            <h3 className="font-bold text-lg sm:text-xl text-white tracking-tight leading-snug" style={{ textTransform: "none", fontFamily: "inherit" }}>
+              {item.titulo}
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-300 mt-1 line-clamp-2 leading-relaxed font-light">
+              {item.descripcion}
+            </p>
+          </div>
+
+          <div className="flex items-center gap-2 pt-1" onClick={(e) => e.stopPropagation()}>
+            <a
+              href={waHref(biz, item.whatsappMsg)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-jds flex-1 py-2.5 px-3 rounded-full text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-1.5 text-center active:scale-95"
+            >
+              <FaWhatsapp className="size-3.5 shrink-0" />
+              <span className="whitespace-nowrap">Pedir Presupuesto</span>
+            </a>
+            <a
+              href={item.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-outline-jds px-3 py-2.5 rounded-full flex items-center justify-center gap-1.5 text-xs font-medium shrink-0 active:scale-95"
+              title="Abrir Reel en Instagram"
+              aria-label="Abrir Reel en Instagram"
+            >
+              <FaInstagram className="size-3.5 text-red-400" />
+              <span className="hidden sm:inline">Ver Reel</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function LandingArgentina({ biz }: { biz: Business }) {
   const isCeleste = biz.color_theme === "celeste" || biz.slug === "am-centro-de-estetica-vehicular";
   const isRojo = biz.color_theme === "rojo" || biz.slug === "jds-detailing" || biz.slug === "jds-detailing-car-estudio";
@@ -578,96 +741,104 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
               Te Mostramos Nuestros Trabajos
             </h2>
             <p className="text-slate-400 text-sm sm:text-base">
-              Cada auto que ingresa a nuestro estudio recibe dedicación artesanal, luz de inspección técnica y un acabado de showroom real.
+              {isRojo
+                ? "Videos reales directamente desde nuestro estudio en Villa Ballester. Tocá cada reel para reproducir."
+                : "Cada auto que ingresa a nuestro estudio recibe dedicación artesanal, luz de inspección técnica y un acabado de showroom real."}
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-            {[
-              {
-                titulo: "Audi A3 Sportback — Tratamiento Cerámico",
-                categoria: "Cerámico",
-                descripcion: "Corrección técnica de laca y sellado nanocerámico con brillo cristalino tipo espejo en nuestro estudio.",
-                img: "/logo/jds/jds-taller-audi.jpg",
-              },
-              {
-                titulo: "Restauración de Ópticas con Sellado UV",
-                categoria: "Ópticas",
-                descripcion: "Micro-lijado progresivo para eliminar opacidad y amarillamiento, recuperando 100% de transparencia y luminosidad.",
-                img: "/before-after/faros-despues.jpg",
-              },
-              {
-                titulo: "Limpieza de Motor a Vapor & Dieléctrico",
-                categoria: "Motor a Vapor",
-                descripcion: "Higienización exhaustiva a vapor seco con nutrición satinada de plásticos y gomas, libre de silicona grasosa.",
-                img: "/before-after/motor-despues.jpg",
-              },
-              {
-                titulo: "Limpieza de Interior Full & Desinfección",
-                categoria: "Interior Full",
-                descripcion: "Inyección-extracción profunda en butacas y alfombras con desinfección térmica de conductos de aire.",
-                img: "/servicios/limpieza-tapizado-despues.png",
-              },
-              {
-                titulo: "Corrección de Pintura & Acabado Espejo",
-                categoria: "Corrección de Laca",
-                descripcion: "Eliminación total de swirls y microrrayones circulares de lavadero bajo lámpara de inspección profesional.",
-                img: "/before-after/pintura-despues.jpg",
-              },
-              {
-                titulo: "Lavado Premium Artesanal & Cera Rápida",
-                categoria: "Lavado Premium",
-                descripcion: "Técnica de dos baldes con shampoo pH neutro, descontaminado de pintura y sellado de brillo profundo.",
-                img: "/before-after/platinum-full-detail-despues.jpg",
-              },
-            ].map((trabajo) => (
-              <div
-                key={trabajo.titulo}
-                className={`product-card rounded-[24px] overflow-hidden flex flex-col justify-between border ${
-                  isRojo
-                    ? "border-white/10 hover:border-red-500/40 hover:shadow-[0_0_24px_rgba(239,68,68,0.22)]"
-                    : isCeleste
-                    ? "border-white/10 hover:border-sky-500/40 hover:shadow-[0_0_20px_rgba(56,189,248,0.15)]"
-                    : "border-white/10 hover:border-white/25"
-                } transition duration-300 group`}
-                style={{ background: "#101010" }}
-              >
-                <div className="aspect-[16/10] overflow-hidden relative bg-[#141414]">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={trabajo.img}
-                    alt={trabajo.titulo}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    loading="lazy"
-                  />
-                  <div className={`absolute top-3 left-3 backdrop-blur-md px-2.5 py-1 rounded-full border text-[10px] font-bold uppercase tracking-wider ${
-                    isRojo ? "bg-black/80 border-red-500/30 text-red-200" : isCeleste ? "bg-black/80 border-sky-500/30 text-sky-200" : "bg-black/75 border-white/15 text-white"
-                  }`}>
-                    {trabajo.categoria}
+          {isRojo ? (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+              {TRABAJOS_VIDEOS_JDS.map((item) => (
+                <JdsReelCard key={item.titulo} item={item} biz={biz} />
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+              {[
+                {
+                  titulo: "Audi A3 Sportback — Tratamiento Cerámico",
+                  categoria: "Cerámico",
+                  descripcion: "Corrección técnica de laca y sellado nanocerámico con brillo cristalino tipo espejo en nuestro estudio.",
+                  img: "/logo/jds/jds-taller-audi.jpg",
+                },
+                {
+                  titulo: "Restauración de Ópticas con Sellado UV",
+                  categoria: "Ópticas",
+                  descripcion: "Micro-lijado progresivo para eliminar opacidad y amarillamiento, recuperando 100% de transparencia y luminosidad.",
+                  img: "/before-after/faros-despues.jpg",
+                },
+                {
+                  titulo: "Limpieza de Motor a Vapor & Dieléctrico",
+                  categoria: "Motor a Vapor",
+                  descripcion: "Higienización exhaustiva a vapor seco con nutrición satinada de plásticos y gomas, libre de silicona grasosa.",
+                  img: "/before-after/motor-despues.jpg",
+                },
+                {
+                  titulo: "Limpieza de Interior Full & Desinfección",
+                  categoria: "Interior Full",
+                  descripcion: "Inyección-extracción profunda en butacas y alfombras con desinfección térmica de conductos de aire.",
+                  img: "/servicios/limpieza-tapizado-despues.png",
+                },
+                {
+                  titulo: "Corrección de Pintura & Acabado Espejo",
+                  categoria: "Corrección de Laca",
+                  descripcion: "Eliminación total de swirls y microrrayones circulares de lavadero bajo lámpara de inspección profesional.",
+                  img: "/before-after/pintura-despues.jpg",
+                },
+                {
+                  titulo: "Lavado Premium Artesanal & Cera Rápida",
+                  categoria: "Lavado Premium",
+                  descripcion: "Técnica de dos baldes con shampoo pH neutro, descontaminado de pintura y sellado de brillo profundo.",
+                  img: "/before-after/platinum-full-detail-despues.jpg",
+                },
+              ].map((trabajo) => (
+                <div
+                  key={trabajo.titulo}
+                  className={`product-card rounded-[24px] overflow-hidden flex flex-col justify-between border ${
+                    isCeleste
+                      ? "border-white/10 hover:border-sky-500/40 hover:shadow-[0_0_20px_rgba(56,189,248,0.15)]"
+                      : "border-white/10 hover:border-white/25"
+                  } transition duration-300 group`}
+                  style={{ background: "#101010" }}
+                >
+                  <div className="aspect-[16/10] overflow-hidden relative bg-[#141414]">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={trabajo.img}
+                      alt={trabajo.titulo}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
+                    />
+                    <div className={`absolute top-3 left-3 backdrop-blur-md px-2.5 py-1 rounded-full border text-[10px] font-bold uppercase tracking-wider ${
+                      isCeleste ? "bg-black/80 border-sky-500/30 text-sky-200" : "bg-black/75 border-white/15 text-white"
+                    }`}>
+                      {trabajo.categoria}
+                    </div>
+                  </div>
+                  <div className="p-5 flex flex-col justify-between flex-1 gap-3">
+                    <div>
+                      <h3 className={`font-bold text-base sm:text-lg text-white ${isCeleste ? "group-hover:text-sky-400" : "group-hover:text-slate-200"} transition-colors`} style={{ textTransform: "none", fontFamily: "inherit" }}>
+                        {trabajo.titulo}
+                      </h3>
+                      <p className="text-xs text-slate-300 mt-1.5 leading-relaxed font-light">
+                        {trabajo.descripcion}
+                      </p>
+                    </div>
+                    <a
+                      href={waHref(biz, `Hola! Vi el trabajo de ${trabajo.titulo} en su web y quisiera consultar para mi auto.`)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`${isCeleste ? "btn-outline-celeste" : "btn-outline-gold"} inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider`}
+                    >
+                      <FaWhatsapp className="size-3.5 text-emerald-400" />
+                      Pedir Presupuesto Similar
+                    </a>
                   </div>
                 </div>
-                <div className="p-5 flex flex-col justify-between flex-1 gap-3">
-                  <div>
-                    <h3 className={`font-bold text-base sm:text-lg text-white ${isRojo ? "group-hover:text-red-400" : isCeleste ? "group-hover:text-sky-400" : "group-hover:text-slate-200"} transition-colors`} style={{ textTransform: "none", fontFamily: "inherit" }}>
-                      {trabajo.titulo}
-                    </h3>
-                    <p className="text-xs text-slate-300 mt-1.5 leading-relaxed font-light">
-                      {trabajo.descripcion}
-                    </p>
-                  </div>
-                  <a
-                    href={waHref(biz, `Hola! Vi el trabajo de ${trabajo.titulo} en su web y quisiera consultar para mi auto.`)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`${isRojo ? "btn-outline-jds" : isCeleste ? "btn-outline-celeste" : "btn-outline-gold"} inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider`}
-                  >
-                    <FaWhatsapp className={`size-3.5 ${isRojo ? "text-red-400" : "text-emerald-400"}`} />
-                    Pedir Presupuesto Similar
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
 
           {/* Instagram Callout Footer */}
           {biz.instagram && (
