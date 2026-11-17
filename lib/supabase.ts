@@ -41,6 +41,12 @@ export function getStorageKey(slug: string): string {
 export function resolveWorkshopSlug(defaultFallback: string = "demo"): string {
   if (typeof window === "undefined") return defaultFallback;
 
+  // 0. Ruta explícita de Demo para nuevos clientes
+  const currentPath = (window.location.pathname || "").toLowerCase();
+  if (currentPath === "/panel-demo" || currentPath.startsWith("/panel-demo") || currentPath === "/taller-demo" || currentPath.startsWith("/taller-demo")) {
+    return "demo-taller";
+  }
+
   // 1. Parámetros de URL
   const params = new URLSearchParams(window.location.search);
   const fromQuery = params.get("taller") || params.get("slug");

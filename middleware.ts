@@ -33,6 +33,17 @@ export function middleware(request: NextRequest) {
     return res;
   }
 
+  // Panel de Taller Demo independiente para mostrar a potenciales clientes
+  if (pathname === "/panel-demo" || pathname === "/taller-demo") {
+    const demoSlug = "demo-taller";
+    const url = new URL("/taller", request.url);
+    url.searchParams.set("slug", demoSlug);
+    url.searchParams.set("taller", demoSlug);
+    const res = NextResponse.rewrite(url);
+    res.cookies.set("black_line_active_slug", demoSlug, { path: "/" });
+    return res;
+  }
+
   // Si acceden desde el dominio exclusivo de Platinum
   if (cleanHost === "platinumdetallado.com" || cleanHost === "www.platinumdetallado.com") {
     // Si acceden a la raíz '/', servir la landing de Platinum directamente en la raíz

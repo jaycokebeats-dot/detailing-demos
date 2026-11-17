@@ -180,13 +180,29 @@ function isToday(fechaIso: string): boolean {
   return fechaIso === hoyStr;
 }
 
-// Datos de ejemplo iniciales para que Ariel entienda la herramienta al instante
-function getInitialData(slug: string): { trabajos: Trabajo[]; gastos: Gasto[]; presupuestos: PresupuestoGuardado[] } {
+// Datos de ejemplo iniciales para que el taller entienda la herramienta al instante
+function getInitialData(slug: string): { trabajos: Trabajo[]; gastos: Gasto[]; presupuestos: PresupuestoGuardado[]; clientes?: ClienteFrecuente[] } {
   const hoy = new Date();
   const yyyy = hoy.getFullYear();
   const mm = String(hoy.getMonth() + 1).padStart(2, "0");
+  const maniana = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate() + 1);
+  const manianaStr = `${maniana.getFullYear()}-${String(maniana.getMonth() + 1).padStart(2, "0")}-${String(maniana.getDate()).padStart(2, "0")}`;
 
   const trabajosIniciales: Trabajo[] = [
+    {
+      id: "trabajo-demo-turno",
+      fecha: manianaStr,
+      horaTurno: "10:30",
+      vehiculo: "BMW 320i M Sport",
+      cliente: "Julián Castro",
+      telefono: "1155443322",
+      servicios: ["Tratamiento Cerámico 9H", "Lavado Técnico"],
+      monto: 350000,
+      medioPago: "transferencia",
+      estadoPago: "pendiente",
+      estadoTrabajo: "agendado",
+      notas: "Turno reservado con seña. Desea retirar al final de la tarde.",
+    },
     {
       id: "trabajo-1",
       fecha: `${yyyy}-${mm}-04`,
@@ -281,7 +297,28 @@ function getInitialData(slug: string): { trabajos: Trabajo[]; gastos: Gasto[]; p
     },
   ];
 
-  return { trabajos: trabajosIniciales, gastos: gastosIniciales, presupuestos: presupuestosIniciales };
+  const clientesIniciales: ClienteFrecuente[] = [
+    {
+      id: "cli-demo-1",
+      nombre: "Julián Castro",
+      telefono: "1155443322",
+      vehiculo: "BMW 320i M Sport",
+    },
+    {
+      id: "cli-demo-2",
+      nombre: "Martín Rossi",
+      telefono: "3534123456",
+      vehiculo: "Ford Ranger XLT",
+    },
+    {
+      id: "cli-demo-3",
+      nombre: "Gonzalo V.",
+      telefono: "3534789012",
+      vehiculo: "Toyota Hilux SRV",
+    },
+  ];
+
+  return { trabajos: trabajosIniciales, gastos: gastosIniciales, presupuestos: presupuestosIniciales, clientes: clientesIniciales };
 }
 
 // Estilos visuales dinámicos según el estado del vehículo en el taller
@@ -462,6 +499,23 @@ export default function TallerGestionPage() {
 
     setUltimoEliminado(null);
     toastTimeoutRef.current = setTimeout(() => setToastMsg(null), 3000);
+  };
+
+  // Restaurar datos de prueba para la Demo interactiva
+  const handleResetearDemo = async () => {
+    if (
+      !confirm(
+        "¿Querés restaurar los autos y gastos de muestra originales de la Demo? Se restablecerán los datos limpios para mostrar."
+      )
+    )
+      return;
+    const init = getInitialData("demo-taller");
+    await saveTallerCloudData("demo-taller", init);
+    setTrabajos(init.trabajos);
+    setGastos(init.gastos);
+    setPresupuestos(init.presupuestos);
+    setClientes(init.clientes || []);
+    showToast("✨ Datos de prueba de la Demo restaurados con éxito.");
   };
 
   // Guardar de forma sincronizada en Supabase (Nube) y LocalStorage (Caché local)
@@ -694,18 +748,39 @@ ${biz.direccion ? `• *Taller:* ${biz.direccion}, ${biz.ciudad}\n` : ""}
 
     async function loadWorkshop() {
       try {
-        const slug = resolveWorkshopSlug("am-centro-de-estetica-vehicular");
+        let defaultFallback = "am-centro-de-estetica-vehicular";
+        if (typeof window !== "undefined") {
+          const path = (window.location.pathname || "").toLowerCase();
+          const query = (window.location.search || "").toLowerCase();
+          if (path.includes("demo") || query.includes("demo")) {
+            defaultFallback = "demo-taller";
+          }
+        }
+        const slug = resolveWorkshopSlug(defaultFallback);
         setCurrentSlug(slug);
 
-        // Supabase o API para info general del taller
-        const sbData = await getBusinessData(slug);
-        if (sbData && sbData.nombre) {
-          setBiz(sbData);
+        const isDemo = slug === "demo-taller" || slug === "demo";
+        if (isDemo) {
+          setBiz({
+            ...DEFAULT_DEMO_BUSINESS,
+            slug: "demo-taller",
+            nombre: "Panel de Taller Demo",
+            ciudad: "Demostración Interactiva",
+            direccion: "Modo Prueba para Talleres",
+            telefono: "+54 9 11 0000-0000",
+            whatsapp: "5491100000000",
+          });
         } else {
-          const res = await fetch(`/api/workshops?slug=${encodeURIComponent(slug)}`);
-          if (res.ok) {
-            const data = await res.json();
-            setBiz(data);
+          // Supabase o API para info general del taller
+          const sbData = await getBusinessData(slug);
+          if (sbData && sbData.nombre) {
+            setBiz(sbData);
+          } else {
+            const res = await fetch(`/api/workshops?slug=${encodeURIComponent(slug)}`);
+            if (res.ok) {
+              const data = await res.json();
+              setBiz(data);
+            }
           }
         }
 
@@ -757,7 +832,7 @@ ${biz.direccion ? `• *Taller:* ${biz.direccion}, ${biz.ciudad}\n` : ""}
           setTrabajos(init.trabajos);
           setGastos(init.gastos);
           setPresupuestos(init.presupuestos);
-          setClientes([]);
+          setClientes(init.clientes || []);
           setSyncStatus("synced");
         }
 
@@ -1804,6 +1879,11 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
             <div className="flex items-center gap-2">
               <span className="text-xl">💎</span>
               <span className="font-bold text-white tracking-wide">{biz.nombre}</span>
+              {(currentSlug === "demo-taller" || currentSlug === "demo") && (
+                <span className="px-2 py-0.5 rounded-md bg-amber-500/20 text-amber-300 font-extrabold text-[10px] border border-amber-500/40">
+                  DEMO
+                </span>
+              )}
             </div>
           )}
           <span className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold tracking-wider uppercase bg-sky-950/60 text-sky-300 border border-sky-500/30">
@@ -1885,6 +1965,26 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
           </button>
         </div>
       </header>
+
+      {/* BANNER MODO DEMOSTRACIÓN */}
+      {(currentSlug === "demo-taller" || currentSlug === "demo") && (
+        <div className="bg-gradient-to-r from-sky-950/90 via-[#0e1a2f] to-indigo-950/90 border-b border-sky-500/25 px-4 sm:px-8 py-2.5 text-xs flex flex-wrap items-center justify-between gap-3 shadow-md">
+          <div className="flex items-center gap-2.5 text-sky-200">
+            <span className="size-2 rounded-full bg-emerald-400 animate-ping" />
+            <span className="font-extrabold text-white text-xs">Versión Demostración Interactiva</span>
+            <span className="text-slate-400 hidden md:inline">· Podés agendar turnos, registrar autos y probar WhatsApp libremente sin afectar ningún taller real.</span>
+          </div>
+          <button
+            type="button"
+            onClick={handleResetearDemo}
+            className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-sky-300 hover:text-white border border-sky-500/30 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 active:scale-95 shadow-sm"
+            title="Restablecer los autos y gastos de muestra originales"
+          >
+            <span>🔄</span>
+            <span>Restaurar datos de prueba</span>
+          </button>
+        </div>
+      )}
 
       {/* CONTENIDO PRINCIPAL */}
       <main className="flex-1 max-w-7xl w-full mx-auto p-3 sm:p-6 lg:p-8 space-y-6">
