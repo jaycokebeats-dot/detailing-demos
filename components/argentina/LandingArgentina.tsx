@@ -221,11 +221,11 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
             muted
             loop
             playsInline
-            className="absolute inset-0 w-full h-full object-cover opacity-65 contrast-105 pointer-events-none"
+            className={`absolute inset-0 w-full h-full object-cover ${isRojo ? "opacity-78 contrast-105 brightness-[1.06]" : "opacity-65 contrast-105"} pointer-events-none`}
             src={biz.video_hero ?? "/videos/hero-compilado-blanco.mp4"}
           />
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/70" />
+        <div className={`absolute inset-0 ${isRojo ? "bg-gradient-to-t from-black via-black/40 to-black/55" : "bg-gradient-to-t from-black via-black/50 to-black/70"}`} />
 
         <div className="relative z-10 max-w-4xl mx-auto w-full h-full flex flex-col justify-center items-center text-center px-2">
           {/* Logo oficial centrado con halo de luz premium */}
@@ -255,7 +255,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
               <img
                 src={biz.logo_url}
                 alt={biz.nombre}
-                className={`relative z-10 h-20 xs:h-24 sm:h-32 md:h-36 lg:h-40 w-auto max-w-[88vw] sm:max-w-[480px] object-contain drop-shadow-[0_10px_40px_rgba(0,0,0,0.95)] ${isRojo ? "drop-shadow-[0_0_38px_rgba(239,68,68,0.65)]" : isCeleste ? "drop-shadow-[0_0_38px_rgba(56,189,248,0.6)]" : "drop-shadow-[0_0_30px_rgba(195,205,220,0.35)]"} transition-transform hover:scale-105`}
+                className={`relative z-10 ${isRojo ? "h-24 xs:h-28 sm:h-36 md:h-44 lg:h-48 max-w-[90vw] sm:max-w-[540px]" : "h-20 xs:h-24 sm:h-32 md:h-36 lg:h-40 max-w-[88vw] sm:max-w-[480px]"} w-auto object-contain drop-shadow-[0_10px_40px_rgba(0,0,0,0.95)] ${isRojo ? "drop-shadow-[0_0_38px_rgba(239,68,68,0.65)]" : isCeleste ? "drop-shadow-[0_0_38px_rgba(56,189,248,0.6)]" : "drop-shadow-[0_0_30px_rgba(195,205,220,0.35)]"} transition-transform hover:scale-105`}
               />
             </div>
           )}
