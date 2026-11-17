@@ -105,6 +105,7 @@ const ITEMS_PROBLEMA_ARGENTINA = [
 
 export default function LandingArgentina({ biz }: { biz: Business }) {
   const isCeleste = biz.color_theme === "celeste" || biz.slug === "am-centro-de-estetica-vehicular";
+  const isRojo = biz.color_theme === "rojo" || biz.slug === "jds-detailing" || biz.slug === "jds-detailing-car-estudio";
   const [scrolled, setScrolled] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -140,7 +141,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
   ];
 
   return (
-    <div className={`min-h-screen bg-black text-white ${isCeleste ? "selection:bg-sky-500/30 selection:text-sky-200" : "selection:bg-slate-500/30 selection:text-slate-200"}`}>
+    <div className={`min-h-screen bg-black text-white ${isRojo ? "selection:bg-red-600/30 selection:text-red-200" : isCeleste ? "selection:bg-sky-500/30 selection:text-sky-200" : "selection:bg-slate-500/30 selection:text-slate-200"}`}>
       {/* 1. NAVBAR */}
       <div className="fixed top-0 left-0 right-0 z-50 flex justify-center px-3 pointer-events-none">
         <header
@@ -171,12 +172,12 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
                 <img
                   src={biz.logo_url}
                   alt={biz.nombre}
-                  className={`${scrolled ? "h-9 sm:h-10 md:h-11" : "h-11 sm:h-13 md:h-14"} w-auto max-w-[220px] sm:max-w-[300px] object-contain transition-all duration-200 group-hover:scale-105 ${isCeleste ? "drop-shadow-[0_2px_16px_rgba(56,189,248,0.55)]" : "drop-shadow-[0_2px_14px_rgba(195,205,220,0.35)]"}`}
+                  className={`${scrolled ? "h-9 sm:h-10 md:h-11" : "h-11 sm:h-13 md:h-14"} w-auto max-w-[220px] sm:max-w-[300px] object-contain transition-all duration-200 group-hover:scale-105 ${isRojo ? "drop-shadow-[0_2px_16px_rgba(239,68,68,0.55)]" : isCeleste ? "drop-shadow-[0_2px_16px_rgba(56,189,248,0.55)]" : "drop-shadow-[0_2px_14px_rgba(195,205,220,0.35)]"}`}
                 />
               ) : nombreResto ? (
                 <span className="text-base font-bold tracking-widest text-white">
                   {`${primeraPalabra} `}
-                  <span className={isCeleste ? "text-celeste" : "text-gold"}>{nombreResto}</span>
+                  <span className={isRojo ? "text-jds" : isCeleste ? "text-celeste" : "text-gold"}>{nombreResto}</span>
                 </span>
               ) : (
                 <span className="text-base font-bold tracking-widest text-white">
@@ -186,6 +187,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
             </a>
             <div className="hidden md:flex items-center gap-7 text-xs uppercase tracking-widest text-slate-400">
               <a href="#servicios" className="hover:text-white transition-colors">Servicios</a>
+              <a href="#trabajos" className="hover:text-white transition-colors">Trabajos</a>
               <a href="#garantia" className="hover:text-white transition-colors">Compromiso</a>
               <a href="#nosotros" className="hover:text-white transition-colors">Nosotros</a>
               <a href="#ubicacion" className="hover:text-white transition-colors">Ubicación</a>
@@ -196,7 +198,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-white hover:opacity-70 transition-opacity"
             >
-              <FaWhatsapp aria-hidden className={`size-4 ${isCeleste ? "text-sky-400" : "text-emerald-400"}`} />
+              <FaWhatsapp aria-hidden className={`size-4 ${isRojo ? "text-red-500" : isCeleste ? "text-sky-400" : "text-emerald-400"}`} />
               Pedir Turno
             </a>
           </div>
@@ -232,17 +234,20 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
               <div
                 className="absolute inset-0 rounded-full blur-2xl sm:blur-3xl opacity-75 sm:opacity-90 scale-125 sm:scale-150 pointer-events-none"
                 style={{
-                  background: isCeleste
+                  background: isRojo
+                    ? "radial-gradient(ellipse at center, rgba(239,68,68,0.7) 0%, rgba(185,28,28,0.35) 40%, rgba(153,27,27,0.15) 65%, transparent 80%)"
+                    : isCeleste
                     ? "radial-gradient(ellipse at center, rgba(56,189,248,0.65) 0%, rgba(14,165,233,0.35) 40%, rgba(2,132,199,0.15) 65%, transparent 80%)"
                     : "radial-gradient(ellipse at center, rgba(195,205,220,0.50) 0%, rgba(150,165,185,0.25) 45%, rgba(100,115,135,0.10) 70%, transparent 85%)",
                 }}
               />
-              {isCeleste && (
+              {(isCeleste || isRojo) && (
                 <div
                   className="absolute inset-x-[-15%] h-[2px] top-1/2 -translate-y-1/2 blur-[1px] pointer-events-none opacity-80"
                   style={{
-                    background:
-                      "linear-gradient(90deg, transparent 0%, rgba(56,189,248,0.2) 20%, rgba(186,230,253,0.95) 50%, rgba(56,189,248,0.2) 80%, transparent 100%)",
+                    background: isRojo
+                      ? "linear-gradient(90deg, transparent 0%, rgba(239,68,68,0.2) 20%, rgba(254,202,202,0.95) 50%, rgba(239,68,68,0.2) 80%, transparent 100%)"
+                      : "linear-gradient(90deg, transparent 0%, rgba(56,189,248,0.2) 20%, rgba(186,230,253,0.95) 50%, rgba(56,189,248,0.2) 80%, transparent 100%)",
                   }}
                 />
               )}
@@ -250,15 +255,15 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
               <img
                 src={biz.logo_url}
                 alt={biz.nombre}
-                className={`relative z-10 h-20 xs:h-24 sm:h-32 md:h-36 lg:h-40 w-auto max-w-[88vw] sm:max-w-[480px] object-contain drop-shadow-[0_10px_40px_rgba(0,0,0,0.95)] ${isCeleste ? "drop-shadow-[0_0_38px_rgba(56,189,248,0.6)]" : "drop-shadow-[0_0_30px_rgba(195,205,220,0.35)]"} transition-transform hover:scale-105`}
+                className={`relative z-10 h-20 xs:h-24 sm:h-32 md:h-36 lg:h-40 w-auto max-w-[88vw] sm:max-w-[480px] object-contain drop-shadow-[0_10px_40px_rgba(0,0,0,0.95)] ${isRojo ? "drop-shadow-[0_0_38px_rgba(239,68,68,0.65)]" : isCeleste ? "drop-shadow-[0_0_38px_rgba(56,189,248,0.6)]" : "drop-shadow-[0_0_30px_rgba(195,205,220,0.35)]"} transition-transform hover:scale-105`}
               />
             </div>
           )}
 
-          <div className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full border text-[11px] sm:text-xs font-medium ${isCeleste ? "border-sky-500/30 bg-sky-950/40 text-sky-200" : "border-white/10 bg-white/5 text-slate-300"}`}>
-            <span className={`flex size-1.5 sm:size-2 rounded-full shrink-0 animate-pulse ${isCeleste ? "bg-sky-400 shadow-[0_0_8px_rgba(56,189,248,0.9)]" : "bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]"}`} />
+          <div className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full border text-[11px] sm:text-xs font-medium ${isRojo ? "border-red-500/30 bg-red-950/40 text-red-200" : isCeleste ? "border-sky-500/30 bg-sky-950/40 text-sky-200" : "border-white/10 bg-white/5 text-slate-300"}`}>
+            <span className={`flex size-1.5 sm:size-2 rounded-full shrink-0 animate-pulse ${isRojo ? "bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.9)]" : isCeleste ? "bg-sky-400 shadow-[0_0_8px_rgba(56,189,248,0.9)]" : "bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]"}`} />
             <span>{biz.ciudad}{biz.provincia ? `, ${biz.provincia}` : " (Argentina)"}</span>
-            <span className={isCeleste ? "text-sky-500" : "text-slate-500"}>·</span>
+            <span className={isRojo ? "text-red-500" : isCeleste ? "text-sky-500" : "text-slate-500"}>·</span>
             <span>Turnos disponibles esta semana</span>
           </div>
 
@@ -269,7 +274,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
                 {biz.hero_titulo_gold && (
                   <>
                     <br />
-                    <span className={isCeleste ? "text-celeste drop-shadow-[0_0_20px_rgba(56,189,248,0.4)]" : "text-gold"}>{biz.hero_titulo_gold}</span>
+                    <span className={isRojo ? "text-jds drop-shadow-[0_0_20px_rgba(239,68,68,0.4)]" : isCeleste ? "text-celeste drop-shadow-[0_0_20px_rgba(56,189,248,0.4)]" : "text-gold"}>{biz.hero_titulo_gold}</span>
                   </>
                 )}
               </>
@@ -277,7 +282,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
               <>
                 Detailing Profesional, Polarizados & PPF,
                 <br />
-                <span className={isCeleste ? "text-celeste" : "text-gold"}>Resultado de Showroom.</span>
+                <span className={isRojo ? "text-jds drop-shadow-[0_0_20px_rgba(239,68,68,0.4)]" : isCeleste ? "text-celeste" : "text-gold"}>Resultado de Showroom.</span>
               </>
             )}
           </h1>
@@ -291,14 +296,14 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
               href={waHref(biz, msgPresupuesto)}
               target="_blank"
               rel="noopener noreferrer"
-              className={`${isCeleste ? "btn-celeste" : "btn-gold"} group flex-1 px-3 sm:px-6 py-2.5 sm:py-3 min-h-[42px] sm:min-h-[44px] rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wide active:scale-95 transition-all flex items-center justify-center gap-1.5 sm:gap-2 whitespace-nowrap text-center`}
+              className={`${isRojo ? "btn-jds" : isCeleste ? "btn-celeste" : "btn-gold"} group flex-1 px-3 sm:px-6 py-2.5 sm:py-3 min-h-[42px] sm:min-h-[44px] rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wide active:scale-95 transition-all flex items-center justify-center gap-1.5 sm:gap-2 whitespace-nowrap text-center`}
             >
               <FaWhatsapp aria-hidden className="size-3.5 sm:size-4 shrink-0" />
               <span className="whitespace-nowrap">Pedir Presupuesto</span>
             </a>
             <a
               href="#servicios"
-              className={`${isCeleste ? "btn-outline-celeste" : "btn-outline-gold"} group flex-1 px-3 sm:px-6 py-2.5 sm:py-3 min-h-[42px] sm:min-h-[44px] rounded-full text-xs sm:text-sm font-semibold uppercase active:scale-95 transition-all flex items-center justify-center gap-1.5 sm:gap-2 whitespace-nowrap text-center`}
+              className={`${isRojo ? "btn-outline-jds" : isCeleste ? "btn-outline-celeste" : "btn-outline-gold"} group flex-1 px-3 sm:px-6 py-2.5 sm:py-3 min-h-[42px] sm:min-h-[44px] rounded-full text-xs sm:text-sm font-semibold uppercase active:scale-95 transition-all flex items-center justify-center gap-1.5 sm:gap-2 whitespace-nowrap text-center`}
             >
               <HiOutlineSparkles aria-hidden className="size-3.5 sm:size-4 shrink-0" />
               <span className="whitespace-nowrap">Ver Servicios</span>
@@ -308,7 +313,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
           <div className="flex flex-wrap items-center justify-center gap-x-3 sm:gap-x-5 gap-y-1 pt-1.5 sm:pt-2.5 text-[11px] sm:text-xs text-slate-300">
             {stats.map((item) => (
               <span key={item} className="inline-flex items-center gap-1">
-                <HiOutlineCheckCircle aria-hidden className={`size-3.5 sm:size-4 shrink-0 ${isCeleste ? "text-sky-400" : "text-gold"}`} />
+                <HiOutlineCheckCircle aria-hidden className={`size-3.5 sm:size-4 shrink-0 ${isRojo ? "text-red-400" : isCeleste ? "text-sky-400" : "text-gold"}`} />
                 {item}
               </span>
             ))}
@@ -320,15 +325,15 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
       <section className="relative px-5 sm:px-8 py-20" style={{ background: "#101010" }}>
         <SectionDivider edge="top" />
         <div className="max-w-3xl mx-auto text-center">
-          <span className="section-badge mb-5">El problema real</span>
-          <h2 className={`text-3xl md:text-4xl font-medium ${isCeleste ? "text-celeste" : "text-gold"} mb-3`}>{isCeleste ? "Lavar el Auto no es lo Mismo que Estética Vehicular" : "Lavar el Auto no es lo Mismo que un Detailing"}</h2>
+          <span className={isRojo ? "section-badge-jds mb-5" : isCeleste ? "section-badge-celeste mb-5" : "section-badge mb-5"}>El problema real</span>
+          <h2 className={`text-3xl md:text-4xl font-medium ${isRojo ? "text-jds" : isCeleste ? "text-celeste" : "text-gold"} mb-3`}>{isCeleste ? "Lavar el Auto no es lo Mismo que Estética Vehicular" : "Lavar el Auto no es lo Mismo que un Detailing"}</h2>
           <p className="text-slate-400 max-w-xl mx-auto mb-10">
             Un auto puede salir limpio de un lavadero convencional y seguir viéndose opaco o rayado. Señales habituales:
           </p>
           <div className="grid sm:grid-cols-2 gap-3 text-left max-w-xl mx-auto">
             {ITEMS_PROBLEMA_ARGENTINA.map((item) => (
               <div key={item} className="glass-panel rounded-2xl px-4 py-3 flex items-start gap-3 border border-white/10">
-                <span className="shrink-0 w-1.5 h-1.5 rounded-full mt-2" style={{ backgroundColor: "#b8c2cc" }} />
+                <span className="shrink-0 w-1.5 h-1.5 rounded-full mt-2" style={{ backgroundColor: isRojo ? "#ef4444" : "#b8c2cc" }} />
                 <p className="text-sm text-slate-300">{item}</p>
               </div>
             ))}
@@ -339,8 +344,8 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
         {biz.fotos && biz.fotos.length > 0 && (
           <div className="max-w-6xl mx-auto mt-16">
             <div className="text-center mb-8">
-              <span className="section-badge mb-4">Nuestro trabajo</span>
-              <h3 className={`text-2xl md:text-3xl font-medium ${isCeleste ? "text-celeste" : "text-gold"}`} style={{ textTransform: "none", fontFamily: "inherit" }}>
+              <span className={isRojo ? "section-badge-jds mb-4" : isCeleste ? "section-badge-celeste mb-4" : "section-badge mb-4"}>Nuestro trabajo</span>
+              <h3 className={`text-2xl md:text-3xl font-medium ${isRojo ? "text-jds" : isCeleste ? "text-celeste" : "text-gold"}`} style={{ textTransform: "none", fontFamily: "inherit" }}>
                 Así trabajamos en {biz.nombre}
               </h3>
             </div>
@@ -357,16 +362,49 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
         <SectionDivider edge="bottom" shape="asymmetric" />
       </section>
 
+      {/* BANNER DE MEDIOS DE PAGO & CONFIANZA */}
+      <div className="max-w-6xl mx-auto px-4 -mt-10 mb-10 relative z-20">
+        <div className="glass-panel rounded-3xl p-6 md:p-8 border border-white/10 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6" style={{ background: "rgba(16,16,16,0.92)", backdropFilter: "blur(16px)" }}>
+          <div className="space-y-1.5 text-center md:text-left">
+            <span className={isRojo ? "section-badge-jds mb-2" : isCeleste ? "section-badge-celeste mb-2" : "section-badge mb-2"}>
+              {isRojo ? "Tu auto, en las mejores manos" : "Compromiso de Calidad"}
+            </span>
+            <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight" style={{ textTransform: "none", fontFamily: "inherit" }}>
+              {isRojo ? "Taller de Estética del Auto en Villa Ballester" : "Servicio Profesional y Garantizado"}
+            </h3>
+            <p className="text-xs md:text-sm text-slate-300 font-light">
+              {isRojo
+                ? "Facilidades de pago: Tarjeta en 3 cuotas fijas (en algunos trabajos), Efectivo y Transferencia Bancaria."
+                : "Consultanos por formas de pago y planes de mantenimiento preventivo."}
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center justify-center md:justify-end gap-2.5 text-xs font-semibold">
+            <div className={`px-4 py-2.5 rounded-2xl bg-white/5 border ${isRojo ? "border-red-500/20 text-red-200" : "border-white/10 text-white"} flex items-center gap-2`}>
+              <span>💳</span>
+              <span>Tarjeta 3 Cuotas Fijas</span>
+            </div>
+            <div className="px-4 py-2.5 rounded-2xl bg-white/5 border border-white/10 flex items-center gap-2 text-white">
+              <span>💵</span>
+              <span>Efectivo</span>
+            </div>
+            <div className="px-4 py-2.5 rounded-2xl bg-white/5 border border-white/10 flex items-center gap-2 text-white">
+              <span>📲</span>
+              <span>Transferencia</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* 4. SERVICIOS CON SLIDERS INTERACTIVOS DE ANTES Y DESPUÉS ($ ARS) */}
-      <section id="servicios" className="px-5 sm:px-8 py-24 bg-black">
+      <section id="servicios" className="px-5 sm:px-8 py-20 bg-black">
         <div className="max-w-7xl mx-auto">
           {(() => {
             const serviciosList = (biz.servicios && biz.servicios.length > 0) ? biz.servicios : SERVICIOS_ARGENTINA;
-            const hasPrices = serviciosList.some((s) => Boolean(s.precio && s.precio.trim()));
+            const hasPrices = serviciosList.some((s) => Boolean(s.precio && s.precio.trim() && !s.precio.toLowerCase().includes("consultar") && !s.precio.toLowerCase().includes("presupuesto") && !s.precio.toLowerCase().includes("cotizar")));
             return (
               <div className="text-center mb-14 max-w-2xl mx-auto">
-                <span className="section-badge mb-5">Nuestros servicios</span>
-                <h2 className={`text-3xl md:text-5xl font-medium ${isCeleste ? "text-celeste" : "text-gold"} mb-4`}>
+                <span className={isRojo ? "section-badge-jds mb-5" : isCeleste ? "section-badge-celeste mb-5" : "section-badge mb-5"}>Nuestros servicios</span>
+                <h2 className={`text-3xl md:text-5xl font-medium ${isRojo ? "text-jds" : isCeleste ? "text-celeste" : "text-gold"} mb-4`}>
                   {hasPrices ? "Servicios & Tarifas" : "Servicios & Tratamientos"} en {biz.ciudad}
                 </h2>
                 <p className="text-slate-400">
@@ -387,7 +425,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
               return (
                 <div
                   key={`${s.nombre}-${idx}`}
-                  className={`product-card rounded-[24px] overflow-hidden flex flex-col relative border ${isCeleste ? "border-white/10 hover:border-sky-500/40 hover:shadow-[0_0_20px_rgba(56,189,248,0.15)]" : "border-white/10 hover:border-white/25"} transition w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] max-w-md justify-between`}
+                  className={`product-card rounded-[24px] overflow-hidden flex flex-col relative border ${isRojo ? "border-white/10 hover:border-red-500/40 hover:shadow-[0_0_20px_rgba(239,68,68,0.2)]" : isCeleste ? "border-white/10 hover:border-sky-500/40 hover:shadow-[0_0_20px_rgba(56,189,248,0.15)]" : "border-white/10 hover:border-white/25"} transition w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] max-w-md justify-between`}
                   style={{ background: "#101010" }}
                 >
                   <div className="aspect-[4/3] overflow-hidden relative" style={{ background: "#141414" }}>
@@ -432,7 +470,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
                         {s.nombre}
                       </h3>
                       {s.precio && s.precio.trim() ? (
-                        <p className={`text-base font-extrabold ${isCeleste ? "text-sky-400" : "text-gold"}`}>{s.precio}</p>
+                        <p className={`text-base font-extrabold ${isRojo ? "text-red-400" : isCeleste ? "text-sky-400" : "text-gold"}`}>{s.precio}</p>
                       ) : null}
                       <p className="text-xs text-slate-300 leading-relaxed">{s.descripcion}</p>
 
@@ -447,9 +485,9 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
                       href={waHref(biz, reservaMsg)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`${isCeleste ? "btn-outline-celeste" : "btn-outline-gold"} mt-4 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider`}
+                      className={`${isRojo ? "btn-outline-jds" : isCeleste ? "btn-outline-celeste" : "btn-outline-gold"} mt-4 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider`}
                     >
-                      <FaWhatsapp aria-hidden className="size-3.5 text-emerald-400" />
+                      <FaWhatsapp aria-hidden className={`size-3.5 ${isRojo ? "text-red-400" : "text-emerald-400"}`} />
                       Pedir Presupuesto por WhatsApp
                     </a>
                   </div>
@@ -461,7 +499,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
           {/* Banner de fotos y asesoramiento */}
           <div className="glass-panel rounded-[28px] mt-12 p-8 md:p-10 flex flex-col md:flex-row items-center gap-6 justify-between border border-white/10" style={{ background: "#101010" }}>
             <div>
-              <span className="section-badge mb-3">¿Dudas sobre qué necesita tu auto?</span>
+              <span className={isRojo ? "section-badge-jds mb-3" : isCeleste ? "section-badge-celeste mb-3" : "section-badge mb-3"}>¿Dudas sobre qué necesita tu auto?</span>
               <h3 className="font-semibold text-xl md:text-2xl mb-2 text-white" style={{ textTransform: "none", fontFamily: "inherit" }}>
                 Mandanos 3 Fotos por WhatsApp y te Asesoramos
               </h3>
@@ -473,12 +511,144 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
               href={waHref(biz, msgFotos)}
               target="_blank"
               rel="noopener noreferrer"
-              className={`${isCeleste ? "btn-celeste" : "btn-gold"} shrink-0 inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold uppercase tracking-wide whitespace-nowrap`}
+              className={`${isRojo ? "btn-jds" : isCeleste ? "btn-celeste" : "btn-gold"} shrink-0 inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold uppercase tracking-wide whitespace-nowrap`}
             >
               <FaWhatsapp aria-hidden className="size-4" />
               Enviar Fotos por WhatsApp
             </a>
           </div>
+        </div>
+      </section>
+
+      {/* 4.1 SECCIÓN: TE MOSTRAMOS NUESTROS TRABAJOS */}
+      <section id="trabajos" className="px-5 sm:px-8 py-24 bg-[#0a0a0a] relative border-t border-white/5">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-14 max-w-2xl mx-auto">
+            <span className={isRojo ? "section-badge-jds mb-5" : isCeleste ? "section-badge-celeste mb-5" : "section-badge mb-5"}>
+              Resultados Reales
+            </span>
+            <h2 className={`text-3xl md:text-5xl font-medium ${isRojo ? "text-jds" : isCeleste ? "text-celeste" : "text-gold"} mb-4`}>
+              Te Mostramos Nuestros Trabajos
+            </h2>
+            <p className="text-slate-400 text-sm sm:text-base">
+              Cada auto que ingresa a nuestro estudio recibe dedicación artesanal, luz de inspección técnica y un acabado de showroom real.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+            {[
+              {
+                titulo: "Audi A3 Sportback — Tratamiento Cerámico 9H",
+                categoria: "Cerámico 9H",
+                descripcion: "Corrección técnica de laca y sellado nanocerámico con brillo cristalino tipo espejo en nuestro estudio.",
+                img: "/logo/jds/jds-taller-audi.jpg",
+              },
+              {
+                titulo: "Restauración de Ópticas con Sellado UV",
+                categoria: "Ópticas",
+                descripcion: "Micro-lijado progresivo para eliminar opacidad y amarillamiento, recuperando 100% de transparencia y luminosidad.",
+                img: "/before-after/faros-despues.jpg",
+              },
+              {
+                titulo: "Limpieza de Motor a Vapor & Dieléctrico",
+                categoria: "Motor a Vapor",
+                descripcion: "Higienización exhaustiva a vapor seco con nutrición satinada de plásticos y gomas, libre de silicona grasosa.",
+                img: "/before-after/motor-despues.jpg",
+              },
+              {
+                titulo: "Limpieza de Interior Full & Desinfección",
+                categoria: "Interior Full",
+                descripcion: "Inyección-extracción profunda en butacas y alfombras con desinfección térmica de conductos de aire.",
+                img: "/servicios/limpieza-tapizado-despues.png",
+              },
+              {
+                titulo: "Corrección de Pintura & Acabado Espejo",
+                categoria: "Corrección de Laca",
+                descripcion: "Eliminación total de swirls y microrrayones circulares de lavadero bajo lámpara de inspección profesional.",
+                img: "/before-after/pintura-despues.jpg",
+              },
+              {
+                titulo: "Lavado Premium Artesanal & Cera Rápida",
+                categoria: "Lavado Premium",
+                descripcion: "Técnica de dos baldes con shampoo pH neutro, descontaminado de pintura y sellado de brillo profundo.",
+                img: "/servicios/lavado-premium-despues.jpg",
+              },
+            ].map((trabajo) => (
+              <div
+                key={trabajo.titulo}
+                className={`product-card rounded-[24px] overflow-hidden flex flex-col justify-between border ${
+                  isRojo
+                    ? "border-white/10 hover:border-red-500/40 hover:shadow-[0_0_24px_rgba(239,68,68,0.22)]"
+                    : isCeleste
+                    ? "border-white/10 hover:border-sky-500/40 hover:shadow-[0_0_20px_rgba(56,189,248,0.15)]"
+                    : "border-white/10 hover:border-white/25"
+                } transition duration-300 group`}
+                style={{ background: "#101010" }}
+              >
+                <div className="aspect-[16/10] overflow-hidden relative bg-[#141414]">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={trabajo.img}
+                    alt={trabajo.titulo}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  <div className={`absolute top-3 left-3 backdrop-blur-md px-2.5 py-1 rounded-full border text-[10px] font-bold uppercase tracking-wider ${
+                    isRojo ? "bg-black/80 border-red-500/30 text-red-200" : isCeleste ? "bg-black/80 border-sky-500/30 text-sky-200" : "bg-black/75 border-white/15 text-white"
+                  }`}>
+                    {trabajo.categoria}
+                  </div>
+                </div>
+                <div className="p-5 flex flex-col justify-between flex-1 gap-3">
+                  <div>
+                    <h3 className={`font-bold text-base sm:text-lg text-white ${isRojo ? "group-hover:text-red-400" : isCeleste ? "group-hover:text-sky-400" : "group-hover:text-slate-200"} transition-colors`} style={{ textTransform: "none", fontFamily: "inherit" }}>
+                      {trabajo.titulo}
+                    </h3>
+                    <p className="text-xs text-slate-300 mt-1.5 leading-relaxed font-light">
+                      {trabajo.descripcion}
+                    </p>
+                  </div>
+                  <a
+                    href={waHref(biz, `Hola! Vi el trabajo de ${trabajo.titulo} en su web y quisiera consultar para mi auto.`)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`${isRojo ? "btn-outline-jds" : isCeleste ? "btn-outline-celeste" : "btn-outline-gold"} inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider`}
+                  >
+                    <FaWhatsapp className={`size-3.5 ${isRojo ? "text-red-400" : "text-emerald-400"}`} />
+                    Pedir Presupuesto Similar
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Instagram Callout Footer */}
+          {biz.instagram && (
+            <div className="mt-12 glass-panel rounded-3xl p-6 md:p-8 border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6" style={{ background: "rgba(18,18,18,0.85)" }}>
+              <div className="flex items-center gap-4 text-center sm:text-left">
+                <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 ${isRojo ? "bg-red-600/20 text-red-400 border border-red-500/30 shadow-[0_0_15px_rgba(239,68,68,0.2)]" : isCeleste ? "bg-sky-500/20 text-sky-400 border border-sky-500/30" : "bg-white/10 text-white"}`}>
+                  <FaInstagram className="size-6" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-base sm:text-lg text-white" style={{ textTransform: "none", fontFamily: "inherit" }}>
+                    ¿Querés ver más videos y procesos diarios?
+                  </h4>
+                  <p className="text-xs text-slate-400 mt-0.5">
+                    Subimos historias y reels de los autos que ingresan al taller todos los días a <strong className="text-slate-200">@{biz.instagram}</strong>
+                  </p>
+                </div>
+              </div>
+              <a
+                href={`https://instagram.com/${biz.instagram}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`${isRojo ? "btn-jds" : isCeleste ? "btn-celeste" : "btn-gold"} shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider`}
+              >
+                <FaInstagram className="size-4" />
+                Seguinos en Instagram ↗
+              </a>
+            </div>
+          )}
         </div>
       </section>
 
@@ -488,8 +658,8 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
         <SectionDivider edge="bottom" />
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14 max-w-2xl mx-auto">
-            <span className="section-badge mb-5">Compromiso de calidad</span>
-            <h2 className={`text-3xl md:text-4xl font-medium ${isCeleste ? "text-celeste" : "text-gold"} mb-4`}>Tratamientos con Garantía Escrita</h2>
+            <span className={isRojo ? "section-badge-jds mb-5" : isCeleste ? "section-badge-celeste mb-5" : "section-badge mb-5"}>Compromiso de calidad</span>
+            <h2 className={`text-3xl md:text-4xl font-medium ${isRojo ? "text-jds" : isCeleste ? "text-celeste" : "text-gold"} mb-4`}>Tratamientos con Garantía Escrita</h2>
             <p className="text-slate-400 max-w-xl mx-auto text-sm">
               Cada vehículo se atiende de forma individual, dedicando el tiempo necesario para alcanzar el estándar más exigente.
             </p>
@@ -497,8 +667,8 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
 
           <div className="grid md:grid-cols-3 gap-6 text-left">
             <div className="glass-panel rounded-[24px] p-7 space-y-3 border border-white/10" style={{ background: "#141414" }}>
-              <div className="w-11 h-11 rounded-full flex items-center justify-center mb-5" style={{ background: "rgba(184,194,204,0.1)" }}>
-                <HiShieldCheck className="size-5" style={{ color: "#b8c2cc" }} />
+              <div className="w-11 h-11 rounded-full flex items-center justify-center mb-5" style={{ background: isRojo ? "rgba(239,68,68,0.12)" : "rgba(184,194,204,0.1)" }}>
+                <HiShieldCheck className="size-5" style={{ color: isRojo ? "#ef4444" : "#b8c2cc" }} />
               </div>
               <h4 className="font-semibold text-white text-base" style={{ textTransform: "none", fontFamily: "inherit" }}>
                 Marcas Premium Mundiales
@@ -509,8 +679,8 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
             </div>
 
             <div className="glass-panel rounded-[24px] p-7 space-y-3 border border-white/10" style={{ background: "#141414" }}>
-              <div className="w-11 h-11 rounded-full flex items-center justify-center mb-5" style={{ background: "rgba(184,194,204,0.1)" }}>
-                <HiOutlineSparkles className="size-5" style={{ color: "#b8c2cc" }} />
+              <div className="w-11 h-11 rounded-full flex items-center justify-center mb-5" style={{ background: isRojo ? "rgba(239,68,68,0.12)" : "rgba(184,194,204,0.1)" }}>
+                <HiOutlineSparkles className="size-5" style={{ color: isRojo ? "#ef4444" : "#b8c2cc" }} />
               </div>
               <h4 className="font-semibold text-white text-base" style={{ textTransform: "none", fontFamily: "inherit" }}>
                 Técnica Segura y Precisa
@@ -521,8 +691,8 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
             </div>
 
             <div className="glass-panel rounded-[24px] p-7 space-y-3 border border-white/10" style={{ background: "#141414" }}>
-              <div className="w-11 h-11 rounded-full flex items-center justify-center mb-5" style={{ background: "rgba(184,194,204,0.1)" }}>
-                <HiOutlineCheckCircle className="size-5" style={{ color: "#b8c2cc" }} />
+              <div className="w-11 h-11 rounded-full flex items-center justify-center mb-5" style={{ background: isRojo ? "rgba(239,68,68,0.12)" : "rgba(184,194,204,0.1)" }}>
+                <HiOutlineCheckCircle className="size-5" style={{ color: isRojo ? "#ef4444" : "#b8c2cc" }} />
               </div>
               <h4 className="font-semibold text-white text-base" style={{ textTransform: "none", fontFamily: "inherit" }}>
                 Asesoramiento Post-Servicio
@@ -539,14 +709,14 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
       <section id="ubicacion" className="px-5 sm:px-8 py-24 bg-black">
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <div>
-            <span className="section-badge mb-5">Ubicación</span>
-            <h2 className={`text-3xl md:text-4xl font-medium ${isCeleste ? "text-celeste" : "text-gold"} mb-3`}>Dónde Encontrarnos</h2>
+            <span className={isRojo ? "section-badge-jds mb-5" : isCeleste ? "section-badge-celeste mb-5" : "section-badge mb-5"}>Ubicación</span>
+            <h2 className={`text-3xl md:text-4xl font-medium ${isRojo ? "text-jds" : isCeleste ? "text-celeste" : "text-gold"} mb-3`}>Dónde Encontrarnos</h2>
             <p className="text-slate-400 text-sm">Visitanos en nuestras instalaciones o coordiná tu turno previo</p>
           </div>
 
           <div className="glass-panel rounded-[28px] p-8 md:p-10 border border-white/10 text-left max-w-2xl mx-auto space-y-6" style={{ background: "#101010" }}>
             <div className="flex items-start gap-4">
-              <FaMapMarkerAlt className={`size-5 ${isCeleste ? "text-sky-400" : "text-gold"} shrink-0 mt-1`} />
+              <FaMapMarkerAlt className={`size-5 ${isRojo ? "text-red-500" : isCeleste ? "text-sky-400" : "text-gold"} shrink-0 mt-1`} />
               <div>
                 <p className="text-xs text-slate-400 uppercase tracking-wider font-semibold">Dirección</p>
                 <p className="text-white text-base font-medium">{biz.direccion}</p>
@@ -555,7 +725,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
             </div>
 
             <div className="flex items-start gap-4">
-              <FaClock className={`size-5 ${isCeleste ? "text-sky-400" : "text-gold"} shrink-0 mt-1`} />
+              <FaClock className={`size-5 ${isRojo ? "text-red-500" : isCeleste ? "text-sky-400" : "text-gold"} shrink-0 mt-1`} />
               <div>
                 <p className="text-xs text-slate-400 uppercase tracking-wider font-semibold">Horario de Atención</p>
                 <p className="text-white text-sm">
@@ -566,14 +736,14 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
 
             {biz.instagram && (
               <div className="flex items-start gap-4">
-                <FaInstagram className={`size-5 ${isCeleste ? "text-sky-400" : "text-gold"} shrink-0 mt-1`} />
+                <FaInstagram className={`size-5 ${isRojo ? "text-red-500" : isCeleste ? "text-sky-400" : "text-gold"} shrink-0 mt-1`} />
                 <div>
                   <p className="text-xs text-slate-400 uppercase tracking-wider font-semibold">Instagram</p>
                   <a
                     href={`https://instagram.com/${biz.instagram}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white text-sm hover:text-gold transition-colors font-medium underline underline-offset-4 decoration-slate-600"
+                    className={`text-white text-sm ${isRojo ? "hover:text-red-400" : "hover:text-gold"} transition-colors font-medium underline underline-offset-4 decoration-slate-600`}
                   >
                     @{biz.instagram} ↗
                   </a>
@@ -586,7 +756,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
                 href={mapsHref(biz)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`${isCeleste ? "btn-outline-celeste" : "btn-outline-gold"} flex-1 text-center py-3 rounded-full text-xs font-semibold uppercase tracking-wider`}
+                className={`${isRojo ? "btn-outline-jds" : isCeleste ? "btn-outline-celeste" : "btn-outline-gold"} flex-1 text-center py-3 rounded-full text-xs font-semibold uppercase tracking-wider`}
               >
                 Ver en Google Maps ↗
               </a>
@@ -594,7 +764,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
                 href={waHref(biz, msgPresupuesto)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`${isCeleste ? "btn-celeste" : "btn-gold"} flex-1 inline-flex items-center justify-center gap-2 py-3 rounded-full text-xs font-semibold uppercase tracking-wider`}
+                className={`${isRojo ? "btn-jds" : isCeleste ? "btn-celeste" : "btn-gold"} flex-1 inline-flex items-center justify-center gap-2 py-3 rounded-full text-xs font-semibold uppercase tracking-wider`}
               >
                 <FaWhatsapp className="size-4" />
                 Escribinos por WhatsApp
@@ -608,8 +778,8 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
       <section id="nosotros" className="relative px-5 sm:px-8 py-20" style={{ background: "#101010" }}>
         <SectionDivider edge="top" />
         <div className="max-w-3xl mx-auto text-center space-y-6">
-          <span className="section-badge mb-3">Sobre nosotros</span>
-          <h2 className={`text-3xl md:text-4xl font-medium ${isCeleste ? "text-celeste" : "text-gold"} mb-3`}>
+          <span className={isRojo ? "section-badge-jds mb-3" : isCeleste ? "section-badge-celeste mb-3" : "section-badge mb-3"}>Sobre nosotros</span>
+          <h2 className={`text-3xl md:text-4xl font-medium ${isRojo ? "text-jds" : isCeleste ? "text-celeste" : "text-gold"} mb-3`}>
             Pasión por la Estética Automotriz en {biz.ciudad}
           </h2>
 
@@ -635,7 +805,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
               href={mapsHref(biz)}
               target="_blank"
               rel="noopener noreferrer"
-              className={`${isCeleste ? "btn-celeste" : "btn-gold"} inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-xs font-semibold uppercase tracking-wider active:scale-95 transition-transform`}
+              className={`${isRojo ? "btn-jds" : isCeleste ? "btn-celeste" : "btn-gold"} inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-xs font-semibold uppercase tracking-wider active:scale-95 transition-transform`}
             >
               <FaStar className="size-3.5" />
               Ver Opiniones en Google Maps ↗
@@ -649,7 +819,9 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
         <div
           className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[1px]"
           style={{
-            background: isCeleste
+            background: isRojo
+              ? "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.12) 20%, rgba(239,68,68,0.5) 50%, rgba(255,255,255,0.12) 80%, transparent 100%)"
+              : isCeleste
               ? "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.12) 20%, rgba(56,189,248,0.5) 50%, rgba(255,255,255,0.12) 80%, transparent 100%)"
               : "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.12) 20%, rgba(210,225,245,0.35) 50%, rgba(255,255,255,0.12) 80%, transparent 100%)",
           }}
@@ -661,21 +833,23 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
               <div
                 className="absolute inset-0 rounded-full blur-2xl opacity-45 scale-125 pointer-events-none"
                 style={{
-                  background: "radial-gradient(ellipse at center, rgba(195,205,220,0.40) 0%, rgba(150,165,185,0.20) 45%, transparent 75%)",
+                  background: isRojo
+                    ? "radial-gradient(ellipse at center, rgba(239,68,68,0.40) 0%, rgba(185,28,28,0.20) 45%, transparent 75%)"
+                    : "radial-gradient(ellipse at center, rgba(195,205,220,0.40) 0%, rgba(150,165,185,0.20) 45%, transparent 75%)",
                 }}
               />
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={biz.logo_url}
                 alt={biz.nombre}
-                className="relative z-10 h-16 sm:h-22 md:h-28 w-auto max-w-[85vw] sm:max-w-[420px] object-contain opacity-95 hover:opacity-100 transition-all drop-shadow-[0_8px_30px_rgba(0,0,0,0.8)] drop-shadow-[0_0_25px_rgba(195,205,220,0.3)] hover:scale-105"
+                className={`relative z-10 h-16 sm:h-22 md:h-28 w-auto max-w-[85vw] sm:max-w-[420px] object-contain opacity-95 hover:opacity-100 transition-all drop-shadow-[0_8px_30px_rgba(0,0,0,0.8)] ${isRojo ? "drop-shadow-[0_0_25px_rgba(239,68,68,0.35)]" : "drop-shadow-[0_0_25px_rgba(195,205,220,0.3)]"} hover:scale-105`}
               />
             </div>
           </div>
         )}
 
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-slate-400 font-light">
-          <span>© {new Date().getFullYear()} {biz.nombre} · {isCeleste ? "Estética Vehicular" : "Detailing Automotriz"} en {biz.ciudad}{biz.provincia ? `, ${biz.provincia}` : ""}</span>
+          <span>© {new Date().getFullYear()} {biz.nombre} · {isRojo ? "Taller de Estética del Auto" : isCeleste ? "Estética Vehicular" : "Detailing Automotriz"} en {biz.ciudad}{biz.provincia ? `, ${biz.provincia}` : ""}</span>
           <span>{biz.direccion} · {biz.telefono}</span>
         </div>
       </footer>
@@ -687,7 +861,9 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
           target="_blank"
           rel="noopener noreferrer"
           className={`flex items-center gap-2.5 rounded-full ${
-            isCeleste
+            isRojo
+              ? "bg-red-600 hover:bg-red-500 text-white shadow-[0_0_25px_rgba(239,68,68,0.55)] border border-red-400/40"
+              : isCeleste
               ? "bg-sky-500 hover:bg-sky-400 text-slate-950 shadow-[0_0_25px_rgba(56,189,248,0.55)] border border-sky-300/40"
               : "bg-emerald-500 hover:bg-emerald-400 text-black shadow-2xl"
           } px-4 py-3 font-bold text-xs uppercase tracking-wider hover:scale-105 active:scale-95 transition-all`}

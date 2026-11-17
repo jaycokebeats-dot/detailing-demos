@@ -30,6 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const isShalom = slug === "shalom-estetica-automotriz" || slug === "shalom" || biz.slug === "shalom-estetica-automotriz";
   const isMcDetail = slug === "mc-detail-detailing" || slug === "mc-detail" || biz.slug === "mc-detail-detailing";
   const isAmCentro = slug === "am-centro-de-estetica-vehicular" || slug === "am-centro" || biz.slug === "am-centro-de-estetica-vehicular";
+  const isJds = slug === "jds-detailing" || slug === "jds-detailing-car-estudio" || biz.slug === "jds-detailing";
 
   let titulo = `${biz.nombre.replace(/[^\p{L}\p{N}\s.,&|/'-]/gu, "").replace(/\s+/g, " ").trim()} — Detailing Profesional en ${biz.ciudad}`;
   let descripcion = `Detailing profesional a mano en ${biz.ciudad}: lavado sin remolinos, corrección de pintura y recubrimiento cerámico. Pedí tu turno por WhatsApp.`;
@@ -46,6 +47,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   } else if (isShalom) {
     titulo = "Shalom Estética Automotriz | Detailing Profesional en Toluca";
     descripcion = "Estética y detallado automotriz profesional en Toluca, Edo. Méx.: corrección de pintura, protección cerámica y estética de interiores sin microrrayones ni atajos. ¡Cotiza por WhatsApp!";
+  } else if (isJds) {
+    titulo = "JDS Detail Car Estudio | Detailing Profesional & Estética en Villa Ballester";
+    descripcion = "Taller de estética del auto en Villa Ballester: tratamientos cerámicos 9H, pulido y corrección de pintura, PPF brillante, restauración de ópticas y limpieza de motor a vapor. Tu auto, en las mejores manos.";
   } else if (isSpain) {
     descripcion = `Detailing profesional de coches en ${biz.ciudad}: lavado a mano, corrección de pintura y tratamiento cerámico. Pide tu cita por WhatsApp.`;
   } else if (isMexico) {
@@ -60,7 +64,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ? "https://mcdetail.com.ar/og-mcdetail.jpg"
       : isShalom
         ? "https://detailing-demos-three.vercel.app/logo/shalom-og.jpg"
-        : (biz.fotos && biz.fotos.length > 0 && biz.fotos[0])
+        : isJds
+          ? "https://detailing-demos-three.vercel.app/logo/jds/jds-logo-square.jpg"
+          : (biz.fotos && biz.fotos.length > 0 && biz.fotos[0])
           ? (biz.fotos[0].startsWith("http") ? biz.fotos[0] : `https://detailing-demos-three.vercel.app${biz.fotos[0].startsWith("/") ? "" : "/"}${biz.fotos[0]}`)
           : "https://detailing-demos-three.vercel.app/og-detailing.jpg";
 
@@ -75,6 +81,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const cleanNombre = biz.nombre.replace(/[^\p{L}\p{N}\s.,&|/'-]/gu, "").replace(/\s+/g, " ").trim();
   const brandName = isAmCentro
     ? "AM Centro de Estética Vehicular"
+    : isJds
+    ? "JDS Detail Car Estudio"
     : isMcDetail
     ? "Mc Detail Detailing"
     : isPlatinum
@@ -243,6 +251,7 @@ export default async function BusinessPage({ params }: Props) {
 
   const isPlatinum = slug === "platinum-detallado-automotriz-a-domicilio" || biz.slug === "platinum-detallado-automotriz-a-domicilio";
   const isMcDetail = slug === "mc-detail-detailing" || slug === "mc-detail" || biz.slug === "mc-detail-detailing";
+  const isJds = slug === "jds-detailing" || slug === "jds-detailing-car-estudio" || biz.slug === "jds-detailing";
 
   // Schema.org JSON-LD para posicionamiento SEO local y Google Rich Results
   const canonicalBizUrl = isPlatinum
@@ -254,13 +263,15 @@ export default async function BusinessPage({ params }: Props) {
     ? "https://platinumdetallado.com/og-platinum.jpg"
     : isMcDetail
       ? "https://mcdetail.com.ar/og-mcdetail.jpg"
-      : "https://detailing-demos-three.vercel.app/og-detailing.jpg";
+      : isJds
+        ? "https://detailing-demos-three.vercel.app/logo/jds/jds-logo-square.jpg"
+        : "https://detailing-demos-three.vercel.app/og-detailing.jpg";
   const primaryImage = (biz.fotos && biz.fotos.length > 0)
     ? (biz.fotos[0].startsWith("http") ? biz.fotos[0] : `${canonicalBizUrl}${biz.fotos[0].startsWith("/") ? "" : "/"}${biz.fotos[0]}`)
     : defaultImage;
 
   const cleanBizNombre = biz.nombre.replace(/[^\p{L}\p{N}\s.,&|/'-]/gu, "").replace(/\s+/g, " ").trim();
-  const brandName = isMcDetail ? "Mc Detail Detailing" : (isPlatinum ? "Platinum Detallado Automotriz" : cleanBizNombre);
+  const brandName = isJds ? "JDS Detail Car Estudio" : isMcDetail ? "Mc Detail Detailing" : (isPlatinum ? "Platinum Detallado Automotriz" : cleanBizNombre);
 
   const jsonLd = {
     "@context": "https://schema.org",
