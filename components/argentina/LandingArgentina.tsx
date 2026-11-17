@@ -405,7 +405,8 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
       )}
 
       {/* 4. SERVICIOS CON SLIDERS INTERACTIVOS DE ANTES Y DESPUÉS ($ ARS) */}
-      <section id="servicios" className="px-5 sm:px-8 py-20 bg-black">
+      <section id="servicios" className="relative px-5 sm:px-8 py-20 bg-black">
+        <SectionDivider edge="top" fill="#000000" />
         <div className="max-w-7xl mx-auto">
           {(() => {
             const serviciosList = (biz.servicios && biz.servicios.length > 0) ? biz.servicios : SERVICIOS_ARGENTINA;
@@ -529,6 +530,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
             </div>
           )}
         </div>
+        <SectionDivider edge="bottom" shape="asymmetric" fill="#000000" />
       </section>
 
       {/* BANNER DE MEDIOS DE PAGO & CONFIANZA (Para JDS va inmediatamente después de Servicios) */}
