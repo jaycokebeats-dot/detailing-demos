@@ -2141,16 +2141,38 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
                         </div>
                       </div>
 
-                      {/* Tags de servicios */}
-                      <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
-                        {t.servicios.map((s, idx) => (
-                          <span
-                            key={idx}
-                            className="text-[10px] sm:text-[11px] font-semibold px-2 py-0.5 rounded-full bg-[#182338] text-slate-200 border border-white/5"
-                          >
-                            {s}
-                          </span>
-                        ))}
+                      {/* Tags de servicios con precios individuales */}
+                      <div className="flex flex-wrap items-center gap-1.5 pt-1">
+                        {(() => {
+                          if (t.serviciosDetalle && t.serviciosDetalle.length > 0) {
+                            return t.serviciosDetalle.map((sd, idx) => {
+                              const textoServicio = sd.detalle ? `${sd.nombre} (${sd.detalle})` : sd.nombre;
+                              const precio = sd.precio;
+                              return (
+                                <span
+                                  key={idx}
+                                  className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] font-medium px-2.5 py-1 rounded-xl bg-[#141e30] text-slate-200 border border-white/10 shadow-sm"
+                                >
+                                  <span>{textoServicio}</span>
+                                  {precio !== undefined && precio > 0 && (
+                                    <span className="font-mono font-bold text-emerald-400 bg-emerald-950/70 border border-emerald-500/30 px-1.5 py-0.5 rounded-md text-[10px] tracking-tight shrink-0">
+                                      {formatPesos(precio, ocultarMontos)}
+                                    </span>
+                                  )}
+                                </span>
+                              );
+                            });
+                          }
+
+                          return t.servicios.map((s, idx) => (
+                            <span
+                              key={idx}
+                              className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] font-medium px-2.5 py-1 rounded-xl bg-[#141e30] text-slate-200 border border-white/10 shadow-sm"
+                            >
+                              <span>{s}</span>
+                            </span>
+                          ));
+                        })()}
                       </div>
 
                       {/* Cheque detalle si aplica */}
