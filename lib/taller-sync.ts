@@ -33,6 +33,7 @@ export type Trabajo = {
   estadoTrabajo?: EstadoTrabajo;
   notas?: string;
   presupuestoId?: string;
+  recordatorioEnviado?: boolean;
 };
 
 export type PresupuestoGuardado = {

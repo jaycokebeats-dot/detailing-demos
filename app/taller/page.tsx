@@ -1444,6 +1444,16 @@ ${biz.direccion ? `• *Taller:* ${biz.direccion}, ${biz.ciudad}\n` : ""}
     }
   };
 
+  // Marcar recordatorio como avisado / enviado para que no moleste el aviso
+  const handleMarcarRecordatorioEnviado = (ids: string[]) => {
+    const idsSet = new Set(ids);
+    const actualizados = trabajos.map((t) =>
+      idsSet.has(t.id) ? { ...t, recordatorioEnviado: true } : t
+    );
+    guardarTrabajos(actualizados);
+    showToast("✅ Recordatorio marcado como avisado. ¡El cartel ya no aparecerá!");
+  };
+
   // Generadores de Mensajes de WhatsApp
   const getMensajeConfirmacionTurno = (t: Trabajo) => {
     const saludo = t.cliente ? `¡Hola ${t.cliente}!` : "¡Hola!";
@@ -1936,34 +1946,50 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
             )}
 
             {/* ALERTAS INTELIGENTES: Recordatorios de Turnos para Mañana */}
-            {trabajos.filter((t) => isTomorrow(t.fecha)).length > 0 && (
+            {trabajos.filter((t) => isTomorrow(t.fecha) && !t.recordatorioEnviado).length > 0 && (
               <div className="bg-gradient-to-r from-amber-950/60 via-[#261e10] to-[#0e1726] border border-amber-500/35 rounded-2xl p-4 sm:p-5 shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div className="flex items-start gap-3.5">
                   <span className="text-2xl sm:text-3xl">⏰</span>
                   <div>
                     <h4 className="font-extrabold text-amber-200 text-sm sm:text-base">
-                      Recordatorio: {trabajos.filter((t) => isTomorrow(t.fecha)).length} auto(s) tienen turno mañana
+                      Recordatorio: {trabajos.filter((t) => isTomorrow(t.fecha) && !t.recordatorioEnviado).length} auto(s) tienen turno mañana
                     </h4>
                     <p className="text-xs text-slate-300 mt-1">
                       {trabajos
-                        .filter((t) => isTomorrow(t.fecha))
+                        .filter((t) => isTomorrow(t.fecha) && !t.recordatorioEnviado)
                         .map((t) => `${t.cliente || "Cliente"} (${t.vehiculo} - ${t.horaTurno || "09:00"} hs)`)
                         .join(" · ")}
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2 shrink-0">
+                <div className="flex items-center gap-2 shrink-0 flex-wrap">
                   <button
                     type="button"
                     onClick={() => {
-                      const primerManiana = trabajos.find((t) => isTomorrow(t.fecha));
+                      const primerManiana = trabajos.find((t) => isTomorrow(t.fecha) && !t.recordatorioEnviado);
                       if (primerManiana) setTrabajoWhatsAppModal(primerManiana);
                     }}
                     className="px-4 py-2.5 bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs rounded-xl shadow-lg transition-transform active:scale-95 flex items-center gap-1.5 cursor-pointer"
                   >
                     <FaWhatsapp className="size-3.5 text-slate-950" />
                     <span>Enviar Recordatorio x WhatsApp</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() =>
+                      handleMarcarRecordatorioEnviado(
+                        trabajos
+                          .filter((t) => isTomorrow(t.fecha) && !t.recordatorioEnviado)
+                          .map((t) => t.id)
+                      )
+                    }
+                    className="px-3.5 py-2.5 bg-[#172235] hover:bg-[#1e2d45] text-slate-200 hover:text-white border border-sky-500/30 font-bold text-xs rounded-xl transition-all active:scale-95 flex items-center gap-1.5 cursor-pointer"
+                    title="Ocultar recordatorio porque ya le avisaste al cliente"
+                  >
+                    <FaCheck className="size-3 text-emerald-400" />
+                    <span>Ya le avisé</span>
                   </button>
                 </div>
               </div>
@@ -2145,6 +2171,12 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
                           <span className="text-[11px] font-mono font-bold text-emerald-400 px-2 py-0.5 rounded-md bg-emerald-950/70 border border-emerald-500/30 flex items-center gap-1">
                             <FaClock className="size-2.5" />
                             <span>{t.horaTurno} hs</span>
+                          </span>
+                        )}
+                        {t.recordatorioEnviado && t.estadoTrabajo === "agendado" && (
+                          <span className="text-[10px] font-bold text-sky-300 px-2 py-0.5 rounded-md bg-sky-950/80 border border-sky-400/40 flex items-center gap-1">
+                            <FaCheck className="size-2 text-sky-400" />
+                            <span>Avisado</span>
                           </span>
                         )}
                         {/* Botón interactivo de cobro directo en cabecera */}
@@ -3865,7 +3897,19 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
                     <FaClock className="size-3.5" />
                     <span>2. Recordatorio 24 hs (Día previo al turno)</span>
                   </span>
-                  <div className="flex items-center gap-1.5">
+                  <div className="flex items-center gap-1.5 flex-wrap">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        handleMarcarRecordatorioEnviado([trabajoWhatsAppModal.id]);
+                        setTrabajoWhatsAppModal(null);
+                      }}
+                      className="px-2.5 py-1.5 bg-[#172235] hover:bg-[#1e2d45] text-slate-200 border border-sky-500/30 rounded-lg text-xs font-bold flex items-center gap-1 cursor-pointer"
+                      title="Marcar como avisado sin abrir WhatsApp"
+                    >
+                      <FaCheck className="size-3 text-emerald-400" />
+                      <span>Ya le avisé</span>
+                    </button>
                     <button
                       type="button"
                       onClick={() => copiarTextoMensaje(getMensajeRecordatorioTurno(trabajoWhatsAppModal))}
@@ -3878,6 +3922,7 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
                       type="button"
                       onClick={() => {
                         enviarWhatsAppDirecto(trabajoWhatsAppModal, getMensajeRecordatorioTurno(trabajoWhatsAppModal));
+                        handleMarcarRecordatorioEnviado([trabajoWhatsAppModal.id]);
                         setTrabajoWhatsAppModal(null);
                       }}
                       className="px-3.5 py-1.5 bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold rounded-lg text-xs flex items-center gap-1.5 cursor-pointer shadow-md"
