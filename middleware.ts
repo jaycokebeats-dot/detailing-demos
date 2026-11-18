@@ -33,6 +33,16 @@ export function middleware(request: NextRequest) {
     return res;
   }
 
+  // Ficha de recepción / Check-in directa para JDS Detailing
+  if (pathname === "/jds-checkin" || pathname === "/checkin-jds" || pathname === "/ficha-jds") {
+    const url = new URL("/checkin", request.url);
+    url.searchParams.set("slug", "jds-detailing");
+    url.searchParams.set("taller", "jds-detailing");
+    const res = NextResponse.rewrite(url);
+    res.cookies.set("black_line_active_slug", "jds-detailing", { path: "/" });
+    return res;
+  }
+
   // Panel de Taller Demo independiente para mostrar a potenciales clientes
   if (pathname === "/panel-demo" || pathname === "/taller-demo") {
     const demoSlug = "demo-taller";
