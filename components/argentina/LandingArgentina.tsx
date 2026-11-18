@@ -10,6 +10,7 @@ import {
   HiChevronRight,
   HiXMark,
   HiMagnifyingGlassPlus,
+  HiArrowsPointingOut,
 } from "react-icons/hi2";
 import type { Business, ServiceItem } from "@/data/business-helpers";
 import { waHref, mapsHref } from "@/data/business-helpers";
@@ -227,7 +228,24 @@ function JdsReelCard({
     setIsMuted(v.muted);
   };
 
-  const igUrl = item.instagramUrl ?? `https://www.instagram.com/${biz.instagram ?? "jdscardetail_"}/`;
+  const toggleFullscreen = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const v = videoRef.current as any;
+    if (!v) return;
+    if (document.fullscreenElement) {
+      if (document.exitFullscreen) document.exitFullscreen().catch(() => {});
+    } else {
+      if (v.requestFullscreen) {
+        v.requestFullscreen().catch(() => {});
+      } else if (v.webkitRequestFullscreen) {
+        v.webkitRequestFullscreen();
+      } else if (v.webkitEnterFullscreen) {
+        v.webkitEnterFullscreen();
+      } else if (v.msRequestFullscreen) {
+        v.msRequestFullscreen();
+      }
+    }
+  };
 
   return (
     <div className="group relative rounded-[28px] overflow-hidden border border-white/10 hover:border-red-500/50 bg-[#101010] shadow-2xl transition-all duration-300 flex flex-col hover:shadow-[0_0_35px_rgba(239,68,68,0.25)]">
@@ -264,17 +282,15 @@ function JdsReelCard({
             >
               {isMuted ? "🔇" : "🔊"}
             </button>
-            <a
-              href={igUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
-              className="size-9 rounded-full bg-black/75 hover:bg-black backdrop-blur-md border border-white/20 hover:border-red-500/60 text-white flex items-center justify-center text-sm transition-all shadow-lg active:scale-90"
-              aria-label="Ver reel en Instagram"
-              title="Ver reel en Instagram"
+            <button
+              type="button"
+              onClick={toggleFullscreen}
+              className="size-9 rounded-full bg-black/75 hover:bg-black backdrop-blur-md border border-white/20 hover:border-red-500/60 text-white flex items-center justify-center text-xs transition-all shadow-lg active:scale-90"
+              aria-label="Ver en pantalla completa"
+              title="Ver en pantalla completa"
             >
-              <FaInstagram className="size-4 text-red-400" />
-            </a>
+              <HiArrowsPointingOut className="size-4 text-white" />
+            </button>
           </div>
         </div>
 
@@ -303,26 +319,15 @@ function JdsReelCard({
             </p>
           </div>
 
-          <div className="flex items-center gap-2 pt-1" onClick={(e) => e.stopPropagation()}>
+          <div className="pt-1" onClick={(e) => e.stopPropagation()}>
             <a
               href={waHref(biz, item.whatsappMsg)}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-jds flex-1 py-2.5 px-3 rounded-full text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-1.5 text-center active:scale-95"
+              className="btn-jds w-full py-2.5 sm:py-3 px-4 rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wider flex items-center justify-center gap-2 text-center active:scale-95 shadow-lg shadow-red-950/40"
             >
-              <FaWhatsapp className="size-3.5 shrink-0" />
+              <FaWhatsapp className="size-4 shrink-0" />
               <span className="whitespace-nowrap">Pedir Presupuesto</span>
-            </a>
-            <a
-              href={igUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-outline-jds px-3 py-2.5 rounded-full flex items-center justify-center gap-1.5 text-xs font-medium shrink-0 active:scale-95"
-              title="Abrir Reel en Instagram"
-              aria-label="Abrir Reel en Instagram"
-            >
-              <FaInstagram className="size-3.5 text-red-400" />
-              <span className="hidden sm:inline">Ver Reel</span>
             </a>
           </div>
         </div>
