@@ -275,6 +275,20 @@ export default function CheckinPage() {
     }
   }, []);
 
+  // Actualizar título de la pestaña y favicon según el taller cargado
+  useEffect(() => {
+    if (typeof document !== "undefined" && biz && biz.nombre) {
+      document.title = `Ficha de Recepción — ${biz.nombre}`;
+      if (biz.slug === "jds-detailing" || currentSlug === "jds-detailing") {
+        const link = (document.querySelector("link[rel*='icon']") as HTMLLinkElement) || document.createElement("link");
+        link.type = "image/png";
+        link.rel = "shortcut icon";
+        link.href = "/favicon-jds-48.png";
+        document.getElementsByTagName("head")[0].appendChild(link);
+      }
+    }
+  }, [biz, currentSlug]);
+
   // Manejar clic / tap en la silueta del auto
   const handleCarClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!carContainerRef.current) return;
