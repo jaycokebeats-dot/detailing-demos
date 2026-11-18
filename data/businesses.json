@@ -78909,5 +78909,480 @@
     "pais": "MX",
     "place_id": "ChIJ9fsSSQCD6YURwTf7UbXv6bw",
     "template": "mexico"
+  },
+  {
+    "slug": "auto-limpio",
+    "nombre": "Auto Limpio",
+    "ciudad": "Tampico, Tamps.",
+    "direccion": "89180, 3a. Avenida 800, Anáhuac, 89190 Tampico, Tamps., México",
+    "telefono": "83 3245 2321",
+    "whatsapp": "528332452321",
+    "instagram": null,
+    "rating": 4.4,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 6 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Auto+Limpio/data=!4m7!3m6!1s0x85d7f75a05d17545:0xda9ac0885790abc9!8m2!3d22.2324106!4d-97.8609588!16s%2Fg%2F11dz5p87lm!19sChIJRXXRBVr314URyauQV4jAmto?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJRXXRBVr314URyauQV4jAmto",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-mg",
+    "nombre": "Autolavado MG",
+    "ciudad": "Tampico, Tamps.",
+    "direccion": "89130, Pedro J. Méndez 202, Colonias Primavera, 89130 Tampico, Tamps., México",
+    "telefono": "83 3213 1906",
+    "whatsapp": "528332131906",
+    "instagram": null,
+    "rating": 4.4,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 2 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+MG/data=!4m7!3m6!1s0x85d7f9fbddc05b9f:0x88769b75f28cbe5d!8m2!3d22.2459601!4d-97.8661231!16s%2Fg%2F11f1244d5v!19sChIJn1vA3fv514URXb6M8nWbdog?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJn1vA3fv514URXb6M8nWbdog",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-las-palmas",
+    "nombre": "Autolavado Las Palmas",
+    "ciudad": "Tampico, Tamps.",
+    "direccion": "Av. Torres Miranda 303, Magdaleno Aguilar, 89355 Tampico, Tamps., México",
+    "telefono": "83 3690 4170",
+    "whatsapp": "528336904170",
+    "instagram": null,
+    "rating": 4.6,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 7 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+Las+Palmas/data=!4m7!3m6!1s0x85d7fbef036d1045:0xb9b94f8f50fa1882!8m2!3d22.3169957!4d-97.8855791!16s%2Fg%2F11sh24nyzy!19sChIJRRBtA-_714URghj6UI9Pubk?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJRRBtA-_714URghj6UI9Pubk",
+    "template": "mexico"
+  },
+  {
+    "slug": "carwash-morelos",
+    "nombre": "CARWASH MORELOS",
+    "ciudad": "Tampico, Tamps.",
+    "direccion": "Ocampo 201, Morelos, 89290 Tampico, Tamps., México",
+    "telefono": "83 3138 5332",
+    "whatsapp": "528331385332",
+    "instagram": null,
+    "rating": 4.7,
+    "reviews_count": 5,
+    "reviewDates": [
+      "una semana atrás"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/CARWASH+MORELOS/data=!4m7!3m6!1s0x85d7f1007e55b197:0x663e05664970384c!8m2!3d22.221934!4d-97.8742076!16s%2Fg%2F11nb2z892q!19sChIJl7FVfgDx14URTDhwSWYFPmY?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJl7FVfgDx14URTDhwSWYFPmY",
+    "template": "mexico"
+  },
+  {
+    "slug": "auto-lavado-segundo",
+    "nombre": "Auto Lavado Segundo",
+    "ciudad": "Tampico, Tamps.",
+    "direccion": "Calle Calz. Blanca 1703, Vicente Guerrero, 89298 Tampico, Tamps., México",
+    "telefono": "83 3326 4641",
+    "whatsapp": "528333264641",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 9 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Auto+Lavado+Segundo/data=!4m7!3m6!1s0x85d7f10018bb4067:0xaeb338e962cb72cd!8m2!3d22.2250144!4d-97.8939822!16s%2Fg%2F11ys08zbsz!19sChIJZ0C7GADx14URzXLLYuk4s64?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJZ0C7GADx14URzXLLYuk4s64",
+    "template": "mexico"
+  },
+  {
+    "slug": "autentico-brillo",
+    "nombre": "Auténtico Brillo",
+    "ciudad": "Ciudad Madero, Tamps.",
+    "direccion": "C.Cuauhtémoc 103, entre Obregón y Allende, Hipódromo, 89560 Cd Madero, Tamps., México",
+    "telefono": "83 3255 9685",
+    "whatsapp": "528332559685",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 3 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Aut%C3%A9ntico+Brillo/data=!4m7!3m6!1s0x85d7f94129b96b6d:0x6d95ca0836a79a3e!8m2!3d22.2636908!4d-97.8192893!16s%2Fg%2F11nqx_hdqv!19sChIJbWu5KUH514URPpqnNgjKlW0?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJbWu5KUH514URPpqnNgjKlW0",
+    "template": "mexico"
+  },
+  {
+    "slug": "autropic",
+    "nombre": "Autropic",
+    "ciudad": "Ciudad Madero, Tamps.",
+    "direccion": "Argentina 300, Las Americas, 89420 Cd Madero, Tamps., México",
+    "telefono": "83 3216 6138",
+    "whatsapp": "528332166138",
+    "instagram": null,
+    "rating": 4.1,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 5 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autropic/data=!4m7!3m6!1s0x85d7f99769da72f9:0xc463e1208154f71b!8m2!3d22.2737336!4d-97.8543913!16s%2Fg%2F1tcvc7ds!19sChIJ-XLaaZf514URG_dUgSDhY8Q?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJ-XLaaZf514URG_dUgSDhY8Q",
+    "template": "mexico"
+  },
+  {
+    "slug": "cms-carwash",
+    "nombre": "CM's Carwash",
+    "ciudad": "Ciudad Madero, Tamps.",
+    "direccion": "Av. Tamaulipas 402, Héroe de Nacozari, 89520 Cd Madero, Tamps., México",
+    "telefono": "83 3707 4958",
+    "whatsapp": "528337074958",
+    "instagram": null,
+    "rating": 4.5,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 5 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/CM%27s+Carwash/data=!4m7!3m6!1s0x85d7f92c58e1a20f:0x2601df72335e0780!8m2!3d22.2780401!4d-97.828502!16s%2Fg%2F11h4w24lsm!19sChIJD6LhWCz514URgAdeM3LfASY?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJD6LhWCz514URgAdeM3LfASY",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-turbo-splash",
+    "nombre": "Autolavado Turbo Splash",
+    "ciudad": "Ciudad Madero, Tamps.",
+    "direccion": "C. Guatemala esq, Vicente Guerrero, 89580 Cd Madero, Tamps., México",
+    "telefono": "83 3303 6209",
+    "whatsapp": "528333036209",
+    "instagram": null,
+    "rating": 4.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 2 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+Turbo+Splash/data=!4m7!3m6!1s0x85d7f935f0e099d7:0xf8325f27100973f9!8m2!3d22.2595832!4d-97.837459!16s%2Fg%2F11hz2l0926!19sChIJ15ng8DX514UR-XMJECdfMvg?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJ15ng8DX514UR-XMJECdfMvg",
+    "template": "mexico"
+  },
+  {
+    "slug": "carwash-89",
+    "nombre": "Carwash 89",
+    "ciudad": "Xalapa, Ver.",
+    "direccion": "Gral. Adalberto Tejeda, INFONAVIT Pomona, 91040 Xalapa-Enríquez, Ver., México",
+    "telefono": "22 8127 1179",
+    "whatsapp": "522281271179",
+    "instagram": null,
+    "rating": 4.7,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace un mes"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Carwash+89/data=!4m7!3m6!1s0x85db321c40e4e001:0xdcf4f8d129d3aae2!8m2!3d19.5279313!4d-96.9063193!16s%2Fg%2F11bx9xvd13!19sChIJAeDkQBwy24UR4qrTKdH49Nw?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJAeDkQBwy24UR4qrTKdH49Nw",
+    "template": "mexico"
+  },
+  {
+    "slug": "blue-car-500",
+    "nombre": "Blue Car 500",
+    "ciudad": "Xalapa, Ver.",
+    "direccion": "Av. Xalapa 632 Colonia, Progreso Macuiltepetl, 91130 Xalapa-Enríquez, Ver., México",
+    "telefono": "22 8688 4227",
+    "whatsapp": "522286884227",
+    "instagram": null,
+    "rating": 4.4,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 3 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Blue+Car+500/data=!4m7!3m6!1s0x85db2fd5ac7943a1:0x482a0890e1c8e387!8m2!3d19.5476856!4d-96.9289405!16s%2Fg%2F11h6pt157x!19sChIJoUN5rNUv24URh-PI4ZAIKkg?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJoUN5rNUv24URh-PI4ZAIKkg",
+    "template": "mexico"
+  },
+  {
+    "slug": "lavado-de-autos-san-martin",
+    "nombre": "Lavado de Autos San Martín",
+    "ciudad": "Xalapa, Ver.",
+    "direccion": "C. Bolivia 34, Benito Juárez, 91056 Xalapa-Enríquez, Ver., México",
+    "telefono": "22 8363 8292",
+    "whatsapp": "522283638292",
+    "instagram": null,
+    "rating": 4.2,
+    "reviews_count": 5,
+    "reviewDates": [
+      "2 semanas atrás"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Lavado+de+Autos+San+Mart%C3%ADn/data=!4m7!3m6!1s0x85db2de5a6a2af39:0x898dc5a9ac748cba!8m2!3d19.5211816!4d-96.9345611!16s%2Fg%2F11ckvvj8mh!19sChIJOa-ipuUt24URuox0rKnFjYk?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJOa-ipuUt24URuox0rKnFjYk",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-indianapolis",
+    "nombre": "AUTOLAVADO INDIANAPOLIS",
+    "ciudad": "Xalapa, Ver.",
+    "direccion": "C. Cam. Antiguo a las Animas esquina, Rebombeo de las Animas, 91186 Xalapa-Enríquez, Ver., México",
+    "telefono": "22 8988 1843",
+    "whatsapp": "522289881843",
+    "instagram": null,
+    "rating": 4.7,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 11 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/AUTOLAVADO+INDIANAPOLIS/data=!4m7!3m6!1s0x85db313182c39707:0x2fb5b9630f38fb92!8m2!3d19.5349347!4d-96.8839864!16s%2Fg%2F11fmn3hry_!19sChIJB5fDgjEx24URkvs4D2O5tS8?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJB5fDgjEx24URkvs4D2O5tS8",
+    "template": "mexico"
+  },
+  {
+    "slug": "centro-de-lavado-diacxa",
+    "nombre": "Centro de Lavado DIACXA",
+    "ciudad": "Xalapa, Ver.",
+    "direccion": "A Coatepec 171, COL, ADALBERTO TEJEDA, 91070 Xalapa-Enríquez, Ver., México",
+    "telefono": "22 8298 8040",
+    "whatsapp": "522282988040",
+    "instagram": null,
+    "rating": 4.6,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 2 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Centro+de+Lavado+DIACXA/data=!4m7!3m6!1s0x85db2d49dc60479b:0x4d67bac1ccc95567!8m2!3d19.5142639!4d-96.9305581!16s%2Fg%2F11yg4925sw!19sChIJm0dg3Ekt24URZ1XJzMG6Z00?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJm0dg3Ekt24URZ1XJzMG6Z00",
+    "template": "mexico"
+  },
+  {
+    "slug": "lavamania-carwash",
+    "nombre": "LavaManía CarWash",
+    "ciudad": "Xalapa, Ver.",
+    "direccion": "Gabriel Garzón Cosas 116, Miguel Hidalgo, 91143 Xalapa-Enríquez, Ver., México",
+    "telefono": "22 8839 3435",
+    "whatsapp": "522288393435",
+    "instagram": null,
+    "rating": 4.3,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 10 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/LavaMan%C3%ADa+CarWash/data=!4m7!3m6!1s0x85db31fab447000b:0x3ff89fcabab4c7c5!8m2!3d19.5435086!4d-96.9112843!16s%2Fg%2F11f3n4y6gd!19sChIJCwBHtPox24URxce0usqf-D8?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJCwBHtPox24URxce0usqf-D8",
+    "template": "mexico"
+  },
+  {
+    "slug": "unicos-autolavados",
+    "nombre": "Unicos Autolavados",
+    "ciudad": "Xalapa, Ver.",
+    "direccion": "Av. Adolfo Ruiz Cortines 942, U.H. del Bosque, 91017 Xalapa-Enríquez, Ver., México",
+    "telefono": "22 8162 9713",
+    "whatsapp": "522281629713",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Unicos+Autolavados/data=!4m7!3m6!1s0x85db2f004ddda73d:0x40724062f378fdf8!8m2!3d19.5620793!4d-96.93018!16s%2Fg%2F11w8ljnmqk!19sChIJPafdTQAv24UR-P1482JAckA?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJPafdTQAv24UR-P1482JAckA",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-shocker",
+    "nombre": "Autolavado Shocker",
+    "ciudad": "Xalapa, Ver.",
+    "direccion": "Av. Enrique C. Rébsamen 132, Martires de Chicago, 91097 Xalapa-Enríquez, Ver., México",
+    "telefono": "22 8102 9489",
+    "whatsapp": "522281029489",
+    "instagram": null,
+    "rating": 4.1,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+Shocker/data=!4m7!3m6!1s0x85db339e4670257f:0x6075916fdc8915f!8m2!3d19.5117222!4d-96.9050783!16s%2Fg%2F11h0mkwvdx!19sChIJfyVwRp4z24URX5HI_RZZBwY?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJfyVwRp4z24URX5HI_RZZBwY",
+    "template": "mexico"
+  },
+  {
+    "slug": "car-wash-orizaba",
+    "nombre": "Car Wash Orizaba",
+    "ciudad": "Orizaba, Ver.",
+    "direccion": "esquina con, Norte 14-A, Ote. 21, 94320 Orizaba, Ver., México",
+    "telefono": "27 2280 7395",
+    "whatsapp": "522722807395",
+    "instagram": null,
+    "rating": 4.8,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 3 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Car+Wash+Orizaba/data=!4m7!3m6!1s0x85c5032042123d25:0x9170339e26f58192!8m2!3d18.8604325!4d-97.101328!16s%2Fg%2F11z7gx75gy!19sChIJJT0SQiADxYURkoH1Jp4zcJE?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJJT0SQiADxYURkoH1Jp4zcJE",
+    "template": "mexico"
+  },
+  {
+    "slug": "fun-wash",
+    "nombre": "Fun Wash",
+    "ciudad": "Orizaba, Ver.",
+    "direccion": "Ote. 9 1230, El Edén, 94344 Orizaba, Ver., México",
+    "telefono": "27 2103 8086",
+    "whatsapp": "522721038086",
+    "instagram": null,
+    "rating": 4.3,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 7 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Fun+Wash/data=!4m7!3m6!1s0x85c502a9762d64d5:0x309cd9b239a0e984!8m2!3d18.8557561!4d-97.0956076!16s%2Fg%2F11bxf3d45c!19sChIJ1WQtdqkCxYURhOmgObLZnDA?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJ1WQtdqkCxYURhOmgObLZnDA",
+    "template": "mexico"
+  },
+  {
+    "slug": "monster-car",
+    "nombre": "Monster Car",
+    "ciudad": "Orizaba, Ver.",
+    "direccion": "Independencia 302, Barrio, 94340 Orizaba, Ver., México",
+    "telefono": "27 2107 2882",
+    "whatsapp": "522721072882",
+    "instagram": null,
+    "rating": 4.6,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 3 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Monster+Car/data=!4m7!3m6!1s0x85c4fd459ff07da5:0xfaf25f52ddb1559a!8m2!3d18.8499554!4d-97.0793824!16s%2Fg%2F11bxfl9rzt!19sChIJpX3wn0X9xIURmlWx3VJf8vo?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJpX3wn0X9xIURmlWx3VJf8vo",
+    "template": "mexico"
+  },
+  {
+    "slug": "automotriz-gochicoa",
+    "nombre": "Automotriz Gochicoa",
+    "ciudad": "Orizaba, Ver.",
+    "direccion": "Sur 10 278-Int.2, Centro, 94300 Orizaba, Ver., México",
+    "telefono": "27 2703 2951",
+    "whatsapp": "522727032951",
+    "instagram": null,
+    "rating": 4.2,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 6 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Automotriz+Gochicoa/data=!4m7!3m6!1s0x85c502bbfe1e4869:0xe15e040a7ad5948!8m2!3d18.8446807!4d-97.1088333!16s%2Fg%2F11bx5tmq0c!19sChIJaUge_rsCxYURSFmtp0DgFQ4?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJaUge_rsCxYURSFmtp0DgFQ4",
+    "template": "mexico"
+  },
+  {
+    "slug": "lavado-plus",
+    "nombre": "Lavado Plus",
+    "ciudad": "Orizaba, Ver.",
+    "direccion": "Pte. 7 875, Centro, 94370 Orizaba, Ver., México",
+    "telefono": "27 2725 0995",
+    "whatsapp": "522727250995",
+    "instagram": null,
+    "rating": 4.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace un mes"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Lavado+Plus/data=!4m7!3m6!1s0x85c502bf1da210b1:0x6514ab4aa801d44d!8m2!3d18.8422517!4d-97.1118006!16s%2Fg%2F11bx5tlz4y!19sChIJsRCiHb8CxYURTdQBqEqrFGU?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJsRCiHb8CxYURTdQBqEqrFGU",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-alameda",
+    "nombre": "Autolavado Alameda",
+    "ciudad": "Córdoba, Ver.",
+    "direccion": "Av 15 #1500, Bella Vista, 94580 Córdoba, Ver., México",
+    "telefono": "27 1173 0371",
+    "whatsapp": "522711730371",
+    "instagram": null,
+    "rating": 4.1,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 5 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+Alameda/data=!4m7!3m6!1s0x85c4e5890c8b7f69:0xd9014eae3f1a06df!8m2!3d18.8899454!4d-96.9406363!16s%2Fg%2F11j5h0pvnl!19sChIJaX-LDInlxIUR3wYaP65OAdk?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJaX-LDInlxIUR3wYaP65OAdk",
+    "template": "mexico"
+  },
+  {
+    "slug": "lavadora-de-autos-rk-carwash",
+    "nombre": "Lavadora de autos R&K Carwash",
+    "ciudad": "Villahermosa, Tab.",
+    "direccion": "Rtno Vía 5, Los Rios, 86035 Villahermosa, Tab., México",
+    "telefono": "99 3177 7406",
+    "whatsapp": "529931777406",
+    "instagram": null,
+    "rating": 4.2,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 6 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Lavadora+de+autos+R%26K+Carwash/data=!4m7!3m6!1s0x85edd726b22a0b13:0x5cfe2b8c38a761fe!8m2!3d17.9979752!4d-92.9462538!16s%2Fg%2F11t7nv7pgw!19sChIJEwsqsibX7YUR_mGnOIwr_lw?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJEwsqsibX7YUR_mGnOIwr_lw",
+    "template": "mexico"
+  },
+  {
+    "slug": "royal-service-car-wash",
+    "nombre": "Royal Service & Car Wash",
+    "ciudad": "Villahermosa, Tab.",
+    "direccion": "Av Paseo de la Sierra 510, Reforma, 86080 Villahermosa, Tab., México",
+    "telefono": "99 3315 7700",
+    "whatsapp": "529933157700",
+    "instagram": null,
+    "rating": 4.4,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 8 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Royal+Service+%26+Car+Wash/data=!4m7!3m6!1s0x85edd9d2d4912899:0x4276d07acce5a75f!8m2!3d17.9784614!4d-92.9298185!16s%2Fg%2F11b6q7yt__!19sChIJmSiR1NLZ7YURX6flzHrQdkI?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJmSiR1NLZ7YURX6flzHrQdkI",
+    "template": "mexico"
   }
 ]
