@@ -25,12 +25,12 @@ export const JDS_DETAILING_BUSINESS: Business = {
   hero_subtitulo: "",
   servicios: [
     {
-      nombre: "Tratamiento Cerámico",
-      precio: "Consultar Presupuesto",
+      nombre: "Tratamiento Cerámico / Acrílico / Abrillantado",
+      precio: "A Cotizar / Presupuesto",
       descripcion:
-        "Un sellado transparente de alta duración que le da a la pintura un brillo increíble tipo espejo. Hace que el agua y la suciedad resbalen solas, protegiendo el color del sol y haciendo que lavar el auto sea mucho más fácil y rápido.",
-      ideal_si: "Proteger la pintura a largo plazo y tener el auto siempre con brillo impecable.",
-      proteccion: "Brillo Espejo & Protección Duradera",
+        "Tres opciones de sellado y protección a elección: Cerámico (máxima duración de años, brillo espejo y efecto hidrofóbico que repele agua y suciedad), Acrílico (protección intermedia de meses contra el sol y marcas de lavado) y Abrillantado (sellado rápido para revivir el color y darle un brillo impecable).",
+      ideal_si: "Elegir el nivel de protección, brillo y duración ideal según el uso de tu auto y presupuesto.",
+      proteccion: "Cerámico · Acrílico · Abrillantado",
       antes_img: "/servicios/ceramico-antes.png",
       despues_img: "/servicios/ceramico-despues.png",
     },
@@ -75,6 +75,16 @@ export const JDS_DETAILING_BUSINESS: Business = {
       despues_img: "/servicios/ppf-brilloso-despues.png",
     },
     {
+      nombre: "Polarizado Vehicular",
+      precio: "Consultar Presupuesto",
+      descripcion:
+        "Láminas de polarizado de alta calidad para reducir el calor del sol dentro del habitáculo, viajar con total privacidad y proteger los tapizados y plásticos del desgaste de los rayos UV. Conducción más fresca, segura y confortable.",
+      ideal_si: "Bajar la temperatura del interior, cuidar los tapizados del sol y tener mayor privacidad.",
+      proteccion: "Filtro UV 99% & Rechazo Térmico",
+      antes_img: "/servicios/polarizado-antes.png",
+      despues_img: "/servicios/polarizado-despues.png",
+    },
+    {
       nombre: "Limpieza de Interior Full",
       precio: "Presupuesto según Vehículo",
       descripcion:
@@ -105,12 +115,21 @@ export const JDS_DETAILING_BUSINESS: Business = {
       despues_img: "/servicios/sacabollos-despues.png",
     },
     {
-      nombre: "Preparación para la Venta & Limpieza de Chasis",
+      nombre: "Preparación para la Venta",
       precio: "Presupuesto Previo",
       descripcion:
-        "Acondicionamiento estético completo para que el auto destaque al máximo en fotos y visitas de compradores: lavado de chasis, abrillantado exterior y habitáculo impecable para venderlo más rápido y al mejor precio.",
-      ideal_si: "Dejar el auto listo para publicar y conseguir un mejor precio de venta.",
+        "Acondicionamiento estético integral pensado para destacar al máximo el auto en fotos y visitas de compradores: lavado al detalle, abrillantado exterior y limpieza profunda del habitáculo para venderlo más rápido y al mejor precio del mercado.",
+      ideal_si: "Dejar el auto impecable para publicar en plataformas o entregarlo al comprador.",
       proteccion: "Revalorización Total del Vehículo",
+      img: "/servicios/exterior.jpg",
+    },
+    {
+      nombre: "Limpieza de Chasis",
+      precio: "A Cotizar / Presupuesto",
+      descripcion:
+        "Lavado a fondo de los bajos del vehículo, pasarruedas, suspensión y partes inferiores. Remueve barro seco, grasa acumulada, tierra y salpicaduras del asfalto para proteger los componentes mecánicos y mantener el chasis libre de suciedad pesada.",
+      ideal_si: "Limpiar a fondo la parte inferior del auto después de viajes, barro o para mantenimiento preventivo.",
+      proteccion: "Chasis & Bajos Descontaminados",
       img: "/servicios/exterior.jpg",
     },
   ],
