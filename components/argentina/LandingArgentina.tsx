@@ -2,7 +2,15 @@
 
 import { useEffect, useRef, useState } from "react";
 import { FaWhatsapp, FaMapMarkerAlt, FaStar, FaClock, FaInstagram } from "react-icons/fa";
-import { HiOutlineCheckCircle, HiOutlineSparkles, HiShieldCheck } from "react-icons/hi2";
+import {
+  HiOutlineCheckCircle,
+  HiOutlineSparkles,
+  HiShieldCheck,
+  HiChevronLeft,
+  HiChevronRight,
+  HiXMark,
+  HiMagnifyingGlassPlus,
+} from "react-icons/hi2";
 import type { Business, ServiceItem } from "@/data/business-helpers";
 import { waHref, mapsHref } from "@/data/business-helpers";
 import SectionDivider from "@/components/SectionDivider";
@@ -103,33 +111,88 @@ const ITEMS_PROBLEMA_ARGENTINA = [
   "Butacas de cuero resecas, agrietadas o con brillo grasoso por acumulación de suciedad",
 ];
 
-const TRABAJOS_VIDEOS_JDS = [
+interface JdsVideoItem {
+  titulo: string;
+  servicio: string;
+  descripcion: string;
+  video: string;
+  poster: string;
+  instagramUrl?: string;
+  whatsappMsg: string;
+}
+
+const TRABAJOS_VIDEOS_JDS: JdsVideoItem[] = [
   {
-    titulo: "Lavado Premium Artesanal",
-    servicio: "Lavado Premium",
-    descripcion: "Técnica de dos baldes con shampoo pH neutro, descontaminado de pintura y secado con microfibra de alta densidad.",
-    video: "/videos/jds/jds-trabajo-1.mp4",
-    poster: "/videos/jds/jds-trabajo-1-poster.jpg",
-    instagramUrl: "https://www.instagram.com/p/DMikCrrRxbw/",
-    whatsappMsg: "¡Hola! Vi el reel de Lavado Premium en su web y quisiera consultar para mi auto.",
+    titulo: "Aplicación y Sellado Cerámico 9H",
+    servicio: "Tratamiento Cerámico",
+    descripcion: "Aplicación artesanal capa por capa con curado técnico. Brillo profundo tipo espejo y repelencia hidrofóbica extrema.",
+    video: "/videos/jds/jds-video-ceramico.mp4",
+    poster: "/videos/jds/jds-video-ceramico-poster.jpg",
+    instagramUrl: "https://www.instagram.com/jdscardetail_/",
+    whatsappMsg: "¡Hola! Vi el reel de Tratamiento Cerámico en su web y quisiera pedir presupuesto para mi auto.",
   },
   {
-    titulo: "Lavado Detallado al Extremo",
-    servicio: "Lavado Premium",
-    descripcion: "Limpieza técnica profunda en llantas, pasarruedas, plásticos y carrocería con terminación brillante sin microrrayones.",
-    video: "/videos/jds/jds-trabajo-2.mp4",
-    poster: "/videos/jds/jds-trabajo-2-poster.jpg",
-    instagramUrl: "https://www.instagram.com/p/DfdUc3LO2bK/",
-    whatsappMsg: "¡Hola! Vi el video de Lavado Detallado en su web y quisiera pedir presupuesto.",
+    titulo: "Inspección de Brillo e Hidrofobia",
+    servicio: "Brillo Showroom",
+    descripcion: "Control bajo luz de inspección técnica: profundidad de laca, tensión superficial y efecto espejo sin imperfecciones.",
+    video: "/videos/jds/jds-video-ceramico-2.mp4",
+    poster: "/videos/jds/jds-video-ceramico-2-poster.jpg",
+    instagramUrl: "https://www.instagram.com/jdscardetail_/",
+    whatsappMsg: "¡Hola! Vi el video de Brillo Espejo en su web y quisiera consultar para mi vehículo.",
   },
   {
-    titulo: "Preparación Integral de Preventa",
-    servicio: "Trabajo de Preventa",
-    descripcion: "Detallado completo de interior y exterior para dejar el vehículo en estado showroom y maximizar su valor de venta.",
-    video: "/videos/jds/jds-trabajo-3.mp4",
-    poster: "/videos/jds/jds-trabajo-3-poster.jpg",
-    instagramUrl: "https://www.instagram.com/p/DfaSHCfMYju/",
-    whatsappMsg: "¡Hola! Vi el video de Trabajo de Preventa en su web y quisiera consultar presupuesto para mi auto.",
+    titulo: "Sellado Acrílico & Protección UV",
+    servicio: "Tratamiento Acrílico",
+    descripcion: "Sellado sintético protector contra radiación UV, marcas de lavado y agentes climáticos con terminación brillante.",
+    video: "/videos/jds/jds-video-acrilico.mp4",
+    poster: "/videos/jds/jds-video-acrilico-poster.jpg",
+    instagramUrl: "https://www.instagram.com/jdscardetail_/",
+    whatsappMsg: "¡Hola! Vi el reel de Tratamiento Acrílico en su web y quisiera consultar presupuesto.",
+  },
+  {
+    titulo: "Limpieza de Motor a Vapor Seco",
+    servicio: "Motor a Vapor",
+    descripcion: "Desengrase técnico profundo sin agua a presión. Seguro para cableados y sensores, con acondicionado satinado térmico.",
+    video: "/videos/jds/jds-video-motor.mp4",
+    poster: "/videos/jds/jds-video-motor-poster.jpg",
+    instagramUrl: "https://www.instagram.com/jdscardetail_/",
+    whatsappMsg: "¡Hola! Vi el video de Limpieza de Motor a Vapor en su web y quisiera pedir turno.",
+  },
+  {
+    titulo: "Higienización y Detallado de Interiores",
+    servicio: "Interior Integral",
+    descripcion: "Inyección y extracción profunda en tapizados y butacas, desmanchado técnico y nutrición de cueros y torpedo.",
+    video: "/videos/jds/jds-video-interior.mp4",
+    poster: "/videos/jds/jds-video-interior-poster.jpg",
+    instagramUrl: "https://www.instagram.com/jdscardetail_/",
+    whatsappMsg: "¡Hola! Vi el video de Limpieza Integral de Interiores en su web y quisiera consultar para mi auto.",
+  },
+  {
+    titulo: "Restauración de Ópticas con Sellado UV",
+    servicio: "Ópticas",
+    descripcion: "Micro-lijado progresivo y pulido óptico para eliminar amarillamiento y recuperar 100% de transparencia y haz de luz.",
+    video: "/videos/jds/jds-video-opticas.mp4",
+    poster: "/videos/jds/jds-video-opticas-poster.jpg",
+    instagramUrl: "https://www.instagram.com/jdscardetail_/",
+    whatsappMsg: "¡Hola! Vi el reel de Restauración de Ópticas en su web y quisiera pedir presupuesto.",
+  },
+  {
+    titulo: "Lavado Premium con Foam Cannon",
+    servicio: "Lavado Premium",
+    descripcion: "Pre-lavado con espuma activa de alta densidad, método de dos baldes y cepillos de pelo suave sin rayas.",
+    video: "/videos/jds/jds-video-lavado-1.mp4",
+    poster: "/videos/jds/jds-video-lavado-1-poster.jpg",
+    instagramUrl: "https://www.instagram.com/jdscardetail_/",
+    whatsappMsg: "¡Hola! Vi el video de Lavado Premium en su web y quisiera pedir turno.",
+  },
+  {
+    titulo: "Detallado de Llantas y Secado Técnico",
+    servicio: "Lavado Detallado",
+    descripcion: "Descontaminación ferrosa en llantas y calipers, limpieza de pasarruedas y secado con aire y microfibra.",
+    video: "/videos/jds/jds-video-lavado-2.mp4",
+    poster: "/videos/jds/jds-video-lavado-2-poster.jpg",
+    instagramUrl: "https://www.instagram.com/jdscardetail_/",
+    whatsappMsg: "¡Hola! Vi el video de Lavado y Detallado de Llantas en su web y quisiera consultar.",
   },
 ];
 
@@ -137,7 +200,7 @@ function JdsReelCard({
   item,
   biz,
 }: {
-  item: typeof TRABAJOS_VIDEOS_JDS[0];
+  item: JdsVideoItem;
   biz: Business;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -163,6 +226,8 @@ function JdsReelCard({
     v.muted = !v.muted;
     setIsMuted(v.muted);
   };
+
+  const igUrl = item.instagramUrl ?? `https://www.instagram.com/${biz.instagram ?? "jdscardetail_"}/`;
 
   return (
     <div className="group relative rounded-[28px] overflow-hidden border border-white/10 hover:border-red-500/50 bg-[#101010] shadow-2xl transition-all duration-300 flex flex-col hover:shadow-[0_0_35px_rgba(239,68,68,0.25)]">
@@ -200,7 +265,7 @@ function JdsReelCard({
               {isMuted ? "🔇" : "🔊"}
             </button>
             <a
-              href={item.instagramUrl}
+              href={igUrl}
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}
@@ -249,7 +314,7 @@ function JdsReelCard({
               <span className="whitespace-nowrap">Pedir Presupuesto</span>
             </a>
             <a
-              href={item.instagramUrl}
+              href={igUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-outline-jds px-3 py-2.5 rounded-full flex items-center justify-center gap-1.5 text-xs font-medium shrink-0 active:scale-95"
@@ -262,6 +327,237 @@ function JdsReelCard({
           </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+interface JdsFotoItem {
+  titulo: string;
+  categoria: string;
+  descripcion: string;
+  img: string;
+  whatsappMsg: string;
+}
+
+const TRABAJOS_FOTOS_JDS: JdsFotoItem[] = [
+  {
+    titulo: "Tratamiento Cerámico 9H",
+    categoria: "Cerámico",
+    descripcion: "Terminación con brillo espejo profundo y efecto hidrofóbico en carrocería y llantas.",
+    img: "/trabajos/jds/jds-trabajo-ceramico.jpg",
+    whatsappMsg: "¡Hola! Vi la foto de Tratamiento Cerámico en su web y quisiera pedir presupuesto.",
+  },
+  {
+    titulo: "Detallado Integral de Interior",
+    categoria: "Interior",
+    descripcion: "Higienización profunda de tapizados, alfombras y torpedo con acabado satinado original de fábrica.",
+    img: "/trabajos/jds/jds-trabajo-interior-1.jpg",
+    whatsappMsg: "¡Hola! Vi la foto de Limpieza Integral de Interior en su web y quisiera consultar.",
+  },
+  {
+    titulo: "Protección PPF Film Transparente",
+    categoria: "PPF",
+    descripcion: "Poliuretano autorregenerable de alto impacto para proteger la pintura de piedras y roces.",
+    img: "/trabajos/jds/jds-trabajo-ppf.jpg",
+    whatsappMsg: "¡Hola! Vi la foto de PPF en su web y quisiera pedir cotización para mi auto.",
+  },
+  {
+    titulo: "Limpieza de Motor a Vapor Seco",
+    categoria: "Motor a Vapor",
+    descripcion: "Desengrase meticuloso seguro para la electrónica y acondicionamiento satinado de mangueras.",
+    img: "/trabajos/jds/jds-trabajo-motor.jpg",
+    whatsappMsg: "¡Hola! Vi la foto del Motor a Vapor en su web y quisiera pedir turno.",
+  },
+  {
+    titulo: "Nutrición y Restauración de Cuero",
+    categoria: "Interior",
+    descripcion: "Limpieza técnica de butacas de cuero con hidratación profunda para evitar grietas y resequedad.",
+    img: "/trabajos/jds/jds-trabajo-interior-2.jpg",
+    whatsappMsg: "¡Hola! Vi la foto del tapizado de cuero en su web y quisiera consultar para mi vehículo.",
+  },
+  {
+    titulo: "Detallado Meticuloso de Habitáculo",
+    categoria: "Interior",
+    descripcion: "Desinfección de conductos de aire, consola central y alfombras libres de polvo y manchas.",
+    img: "/trabajos/jds/jds-trabajo-interior-3.jpg",
+    whatsappMsg: "¡Hola! Vi la foto del habitáculo en su web y quisiera pedir presupuesto.",
+  },
+];
+
+function JdsPhotoCarousel({ biz }: { biz: Business }) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [selectedFoto, setSelectedFoto] = useState<JdsFotoItem | null>(null);
+
+  const scroll = (direction: "left" | "right") => {
+    if (!scrollRef.current) return;
+    const amount = scrollRef.current.clientWidth * 0.8;
+    scrollRef.current.scrollBy({
+      left: direction === "left" ? -amount : amount,
+      behavior: "smooth",
+    });
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSelectedFoto(null);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  return (
+    <div className="mt-16 sm:mt-20 pt-12 sm:pt-16 border-t border-white/10">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+        <div>
+          <span className="section-badge-jds mb-3 inline-block">Registro Fotográfico</span>
+          <h3 className="text-2xl sm:text-3xl md:text-4xl font-medium text-white tracking-tight">
+            Detalle Artesanal en Fotos
+          </h3>
+          <p className="text-slate-400 text-xs sm:text-sm mt-1 max-w-xl">
+            Trabajos reales fotografiados en nuestro estudio en Villa Ballester. Tocá cualquier foto para ampliarla o deslizá para ver más.
+          </p>
+        </div>
+
+        {/* Desktop Carousel Controls */}
+        <div className="hidden sm:flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => scroll("left")}
+            className="size-11 rounded-full bg-neutral-900/90 hover:bg-neutral-800 border border-white/10 hover:border-red-500/50 text-white flex items-center justify-center transition-all active:scale-95 shadow-lg hover:shadow-[0_0_20px_rgba(239,68,68,0.25)]"
+            aria-label="Foto anterior"
+          >
+            <HiChevronLeft className="size-5" />
+          </button>
+          <button
+            type="button"
+            onClick={() => scroll("right")}
+            className="size-11 rounded-full bg-neutral-900/90 hover:bg-neutral-800 border border-white/10 hover:border-red-500/50 text-white flex items-center justify-center transition-all active:scale-95 shadow-lg hover:shadow-[0_0_20px_rgba(239,68,68,0.25)]"
+            aria-label="Siguiente foto"
+          >
+            <HiChevronRight className="size-5" />
+          </button>
+        </div>
+      </div>
+
+      {/* Touch-swipeable Horizontal Scroll Container */}
+      <div
+        ref={scrollRef}
+        className="flex gap-4 sm:gap-6 overflow-x-auto snap-x snap-mandatory pb-6 scrollbar-none -mx-5 px-5 sm:mx-0 sm:px-0"
+        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+      >
+        {TRABAJOS_FOTOS_JDS.map((foto, idx) => (
+          <div
+            key={foto.titulo + idx}
+            onClick={() => setSelectedFoto(foto)}
+            className="group shrink-0 w-[84vw] xs:w-[320px] sm:w-[380px] md:w-[420px] snap-center cursor-pointer rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 hover:border-red-500/60 bg-[#121212] transition-all duration-300 hover:shadow-[0_0_35px_rgba(239,68,68,0.3)] flex flex-col select-none"
+          >
+            <div className="relative aspect-[16/11] overflow-hidden bg-black">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={foto.img}
+                alt={foto.titulo}
+                loading="lazy"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-108"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
+
+              {/* Badge Categoria */}
+              <div className="absolute top-3.5 left-3.5 z-10">
+                <span className="backdrop-blur-md px-3 py-1 rounded-full border text-[11px] font-bold uppercase tracking-wider bg-black/80 border-red-500/40 text-red-200 shadow-md">
+                  {foto.categoria}
+                </span>
+              </div>
+
+              {/* Zoom Icon indicator */}
+              <div className="absolute top-3.5 right-3.5 size-8 rounded-full bg-black/70 backdrop-blur-md border border-white/20 text-white/80 group-hover:text-white group-hover:border-red-500/50 flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100">
+                <HiMagnifyingGlassPlus className="size-4" />
+              </div>
+            </div>
+
+            <div className="p-4 sm:p-5 flex flex-col justify-between flex-1 gap-3 bg-[#121212]">
+              <div>
+                <h4 className="font-semibold text-base sm:text-lg text-white group-hover:text-red-400 transition-colors">
+                  {foto.titulo}
+                </h4>
+                <p className="text-xs sm:text-sm text-slate-400 mt-1 line-clamp-2 leading-relaxed">
+                  {foto.descripcion}
+                </p>
+              </div>
+
+              <div className="pt-1 border-t border-white/5 flex items-center justify-between gap-2" onClick={(e) => e.stopPropagation()}>
+                <span className="text-[11px] text-slate-400 flex items-center gap-1">
+                  🔍 Tocá para ampliar
+                </span>
+                <a
+                  href={waHref(biz, foto.whatsappMsg)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-jds text-[11px] sm:text-xs py-2 px-3 rounded-full flex items-center gap-1.5 font-semibold uppercase tracking-wider active:scale-95"
+                >
+                  <FaWhatsapp className="size-3.5 shrink-0" />
+                  <span>Consultar</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Lightbox Modal */}
+      {selectedFoto && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md p-4 sm:p-6 animate-fade-in"
+          onClick={() => setSelectedFoto(null)}
+        >
+          <div
+            className="relative max-w-4xl w-full bg-[#111] rounded-3xl overflow-hidden border border-red-500/40 shadow-2xl animate-scale-up"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={() => setSelectedFoto(null)}
+              className="absolute top-4 right-4 z-20 size-10 rounded-full bg-black/80 hover:bg-black border border-white/20 text-white flex items-center justify-center text-lg transition-transform hover:scale-110 active:scale-90"
+              aria-label="Cerrar vista ampliada"
+            >
+              <HiXMark className="size-5" />
+            </button>
+
+            <div className="relative max-h-[70vh] bg-black flex items-center justify-center overflow-hidden">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={selectedFoto.img}
+                alt={selectedFoto.titulo}
+                className="max-h-[70vh] w-auto max-w-full object-contain mx-auto"
+              />
+            </div>
+
+            <div className="p-5 sm:p-6 bg-gradient-to-t from-black to-[#141414] border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <span className="text-red-400 text-xs font-bold uppercase tracking-wider">
+                  {selectedFoto.categoria}
+                </span>
+                <h4 className="text-lg sm:text-xl font-bold text-white mt-0.5">
+                  {selectedFoto.titulo}
+                </h4>
+                <p className="text-xs sm:text-sm text-slate-300 mt-1 max-w-xl">
+                  {selectedFoto.descripcion}
+                </p>
+              </div>
+              <a
+                href={waHref(biz, selectedFoto.whatsappMsg)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-jds px-5 py-3 rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wider flex items-center justify-center gap-2 shrink-0 active:scale-95 shadow-lg shadow-red-950/50"
+              >
+                <FaWhatsapp className="size-4 shrink-0" />
+                <span>Pedir Presupuesto</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -748,11 +1044,14 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
           </div>
 
           {isRojo ? (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-              {TRABAJOS_VIDEOS_JDS.map((item) => (
-                <JdsReelCard key={item.titulo} item={item} biz={biz} />
-              ))}
-            </div>
+            <>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-7xl mx-auto">
+                {TRABAJOS_VIDEOS_JDS.map((item) => (
+                  <JdsReelCard key={item.titulo} item={item} biz={biz} />
+                ))}
+              </div>
+              <JdsPhotoCarousel biz={biz} />
+            </>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
               {[
