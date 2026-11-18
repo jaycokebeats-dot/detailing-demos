@@ -78434,5 +78434,480 @@
     "pais": "MX",
     "place_id": "ChIJWQCDPiYNLYQRIY7CZfwwWEM",
     "template": "mexico"
+  },
+  {
+    "slug": "extreme-car-wash-queretaro",
+    "nombre": "Extreme Car Wash Querétaro",
+    "ciudad": "Querétaro, Qro.",
+    "direccion": "Prol. Bernardo Quintana 42, Los Arcos, 76047 Santiago de Querétaro, Qro., México",
+    "telefono": "44 6120 6512",
+    "whatsapp": "524461206512",
+    "instagram": null,
+    "rating": 4.6,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 3 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Extreme+Car+Wash+Quer%C3%A9taro/data=!4m7!3m6!1s0x85d35b11c89654f7:0xc0dca41752547694!8m2!3d20.6007862!4d-100.3758201!16s%2Fg%2F11y7d5j8wl!19sChIJ91SWyBFb04URlHZUUhek3MA?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJ91SWyBFb04URlHZUUhek3MA",
+    "template": "mexico"
+  },
+  {
+    "slug": "servicio-lm",
+    "nombre": "Servicio L&M",
+    "ciudad": "San Luis Potosí, S.L.P.",
+    "direccion": "Tecnológico 90, Sol, 78130 San Luis Potosí, S.L.P., México",
+    "telefono": "44 4427 8970",
+    "whatsapp": "524444278970",
+    "instagram": null,
+    "rating": 4.4,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 8 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Servicio+L%26M/data=!4m7!3m6!1s0x842aa3450049dde5:0x20fd4fbf0321046e!8m2!3d22.1465622!4d-100.9359086!16s%2Fg%2F11fk1sx0px!19sChIJ5d1JAEWjKoQRbgQhA79P_SA?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJ5d1JAEWjKoQRbgQhA79P_SA",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-spa-car-wash",
+    "nombre": "Autolavado Spa Car Wash",
+    "ciudad": "Morelia, Mich.",
+    "direccion": "Perif. Paseo de la República 2180, Josefa Ortiz de Domínguez, 58088 Morelia, Mich., México",
+    "telefono": "44 3353 3041",
+    "whatsapp": "524433533041",
+    "instagram": null,
+    "rating": 4.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 4 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+Spa+Car+Wash/data=!4m7!3m6!1s0x842d0c34d94e1811:0xac2b8bc4c7ad0fdb!8m2!3d19.6719264!4d-101.2080612!16s%2Fg%2F11cm12dvjy!19sChIJERhO2TQMLYQR2w-tx8SLK6w?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJERhO2TQMLYQR2w-tx8SLK6w",
+    "template": "mexico"
+  },
+  {
+    "slug": "osotheboss",
+    "nombre": "OSOTHEBOSS",
+    "ciudad": "Morelia, Mich.",
+    "direccion": "Jesús Carranza 99, La Quemada, 58146 Morelia, Mich., México",
+    "telefono": "44 3169 1957",
+    "whatsapp": "524431691957",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 5 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/OSOTHEBOSS/data=!4m7!3m6!1s0x842d0f30cc66c45b:0x6af8556a1dabb260!8m2!3d19.7020252!4d-101.2403961!16s%2Fg%2F11vpz0kg1d!19sChIJW8RmzDAPLYQRYLKrHWpV-Go?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJW8RmzDAPLYQRYLKrHWpV-Go",
+    "template": "mexico"
+  },
+  {
+    "slug": "mas-car-wash-suc-morelos",
+    "nombre": "Mas Car Wash (Suc. Morelos)",
+    "ciudad": "Hermosillo, Son.",
+    "direccion": "Bulevar José María Morelos, Colina 724, Bachoco, 83148 Hermosillo, Son., México",
+    "telefono": "66 2284 7358",
+    "whatsapp": "526622847358",
+    "instagram": null,
+    "rating": 4.1,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 7 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Mas+Car+Wash+%28Suc.+Morelos%29/data=!4m7!3m6!1s0x86ce86f5ca9635f3:0x21eaaec35c42610a!8m2!3d29.134822!4d-110.953485!16s%2Fg%2F11cnl91l_d!19sChIJ8zWWyvWGzoYRCmFCXMOu6iE?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJ8zWWyvWGzoYRCmFCXMOu6iE",
+    "template": "mexico"
+  },
+  {
+    "slug": "autobsession",
+    "nombre": "Autobsession",
+    "ciudad": "Hermosillo, Son.",
+    "direccion": "Plaza Teresita, Blvd. Juan Navarrete 461-Loc 5, Montebello, Santa Fe, 83249 Hermosillo, Son., México",
+    "telefono": "66 2339 0144",
+    "whatsapp": "526623390144",
+    "instagram": null,
+    "rating": 4.4,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autobsession/data=!4m7!3m6!1s0x86ce83f0915d21ad:0x5e0c8e330b6058ed!8m2!3d29.089175!4d-110.994815!16s%2Fg%2F11cn5q256c!19sChIJrSFdkfCDzoYR7VhgCzOODF4?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJrSFdkfCDzoYR7VhgCzOODF4",
+    "template": "mexico"
+  },
+  {
+    "slug": "marios-carwash",
+    "nombre": "Marios Carwash",
+    "ciudad": "Hermosillo, Son.",
+    "direccion": "Av. Arroyo Chico 21, Progreso, 83287 Hermosillo, Son., México",
+    "telefono": "66 2473 0263",
+    "whatsapp": "526624730263",
+    "instagram": null,
+    "rating": 4.7,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 4 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Mario%E2%80%99s+Carwash/data=!4m7!3m6!1s0x86ce850021e5c9c1:0xc6bb8ef3811889ac!8m2!3d29.0616367!4d-110.9798185!16s%2Fg%2F11z20c2tfn!19sChIJwcnlIQCFzoYRrIkYgfOOu8Y?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJwcnlIQCFzoYRrIkYgfOOu8Y",
+    "template": "mexico"
+  },
+  {
+    "slug": "auto-lavado-la-cantera",
+    "nombre": "Auto Lavado La Cantera",
+    "ciudad": "Chihuahua, Chih.",
+    "direccion": "Recursos Hidráulicos, 31210 Chihuahua, Chih., México",
+    "telefono": "61 4619 9687",
+    "whatsapp": "526146199687",
+    "instagram": null,
+    "rating": 4.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 3 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Auto+Lavado+La+Cantera/data=!4m7!3m6!1s0x86ea42dddabd21b9:0xbeb0c7cc1195bb57!8m2!3d28.6476092!4d-106.1175836!16s%2Fg%2F11ddwr_n_m!19sChIJuSG92t1C6oYRV7uVEczHsL4?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJuSG92t1C6oYRV7uVEczHsL4",
+    "template": "mexico"
+  },
+  {
+    "slug": "max-car-wash",
+    "nombre": "Max Car-Wash",
+    "ciudad": "Chihuahua, Chih.",
+    "direccion": "Federico Magaña 819, Deportistas, 31125 Chihuahua, Chih., México",
+    "telefono": "61 4189 3308",
+    "whatsapp": "526141893308",
+    "instagram": null,
+    "rating": 4.8,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Editado Hace 10 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Max+Car-Wash/data=!4m7!3m6!1s0x86ea423912aa6193:0x114b0e62bdbd1296!8m2!3d28.6982401!4d-106.1264896!16s%2Fg%2F11cmt47pm7!19sChIJk2GqEjlC6oYRlhK9vWIOSxE?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJk2GqEjlC6oYRlhK9vWIOSxE",
+    "template": "mexico"
+  },
+  {
+    "slug": "maitre-carwash",
+    "nombre": "Maitre Carwash",
+    "ciudad": "Chihuahua, Chih.",
+    "direccion": "Insurgentes 305, 24 de Junio, 31125 Chihuahua, Chih., México",
+    "telefono": "61 4131 9784",
+    "whatsapp": "526141319784",
+    "instagram": null,
+    "rating": 4.2,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Editado Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Maitre+Carwash/data=!4m7!3m6!1s0x86ea424bc93feabf:0x5669225a334e28b9!8m2!3d28.6920592!4d-106.1159401!16s%2Fg%2F11cms517cj!19sChIJv-o_yUtC6oYRuShOM1oiaVY?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJv-o_yUtC6oYRuShOM1oiaVY",
+    "template": "mexico"
+  },
+  {
+    "slug": "urci-spa-automotriz",
+    "nombre": "Urci Spa Automotriz",
+    "ciudad": "Culiacán, Sin.",
+    "direccion": "Gral. José Aguilar Barraza #525 Poniente, Jorge Almada, 80200 Culiacán Rosales, Sin., México",
+    "telefono": "66 7220 4410",
+    "whatsapp": "526672204410",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Urci+Spa+Automotriz/data=!4m7!3m6!1s0x86bcd1db6a63727d:0x445189e1c0ea52b6!8m2!3d24.7998568!4d-107.3999417!16s%2Fg%2F11fhwsz6fx!19sChIJfXJjatvRvIYRtlLqwOGJUUQ?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJfXJjatvRvIYRtlLqwOGJUUQ",
+    "template": "mexico"
+  },
+  {
+    "slug": "car-wash-internacional",
+    "nombre": "Car Wash Internacional",
+    "ciudad": "Culiacán, Sin.",
+    "direccion": "Heroico Colegio Militar 3093, Las Huertas, 80290 Culiacán Rosales, Sin., México",
+    "telefono": "66 8183 5560",
+    "whatsapp": "526681835560",
+    "instagram": null,
+    "rating": 4.2,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 5 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Car+Wash+Internacional/data=!4m7!3m6!1s0x86bcd726a98b2a4d:0x3c645c1acdbca51!8m2!3d24.7768211!4d-107.3671635!16s%2Fg%2F1tg50w6h!19sChIJTSqLqSbXvIYRUcrbrMFFxgM?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJTSqLqSbXvIYRUcrbrMFFxgM",
+    "template": "mexico"
+  },
+  {
+    "slug": "wahoo-autowash-carwash",
+    "nombre": "Wahoo Autowash - Carwash",
+    "ciudad": "Mazatlán, Sin.",
+    "direccion": "Sierra Nevada 106, Lomas de Mazatlán, 82110 Mazatlán, Sin., México",
+    "telefono": "66 9145 0345",
+    "whatsapp": "526691450345",
+    "instagram": null,
+    "rating": 4.1,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 4 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Wahoo+Autowash+-+Carwash/data=!4m7!3m6!1s0x869f54a3cdc3f2b1:0x96a23b98398abdda!8m2!3d23.2424144!4d-106.4474573!16s%2Fg%2F1tv3p3gn!19sChIJsfLDzaNUn4YR2r2KOZg7opY?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJsfLDzaNUn4YR2r2KOZg7opY",
+    "template": "mexico"
+  },
+  {
+    "slug": "wahoo-autowash-marina",
+    "nombre": "Wahoo Autowash Marina",
+    "ciudad": "Mazatlán, Sin.",
+    "direccion": "Av. Paseo del Atlántico 6109, Marina Mazatlán, 82113 Mazatlán, Sin., México",
+    "telefono": "66 9145 0344",
+    "whatsapp": "526691450344",
+    "instagram": null,
+    "rating": 4.1,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 3 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Wahoo+Autowash+Marina/data=!4m7!3m6!1s0x8698ab97b0758425:0x52e4f28865fbbe16!8m2!3d23.271206!4d-106.448742!16s%2Fg%2F11fk426q76!19sChIJJYR1sJermIYRFr77ZYjy5FI?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJJYR1sJermIYRFr77ZYjy5FI",
+    "template": "mexico"
+  },
+  {
+    "slug": "pacific-car-wash",
+    "nombre": "Pacific Car Wash",
+    "ciudad": "Mazatlán, Sin.",
+    "direccion": "Av. Óscar Pérez Escobosa, Av. Real del Pacífico 6008, 82124 Mazatlán, Sin., México",
+    "telefono": "66 9278 9621",
+    "whatsapp": "526692789621",
+    "instagram": null,
+    "rating": 4.4,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace un mes"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Pacific+Car+Wash/data=!4m7!3m6!1s0x8698ad227f207965:0xbd0a27324e7faa03!8m2!3d23.27975!4d-106.4341759!16s%2Fg%2F11jjs17j2w!19sChIJZXkgfyKtmIYRA6p_TjInCr0?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJZXkgfyKtmIYRA6p_TjInCr0",
+    "template": "mexico"
+  },
+  {
+    "slug": "bm-brillo-magnifico",
+    "nombre": "BM BRILLÓ MAGNÍFICO",
+    "ciudad": "Mazatlán, Sin.",
+    "direccion": "82190, Emiliano Zapata, 82190 Mazatlán, Sin., México",
+    "telefono": "81 4368 7244",
+    "whatsapp": "528143687244",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 7 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/BM+BRILL%C3%93+MAGN%C3%8DFICO/data=!4m7!3m6!1s0x869f53474fce35f1:0x7e44ece99a886d8d!8m2!3d23.2383117!4d-106.3934636!16s%2Fg%2F11z2lnfy2w!19sChIJ8TXOT0dTn4YRjW2ImunsRH4?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJ8TXOT0dTn4YRjW2ImunsRH4",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-cesar",
+    "nombre": "Autolavado César",
+    "ciudad": "Mazatlán, Sin.",
+    "direccion": "Av Óscar Pérez Escobosa 316, Villa Carey, 82129 Mazatlán, Sin., México",
+    "telefono": "66 9149 0863",
+    "whatsapp": "526691490863",
+    "instagram": null,
+    "rating": 4.9,
+    "reviews_count": 5,
+    "reviewDates": [
+      "3 semanas atrás"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+C%C3%A9sar/data=!4m7!3m6!1s0x869f534d3af62f33:0x8cfa97dc03cf2a82!8m2!3d23.2721925!4d-106.4087493!16s%2Fg%2F11pyt8mldf!19sChIJMy_2Ok1Tn4YRgirPA9yX-ow?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJMy_2Ok1Tn4YRgirPA9yX-ow",
+    "template": "mexico"
+  },
+  {
+    "slug": "speedy-carwash",
+    "nombre": "Speedy Carwash",
+    "ciudad": "Mazatlán, Sin.",
+    "direccion": "Av. Zaragoza 1515 Col, Centro, 82000 Mazatlán, Sin., México",
+    "telefono": "66 9114 9872",
+    "whatsapp": "526691149872",
+    "instagram": null,
+    "rating": 4.7,
+    "reviews_count": 5,
+    "reviewDates": [
+      "una semana atrás"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Speedy+Carwash/data=!4m7!3m6!1s0x869f53b78caadf77:0xb2f8ea371cdd12a0!8m2!3d23.2066925!4d-106.4149096!16s%2Fg%2F11y8ld24k_!19sChIJd9-qjLdTn4YRoBLdHDfq-LI?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJd9-qjLdTn4YRoBLdHDfq-LI",
+    "template": "mexico"
+  },
+  {
+    "slug": "360-car-studio",
+    "nombre": "360 car studio",
+    "ciudad": "Mexicali, B.C.",
+    "direccion": "C. Fundidores 1152, Libertad, 21030 Mexicali, B.C., México",
+    "telefono": "68 6119 8323",
+    "whatsapp": "526861198323",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 3 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/360+car+studio/data=!4m7!3m6!1s0x80d77bda9c9c0465:0x68c5c1f48cbae070!8m2!3d32.6444468!4d-115.4662306!16s%2Fg%2F11pz0j0bkt!19sChIJZQScnNp714ARcOC6jPTBxWg?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJZQScnNp714ARcOC6jPTBxWg",
+    "template": "mexico"
+  },
+  {
+    "slug": "car-wash-luxury-wash",
+    "nombre": "Car Wash Luxury Wash",
+    "ciudad": "Mexicali, B.C.",
+    "direccion": "21 de Marzo 500, Carbajal, 21370 Mexicali, B.C., México",
+    "telefono": "68 6387 8637",
+    "whatsapp": "526863878637",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 4 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Car+Wash+Luxury+Wash/data=!4m7!3m6!1s0x80d7718baeeee819:0x563b62ec4dfc3223!8m2!3d32.62074!4d-115.4324075!16s%2Fg%2F11zg4b162t!19sChIJGejurotx14ARIzL8TexiO1Y?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJGejurotx14ARIzL8TexiO1Y",
+    "template": "mexico"
+  },
+  {
+    "slug": "cromo-center-carwash",
+    "nombre": "CROMO CENTER CARWASH",
+    "ciudad": "Campeche, Camp.",
+    "direccion": "AV. CONCORIDA. AV. SIGLO XXI, Av. Concordia, 24070 San Francisco de Campeche, Camp., México",
+    "telefono": "98 2184 4562",
+    "whatsapp": "529821844562",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 11 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/CROMO+CENTER+CARWASH/data=!4m7!3m6!1s0x85f83175962d8cdb:0x4012585e1aa7978!8m2!3d19.8308039!4d-90.496741!16s%2Fg%2F11mrzyst3m!19sChIJ24wtlnUx-IUReHmq4YUlAQQ?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJ24wtlnUx-IUReHmq4YUlAQQ",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-lavado-de-autos-wash-and-bite",
+    "nombre": "AUTOLAVADO -LAVADO DE AUTOS - WASH AND BITE",
+    "ciudad": "Campeche, Camp.",
+    "direccion": "Siris entre COPAL Y AVENIDA AGUSTIN MELGAR, Bosques de Campeche, 24030 San Francisco de Campeche, Camp., México",
+    "telefono": "98 1131 7941",
+    "whatsapp": "529811317941",
+    "instagram": null,
+    "rating": 4.5,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 7 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/AUTOLAVADO+-LAVADO+DE+AUTOS+-+WASH+AND+BITE/data=!4m7!3m6!1s0x85f83359087a3dcb:0x73a020718bbeb35e!8m2!3d19.8300296!4d-90.555635!16s%2Fg%2F11yybxhh_0!19sChIJyz16CFkz-IURXrO-i3EgoHM?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJyz16CFkz-IURXrO-i3EgoHM",
+    "template": "mexico"
+  },
+  {
+    "slug": "lavadero-el-lobito",
+    "nombre": "Lavadero El Lobito",
+    "ciudad": "Campeche, Camp.",
+    "direccion": "C. Querétaro 2, Barrio de Sta Ana, 24050 San Francisco de Campeche, Camp., México",
+    "telefono": "98 1100 2143",
+    "whatsapp": "529811002143",
+    "instagram": null,
+    "rating": 4.5,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 8 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Lavadero+El+Lobito/data=!4m7!3m6!1s0x85f831a72d9a592f:0xbfa3a4ccaa11f766!8m2!3d19.835417!4d-90.5255286!16s%2Fg%2F11h760bl7k!19sChIJL1maLacx-IURZvcRqsyko78?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJL1maLacx-IURZvcRqsyko78",
+    "template": "mexico"
+  },
+  {
+    "slug": "comando-burbujas",
+    "nombre": "Comando Burbujas",
+    "ciudad": "Coatzacoalcos, Ver.",
+    "direccion": "Revolución 921, Maria de la Piedad, 96400 Coatzacoalcos, Ver., México",
+    "telefono": "92 1135 9473",
+    "whatsapp": "529211359473",
+    "instagram": null,
+    "rating": 4.8,
+    "reviews_count": 5,
+    "reviewDates": [
+      "una semana atrás"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Comando+Burbujas/data=!4m7!3m6!1s0x85e983007021ecad:0x72784f29a73e6a43!8m2!3d18.1482048!4d-94.4269971!16s%2Fg%2F11yv6pnw3f!19sChIJrewhcACD6YURQ2o-pylPeHI?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJrewhcACD6YURQ2o-pylPeHI",
+    "template": "mexico"
+  },
+  {
+    "slug": "lavado-de-autos-elite-car-wash",
+    "nombre": "Lavado de autos ÉLITE CAR WASH",
+    "ciudad": "Coatzacoalcos, Ver.",
+    "direccion": "Av Salvador Díaz Mirón 2909, Puerto Mexico, 96510 Coatzacoalcos, Ver., México",
+    "telefono": "92 1422 4297",
+    "whatsapp": "529214224297",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace un mes"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Lavado+de+autos+%22%C3%89LITE+CAR+WASH%22/data=!4m7!3m6!1s0x85e983004912fbf5:0xbce9efb551fb37c1!8m2!3d18.1442575!4d-94.4552534!16s%2Fg%2F11zymqj8_f!19sChIJ9fsSSQCD6YURwTf7UbXv6bw?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJ9fsSSQCD6YURwTf7UbXv6bw",
+    "template": "mexico"
   }
 ]
