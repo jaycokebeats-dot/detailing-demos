@@ -415,7 +415,7 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
   },
   {
     id: "ceramic-shield",
-    categoria: "correccion",
+    categoria: "brillo-proteccion",
     nombre: "Ceramic Shield",
     subtitulo: "Detallado Exterior | Cerámico Express",
     descripcion: "Protección de alto nivel, brillo espejo y repelencia extrema por hasta 12 meses.",
