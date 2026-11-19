@@ -85177,5 +85177,498 @@
     "pais": "MX",
     "place_id": "0x8420a9007947b77b:0x604694d02ad90cf3",
     "template": "mexico"
+  },
+  {
+    "slug": "multiservicios-guzman",
+    "nombre": "Multiservicios Guzmán",
+    "ciudad": "Tuxpan, Nay.",
+    "direccion": "\nIndependencia Ote. 2246, Independencia, 63203 Tuxpan, Nay., México",
+    "telefono": "31 9232 3388",
+    "whatsapp": "523192323388",
+    "instagram": null,
+    "rating": 4.6,
+    "reviews_count": 13,
+    "reviewDates": [
+      "Hace 10 meses",
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Multiservicios+Guzm%C3%A1n/data=!4m7!3m6!1s0x869e1da41b5046e9:0x1c1af0190ac09429!8m2!3d21.9418744!4d-105.2806645!16s%2Fg%2F11t64fxvb3!19sChIJ6UZQG6QdnoYRKZTAChnwGhw?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x869e1da41b5046e9:0x1c1af0190ac09429",
+    "template": "mexico"
+  },
+  {
+    "slug": "el-carwash",
+    "nombre": "El Carwash",
+    "ciudad": "Mazatlán, Sin.",
+    "direccion": "\nAv. de la Marina 3214, Ejidal Francisco Villa, 82127 Mazatlán, Sin., México",
+    "telefono": "66 9446 1644",
+    "whatsapp": "526694461644",
+    "instagram": null,
+    "rating": 4.4,
+    "reviews_count": 50,
+    "reviewDates": [
+      "Hace un mes",
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/El+Carwash/data=!4m7!3m6!1s0x869f5300674c5fed:0x5cee2103752fac0a!8m2!3d23.25295!4d-106.437681!16s%2Fg%2F11ybzn8q6d!19sChIJ7V9MZwBTn4YRCqwvdQMh7lw?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x869f5300674c5fed:0x5cee2103752fac0a",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-alex",
+    "nombre": "Autolavado Alex",
+    "ciudad": "Zacatecas, Zac.",
+    "direccion": "\nMina Cata Blanca 107, Zona A, Minera, 98050 Zacatecas, Zac., México",
+    "telefono": "49 2129 1368",
+    "whatsapp": "524921291368",
+    "instagram": null,
+    "rating": 4.5,
+    "reviews_count": 79,
+    "reviewDates": [
+      "Editado Hace 5 meses",
+      "Hace un mes"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+Alex/data=!4m7!3m6!1s0x86824f9ac632df0d:0xa5d5fffff236dd6d!8m2!3d22.7732058!4d-102.5863234!16s%2Fg%2F11h23_51_8!19sChIJDd8yxppPgoYRbd028v__1aU?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x86824f9ac632df0d:0xa5d5fffff236dd6d",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-usarmy",
+    "nombre": "Autolavado U.S.A.R.M.Y",
+    "ciudad": "Zacatecas, Zac.",
+    "direccion": "\nMexicapan 1406, Gustavo Diaz Ordaz 1ra 2da y 3ra Secc, 98020 Zacatecas, Zac., México",
+    "telefono": "49 2146 9361",
+    "whatsapp": "524921469361",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 10 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+U.S.A.R.M.Y/data=!4m7!3m6!1s0x86824d0035d9a991:0xae4226bbee99e599!8m2!3d22.7877401!4d-102.5697196!16s%2Fg%2F11mzcgp81f!19sChIJkanZNQBNgoYRmeWZ7rsmQq4?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x86824d0035d9a991:0xae4226bbee99e599",
+    "template": "mexico"
+  },
+  {
+    "slug": "auto-lavado-la-herradura",
+    "nombre": "AUTO LAVADO LA HERRADURA",
+    "ciudad": "Zacatecas, Zac.",
+    "direccion": "\nDe La Torre 4, Zona A, La Herradura 1ra y 2da Secc, 98086 Zacatecas, Zac., México",
+    "telefono": "49 2922 4944",
+    "whatsapp": "524929224944",
+    "instagram": null,
+    "rating": 4.2,
+    "reviews_count": 9,
+    "reviewDates": [
+      "Hace 5 meses",
+      "Hace 7 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/AUTO+LAVADO+LA+HERRADURA/data=!4m7!3m6!1s0x14075c595f94b711:0xa66548e3c1a27edd!8m2!3d22.7570107!4d-102.5863282!16s%2Fg%2F11b7f3k1nh!19sChIJEbeUX1lcBxQR3X6iweNIZaY?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x14075c595f94b711:0xa66548e3c1a27edd",
+    "template": "mexico"
+  },
+  {
+    "slug": "auto-lavado-el-pushy",
+    "nombre": "AUTO LAVADO EL PUSHY",
+    "ciudad": "Guadalupe, Zac.",
+    "direccion": "\nJoaquín Amaro 4, La Victoria, 98614 Guadalupe, Zac., México",
+    "telefono": "49 2129 5702",
+    "whatsapp": "524921295702",
+    "instagram": null,
+    "rating": 4.7,
+    "reviews_count": 50,
+    "reviewDates": [
+      "Hace 5 meses",
+      "Hace 2 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/AUTO+LAVADO+EL+PUSHY/data=!4m7!3m6!1s0x868249b779a8ceff:0xf60136c9dcb3a01e!8m2!3d22.7537592!4d-102.5167859!16s%2Fg%2F11nccbj_b6!19sChIJ_86oebdJgoYRHqCz3Mk2AfY?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x868249b779a8ceff:0xf60136c9dcb3a01e",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-carwashington",
+    "nombre": "Autolavado CarWashington",
+    "ciudad": "Guadalupe, Zac.",
+    "direccion": "\nSanta Rita, 98600 Guadalupe, Zac., México",
+    "telefono": "44 9390 0254",
+    "whatsapp": "524493900254",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 7,
+    "reviewDates": [
+      "Hace 10 meses",
+      "Hace 10 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+CarWashington/data=!4m7!3m6!1s0x868249006f2299ad:0x773f4aeeee6478a!8m2!3d22.743899!4d-102.5144352!16s%2Fg%2F11yv7p532b!19sChIJrZkibwBJgoYRikfm7q70cwc?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x868249006f2299ad:0x773f4aeeee6478a",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-samm-fresnillo",
+    "nombre": "Autolavado SAMM Fresnillo",
+    "ciudad": "Fresnillo, Zac.",
+    "direccion": "\nC. Higuera O a, Venustiano Carranza, 99099 Fresnillo, Zac., México",
+    "telefono": "49 3111 9758",
+    "whatsapp": "524931119758",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 6,
+    "reviewDates": [
+      "Hace un mes",
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+SAMM+Fresnillo/data=!4m7!3m6!1s0x86830b411519b251:0xcdd0acd7722f41c4!8m2!3d23.1690019!4d-102.856525!16s%2Fg%2F11x68sgwyt!19sChIJUbIZFUELg4YRxEEvctes0M0?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x86830b411519b251:0xcdd0acd7722f41c4",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-el-shapuzon",
+    "nombre": "Autolavado El Shapuzon",
+    "ciudad": "Fresnillo, Zac.",
+    "direccion": "\nAv Plateros 1212, Solidaridad, 99150 Fresnillo, Zac., México",
+    "telefono": "49 3112 9101",
+    "whatsapp": "524931129101",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 6 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+%22El+Shapuzon%22/data=!4m7!3m6!1s0x86830b65cf128f79:0x3b3a4c507d6d5e91!8m2!3d23.2010211!4d-102.8572066!16s%2Fg%2F11xyvfrf46!19sChIJeY8Sz2ULg4YRkV5tfVBMOjs?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x86830b65cf128f79:0x3b3a4c507d6d5e91",
+    "template": "mexico"
+  },
+  {
+    "slug": "el-vato",
+    "nombre": "El Vato",
+    "ciudad": "Jerez, Zac.",
+    "direccion": "\nDel Río 6-B, Guadalupe, 99310 Jerez de García Salinas, Zac., México",
+    "telefono": "49 4100 9369",
+    "whatsapp": "524941009369",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/El+Vato/data=!4m7!3m6!1s0x8682f1e8d55b46ed:0x2beccf2ddde0a3e4!8m2!3d22.6530846!4d-102.9824043!16s%2Fg%2F11ymjlh_n6!19sChIJ7UZb1ejxgoYR5KPg3S3P7Cs?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x8682f1e8d55b46ed:0x2beccf2ddde0a3e4",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-el-changuito",
+    "nombre": "Autolavado El Changuito",
+    "ciudad": "Jerez, Zac.",
+    "direccion": "\nIturbide no. 6, Guadalupe, 99340 Jerez de García Salinas, Zac., México",
+    "telefono": "49 4949 3282",
+    "whatsapp": "524949493282",
+    "instagram": null,
+    "rating": 4.0,
+    "reviews_count": 6,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+El+Changuito/data=!4m7!3m6!1s0x8682f1cf3e90cf7f:0x1ddf72b8be35ff82!8m2!3d22.6539403!4d-102.9864226!16s%2Fg%2F11pxm3c3js!19sChIJf8-QPs_xgoYRgv81vrhy3x0?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x8682f1cf3e90cf7f:0x1ddf72b8be35ff82",
+    "template": "mexico"
+  },
+  {
+    "slug": "carcare",
+    "nombre": "CarCare",
+    "ciudad": "Durango, Dgo.",
+    "direccion": "\nRep. de Bolivia 1007, Francisco Zarco, 34210 Durango, Dgo., México",
+    "telefono": "61 8265 5921",
+    "whatsapp": "526182655921",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 42,
+    "reviewDates": [
+      "Hace 4 meses",
+      "Hace un mes"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/CarCare/data=!4m7!3m6!1s0x869bb7cd38f2030b:0xaa18416b7813bc1c!8m2!3d24.0421214!4d-104.6416967!16s%2Fg%2F11y3v94nfl!19sChIJCwPyOM23m4YRHLwTeGtBGKo?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x869bb7cd38f2030b:0xaa18416b7813bc1c",
+    "template": "mexico"
+  },
+  {
+    "slug": "solo-wash",
+    "nombre": "Solo Wash",
+    "ciudad": "Durango, Dgo.",
+    "direccion": "\nGral. Tornel 205, Juan de la Barrera, 34150 Durango, Dgo., México",
+    "telefono": "61 8825 0635",
+    "whatsapp": "526188250635",
+    "instagram": null,
+    "rating": 4.3,
+    "reviews_count": 256,
+    "reviewDates": [
+      "Hace 5 meses",
+      "Hace 8 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Solo+Wash/data=!4m7!3m6!1s0x869bc800c4d7b86b:0x2a7983d849793e1a!8m2!3d24.0035327!4d-104.6638215!16s%2Fg%2F11b6jbzptf!19sChIJa7jXxADIm4YRGj55SdiDeSo?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x869bc800c4d7b86b:0x2a7983d849793e1a",
+    "template": "mexico"
+  },
+  {
+    "slug": "h2o-autolavado-durango",
+    "nombre": "H2O Autolavado Durango",
+    "ciudad": "Durango, Dgo.",
+    "direccion": "\nReal del Mezquital 85, Real del Mezquital, 34199 Durango, Dgo., México",
+    "telefono": "61 8111 4757",
+    "whatsapp": "526181114757",
+    "instagram": null,
+    "rating": 4.1,
+    "reviews_count": 144,
+    "reviewDates": [
+      "Hace 6 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/H2O+Autolavado+Durango/data=!4m7!3m6!1s0x869bb9efe01d810f:0xe658ad5a651683b0!8m2!3d24.0018713!4d-104.6526662!16s%2Fg%2F11fm6ftrt9!19sChIJD4Ed4O-5m4YRsIMWZVqtWOY?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x869bb9efe01d810f:0xe658ad5a651683b0",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-jardines",
+    "nombre": "AUTOLAVADO JARDINES",
+    "ciudad": "Durango, Dgo.",
+    "direccion": "\nC. Haití 403, Las Américas, 34200 Durango, Dgo., México",
+    "telefono": "61 8101 7003",
+    "whatsapp": "526181017003",
+    "instagram": null,
+    "rating": 4.3,
+    "reviews_count": 44,
+    "reviewDates": [
+      "Hace un año",
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/AUTOLAVADO+JARDINES/data=!4m7!3m6!1s0x869bb78f2fb20b2b:0x659d291ec085ce79!8m2!3d24.0376209!4d-104.6363529!16s%2Fg%2F11hzxsrhjn!19sChIJKwuyL4-3m4YRec6FwB4pnWU?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x869bb78f2fb20b2b:0x659d291ec085ce79",
+    "template": "mexico"
+  },
+  {
+    "slug": "adar-wash",
+    "nombre": "Adar Wash",
+    "ciudad": "Durango, Dgo.",
+    "direccion": "\nAv. del Factor 1122, Valle Sol, Casa Redonda, 34020 Durango, Dgo., México",
+    "telefono": "61 8299 9195",
+    "whatsapp": "526182999195",
+    "instagram": null,
+    "rating": 4.0,
+    "reviews_count": 111,
+    "reviewDates": [
+      "Hace 11 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Adar+Wash/data=!4m7!3m6!1s0x869bc828d5b06b33:0xc37f22a35ec825a0!8m2!3d24.0387442!4d-104.6643595!16s%2Fg%2F11b6j8x6pt!19sChIJM2uw1SjIm4YRoCXIXqMif8M?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x869bc828d5b06b33:0xc37f22a35ec825a0",
+    "template": "mexico"
+  },
+  {
+    "slug": "lavado-de-autos-pit-stop",
+    "nombre": "LAVADO DE AUTOS PIT STOP",
+    "ciudad": "Gómez Palacio, Dgo.",
+    "direccion": "\nAVENIDA PRIMO DE VERDAD # 1002 ESQUINA CON, Ignacio Ramírez, COLONIA CENTRO, 35000 Gómez Palacio, Dgo., México",
+    "telefono": "87 1347 8572",
+    "whatsapp": "528713478572",
+    "instagram": null,
+    "rating": 4.5,
+    "reviews_count": 134,
+    "reviewDates": [
+      "3 semanas atrás",
+      "Hace un mes"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/LAVADO+DE+AUTOS+PIT+STOP/data=!4m7!3m6!1s0x868fd9864f498087:0x1196f20de2a57361!8m2!3d25.5555819!4d-103.5013458!16s%2Fg%2F11gxxj2tr3!19sChIJh4BJT4bZj4YRYXOl4g3ylhE?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x868fd9864f498087:0x1196f20de2a57361",
+    "template": "mexico"
+  },
+  {
+    "slug": "d-luxe-car-wash",
+    "nombre": "D' Luxe Car Wash",
+    "ciudad": "Gómez Palacio, Dgo.",
+    "direccion": "\nAv. Francisco I. Madero 503 NTE, Col. Centro, 35027 Gómez Palacio, Dgo., México",
+    "telefono": "87 1218 2843",
+    "whatsapp": "528712182843",
+    "instagram": null,
+    "rating": 4.5,
+    "reviews_count": 42,
+    "reviewDates": [
+      "Hace 2 meses",
+      "Hace 9 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/D%27+Luxe+Car+Wash/data=!4m7!3m6!1s0x868fd98633ba20ed:0xade473f4650569bb!8m2!3d25.5791099!4d-103.50204!16s%2Fg%2F11q4hkq26c!19sChIJ7SC6M4bZj4YRu2kFZfRz5K0?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x868fd98633ba20ed:0xade473f4650569bb",
+    "template": "mexico"
+  },
+  {
+    "slug": "auto-lavado-miravalle",
+    "nombre": "Auto lavado miravalle",
+    "ciudad": "Gómez Palacio, Dgo.",
+    "direccion": "\nFundadores 99, Infonavit Fundadores, 35013 Gómez Palacio, Dgo., México",
+    "telefono": "87 1511 1202",
+    "whatsapp": "528715111202",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 21,
+    "reviewDates": [
+      "Hace 3 meses",
+      "Hace 7 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Auto+lavado+miravalle/data=!4m7!3m6!1s0x868fd745da1ddff1:0x737f28d4e24cc516!8m2!3d25.6021173!4d-103.4969372!16s%2Fg%2F11v52mcyw8!19sChIJ8d8d2kXXj4YRFsVM4tQof3M?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x868fd745da1ddff1:0x737f28d4e24cc516",
+    "template": "mexico"
+  },
+  {
+    "slug": "auto-lavado-20-de-noviembre",
+    "nombre": "Auto Lavado 20 de Noviembre",
+    "ciudad": "Gómez Palacio, Dgo.",
+    "direccion": "\nC. 20 de Noviembre 164, Zona Centro, 35000 Gómez Palacio, Dgo., México",
+    "telefono": "87 1485 2459",
+    "whatsapp": "528714852459",
+    "instagram": null,
+    "rating": 4.6,
+    "reviews_count": 13,
+    "reviewDates": [
+      "Hace un mes",
+      "Hace 10 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Auto+Lavado/data=!4m7!3m6!1s0x868fd84bf7513e71:0x6bfab3c629d1e52b!8m2!3d25.5705197!4d-103.5024254!16s%2Fg%2F11kn6qqxxx!19sChIJcT5R90vYj4YRK-XRKcaz-ms?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x868fd84bf7513e71:0x6bfab3c629d1e52b",
+    "template": "mexico"
+  },
+  {
+    "slug": "auto-lavado-wonder",
+    "nombre": "Auto Lavado WONDER",
+    "ciudad": "Ciudad Lerdo, Dgo.",
+    "direccion": "\nDonato Guerra 238, Cuba, 35150 Lerdo, Dgo., México",
+    "telefono": "87 1897 1206",
+    "whatsapp": "528718971206",
+    "instagram": null,
+    "rating": 4.6,
+    "reviews_count": 29,
+    "reviewDates": [
+      "Hace 2 meses",
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Auto+Lavado+%22WONDER%22/data=!4m7!3m6!1s0x868fd92b0155869b:0x7229a996252fe6d1!8m2!3d25.5392083!4d-103.5294279!16s%2Fg%2F11hdz351r6!19sChIJm4ZVASvZj4YR0eYvJZapKXI?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x868fd92b0155869b:0x7229a996252fe6d1",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-y-estacionamiento-santa-maria",
+    "nombre": "Autolavado y estacionamiento Santa Maria",
+    "ciudad": "Ciudad Lerdo, Dgo.",
+    "direccion": "\nAv. Matamoros 156 Nte, Zona Centro, 35150 Lerdo, Dgo., México",
+    "telefono": "87 1432 6933",
+    "whatsapp": "528714326933",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 7 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+y+estacionamiento+Santa+Maria/data=!4m7!3m6!1s0x868fd99bfee1bedf:0xcc850bbc0132052b!8m2!3d25.5370006!4d-103.5225958!16s%2Fg%2F11t6l7hfyf!19sChIJ377h_pvZj4YRKwUyAbwLhcw?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x868fd99bfee1bedf:0xcc850bbc0132052b",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-24hr",
+    "nombre": "Autolavado 24HR.",
+    "ciudad": "Torreón, Coah.",
+    "direccion": "\nCalz. Saltillo 400 s/n, Col. Exhacienda Antigua Los Ángeles, 27260 Torreón, Coah., México",
+    "telefono": "87 1732 2989",
+    "whatsapp": "528717322989",
+    "instagram": null,
+    "rating": 4.4,
+    "reviews_count": 365,
+    "reviewDates": [
+      "Hace 4 meses",
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+24HR./data=!4m7!3m6!1s0x868fdb9e1831f949:0x1333718fe6472bed!8m2!3d25.5340652!4d-103.4056625!16s%2Fg%2F11c319t3x0!19sChIJSfkxGJ7bj4YR7StH5o9xMxM?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x868fdb9e1831f949:0x1333718fe6472bed",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-spa-car",
+    "nombre": "AUTOLAVADO SPA CAR",
+    "ciudad": "Torreón, Coah.",
+    "direccion": "\nCalz Cuauhtemoc 139, Tercero de Cobián Centro, 27000 Torreón, Coah., México",
+    "telefono": "87 1389 9232",
+    "whatsapp": "528713899232",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 16,
+    "reviewDates": [
+      "Hace un mes",
+      "Hace un mes"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/AUTOLAVADO+SPA+CAR/data=!4m7!3m6!1s0x868fdb9ecbb224b3:0xee99e5279816520e!8m2!3d25.5426169!4d-103.4347028!16s%2Fg%2F11zxv10hdw!19sChIJsySyy57bj4YRDlIWmCflme4?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x868fdb9ecbb224b3:0xee99e5279816520e",
+    "template": "mexico"
+  },
+  {
+    "slug": "coin-wash-autolavado",
+    "nombre": "Coin Wash Autolavado",
+    "ciudad": "Torreón, Coah.",
+    "direccion": "\nPinabetes 117, Las Arboledas, 27084 Torreón, Coah., México",
+    "telefono": "87 1127 8242",
+    "whatsapp": "528711278242",
+    "instagram": null,
+    "rating": 4.3,
+    "reviews_count": 77,
+    "reviewDates": [
+      "Hace 3 meses",
+      "Hace 2 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Coin+Wash+Autolavado/data=!4m7!3m6!1s0x868fdb2d8b8d9a3f:0x178c70808aab8158!8m2!3d25.5440216!4d-103.366333!16s%2Fg%2F11sy1kndd7!19sChIJP5qNiy3bj4YRWIGrioBwjBc?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x868fdb2d8b8d9a3f:0x178c70808aab8158",
+    "template": "mexico"
   }
 ]
