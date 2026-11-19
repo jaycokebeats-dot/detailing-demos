@@ -81294,5 +81294,480 @@
     "pais": "MX",
     "place_id": "ChIJkyfced_Tr4YRKC9p5SAEBeI",
     "template": "mexico"
+  },
+  {
+    "slug": "performance",
+    "nombre": "Performance",
+    "ciudad": "Cabo San Lucas, B.C.S.",
+    "direccion": "C. Narciso Mendoza, Downtown, Ejidal Chamizal, 23470 Cabo San Lucas, B.C.S., México",
+    "telefono": "62 4122 1979",
+    "whatsapp": "526241221979",
+    "instagram": null,
+    "rating": 4.5,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace un mes"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Performance/data=!4m7!3m6!1s0x86af4af7eff1f051:0xbd65a9cc2be4f4b5!8m2!3d22.897089!4d-109.9147407!16s%2Fg%2F11b6y14x05!19sChIJUfDx7_dKr4YRtfTkK8ypZb0?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJUfDx7_dKr4YRtfTkK8ypZb0",
+    "template": "mexico"
+  },
+  {
+    "slug": "10-carwash",
+    "nombre": "10 CarWash",
+    "ciudad": "Cabo San Lucas, B.C.S.",
+    "direccion": "Calle General Juan Alvarez #2524, Colonia Benito Juarez, 23469 Cabo San Lucas, B.C.S., México",
+    "telefono": "62 4143 4338",
+    "whatsapp": "526241434338",
+    "instagram": null,
+    "rating": 4.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "2 semanas atrás"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/10+CarWash/data=!4m7!3m6!1s0x86af4af94ee8064f:0xbab240b0bfbd6672!8m2!3d22.8940718!4d-109.9085257!16s%2Fg%2F11cnb7ykjr!19sChIJTwboTvlKr4YRcma9v7BAsro?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJTwboTvlKr4YRcma9v7BAsro",
+    "template": "mexico"
+  },
+  {
+    "slug": "carwash-auto-clean",
+    "nombre": "Carwash Auto clean",
+    "ciudad": "Cabo San Lucas, B.C.S.",
+    "direccion": "23462, 1, Lagunitas, 23462 Cabo San Lucas, B.C.S., México",
+    "telefono": "62 4155 8684",
+    "whatsapp": "526241558684",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 5 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Carwash+Auto+clean/data=!4m7!3m6!1s0x86af4bf613a0887d:0xd06fb31f7987d948!8m2!3d22.9124097!4d-109.9243794!16s%2Fg%2F11z1ffwl3s!19sChIJfYigE_ZLr4YRSNmHeR-zb9A?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJfYigE_ZLr4YRSNmHeR-zb9A",
+    "template": "mexico"
+  },
+  {
+    "slug": "ruta-146-carwash",
+    "nombre": "Ruta 14/6 Carwash",
+    "ciudad": "Cabo San Lucas, B.C.S.",
+    "direccion": "Carretera a Todos Santos Manzana 58 Lote 11, De las Brisas, del Pacítfico, 23473 Cabo San Lucas, B.C.S., México",
+    "telefono": "62 4131 8404",
+    "whatsapp": "526241318404",
+    "instagram": null,
+    "rating": 4.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "una semana atrás"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Ruta+14%2F6+Carwash/data=!4m7!3m6!1s0x86af4bb9c668a869:0x27e63c922274b6e5!8m2!3d22.9046625!4d-109.9376487!16s%2Fg%2F11k_q5c2r9!19sChIJaahoxrlLr4YR5bZ0IpI85ic?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJaahoxrlLr4YR5bZ0IpI85ic",
+    "template": "mexico"
+  },
+  {
+    "slug": "carwash-los-payines",
+    "nombre": "Carwash Los Payines",
+    "ciudad": "Cabo San Lucas, B.C.S.",
+    "direccion": "paseo cabo de oro y av todos santos, 23473 Cabo San Lucas, B.C.S., México",
+    "telefono": "62 4174 3825",
+    "whatsapp": "526241743825",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "2 semanas atrás"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Carwash+Los+Payines/data=!4m7!3m6!1s0x86af35e68c122107:0xba5d204aad1fdd92!8m2!3d22.9012483!4d-109.9584398!16s%2Fg%2F11zyfnh3zc!19sChIJByESjOY1r4YRkt0frUogXbo?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJByESjOY1r4YRkt0frUogXbo",
+    "template": "mexico"
+  },
+  {
+    "slug": "super-sonic-express-auto-wash",
+    "nombre": "Super Sonic Express Auto Wash",
+    "ciudad": "Cabo San Lucas, B.C.S.",
+    "direccion": "Av. Leona Vicario, Downtown, Ejidal Chamizal, 23460 Cabo San Lucas, B.C.S., México",
+    "telefono": "62 4143 5251",
+    "whatsapp": "526241435251",
+    "instagram": null,
+    "rating": 4.1,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 11 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Super+Sonic+Express+Auto+Wash/data=!4m7!3m6!1s0x86af4b358a800b7b:0x317b96b7b20fe57e!8m2!3d22.8960007!4d-109.9161609!16s%2Fg%2F11t50clp31!19sChIJewuAijVLr4YRfuUPsreWezE?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJewuAijVLr4YRfuUPsreWezE",
+    "template": "mexico"
+  },
+  {
+    "slug": "carwash-spotless",
+    "nombre": "Carwash Spotless",
+    "ciudad": "Cabo San Lucas, B.C.S.",
+    "direccion": "Plaza Walmart, 23454 Cabo San Lucas, B.C.S., México",
+    "telefono": "62 4129 9591",
+    "whatsapp": "526241299591",
+    "instagram": null,
+    "rating": 4.3,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 3 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Carwash+Spotless/data=!4m7!3m6!1s0x86af4b4ff08f48d9:0x396dd5cd66370fb8!8m2!3d22.9036425!4d-109.9015418!16s%2Fg%2F11h71nflgy!19sChIJ2UiP8E9Lr4YRuA83Zs3VbTk?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJ2UiP8E9Lr4YRuA83Zs3VbTk",
+    "template": "mexico"
+  },
+  {
+    "slug": "car-wash-pleikebarbewash",
+    "nombre": "Car wash PLEIKEBARBEWASH",
+    "ciudad": "Cabo San Lucas, B.C.S.",
+    "direccion": "calle varado, Avenida los cabos entte, Blvd. Hojazen, 23473 Cabo San Lucas, B.C.S., México",
+    "telefono": "62 4165 6864",
+    "whatsapp": "526241656864",
+    "instagram": null,
+    "rating": 4.6,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 8 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Car+wash+PLEIKEBARBEWASH/data=!4m7!3m6!1s0x86af4b91707b4737:0xbb95616b3e85322c!8m2!3d22.898114!4d-109.9488475!16s%2Fg%2F11tmhlvsj5!19sChIJN0d7cJFLr4YRLDKFPmthlbs?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJN0d7cJFLr4YRLDKFPmthlbs",
+    "template": "mexico"
+  },
+  {
+    "slug": "car-wash-la-yepiza",
+    "nombre": "Car wash La Yepiza",
+    "ciudad": "San José del Cabo, B.C.S.",
+    "direccion": "Av. Baja California Sur, 23427 San José del Cabo, B.C.S., México",
+    "telefono": "62 4100 1533",
+    "whatsapp": "526241001533",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 10 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Car+wash+La+Yepiza/data=!4m7!3m6!1s0x86af5b005c84754f:0xa69eceed6856b544!8m2!3d23.1063059!4d-109.7347036!16s%2Fg%2F11yvpb73gl!19sChIJT3WEXABbr4YRRLVWaO3OnqY?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJT3WEXABbr4YRRLVWaO3OnqY",
+    "template": "mexico"
+  },
+  {
+    "slug": "los-westside-car-wash",
+    "nombre": "Los Westside Car Wash",
+    "ciudad": "San José del Cabo, B.C.S.",
+    "direccion": "Av. Pescador Mza 26 Lte 20 Colonia Maurico Castro, 23443 San José del Cabo, B.C.S., México",
+    "telefono": "62 4688 9803",
+    "whatsapp": "526246889803",
+    "instagram": null,
+    "rating": 4.1,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 2 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Los+Westside+Car+Wash/data=!4m7!3m6!1s0x86af5a7f509b9233:0x5994cd5d09821fb4!8m2!3d23.0623611!4d-109.706133!16s%2Fg%2F11d_txhnwf!19sChIJM5KbUH9ar4YRtB-CCV3NlFk?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJM5KbUH9ar4YRtB-CCV3NlFk",
+    "template": "mexico"
+  },
+  {
+    "slug": "don-brillo-autoclub",
+    "nombre": "Don Brillo Autoclub",
+    "ciudad": "San José del Cabo, B.C.S.",
+    "direccion": "Flor de Jimulco 20, Monte Real, 23444 San José del Cabo, B.C.S., México",
+    "telefono": "62 4264 3959",
+    "whatsapp": "526242643959",
+    "instagram": null,
+    "rating": 4.5,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 3 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Don+Brillo+Autoclub/data=!4m7!3m6!1s0x86af5b04727c1b57:0x32f339d4cb96ee5c!8m2!3d23.0770319!4d-109.7252384!16s%2Fg%2F11z1rnd_cg!19sChIJVxt8cgRbr4YRXO6Wy9Q58zI?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJVxt8cgRbr4YRXO6Wy9Q58zI",
+    "template": "mexico"
+  },
+  {
+    "slug": "luxury-clean",
+    "nombre": "Luxury Clean",
+    "ciudad": "San José del Cabo, B.C.S.",
+    "direccion": "Central camionera Aguila, 1ro de Mayo, 23406 San José del Cabo, B.C.S., México",
+    "telefono": "62 4211 5150",
+    "whatsapp": "526242115150",
+    "instagram": null,
+    "rating": 4.8,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 5 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Luxury+Clean/data=!4m7!3m6!1s0x86af510065a1bf35:0xb80622761f3b0d76!8m2!3d23.0544274!4d-109.7029113!16s%2Fg%2F11xmgjz2z9!19sChIJNb-hZQBRr4YRdg07H3YiBrg?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJNb-hZQBRr4YRdg07H3YiBrg",
+    "template": "mexico"
+  },
+  {
+    "slug": "car-wash-san-jose",
+    "nombre": "Car wash San Jose",
+    "ciudad": "San José del Cabo, B.C.S.",
+    "direccion": "C. Río Rhin, Las Veredas, 23435 San José del Cabo, B.C.S., México",
+    "telefono": "62 4177 7693",
+    "whatsapp": "526241777693",
+    "instagram": null,
+    "rating": 4.3,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 3 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Car+wash+San+Jose/data=!4m7!3m6!1s0x86af5dee080683b5:0x2de7f1c365947e42!8m2!3d23.1565406!4d-109.7063673!16s%2Fg%2F11zg3ws68m!19sChIJtYMGCO5dr4YRQn6UZcPx5y0?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJtYMGCO5dr4YRQn6UZcPx5y0",
+    "template": "mexico"
+  },
+  {
+    "slug": "car-wash-el-lobito",
+    "nombre": "Car wash el lobito",
+    "ciudad": "San José del Cabo, B.C.S.",
+    "direccion": "Calle cascalozuchi, Las Veredas, 23435 San José del Cabo, B.C.S., México",
+    "telefono": "62 4158 8080",
+    "whatsapp": "526241588080",
+    "instagram": null,
+    "rating": 4.6,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Editado Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Car+wash+el+lobito/data=!4m7!3m6!1s0x86af5b3fa084d9d7:0xbbfe5cb4b4590e8a!8m2!3d23.1459109!4d-109.7073471!16s%2Fg%2F11lrk6039q!19sChIJ19mEoD9br4YRig5ZtLRc_rs?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJ19mEoD9br4YRig5ZtLRc_rs",
+    "template": "mexico"
+  },
+  {
+    "slug": "pro-car-wash",
+    "nombre": "Pro Car Wash",
+    "ciudad": "San José del Cabo, B.C.S.",
+    "direccion": "C. Forjadores 1436, Sta Rosa, 23428 San José del Cabo, B.C.S., México",
+    "telefono": "62 4690 7267",
+    "whatsapp": "526246907267",
+    "instagram": null,
+    "rating": 4.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 2 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Pro+Car+Wash/data=!4m7!3m6!1s0x86af5b6289968333:0xa78015c63cb4dc30!8m2!3d23.0940032!4d-109.7124338!16s%2Fg%2F11rxv22gy1!19sChIJM4OWiWJbr4YRMNy0PMYVgKc?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJM4OWiWJbr4YRMNy0PMYVgKc",
+    "template": "mexico"
+  },
+  {
+    "slug": "car-wash-los-compadres",
+    "nombre": "Car wash Los Compadres",
+    "ciudad": "San José del Cabo, B.C.S.",
+    "direccion": "23435, Las Veredas, 23435 San José del Cabo, B.C.S., México",
+    "telefono": "62 4126 4673",
+    "whatsapp": "526241264673",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 8 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Car+wash+Los+Compadres/data=!4m7!3m6!1s0x86af5b001a3205bd:0xf931705c4ac39135!8m2!3d23.1510427!4d-109.7071178!16s%2Fg%2F11n4blzx70!19sChIJvQUyGgBbr4YRNZHDSlxwMfk?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJvQUyGgBbr4YRNZHDSlxwMfk",
+    "template": "mexico"
+  },
+  {
+    "slug": "car-wash-el-tinoss",
+    "nombre": "Car wash El tinoss",
+    "ciudad": "San José del Cabo, B.C.S.",
+    "direccion": "23427, San José Viejo, 23437 B.C.S., México",
+    "telefono": "62 4219 6939",
+    "whatsapp": "526242196939",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 2 días"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Car+wash+El+tinoss/data=!4m7!3m6!1s0x86af5b00231f318f:0xe6dd8a10d2df03c!8m2!3d23.1200445!4d-109.7123924!16s%2Fg%2F11mzwlrjt2!19sChIJjzEfIwBbr4YRPPAtDaHYbQ4?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJjzEfIwBbr4YRPPAtDaHYbQ4",
+    "template": "mexico"
+  },
+  {
+    "slug": "car-wash-rosarito",
+    "nombre": "Car wash Rosarito",
+    "ciudad": "San José del Cabo, B.C.S.",
+    "direccion": "C. Buena Vista, Lomas del Rosarito, 23444 San José del Cabo, B.C.S., México",
+    "telefono": "62 4240 5463",
+    "whatsapp": "526242405463",
+    "instagram": null,
+    "rating": 4.4,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 9 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Car+wash+%E2%80%9CRosarito%E2%80%9D/data=!4m7!3m6!1s0x86af5b006b618e1f:0xfa5be99ae7a08fd!8m2!3d23.0721282!4d-109.7070204!16s%2Fg%2F11vmbkwdmj!19sChIJH45hawBbr4YR_Qh6rpm-pQ8?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJH45hawBbr4YR_Qh6rpm-pQ8",
+    "template": "mexico"
+  },
+  {
+    "slug": "modi-car-wash",
+    "nombre": "MODI CAR WASH",
+    "ciudad": "Chetumal, Q.R.",
+    "direccion": "77013, David Gustavo, 77013 Chetumal, Q.R., México",
+    "telefono": "98 4434 0515",
+    "whatsapp": "529844340515",
+    "instagram": null,
+    "rating": 4.9,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 2 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/MODI+CAR+WASH/data=!4m7!3m6!1s0x8f5ba3bcb790c4a5:0x4c28b5702329ec02!8m2!3d18.5147081!4d-88.2965339!16s%2Fg%2F11z4csjz4g!19sChIJpcSQt7yjW48RAuwpI3C1KEw?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJpcSQt7yjW48RAuwpI3C1KEw",
+    "template": "mexico"
+  },
+  {
+    "slug": "prowash",
+    "nombre": "ProWash",
+    "ciudad": "Chetumal, Q.R.",
+    "direccion": "Av. Venustiano Carranza Esquina, Agustín Olachea, Framboyanes, 77034 Chetumal, Q.R., México",
+    "telefono": "98 3158 9045",
+    "whatsapp": "529831589045",
+    "instagram": null,
+    "rating": 4.2,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 6 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/ProWash/data=!4m7!3m6!1s0x8f5ba350ae751fb7:0x60db91b08cebbfd5!8m2!3d18.5087813!4d-88.3147274!16s%2Fg%2F11f53sc8qb!19sChIJtx91rlCjW48R1b_rjLCR22A?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJtx91rlCjW48R1b_rjLCR22A",
+    "template": "mexico"
+  },
+  {
+    "slug": "lavado-de-autos-la-zona-rosa",
+    "nombre": "lavado de autos La Zona Rosa",
+    "ciudad": "Chetumal, Q.R.",
+    "direccion": "77090, Av 5 de Mayo 136, Plutarco Elías Calles, Chetumal, Q.R., México",
+    "telefono": "98 3133 5979",
+    "whatsapp": "529831335979",
+    "instagram": null,
+    "rating": 4.4,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 11 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/lavado+de+autos+%22La+Zona+Rosa%22/data=!4m7!3m6!1s0x8f5ba36fdace6ca3:0xd102bc17806480f5!8m2!3d18.5009374!4d-88.2954994!16s%2Fg%2F11dx8_wjlk!19sChIJo2zO2m-jW48R9YBkgBe8AtE?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJo2zO2m-jW48R9YBkgBe8AtE",
+    "template": "mexico"
+  },
+  {
+    "slug": "club-wash-chetumal",
+    "nombre": "Club Wash Chetumal",
+    "ciudad": "Chetumal, Q.R.",
+    "direccion": "Aaron Merino entre Av Insurgentes y Melquiades Borges, Jardines, 77026 Chetumal, Q.R., México",
+    "telefono": "98 3104 4421",
+    "whatsapp": "529831044421",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 4 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Club+Wash+Chetumal/data=!4m7!3m6!1s0x8f5bbb7db6ef31d1:0xc3fdfcad9971bf04!8m2!3d18.5181692!4d-88.3298457!16s%2Fg%2F11z038qbp2!19sChIJ0THvtn27W48RBL9xma38_cM?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJ0THvtn27W48RBL9xma38_cM",
+    "template": "mexico"
+  },
+  {
+    "slug": "go-wash",
+    "nombre": "Go Wash",
+    "ciudad": "Chetumal, Q.R.",
+    "direccion": "C. Justo Sierra LB, 77036 Chetumal, Q.R., México",
+    "telefono": "98 3111 1770",
+    "whatsapp": "529831111770",
+    "instagram": null,
+    "rating": 4.7,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 3 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Go+Wash/data=!4m7!3m6!1s0x8f5ba3003c385d11:0x4e7fd1f962eecfa4!8m2!3d18.5126795!4d-88.3133116!16s%2Fg%2F11ymjhj3xz!19sChIJEV04PACjW48RpM_uYvnRf04?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJEV04PACjW48RpM_uYvnRf04",
+    "template": "mexico"
+  },
+  {
+    "slug": "lavadero-de-autos-el-almendro-carwash",
+    "nombre": "Lavadero de autos El Almendro CarWash",
+    "ciudad": "Chetumal, Q.R.",
+    "direccion": "77026, Fraccionamiento del Sol, 77026 Chetumal, Q.R., México",
+    "telefono": "98 3190 4936",
+    "whatsapp": "529831904936",
+    "instagram": null,
+    "rating": 4.3,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 4 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Lavadero+de+autos+El+Almendro+CarWash/data=!4m7!3m6!1s0x8f5bbd0dfeb71609:0x175ca0270123dc94!8m2!3d18.5147961!4d-88.329575!16s%2Fg%2F11gzs3zby1!19sChIJCRa3_g29W48RlNwjASegXBc?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJCRa3_g29W48RlNwjASegXBc",
+    "template": "mexico"
+  },
+  {
+    "slug": "pulkro-centro-de-servicio-chetumal",
+    "nombre": "Pulkro Centro de Servicio Chetumal",
+    "ciudad": "Chetumal, Q.R.",
+    "direccion": "Av. Maxuxac, 77086 Chetumal, Q.R., México",
+    "telefono": "98 3125 4492",
+    "whatsapp": "529831254492",
+    "instagram": null,
+    "rating": 4.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 10 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Pulkro+Centro+de+Servicio+Chetumal/data=!4m7!3m6!1s0x8f5ba4968c7fc7d9:0x463ab18e26212302!8m2!3d18.5315036!4d-88.301602!16s%2Fg%2F11dxfrqb_4!19sChIJ2cd_jJakW48RAiMhJo6xOkY?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJ2cd_jJakW48RAiMhJo6xOkY",
+    "template": "mexico"
   }
 ]
