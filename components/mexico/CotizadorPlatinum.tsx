@@ -21,6 +21,7 @@ import {
 } from "react-icons/lu";
 import type { Business, CotizadorPlatinumCategoria } from "@/data/business-helpers";
 import { CATEGORIAS_PLATINUM_DEFAULT } from "@/data/business-helpers";
+import { CERAMIC_SHIELD } from "@/data/ceramic-shield-data";
 
 // Tipos de vehículos oficiales de Platinum Detallado
 export type VehiculoId = "auto" | "suv2" | "pickup" | "suv3" | "van";
@@ -94,6 +95,7 @@ export interface ServicioBase {
 
 // Catálogo Oficial Resumido y Optimizado de Platinum
 export const SERVICIOS_PLATINUM: ServicioBase[] = [
+  CERAMIC_SHIELD,
   // --- COMBOS ESTRELLA ---
   {
     id: "full-detail",
