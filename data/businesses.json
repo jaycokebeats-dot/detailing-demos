@@ -86155,5 +86155,498 @@
     "pais": "MX",
     "place_id": "0x868fc10015821d4b:0x126ebed532f8d9c6",
     "template": "mexico"
+  },
+  {
+    "slug": "autolavado-don-gato",
+    "nombre": "Autolavado Don Gato",
+    "ciudad": "San Cristóbal de las Casas, Chiapas",
+    "direccion": "\nGasolinera Guadalupana hacia Mercado, Carretera Sn. Juan Chamula Km2 accediendo, Supermanzana por, Zona Norte, 29247 San Cristóbal de las Casas, Chis., México",
+    "telefono": "96 7326 4523",
+    "whatsapp": "529673264523",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 2,
+    "reviewDates": [
+      "Hace un año",
+      "Hace 18 horas"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+Don+Gato+en+San+Crist%C3%B3bal+de+las+Casas/data=!4m7!3m6!1s0x85ed45a4cf85d3ff:0x6020d1efec6a29e8!8m2!3d16.7471782!4d-92.6603554!16s%2Fg%2F11x61kk0gt!19sChIJ_9OFz6RF7YUR6Clq7O_RIGA?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85ed45a4cf85d3ff:0x6020d1efec6a29e8",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolife",
+    "nombre": "AUTOLIFE",
+    "ciudad": "San Cristóbal de las Casas, Chiapas",
+    "direccion": "\nProfesionista 109, Prudencio Moscoso, 29217 San Cristóbal de las Casas, Chis., México",
+    "telefono": "96 7361 4195",
+    "whatsapp": "529673614195",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 8,
+    "reviewDates": [
+      "Hace 2 meses",
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/AUTOLIFE/data=!4m7!3m6!1s0x85ed45003b64400b:0x9a53756bafbb4cb!8m2!3d16.7559367!4d-92.6548766!16s%2Fg%2F11ykvgk5mv!19sChIJC0BkOwBF7YURy7T7ulY3pQk?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85ed45003b64400b:0x9a53756bafbb4cb",
+    "template": "mexico"
+  },
+  {
+    "slug": "lavadora-de-autos-el-taxista",
+    "nombre": "Lavadora de Autos El taxista",
+    "ciudad": "Villahermosa, Tabasco",
+    "direccion": "\nAv. Gregorio Méndez Magaña 2716, Atasta de Serra, 86100 Villahermosa, Tab., México",
+    "telefono": "99 3205 6024",
+    "whatsapp": "529932056024",
+    "instagram": null,
+    "rating": 4.0,
+    "reviews_count": 473,
+    "reviewDates": [
+      "Hace 2 meses",
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Lavadora+de+Autos+El+taxista/data=!4m7!3m6!1s0x85edd79da7a100c7:0x197e0732993578cd!8m2!3d17.9803211!4d-92.9501528!16s%2Fg%2F11bzz629hl!19sChIJxwChp53X7YURzXg1mTIHfhk?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85edd79da7a100c7:0x197e0732993578cd",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-y-lubriservicios-turbo",
+    "nombre": "Autolavado Y Lubriservicios TURBO",
+    "ciudad": "Villahermosa, Tabasco",
+    "direccion": "\nAv. Revolución 724, Cuadrante II, Tamulte de las Barrancas, 86150 Villahermosa, Tab., México",
+    "telefono": "99 3389 4087",
+    "whatsapp": "529933894087",
+    "instagram": null,
+    "rating": 4.3,
+    "reviews_count": 79,
+    "reviewDates": [
+      "Hace 10 meses",
+      "Hace 3 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+Y+Lubriservicios+TURBO/data=!4m7!3m6!1s0x85edd70636920fc7:0xcbfc62642d5e1fb1!8m2!3d17.9723339!4d-92.9603297!16s%2Fg%2F11g4h05d_z!19sChIJxw-SNgbX7YURsR9eLWRi_Ms?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85edd70636920fc7:0xcbfc62642d5e1fb1",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-express-el-jaguar",
+    "nombre": "Autolavado Express El Jaguar",
+    "ciudad": "Villahermosa, Tabasco",
+    "direccion": "\nAv. Revolución 1203, Cuadrante II, 18 de Marzo, 86140 Villahermosa, Tab., México",
+    "telefono": "99 3140 9885",
+    "whatsapp": "529931409885",
+    "instagram": null,
+    "rating": 4.3,
+    "reviews_count": 150,
+    "reviewDates": [
+      "Editado Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+Express+%22El+Jaguar%22/data=!4m7!3m6!1s0x85edd7fff3dadbb9:0x8da85a0f3746e5d2!8m2!3d17.972344!4d-92.9694408!16s%2Fg%2F11j0j5l4d3!19sChIJudva8__X7YUR0uVGNw9aqI0?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85edd7fff3dadbb9:0x8da85a0f3746e5d2",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-los-angeles",
+    "nombre": "Autolavado- LOS ANGELES",
+    "ciudad": "Villahermosa, Tabasco",
+    "direccion": "\nAv Paseo de la Sierra, Primero de Mayo, 86190 Villahermosa, Tab., México",
+    "telefono": "99 3306 0492",
+    "whatsapp": "529933060492",
+    "instagram": null,
+    "rating": 4.4,
+    "reviews_count": 54,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado-+LOS+ANGELES/data=!4m7!3m6!1s0x85edd9dcbd6c73af:0x5f88a569e9d07b84!8m2!3d17.9761649!4d-92.9297675!16s%2Fg%2F11h7gc_7jp!19sChIJr3NsvdzZ7YURhHvQ6WmliF8?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85edd9dcbd6c73af:0x5f88a569e9d07b84",
+    "template": "mexico"
+  },
+  {
+    "slug": "lavadero-el-morita",
+    "nombre": "Lavadero El Morita",
+    "ciudad": "San Francisco de Campeche, Camp.",
+    "direccion": "\nC. Puente No. 17, Miguel Hidalgo, 24094 San Francisco de Campeche, Camp., México",
+    "telefono": "98 1130 1438",
+    "whatsapp": "529811301438",
+    "instagram": null,
+    "rating": 4.5,
+    "reviews_count": 55,
+    "reviewDates": [
+      "Hace 3 meses",
+      "Editado Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Lavadero+El+Morita/data=!4m7!3m6!1s0x85f833839266fe99:0x7bc7e3e761234a3e!8m2!3d19.8156189!4d-90.5376282!16s%2Fg%2F11hzzrd724!19sChIJmf5mkoMz-IURPkojYefjx3s?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85f833839266fe99:0x7bc7e3e761234a3e",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-la-ria",
+    "nombre": "Autolavado La Ría",
+    "ciudad": "San Francisco de Campeche, Camp.",
+    "direccion": "\nAv. Francisco I. Madero 212, Barrio de San Francisco, 24010 San Francisco de Campeche, Camp., México",
+    "telefono": "98 1293 3989",
+    "whatsapp": "529812933989",
+    "instagram": null,
+    "rating": 4.6,
+    "reviews_count": 10,
+    "reviewDates": [
+      "Hace un mes",
+      "3 semanas atrás"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+%22La+R%C3%ADa%22/data=!4m7!3m6!1s0x85f831c17cd90485:0x4f482293e18b02f3!8m2!3d19.8466828!4d-90.5196039!16s%2Fg%2F11fk3t3xls!19sChIJhQTZfMEx-IUR8wKL4ZMiSE8?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85f831c17cd90485:0x4f482293e18b02f3",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-rr",
+    "nombre": "AUTOLAVADO R&R",
+    "ciudad": "Mérida, Yuc.",
+    "direccion": "\nAv Jose Diaz Bolio, México, 97125 Mérida, Yuc., México",
+    "telefono": "99 9944 0693",
+    "whatsapp": "529999440693",
+    "instagram": null,
+    "rating": 4.1,
+    "reviews_count": 240,
+    "reviewDates": [
+      "Hace 6 meses",
+      "Hace un mes"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/AUTOLAVADO+R%26R/data=!4m7!3m6!1s0x8f5676ca6ae89a21:0x798b836e515e6e13!8m2!3d21.0022194!4d-89.6052805!16s%2Fg%2F1ptyw8hhq!19sChIJIZroasp2Vo8RE25eUW6Di3k?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x8f5676ca6ae89a21:0x798b836e515e6e13",
+    "template": "mexico"
+  },
+  {
+    "slug": "carwash-ruta-97",
+    "nombre": "Carwash Ruta 97",
+    "ciudad": "Mérida, Yuc.",
+    "direccion": "\nMérida, 97206 Mérida, Yuc., México",
+    "telefono": "99 9498 5412",
+    "whatsapp": "529994985412",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 12,
+    "reviewDates": [
+      "Hace 3 meses",
+      "Hace 5 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Carwash+ruta+97+Av.+M%C3%A9rida+2000/data=!4m7!3m6!1s0x8f56731141c0f7f1:0x8e9d4e5a7d10ce73!8m2!3d21.0162604!4d-89.6518989!16s%2Fg%2F11yx6cgg45!19sChIJ8ffAQRFzVo8Rc84QfVpOnY4?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x8f56731141c0f7f1:0x8e9d4e5a7d10ce73",
+    "template": "mexico"
+  },
+  {
+    "slug": "detailed-garage-car-wash",
+    "nombre": "Detailed Garage - Car Wash",
+    "ciudad": "Kanasín, Yuc.",
+    "direccion": "\nSan Antonio Kaua III, 97370 Kanasín, Yuc., México",
+    "telefono": "99 9224 8529",
+    "whatsapp": "529992248529",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 2 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Detailed+Garage+-+Car+Wash/data=!4m7!3m6!1s0x8f56710001152287:0x92d1e5dbe64aef45!8m2!3d20.9418628!4d-89.5776852!16s%2Fg%2F11n9gfr2yb!19sChIJhyIVAQBxVo8RRe9K5tvl0ZI?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x8f56710001152287:0x92d1e5dbe64aef45",
+    "template": "mexico"
+  },
+  {
+    "slug": "lavadero-kanasin",
+    "nombre": "LAVADERO KANASÍN",
+    "ciudad": "Kanasín, Yuc.",
+    "direccion": "\nC. 19, Centro, 97370 Kanasín, Yuc., México",
+    "telefono": "99 9212 2727",
+    "whatsapp": "529992122727",
+    "instagram": null,
+    "rating": 4.2,
+    "reviews_count": 62,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/LAVADERO+KANAS%C3%8DN/data=!4m7!3m6!1s0x8f5670678afaff5b:0xfd0703eabd4daf17!8m2!3d20.940277!4d-89.5683364!16s%2Fg%2F1ptyt1_j_!19sChIJW__6imdwVo8RF69NveoDB_0?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x8f5670678afaff5b:0xfd0703eabd4daf17",
+    "template": "mexico"
+  },
+  {
+    "slug": "carwash-gamza",
+    "nombre": "Carwash GamZa",
+    "ciudad": "Kanasín, Yuc.",
+    "direccion": "\nAv 77 257, San Antonio Kaua III, 97370 Kanasín, Yuc., México",
+    "telefono": "99 9980 6902",
+    "whatsapp": "529999806902",
+    "instagram": null,
+    "rating": 4.3,
+    "reviews_count": 25,
+    "reviewDates": [
+      "Hace 2 meses",
+      "Hace 7 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Carwash+GamZa/data=!4m7!3m6!1s0x8f5671d03a5cf6df:0xb221f83e2ccd62e9!8m2!3d20.9365024!4d-89.5830459!16s%2Fg%2F11rd11tp7w!19sChIJ3_ZcOtBxVo8R6WLNLD74IbI?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x8f5671d03a5cf6df:0xb221f83e2ccd62e9",
+    "template": "mexico"
+  },
+  {
+    "slug": "car-wash-avendano",
+    "nombre": "Car Wash AVENDAÑO",
+    "ciudad": "Kanasín, Yuc.",
+    "direccion": "\n97370 Kanasín, Yuc., México",
+    "telefono": "99 9417 4750",
+    "whatsapp": "529994174750",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 3,
+    "reviewDates": [
+      "Hace un mes",
+      "Hace 7 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Car+Wash+%22AVENDA%C3%91O%22/data=!4m7!3m6!1s0x8f56718520b4f2ed:0xf2c5384663cab4e8!8m2!3d20.9157746!4d-89.5921866!16s%2Fg%2F11n56tbr74!19sChIJ7fK0IIVxVo8R6LTKY0Y4xfI?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x8f56718520b4f2ed:0xf2c5384663cab4e8",
+    "template": "mexico"
+  },
+  {
+    "slug": "carwashnc-la-bendicion-de-dios",
+    "nombre": "CarwashNC la bendición de Dios",
+    "ciudad": "Kanasín, Yuc.",
+    "direccion": "\nC. 8-E 105, Jardines de Mulchechen, Centro, 97370 Kanasín, Yuc., México",
+    "telefono": "99 9809 1010",
+    "whatsapp": "529998091010",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 2,
+    "reviewDates": [
+      "Hace 4 meses",
+      "Hace 4 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/CarwashNC+la+bendici%C3%B3n+de+Dios/data=!4m7!3m6!1s0x8f567b00530470a9:0x9cf22c57fa9d0b15!8m2!3d20.9254186!4d-89.5484085!16s%2Fg%2F11zgm1207b!19sChIJqXAEUwB7Vo8RFQud-lcs8pw?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x8f567b00530470a9:0x9cf22c57fa9d0b15",
+    "template": "mexico"
+  },
+  {
+    "slug": "carwash-serlimaya-lavadero",
+    "nombre": "Carwash SerliMaya lavadero",
+    "ciudad": "Kanasín, Yuc.",
+    "direccion": "\n97370 Fracciones Héctor Victoria Kanasin, 97370 Mérida, Yuc., México",
+    "telefono": "99 9219 5522",
+    "whatsapp": "529992195522",
+    "instagram": null,
+    "rating": 4.4,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 9 meses",
+      "Hace 7 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Carwash+SerliMaya+lavadero/data=!4m7!3m6!1s0x8f56719097b7cf85:0x6fbc73794d1ce011!8m2!3d20.9284295!4d-89.5610212!16s%2Fg%2F11yt7wm1fj!19sChIJhc-3l5BxVo8REeAcTXlzvG8?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x8f56719097b7cf85:0x6fbc73794d1ce011",
+    "template": "mexico"
+  },
+  {
+    "slug": "car-whash-los-padrinos",
+    "nombre": "Car Whash LOS PADRINOS",
+    "ciudad": "Valladolid, Yuc.",
+    "direccion": "\nC. 59 276A, San Juan, 97783 Valladolid, Yuc., México",
+    "telefono": "98 5106 9835",
+    "whatsapp": "529851069835",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 7 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Car+Whash+%22LOS+PADRINOS/data=!4m7!3m6!1s0x8f510b005102a907:0xf75423ce5d97b2cb!8m2!3d20.6783291!4d-88.2001744!16s%2Fg%2F11y_q_9xwl!19sChIJB6kCUQALUY8Ry7KXXc4jVPc?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x8f510b005102a907:0xf75423ce5d97b2cb",
+    "template": "mexico"
+  },
+  {
+    "slug": "lavaderos-de-autos-kevin",
+    "nombre": "Lavaderos De Autos Kevin",
+    "ciudad": "Valladolid, Yuc.",
+    "direccion": "\nC. 33 200A a, Centro, 97780 Valladolid, Yuc., México",
+    "telefono": "98 5115 7710",
+    "whatsapp": "529851157710",
+    "instagram": null,
+    "rating": 4.6,
+    "reviews_count": 66,
+    "reviewDates": [
+      "Hace 2 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Lavaderos+De+Autos+Kevin/data=!4m7!3m6!1s0x8f510ad1077ff5cd:0x1ddb17a7b89a53ab!8m2!3d20.6947148!4d-88.2006013!16s%2Fg%2F11b73yyj87!19sChIJzfV_B9EKUY8Rq1OauKcX2x0?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x8f510ad1077ff5cd:0x1ddb17a7b89a53ab",
+    "template": "mexico"
+  },
+  {
+    "slug": "clean-car-valladolid",
+    "nombre": "Clean Car Valladolid",
+    "ciudad": "Valladolid, Yuc.",
+    "direccion": "\nC. 37 x 56 y 58 Bacalar, Bacalar, 97784 Valladolid, Yuc., México",
+    "telefono": "56 3181 4703",
+    "whatsapp": "525631814703",
+    "instagram": null,
+    "rating": 4.2,
+    "reviews_count": 11,
+    "reviewDates": [
+      "2 semanas atrás",
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Clean+Car+Valladolid/data=!4m7!3m6!1s0x8f510ba4e40faf85:0x56ca568e2d7f939d!8m2!3d20.6939922!4d-88.2144081!16s%2Fg%2F11rnbrxqwk!19sChIJha8P5KQLUY8RnZN_LY5WylY?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x8f510ba4e40faf85:0x56ca568e2d7f939d",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-baloy",
+    "nombre": "Autolavado Baloy",
+    "ciudad": "Valladolid, Yuc.",
+    "direccion": "\nC. 44 150-por 25 y 27, Sta Lucía, 97782 Valladolid, Yuc., México",
+    "telefono": "98 5106 3055",
+    "whatsapp": "529851063055",
+    "instagram": null,
+    "rating": 4.9,
+    "reviews_count": 7,
+    "reviewDates": [
+      "Hace un mes",
+      "una semana atrás"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+Baloy/data=!4m7!3m6!1s0x8f510bfe98a6a05b:0x6ea62c90f7cc1e3f!8m2!3d20.6992518!4d-88.2042178!16s%2Fg%2F11zh184myn!19sChIJW6CmmP4LUY8RPx7M95Aspm4?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x8f510bfe98a6a05b:0x6ea62c90f7cc1e3f",
+    "template": "mexico"
+  },
+  {
+    "slug": "lavadero-de-autos-piolo",
+    "nombre": "Lavadero De Autos PIOLO",
+    "ciudad": "Valladolid, Yuc.",
+    "direccion": "\nC. 42 165D, Sta Lucía, 97780 Valladolid, Yuc., México",
+    "telefono": "98 5115 0330",
+    "whatsapp": "529851150330",
+    "instagram": null,
+    "rating": 4.7,
+    "reviews_count": 37,
+    "reviewDates": [
+      "Hace 3 meses",
+      "Hace 10 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Lavadero+De+Autos+%27PIOLO%22/data=!4m7!3m6!1s0x8f510ad4132cc3db:0xfc11e94e1e053f1e!8m2!3d20.6983623!4d-88.2032089!16s%2Fg%2F11c75t4j1r!19sChIJ28MsE9QKUY8RHj8FHk7pEfw?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x8f510ad4132cc3db:0xfc11e94e1e053f1e",
+    "template": "mexico"
+  },
+  {
+    "slug": "lavadero-san-juan",
+    "nombre": "Lavadero san Juan",
+    "ciudad": "Valladolid, Yuc.",
+    "direccion": "\nC. 51 201D, San Juan, 97783 Valladolid, Yuc., México",
+    "telefono": "98 5121 8759",
+    "whatsapp": "529851218759",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 3,
+    "reviewDates": [
+      "Hace 7 meses",
+      "Hace 7 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Lavadero+san+Juan/data=!4m7!3m6!1s0x8f510b006ac49f11:0x906c608184f7b037!8m2!3d20.6831517!4d-88.200935!16s%2Fg%2F11nc3p_t3d!19sChIJEZ_EagALUY8RN7D3hIFgbJA?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x8f510b006ac49f11:0x906c608184f7b037",
+    "template": "mexico"
+  },
+  {
+    "slug": "lavadero-san-jose",
+    "nombre": "Lavadero San José",
+    "ciudad": "Valladolid, Yuc.",
+    "direccion": "\nC. 32 187A, Fernando Novelo, 97782 Valladolid, Yuc., México",
+    "telefono": "98 5107 7550",
+    "whatsapp": "529851077550",
+    "instagram": null,
+    "rating": 4.1,
+    "reviews_count": 7,
+    "reviewDates": [
+      "Hace 6 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Lavadero+San+Jos%C3%A9/data=!4m7!3m6!1s0x8f510b57793541d1:0xdf95ad314c032199!8m2!3d20.6949321!4d-88.1954862!16s%2Fg%2F11v0b5886v!19sChIJ0UE1eVcLUY8RmSEDTDGtld8?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x8f510b57793541d1:0xdf95ad314c032199",
+    "template": "mexico"
+  },
+  {
+    "slug": "lavado-de-autos-chaquis",
+    "nombre": "Lavado De Autos Chaquis",
+    "ciudad": "Chetumal, Q.R.",
+    "direccion": "\nTihosuco, Comité Proterritorio, 77086 Chetumal, Q.R., México",
+    "telefono": "98 3135 3435",
+    "whatsapp": "529831353435",
+    "instagram": null,
+    "rating": 4.2,
+    "reviews_count": 37,
+    "reviewDates": [
+      "Hace un año",
+      "Hace 3 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Lavado+De+Autos+%22Chaquis%22/data=!4m7!3m6!1s0x8f5ba491daf513b3:0x1e37bfbe09ccbd95!8m2!3d18.5306096!4d-88.2952289!16s%2Fg%2F11f3wkmtt1!19sChIJsxP12pGkW48Rlb3MCb6_Nx4?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x8f5ba491daf513b3:0x1e37bfbe09ccbd95",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-paco",
+    "nombre": "Autolavado Paco",
+    "ciudad": "Chetumal, Q.R.",
+    "direccion": "\n22 de enero, Av. Francisco I Madero esquina, 77000 Chetumal, Q.R., México",
+    "telefono": "98 3123 1807",
+    "whatsapp": "529831231807",
+    "instagram": null,
+    "rating": 4.5,
+    "reviews_count": 2,
+    "reviewDates": [
+      "Hace 8 meses",
+      "Hace 4 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+Paco/data=!4m7!3m6!1s0x8f5ba30eca5221cd:0xd7090b5ba4a722e!8m2!3d18.4940892!4d-88.3011063!16s%2Fg%2F11yylby_5x!19sChIJzSFSyg6jW48RLnJKurWQcA0?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x8f5ba30eca5221cd:0xd7090b5ba4a722e",
+    "template": "mexico"
   }
 ]
