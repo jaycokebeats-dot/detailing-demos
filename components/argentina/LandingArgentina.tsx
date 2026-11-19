@@ -777,7 +777,6 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
               href="#servicios"
               className={`${isRojo ? "btn-outline-jds" : isCeleste ? "btn-outline-celeste" : "btn-outline-gold"} group flex-1 px-4 sm:px-6 py-2.5 sm:py-3.5 min-h-[44px] sm:min-h-[48px] rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wider active:scale-95 transition-all flex items-center justify-center gap-1.5 sm:gap-2 whitespace-nowrap text-center`}
             >
-              <HiOutlineSparkles aria-hidden className="size-3.5 sm:size-4 shrink-0" />
               <span className="whitespace-nowrap">Ver Servicios</span>
             </a>
           </div>
