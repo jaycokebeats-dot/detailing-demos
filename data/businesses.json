@@ -55389,6 +55389,16 @@
         "antes_img": "/before-after/faros-polymer-antes.jpg",
         "despues_img": "/before-after/faros-polymer-despues.jpg",
         "modo_foto": "before_after"
+      },
+      {
+        "nombre": "Ceramic Shield",
+        "descripcion": "Detallado exterior con cerámico express: Lavado técnico, descontaminación férrica, preparación con IPA, sellado en pintura y plásticos (tecnología de carbono y silicio, hasta 12 meses), blindaje térmico en rines (6 meses) y repelente hidrofóbico en cristales y llantas.",
+        "ideal_si": "Protección de alto nivel, brillo espejo y repelencia extrema por hasta 12 meses.",
+        "precio": "SAUTO: $1,350 | SUV 2 FILAS: $1,550 | PICK UP: $1,750 | SUV 3 FILAS: $2,050 | VAN XL/COMERCIAL: $2,590 MXN",
+        "proteccion": "Tecnología Carbono y Silicio (12 Meses)",
+        "antes_img": "/servicios/ceramico-antes.png",
+        "despues_img": "/servicios/ceramico-despues.png",
+        "modo_foto": "before_after"
       }
     ],
     "logo": "/logo/platinum-logo.png"
