@@ -86648,5 +86648,495 @@
     "pais": "MX",
     "place_id": "0x8f5ba30eca5221cd:0xd7090b5ba4a722e",
     "template": "mexico"
+  },
+  {
+    "slug": "nice-care-autolavado",
+    "nombre": "Nice Care Autolavado.",
+    "ciudad": "Coatzacoalcos, Ver.",
+    "direccion": "\nAv. Zabludovsky 101-B, Pensiones, 96530 Coatzacoalcos, Ver., México",
+    "telefono": "92 1228 2417",
+    "whatsapp": "529212282417",
+    "instagram": null,
+    "rating": 4.5,
+    "reviews_count": 14,
+    "reviewDates": [
+      "Hace un año",
+      "Hace 8 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Nice+Care+Autolavado./data=!4m7!3m6!1s0x85e985720adb61e7:0xfbf2278ed47116a4!8m2!3d18.1489422!4d-94.4838441!16s%2Fg%2F11wj0hb_bw!19sChIJ52HbCnKF6YURpBZx1I4n8vs?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85e985720adb61e7:0xfbf2278ed47116a4",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-genesis-coatzacoalcos",
+    "nombre": "Autolavado Génesis Coatzacoalcos",
+    "ciudad": "Coatzacoalcos, Ver.",
+    "direccion": "\nAv. Transístmica 1303, Las Americas, 96480 Coatzacoalcos, Ver., México",
+    "telefono": "92 1204 3942",
+    "whatsapp": "529212043942",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace un año",
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+G%C3%A9nesis+Coatzacoalcos/data=!4m7!3m6!1s0x85e98385fb106125:0x3f58f21fa6e9ca1f!8m2!3d18.1321632!4d-94.4351214!16s%2Fg%2F11y88hgtvq!19sChIJJWEQ-4WD6YURH8rpph_yWD8?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85e98385fb106125:0x3f58f21fa6e9ca1f",
+    "template": "mexico"
+  },
+  {
+    "slug": "lavado-de-autos-santi",
+    "nombre": "Lavado de Autos Santi",
+    "ciudad": "Minatitlán, Ver.",
+    "direccion": "\n96730, Santa Clara, 96730 Minatitlán, Ver., México",
+    "telefono": "92 2102 7817",
+    "whatsapp": "529221027817",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 13,
+    "reviewDates": [
+      "Hace 5 meses",
+      "Hace 4 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Lavado+de+Autos+Santi/data=!4m7!3m6!1s0x85ea297be57204a3:0x9d7be7c42b72934e!8m2!3d17.9936176!4d-94.5582678!16s%2Fg%2F11y7jqxpgq!19sChIJowRy5Xsp6oURTpNyK8Tne50?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85ea297be57204a3:0x9d7be7c42b72934e",
+    "template": "mexico"
+  },
+  {
+    "slug": "rivera-embellecimiento-automotriz",
+    "nombre": "Rivera Embellecimiento automotriz",
+    "ciudad": "Cárdenas, Tabasco",
+    "direccion": "\nC. Aquiles Calderón 86588, Aquiles calderon, 86588 Cárdenas, Tab., México",
+    "telefono": "93 7126 0045",
+    "whatsapp": "529371260045",
+    "instagram": null,
+    "rating": 4.9,
+    "reviews_count": 52,
+    "reviewDates": [
+      "Hace un año",
+      "Hace 9 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Rivera+Embellecimiento+automotriz/data=!4m7!3m6!1s0x85ec212a1f0b5501:0xe03237e910ca5b92!8m2!3d17.9759538!4d-93.3644621!16s%2Fg%2F11t61t0yy9!19sChIJAVULHyoh7IURklvKEOk3MuA?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85ec212a1f0b5501:0xe03237e910ca5b92",
+    "template": "mexico"
+  },
+  {
+    "slug": "lavadora-de-autos-tin-car",
+    "nombre": "Lavadora De Autos Tin-Car",
+    "ciudad": "Cárdenas, Tabasco",
+    "direccion": "\nCentro, 86560 Cárdenas, Tab., México",
+    "telefono": "93 7190 0655",
+    "whatsapp": "529371900655",
+    "instagram": null,
+    "rating": 4.4,
+    "reviews_count": 53,
+    "reviewDates": [
+      "Hace 4 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Lavadora+De+Autos+Tin-Car/data=!4m7!3m6!1s0x85ec210417c18071:0x8ada831869ccaf31!8m2!3d17.985289!4d-93.3790017!16s%2Fg%2F11gmf38wbp!19sChIJcYDBFwQh7IURMa_MaRiD2oo?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85ec210417c18071:0x8ada831869ccaf31",
+    "template": "mexico"
+  },
+  {
+    "slug": "lava-autos-la-canada",
+    "nombre": "Lava autos La Cañada",
+    "ciudad": "Cárdenas, Tabasco",
+    "direccion": "\nLázaro Cárdenas del Río, Centro, 86500 Cárdenas, Tab., México",
+    "telefono": "93 7372 3479",
+    "whatsapp": "529373723479",
+    "instagram": null,
+    "rating": 4.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 3 meses",
+      "Hace 3 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Lava+autos+La+Ca%C3%B1ada/data=!4m7!3m6!1s0x85ec219584022dc3:0x4c2ce4775de37f39!8m2!3d17.9867345!4d-93.3785092!16s%2Fg%2F11z8t89y3q!19sChIJwy0ChJUh7IUROX_jXXfkLEw?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85ec219584022dc3:0x4c2ce4775de37f39",
+    "template": "mexico"
+  },
+  {
+    "slug": "los-pits-carwash",
+    "nombre": "Los Pits Carwash",
+    "ciudad": "Comalcalco, Tabasco",
+    "direccion": "\nTomas Garrido, San Francisco, 86330 Comalcalco, Tab., México",
+    "telefono": "93 3176 0422",
+    "whatsapp": "529331760422",
+    "instagram": null,
+    "rating": 4.7,
+    "reviews_count": 3,
+    "reviewDates": [
+      "Hace un año",
+      "Hace 6 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Los+Pits+Carwash/data=!4m7!3m6!1s0x85ee8f514237e97b:0x3045c7fdf20fa7e7!8m2!3d18.2724433!4d-93.225648!16s%2Fg%2F11vjnznywp!19sChIJe-k3QlGP7oUR56cP8v3HRTA?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85ee8f514237e97b:0x3045c7fdf20fa7e7",
+    "template": "mexico"
+  },
+  {
+    "slug": "auto-lavado-formula-uno",
+    "nombre": "Auto lavado formula uno",
+    "ciudad": "Comalcalco, Tabasco",
+    "direccion": "\nLa Paz 111, Centro, 86300 Comalcalco, Tab., México",
+    "telefono": "92 1228 3829",
+    "whatsapp": "529212283829",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 9 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Auto+lavado+formula+uno/data=!4m7!3m6!1s0x85ee8fd4e0b8aa6b:0x1b11df9c19ecd235!8m2!3d18.2634435!4d-93.2209938!16s%2Fg%2F11xfpv4_l0!19sChIJa6q44NSP7oURNdLsGZzfERs?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85ee8fd4e0b8aa6b:0x1b11df9c19ecd235",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-henry",
+    "nombre": "Autolavado HENRY",
+    "ciudad": "Córdoba, Ver.",
+    "direccion": "\nCarr. Estatal Córdoba - Veracruz, Zona Industrial, 94690 Córdoba, Ver., México",
+    "telefono": "27 1283 1862",
+    "whatsapp": "522712831862",
+    "instagram": null,
+    "rating": 4.3,
+    "reviews_count": 28,
+    "reviewDates": [
+      "Hace un mes"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+HENRY/data=!4m7!3m6!1s0x85c4ef919fcf9661:0x89009f7b773fd4fb!8m2!3d18.8733535!4d-96.9136457!16s%2Fg%2F11h12bj2dr!19sChIJYZbPn5HvxIUR-9Q_d3ufAIk?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85c4ef919fcf9661:0x89009f7b773fd4fb",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-el-palacio",
+    "nombre": "Autolavado El PALACIO",
+    "ciudad": "Córdoba, Ver.",
+    "direccion": "\nAv. 19 Manzana 1 Lote 1, Miraflores, 94540 Córdoba, Ver., México",
+    "telefono": "27 1195 1608",
+    "whatsapp": "522711951608",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 4,
+    "reviewDates": [
+      "Hace un mes",
+      "Hace 10 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+El+PALACIO/data=!4m7!3m6!1s0x85c4e5d35e22e62d:0xd8565d20f854b3c!8m2!3d18.8961205!4d-96.9698564!16s%2Fg%2F11ys2vhnst!19sChIJLeYiXtPlxIURPEuFD9JlhQ0?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85c4e5d35e22e62d:0xd8565d20f854b3c",
+    "template": "mexico"
+  },
+  {
+    "slug": "autoclean-poza-rica",
+    "nombre": "Autoclean Poza Rica",
+    "ciudad": "Poza Rica, Ver.",
+    "direccion": "\nC. 2 Ote. 509, Independencia, 93300 Poza Rica de Hidalgo, Ver., México",
+    "telefono": "78 2888 6017",
+    "whatsapp": "527828886017",
+    "instagram": null,
+    "rating": 4.0,
+    "reviews_count": 4,
+    "reviewDates": [
+      "Hace 4 meses",
+      "Hace 4 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autoclean/data=!4m7!3m6!1s0x85da6b056dd07ac1:0x6f0a4e95ae227206!8m2!3d20.5589141!4d-97.4481987!16s%2Fg%2F11wc81sr64!19sChIJwXrQbQVr2oURBnIirpVOCm8?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85da6b056dd07ac1:0x6f0a4e95ae227206",
+    "template": "mexico"
+  },
+  {
+    "slug": "auto-lavado-los-reyes-comitan",
+    "nombre": "Auto Lavado Los Reyes",
+    "ciudad": "Comitán, Chiapas",
+    "direccion": "\nCarr. ál Cuartel Militar, Chichima Concepción, Salubridad, 30093 Comitán de Domínguez, Chis., México",
+    "telefono": "96 3344 1195",
+    "whatsapp": "529633441195",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 10 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Auto+lavado+lo+reyes/data=!4m7!3m6!1s0x858d3f003f30c0af:0x6484b0b8d8f38a81!8m2!3d16.2118776!4d-92.1303378!16s%2Fg%2F11ytp1hk4x!19sChIJr8AwPwA_jYURgYrz2LiwhGQ?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x858d3f003f30c0af:0x6484b0b8d8f38a81",
+    "template": "mexico"
+  },
+  {
+    "slug": "r-4-autolavado",
+    "nombre": "R-4 AUTOLAVADO",
+    "ciudad": "Papantla, Ver.",
+    "direccion": "\nCam. a La Concha 1099, Libertad, 93429 Papantla de Olarte, Ver., México",
+    "telefono": "59 7111 1147",
+    "whatsapp": "525971111147",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 3,
+    "reviewDates": [
+      "Hace 2 meses",
+      "Hace 2 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/R-4+AUTOLAVADO/data=!4m7!3m6!1s0x85da4500371b2eaf:0x5aa0691ffe889a00!8m2!3d20.4611059!4d-97.3091339!16s%2Fg%2F11zyrx96kz!19sChIJry4bNwBF2oURAJqI_h9poFo?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85da4500371b2eaf:0x5aa0691ffe889a00",
+    "template": "mexico"
+  },
+  {
+    "slug": "blue-car-wash",
+    "nombre": "Blue car Wash",
+    "ciudad": "Papantla, Ver.",
+    "direccion": "\nLázaro Cárdenas, Anahuac, 93400 Papantla de Olarte, Ver., México",
+    "telefono": "78 4888 7311",
+    "whatsapp": "527848887311",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 10 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Blue+car+Wash/data=!4m7!3m6!1s0x85da4594f93114b7:0xcff52170eb1782f2!8m2!3d20.4534641!4d-97.3200068!16s%2Fg%2F11ymnzd3b0!19sChIJtxQx-ZRF2oUR8oIX63Ah9c8?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85da4594f93114b7:0xcff52170eb1782f2",
+    "template": "mexico"
+  },
+  {
+    "slug": "auto-lavado-morelos",
+    "nombre": "Auto Lavado Morelos",
+    "ciudad": "San Juan Bautista Tuxtepec, Oax.",
+    "direccion": "\nJosé María Morelos 109, entre 20 de noviembre y 5 de mayo, Centro, 68300 San Juan Bautista Tuxtepec, Oax., México",
+    "telefono": "22 9119 6884",
+    "whatsapp": "522291196884",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 9,
+    "reviewDates": [
+      "Hace 3 meses",
+      "Hace 3 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Auto+Lavado+Morelos/data=!4m7!3m6!1s0x85c3e728d2622311:0x4540401ecd8d1000!8m2!3d18.0821966!4d-96.1237038!16s%2Fg%2F11zhfbn2ym!19sChIJESNi0ijnw4URABCNzR5AQEU?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85c3e728d2622311:0x4540401ecd8d1000",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-tuxtepec",
+    "nombre": "Autolavado Tuxtepec",
+    "ciudad": "San Juan Bautista Tuxtepec, Oax.",
+    "direccion": "\nAv Roberto Colorado 1287, Santa Fe, 68310 San Juan Bautista Tuxtepec, Oax., México",
+    "telefono": "92 1129 1220",
+    "whatsapp": "529211291220",
+    "instagram": null,
+    "rating": 4.2,
+    "reviews_count": 41,
+    "reviewDates": [
+      "Hace 3 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+Tuxtepec/data=!4m7!3m6!1s0x85c3e736e620bf89:0x6de73ba27164e5ed!8m2!3d18.0909235!4d-96.1253755!16s%2Fg%2F11jp0324t4!19sChIJib8g5jbnw4UR7eVkcaI7520?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85c3e736e620bf89:0x6de73ba27164e5ed",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-race-car",
+    "nombre": "Autolavado Race Car",
+    "ciudad": "San Juan Bautista Tuxtepec, Oax.",
+    "direccion": "\nFrancisco Fernández 2727, Santa Fe, 68310 San Juan Bautista Tuxtepec, Oax., México",
+    "telefono": "28 7116 1637",
+    "whatsapp": "522871161637",
+    "instagram": null,
+    "rating": 4.8,
+    "reviews_count": 44,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+Race+Car/data=!4m7!3m6!1s0x85c3e65617612091:0xd28f90ff97d470f5!8m2!3d18.0941309!4d-96.1166315!16s%2Fg%2F11hc_bv6nc!19sChIJkSBhF1bmw4UR9XDUl_-Qj9I?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85c3e65617612091:0xd28f90ff97d470f5",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-tapiceria-aldama",
+    "nombre": "AUTOLAVADO & TAPICERÍA ALDAMA",
+    "ciudad": "San Juan Bautista Tuxtepec, Oax.",
+    "direccion": "\nIgnacio Aldama 750, Arrolló Limon, Lázaro Cárdenas, 68313 San Juan Bautista Tuxtepec, Oax., México",
+    "telefono": "28 7123 4806",
+    "whatsapp": "522871234806",
+    "instagram": null,
+    "rating": 4.6,
+    "reviews_count": 34,
+    "reviewDates": [
+      "Hace un mes",
+      "Hace 5 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/AUTOLAVADO+%26+TAPICER%C3%8DA+ALDAMA/data=!4m7!3m6!1s0x85c3e7fb9740a0d5:0xd79d615d0557979e!8m2!3d18.0880565!4d-96.1235878!16s%2Fg%2F11jrsnwxvb!19sChIJ1aBAl_vnw4URnpdXBV1hndc?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85c3e7fb9740a0d5:0xd79d615d0557979e",
+    "template": "mexico"
+  },
+  {
+    "slug": "auto-estetica-flg-tuxtepec",
+    "nombre": "AUTO ESTETICA FLG TUXTEPEC",
+    "ciudad": "San Juan Bautista Tuxtepec, Oax.",
+    "direccion": "\nCarretera a loma alta #460 ,colonia Lomas del Pedregal Col. Lomas del pedregal frente al motel las palomas, 68347 San Juan Bautista Tuxtepec, Oax., México",
+    "telefono": "28 7131 4506",
+    "whatsapp": "522871314506",
+    "instagram": null,
+    "rating": 4.2,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace un mes",
+      "Hace un mes"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/AUTO+ESTETICA+FLG+TUXTEPEC/data=!4m7!3m6!1s0x85c3e7005b0ac487:0x5f010dcf4708555!8m2!3d18.0852141!4d-96.1557964!16s%2Fg%2F11xw3jgtcx!19sChIJh8QKWwDnw4URVYVw9NwQ8AU?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85c3e7005b0ac487:0x5f010dcf4708555",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-shark-wash",
+    "nombre": "Autolavado shark wash",
+    "ciudad": "San Juan Bautista Tuxtepec, Oax.",
+    "direccion": "\nPonciano Medina entre Carranza y Libertad, Centro, 68310 San Juan Bautista Tuxtepec, Oax., México",
+    "telefono": "28 7104 9086",
+    "whatsapp": "522871049086",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 2,
+    "reviewDates": [
+      "Hace 3 meses",
+      "Hace 3 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+shark+wash/data=!4m7!3m6!1s0x85c3e7474404bc6d:0x583b081a304d45d8!8m2!3d18.0866262!4d-96.1288919!16s%2Fg%2F11z1lsfxdw!19sChIJbbwEREfnw4UR2EVNMBoIO1g?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85c3e7474404bc6d:0x583b081a304d45d8",
+    "template": "mexico"
+  },
+  {
+    "slug": "morelos-plus-autolavado",
+    "nombre": "Morelos Plus Autolavado",
+    "ciudad": "San Juan Bautista Tuxtepec, Oax.",
+    "direccion": "\nAv. Roberto Colorado, José María Arteaga esquina, 68381 San Juan Bautista Tuxtepec, Oax., México",
+    "telefono": "28 7181 3936",
+    "whatsapp": "522871813936",
+    "instagram": null,
+    "rating": 4.4,
+    "reviews_count": 14,
+    "reviewDates": [
+      "Hace un año",
+      "Editado Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Morelos+Plus+Autolavado/data=!4m7!3m6!1s0x85c3e754a77187e3:0xd22966fb7e64ffdf!8m2!3d18.0898559!4d-96.1210283!16s%2Fg%2F11p5g5p4hq!19sChIJ44dxp1Tnw4UR3_9kfvtmKdI?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85c3e754a77187e3:0xd22966fb7e64ffdf",
+    "template": "mexico"
+  },
+  {
+    "slug": "magic-wash-salina-cruz",
+    "nombre": "Magic Wash Salina Cruz",
+    "ciudad": "Salina Cruz, Oax.",
+    "direccion": "\nCarr. Costera, Lomas de Galindo, 70630 Salina Cruz, Oax., México",
+    "telefono": "56 3915 3455",
+    "whatsapp": "525639153455",
+    "instagram": null,
+    "rating": 4.5,
+    "reviews_count": 2,
+    "reviewDates": [
+      "2 semanas atrás",
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Magic+Wash+Salina+Cruz/data=!4m7!3m6!1s0x85bfe5bf4ed14579:0xdfa024e17e2693e7!8m2!3d16.1941929!4d-95.2049971!16s%2Fg%2F11vy_fzd4v!19sChIJeUXRTr_lv4UR55MmfuEkoN8?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85bfe5bf4ed14579:0xdfa024e17e2693e7",
+    "template": "mexico"
+  },
+  {
+    "slug": "car-wash-express-juchitan",
+    "nombre": "Car Wash Express Juchitán",
+    "ciudad": "Juchitán de Zaragoza, Oax.",
+    "direccion": "\nAvenida Oaxaca, segunda sección, entre ferrocarril y Guiee chachi, segunda sección, 70000 Juchitán de Zaragoza, Oax., México",
+    "telefono": "97 1729 8374",
+    "whatsapp": "529717298374",
+    "instagram": null,
+    "rating": 4.0,
+    "reviews_count": 8,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Car+wash+express/data=!4m7!3m6!1s0x8595550327dddb27:0xc724ff15bd384342!8m2!3d16.441949!4d-95.0132548!16s%2Fg%2F11trgj939b!19sChIJJ9vdJwNVlYURQkM4vRX_JMc?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x8595550327dddb27:0xc724ff15bd384342",
+    "template": "mexico"
+  },
+  {
+    "slug": "sagitario-carwash",
+    "nombre": "Sagitario CARWASH",
+    "ciudad": "Paraíso, Tabasco",
+    "direccion": "\nC. 5 de Mayo, La Candelaria, 86605 Paraíso, Tab., México",
+    "telefono": "93 3156 4496",
+    "whatsapp": "529331564496",
+    "instagram": null,
+    "rating": 4.1,
+    "reviews_count": 30,
+    "reviewDates": [
+      "Hace 2 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Sagitario+CARWASH/data=!4m7!3m6!1s0x85ee8d6f25bf9257:0x1e3121a01029c250!8m2!3d18.3948815!4d-93.2161835!16s%2Fg%2F11rf9kr9x3!19sChIJV5K_JW-N7oURUMIpEKAhMR4?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85ee8d6f25bf9257:0x1e3121a01029c250",
+    "template": "mexico"
+  },
+  {
+    "slug": "auto-lavado-macuca",
+    "nombre": "Auto Lavado Macuca",
+    "ciudad": "Macuspana, Tabasco",
+    "direccion": "\nProl. de Moctezuma, Centro, 86700 Macuspana, Tab., México",
+    "telefono": "93 6105 8224",
+    "whatsapp": "529361058224",
+    "instagram": null,
+    "rating": 4.5,
+    "reviews_count": 19,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Auto+Lavado+Macuca/data=!4m7!3m6!1s0x85edf1fac116171d:0xaf09a4d301f5a4dc!8m2!3d17.7657546!4d-92.5908698!16s%2Fg%2F11rv8w69yp!19sChIJHRcWwfrx7YUR3KT1AdOkCa8?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85edf1fac116171d:0xaf09a4d301f5a4dc",
+    "template": "mexico"
   }
 ]
