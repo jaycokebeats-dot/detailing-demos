@@ -21,7 +21,6 @@ import {
 } from "react-icons/lu";
 import type { Business, CotizadorPlatinumCategoria } from "@/data/business-helpers";
 import { CATEGORIAS_PLATINUM_DEFAULT } from "@/data/business-helpers";
-import { CERAMIC_SHIELD } from "@/data/ceramic-shield-data";
 
 // Tipos de vehículos oficiales de Platinum Detallado
 export type VehiculoId = "auto" | "suv2" | "pickup" | "suv3" | "van";
@@ -93,9 +92,32 @@ export interface ServicioBase {
   videos?: VideoDemostracion[];
 }
 
+export const CERAMIC_SHIELD: ServicioBase = {
+  id: "ceramic-shield",
+  categoria: "brillo-proteccion",
+  nombre: "Ceramic Shield",
+  subtitulo: "Detallado Exterior | Cerámico Express",
+  descripcion: "Protección avanzada con tecnología de carbono y silicio para un brillo espejo y repelencia extrema.",
+  badge: "Nivel 2",
+  detalles: [
+    "Lavado Técnico Seguro con espuma activa",
+    "Descontaminación Férrica profunda",
+    "Preparación con IPA",
+    "Sellado en Pintura y Plásticos (hasta 12 meses)",
+    "Blindaje Térmico en Rines (hasta 6 meses)",
+    "Repelente hidrofóbico en cristales y acondicionador de llantas",
+  ],
+  precios: {
+    auto: 1350,
+    suv2: 1550,
+    pickup: 1750,
+    suv3: 2050,
+    van: 2590,
+  },
+};
+
 // Catálogo Oficial Resumido y Optimizado de Platinum
 export const SERVICIOS_PLATINUM: ServicioBase[] = [
-  CERAMIC_SHIELD,
   // --- COMBOS ESTRELLA ---
   {
     id: "full-detail",
@@ -366,6 +388,7 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
       },
     ],
   },
+  CERAMIC_SHIELD,
   {
     id: "mantenimiento-core",
     categoria: "mantenimiento",
@@ -603,7 +626,7 @@ const GRUPO_COMBOS = ["full-detail", "express-sale"];
 const GRUPO_INTERIORES = ["full-interior", "premier-pro"];
 const GRUPO_CORRECCION_EXTERIOR = ["gloss-shine", "titanium-shine", "ceramic-coating"];
 const GRUPO_MANTENIMIENTO = ["essential-care", "mantenimiento-core"];
-const GRUPO_BRILLO_PROTECCION = ["diamond-protect", "hydro-gloss"];
+const GRUPO_BRILLO_PROTECCION = ["diamond-protect", "hydro-gloss", "ceramic-shield"];
 
 export interface InclusionInfo {
   isIncluded: boolean;
