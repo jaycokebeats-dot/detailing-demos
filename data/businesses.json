@@ -87138,5 +87138,491 @@
     "pais": "MX",
     "place_id": "0x85edf1fac116171d:0xaf09a4d301f5a4dc",
     "template": "mexico"
+  },
+  {
+    "slug": "double-wash-autolavado",
+    "nombre": "Double Wash Autolavado",
+    "ciudad": "Huajuapan de León, Oax.",
+    "direccion": "\nAl costado de Combustibles de Huajuapan, Boulevard Tierra Del Sol, Mina 123, Agencia, Las Animas, 69007 Heroica Cdad. de Huajuapan de León, Oax., México",
+    "telefono": "95 3101 2795",
+    "whatsapp": "529531012795",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace un mes"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Double+Wash+Autolavado/data=!4m7!3m6!1s0x85c8a986812f658b:0xffb488b07c27cad4!8m2!3d17.7892345!4d-97.7861105!16s%2Fg%2F11p1cwz2zz!19sChIJi2UvgYapyIUR1MonfLCItP8?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85c8a986812f658b:0xffb488b07c27cad4",
+    "template": "mexico"
+  },
+  {
+    "slug": "xalli-wash",
+    "nombre": "Xalli Wash",
+    "ciudad": "Huajuapan de León, Oax.",
+    "direccion": "\nFrancisco Sarabia 45, 2da Aviacion, 69007 Heroica Cdad. de Huajuapan de León, Oax., México",
+    "telefono": "95 3177 6058",
+    "whatsapp": "529531776058",
+    "instagram": null,
+    "rating": 4.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 4 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Xalli+Wash/data=!4m7!3m6!1s0x85c8ab0001e638a5:0xafc871916e535479!8m2!3d17.802329!4d-97.7877388!16s%2Fg%2F11z04mp0gv!19sChIJpTjmAQCryIUReVRTbpFxyK8?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85c8ab0001e638a5:0xafc871916e535479",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-vc",
+    "nombre": "Autolavado VC",
+    "ciudad": "Puerto Escondido, Oax.",
+    "direccion": "\nCalle primera Poniente, Sector, Hidalgo, 71983 Puerto Escondido, Oax., México",
+    "telefono": "95 4133 1464",
+    "whatsapp": "529541331464",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 13,
+    "reviewDates": [
+      "Hace 7 meses",
+      "Hace 7 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+VC/data=!4m7!3m6!1s0x6fcf2362c697c7f9:0x6669d33153800369!8m2!3d15.8603729!4d-97.0686805!16s%2Fg%2F11nbmlzq_w!19sChIJ-ceXxmIjz28RaQOAUzHTaWY?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x6fcf2362c697c7f9:0x6669d33153800369",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-mine",
+    "nombre": "Autolavado MINE",
+    "ciudad": "Puerto Escondido, Oax.",
+    "direccion": "\nPrimera Sur 57, Libertad, 71984 Puerto Escondido, Oax., México",
+    "telefono": "95 4100 7304",
+    "whatsapp": "529541007304",
+    "instagram": null,
+    "rating": 4.2,
+    "reviews_count": 48,
+    "reviewDates": [
+      "una semana atrás",
+      "Hace 3 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+MINE/data=!4m7!3m6!1s0x85b8f71c184589f3:0x48a3ef0d118a4aaa!8m2!3d15.8628543!4d-97.064852!16s%2Fg%2F11lpyr7mnf!19sChIJ84lFGBz3uIURqkqKEQ3vo0g?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85b8f71c184589f3:0x48a3ef0d118a4aaa",
+    "template": "mexico"
+  },
+  {
+    "slug": "juan-lavado",
+    "nombre": "Juan Lavado",
+    "ciudad": "Puerto Escondido, Oax.",
+    "direccion": "\nCalle Tercera Ote., Reforma, 71980 Puerto Escondido, Oax., México",
+    "telefono": "46 2268 6218",
+    "whatsapp": "524622686218",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 8,
+    "reviewDates": [
+      "Hace 6 meses",
+      "Hace 7 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Juan+Lavado/data=!4m7!3m6!1s0x85b8f7001b3abd9b:0x16a89deddcf89346!8m2!3d15.8647591!4d-97.0666501!16s%2Fg%2F11yzm2t433!19sChIJm706GwD3uIURRpP43O2dqBY?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85b8f7001b3abd9b:0x16a89deddcf89346",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-la-pasadita",
+    "nombre": "Autolavado La Pasadita",
+    "ciudad": "Puerto Escondido, Oax.",
+    "direccion": "\nSéptima Ote. 204, Libertad, 71994 Puerto Escondido, Oax., México",
+    "telefono": "95 4120 8946",
+    "whatsapp": "529541208946",
+    "instagram": null,
+    "rating": 4.6,
+    "reviews_count": 16,
+    "reviewDates": [
+      "Hace 3 meses",
+      "Hace 10 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+La+Pasadita/data=!4m7!3m6!1s0x85b8f7001369879d:0x9b223191b62e0094!8m2!3d15.8637954!4d-97.062665!16s%2Fg%2F11xs37w0c3!19sChIJnYdpEwD3uIURlAAutpExIps?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85b8f7001369879d:0x9b223191b62e0094",
+    "template": "mexico"
+  },
+  {
+    "slug": "lavautos-31",
+    "nombre": "Lavautos 31",
+    "ciudad": "Puerto Escondido, Oax.",
+    "direccion": "\na un costado de Mi Ferre Por la segunda, Costera entrada a, Bacocho, 71980 Puerto Escondido, Oax., México",
+    "telefono": "95 4144 7054",
+    "whatsapp": "529541447054",
+    "instagram": null,
+    "rating": 4.9,
+    "reviews_count": 17,
+    "reviewDates": [
+      "Hace 3 meses",
+      "Hace 2 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Lavautos+3%2B1/data=!4m7!3m6!1s0x85b8f7dd69027abd:0x402f6bf2b299911c!8m2!3d15.8688915!4d-97.0833231!16s%2Fg%2F11zd3cwn3z!19sChIJvXoCad33uIURHJGZsvJrL0A?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85b8f7dd69027abd:0x402f6bf2b299911c",
+    "template": "mexico"
+  },
+  {
+    "slug": "charly-carwash",
+    "nombre": "Charly carwash",
+    "ciudad": "Santa María Huatulco, Oax.",
+    "direccion": "\nC. Ninguno 309, 70980 Santa María Huatulco, Oax., México",
+    "telefono": "95 8100 2907",
+    "whatsapp": "529581002907",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 4,
+    "reviewDates": [
+      "Hace 2 días",
+      "Hace un mes"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Charly+carwash/data=!4m7!3m6!1s0x85bf2d0033855413:0x443058f955921f00!8m2!3d15.825724!4d-96.3250465!16s%2Fg%2F11zyys3py4!19sChIJE1SFMwAtv4URAB-SVflYMEQ?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85bf2d0033855413:0x443058f955921f00",
+    "template": "mexico"
+  },
+  {
+    "slug": "lava-autos-la-ardilla",
+    "nombre": "Lava autos la ardilla",
+    "ciudad": "Santa María Huatulco, Oax.",
+    "direccion": "\nGuerrero, Centro de la Población, 70980 Santa María Huatulco, Oax., México",
+    "telefono": "95 8256 3628",
+    "whatsapp": "529582563628",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 2 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Lava+autos+la+ardilla+%F0%9F%90%BF%EF%B8%8F/data=!4m7!3m6!1s0x85bf2f00403aa56d:0xc827e58bff046cbb!8m2!3d15.8330187!4d-96.3224459!16s%2Fg%2F11mrcf9xgj!19sChIJbaU6QAAvv4URu2wE_4vlJ8g?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85bf2f00403aa56d:0xc827e58bff046cbb",
+    "template": "mexico"
+  },
+  {
+    "slug": "lava-autos-los-gueros",
+    "nombre": "Lava autos Los Güeros",
+    "ciudad": "Santa María Huatulco, Oax.",
+    "direccion": "\nC. Josefa Ortiz de Domínguez, Centro de la Población, 70980 Santa María Huatulco, Oax., México",
+    "telefono": "95 8107 4331",
+    "whatsapp": "529581074331",
+    "instagram": null,
+    "rating": 4.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 10 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Lava+autos+%22Los+G%C3%BCeros%22/data=!4m7!3m6!1s0x85bf2f0040668a7b:0x3805db7f48868e6e!8m2!3d15.8350467!4d-96.3195359!16s%2Fg%2F11xt1xg40h!19sChIJe4pmQAAvv4URbo6GSH_bBTg?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85bf2f0040668a7b:0x3805db7f48868e6e",
+    "template": "mexico"
+  },
+  {
+    "slug": "burbujas-car-wash",
+    "nombre": "BURBUJAS CAR WASH",
+    "ciudad": "Santa María Huatulco, Oax.",
+    "direccion": "\nPaseo Diamante, Sector C, P Chahue, 70987 Bahías de Huatulco, Oax., México",
+    "telefono": "95 8106 4708",
+    "whatsapp": "529581064708",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 4 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/BURBUJAS+CAR+WASH/data=!4m7!3m6!1s0x85bf21004dfef4cf:0x5276be0ac9783d50!8m2!3d15.7594726!4d-96.1280299!16s%2Fg%2F11z3y5646m!19sChIJz_T-TQAhv4URUD14yQq-dlI?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85bf21004dfef4cf:0x5276be0ac9783d50",
+    "template": "mexico"
+  },
+  {
+    "slug": "auto-lavado-greysi",
+    "nombre": "Auto lavado greysi",
+    "ciudad": "Chiapa de Corzo, Chiapas",
+    "direccion": "\nAllende 139, Benito Juárez, 29160 Chiapa de Corzo, Chis., México",
+    "telefono": "96 1199 9506",
+    "whatsapp": "529611999506",
+    "instagram": null,
+    "rating": 4.8,
+    "reviews_count": 6,
+    "reviewDates": [
+      "Hace 8 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Auto+lavado+greysi/data=!4m7!3m6!1s0x85ed256e83589be7:0x124d2f9bb8df9236!8m2!3d16.7059768!4d-93.0085768!16s%2Fg%2F11rjkk_y5x!19sChIJ55tYg24l7YURNpLfuJsvTRI?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85ed256e83589be7:0x124d2f9bb8df9236",
+    "template": "mexico"
+  },
+  {
+    "slug": "hidrolavado-de-autos-racing",
+    "nombre": "Hidrolavado de autos racing",
+    "ciudad": "Chiapa de Corzo, Chiapas",
+    "direccion": "\nBoulevard Acacia de china Enfrente de la primera rotonda de la entrada del fraccionamiento, 29160 Chiapa de Corzo, Chis., México",
+    "telefono": "96 1851 8114",
+    "whatsapp": "529618518114",
+    "instagram": null,
+    "rating": 4.1,
+    "reviews_count": 8,
+    "reviewDates": [
+      "Hace 7 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Hidrolavado+de+autos+racing/data=!4m7!3m6!1s0x85ed270ee16882dd:0x6576a4453363a9fb!8m2!3d16.7316965!4d-93.0373168!16s%2Fg%2F11n07dvm35!19sChIJ3YJo4Q4n7YUR-6ljM0WkdmU?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85ed270ee16882dd:0x6576a4453363a9fb",
+    "template": "mexico"
+  },
+  {
+    "slug": "car-wash-scl",
+    "nombre": "Car Wash SCL",
+    "ciudad": "Chiapa de Corzo, Chiapas",
+    "direccion": "\nBlvrd. Montebello, C. San Cristobal Manzana 3 Lote 4, San Vicente, 29160 Chiapa de Corzo, Chis., México",
+    "telefono": "96 1282 3353",
+    "whatsapp": "529612823353",
+    "instagram": null,
+    "rating": 4.3,
+    "reviews_count": 3,
+    "reviewDates": [
+      "Hace 6 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Car+Wash+SCL/data=!4m7!3m6!1s0x85ed25085472a775:0x48efc99a56d60b1e!8m2!3d16.7184231!4d-93.0099484!16s%2Fg%2F11v44wqngn!19sChIJdadyVAgl7YURHgvWVprJ70g?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85ed25085472a775:0x48efc99a56d60b1e",
+    "template": "mexico"
+  },
+  {
+    "slug": "gomez-car-wash",
+    "nombre": "Gómez Car Wash",
+    "ciudad": "Chiapa de Corzo, Chiapas",
+    "direccion": "\nLibramiento Nte., Francisco I. Madero, 29160 Chiapa de Corzo, Chis., México",
+    "telefono": "96 1115 5543",
+    "whatsapp": "529611155543",
+    "instagram": null,
+    "rating": 4.0,
+    "reviews_count": 4,
+    "reviewDates": [
+      "Hace 3 meses",
+      "Hace 7 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/G%C3%B3mez+Car+Wash/data=!4m7!3m6!1s0x85ed25002bdb5e29:0x5f0d50f4f8714c6d!8m2!3d16.71074!4d-93.0065035!16s%2Fg%2F11x6t5_jc3!19sChIJKV7bKwAl7YURbUxx-PRQDV8?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85ed25002bdb5e29:0x5f0d50f4f8714c6d",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-george",
+    "nombre": "Autolavado george",
+    "ciudad": "Palenque, Chiapas",
+    "direccion": "\nCarretera palenque pakal na, Guayacan, 29960 Palenque, Chis., México",
+    "telefono": "91 6119 5025",
+    "whatsapp": "529161195025",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace un año",
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+george/data=!4m7!3m6!1s0x85f2451980f81889:0xb613054142d0a574!8m2!3d17.5207915!4d-91.9919804!16s%2Fg%2F11v5vj3xtj!19sChIJiRj4gBlF8oURdKXQQkEFE7Y?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85f2451980f81889:0xb613054142d0a574",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-express-wash",
+    "nombre": "Autolavado Express Wash",
+    "ciudad": "Palenque, Chiapas",
+    "direccion": "\n8a. Avenida Nte. Pte., La Esperanza, 29960 Palenque, Chis., México",
+    "telefono": "91 6345 5182",
+    "whatsapp": "529163455182",
+    "instagram": null,
+    "rating": 4.3,
+    "reviews_count": 28,
+    "reviewDates": [
+      "Hace 9 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+Express+Wash/data=!4m7!3m6!1s0x85f24f8080454e77:0x9f8a7d9c67a18b15!8m2!3d17.5128797!4d-91.9892766!16s%2Fg%2F11hcylm8pm!19sChIJd05FgIBP8oURFYuhZ5x9ip8?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85f24f8080454e77:0x9f8a7d9c67a18b15",
+    "template": "mexico"
+  },
+  {
+    "slug": "car-wash-los-pits-palenque",
+    "nombre": "Car Wash Los Pits Palenque",
+    "ciudad": "Palenque, Chiapas",
+    "direccion": "\nPalenque - Pakalná s/n, La Primavera, 29960 Palenque, Chis., México",
+    "telefono": "91 6118 6872",
+    "whatsapp": "529161186872",
+    "instagram": null,
+    "rating": 4.3,
+    "reviews_count": 3,
+    "reviewDates": [
+      "Hace 3 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Car+Wash+Los+Pits/data=!4m7!3m6!1s0x85f2455f33d509e3:0x70c64eaf6ac8a5ec!8m2!3d17.5299922!4d-91.9917061!16s%2Fg%2F11pvd30cl3!19sChIJ4wnVM19F8oUR7KXIaq9OxnA?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85f2455f33d509e3:0x70c64eaf6ac8a5ec",
+    "template": "mexico"
+  },
+  {
+    "slug": "auto-lavado-el-aguilucho",
+    "nombre": "Auto lavado El Aguilucho",
+    "ciudad": "Palenque, Chiapas",
+    "direccion": "\n8a. Avenida Nte. Pte. LB, La Esperanza, 29960 Palenque, Chis., México",
+    "telefono": "91 6140 5157",
+    "whatsapp": "529161405157",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 6,
+    "reviewDates": [
+      "Hace un año",
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Auto+lavado,+%22El+Aguilucho%22/data=!4m7!3m6!1s0x85f2452e1fd2e17f:0x57ad58b20717f1e0!8m2!3d17.5139549!4d-91.9881874!16s%2Fg%2F11r9qt2pzx!19sChIJf-HSHy5F8oUR4PEXB7JYrVc?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85f2452e1fd2e17f:0x57ad58b20717f1e0",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-isa",
+    "nombre": "Autolavado Isa",
+    "ciudad": "Tonalá, Chiapas",
+    "direccion": "\nZaragoza 48, Nicatán, 30500 Tonalá, Chis., México",
+    "telefono": "96 6218 5450",
+    "whatsapp": "529662185450",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 6 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+Isa/data=!4m7!3m6!1s0x85949f002e397525:0xaffd65749339223b!8m2!3d16.0856865!4d-93.7519286!16s%2Fg%2F11z418zkwz!19sChIJJXU5LgCflIUROyI5k3Rl_a8?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85949f002e397525:0xaffd65749339223b",
+    "template": "mexico"
+  },
+  {
+    "slug": "auto-lavado-el-jarocho",
+    "nombre": "Auto lavado el jarocho",
+    "ciudad": "Tonalá, Chiapas",
+    "direccion": "\nZaragoza 28, Nicatán, 30500 Tonalá, Chis., México",
+    "telefono": "96 6101 8698",
+    "whatsapp": "529661018698",
+    "instagram": null,
+    "rating": 4.8,
+    "reviews_count": 12,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Auto+lavado+el+jarocho/data=!4m7!3m6!1s0x85949f01afe8a533:0xa5fe3cc65590a42d!8m2!3d16.0847334!4d-93.7507397!16s%2Fg%2F11qfqs1yv3!19sChIJM6XorwGflIURLaSQVcY8_qU?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85949f01afe8a533:0xa5fe3cc65590a42d",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-los-santos",
+    "nombre": "Autolavado los santos",
+    "ciudad": "Champotón, Camp.",
+    "direccion": "\n24400, Lázaro Cárdenas, 24400 Champotón, Camp., México",
+    "telefono": "98 4582 2618",
+    "whatsapp": "529845822618",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 3,
+    "reviewDates": [
+      "Hace un mes",
+      "Hace 5 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+los+santos/data=!4m7!3m6!1s0x85f771bc87dc399d:0xb2a760aaceb01fe7!8m2!3d19.3327535!4d-90.729316!16s%2Fg%2F11mz030tz1!19sChIJnTnch7xx94UR5x-wzqpgp7I?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85f771bc87dc399d:0xb2a760aaceb01fe7",
+    "template": "mexico"
+  },
+  {
+    "slug": "auto-lavado-el-inge",
+    "nombre": "Auto Lavado el inge",
+    "ciudad": "Champotón, Camp.",
+    "direccion": "\nC. 14 507, Manguitos, 24400 Champotón, Camp., México",
+    "telefono": "98 1106 1806",
+    "whatsapp": "529811061806",
+    "instagram": null,
+    "rating": 4.1,
+    "reviews_count": 18,
+    "reviewDates": [
+      "Hace 4 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Auto+Lavado+el+inge/data=!4m7!3m6!1s0x85f7718a3d6796b9:0xc8f4fad06d8afc7d!8m2!3d19.3402061!4d-90.7291229!16s%2Fg%2F11ry7np36l!19sChIJuZZnPYpx94URffyKbdD69Mg?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85f7718a3d6796b9:0xc8f4fad06d8afc7d",
+    "template": "mexico"
+  },
+  {
+    "slug": "car-wash-el-dollar",
+    "nombre": "car wash el dollar",
+    "ciudad": "Champotón, Camp.",
+    "direccion": "\nAv. Concordia entre 7 y9, La Cruz, 24400 Champotón, Camp., México",
+    "telefono": "98 2120 5897",
+    "whatsapp": "529821205897",
+    "instagram": null,
+    "rating": 4.8,
+    "reviews_count": 4,
+    "reviewDates": [
+      "Hace 6 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/%22car+wash+el+dollar%22/data=!4m7!3m6!1s0x85f771d24bc98dd9:0x250b9fdbb9dd3ecb!8m2!3d19.3420892!4d-90.7215616!16s%2Fg%2F11syz7h4bc!19sChIJ2Y3JS9Jx94URyz7dudufCyU?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85f771d24bc98dd9:0x250b9fdbb9dd3ecb",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-car-washers",
+    "nombre": "Autolavado Car Washers",
+    "ciudad": "Escárcega, Camp.",
+    "direccion": "\nC. 21-B, Fátima, 24350 Escárcega, Camp., México",
+    "telefono": "98 2319 3571",
+    "whatsapp": "529823193571",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 8,
+    "reviewDates": [
+      "Hace un año",
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+Car+Washers/data=!4m7!3m6!1s0x85f6f1006fa31975:0x54e5faa6655abf48!8m2!3d18.6021442!4d-90.7281715!16s%2Fg%2F11y83_n6w3!19sChIJdRmjbwDx9oURSL9aZab65VQ?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85f6f1006fa31975:0x54e5faa6655abf48",
+    "template": "mexico"
   }
 ]
