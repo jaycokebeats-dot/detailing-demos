@@ -82735,5 +82735,493 @@
     "pais": "MX",
     "place_id": "ChIJY498hKIDxYURHddGZ34dYJA",
     "template": "mexico"
+  },
+  {
+    "slug": "master-auto",
+    "nombre": "Master Auto",
+    "ciudad": "Córdoba, Ver.",
+    "direccion": "\nC. 16 923, San Jose, 94560 Córdoba, Ver., México",
+    "telefono": "27 1114 2290",
+    "whatsapp": "522711142290",
+    "instagram": null,
+    "rating": 4.1,
+    "reviews_count": 20,
+    "reviewDates": [
+      "Hace 5 meses",
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Master+Auto/data=!4m7!3m6!1s0x85c4e514e761dd53:0x1e283b2abe023d6c!8m2!3d18.8953882!4d-96.9437292!16s%2Fg%2F11clwdqf3j!19sChIJU91h5xTlxIURbD0Cvio7KB4?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJU91h5xTlxIURbD0Cvio7KB4",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-el-may",
+    "nombre": "Autolavado El May",
+    "ciudad": "Córdoba, Ver.",
+    "direccion": "\nAv. 25, El Carmen, 94580 Córdoba, Ver., México",
+    "telefono": "27 1123 3107",
+    "whatsapp": "522711233107",
+    "instagram": null,
+    "rating": 4.3,
+    "reviews_count": 117,
+    "reviewDates": [
+      "Hace 3 meses",
+      "Hace 2 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+%22El+May%22/data=!4m7!3m6!1s0x85c4e547400a60f7:0xcf0660ede0074f74!8m2!3d18.8847216!4d-96.9410591!16s%2Fg%2F11bxfljj33!19sChIJ92AKQEflxIURdE8H4O1gBs8?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJ92AKQEflxIURdE8H4O1gBs8",
+    "template": "mexico"
+  },
+  {
+    "slug": "el-vivero",
+    "nombre": "El Vívero",
+    "ciudad": "Córdoba, Ver.",
+    "direccion": "\nAv. 13, Alameda, 94580 Córdoba, Ver., México",
+    "telefono": "27 1712 3791",
+    "whatsapp": "522717123791",
+    "instagram": null,
+    "rating": 4.1,
+    "reviews_count": 116,
+    "reviewDates": [
+      "Hace 3 meses",
+      "Hace 7 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/El+V%C3%ADvero/data=!4m7!3m6!1s0x85c4e56aa0b9447f:0x66530bc5ad2e72eb!8m2!3d18.8904571!4d-96.93927!16s%2Fg%2F1tq6dtwb!19sChIJf0S5oGrlxIUR63IurcULU2Y?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJf0S5oGrlxIUR63IurcULU2Y",
+    "template": "mexico"
+  },
+  {
+    "slug": "super-bee-car-wash",
+    "nombre": "SUPER BEE Car wash",
+    "ciudad": "Poza Rica, Ver.",
+    "direccion": "\nCisne 304, Agustin Lara, 93270 Poza Rica de Hidalgo, Ver., México",
+    "telefono": "78 2128 9878",
+    "whatsapp": "527821289878",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 15,
+    "reviewDates": [
+      "Hace un mes",
+      "Hace 2 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/SUPER+BEE+Car+wash/data=!4m7!3m6!1s0x85da6b3727a0bd2b:0xaa1e2ddacf185251!8m2!3d20.5310765!4d-97.445636!16s%2Fg%2F11z2tk70mn!19sChIJK72gJzdr2oURUVIYz9otHqo?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJK72gJzdr2oURUVIYz9otHqo",
+    "template": "mexico"
+  },
+  {
+    "slug": "lavados-pena-reyes",
+    "nombre": "Lavados Peña Reyes",
+    "ciudad": "Poza Rica, Ver.",
+    "direccion": "\nPablo González 121, Revolucion, 93390 Poza Rica de Hidalgo, Ver., México",
+    "telefono": "78 2175 5994",
+    "whatsapp": "527821755994",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 3,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Lavados+Pe%C3%B1a+Reyes/data=!4m7!3m6!1s0x85da41d3ebc252a1:0xdce9672034ac7fd5!8m2!3d20.5137877!4d-97.4372397!16s%2Fg%2F11h8yw3ss1!19sChIJoVLC69NB2oUR1X-sNCBn6dw?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJoVLC69NB2oUR1X-sNCBn6dw",
+    "template": "mexico"
+  },
+  {
+    "slug": "auto-lavado-del-centro",
+    "nombre": "Auto Lavado del Centro",
+    "ciudad": "Poza Rica, Ver.",
+    "direccion": "\nAv. Manlio F. Altamarino s/n, Tajin, 93330 Poza Rica de Hidalgo, Ver., México",
+    "telefono": "78 2823 0177",
+    "whatsapp": "527828230177",
+    "instagram": null,
+    "rating": 4.4,
+    "reviews_count": 10,
+    "reviewDates": [
+      "Hace 4 meses",
+      "Editado Hace 8 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Auto+Lavado+del+Centro/data=!4m7!3m6!1s0x85da6ac0e34c2cad:0xc7297152dfcb32d9!8m2!3d20.5315832!4d-97.4621923!16s%2Fg%2F11cny301hj!19sChIJrSxM48Bq2oUR2TLL31JxKcc?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJrSxM48Bq2oUR2TLL31JxKcc",
+    "template": "mexico"
+  },
+  {
+    "slug": "auto-lavado-braver",
+    "nombre": "Auto Lavado Braver",
+    "ciudad": "Poza Rica, Ver.",
+    "direccion": "\nPuerto Rico 183, 27 de Septiembre, 93320 Poza Rica de Hidalgo, Ver., México",
+    "telefono": "22 2572 4835",
+    "whatsapp": "522225724835",
+    "instagram": null,
+    "rating": 4.4,
+    "reviews_count": 16,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Auto+Lavado+Braver/data=!4m7!3m6!1s0x85da6bf9bdd23fad:0x860b7cc4a98a6d39!8m2!3d20.5406662!4d-97.4671499!16s%2Fg%2F11rt_h081n!19sChIJrT_Svflr2oUROW2KqcR8C4Y?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJrT_Svflr2oUROW2KqcR8C4Y",
+    "template": "mexico"
+  },
+  {
+    "slug": "automax-service-minatitlan",
+    "nombre": "Automax Service Minatitlan",
+    "ciudad": "Minatitlán, Ver.",
+    "direccion": "\nBoulevard Institutos Tecnologicos No.2 esquina, Valparaíso col, Buena Vista Sur, 96730 Minatitlán, Ver., México",
+    "telefono": "92 2161 9841",
+    "whatsapp": "529221619841",
+    "instagram": null,
+    "rating": 4.5,
+    "reviews_count": 90,
+    "reviewDates": [
+      "Hace 3 meses",
+      "Editado Hace 7 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Automax+Service+Minatitlan/data=!4m7!3m6!1s0x85e988006ccd67a9:0x416bcb1b4461a621!8m2!3d17.9961374!4d-94.5631013!16s%2Fg%2F11b5pjpz8p!19sChIJqWfNbACI6YURIaZhRBvLa0E?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJqWfNbACI6YURIaZhRBvLa0E",
+    "template": "mexico"
+  },
+  {
+    "slug": "centro-de-lavado-automotriz-del-fls-hawaiana",
+    "nombre": "Centro de Lavado Automotriz del F.L.S. Hawaiana",
+    "ciudad": "Minatitlán, Ver.",
+    "direccion": "\nCalz. de Los Petroleros Local 2, Petrolera, 96850 Minatitlán, Ver., México",
+    "telefono": "92 2223 8595",
+    "whatsapp": "529222238595",
+    "instagram": null,
+    "rating": 4.4,
+    "reviews_count": 158,
+    "reviewDates": [
+      "Hace 5 meses",
+      "Hace 4 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Centro+de+Lavado+Automotriz+del+F.L.S.+Hawaiana/data=!4m7!3m6!1s0x85e987ed1aea0d81:0xf5c95829ab1039c!8m2!3d18.0091055!4d-94.5436647!16s%2Fg%2F11b5qsfqjg!19sChIJgQ3qGu2H6YURnAOxmoKVXA8?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJgQ3qGu2H6YURnAOxmoKVXA8",
+    "template": "mexico"
+  },
+  {
+    "slug": "auto-estetica-flg-minatitlan",
+    "nombre": "Auto Estética FLG Minatitlán",
+    "ciudad": "Minatitlán, Ver.",
+    "direccion": "\nNicolás Bravo 58, Diaz Ordaz, 96348 Minatitlán, Ver., México",
+    "telefono": "92 2232 8102",
+    "whatsapp": "529222328102",
+    "instagram": null,
+    "rating": 4.0,
+    "reviews_count": 6,
+    "reviewDates": [
+      "Hace 2 meses",
+      "Hace un mes"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Auto+Est%C3%A9tica+FLG+Minatitl%C3%A1n/data=!4m7!3m6!1s0x85e987f6adafb58d:0xe348f3fde11c341e!8m2!3d18.0112659!4d-94.5560453!16s%2Fg%2F11l5gdhbl0!19sChIJjbWvrfaH6YURHjQc4f3zSOM?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJjbWvrfaH6YURHjQc4f3zSOM",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-la-estacion",
+    "nombre": "Autolavado La Estación",
+    "ciudad": "Minatitlán, Ver.",
+    "direccion": "\nGutiérrez Zamora 89 Ampliación, Playon Sur, 96757 Minatitlán, Ver., México",
+    "telefono": "92 2192 9603",
+    "whatsapp": "529221929603",
+    "instagram": null,
+    "rating": 4.7,
+    "reviews_count": 103,
+    "reviewDates": [
+      "3 semanas atrás"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+%22La+Estaci%C3%B3n%22/data=!4m7!3m6!1s0x85ea2948f9260d1f:0x5c9e141918f5cfcb!8m2!3d17.9813114!4d-94.5505621!16s%2Fg%2F11h07srytq!19sChIJHw0m-Ugp6oURy8_1GBkUnlw?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJHw0m-Ugp6oURy8_1GBkUnlw",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-piscis-minatitlan",
+    "nombre": "Autolavado Piscis Minatitlán",
+    "ciudad": "Minatitlán, Ver.",
+    "direccion": "\nAv. Heroico Colegio Militar 15, 7 de Mayo, 96810 Minatitlán, Ver., México",
+    "telefono": "92 2139 8685",
+    "whatsapp": "529221398685",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 10 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+Piscis+Minatitl%C3%A1n/data=!4m7!3m6!1s0x85e9877becc73eb1:0x337ce593f3316355!8m2!3d18.0102899!4d-94.5467642!16s%2Fg%2F11ycfkmbqx!19sChIJsT7H7HuH6YURVWMx85PlfDM?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJsT7H7HuH6YURVWMx85PlfDM",
+    "template": "mexico"
+  },
+  {
+    "slug": "wash-station-tuxpan",
+    "nombre": "Wash Station Tuxpan",
+    "ciudad": "Tuxpan, Ver.",
+    "direccion": "\nGarizurieta 79, Centro, 92800 Túxpam de Rodríguez Cano, Ver., México",
+    "telefono": "78 3152 6674",
+    "whatsapp": "527831526674",
+    "instagram": null,
+    "rating": 4.5,
+    "reviews_count": 51,
+    "reviewDates": [
+      "Hace un año",
+      "Hace 8 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Wash+Station+Tuxpan/data=!4m7!3m6!1s0x85d98bc5632623bd:0x15c03ea64796a555!8m2!3d20.9556833!4d-97.4013129!16s%2Fg%2F11q4jjzsn9!19sChIJvSMmY8WL2YURVaWWR6Y-wBU?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJvSMmY8WL2YURVaWWR6Y-wBU",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-jr",
+    "nombre": "Autolavado JR",
+    "ciudad": "Tuxpan, Ver.",
+    "direccion": "\nAv López Mateos número 142, Benito Juárez, 92830 Túxpam de Rodríguez Cano, Ver., México",
+    "telefono": "78 3140 7244",
+    "whatsapp": "527831407244",
+    "instagram": null,
+    "rating": 4.4,
+    "reviews_count": 84,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+JR/data=!4m7!3m6!1s0x85d98a8b6447e2a1:0xdeebc28f9f44a39!8m2!3d20.9552613!4d-97.3995787!16s%2Fg%2F11f_j2nl_q!19sChIJoeJHZIuK2YUROUr0-Si87g0?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJoeJHZIuK2YUROUr0-Si87g0",
+    "template": "mexico"
+  },
+  {
+    "slug": "clincar",
+    "nombre": "ClinCar",
+    "ciudad": "Tuxpan, Ver.",
+    "direccion": "\nC. Allende 36, Centro, 92800 Túxpam de Rodríguez Cano, Ver., México",
+    "telefono": "78 3134 4902",
+    "whatsapp": "527831344902",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 2 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/ClinCar/data=!4m7!3m6!1s0x85d98b66953796a7:0xe0db880da911db5d!8m2!3d20.9559682!4d-97.4080966!16s%2Fg%2F11nvh14g2g!19sChIJp5Y3lWaL2YURXdsRqQ2I2-A?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJp5Y3lWaL2YURXdsRqQ2I2-A",
+    "template": "mexico"
+  },
+  {
+    "slug": "car-wash-fox",
+    "nombre": "Car Wash Fox",
+    "ciudad": "Tuxpan, Ver.",
+    "direccion": "\nMarco Antonio Muñiz, Reyes Heroles, 92845 Túxpam de Rodríguez Cano, Ver., México",
+    "telefono": "78 3106 3775",
+    "whatsapp": "527831063775",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 9 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Car+Wash+Fox/data=!4m7!3m6!1s0x85d98bd0edff37e9:0x361f3884618cfe23!8m2!3d20.9547225!4d-97.3931121!16s%2Fg%2F11xv663zhm!19sChIJ6Tf_7dCL2YURI_6MYYQ4HzY?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJ6Tf_7dCL2YURI_6MYYQ4HzY",
+    "template": "mexico"
+  },
+  {
+    "slug": "auto-lavado-chuchos",
+    "nombre": "AUTO LAVADO CHUCHOS",
+    "ciudad": "Ciudad Valles, S.L.P.",
+    "direccion": "\nC. Reforma 476, Las Lomas, Zona Centro, 79043 Cdad. Valles, S.L.P., México",
+    "telefono": "48 1382 0801",
+    "whatsapp": "524813820801",
+    "instagram": null,
+    "rating": 4.0,
+    "reviews_count": 6,
+    "reviewDates": [
+      "Hace un año",
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/AUTO+LAVADO+CHUCHOS/data=!4m7!3m6!1s0x85d60d537f0a842d:0x5324e8921858d3ee!8m2!3d21.992684!4d-99.018593!16s%2Fg%2F11krdbbt6c!19sChIJLYQKf1MN1oUR7tNYGJLoJFM?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJLYQKf1MN1oUR7tNYGJLoJFM",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-tazmania",
+    "nombre": "Autolavado Tazmania",
+    "ciudad": "Ciudad Valles, S.L.P.",
+    "direccion": "\nCalle reforma esquina con venustiano carranza Zona centro, 79000 Cdad. Valles, S.L.P., México",
+    "telefono": "48 1243 8997",
+    "whatsapp": "524812438997",
+    "instagram": null,
+    "rating": 4.6,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 7 meses",
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+Tazmania/data=!4m7!3m6!1s0x85d60df6865b31c7:0x7cb43e14ab633be0!8m2!3d21.9920259!4d-99.0139932!16s%2Fg%2F11sbb6z6k2!19sChIJxzFbhvYN1oUR4DtjqxQ-tHw?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJxzFbhvYN1oUR4DtjqxQ-tHw",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-el-cachorro",
+    "nombre": "Autolavado El Cachorro",
+    "ciudad": "Ciudad Valles, S.L.P.",
+    "direccion": "\n5 de Mayo 110, Marquez, 79010 Cdad. Valles, S.L.P., México",
+    "telefono": "48 1152 9360",
+    "whatsapp": "524811529360",
+    "instagram": null,
+    "rating": 4.8,
+    "reviews_count": 4,
+    "reviewDates": [
+      "Hace un mes"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+%22El+Cachorro%22/data=!4m7!3m6!1s0x85d60d2d818e8f4f:0x46cdcd08d836aaf8!8m2!3d22.0120872!4d-99.025798!16s%2Fg%2F11g0dg_3xt!19sChIJT4-OgS0N1oUR-Ko22AjNzUY?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJT4-OgS0N1oUR-Ko22AjNzUY",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-mcqueen",
+    "nombre": "Autolavado Mcqueen",
+    "ciudad": "Ciudad Valles, S.L.P.",
+    "direccion": "\nC. Primera 201, Las Lomas Oriente, 79082 Cdad. Valles, S.L.P., México",
+    "telefono": "48 1154 8944",
+    "whatsapp": "524811548944",
+    "instagram": null,
+    "rating": 4.0,
+    "reviews_count": 3,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+Mcqueen/data=!4m7!3m6!1s0x85d66d005cbb4959:0xd706bfed31e3e164!8m2!3d21.9736524!4d-99.0032353!16s%2Fg%2F11vpzdz6j8!19sChIJWUm7XABt1oURZOHjMe2_Btc?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJWUm7XABt1oURZOHjMe2_Btc",
+    "template": "mexico"
+  },
+  {
+    "slug": "car-wash-sonik",
+    "nombre": "CAR WASH SONIK",
+    "ciudad": "Delicias, Chih.",
+    "direccion": "\nC. 7 Ote. #7018, Oriente 1, 33089 Delicias, Chih., México",
+    "telefono": "63 9232 7362",
+    "whatsapp": "526392327362",
+    "instagram": null,
+    "rating": 4.9,
+    "reviews_count": 10,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/CAR+WASH+SONIK/data=!4m7!3m6!1s0x86eb15df15267549:0xcb88aef77cdb9603!8m2!3d28.1915702!4d-105.459732!16s%2Fg%2F11h9m2j8vk!19sChIJSXUmFd8V64YRA5bbfPeuiMs?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJSXUmFd8V64YRA5bbfPeuiMs",
+    "template": "mexico"
+  },
+  {
+    "slug": "pro-car-carwash",
+    "nombre": "Pro- car carwash",
+    "ciudad": "Delicias, Chih.",
+    "direccion": "\nAv. 1A Sur, Poniente, 33000 Delicias, Chih., México",
+    "telefono": "63 9147 9888",
+    "whatsapp": "526391479888",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 4,
+    "reviewDates": [
+      "Hace 2 meses",
+      "Hace 9 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Pro-+car+carwash/data=!4m7!3m6!1s0x86eb15b484877cad:0x138ea0d79ff2d416!8m2!3d28.1898781!4d-105.4697485!16s%2Fg%2F11kc5v2v5y!19sChIJrXyHhLQV64YRFtTyn9egjhM?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJrXyHhLQV64YRFtTyn9egjhM",
+    "template": "mexico"
+  },
+  {
+    "slug": "auto-lavado-el-maldito",
+    "nombre": "AUTO LAVADO El MALDITO",
+    "ciudad": "Delicias, Chih.",
+    "direccion": "\nC. Batalla Celaya de, estación conchos, 33106 Delicias, Chih., México",
+    "telefono": "63 9189 2607",
+    "whatsapp": "526391892607",
+    "instagram": null,
+    "rating": 4.3,
+    "reviews_count": 3,
+    "reviewDates": [
+      "Hace 10 meses",
+      "Hace 4 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/AUTO+LAVADO+El+MALDITO/data=!4m7!3m6!1s0x86eb15000716eefd:0x3ff05c4e1a5d7775!8m2!3d28.2338711!4d-105.4431936!16s%2Fg%2F11mcsj2ckk!19sChIJ_e4WBwAV64YRdXddGk5c8D8?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJ_e4WBwAV64YRdXddGk5c8D8",
+    "template": "mexico"
+  },
+  {
+    "slug": "madpro",
+    "nombre": "MADPRO",
+    "ciudad": "Delicias, Chih.",
+    "direccion": "\nAv Rio San Pedro Sur 203, Centro sur, 33077 Delicias, Chih., México",
+    "telefono": "61 4539 9543",
+    "whatsapp": "526145399543",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/MADPRO/data=!4m7!3m6!1s0x86eb1505676f81bb:0x1ad1ededc6d91e3d!8m2!3d28.1877661!4d-105.4736222!16s%2Fg%2F11zkmx_lgy!19sChIJu4FvZwUV64YRPR7Zxu3t0Ro?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJu4FvZwUV64YRPR7Zxu3t0Ro",
+    "template": "mexico"
+  },
+  {
+    "slug": "car-wash-san-patricio",
+    "nombre": "Car wash san Patricio",
+    "ciudad": "Delicias, Chih.",
+    "direccion": "\nAve Gómez Morin y ave 20 pte, 33090 Delicias, Chih., México",
+    "telefono": "63 9106 5113",
+    "whatsapp": "526391065113",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 2,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Car+wash+san+Patricio/data=!4m7!3m6!1s0x86eb15242544eb8f:0x3b136fa0d863b013!8m2!3d28.182352!4d-105.4856605!16s%2Fg%2F11l5q5jpz0!19sChIJj-tEJSQV64YRE7Bj2KBvEzs?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJj-tEJSQV64YRE7Bj2KBvEzs",
+    "template": "mexico"
   }
 ]
