@@ -430,7 +430,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                 <>
                   Estética y Detallado Automotriz{" "}
                   <span className="bg-gradient-to-r from-amber-300 via-amber-400 to-yellow-500 bg-clip-text text-transparent font-semibold">
-                    a Domicilio.
+                    a Domicilio
                   </span>
                 </>
               ) : isShalom ? (
