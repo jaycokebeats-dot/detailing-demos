@@ -56,7 +56,7 @@ export const CATEGORIAS_PLATINUM_DEFAULT: CotizadorPlatinumCategoria[] = [
   {
     id: "brillo-proteccion",
     nivel: "NIVEL 2",
-    label: "Brillo & Protección",
+    label: "Detallado & protección",
   },
   {
     id: "interiores",
