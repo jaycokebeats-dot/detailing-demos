@@ -85670,5 +85670,490 @@
     "pais": "MX",
     "place_id": "0x868fdb2d8b8d9a3f:0x178c70808aab8158",
     "template": "mexico"
+  },
+  {
+    "slug": "tridente-car-center",
+    "nombre": "Tridente car center",
+    "ciudad": "Saltillo, Coah.",
+    "direccion": "\nAbasolo norte 1038, Zona Centro, 25000 Saltillo, Coah., México",
+    "telefono": "84 4247 8858",
+    "whatsapp": "528442478858",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 3 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Tridente+car+center/data=!4m7!3m6!1s0x86881378c9a4c309:0x17b653a40f16826a!8m2!3d25.4260699!4d-100.9885922!16s%2Fg%2F11zcvwjb2d!19sChIJCcOkyXgTiIYRaoIWD6RTthc?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x86881378c9a4c309:0x17b653a40f16826a",
+    "template": "mexico"
+  },
+  {
+    "slug": "mr-wash7-saltillo-autolavado",
+    "nombre": "Mr. Wash7 Saltillo AUTOLAVADO",
+    "ciudad": "Saltillo, Coah.",
+    "direccion": "\nPaseo de Los Zafiros 181, Residencial San Patricio, 25204 Saltillo, Coah., México",
+    "telefono": "84 4536 1971",
+    "whatsapp": "528445361971",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 11,
+    "reviewDates": [
+      "una semana atrás",
+      "3 semanas atrás"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Mr.+Wash7+Saltillo+AUTOLAVADO/data=!4m7!3m6!1s0x868813b43d43aa1d:0x27ed2a502bff725b!8m2!3d25.4609204!4d-100.9588436!16s%2Fg%2F11nttffvl_!19sChIJHapDPbQTiIYRW3L_K1Aq7Sc?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x868813b43d43aa1d:0x27ed2a502bff725b",
+    "template": "mexico"
+  },
+  {
+    "slug": "puro-guapo-autolavado",
+    "nombre": "Puro Guapo Autolavado",
+    "ciudad": "Saltillo, Coah.",
+    "direccion": "\nBlvd. Luis Donaldo Colosio 5652, Residencial Villa Bonita, 25298 Saltillo, Coah., México",
+    "telefono": "84 4160 9678",
+    "whatsapp": "528441609678",
+    "instagram": null,
+    "rating": 4.4,
+    "reviews_count": 14,
+    "reviewDates": [
+      "Editado Hace un mes",
+      "Hace un mes"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Puro+Guapo+Autolavado/data=!4m7!3m6!1s0x86881389dc21c98b:0xa9cc4eece3f593e2!8m2!3d25.4631116!4d-100.9383777!16s%2Fg%2F11zx47qpfp!19sChIJi8kh3IkTiIYR4pP14-xOzKk?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x86881389dc21c98b:0xa9cc4eece3f593e2",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-omega",
+    "nombre": "Autolavado Omega",
+    "ciudad": "Saltillo, Coah.",
+    "direccion": "\n000, Omega, 25100 Saltillo, Coah., México",
+    "telefono": "84 4155 6424",
+    "whatsapp": "528441556424",
+    "instagram": null,
+    "rating": 4.5,
+    "reviews_count": 62,
+    "reviewDates": [
+      "Hace 4 meses",
+      "Hace 5 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+Omega/data=!4m7!3m6!1s0x86886dcc247c98cb:0x648a7882dd47a827!8m2!3d25.4678394!4d-100.997719!16s%2Fg%2F11bxc6hmlt!19sChIJy5h8JMxtiIYRJ6hH3YJ4imQ?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x86886dcc247c98cb:0x648a7882dd47a827",
+    "template": "mexico"
+  },
+  {
+    "slug": "auto-lavado-manantiales",
+    "nombre": "Auto Lavado Manantiales",
+    "ciudad": "Ramos Arizpe, Coah.",
+    "direccion": "\nCalle Calz. Salto de Agua 1359, Manantiales del Valle, 25904 Ramos Arizpe, Coah., México",
+    "telefono": "84 4354 8370",
+    "whatsapp": "528443548370",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 8,
+    "reviewDates": [
+      "Hace un año",
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Auto+Lavado+Manantiales/data=!4m7!3m6!1s0x8688137455ac27d7:0x64f25c5b81738686!8m2!3d25.5154495!4d-100.9385888!16s%2Fg%2F11bxc5dwbz!19sChIJ1yesVXQTiIYRhoZzgVtc8mQ?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x8688137455ac27d7:0x64f25c5b81738686",
+    "template": "mexico"
+  },
+  {
+    "slug": "auto-lavado-el-valle",
+    "nombre": "Auto Lavado El Valle",
+    "ciudad": "Ramos Arizpe, Coah.",
+    "direccion": "\nAvenida Valle Poniente, Valle Ote 324, 25902 Ramos Arizpe, Coah., México",
+    "telefono": "84 4494 6894",
+    "whatsapp": "528444946894",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "3 semanas atrás"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Auto+Lavado+El+Valle/data=!4m7!3m6!1s0x868815318db10ec9:0x74f2f6bad5c15fc9!8m2!3d25.5463969!4d-100.9666654!16s%2Fg%2F11zxfhxd8m!19sChIJyQ6xjTEViIYRyV_B1br28nQ?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x868815318db10ec9:0x74f2f6bad5c15fc9",
+    "template": "mexico"
+  },
+  {
+    "slug": "coconoco-car-wash",
+    "nombre": "COCONOCO CAR WASH",
+    "ciudad": "Monclova, Coah.",
+    "direccion": "\nBlvd Harold R. Pape 1904, El Pueblo, 25730 Monclova, Coah., México",
+    "telefono": "86 6648 3215",
+    "whatsapp": "528666483215",
+    "instagram": null,
+    "rating": 4.0,
+    "reviews_count": 386,
+    "reviewDates": [
+      "Hace un mes",
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/COCONOCO+CAR+WASH/data=!4m7!3m6!1s0x868bcdc37474a5f9:0x68737658baaf0967!8m2!3d26.9245376!4d-101.4198167!16s%2Fg%2F1ptxpr8bm!19sChIJ-aV0dMPNi4YRZwmvulh2c2g?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x868bcdc37474a5f9:0x68737658baaf0967",
+    "template": "mexico"
+  },
+  {
+    "slug": "los-nogales-autolavado",
+    "nombre": "Los Nogales Autolavado",
+    "ciudad": "Monclova, Coah.",
+    "direccion": "\nJesús Muñoz Ote. 204, El Pueblo, 25730 Monclova, Coah., México",
+    "telefono": "86 6112 1934",
+    "whatsapp": "528661121934",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 16,
+    "reviewDates": [
+      "Hace 4 meses",
+      "Hace 5 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Los+Nogales+Autolavado/data=!4m7!3m6!1s0x868bcd0e5a85a8ff:0x17c45837fd62f5a3!8m2!3d26.909513!4d-101.4192722!16s%2Fg%2F11nq2yj9tb!19sChIJ_6iFWg7Ni4YRo_Vi_TdYxBc?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x868bcd0e5a85a8ff:0x17c45837fd62f5a3",
+    "template": "mexico"
+  },
+  {
+    "slug": "lavado-cegla",
+    "nombre": "LAVADO CEGLA",
+    "ciudad": "Monclova, Coah.",
+    "direccion": "\nKennedy 125, Jardínes de Guadalupe, 25736 Monclova, Coah., México",
+    "telefono": "86 6135 1020",
+    "whatsapp": "528661351020",
+    "instagram": null,
+    "rating": 4.5,
+    "reviews_count": 31,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/LAVADO+CEGLA/data=!4m7!3m6!1s0x868bcdc2c2ddbbc7:0x8d76447fe427181b!8m2!3d26.9219512!4d-101.421257!16s%2Fg%2F11bx89yhh5!19sChIJx7vdwsLNi4YRGxgn5H9Edo0?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x868bcdc2c2ddbbc7:0x8d76447fe427181b",
+    "template": "mexico"
+  },
+  {
+    "slug": "car-wash-monclova",
+    "nombre": "Car Wash Monclova",
+    "ciudad": "Monclova, Coah.",
+    "direccion": "\n25790 Monclova, Coah., México",
+    "telefono": "86 6174 0912",
+    "whatsapp": "528661740912",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 2,
+    "reviewDates": [
+      "Hace 6 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Car+Wash/data=!4m7!3m6!1s0x868bd1b18df288a1:0xf1a23f810e9b744b!8m2!3d26.867284!4d-101.4343244!16s%2Fg%2F11gmchcknl!19sChIJoYjyjbHRi4YRS3SbDoE_ovE?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x868bd1b18df288a1:0xf1a23f810e9b744b",
+    "template": "mexico"
+  },
+  {
+    "slug": "lavado-y-engrasado-pecina",
+    "nombre": "Lavado y Engrasado PECINA",
+    "ciudad": "Monclova, Coah.",
+    "direccion": "\nBlvrd Benito Juárez 709, Roma, 25660 Monclova, Coah., México",
+    "telefono": "86 6634 1455",
+    "whatsapp": "528666341455",
+    "instagram": null,
+    "rating": 4.4,
+    "reviews_count": 18,
+    "reviewDates": [
+      "Editado Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Lavado+y+Engrasado+PECINA/data=!4m7!3m6!1s0x868bce723e1c1e4d:0x415be77163a8e189!8m2!3d26.922072!4d-101.4427831!16s%2Fg%2F1tgpngd_!19sChIJTR4cPnLOi4YRieGoY3HnW0E?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x868bce723e1c1e4d:0x415be77163a8e189",
+    "template": "mexico"
+  },
+  {
+    "slug": "car-wash-el-potro",
+    "nombre": "Car wash el potro",
+    "ciudad": "Frontera, Coah.",
+    "direccion": "\nPorfirio Díaz 215, Occidental, 25640 Frontera, Coah., México",
+    "telefono": "86 6169 0062",
+    "whatsapp": "528661690062",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 3,
+    "reviewDates": [
+      "Hace 10 meses",
+      "Hace un mes"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Car+wash+el+potro/data=!4m7!3m6!1s0x868bcfb8f43b4abd:0x43c1e52b315aa7ab!8m2!3d26.927202!4d-101.4584157!16s%2Fg%2F11l33dcdp6!19sChIJvUo79LjPi4YRq6daMSvlwUM?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x868bcfb8f43b4abd:0x43c1e52b315aa7ab",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-carwach",
+    "nombre": "Autolavado carwach",
+    "ciudad": "Parras de la Fuente, Coah.",
+    "direccion": "\n27981 Viñedos, C. Francisco Medina Mena 126, 27981 Parras de la Fuente, Coah., México",
+    "telefono": "61 8233 5321",
+    "whatsapp": "526182335321",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 2,
+    "reviewDates": [
+      "Editado Hace 3 días"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+carwach/data=!4m7!3m6!1s0x868f4f004c607afd:0x59b37b77c67fe1a1!8m2!3d25.430046!4d-102.1682765!16s%2Fg%2F11vypts802!19sChIJ_XpgTABPj4YRoeF_xnd7s1k?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x868f4f004c607afd:0x59b37b77c67fe1a1",
+    "template": "mexico"
+  },
+  {
+    "slug": "carelitemx",
+    "nombre": "CarEliteMx",
+    "ciudad": "Parras de la Fuente, Coah.",
+    "direccion": "\nEnrique Adame, Macias, 27980 Parras de la Fuente, Coah., México",
+    "telefono": "84 2116 7124",
+    "whatsapp": "528421167124",
+    "instagram": null,
+    "rating": 4.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "4 semanas atrás"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Car~EliteMx/data=!4m7!3m6!1s0x868f4921a3b7554b:0x446ffac48896d2f2!8m2!3d25.4432407!4d-102.1757142!16s%2Fg%2F11py6y641r!19sChIJS1W3oyFJj4YR8tKWiMT6b0Q?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x868f4921a3b7554b:0x446ffac48896d2f2",
+    "template": "mexico"
+  },
+  {
+    "slug": "carwash-bubbles",
+    "nombre": "Carwash Bubbles",
+    "ciudad": "Parras de la Fuente, Coah.",
+    "direccion": "\nMiguel de La Madrid 905, Col PRI 92, 27984 Parras de la Fuente, Coah., México",
+    "telefono": "84 2108 2218",
+    "whatsapp": "528421082218",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Carwash+Bubbles/data=!4m7!3m6!1s0x868f4fb59cca7cff:0x7e1f3cf8b3bd4de5!8m2!3d25.4320279!4d-102.1837489!16s%2Fg%2F11x2_gmccz!19sChIJ_3zKnLVPj4YR5U29s_g8H34?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x868f4fb59cca7cff:0x7e1f3cf8b3bd4de5",
+    "template": "mexico"
+  },
+  {
+    "slug": "mr-robo-car-wash",
+    "nombre": "MR. ROBO Car Wash",
+    "ciudad": "Piedras Negras, Coah.",
+    "direccion": "\nC. Adolfo López Mateos 1423, Nísperos, 26020 Piedras Negras, Coah., México",
+    "telefono": "87 8795 2554",
+    "whatsapp": "528787952554",
+    "instagram": null,
+    "rating": 4.1,
+    "reviews_count": 190,
+    "reviewDates": [
+      "Hace 5 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/MR.+ROBO+Car+Wash/data=!4m7!3m6!1s0x865f8b8bf59f21f7:0x5143ce0b827e6a7c!8m2!3d28.6991048!4d-100.5351527!16s%2Fg%2F11c1tlwdh5!19sChIJ9yGf9YuLX4YRfGp-ggvOQ1E?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x865f8b8bf59f21f7:0x5143ce0b827e6a7c",
+    "template": "mexico"
+  },
+  {
+    "slug": "de-balazo",
+    "nombre": "De Balazo",
+    "ciudad": "Piedras Negras, Coah.",
+    "direccion": "\nC. Juan de la Barrera 503, Guillén, 26080 Piedras Negras, Coah., México",
+    "telefono": "87 8783 5524",
+    "whatsapp": "528787835524",
+    "instagram": null,
+    "rating": 4.3,
+    "reviews_count": 50,
+    "reviewDates": [
+      "Hace 3 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/De+Balazo/data=!4m7!3m6!1s0x865f8ba67b4b1d53:0x85ee9ade16e909da!8m2!3d28.6835639!4d-100.5609826!16s%2Fg%2F1twyzznz!19sChIJUx1Le6aLX4YR2gnpFt6a7oU?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x865f8ba67b4b1d53:0x85ee9ade16e909da",
+    "template": "mexico"
+  },
+  {
+    "slug": "car-wash-el-cedrito",
+    "nombre": "Car Wash El Cedrito",
+    "ciudad": "Ciudad Acuña, Coah.",
+    "direccion": "\nNoche Buena 1005, Sin Nombre de Col 13, 26237 Cd Acuña, Coah., México",
+    "telefono": "87 7204 4327",
+    "whatsapp": "528772044327",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 2,
+    "reviewDates": [
+      "Hace un año",
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Car+Wash+El+Cedrito/data=!4m7!3m6!1s0x86f5bf002f3df1c7:0x4ca90dc01fff4a4c!8m2!3d29.3246996!4d-100.9808637!16s%2Fg%2F11x1ftqksx!19sChIJx_E9LwC_9YYRTEr_H8ANqUw?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x86f5bf002f3df1c7:0x4ca90dc01fff4a4c",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-el-compa",
+    "nombre": "Autolavado El Compa",
+    "ciudad": "Ciudad Acuña, Coah.",
+    "direccion": "\nNuevo León 316B, Atilano Barrera, 26230 Cd Acuña, Coah., México",
+    "telefono": "87 7131 5490",
+    "whatsapp": "528771315490",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 10 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+El+Compa/data=!4m7!3m6!1s0x86f59568fcbfd577:0xf0b07d2cdf9cd45e!8m2!3d29.3338443!4d-100.956053!16s%2Fg%2F11ms2g34h2!19sChIJd9W__GiV9YYRXtSc3yx9sPA?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x86f59568fcbfd577:0xf0b07d2cdf9cd45e",
+    "template": "mexico"
+  },
+  {
+    "slug": "superlavado-san-luis",
+    "nombre": "SUPERLAVADO SAN LUIS",
+    "ciudad": "Sabinas, Coah.",
+    "direccion": "\nSimon Bolívar 1409, Reinera, 26730 Sabinas, Coah., México",
+    "telefono": "86 1617 1143",
+    "whatsapp": "528616171143",
+    "instagram": null,
+    "rating": 4.5,
+    "reviews_count": 11,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/SUPERLAVADO+SAN+LUIS/data=!4m7!3m6!1s0x868ac3b65e167aa9:0x26e3b22b362fb260!8m2!3d27.8634643!4d-101.1242134!16s%2Fg%2F11j03c41wr!19sChIJqXoWXrbDioYRYLIvNiuy4yY?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x868ac3b65e167aa9:0x26e3b22b362fb260",
+    "template": "mexico"
+  },
+  {
+    "slug": "auto-lavado-express-2115",
+    "nombre": "Auto Lavado Express 2115",
+    "ciudad": "Nueva Rosita, Coah.",
+    "direccion": "\nPdte. Venustiano Carranza, Comercial, 26800 Nueva Rosita, Coah., México",
+    "telefono": "86 1619 5179",
+    "whatsapp": "528616195179",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 2,
+    "reviewDates": [
+      "Hace 8 meses",
+      "Hace 8 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Auto+Lavado+Express+2115/data=!4m7!3m6!1s0x868adb007d22bac3:0x49c093fc9fa5d9a0!8m2!3d27.9395389!4d-101.2285515!16s%2Fg%2F11yp_4vwt6!19sChIJw7oifQDbioYRoNmln_yTwEk?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x868adb007d22bac3:0x49c093fc9fa5d9a0",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-5-de-mayo",
+    "nombre": "AUTOLAVADO 5 de Mayo",
+    "ciudad": "Nueva Rosita, Coah.",
+    "direccion": "\n5 de Mayo 2002, col. Progreso, 26813 Nueva Rosita, Coah., México",
+    "telefono": "86 1200 6730",
+    "whatsapp": "528612006730",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/AUTOLAVADO+5+de+Mayo/data=!4m7!3m6!1s0x868adbe933768d1f:0x1e7662f14f86138f!8m2!3d27.9489582!4d-101.2152462!16s%2Fg%2F11yh36k2sx!19sChIJH412M-nbioYRjxOGT_Fidh4?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x868adbe933768d1f:0x1e7662f14f86138f",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-y-lubricado-flip-wash",
+    "nombre": "AutoLavado y Lubricado .Flip Wash",
+    "ciudad": "Nueva Rosita, Coah.",
+    "direccion": "\nPino Suárez 93, Sarabia, 26820 Nueva Rosita, Coah., México",
+    "telefono": "86 1135 7853",
+    "whatsapp": "528611357853",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 2,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/AutoLavado+y+Lubricado+.Flip+Wash/data=!4m7!3m6!1s0x868adbc2628926f1:0xef23db117283c763!8m2!3d27.9483589!4d-101.2178105!16s%2Fg%2F11p0w662cy!19sChIJ8SaJYsLbioYRY8eDchHbI-8?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x868adbc2628926f1:0xef23db117283c763",
+    "template": "mexico"
+  },
+  {
+    "slug": "auto-lavado-los-villa",
+    "nombre": "Auto lavado los villa",
+    "ciudad": "San Pedro, Coah.",
+    "direccion": "\nViesca 44, Centro, 27800 San Pedro, Coah., México",
+    "telefono": "87 1598 9741",
+    "whatsapp": "528715989741",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 4 meses",
+      "Hace 4 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Auto+lavado+los+villa/data=!4m7!3m6!1s0x868fb3c942b374d1:0xaa4d23feffaa5df9!8m2!3d25.7581644!4d-102.9810228!16s%2Fg%2F11zcxtpm21!19sChIJ0XSzQsmzj4YR-V2q__4jTao?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x868fb3c942b374d1:0xaa4d23feffaa5df9",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-los-tres-reyes",
+    "nombre": "Autolavado los Tres Reyes",
+    "ciudad": "Matamoros, Coah.",
+    "direccion": "\nCalle Vicente Guerrero & Juárez, Galeme I, 27443 Matamoros, Coah., México",
+    "telefono": "87 1458 4832",
+    "whatsapp": "528714584832",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+los+Tres+Reyes/data=!4m7!3m6!1s0x868fc10015821d4b:0x126ebed532f8d9c6!8m2!3d25.5238579!4d-103.227938!16s%2Fg%2F11vyvt99t0!19sChIJSx2CFQDBj4YRxtn4MtW-bhI?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x868fc10015821d4b:0x126ebed532f8d9c6",
+    "template": "mexico"
   }
 ]
