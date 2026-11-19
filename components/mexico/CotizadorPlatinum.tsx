@@ -413,6 +413,29 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
       },
     ],
   },
+  {
+    id: "ceramic-shield",
+    categoria: "correccion",
+    nombre: "Ceramic Shield",
+    subtitulo: "Detallado Exterior | Cerámico Express",
+    descripcion: "Protección de alto nivel, brillo espejo y repelencia extrema por hasta 12 meses.",
+    badge: "Protección 12 Meses",
+    detalles: [
+      "Lavado técnico: prelavado y lavado a detalle con espuma activa (cero micro-rayones)",
+      "Descontaminación férrica: eliminación química de partículas de hierro",
+      "Preparación con IPA: limpieza profunda para asegurar anclaje químico",
+      "Sellado en pintura y plásticos: tecnología de carbono y silicio (hasta 12 meses)",
+      "Blindaje térmico en rines (6 meses)",
+      "Repelente hidrofóbico en cristales y llantas",
+    ],
+    precios: {
+      auto: 1350,
+      suv2: 1550,
+      pickup: 1750,
+      suv3: 2050,
+      van: 2590,
+    },
+  },
 
 
 ];
