@@ -84200,5 +84200,495 @@
     "pais": "MX",
     "place_id": "ChIJSWQJxyEnKYQRGg3IBu5iJRI",
     "template": "mexico"
+  },
+  {
+    "slug": "delta-autolavado",
+    "nombre": "Delta autolavado",
+    "ciudad": "Ocotlán, Jal.",
+    "direccion": "\nMorelos 1011, Florida, 47810 Ocotlán, Jal., México",
+    "telefono": "39 2103 3905",
+    "whatsapp": "523921033905",
+    "instagram": null,
+    "rating": 4.5,
+    "reviews_count": 46,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Delta+autolavado/data=!4m7!3m6!1s0x842ed9f0a57b1303:0xd0ed3d81e60b7184!8m2!3d20.364299!4d-102.7733636!16s%2Fg%2F11h3bfsjj6!19sChIJAxN7pfDZLoQRhHEL5oE97dA?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJAxN7pfDZLoQRhHEL5oE97dA",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-jhar",
+    "nombre": "Autolavado Jhar",
+    "ciudad": "Ocotlán, Jal.",
+    "direccion": "\nAv. Francisco Zarco 798, San Felipe, 47820 Ocotlán, Jal., México",
+    "telefono": "39 2925 7118",
+    "whatsapp": "523929257118",
+    "instagram": null,
+    "rating": 4.3,
+    "reviews_count": 60,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+Jhar/data=!4m7!3m6!1s0x842ed8e9390f6da1:0xfa608195feadc215!8m2!3d20.363196!4d-102.7749616!16s%2Fg%2F1tjy1t_9!19sChIJoW0POenYLoQRFcKt_pWBYPo?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJoW0POenYLoQRFcKt_pWBYPo",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-el-patio",
+    "nombre": "Autolavado el patio",
+    "ciudad": "Ocotlán, Jal.",
+    "direccion": "\nPléyades 128, Villas de Zula, 47862 Ocotlán, Jal., México",
+    "telefono": "33 1176 4484",
+    "whatsapp": "523311764484",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 3,
+    "reviewDates": [
+      "Hace un año",
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+el+patio/data=!4m7!3m6!1s0x842ed9001f48ecc7:0x19ea260c4719f458!8m2!3d20.348376!4d-102.7624674!16s%2Fg%2F11vrf_n5h3!19sChIJx-xIHwDZLoQRWPQZRwwm6hk?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJx-xIHwDZLoQRWPQZRwwm6hk",
+    "template": "mexico"
+  },
+  {
+    "slug": "clean-car-ccs",
+    "nombre": "Clean Car CCS",
+    "ciudad": "La Barca, Jal.",
+    "direccion": "\nArista 1, 47912 Zalamea, Jal., México",
+    "telefono": "39 3117 4301",
+    "whatsapp": "523931174301",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 2,
+    "reviewDates": [
+      "Hace 2 meses",
+      "Hace 3 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Clean+Car+CCS/data=!4m7!3m6!1s0x842ec1bc838383a5:0x6c42f5bded5f803c!8m2!3d20.3123012!4d-102.5104348!16s%2Fg%2F11nqxjx5lp!19sChIJpYODg7zBLoQRPIBf7b31Qmw?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJpYODg7zBLoQRPIBf7b31Qmw",
+    "template": "mexico"
+  },
+  {
+    "slug": "fernandos-autolavado",
+    "nombre": "Fernandos Autolavado",
+    "ciudad": "La Barca, Jal.",
+    "direccion": "\nVallarta 170, Centro, 47910 La Barca, Jal., México",
+    "telefono": "39 3167 5166",
+    "whatsapp": "523931675166",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 7 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Fernandos+Autolavado/data=!4m7!3m6!1s0x842ec38d710a6bd3:0xc80f300ece63252c!8m2!3d20.2802982!4d-102.5530105!16s%2Fg%2F11k9kw1dkz!19sChIJ02sKcY3DLoQRLCVjzg4wD8g?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJ02sKcY3DLoQRLCVjzg4wD8g",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-express",
+    "nombre": "Autolavado Express",
+    "ciudad": "La Barca, Jal.",
+    "direccion": "\nSan Martin 10, La Trinidad, Santa Cecilia, 47912 La Barca, Jal., México",
+    "telefono": "39 3123 2956",
+    "whatsapp": "523931232956",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 11 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+Express/data=!4m7!3m6!1s0x842ec324b6a2d115:0xc833001b01472f8e!8m2!3d20.2911625!4d-102.5402113!16s%2Fg%2F11twccnqkl!19sChIJFdGitiTDLoQRji9HARsAM8g?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJFdGitiTDLoQRji9HARsAM8g",
+    "template": "mexico"
+  },
+  {
+    "slug": "auto-lavado-ruta-63",
+    "nombre": "Auto lavado ruta 63",
+    "ciudad": "Arandas, Jal.",
+    "direccion": "\n16 de Septiembre 194-A, 47180 Arandas, Jal., México",
+    "telefono": "34 8593 2167",
+    "whatsapp": "523485932167",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 9,
+    "reviewDates": [
+      "Hace un año",
+      "Editado Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Auto+lavado+ruta+63/data=!4m7!3m6!1s0x84294d71f80b2777:0x40090a52d577b9da!8m2!3d20.7018628!4d-102.350095!16s%2Fg%2F11qgfb4mkf!19sChIJdycL-HFNKYQR2rl31VIKCUA?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJdycL-HFNKYQR2rl31VIKCUA",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-velazquez",
+    "nombre": "AUTOLAVADO VELÁZQUEZ",
+    "ciudad": "Arandas, Jal.",
+    "direccion": "\nJosefa Ortiz de Domínguez #363 General Arteaga, C. 12 de Octubre, 47180 Arandas, Jal., México",
+    "telefono": "33 1008 8932",
+    "whatsapp": "523310088932",
+    "instagram": null,
+    "rating": 4.7,
+    "reviews_count": 3,
+    "reviewDates": [
+      "Hace 11 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/AUTOLAVADO+VEL%C3%81ZQUEZ/data=!4m7!3m6!1s0x84294bf53fa46721:0xcd5153fe28dc1730!8m2!3d20.7042171!4d-102.3520919!16s%2Fg%2F11y1n000yw!19sChIJIWekP_VLKYQRMBfcKP5TUc0?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJIWekP_VLKYQRMBfcKP5TUc0",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-lalocura-flores",
+    "nombre": "AUTOLAVADO LALOCURA FLORES",
+    "ciudad": "San Juan de los Lagos, Jal.",
+    "direccion": "\nCalvario 2, Centro, 47000 San Juan de los Lagos, Jal., México",
+    "telefono": "39 5102 4008",
+    "whatsapp": "523951024008",
+    "instagram": null,
+    "rating": 4.2,
+    "reviews_count": 34,
+    "reviewDates": [
+      "Hace un mes"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/AUTOLAVADO+LALOCURA+FLORES/data=!4m7!3m6!1s0x8429719a2deda5d9:0xfcee1995037b8b8b!8m2!3d21.2489621!4d-102.3298382!16s%2Fg%2F11c6lvzx2b!19sChIJ2aXtLZpxKYQRi4t7A5UZ7vw?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJ2aXtLZpxKYQRi4t7A5UZ7vw",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-express-san-juan",
+    "nombre": "AUTOLAVADO EXPRESS SAN JUAN",
+    "ciudad": "San Juan de los Lagos, Jal.",
+    "direccion": "\nMal. David Noel Ramírez Padilla, Los Halcones, 47015 San Juan de los Lagos, Jal., México",
+    "telefono": "39 5142 0202",
+    "whatsapp": "523951420202",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 2,
+    "reviewDates": [
+      "una semana atrás",
+      "una semana atrás"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/AUTOLAVADO+EXPRESS+SAN+JUAN/data=!4m7!3m6!1s0x84297100524bd687:0xd8a8007725f27c24!8m2!3d21.2556293!4d-102.3401432!16s%2Fg%2F11z9x2_0_x!19sChIJh9ZLUgBxKYQRJHzyJXcAqNg?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJh9ZLUgBxKYQRJHzyJXcAqNg",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-el-berrinche",
+    "nombre": "Autolavado el berrinche",
+    "ciudad": "San Juan de los Lagos, Jal.",
+    "direccion": "\nOcéano Pacífico, San Martin, 47079 San Juan de los Lagos, Jal., México",
+    "telefono": "39 5114 1772",
+    "whatsapp": "523951141772",
+    "instagram": null,
+    "rating": 4.5,
+    "reviews_count": 6,
+    "reviewDates": [
+      "Hace un año",
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+el+berrinche/data=!4m7!3m6!1s0x842971004c90d54d:0x608b58012e0a60a6!8m2!3d21.2390427!4d-102.3345556!16s%2Fg%2F11y5tvptpc!19sChIJTdWQTABxKYQRpmAKLgFYi2A?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJTdWQTABxKYQRpmAKLgFYi2A",
+    "template": "mexico"
+  },
+  {
+    "slug": "car-wash-el-agostadero",
+    "nombre": "CAR WASH EL AGOSTADERO",
+    "ciudad": "San Juan de los Lagos, Jal.",
+    "direccion": "\nCam. Al Duarte 372, Las Antenas, 47070 San Juan de los Lagos, Jal., México",
+    "telefono": "39 5117 4751",
+    "whatsapp": "523951174751",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/CAR+WASH+EL+AGOSTADERO/data=!4m7!3m6!1s0x842971007aaafbab:0x5b4b3139f503f481!8m2!3d21.2342064!4d-102.3406314!16s%2Fg%2F11ybpnf7yl!19sChIJq_uqegBxKYQRgfQD9TkxS1s?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJq_uqegBxKYQRgfQD9TkxS1s",
+    "template": "mexico"
+  },
+  {
+    "slug": "elite-wash",
+    "nombre": "Élite Wash",
+    "ciudad": "San Juan de los Lagos, Jal.",
+    "direccion": "\nAbasolo 339, Las Moras 2, 47073 San Juan de los Lagos, Jal., México",
+    "telefono": "39 5120 2115",
+    "whatsapp": "523951202115",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/%C3%89lite+Wash/data=!4m7!3m6!1s0x842971000a42d34f:0x119021277effb0b6!8m2!3d21.2334959!4d-102.3314067!16s%2Fg%2F11zh_p03rn!19sChIJT9NCCgBxKYQRtrD_fichkBE?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJT9NCCgBxKYQRtrD_fichkBE",
+    "template": "mexico"
+  },
+  {
+    "slug": "one-car-wash",
+    "nombre": "One Car Wash",
+    "ciudad": "Ciudad Guzmán, Jal.",
+    "direccion": "\nC. Federico del Toro 731, Cd Guzmán Centro, 49000 Cdad. Guzmán, Jal., México",
+    "telefono": "31 2268 8203",
+    "whatsapp": "523122688203",
+    "instagram": null,
+    "rating": 4.6,
+    "reviews_count": 22,
+    "reviewDates": [
+      "Hace 6 meses",
+      "Hace un mes"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/One+Car+Wash/data=!4m7!3m6!1s0x842f87dc823a9b4f:0xfb6b3032270c0e4a!8m2!3d19.7186619!4d-103.4622616!16s%2Fg%2F11y_2mhz1f!19sChIJT5s6gtyHL4QRSg4MJzIwa_s?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJT5s6gtyHL4QRSg4MJzIwa_s",
+    "template": "mexico"
+  },
+  {
+    "slug": "fly-car-wash",
+    "nombre": "Fly Car Wash",
+    "ciudad": "Ciudad Guzmán, Jal.",
+    "direccion": "\nC. Antonio Rosales 155, Cd Guzmán Centro, 49000 Cdad. Guzmán, Jal., México",
+    "telefono": "34 1146 3076",
+    "whatsapp": "523411463076",
+    "instagram": null,
+    "rating": 4.8,
+    "reviews_count": 16,
+    "reviewDates": [
+      "Editado Hace 5 meses",
+      "Hace 10 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Fly+Car+Wash/data=!4m7!3m6!1s0x842f8746a4b0ebc5:0xfde9b89b70ae6931!8m2!3d19.7141717!4d-103.4580209!16s%2Fg%2F11fkct_d2d!19sChIJxeuwpEaHL4QRMWmucJu46f0?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJxeuwpEaHL4QRMWmucJu46f0",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-comonfort",
+    "nombre": "Autolavado Comonfort",
+    "ciudad": "Ciudad Guzmán, Jal.",
+    "direccion": "\nC. General Ignacio Comonfort, Centro, 49000 Cdad. Guzmán, Jal., México",
+    "telefono": "34 1149 0877",
+    "whatsapp": "523411490877",
+    "instagram": null,
+    "rating": 4.5,
+    "reviews_count": 10,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+Comonfort/data=!4m7!3m6!1s0x842f87be2642df91:0xd548127cd3cb626a!8m2!3d19.6998635!4d-103.4705614!16s%2Fg%2F11vxkv6n0b!19sChIJkd9CJr6HL4QRamLL03wSSNU?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJkd9CJr6HL4QRamLL03wSSNU",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-gilbe",
+    "nombre": "Autolavado Gilbe",
+    "ciudad": "Manzanillo, Col.",
+    "direccion": "\nV, Av Elías Zamora, Manzanillo, Col., México",
+    "telefono": "31 4144 3721",
+    "whatsapp": "523141443721",
+    "instagram": null,
+    "rating": 4.2,
+    "reviews_count": 217,
+    "reviewDates": [
+      "Hace un año",
+      "Hace 8 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+Gilbe/data=!4m7!3m6!1s0x8424d666aea4c365:0x6c89ffdbe5d9029a!8m2!3d19.115098!4d-104.3263675!16s%2Fg%2F11c5rty_kw!19sChIJZcOkrmbWJIQRmgLZ5dv_iWw?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJZcOkrmbWJIQRmgLZ5dv_iWw",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-splash",
+    "nombre": "Autolavado Splash",
+    "ciudad": "Manzanillo, Col.",
+    "direccion": "\nAv Elías Zamora 230, Valle de Las Garzas, II, 28219 Manzanillo, Col., México",
+    "telefono": "31 4114 1638",
+    "whatsapp": "523141141638",
+    "instagram": null,
+    "rating": 4.2,
+    "reviews_count": 242,
+    "reviewDates": [
+      "Hace un año",
+      "Hace 11 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+Splash/data=!4m7!3m6!1s0x8424d5e38dab517b:0xb48148d2108080d0!8m2!3d19.0938876!4d-104.3018037!16s%2Fg%2F11cnl6vfsr!19sChIJe1GrjePVJIQR0ICAENJIgbQ?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJe1GrjePVJIQR0ICAENJIgbQ",
+    "template": "mexico"
+  },
+  {
+    "slug": "washbox-car-wash",
+    "nombre": "WashBox Car Wash",
+    "ciudad": "Manzanillo, Col.",
+    "direccion": "\nMiguel Altamirano 510, Nuevo Salahua, 28869 Manzanillo, Col., México",
+    "telefono": "31 4123 6366",
+    "whatsapp": "523141236366",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "3 semanas atrás",
+      "3 semanas atrás"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/WashBox+Car+Wash/data=!4m7!3m6!1s0x8424d71ca378528b:0x723e62f975f24ec3!8m2!3d19.1122542!4d-104.3263884!16s%2Fg%2F11z_sm4t7h!19sChIJi1J4oxzXJIQRw07ydfliPnI?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJi1J4oxzXJIQRw07ydfliPnI",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-burbuja-auto-spa",
+    "nombre": "Autolavado Burbuja Auto-Spa",
+    "ciudad": "Manzanillo, Col.",
+    "direccion": "\nAv Paseo de Las Gaviotas 465, Viveros Pelayo, 28219 Manzanillo, Col., México",
+    "telefono": "31 4333 9656",
+    "whatsapp": "523143339656",
+    "instagram": null,
+    "rating": 4.1,
+    "reviews_count": 44,
+    "reviewDates": [
+      "Hace un año",
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+Burbuja+Auto-Spa/data=!4m7!3m6!1s0x8424d6795951e9c7:0x29ebe3e4d8ebc216!8m2!3d19.1028502!4d-104.3257494!16s%2Fg%2F11j2dlgh88!19sChIJx-lRWXnWJIQRFsLr2OTj6yk?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJx-lRWXnWJIQRFsLr2OTj6yk",
+    "template": "mexico"
+  },
+  {
+    "slug": "auto-lavado-manolo",
+    "nombre": "Auto lavado Manolo",
+    "ciudad": "Manzanillo, Col.",
+    "direccion": "\nFelipe Guzmán Mesina, Playa Azul las Brisas, 28210 Manzanillo, Col., México",
+    "telefono": "31 4129 8903",
+    "whatsapp": "523141298903",
+    "instagram": null,
+    "rating": 4.2,
+    "reviews_count": 32,
+    "reviewDates": [
+      "Hace 6 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Auto+lavado+Manolo/data=!4m7!3m6!1s0x8424d521a54d2797:0x860c53159ac60322!8m2!3d19.0799498!4d-104.3062458!16s%2Fg%2F11cn8rzwdf!19sChIJlydNpSHVJIQRIgPGmhVTDIY?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJlydNpSHVJIQRIgPGmhVTDIY",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-express-7-minutos",
+    "nombre": "Autolavado Express 7 Minutos",
+    "ciudad": "Colima, Col.",
+    "direccion": "\nBlvrd Camino Real 552, El Porvenir II, 28019 Colima, Col., México",
+    "telefono": "31 2112 2321",
+    "whatsapp": "523121122321",
+    "instagram": null,
+    "rating": 4.1,
+    "reviews_count": 149,
+    "reviewDates": [
+      "Hace un año",
+      "Hace 5 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+Express+7+Minutos/data=!4m7!3m6!1s0x84255bc612172ea3:0xf244e4425f59d5c5!8m2!3d19.2519515!4d-103.6997104!16s%2Fg%2F11q2sjdmpy!19sChIJoy4XEsZbJYQRxdVZX0LkRPI?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJoy4XEsZbJYQRxdVZX0LkRPI",
+    "template": "mexico"
+  },
+  {
+    "slug": "autobano-starwash",
+    "nombre": "Autobaño Starwash",
+    "ciudad": "Colima, Col.",
+    "direccion": "\nJosé Antonio Díaz 451, Placetas Estadio, 28050 Colima, Col., México",
+    "telefono": "31 2943 2297",
+    "whatsapp": "523129432297",
+    "instagram": null,
+    "rating": 4.4,
+    "reviews_count": 183,
+    "reviewDates": [
+      "3 semanas atrás",
+      "Hace 7 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autoba%C3%B1o+Starwash/data=!4m7!3m6!1s0x84254551cb6290a5:0x949c3d099c93779f!8m2!3d19.246548!4d-103.737477!16s%2Fg%2F11bz__8__w!19sChIJpZBiy1FFJYQRn3eTnAk9nJQ?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJpZBiy1FFJYQRn3eTnAk9nJQ",
+    "template": "mexico"
+  },
+  {
+    "slug": "auto-lavado-el-barbaro",
+    "nombre": "Auto Lavado El Barbaro",
+    "ciudad": "Colima, Col.",
+    "direccion": "\nAv. 20 de Noviembre S/N, Col del Periodista, 28000 Colima, Col., México",
+    "telefono": "31 2134 3578",
+    "whatsapp": "523121343578",
+    "instagram": null,
+    "rating": 4.3,
+    "reviews_count": 76,
+    "reviewDates": [
+      "Hace 4 meses",
+      "Editado Hace 3 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Auto+Lavado+El+Barbaro/data=!4m7!3m6!1s0x84255169a143d111:0x45cd749edb2f53bd!8m2!3d19.2323302!4d-103.7259735!16s%2Fg%2F11gh9mkcd8!19sChIJEdFDoWlRJYQRvVMv2550zUU?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJEdFDoWlRJYQRvVMv2550zUU",
+    "template": "mexico"
+  },
+  {
+    "slug": "autobanos-el-diezmo",
+    "nombre": "Autobaños El Diezmo",
+    "ciudad": "Colima, Col.",
+    "direccion": "\nBlvrd Camino Real 765, El Diezmo, 28018 Colima, Col., México",
+    "telefono": "31 2313 8063",
+    "whatsapp": "523123138063",
+    "instagram": null,
+    "rating": 4.1,
+    "reviews_count": 93,
+    "reviewDates": [
+      "Hace 2 meses",
+      "Hace 5 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autoba%C3%B1os+El+Diezmo/data=!4m7!3m6!1s0x84255a91ba7795bb:0xe869633b669c0e9a!8m2!3d19.2545457!4d-103.696146!16s%2Fg%2F1tdbr5gg!19sChIJu5V3upFaJYQRmg6cZjtjaeg?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJu5V3upFaJYQRmg6cZjtjaeg",
+    "template": "mexico"
   }
 ]
