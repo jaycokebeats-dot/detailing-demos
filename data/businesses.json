@@ -84690,5 +84690,492 @@
     "pais": "MX",
     "place_id": "ChIJu5V3upFaJYQRmg6cZjtjaeg",
     "template": "mexico"
+  },
+  {
+    "slug": "italiano-carwash",
+    "nombre": "Italiano CarWash",
+    "ciudad": "Villa de Álvarez, Col.",
+    "direccion": "\nAlgarrobo Chileno 107, 28983 Cdad. de Villa de Álvarez, Col., México",
+    "telefono": "31 3270 8864",
+    "whatsapp": "523132708864",
+    "instagram": null,
+    "rating": 4.4,
+    "reviews_count": 7,
+    "reviewDates": [
+      "Hace un año",
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Italiano+CarWash/data=!4m7!3m6!1s0x84254500643c8b2f:0x51d6812dc9f28341!8m2!3d19.2715782!4d-103.7583103!16s%2Fg%2F11x2f4v3rb!19sChIJL4s8ZABFJYQRQYPyyS2B1lE?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x84254500643c8b2f:0x51d6812dc9f28341",
+    "template": "mexico"
+  },
+  {
+    "slug": "car-wash-la-union",
+    "nombre": "Car Wash La Unión",
+    "ciudad": "Tecomán, Col.",
+    "direccion": "\nC. Obreros 830, Col, Unión Nte, 28130 Tecomán, Col., México",
+    "telefono": "31 3730 5666",
+    "whatsapp": "523137305666",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 6,
+    "reviewDates": [
+      "Hace 9 meses",
+      "Hace 9 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Car+Wash+La+Uni%C3%B3n/data=!4m7!3m6!1s0x843ab7000aa35683:0xe7e695b0a613d2c!8m2!3d18.9169961!4d-103.8816801!16s%2Fg%2F11mt4glqzt!19sChIJg1ajCgC3OoQRLD1hCltpfg4?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x843ab7000aa35683:0xe7e695b0a613d2c",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-la-moneda",
+    "nombre": "AUTOLAVADO LA MONEDA",
+    "ciudad": "Tecomán, Col.",
+    "direccion": "\nBelisario Dominguez Calle Francisco Javier Mina Esq, 28100 Tecomán, Col., México",
+    "telefono": "31 2167 8433",
+    "whatsapp": "523121678433",
+    "instagram": null,
+    "rating": 4.6,
+    "reviews_count": 21,
+    "reviewDates": [
+      "Hace un año",
+      "Hace 3 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/AUTOLAVADO+LA+MONEDA/data=!4m7!3m6!1s0x843ab76216d343c5:0xc026e80fc9c8befc!8m2!3d18.9171009!4d-103.8757171!16s%2Fg%2F11mr6772zk!19sChIJxUPTFmK3OoQR_L7IyQ_oJsA?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x843ab76216d343c5:0xc026e80fc9c8befc",
+    "template": "mexico"
+  },
+  {
+    "slug": "lavado-de-elegancia",
+    "nombre": "Lavado de elegancia",
+    "ciudad": "Tecomán, Col.",
+    "direccion": "\nAntonio Vázquez Jasso 63, 28120 Tecomán, Col., México",
+    "telefono": "31 3191 8601",
+    "whatsapp": "523131918601",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 2,
+    "reviewDates": [
+      "Hace un año",
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Lavado+de+elegancia/data=!4m7!3m6!1s0x843ab7352c450cfb:0x7506cf17b39f462a!8m2!3d18.9338243!4d-103.8760709!16s%2Fg%2F11xzhqzn9j!19sChIJ-wxFLDW3OoQRKkafsxfPBnU?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x843ab7352c450cfb:0x7506cf17b39f462a",
+    "template": "mexico"
+  },
+  {
+    "slug": "auto-lavado-el-hermano",
+    "nombre": "Auto Lavado El Hermano",
+    "ciudad": "Tecomán, Col.",
+    "direccion": "\nAv. Carlos de la Madrid, Justo Sierra, Las Flores y Amp, 28134 Tecomán, Col., México",
+    "telefono": "31 3103 8367",
+    "whatsapp": "523131038367",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 7 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Auto+Lavado+El+Hermano/data=!4m7!3m6!1s0x843ab700314815e9:0x7788925d0894d1f2!8m2!3d18.9239133!4d-103.8892417!16s%2Fg%2F11z3__b51t!19sChIJ6RVIMQC3OoQR8tGUCF2SiHc?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x843ab700314815e9:0x7788925d0894d1f2",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-el-monky",
+    "nombre": "Autolavado El Monky",
+    "ciudad": "Tecomán, Col.",
+    "direccion": "\nJ. José Ríos 265, Emiliano Zapata, 28140 Tecomán, Col., México",
+    "telefono": "31 3158 9210",
+    "whatsapp": "523131589210",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 2,
+    "reviewDates": [
+      "Hace 3 meses",
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+El+Monky/data=!4m7!3m6!1s0x843ab7a82f655be7:0xa00ba86ec3f1cc7f!8m2!3d18.914212!4d-103.8669515!16s%2Fg%2F11wq9x22kf!19sChIJ51tlL6i3OoQRf8zxw26oC6A?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x843ab7a82f655be7:0xa00ba86ec3f1cc7f",
+    "template": "mexico"
+  },
+  {
+    "slug": "auto-lavado-independencia",
+    "nombre": "Auto lavado independencia",
+    "ciudad": "Autlán de Navarro, Jal.",
+    "direccion": "\n669, Centro, 48900 Autlán de Navarro, Jal., México",
+    "telefono": "33 1413 1318",
+    "whatsapp": "523314131318",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 2,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Auto+lavado+independencia/data=!4m7!3m6!1s0x842455df00ba09f3:0xd1409c9b3310780f!8m2!3d19.7839347!4d-104.3578537!16s%2Fg%2F11t60wjm25!19sChIJ8wm6AN9VJIQRD3gQM5ucQNE?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x842455df00ba09f3:0xd1409c9b3310780f",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-express-los-compadres",
+    "nombre": "Autolavado expréss los compadres",
+    "ciudad": "Autlán de Navarro, Jal.",
+    "direccion": "\nAv Independencia Nacional 1173, Centro, 48900 Autlán de Navarro, Jal., México",
+    "telefono": "31 7107 6623",
+    "whatsapp": "523171076623",
+    "instagram": null,
+    "rating": 4.8,
+    "reviews_count": 4,
+    "reviewDates": [
+      "Hace 9 meses",
+      "Hace 9 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+expr%C3%A9ss+los+compadres/data=!4m7!3m6!1s0x842455b0632e70c1:0xc3c7cb0eab2c0c42!8m2!3d19.7767084!4d-104.357493!16s%2Fg%2F11xf_q27_p!19sChIJwXAuY7BVJIQRQgwsqw7Lx8M?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x842455b0632e70c1:0xc3c7cb0eab2c0c42",
+    "template": "mexico"
+  },
+  {
+    "slug": "autospa-fody",
+    "nombre": "Autospa Fody",
+    "ciudad": "Ameca, Jal.",
+    "direccion": "\nValle De Ameca 59, San José, 46600 Ameca, Jal., México",
+    "telefono": "33 2496 4895",
+    "whatsapp": "523324964895",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 2,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autospa+Fody/data=!4m7!3m6!1s0x842677ca6654eed5:0x83b549d2398fb35f!8m2!3d20.5567328!4d-104.0426879!16s%2Fg%2F11rhbvd0d_!19sChIJ1e5UZsp3JoQRX7OPOdJJtYM?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x842677ca6654eed5:0x83b549d2398fb35f",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-navarro",
+    "nombre": "AUTOLAVADO NAVARRO",
+    "ciudad": "Ameca, Jal.",
+    "direccion": "\nHospital 232, COL LA CIENEGA, 46600 Ameca, Jal., México",
+    "telefono": "37 5101 0860",
+    "whatsapp": "523751010860",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 2 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/AUTOLAVADO+NAVARRO/data=!4m7!3m6!1s0x842677005bdf20a7:0x4d8f8a426d1dc1a5!8m2!3d20.5534758!4d-104.0371383!16s%2Fg%2F11y2d1mzxr!19sChIJpyDfWwB3JoQRpcEdbUKKj00?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x842677005bdf20a7:0x4d8f8a426d1dc1a5",
+    "template": "mexico"
+  },
+  {
+    "slug": "auto-lavado-armejo",
+    "nombre": "Auto lavado Armejo",
+    "ciudad": "Ameca, Jal.",
+    "direccion": "\nAmado Nervo 21, Los Angeles, 46600 Ameca, Jal., México",
+    "telefono": "37 5760 3097",
+    "whatsapp": "523757603097",
+    "instagram": null,
+    "rating": 4.2,
+    "reviews_count": 6,
+    "reviewDates": [
+      "Hace 9 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Auto+lavado+Armejo/data=!4m7!3m6!1s0x8426779d23e93ef1:0x6a4314303542f964!8m2!3d20.5532002!4d-104.0541614!16s%2Fg%2F11y34hf1kq!19sChIJ8T7pI513JoQRZPlCNTAUQ2o?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x8426779d23e93ef1:0x6a4314303542f964",
+    "template": "mexico"
+  },
+  {
+    "slug": "la-bodega-autolavado",
+    "nombre": "La bodega autolavado",
+    "ciudad": "Tala, Jal.",
+    "direccion": "\nVicente Guerrero 88, Sin Nombre, 45300 Tala, Jal., México",
+    "telefono": "33 2751 6232",
+    "whatsapp": "523327516232",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 2,
+    "reviewDates": [
+      "Hace un año",
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/La+bodega+autolavado/data=!4m7!3m6!1s0x842605007ecfa6ab:0x677378db941ff93d!8m2!3d20.652937!4d-103.7007669!16s%2Fg%2F11x91ljvh4!19sChIJq6bPfgAFJoQRPfkflNt4c2c?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x842605007ecfa6ab:0x677378db941ff93d",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-7",
+    "nombre": "AUTOLAVADO 7",
+    "ciudad": "Tala, Jal.",
+    "direccion": "\n45300, El suspiro, 45300 Tala, Jal., México",
+    "telefono": "38 4100 0165",
+    "whatsapp": "523841000165",
+    "instagram": null,
+    "rating": 4.0,
+    "reviews_count": 2,
+    "reviewDates": [
+      "Hace un año",
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/AUTOLAVADO+7/data=!4m7!3m6!1s0x842605f1b52aa611:0xbac8661ca419e5d!8m2!3d20.6594516!4d-103.708638!16s%2Fg%2F11ww_b4_v9!19sChIJEaYqtfEFJoQRXZ5BymGGrAs?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x842605f1b52aa611:0xbac8661ca419e5d",
+    "template": "mexico"
+  },
+  {
+    "slug": "rapid-wash-autolavados",
+    "nombre": "RAPID & WASH Autolavados",
+    "ciudad": "Tala, Jal.",
+    "direccion": "\nC. San Pedro 259, Tala Centro, 45300 Tala, Jal., México",
+    "telefono": "38 4117 5724",
+    "whatsapp": "523841175724",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 2,
+    "reviewDates": [
+      "Hace un mes",
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/RAPID+%26+WASH+Autolavados/data=!4m7!3m6!1s0x84260506dd178caf:0xda00a3ffbda3989d!8m2!3d20.6601446!4d-103.7010067!16s%2Fg%2F11w8q0p_jj!19sChIJr4wX3QYFJoQRnZijvf-jANo?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x84260506dd178caf:0xda00a3ffbda3989d",
+    "template": "mexico"
+  },
+  {
+    "slug": "car-wash-spa",
+    "nombre": "car wash spa",
+    "ciudad": "Tala, Jal.",
+    "direccion": "\nAv. Solidaridad 152, P.º de Los Fresnos col, 45300 Tala, Jal., México",
+    "telefono": "33 1443 0286",
+    "whatsapp": "523314430286",
+    "instagram": null,
+    "rating": 4.0,
+    "reviews_count": 3,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/car+wash+spa/data=!4m7!3m6!1s0x842605bbdc58ba8b:0x73ca1c1ee8187d6c!8m2!3d20.6550388!4d-103.7130203!16s%2Fg%2F11fstz4lq9!19sChIJi7pY3LsFJoQRbH0Y6B4cynM?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x842605bbdc58ba8b:0x73ca1c1ee8187d6c",
+    "template": "mexico"
+  },
+  {
+    "slug": "lavado-xalisco",
+    "nombre": "Lavado Xalisco",
+    "ciudad": "Xalisco, Nay.",
+    "direccion": "\nPuerto Vallarta - Tepic, 24 de Febrero, 63786 Xalisco, Nay., México",
+    "telefono": "31 1215 4689",
+    "whatsapp": "523112154689",
+    "instagram": null,
+    "rating": 4.9,
+    "reviews_count": 16,
+    "reviewDates": [
+      "Hace 10 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Lavado+Xalisco/data=!4m7!3m6!1s0x842731193c6f4321:0x57e59377fc6c9a79!8m2!3d21.4402978!4d-104.899025!16s%2Fg%2F11c0q03bzv!19sChIJIUNvPBkxJ4QReZps_HeT5Vc?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x842731193c6f4321:0x57e59377fc6c9a79",
+    "template": "mexico"
+  },
+  {
+    "slug": "auto-shampoo-del-sol",
+    "nombre": "Auto shampoo Del sol",
+    "ciudad": "Xalisco, Nay.",
+    "direccion": "\nDel Sol 18, Insurgentes, 63783 Xalisco, Nay., México",
+    "telefono": "31 1262 7839",
+    "whatsapp": "523112627839",
+    "instagram": null,
+    "rating": 4.2,
+    "reviews_count": 34,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Auto+shampoo+Del+sol/data=!4m7!3m6!1s0x842730d719304769:0xe00dc5a24d311494!8m2!3d21.4592193!4d-104.8880605!16s%2Fg%2F11b_22tb8r!19sChIJaUcwGdcwJ4QRlBQxTaLFDeA?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x842730d719304769:0xe00dc5a24d311494",
+    "template": "mexico"
+  },
+  {
+    "slug": "car-wash-21",
+    "nombre": "Car wash 21",
+    "ciudad": "Xalisco, Nay.",
+    "direccion": "\nJuan Escutia 2, Landareñas, 63784 Xalisco, Nay., México",
+    "telefono": "31 1391 9253",
+    "whatsapp": "523113919253",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 4,
+    "reviewDates": [
+      "Hace 2 meses",
+      "Hace 2 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Car+wash+21/data=!4m7!3m6!1s0x8427310033deb545:0xee51a076fd55712a!8m2!3d21.4539801!4d-104.8966497!16s%2Fg%2F11ntfrk3wq!19sChIJRbXeMwAxJ4QRKnFV_XagUe4?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x8427310033deb545:0xee51a076fd55712a",
+    "template": "mexico"
+  },
+  {
+    "slug": "carwash-emilux",
+    "nombre": "Carwash Emilux",
+    "ciudad": "Compostela, Nay.",
+    "direccion": "\nZaragoza Sur 179, Guayabal, 63703 Compostela, Nay., México",
+    "telefono": "32 7104 0899",
+    "whatsapp": "523271040899",
+    "instagram": null,
+    "rating": 4.5,
+    "reviews_count": 11,
+    "reviewDates": [
+      "Hace 2 meses",
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Carwash+Emilux/data=!4m7!3m6!1s0x842729a9de875281:0xe8844c478f5966f9!8m2!3d21.2343204!4d-104.8996509!16s%2Fg%2F11j3vj799k!19sChIJgVKH3qkpJ4QR-WZZj0dMhOg?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x842729a9de875281:0xe8844c478f5966f9",
+    "template": "mexico"
+  },
+  {
+    "slug": "auto-lavado-curiel",
+    "nombre": "Auto lavado Curiel",
+    "ciudad": "Compostela, Nay.",
+    "direccion": "\nCampo Estrella 30, Librado Rivera, 63704 Compostela, Nay., México",
+    "telefono": "32 7105 8710",
+    "whatsapp": "523271058710",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Editado Hace 7 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Auto+lavado+Curiel/data=!4m7!3m6!1s0x842729002399ab0b:0xbd063e6d0dc861d6!8m2!3d21.2300268!4d-104.9035328!16s%2Fg%2F11xyj4gjq0!19sChIJC6uZIwApJ4QR1mHIDW0-Br0?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x842729002399ab0b:0xbd063e6d0dc861d6",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-montano",
+    "nombre": "Autolavado Montaño",
+    "ciudad": "Compostela, Nay.",
+    "direccion": "\nVallarta 35, Librado Rivera, 63704 Compostela, Nay., México",
+    "telefono": "32 7978 4874",
+    "whatsapp": "523279784874",
+    "instagram": null,
+    "rating": 4.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "3 semanas atrás"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+Monta%C3%B1o/data=!4m7!3m6!1s0x842729a0cfcd3d89:0x65c43f7717fce78f!8m2!3d21.231581!4d-104.910237!16s%2Fg%2F11b75k041w!19sChIJiT3Nz6ApJ4QRj-f8F3c_xGU?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x842729a0cfcd3d89:0x65c43f7717fce78f",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-del-rio",
+    "nombre": "Autolavado del río",
+    "ciudad": "Ixtlán del Río, Nay.",
+    "direccion": "\nZaragoza Pte. 294A, Centro, 63950 Ixtlán del Río, Nay., México",
+    "telefono": "32 4196 8906",
+    "whatsapp": "523241968906",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 10 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+del+r%C3%ADo/data=!4m7!3m6!1s0x8426f7fe068339b9:0x471100b94b52383c!8m2!3d21.0368322!4d-104.3751223!16s%2Fg%2F11vb9w0mdg!19sChIJuTmDBv73JoQRPDhSS7kAEUc?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x8426f7fe068339b9:0x471100b94b52383c",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-polo",
+    "nombre": "Autolavado Polo",
+    "ciudad": "Ixtlán del Río, Nay.",
+    "direccion": "\nAv. Hidalgo # 408, Av. Hidalgo Eje Pte., Centro, 63940 Ixtlán del Río, Nay., México",
+    "telefono": "32 4108 7641",
+    "whatsapp": "523241087641",
+    "instagram": null,
+    "rating": 4.5,
+    "reviews_count": 11,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+Polo+disculpa+tienes+servicio+a+domicilio/data=!4m7!3m6!1s0x8426f7528731299f:0x22f0ba90410c38b2!8m2!3d21.036726!4d-104.376532!16s%2Fg%2F11cm107fhg!19sChIJnykxh1L3JoQRsjgMQZC68CI?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x8426f7528731299f:0x22f0ba90410c38b2",
+    "template": "mexico"
+  },
+  {
+    "slug": "la-caracha-car-wash",
+    "nombre": "La Caracha Car Wash",
+    "ciudad": "Santiago Ixcuintla, Nay.",
+    "direccion": "\n20 de Noviembre Pte. 47, 12 de Octubre, 63300 Santiago Ixcuintla, Nay., México",
+    "telefono": "32 3104 0711",
+    "whatsapp": "523231040711",
+    "instagram": null,
+    "rating": 4.6,
+    "reviews_count": 21,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/La+Caracha+Car+Wash/data=!4m7!3m6!1s0x8420af0f57db555b:0x9da28a8b6c9a0b91!8m2!3d21.80885!4d-105.2179716!16s%2Fg%2F11frpy6jf_!19sChIJW1XbVw-vIIQRkQuabIuKop0?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x8420af0f57db555b:0x9da28a8b6c9a0b91",
+    "template": "mexico"
+  },
+  {
+    "slug": "car-wash-jrs",
+    "nombre": "Car Wash Jrs",
+    "ciudad": "Santiago Ixcuintla, Nay.",
+    "direccion": "\nCarr. a Pozo de Ibarra 106, 1 de Enero, Flores Magón, 63341 Santiago Ixcuintla, Nay., México",
+    "telefono": "31 1115 4840",
+    "whatsapp": "523111154840",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 3,
+    "reviewDates": [
+      "Hace un año",
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Car+Wash+Jrs/data=!4m7!3m6!1s0x8420a9007947b77b:0x604694d02ad90cf3!8m2!3d21.8187501!4d-105.2136106!16s%2Fg%2F11xh2m96bt!19sChIJe7dHeQCpIIQR8wzZKtCURmA?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x8420a9007947b77b:0x604694d02ad90cf3",
+    "template": "mexico"
   }
 ]
