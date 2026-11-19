@@ -83223,5 +83223,492 @@
     "pais": "MX",
     "place_id": "ChIJj-tEJSQV64YRE7Bj2KBvEzs",
     "template": "mexico"
+  },
+  {
+    "slug": "autolavado-la-hacienda",
+    "nombre": "Autolavado La Hacienda",
+    "ciudad": "Cuauhtémoc, Chih.",
+    "direccion": "\nC. Décima, Zona Centro, 31500 Cuauhtémoc, Chih., México",
+    "telefono": "62 5581 0174",
+    "whatsapp": "526255810174",
+    "instagram": null,
+    "rating": 4.2,
+    "reviews_count": 119,
+    "reviewDates": [
+      "Hace 10 meses",
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+La+Hacienda/data=!4m7!3m6!1s0x86c1ca54708302e1:0x8fc7b8d7369373bd!8m2!3d28.4027423!4d-106.8687397!16s%2Fg%2F11bx094953!19sChIJ4QKDcFTKwYYRvXOTNte4x48?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJ4QKDcFTKwYYRvXOTNte4x48",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-el-nutzz",
+    "nombre": "Autolavado El Nutzz",
+    "ciudad": "Cuauhtémoc, Chih.",
+    "direccion": "\nCalle 11a & Vicente Guerrero, Zona Centro, 31500 Cuauhtémoc, Chih., México",
+    "telefono": "61 4355 6627",
+    "whatsapp": "526143556627",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 4,
+    "reviewDates": [
+      "Hace un año",
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+El+Nutzz/data=!4m7!3m6!1s0x86c1cb0054505107:0x31c353cff54369ef!8m2!3d28.4093108!4d-106.86137!16s%2Fg%2F11x1fpkbjh!19sChIJB1FQVADLwYYR72lD9c9TwzE?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJB1FQVADLwYYR72lD9c9TwzE",
+    "template": "mexico"
+  },
+  {
+    "slug": "lavado-el-chubasco",
+    "nombre": "Lavado el Chubasco",
+    "ciudad": "Hidalgo del Parral, Chih.",
+    "direccion": "\nCentro, 33800 Hidalgo del Parral, Chih., México",
+    "telefono": "62 7131 1820",
+    "whatsapp": "526271311820",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Lavado+el+Chubasco/data=!4m7!3m6!1s0x869451e9d92a243d:0xfcc79861ee26504a!8m2!3d26.9304255!4d-105.6567895!16s%2Fg%2F11kqk_8f4_!19sChIJPSQq2elRlIYRSlAm7mGYx_w?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJPSQq2elRlIYRSlAm7mGYx_w",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-praderas",
+    "nombre": "Autolavado praderas",
+    "ciudad": "Hidalgo del Parral, Chih.",
+    "direccion": "\nDe Las Praderas 680, Pensiones Praderas, 33856 Hidalgo del Parral, Chih., México",
+    "telefono": "62 7103 7477",
+    "whatsapp": "526271037477",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace un año",
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+praderas/data=!4m7!3m6!1s0x869451002a4c9e9d:0x1339e198dbce8209!8m2!3d26.9352222!4d-105.6480833!16s%2Fg%2F11x6qrmy97!19sChIJnZ5MKgBRlIYRCYLO25jhORM?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJnZ5MKgBRlIYRCYLO25jhORM",
+    "template": "mexico"
+  },
+  {
+    "slug": "el-trebol-car-wash",
+    "nombre": "El Trébol Car wash",
+    "ciudad": "Nuevo Casas Grandes, Chih.",
+    "direccion": "\nIndustrial, Francisco Villa, 31778 Nuevo Casas Grandes, Chih., México",
+    "telefono": "63 6112 4125",
+    "whatsapp": "526361124125",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace un mes"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/El+Tr%C3%A9bol+Car+wash/data=!4m7!3m6!1s0x86dcad003336b747:0x8f97bfa482725a2c!8m2!3d30.3939374!4d-107.8923974!16s%2Fg%2F11n9vbsb84!19sChIJR7c2MwCt3IYRLFpygqS_l48?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJR7c2MwCt3IYRLFpygqS_l48",
+    "template": "mexico"
+  },
+  {
+    "slug": "lavado-y-servicio-formula-1",
+    "nombre": "Lavado y Servicio Formula 1",
+    "ciudad": "Nuevo Casas Grandes, Chih.",
+    "direccion": "\nFrancisco I. Madero 2003-C, Centro, 31700 Nuevo Casas Grandes, Chih., México",
+    "telefono": "63 6109 8848",
+    "whatsapp": "526361098848",
+    "instagram": null,
+    "rating": 4.7,
+    "reviews_count": 3,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Lavado+y+Servicio+Formula+1/data=!4m7!3m6!1s0x86dcad1edb7fc79f:0x6cbd860dbcc8e9f3!8m2!3d30.4268739!4d-107.9093577!16s%2Fg%2F11s3lpj4k8!19sChIJn8d_2x6t3IYR8-nIvA2GvWw?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJn8d_2x6t3IYR8-nIvA2GvWw",
+    "template": "mexico"
+  },
+  {
+    "slug": "garage-car-wash-ncg",
+    "nombre": "Garage Car Wash NCG",
+    "ciudad": "Nuevo Casas Grandes, Chih.",
+    "direccion": "\n2 de Abril 503, Centro, 31700 Nuevo Casas Grandes, Chih., México",
+    "telefono": "63 6130 5425",
+    "whatsapp": "526361305425",
+    "instagram": null,
+    "rating": 4.6,
+    "reviews_count": 31,
+    "reviewDates": [
+      "Hace 10 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Garage+Car+Wash+NCG/data=!4m7!3m6!1s0x86dcad96ce67bf3f:0x85b00df91be41b3d!8m2!3d30.4135199!4d-107.9169104!16s%2Fg%2F11sjfk2g5l!19sChIJP79nzpat3IYRPRvkG_kNsIU?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJP79nzpat3IYRPRvkG_kNsIU",
+    "template": "mexico"
+  },
+  {
+    "slug": "carwash-shortys",
+    "nombre": "CARWASH SHORTYS",
+    "ciudad": "Nuevo Casas Grandes, Chih.",
+    "direccion": "\nÁlvaro Obregón 1509, Centro, 31700 Nuevo Casas Grandes, Chih., México",
+    "telefono": "63 6114 1843",
+    "whatsapp": "526361141843",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 5 días"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/CARWASH+SHORTYS/data=!4m7!3m6!1s0x86dcade509315023:0xd78dadf3e0d6746!8m2!3d30.4073227!4d-107.9107754!16s%2Fg%2F11xrhvtklj!19sChIJI1AxCeWt3IYRRmcNPt_aeA0?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJI1AxCeWt3IYRRmcNPt_aeA0",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-el-chino",
+    "nombre": "Autolavado El CHINO",
+    "ciudad": "Camargo, Chih.",
+    "direccion": "\nLuis H. Álvarez, Alsacia Lorena, 33777 Santa Rosalía de Camargo, Chih., México",
+    "telefono": "64 8106 5833",
+    "whatsapp": "526481065833",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 6 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+%22El+CHINO%22/data=!4m7!3m6!1s0x8694af5f88931a3f:0xaf7b0a3e05a47cf3!8m2!3d27.6678626!4d-105.1711249!16s%2Fg%2F11ys6t3v7s!19sChIJPxqTiF-vlIYR83ykBT4Ke68?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJPxqTiF-vlIYR83ykBT4Ke68",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-tamayo",
+    "nombre": "Autolavado Tamayo",
+    "ciudad": "Matehuala, S.L.P.",
+    "direccion": "\nAltamirano 203, Centro, 78700 Matehuala, S.L.P., México",
+    "telefono": "44 4266 3331",
+    "whatsapp": "524442663331",
+    "instagram": null,
+    "rating": 4.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 5 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+Tamayo/data=!4m7!3m6!1s0x8680a9001686be9f:0x73439af1d0c7c0b2!8m2!3d23.6505355!4d-100.645066!16s%2Fg%2F11y8vmc8n4!19sChIJn76GFgCpgIYRssDH0PGaQ3M?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJn76GFgCpgIYRssDH0PGaQ3M",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-clean-kr",
+    "nombre": "AUTOLAVADO CLEAN KR",
+    "ciudad": "Matehuala, S.L.P.",
+    "direccion": "\nLibertad 223, San Miguelito, 78700 Matehuala, S.L.P., México",
+    "telefono": "48 8101 1079",
+    "whatsapp": "524881011079",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 4,
+    "reviewDates": [
+      "Hace 7 meses",
+      "Hace 4 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/AUTOLAVADO+CLEAN+KR/data=!4m7!3m6!1s0x8680a9310f8e9d17:0x3228247f5c246773!8m2!3d23.6545464!4d-100.6471644!16s%2Fg%2F11yvgdlt38!19sChIJF52ODzGpgIYRc2ckXH8kKDI?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJF52ODzGpgIYRc2ckXH8kKDI",
+    "template": "mexico"
+  },
+  {
+    "slug": "car-wash-fung",
+    "nombre": "Car Wash FUNG",
+    "ciudad": "Rioverde, S.L.P.",
+    "direccion": "\nDr. Gabriel Martínez 517, Zona Centro, 79610 Rioverde, S.L.P., México",
+    "telefono": "48 7166 3691",
+    "whatsapp": "524871663691",
+    "instagram": null,
+    "rating": 4.9,
+    "reviews_count": 8,
+    "reviewDates": [
+      "Hace 4 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Car+Wash+%22FUNG%22/data=!4m7!3m6!1s0x85d5737dfbb8ca9d:0xc493101c9758041b!8m2!3d21.9329101!4d-100.0021975!16s%2Fg%2F11tp2scxht!19sChIJncq4-31z1YURGwRYlxwQk8Q?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJncq4-31z1YURGwRYlxwQk8Q",
+    "template": "mexico"
+  },
+  {
+    "slug": "lavado-de-autos-viss",
+    "nombre": "Lavado De Autos viss",
+    "ciudad": "Tehuacán, Pue.",
+    "direccion": "\nDr Miguel Romero Sánchez, 75758 Tehuacán, Pue., México",
+    "telefono": "23 8898 2622",
+    "whatsapp": "522388982622",
+    "instagram": null,
+    "rating": 4.9,
+    "reviews_count": 11,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Lavado+De+Autos+viss/data=!4m7!3m6!1s0x85c5a34c80f6dfed:0x9b09b13a3216aec7!8m2!3d18.4764087!4d-97.4149895!16s%2Fg%2F11h2mfqyck!19sChIJ7d_2gEyjxYURx64WMjqxCZs?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJ7d_2gEyjxYURx64WMjqxCZs",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-reforma-norte",
+    "nombre": "AUTOLAVADO REFORMA NORTE",
+    "ciudad": "Tehuacán, Pue.",
+    "direccion": "\nMagisterio 2, El Edén, 75719 Tehuacán, Pue., México",
+    "telefono": "23 8204 9064",
+    "whatsapp": "522382049064",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace un mes"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/AUTOLAVADO+REFORMA+NORTE/data=!4m7!3m6!1s0x85c5a3007497642b:0xd289bc7c7b1e570a!8m2!3d18.4823371!4d-97.3927749!16s%2Fg%2F11zypsdcq9!19sChIJK2SXdACjxYURClcee3y8idI?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJK2SXdACjxYURClcee3y8idI",
+    "template": "mexico"
+  },
+  {
+    "slug": "relaxboyz",
+    "nombre": "Relaxboyz",
+    "ciudad": "Atlixco, Pue.",
+    "direccion": "\nCalle Prol. de la 6 Ote. 804, Centro, 74200 Atlixco, Pue., México",
+    "telefono": "22 2919 4868",
+    "whatsapp": "522229194868",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 3,
+    "reviewDates": [
+      "Hace 5 meses",
+      "Hace 5 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Relaxboyz/data=!4m7!3m6!1s0x85cfb5219fcf248d:0xc15896f1bee26e1a!8m2!3d18.9104016!4d-98.429681!16s%2Fg%2F11z6wb_751!19sChIJjSTPnyG1z4URGm7ivvGWWME?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJjSTPnyG1z4URGm7ivvGWWME",
+    "template": "mexico"
+  },
+  {
+    "slug": "auto-lavado-las-burbujas",
+    "nombre": "Auto lavado las burbujas",
+    "ciudad": "Atlixco, Pue.",
+    "direccion": "\n73637, San Alfonso, 73637 Atlixco, Pue., México",
+    "telefono": "24 3115 1825",
+    "whatsapp": "522431151825",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 13,
+    "reviewDates": [
+      "Hace 7 meses",
+      "Hace 7 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Auto+lavado+las+burbujas/data=!4m7!3m6!1s0x85cfb5eba04ffc25:0xd9f6dbc7eb9fa493!8m2!3d18.911069!4d-98.409645!16s%2Fg%2F11z3yys54z!19sChIJJfxPoOu1z4URk6Sf68fb9tk?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJJfxPoOu1z4URk6Sf68fb9tk",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-washme",
+    "nombre": "AutoLavado WashMe",
+    "ciudad": "Atlixco, Pue.",
+    "direccion": "\nBLV, Emiliano Zapata 706, Ricardo Flores Magón, 74240 Atlixco, Pue., México",
+    "telefono": "24 4232 2785",
+    "whatsapp": "522442322785",
+    "instagram": null,
+    "rating": 4.0,
+    "reviews_count": 2,
+    "reviewDates": [
+      "Hace 7 meses",
+      "Hace 4 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/AutoLavado+%22%22WashMe%22%22/data=!4m7!3m6!1s0x85cfb5b090620b23:0x5fac3befdbb46b75!8m2!3d18.9059392!4d-98.4192288!16s%2Fg%2F11ypd1khcb!19sChIJIwtikLC1z4URdWu02-87rF8?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJIwtikLC1z4URdWu02-87rF8",
+    "template": "mexico"
+  },
+  {
+    "slug": "trucking-wash-martinez",
+    "nombre": "Trucking wash Martínez",
+    "ciudad": "San Martín Texmelucan, Pue.",
+    "direccion": "\nCarr. Federal México-Puebla, El Moral, 74129 San Martín Texmelucan de Labastida, Pue., México",
+    "telefono": "22 2107 5414",
+    "whatsapp": "522221075414",
+    "instagram": null,
+    "rating": 4.7,
+    "reviews_count": 3,
+    "reviewDates": [
+      "Hace un año",
+      "Hace 5 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Trucking+wash+Mart%C3%ADnez/data=!4m7!3m6!1s0x85cfd3b31a79771b:0x3504ae1b4acdae06!8m2!3d19.2668202!4d-98.4312285!16s%2Fg%2F11v0k3sfrp!19sChIJG3d5GrPTz4URBq7NShuuBDU?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJG3d5GrPTz4URBq7NShuuBDU",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-la-duena",
+    "nombre": "Autolavado LA DUEÑA",
+    "ciudad": "San Martín Texmelucan, Pue.",
+    "direccion": "\nCol Centro, 74000 San Martín Texmelucan de Labastida, Pue., México",
+    "telefono": "22 2925 1935",
+    "whatsapp": "522229251935",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 4 días"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+LA+DUE%C3%91A/data=!4m7!3m6!1s0x85cfd55398d9d787:0xf2a8703c10648d37!8m2!3d19.2877133!4d-98.4314414!16s%2Fg%2F11sf557k37!19sChIJh9fZmFPVz4URN41kEDxwqPI?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJh9fZmFPVz4URN41kEDxwqPI",
+    "template": "mexico"
+  },
+  {
+    "slug": "luxury-carwash-apizaco",
+    "nombre": "LUXURY CarWash Apizaco",
+    "ciudad": "Apizaco, Tlax.",
+    "direccion": "\nCam. a San Benito 103, La Noria Uno, 90450 San Benito Xaltocan, Tlax., México",
+    "telefono": "24 1164 8246",
+    "whatsapp": "522411648246",
+    "instagram": null,
+    "rating": 4.9,
+    "reviews_count": 11,
+    "reviewDates": [
+      "Hace un año",
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/LUXURY+CarWash+Apizaco/data=!4m7!3m6!1s0x85d0210045340175:0xb4be3af5ce65f772!8m2!3d19.4088311!4d-98.1574883!16s%2Fg%2F11x6s950cr!19sChIJdQE0RQAh0IURcvdlzvU6vrQ?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJdQE0RQAh0IURcvdlzvU6vrQ",
+    "template": "mexico"
+  },
+  {
+    "slug": "urban-wash-club-apizaco",
+    "nombre": "Urban Wash Club Apizaco",
+    "ciudad": "Apizaco, Tlax.",
+    "direccion": "\n21 de Marzo 605, Benito Juárez, 90357 Cdad. de Apizaco, Tlax., México",
+    "telefono": "24 1121 2588",
+    "whatsapp": "522411212588",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 3,
+    "reviewDates": [
+      "Hace 6 meses",
+      "Hace 6 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Urban+Wash+Club+Apizaco/data=!4m7!3m6!1s0x85d021b57cdef5c3:0x63e21978655fe699!8m2!3d19.4062301!4d-98.1425003!16s%2Fg%2F11yhkn0y0r!19sChIJw_XefLUh0IURmeZfZXgZ4mM?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJw_XefLUh0IURmeZfZXgZ4mM",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-el-mapache",
+    "nombre": "AUTOLAVADO EL MAPACHE",
+    "ciudad": "Apizaco, Tlax.",
+    "direccion": "\nAquiles Serdán 1504, San Miguel, 90339 Cdad. de Apizaco, Tlax., México",
+    "telefono": "24 1102 6425",
+    "whatsapp": "522411026425",
+    "instagram": null,
+    "rating": 4.0,
+    "reviews_count": 12,
+    "reviewDates": [
+      "Hace 3 meses",
+      "Hace 5 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/AUTOLAVADO+%22EL+MAPACHE%22/data=!4m7!3m6!1s0x85d021120a26f375:0xdd11579520a88cdd!8m2!3d19.4166014!4d-98.1493484!16s%2Fg%2F11lf0hjw6m!19sChIJdfMmChIh0IUR3YyoIJVXEd0?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJdfMmChIh0IUR3YyoIJVXEd0",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-planet",
+    "nombre": "Autolavado PLANET",
+    "ciudad": "Tulancingo, Hgo.",
+    "direccion": "\nCalle Luis M. Ponce, Centro Periferia, 43600 Tulancingo, Hgo., México",
+    "telefono": "77 5974 3243",
+    "whatsapp": "527759743243",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 10 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+PLANET/data=!4m7!3m6!1s0x85d0575446b01091:0x13dcb4a50c85a1b2!8m2!3d20.0890769!4d-98.3697084!16s%2Fg%2F11xcnvgwg5!19sChIJkRCwRlRX0IURsqGFDKW03BM?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJkRCwRlRX0IURsqGFDKW03BM",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-la-20",
+    "nombre": "AUTOLAVADO LA 20",
+    "ciudad": "Tulancingo, Hgo.",
+    "direccion": "\n20 de Noviembre, Francisco I. Madero, 43650 Tulancingo, Hgo., México",
+    "telefono": "77 5107 3068",
+    "whatsapp": "527751073068",
+    "instagram": null,
+    "rating": 4.8,
+    "reviews_count": 9,
+    "reviewDates": [
+      "Hace 2 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/AUTOLAVADO+LA+20/data=!4m7!3m6!1s0x85d0572de2ef8693:0x64470e7e093b4082!8m2!3d20.0828695!4d-98.361296!16s%2Fg%2F11khy444qz!19sChIJk4bv4i1X0IURgkA7CX4OR2Q?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJk4bv4i1X0IURgkA7CX4OR2Q",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-lujechu",
+    "nombre": "Autolavado LuJeChu",
+    "ciudad": "Tula de Allende, Hgo.",
+    "direccion": "\nCaoba 7, Alvarado, 42806 Tula de Allende, Hgo., México",
+    "telefono": "77 3198 7478",
+    "whatsapp": "527731987478",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 2,
+    "reviewDates": [
+      "Hace 6 meses",
+      "Hace 10 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+%22LuJeChu%22/data=!4m7!3m6!1s0x85d22d423c607fd1:0xf607af19ff337ad!8m2!3d20.0468385!4d-99.3554066!16s%2Fg%2F11mt1mtbnx!19sChIJ0X9gPEIt0oURrTfzn_F6YA8?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNy4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJ0X9gPEIt0oURrTfzn_F6YA8",
+    "template": "mexico"
   }
 ]
