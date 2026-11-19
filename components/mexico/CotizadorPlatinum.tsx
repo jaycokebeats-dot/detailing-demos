@@ -388,7 +388,7 @@ export const SERVICIOS_PLATINUM: ServicioBase[] = [
   {
     id: "essential-care",
     categoria: "mantenimiento",
-    nombre: "Essential Care",
+    nombre: "Essential Care UPDATE",
     subtitulo: "Lavado Técnico pH Neutro",
     descripcion: "Lavado seguro a presión con shampoo neutro, aspirado de cabina y plásticos mate.",
     badge: "Mantenimiento Regular",
