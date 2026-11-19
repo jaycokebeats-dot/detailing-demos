@@ -80819,5 +80819,480 @@
     "pais": "MX",
     "place_id": "ChIJn40WaG9T0YYRYjmv6y6A3ao",
     "template": "mexico"
+  },
+  {
+    "slug": "city-car-wash",
+    "nombre": "City Car Wash",
+    "ciudad": "Ensenada, B.C.",
+    "direccion": "int. 2 Col. Adolfo ruiz cortinez, Manuel Ávila Camacho #179, Adolfo Ruiz Cortines, 22895 Ensenada, B.C., México",
+    "telefono": "64 6272 5228",
+    "whatsapp": "526462725228",
+    "instagram": null,
+    "rating": 4.9,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 2 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/City+Car+Wash/data=!4m7!3m6!1s0x80d88f7444d32135:0x793302fbcf1e91c5!8m2!3d31.8103296!4d-116.5950798!16s%2Fg%2F11j9669qys!19sChIJNSHTRHSP2IARxZEez_sCM3k?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJNSHTRHSP2IARxZEez_sCM3k",
+    "template": "mexico"
+  },
+  {
+    "slug": "denisses-lavado-de-autos",
+    "nombre": "Denisses Lavado de Autos",
+    "ciudad": "Ensenada, B.C.",
+    "direccion": "Av. Delante 159, Playa Ensenada, 22810 Ensenada, B.C., México",
+    "telefono": "64 6177 1869",
+    "whatsapp": "526461771869",
+    "instagram": null,
+    "rating": 4.4,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 3 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Denisses+Lavado+de+Autos/data=!4m7!3m6!1s0x80d8920b0a8e7147:0x6e660bb2742e13b2!8m2!3d31.8500328!4d-116.6132125!16s%2Fg%2F1tlqq8fc!19sChIJR3GOCguS2IARshMudLILZm4?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJR3GOCguS2IARshMudLILZm4",
+    "template": "mexico"
+  },
+  {
+    "slug": "carwash-el-playon",
+    "nombre": "Carwash El Playon",
+    "ciudad": "Ensenada, B.C.",
+    "direccion": "Prof David Sokolow 853, Las Lomitas, 22810 Ensenada, B.C., México",
+    "telefono": "64 6413 2480",
+    "whatsapp": "526464132480",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Carwash+El+Playon/data=!4m7!3m6!1s0x80d88d007ec4cab1:0x9dce5c2c3d419afa!8m2!3d31.8877525!4d-116.5798612!16s%2Fg%2F11xv21db5j!19sChIJscrEfgCN2IAR-ppBPSxczp0?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJscrEfgCN2IAR-ppBPSxczp0",
+    "template": "mexico"
+  },
+  {
+    "slug": "carwash-mexico",
+    "nombre": "Carwash Mexico",
+    "ciudad": "Ensenada, B.C.",
+    "direccion": "Av Mexico 444, Maestros, 22840 Ensenada, B.C., México",
+    "telefono": "64 6235 8577",
+    "whatsapp": "526462358577",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 3 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Carwash+Mexico/data=!4m7!3m6!1s0x80d88db4ddf56ca7:0xcd5388497c49e5cf!8m2!3d31.8662945!4d-116.5945452!16s%2Fg%2F11g0jdh2kd!19sChIJp2z13bSN2IARz-VJfEmIU80?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJp2z13bSN2IARz-VJfEmIU80",
+    "template": "mexico"
+  },
+  {
+    "slug": "limpieza-al-llamado",
+    "nombre": "Limpieza al llamado",
+    "ciudad": "Ensenada, B.C.",
+    "direccion": "Francisco Villa II, 22850 Ensenada, B.C., México",
+    "telefono": "64 6270 2641",
+    "whatsapp": "526462702641",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 4 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Limpieza+al+llamado/data=!4m7!3m6!1s0x80d88da2e3c65903:0x52fac7ae25d982bc!8m2!3d31.8683067!4d-116.5702539!16s%2Fg%2F11z95gzt3x!19sChIJA1nG46KN2IARvILZJa7H-lI?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJA1nG46KN2IARvILZJa7H-lI",
+    "template": "mexico"
+  },
+  {
+    "slug": "car-wash-deluxe",
+    "nombre": "Car Wash Deluxe",
+    "ciudad": "Ensenada, B.C.",
+    "direccion": "Av. Reforma 1585, Valle Verde, P/Baja, 22839 Ensenada, B.C., México",
+    "telefono": "64 6487 0377",
+    "whatsapp": "526464870377",
+    "instagram": null,
+    "rating": 4.6,
+    "reviews_count": 5,
+    "reviewDates": [
+      "3 semanas atrás"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Car+Wash+Deluxe/data=!4m7!3m6!1s0x80d8933ca9335629:0x7f8671cea2741092!8m2!3d31.8779671!4d-116.6099037!16s%2Fg%2F11zhlk4j3m!19sChIJKVYzqTyT2IARkhB0os5xhn8?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJKVYzqTyT2IARkhB0os5xhn8",
+    "template": "mexico"
+  },
+  {
+    "slug": "machine-wash-car-wash",
+    "nombre": "MACHINE WASH CAR WASH",
+    "ciudad": "Ensenada, B.C.",
+    "direccion": "Río Plata 651, Valle Dorado, 22890 Ensenada, B.C., México",
+    "telefono": "64 6270 7701",
+    "whatsapp": "526462707701",
+    "instagram": null,
+    "rating": 4.8,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace un mes"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/MACHINE+WASH+CAR+WASH/data=!4m7!3m6!1s0x80d88d9d65cbf913:0x7ad341fbd530fb1f!8m2!3d31.8446113!4d-116.5922448!16s%2Fg%2F11rhb07p58!19sChIJE_nLZZ2N2IARH_sw1ftB03o?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJE_nLZZ2N2IARH_sw1ftB03o",
+    "template": "mexico"
+  },
+  {
+    "slug": "car-wash-eduardos",
+    "nombre": "car wash Eduardos",
+    "ciudad": "Ensenada, B.C.",
+    "direccion": "calle 7 Y Blancarte 961, 22800 Ensenada, B.C., México",
+    "telefono": "64 6178 3284",
+    "whatsapp": "526461783284",
+    "instagram": null,
+    "rating": 4.8,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/car+wash+Eduardos/data=!4m7!3m6!1s0x80d8927cbbc77a2f:0x5ef236f79aa7ca70!8m2!3d31.8676578!4d-116.6189718!16s%2Fg%2F11btxj94fn!19sChIJL3rHu3yS2IARcMqnmvc28l4?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJL3rHu3yS2IARcMqnmvc28l4",
+    "template": "mexico"
+  },
+  {
+    "slug": "car-wash-rocha",
+    "nombre": "Car wash Rocha",
+    "ciudad": "Ensenada, B.C.",
+    "direccion": "Parras de las fuentes 1411 esquina, constituyentes, Piedras Negras, 22830 Ensenada, B.C., México",
+    "telefono": "64 6271 8104",
+    "whatsapp": "526462718104",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 2 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Car+wash+Rocha/data=!4m7!3m6!1s0x80d88d232c50da27:0x47e109c3a8278d4!8m2!3d31.8808593!4d-116.6016638!16s%2Fg%2F11ntl6hdv7!19sChIJJ9pQLCON2IAR1HiCOpwQfgQ?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJJ9pQLCON2IAR1HiCOpwQfgQ",
+    "template": "mexico"
+  },
+  {
+    "slug": "royal-car-wash",
+    "nombre": "Royal Car Wash",
+    "ciudad": "Ensenada, B.C.",
+    "direccion": "Av. Macheros 345, Zona Centro, 22800 Ensenada, B.C., México",
+    "telefono": "66 4498 9838",
+    "whatsapp": "526644989838",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace un mes"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Royal+Car+Wash/data=!4m7!3m6!1s0x80d89388271e7763:0x99e3d1b724a11031!8m2!3d31.865257!4d-116.6242298!16s%2Fg%2F11zy0yhhf7!19sChIJY3ceJ4iT2IARMRChJLfR45k?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJY3ceJ4iT2IARMRChJLfR45k",
+    "template": "mexico"
+  },
+  {
+    "slug": "raya-car-wash-lpz",
+    "nombre": "Raya Car Wash Lpz",
+    "ciudad": "La Paz, B.C.S.",
+    "direccion": "Av. Insurgentes, Sector Inalapa, 23090 La Paz, B.C.S., México",
+    "telefono": "61 2228 2170",
+    "whatsapp": "526122282170",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 6 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Raya+Car+Wash+Lpz/data=!4m7!3m6!1s0xa4ef824c47210f91:0xd9809d71e21389b8!8m2!3d24.1444647!4d-110.3348443!16s%2Fg%2F11z9tswtbv!19sChIJkQ8hR0yC76QRuIkT4nGdgNk?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJkQ8hR0yC76QRuIkT4nGdgNk",
+    "template": "mexico"
+  },
+  {
+    "slug": "carwash-club",
+    "nombre": "CarWash Club",
+    "ciudad": "La Paz, B.C.S.",
+    "direccion": "16 de Septiembre y Santos Degollado 98, Ignacio Ramírez, 23000 La Paz, B.C.S., México",
+    "telefono": "61 2260 0169",
+    "whatsapp": "526122600169",
+    "instagram": null,
+    "rating": 4.2,
+    "reviews_count": 5,
+    "reviewDates": [
+      "2 semanas atrás"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/CarWash+Club/data=!4m7!3m6!1s0x86afd30d76c394c5:0xd931774521d126a!8m2!3d24.1571816!4d-110.3125071!16s%2Fg%2F11mzxp764s!19sChIJxZTDdg3Tr4YRahIdUnQXkw0?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJxZTDdg3Tr4YRahIdUnQXkw0",
+    "template": "mexico"
+  },
+  {
+    "slug": "car-wash-auto-lavado-coco-wash",
+    "nombre": "CAR WASH AUTO LAVADO COCO WASH",
+    "ciudad": "La Paz, B.C.S.",
+    "direccion": "23020, Esterito, 23020 La Paz, B.C.S., México",
+    "telefono": "61 2232 9178",
+    "whatsapp": "526122329178",
+    "instagram": null,
+    "rating": 4.9,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 10 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/CAR+WASH+AUTO+LAVADO+COCO+WASH%F0%9F%A5%A5%F0%9F%8C%B4/data=!4m7!3m6!1s0x86afd5ebb4a0090d:0x61b61de5c41ec9ba!8m2!3d24.1717387!4d-110.3055085!16s%2Fg%2F11mywlzbhg!19sChIJDQmgtOvVr4YRuskexOUdtmE?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJDQmgtOvVr4YRuskexOUdtmE",
+    "template": "mexico"
+  },
+  {
+    "slug": "luxury-garage",
+    "nombre": "Luxury Garage",
+    "ciudad": "La Paz, B.C.S.",
+    "direccion": "5 de febrero y Antonio Navarro 2795, Mariano Abasolo L5, 23000 La Paz, B.C.S., México",
+    "telefono": "61 2690 6296",
+    "whatsapp": "526126906296",
+    "instagram": null,
+    "rating": 4.5,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 5 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Luxury+Garage/data=!4m7!3m6!1s0x86afd302e02a6291:0xb016cbefa318177c!8m2!3d24.1517916!4d-110.3260437!16s%2Fg%2F11qn9m0q55!19sChIJkWIq4ALTr4YRfBcYo-_LFrA?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJkWIq4ALTr4YRfBcYo-_LFrA",
+    "template": "mexico"
+  },
+  {
+    "slug": "carwash-la-baja",
+    "nombre": "Carwash La Baja",
+    "ciudad": "La Paz, B.C.S.",
+    "direccion": "Av Reforma Sn, Zona Central, 23000 La Paz, B.C.S., México",
+    "telefono": "61 2228 1989",
+    "whatsapp": "526122281989",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 6 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Carwash+La+Baja/data=!4m7!3m6!1s0x86afd3005661e4c5:0x43baa114b233a5eb!8m2!3d24.1590836!4d-110.3116554!16s%2Fg%2F11mrn_7n8c!19sChIJxeRhVgDTr4YR66UzshShukM?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJxeRhVgDTr4YR66UzshShukM",
+    "template": "mexico"
+  },
+  {
+    "slug": "cart-wash-los-2-cactus",
+    "nombre": "Cart wash los 2 cactus",
+    "ciudad": "La Paz, B.C.S.",
+    "direccion": "El cardinal,eucalipto, palo Adán y mauto, 23080 La Paz, B.C.S., México",
+    "telefono": "61 2203 3357",
+    "whatsapp": "526122033357",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace un mes"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Cart+wash+los+2+cactus/data=!4m7!3m6!1s0x86afd39d211cf67f:0x7901d323c3b445c3!8m2!3d24.1080284!4d-110.2997986!16s%2Fg%2F11nw3jl1s5!19sChIJf_YcIZ3Tr4YRw0W0wyPTAXk?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJf_YcIZ3Tr4YRw0W0wyPTAXk",
+    "template": "mexico"
+  },
+  {
+    "slug": "carwash-pacific",
+    "nombre": "Carwash Pacific",
+    "ciudad": "La Paz, B.C.S.",
+    "direccion": "Melitón Albáñez, Guerrero, 23020 La Paz, B.C.S., México",
+    "telefono": "61 2151 0967",
+    "whatsapp": "526121510967",
+    "instagram": null,
+    "rating": 4.7,
+    "reviews_count": 5,
+    "reviewDates": [
+      "una semana atrás"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Carwash+Pacific/data=!4m7!3m6!1s0x86afd3006c3dc897:0x39200026dbf34e4c!8m2!3d24.1527851!4d-110.3025024!16s%2Fg%2F11zds27hbm!19sChIJl8g9bADTr4YRTE7z2yYAIDk?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJl8g9bADTr4YRTE7z2yYAIDk",
+    "template": "mexico"
+  },
+  {
+    "slug": "carwash-aguilar",
+    "nombre": "CARWASH AGUILAR",
+    "ciudad": "La Paz, B.C.S.",
+    "direccion": "Blvd. Constituyentes de 1975, club campestre, La Selva Fidepaz, 23090 La Paz, B.C.S., México",
+    "telefono": "61 2151 7597",
+    "whatsapp": "526121517597",
+    "instagram": null,
+    "rating": 4.5,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 9 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/CARWASH+AGUILAR/data=!4m7!3m6!1s0x86ae2d004c0154b1:0xc2d5da627f675ce2!8m2!3d24.1271016!4d-110.3437397!16s%2Fg%2F11ywzr1br9!19sChIJsVQBTAAtroYR4lxnf2La1cI?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJsVQBTAAtroYR4lxnf2La1cI",
+    "template": "mexico"
+  },
+  {
+    "slug": "car-wash-el-pollo",
+    "nombre": "Car Wash El Pollo",
+    "ciudad": "La Paz, B.C.S.",
+    "direccion": "Av Reforma 560, Zona Central, 23000 La Paz, B.C.S., México",
+    "telefono": "61 2133 1870",
+    "whatsapp": "526121331870",
+    "instagram": null,
+    "rating": 4.3,
+    "reviews_count": 5,
+    "reviewDates": [
+      "2 semanas atrás"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Car+Wash+El+Pollo/data=!4m7!3m6!1s0x86afd3c4d97fecfb:0x428a0fca4c0768b8!8m2!3d24.1584975!4d-110.3106994!16s%2Fg%2F11f8jfk6l7!19sChIJ--x_2cTTr4YRuGgHTMoPikI?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJ--x_2cTTr4YRuGgHTMoPikI",
+    "template": "mexico"
+  },
+  {
+    "slug": "car-wash-don-cayo",
+    "nombre": "Car Wash Don Cayo",
+    "ciudad": "La Paz, B.C.S.",
+    "direccion": "San Benito, El Calandrio, 23085 La Paz, B.C.S., México",
+    "telefono": "61 2120 4385",
+    "whatsapp": "526121204385",
+    "instagram": null,
+    "rating": 4.3,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 10 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Car+Wash+Don+Cayo/data=!4m7!3m6!1s0x86afd2cbc27dea0d:0x1fc03ece7af4fed3!8m2!3d24.0994201!4d-110.3257836!16s%2Fg%2F11bw1gtv8b!19sChIJDep9wsvSr4YR0_70es4-wB8?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJDep9wsvSr4YR0_70es4-wB8",
+    "template": "mexico"
+  },
+  {
+    "slug": "car-wash-company",
+    "nombre": "Car wash Company",
+    "ciudad": "La Paz, B.C.S.",
+    "direccion": "Calle Ignacio Altamirano, Pueblo Nuevo, 23060 La Paz, B.C.S., México",
+    "telefono": "61 2140 5031",
+    "whatsapp": "526121405031",
+    "instagram": null,
+    "rating": 4.5,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Car+wash+Company/data=!4m7!3m6!1s0x86afd38bbcb50315:0xd528da9f65083bea!8m2!3d24.1457092!4d-110.3207475!16s%2Fg%2F11t8h3yffr!19sChIJFQO1vIvTr4YR6jsIZZ_aKNU?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJFQO1vIvTr4YR6jsIZZ_aKNU",
+    "template": "mexico"
+  },
+  {
+    "slug": "speed-wash",
+    "nombre": "Speed wash",
+    "ciudad": "La Paz, B.C.S.",
+    "direccion": "Gral Manuel Márquez de León 820, Zona Central, 23000 La Paz, B.C.S., México",
+    "telefono": "61 2238 2773",
+    "whatsapp": "526122382773",
+    "instagram": null,
+    "rating": 4.4,
+    "reviews_count": 5,
+    "reviewDates": [
+      "una semana atrás"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Speed+wash/data=!4m7!3m6!1s0x86afd356e39a3a37:0x5cca18fe648d4f3f!8m2!3d24.1514056!4d-110.3185497!16s%2Fg%2F11n0988fb8!19sChIJNzqa41bTr4YRP0-NZP4Yylw?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJNzqa41bTr4YRP0-NZP4Yylw",
+    "template": "mexico"
+  },
+  {
+    "slug": "carwash-olmecas",
+    "nombre": "Carwash olmecas",
+    "ciudad": "La Paz, B.C.S.",
+    "direccion": "Calle V. Gómez Farias, Olmecas &, Nueva Puesta del Sol, 23095 La Paz, B.C.S., México",
+    "telefono": "61 2221 8050",
+    "whatsapp": "526122218050",
+    "instagram": null,
+    "rating": 4.4,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Carwash+olmecas/data=!4m7!3m6!1s0x86ae2d0e942ac893:0xbd33490446257d08!8m2!3d24.1259184!4d-110.3358689!16s%2Fg%2F11lsnjbxy6!19sChIJk8gqlA4troYRCH0lRgRJM70?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJk8gqlA4troYRCH0lRgRJM70",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-los-pits",
+    "nombre": "Autolavado Los PITS",
+    "ciudad": "La Paz, B.C.S.",
+    "direccion": "La Esperanza I, 23090 La Paz, B.C.S., México",
+    "telefono": "61 3104 5105",
+    "whatsapp": "526131045105",
+    "instagram": null,
+    "rating": 4.3,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 9 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+Los+PITS/data=!4m7!3m6!1s0x86ae2d7250c0ccd5:0xc8fb6f5672016333!8m2!3d24.132727!4d-110.341809!16s%2Fg%2F11h79v9vj4!19sChIJ1czAUHItroYRM2MBclZv-8g?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJ1czAUHItroYRM2MBclZv-8g",
+    "template": "mexico"
+  },
+  {
+    "slug": "car-wash-dereks",
+    "nombre": "Car Wash Derek's",
+    "ciudad": "La Paz, B.C.S.",
+    "direccion": "México 3470, Las Garzas, 23079 La Paz, B.C.S., México",
+    "telefono": "61 2161 0105",
+    "whatsapp": "526121610105",
+    "instagram": null,
+    "rating": 4.7,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace 11 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Car+Wash+Derek%27s/data=!4m7!3m6!1s0x86afd3df79dc2793:0xe2050420e5692f28!8m2!3d24.1356029!4d-110.3157459!16s%2Fg%2F11q_dqdmr6!19sChIJkyfced_Tr4YRKC9p5SAEBeI?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExNi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "ChIJkyfced_Tr4YRKC9p5SAEBeI",
+    "template": "mexico"
   }
 ]
