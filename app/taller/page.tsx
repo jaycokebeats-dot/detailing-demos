@@ -8,6 +8,7 @@ import {
   MedioPago,
   ChequeInfo,
   Trabajo,
+  TrabajoServicioDetalle,
   EstadoTrabajo,
   PresupuestoGuardado,
   GastoCategoria,
@@ -178,6 +179,67 @@ function isToday(fechaIso: string): boolean {
   const hoy = new Date();
   const hoyStr = `${hoy.getFullYear()}-${String(hoy.getMonth() + 1).padStart(2, "0")}-${String(hoy.getDate()).padStart(2, "0")}`;
   return fechaIso === hoyStr;
+}
+
+// Helper: Formatear servicios con su precio individual para mensajes de WhatsApp
+function formatServiciosWhatsApp(t: {
+  servicios?: string[];
+  serviciosDetalle?: TrabajoServicioDetalle[];
+  monto: number;
+}): string {
+  // Caso 1: Tiene desglose estructurado con precios (serviciosDetalle)
+  if (t.serviciosDetalle && t.serviciosDetalle.length > 0) {
+    // Si sólo hay un servicio y no tenía precio cargado pero el trabajo tiene monto total
+    if (
+      t.serviciosDetalle.length === 1 &&
+      (!t.serviciosDetalle[0].precio || t.serviciosDetalle[0].precio <= 0) &&
+      t.monto > 0
+    ) {
+      const s = t.serviciosDetalle[0];
+      const detalle =
+        s.detalle?.trim() && !s.nombre.toLowerCase().includes(s.detalle.trim().toLowerCase())
+          ? ` (${s.detalle.trim()})`
+          : "";
+      return `• ${s.nombre}${detalle}: *${formatPesos(t.monto)}*`;
+    }
+
+    return t.serviciosDetalle
+      .map((s) => {
+        const detalle =
+          s.detalle?.trim() && !s.nombre.toLowerCase().includes(s.detalle.trim().toLowerCase())
+            ? ` (${s.detalle.trim()})`
+            : "";
+        if (s.precio && s.precio > 0) {
+          return `• ${s.nombre}${detalle}: *${formatPesos(s.precio)}*`;
+        }
+        return `• ${s.nombre}${detalle}`;
+      })
+      .join("\n");
+  }
+
+  // Caso 2: Tiene lista simple de strings (presupuestos o trabajos heredados)
+  if (t.servicios && t.servicios.length > 0) {
+    if (t.servicios.length === 1 && t.monto > 0 && !t.servicios[0].includes("$")) {
+      return `• ${t.servicios[0]}: *${formatPesos(t.monto)}*`;
+    }
+
+    return t.servicios
+      .map((str) => {
+        // Extraer precio si viene en formato "Nombre ($ 80.000)"
+        const match = str.match(/^(.*?)\s*\(\$?\s*([\d\.\,]+)\s*\)$/);
+        if (match) {
+          const nombre = match[1].trim();
+          const num = parseInt(match[2].replace(/[^\d]/g, ""), 10);
+          if (!isNaN(num) && num > 0) {
+            return `• ${nombre}: *${formatPesos(num)}*`;
+          }
+        }
+        return `• ${str}`;
+      })
+      .join("\n");
+  }
+
+  return t.monto > 0 ? `• Servicio General: *${formatPesos(t.monto)}*` : "• Servicio General";
 }
 
 // Datos de ejemplo iniciales para que el taller entienda la herramienta al instante
@@ -578,6 +640,75 @@ export default function TallerGestionPage() {
     }
   }, [presupuestos, currentSlug]);
 
+  // Generadores de Mensajes de WhatsApp con Desglose Individual de Servicios
+  const getMensajeConfirmacionTurno = (t: Trabajo) => {
+    const saludo = t.cliente ? `¡Hola ${t.cliente}!` : "¡Hola!";
+    const serviciosTexto = formatServiciosWhatsApp(t);
+    return `${saludo} Te confirmamos el turno para tu *${t.vehiculo}* en *${biz.nombre}*.
+
+• *Fecha de ingreso:* ${formatFechaConDia(t.fecha)}
+• *Horario:* ${t.horaTurno || "09:00"} hs
+• *Trabajos a realizar:*
+${serviciosTexto}
+• *Total:* ${formatPesos(t.monto)}
+${biz.direccion ? `• *Taller:* ${biz.direccion}, ${biz.ciudad}\n` : ""}
+¡Te esperamos! Cualquier consulta podés escribirnos por acá.`;
+  };
+
+  const getMensajeRecordatorioTurno = (t: Trabajo) => {
+    const saludo = t.cliente ? `¡Hola ${t.cliente}!` : "¡Hola!";
+    const serviciosTexto = formatServiciosWhatsApp(t);
+    return `${saludo} Te recordamos que mañana ${formatFechaConDia(t.fecha)} a las *${t.horaTurno || "09:00"} hs* ingresa tu *${t.vehiculo}* a *${biz.nombre}*.
+
+• *Trabajos:*
+${serviciosTexto}
+• *Total:* ${formatPesos(t.monto)}
+${biz.direccion ? `• *Taller:* ${biz.direccion}, ${biz.ciudad}\n` : ""}
+Por favor avisanos con un "SÍ" para confirmar la recepción del vehículo. ¡Muchas gracias!`;
+  };
+
+  const getMensajeAutoListo = (t: Trabajo) => {
+    const saludo = t.cliente ? `¡Hola ${t.cliente}!` : "¡Hola!";
+    const estado = t.estadoPago === "cobrado" ? "Abonado" : "Pendiente de pago";
+    const serviciosTexto = formatServiciosWhatsApp(t);
+    return `${saludo} Te avisamos que tu *${t.vehiculo}* ya está terminado y listo para retirar en *${biz.nombre}*.
+
+• *Trabajos realizados:*
+${serviciosTexto}
+• *Total:* ${formatPesos(t.monto)} (${estado} - ${t.medioPago.toUpperCase()})
+${biz.direccion ? `• *Taller:* ${biz.direccion}, ${biz.ciudad}\n` : ""}
+¡Quedó impecable! Podés pasar a retirarlo cuando gustes. ¡Muchas gracias!`;
+  };
+
+  const getMensajeDetalleTrabajo = (t: Trabajo) => {
+    const saludo = t.cliente ? `¡Hola ${t.cliente}!` : "¡Hola!";
+    const estado = t.estadoPago === "cobrado" ? "Abonado" : "Pendiente de pago";
+    const serviciosTexto = formatServiciosWhatsApp(t);
+    return `${saludo} Te escribimos desde *${biz.nombre}*.
+
+*Vehículo:* ${t.vehiculo}
+*Trabajos:*
+${serviciosTexto}
+*Total:* ${formatPesos(t.monto)} (${estado} - ${t.medioPago.toUpperCase()})
+${t.notas ? `• Nota: ${t.notas}\n` : ""}${biz.direccion ? `• Taller: ${biz.direccion}, ${biz.ciudad}\n` : ""}
+¡Quedamos a tu disposición por cualquier consulta! Muchas gracias.`;
+  };
+
+  const enviarWhatsAppDirecto = (t: Trabajo, texto: string) => {
+    const cleanPhone = cleanWhatsAppPhone(t.telefono);
+    const url = cleanPhone
+      ? `https://wa.me/${cleanPhone}?text=${encodeURIComponent(texto)}`
+      : `https://wa.me/?text=${encodeURIComponent(texto)}`;
+    window.open(url, "_blank");
+  };
+
+  const copiarTextoMensaje = (texto: string) => {
+    if (typeof navigator !== "undefined" && navigator.clipboard) {
+      navigator.clipboard.writeText(texto);
+      showToast("✨ ¡Texto copiado al portapapeles!");
+    }
+  };
+
   // Manejo de Agendar Turno desde Presupuesto
   const handleAbrirModalAgendar = (p: PresupuestoGuardado) => {
     setModalAgendarPresupuesto(p);
@@ -603,6 +734,10 @@ export default function TallerGestionPage() {
       cliente: modalAgendarPresupuesto.cliente ? autoCapitalizarTexto(modalAgendarPresupuesto.cliente) : undefined,
       telefono: modalAgendarPresupuesto.telefono,
       servicios: modalAgendarPresupuesto.servicios,
+      serviciosDetalle:
+        modalAgendarPresupuesto.servicios.length === 1 && modalAgendarPresupuesto.monto > 0
+          ? [{ nombre: modalAgendarPresupuesto.servicios[0], precio: modalAgendarPresupuesto.monto }]
+          : undefined,
       monto: modalAgendarPresupuesto.monto,
       medioPago: agendarMedioPago,
       estadoPago: agendarEstadoPago,
@@ -647,24 +782,9 @@ export default function TallerGestionPage() {
     setFiltroEstadoTrabajo("todos");
 
     // Mensaje formal de confirmación de turno por WhatsApp
-    const saludo = modalAgendarPresupuesto.cliente ? `¡Hola ${modalAgendarPresupuesto.cliente}!` : "¡Hola!";
-    const serviciosTexto = modalAgendarPresupuesto.servicios.map((s) => `• ${s}`).join("\n");
-    const textoConfirmacion = `${saludo} Te confirmamos el turno para tu *${modalAgendarPresupuesto.vehiculo}* en *${biz.nombre}*.
+    const textoConfirmacion = getMensajeConfirmacionTurno(nuevoTrabajo);
+    enviarWhatsAppDirecto(nuevoTrabajo, textoConfirmacion);
 
-• *Fecha de ingreso:* ${formatFechaConDia(agendarFecha)}
-• *Horario:* ${agendarHora} hs
-• *Trabajos a realizar:*
-${serviciosTexto}
-• *Total presupuestado:* ${formatPesos(modalAgendarPresupuesto.monto)}
-${biz.direccion ? `• *Taller:* ${biz.direccion}, ${biz.ciudad}\n` : ""}
-¡Te esperamos! Cualquier consulta podés escribirnos por acá.`;
-
-    const cleanPhone = cleanWhatsAppPhone(modalAgendarPresupuesto.telefono);
-    const url = cleanPhone
-      ? `https://wa.me/${cleanPhone}?text=${encodeURIComponent(textoConfirmacion)}`
-      : `https://wa.me/?text=${encodeURIComponent(textoConfirmacion)}`;
-
-    window.open(url, "_blank");
     setModalAgendarPresupuesto(null);
     showToast(`📅 ¡Turno agendado para ${modalAgendarPresupuesto.vehiculo}!`);
   };
@@ -1352,7 +1472,7 @@ ${biz.direccion ? `• *Taller:* ${biz.direccion}, ${biz.ciudad}\n` : ""}
     const activos = formServiciosList.filter((s) => s.activo);
     const serviciosDetalle = activos.map((s) => ({
       nombre: s.nombre,
-      precio: s.precioNum > 0 ? s.precioNum : undefined,
+      precio: s.precioNum > 0 ? s.precioNum : (activos.length === 1 && montoNum > 0 ? montoNum : undefined),
       detalle: s.detalle.trim() || undefined,
     }));
 
@@ -1665,76 +1785,6 @@ ${biz.direccion ? `• *Taller:* ${biz.direccion}, ${biz.ciudad}\n` : ""}
     );
     guardarTrabajos(actualizados);
     showToast("✅ Recordatorio marcado como avisado. ¡El cartel ya no aparecerá!");
-  };
-
-  // Generadores de Mensajes de WhatsApp
-  const getMensajeConfirmacionTurno = (t: Trabajo) => {
-    const saludo = t.cliente ? `¡Hola ${t.cliente}!` : "¡Hola!";
-    const serviciosTexto = t.servicios?.length ? t.servicios.map((s) => `• ${s}`).join("\n") : "• Servicio General";
-    return `${saludo} Te confirmamos el turno para tu *${t.vehiculo}* en *${biz.nombre}*.
-
-• *Fecha de ingreso:* ${formatFechaConDia(t.fecha)}
-• *Horario:* ${t.horaTurno || "09:00"} hs
-• *Trabajos a realizar:*
-${serviciosTexto}
-• *Total:* ${formatPesos(t.monto)}
-${biz.direccion ? `• *Taller:* ${biz.direccion}, ${biz.ciudad}\n` : ""}
-¡Te esperamos! Cualquier consulta podés escribirnos por acá.`;
-  };
-
-  const getMensajeRecordatorioTurno = (t: Trabajo) => {
-    const saludo = t.cliente ? `¡Hola ${t.cliente}!` : "¡Hola!";
-    const serviciosTexto = t.servicios?.length ? t.servicios.map((s) => `• ${s}`).join("\n") : "• Servicio General";
-    return `${saludo} Te recordamos que mañana ${formatFechaConDia(t.fecha)} a las *${t.horaTurno || "09:00"} hs* ingresa tu *${t.vehiculo}* a *${biz.nombre}*.
-
-• *Trabajos:*
-${serviciosTexto}
-${biz.direccion ? `• *Taller:* ${biz.direccion}, ${biz.ciudad}\n` : ""}
-Por favor avisanos con un "SÍ" para confirmar la recepción del vehículo. ¡Muchas gracias!`;
-  };
-
-  const getMensajeAutoListo = (t: Trabajo) => {
-    const saludo = t.cliente ? `¡Hola ${t.cliente}!` : "¡Hola!";
-    const estado = t.estadoPago === "cobrado" ? "Abonado" : "Pendiente de pago";
-    const serviciosTexto = t.servicios?.length ? t.servicios.map((s) => `• ${s}`).join("\n") : "• Servicio General";
-    return `${saludo} Te avisamos que tu *${t.vehiculo}* ya está terminado y listo para retirar en *${biz.nombre}*.
-
-• *Trabajos realizados:*
-${serviciosTexto}
-• *Total:* ${formatPesos(t.monto)} (${estado} - ${t.medioPago.toUpperCase()})
-${biz.direccion ? `• *Taller:* ${biz.direccion}, ${biz.ciudad}\n` : ""}
-¡Quedó impecable! Podés pasar a retirarlo cuando gustes. ¡Muchas gracias!`;
-  };
-
-  const getMensajeDetalleTrabajo = (t: Trabajo) => {
-    const saludo = t.cliente ? `¡Hola ${t.cliente}!` : "¡Hola!";
-    const estado = t.estadoPago === "cobrado" ? "Abonado" : "Pendiente de pago";
-    const serviciosTexto = t.servicios && t.servicios.length > 0 
-      ? t.servicios.map((s) => `• ${s}`).join("\n")
-      : "• Servicio General";
-    return `${saludo} Te escribimos desde *${biz.nombre}*.
-
-*Vehículo:* ${t.vehiculo}
-*Trabajos:*
-${serviciosTexto}
-*Total:* ${formatPesos(t.monto)} (${estado} - ${t.medioPago.toUpperCase()})
-${t.notas ? `• Nota: ${t.notas}\n` : ""}${biz.direccion ? `• Taller: ${biz.direccion}, ${biz.ciudad}\n` : ""}
-¡Quedamos a tu disposición por cualquier consulta! Muchas gracias.`;
-  };
-
-  const enviarWhatsAppDirecto = (t: Trabajo, texto: string) => {
-    const cleanPhone = cleanWhatsAppPhone(t.telefono);
-    const url = cleanPhone
-      ? `https://wa.me/${cleanPhone}?text=${encodeURIComponent(texto)}`
-      : `https://wa.me/?text=${encodeURIComponent(texto)}`;
-    window.open(url, "_blank");
-  };
-
-  const copiarTextoMensaje = (texto: string) => {
-    if (typeof navigator !== "undefined" && navigator.clipboard) {
-      navigator.clipboard.writeText(texto);
-      showToast("✨ ¡Texto copiado al portapapeles!");
-    }
   };
 
   // Eliminar Trabajo (con confirmación rápida, desvinculación de presupuestos y opción de Deshacer)
@@ -4301,6 +4351,9 @@ _Generado automáticamente desde el Sistema de Control de Taller._`;
                       <span>Enviar por WhatsApp</span>
                     </button>
                   </div>
+                </div>
+                <div className="bg-[#005c4b]/50 border border-emerald-500/20 p-2.5 rounded-xl text-[11px] font-sans text-slate-200 whitespace-pre-wrap leading-relaxed">
+                  {getMensajeDetalleTrabajo(trabajoWhatsAppModal)}
                 </div>
               </div>
             </div>
