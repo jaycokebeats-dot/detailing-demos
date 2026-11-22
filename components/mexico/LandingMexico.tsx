@@ -259,7 +259,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                 }
           }
         >
-          <div className={`max-w-6xl mx-auto flex items-center justify-between px-4 sm:px-8 transition-[height] duration-300 ${scrolled ? "h-14" : (isTheZone || isShalom ? "h-16 sm:h-20" : "h-16")}`}>
+          <div className={`max-w-6xl mx-auto flex items-center justify-between px-4 sm:px-8 transition-[height] duration-300 ${scrolled ? (isShalom ? "h-16 sm:h-18" : "h-14") : (isTheZone || isShalom ? "h-20 sm:h-24" : "h-16")}`}>
             {isTheZone ? (
               <a href="#hero" className="flex items-center shrink-0 group transition-transform active:scale-95 py-1" aria-label="Ir al inicio">
                 <img
@@ -281,7 +281,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                 <img
                   src="/logo/shalom-logo.png"
                   alt={biz.nombre}
-                  className={`${scrolled ? "h-10 sm:h-12 md:h-14" : "h-12 sm:h-16 md:h-18"} w-auto object-contain transition-[height] duration-200 group-hover:scale-105 drop-shadow-[0_2px_14px_rgba(245,158,11,0.35)]`}
+                  className={`${scrolled ? "h-12 sm:h-14 md:h-16" : "h-14 sm:h-18 md:h-22 lg:h-24"} w-auto object-contain transition-[height] duration-200 group-hover:scale-105 drop-shadow-[0_4px_22px_rgba(245,158,11,0.45)] filter brightness-105`}
                 />
               </a>
             ) : (
@@ -490,10 +490,9 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                   </a>
                   <a
                     href="#servicios"
-                    className={`${isTheZone ? "btn-outline-thezone" : "btn-outline-gold"} group flex-1 sm:flex-initial px-4 sm:px-7 py-2.5 sm:py-3.5 min-h-[40px] sm:min-h-[44px] rounded-full text-xs sm:text-sm font-semibold uppercase active:scale-95 flex items-center justify-center gap-2 whitespace-nowrap`}
+                    className={`${isTheZone ? "btn-outline-thezone" : "btn-outline-gold"} group flex-1 sm:flex-initial px-5 sm:px-8 py-2.5 sm:py-3.5 min-h-[40px] sm:min-h-[44px] rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider active:scale-95 flex items-center justify-center whitespace-nowrap`}
                   >
-                    <HiOutlineSparkles aria-hidden className="size-4 shrink-0" />
-                    <span>Servicios</span>
+                    <span>VER SERVICIOS</span>
                   </a>
                 </>
               )}
@@ -579,7 +578,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
               {isPlatinum ? "Resultados Reales" : "Nuestros servicios"}
             </span>
             <h2 className={`text-3xl md:text-5xl font-medium ${isTheZone ? "text-thezone" : "text-gold"} mb-4`}>
-              {isPlatinum ? "Transformaciones Reales en Querétaro" : `Servicios & Tarifas en ${biz.ciudad}`}
+              {isPlatinum ? "Transformaciones Reales en Querétaro" : isShalom ? `Servicios Profesionales en ${biz.ciudad}` : `Servicios & Tarifas en ${biz.ciudad}`}
             </h2>
             <p className="text-slate-400">
               {isPlatinum
@@ -645,9 +644,17 @@ export default function LandingMexico({ biz }: { biz: Business }) {
 
                   <div className="p-5 flex flex-col gap-2 flex-1 justify-between">
                     <div className="space-y-2">
-                      <h3 className="font-bold text-lg text-white leading-tight" style={{ textTransform: "none", fontFamily: "inherit" }}>
-                        {s.nombre}
-                      </h3>
+                      <div className="flex items-start justify-between gap-2">
+                        <h3 className="font-bold text-lg text-white leading-tight" style={{ textTransform: "none", fontFamily: "inherit" }}>
+                          {s.nombre}
+                        </h3>
+                        {(s.proteccion?.toLowerCase().includes("garantía por escrito") || s.nombre.toLowerCase().includes("ppf") || s.nombre.toLowerCase().includes("polarizado")) && (
+                          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-amber-400/15 border border-amber-400/40 text-amber-300 shrink-0 shadow-sm">
+                            <HiShieldCheck className="size-3 text-amber-400 shrink-0" />
+                            <span>Garantía por Escrito</span>
+                          </span>
+                        )}
+                      </div>
                       {!isPlatinum && !isShalom && Boolean(s.precio) && <p className={`text-base font-extrabold ${isTheZone ? "text-thezone" : "text-gold"}`}>{s.precio}</p>}
                       <p className="text-xs text-slate-300 leading-relaxed">{s.descripcion}</p>
 
@@ -726,27 +733,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
             </div>
           )}
 
-          {/* Banner de fotos y asesoramiento */}
-          <div className="glass-panel rounded-[28px] mt-12 p-8 md:p-10 flex flex-col md:flex-row items-center gap-6 justify-between border border-white/10" style={{ background: "#101010" }}>
-            <div>
-              <span className={`${badgeClass} mb-3`}>¿Dudas sobre qué necesita tu auto?</span>
-              <h3 className="font-semibold text-xl md:text-2xl mb-2 text-white" style={{ textTransform: "none", fontFamily: "inherit" }}>
-                Mándanos 3 Fotos por WhatsApp y te Asesoramos
-              </h3>
-              <p className="text-sm text-slate-400 max-w-xl">
-                Toma fotos del cofre, costado e interiores con buena luz. En {biz.nombre} te orientamos sin costo ni compromiso para elegir el tratamiento ideal.
-              </p>
-            </div>
-            <a
-              href={waHref(biz, msgFotos)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`${isTheZone ? "btn-thezone" : "btn-gold"} shrink-0 inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold uppercase tracking-wide whitespace-nowrap`}
-            >
-              <FaWhatsapp aria-hidden className="size-4" />
-              Enviar Fotos por WhatsApp
-            </a>
-          </div>
+
         </div>
       </section>
 
