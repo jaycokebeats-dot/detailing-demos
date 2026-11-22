@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import LandingArgentina from "@/components/argentina/LandingArgentina";
+import LandingJds from "@/components/argentina/LandingJds";
 import { JDS_DETAILING_BUSINESS } from "@/data/jds-data";
 
 export const metadata: Metadata = {
@@ -51,5 +51,5 @@ export const metadata: Metadata = {
 };
 
 export default function JdsDetailingPage() {
-  return <LandingArgentina biz={JDS_DETAILING_BUSINESS} />;
+  return <LandingJds biz={JDS_DETAILING_BUSINESS} />;
 }

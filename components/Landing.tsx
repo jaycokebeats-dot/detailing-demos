@@ -12,8 +12,13 @@ import WhatsAppFloat from "./WhatsAppFloat";
 import LandingSpain from "./spain/LandingSpain";
 import LandingMexico from "./mexico/LandingMexico";
 import LandingArgentina from "./argentina/LandingArgentina";
+import LandingJds from "./argentina/LandingJds";
 
 export default function Landing({ biz }: { biz: Business }) {
+  if (biz.slug === "jds-detailing" || biz.slug === "jds-detailing-car-estudio") {
+    return <LandingJds biz={biz} />;
+  }
+
   if (biz.pais === "ES" || biz.template === "spain") {
     return <LandingSpain biz={biz} />;
   }
