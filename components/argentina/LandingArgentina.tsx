@@ -675,7 +675,7 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
         )}
 
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-slate-400 font-light">
-          <span>© {new Date().getFullYear()} {biz.nombre} · {isCeleste ? "Estética Vehicular" : "Detailing Automotriz"} en {biz.ciudad}{biz.provincia ? `, ${biz.provincia}` : ""}</span>
+          <span>© {new Date().getFullYear()} {biz.slug === "mc-detail-detailing" ? "Mc Detail 💎 Detailing" : biz.nombre} · {isCeleste ? "Estética Vehicular" : "Detailing Automotriz"} en {biz.ciudad}{biz.provincia ? `, ${biz.provincia}` : ""}</span>
           <span>{biz.direccion} · {biz.telefono}</span>
         </div>
       </footer>

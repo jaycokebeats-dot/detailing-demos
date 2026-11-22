@@ -95,7 +95,7 @@ export const MC_DETAIL_SERVICIOS: ServiceItem[] = [
 
 export const MC_DETAIL_BUSINESS: Business = {
   slug: "mc-detail-detailing",
-  nombre: "Mc Detail 💎 Detailing",
+  nombre: "Mc Detail Detailing",
   nombreCorto: "Mc Detail",
   telefono: "0299 15-413-4806",
   whatsapp: "5492994134806",
