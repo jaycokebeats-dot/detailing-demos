@@ -22,7 +22,13 @@ export default function Landing({ biz }: { biz: Business }) {
     return <LandingMexico biz={biz} />;
   }
 
-  if (biz.pais === "AR" || biz.template === "argentina" || biz.slug === "gli-stance") {
+  if (
+    biz.pais === "AR" ||
+    biz.template === "argentina" ||
+    biz.slug === "gli-stance" ||
+    biz.slug === "di-lorenzo-detailing" ||
+    !biz.pais
+  ) {
     return <LandingArgentina biz={biz} />;
   }
 

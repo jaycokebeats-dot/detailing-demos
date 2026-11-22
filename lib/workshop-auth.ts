@@ -17,9 +17,14 @@ const CUSTOM_CREDENTIALS_MAP: Record<string, string> = {
   "platinum": "platinum0311",
   "mc-detail-detailing": "mcdetail0811",
   "mc-detail": "mcdetail0811",
+  "di-lorenzo-detailing": "dilorenzo",
+  "di-lorenzo": "dilorenzo",
 };
 
 const USERNAME_TO_SLUG_MAP: Record<string, string> = {
+  "dilorenzo": "di-lorenzo-detailing",
+  "pro-dilorenzo": "di-lorenzo-detailing",
+  "pro-di-lorenzo-detailing": "di-lorenzo-detailing",
   "pro-thezone": "the-zone-car-autospa-detailing",
   "detail-thezone": "the-zone-car-autospa-detailing",
   "thezone": "the-zone-car-autospa-detailing",

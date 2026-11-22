@@ -2,6 +2,7 @@ import { createClient } from "@supabase/supabase-js";
 import type { Business } from "@/data/business-helpers";
 import { DEFAULT_DEMO_BUSINESS } from "@/data/demo-business";
 import { MC_DETAIL_BUSINESS } from "@/data/mc-detail-data";
+import { DI_LORENZO_BUSINESS } from "@/data/di-lorenzo-data";
 
 const supabaseUrl =
   process.env.NEXT_PUBLIC_SUPABASE_URL ||
@@ -164,6 +165,10 @@ export async function getBusinessData(slug: string = "demo"): Promise<Business |
 
   if (normSlug === "mc-detail-detailing") {
     return MC_DETAIL_BUSINESS;
+  }
+
+  if (normSlug === "di-lorenzo-detailing" || normSlug === "di-lorenzo") {
+    return DI_LORENZO_BUSINESS;
   }
 
   if (normSlug === "demo" && slug !== "taller-demo") {

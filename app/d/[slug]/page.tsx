@@ -31,6 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const isMcDetail = slug === "mc-detail-detailing" || slug === "mc-detail" || biz.slug === "mc-detail-detailing";
   const isAmCentro = slug === "am-centro-de-estetica-vehicular" || slug === "am-centro" || biz.slug === "am-centro-de-estetica-vehicular";
   const isJds = slug === "jds-detailing" || slug === "jds-detailing-car-estudio" || biz.slug === "jds-detailing";
+  const isDiLorenzo = slug === "di-lorenzo-detailing" || slug === "di-lorenzo" || biz.slug === "di-lorenzo-detailing";
 
   let titulo = `${biz.nombre.replace(/[^\p{L}\p{N}\s.,&|/'-]/gu, "").replace(/\s+/g, " ").trim()} — Detailing Profesional en ${biz.ciudad}`;
   let descripcion = `Detailing profesional a mano en ${biz.ciudad}: lavado sin remolinos, corrección de pintura y recubrimiento cerámico. Pedí tu turno por WhatsApp.`;
@@ -50,6 +51,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   } else if (isJds) {
     titulo = "JDS Detailing Car Studio | Detailing Profesional & Estética en Villa Ballester";
     descripcion = "Taller de estética del automotor en Villa Ballester: tratamientos cerámicos, pulido de pintura, PPF brillante, restauración de ópticas y limpieza de motor a vapor. Tu auto, en las mejores manos.";
+  } else if (isDiLorenzo) {
+    titulo = "Di Lorenzo Detailing | Detailing Profesional & Tratamiento Cerámico en Haedo";
+    descripcion = "Estudio profesional de estética vehicular en Haedo: tratamientos cerámicos 9H, corrección de laca, limpieza profunda de tapizados y PPF. Pedí tu turno por WhatsApp.";
   } else if (isSpain) {
     descripcion = `Detailing profesional de coches en ${biz.ciudad}: lavado a mano, corrección de pintura y tratamiento cerámico. Pide tu cita por WhatsApp.`;
   } else if (isMexico) {
@@ -87,6 +91,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ? "Mc Detail Detailing"
     : isPlatinum
     ? "Platinum Detallado Automotriz"
+    : isDiLorenzo
+    ? "Di Lorenzo Detailing"
     : cleanNombre;
 
   return {
@@ -174,6 +180,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             "restauracion de opticas villa ballester",
             "estetica vehicular villa ballester",
             "taller de detailing buenos aires",
+          ]
+      : isDiLorenzo
+        ? [
+            "detailing haedo",
+            "di lorenzo detailing",
+            "tratamiento ceramico haedo",
+            "pulido de autos haedo",
+            "polarizado haedo",
+            "ppf haedo",
+            "limpieza de tapizados haedo",
+            "limpieza de motor a vapor haedo",
+            "estetica vehicular haedo",
+            "detailing zona oeste",
+            "taller de detailing moron",
           ]
       : ["detailing", "pulido de autos", "tratamiento ceramico", biz.ciudad],
     icons: isAmCentro
@@ -290,6 +310,7 @@ export default async function BusinessPage({ params }: Props) {
   const isPlatinum = slug === "platinum-detallado-automotriz-a-domicilio" || biz.slug === "platinum-detallado-automotriz-a-domicilio";
   const isMcDetail = slug === "mc-detail-detailing" || slug === "mc-detail" || biz.slug === "mc-detail-detailing";
   const isJds = slug === "jds-detailing" || slug === "jds-detailing-car-estudio" || biz.slug === "jds-detailing";
+  const isDiLorenzo = slug === "di-lorenzo-detailing" || slug === "di-lorenzo" || biz.slug === "di-lorenzo-detailing";
 
   // Schema.org JSON-LD para posicionamiento SEO local y Google Rich Results
   const canonicalBizUrl = isPlatinum
@@ -309,7 +330,15 @@ export default async function BusinessPage({ params }: Props) {
     : defaultImage;
 
   const cleanBizNombre = biz.nombre.replace(/[^\p{L}\p{N}\s.,&|/'-]/gu, "").replace(/\s+/g, " ").trim();
-  const brandName = isJds ? "JDS Detailing Car Studio" : isMcDetail ? "Mc Detail Detailing" : (isPlatinum ? "Platinum Detallado Automotriz" : cleanBizNombre);
+  const brandName = isJds
+    ? "JDS Detailing Car Studio"
+    : isMcDetail
+    ? "Mc Detail Detailing"
+    : isPlatinum
+    ? "Platinum Detallado Automotriz"
+    : isDiLorenzo
+    ? "Di Lorenzo Detailing"
+    : cleanBizNombre;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -318,7 +347,7 @@ export default async function BusinessPage({ params }: Props) {
     "name": brandName,
     "image": primaryImage,
     "url": canonicalBizUrl,
-    "telephone": isJds ? "+54 9 11 5451-4393" : (biz.telefono || (isPlatinum ? "+52-442-715-1535" : "+54 9 299 413-4806")),
+    "telephone": isJds ? "+54 9 11 5451-4393" : isDiLorenzo ? "+54 9 11 3376-7004" : (biz.telefono || (isPlatinum ? "+52-442-715-1535" : "+54 9 299 413-4806")),
     "priceRange": "$$",
     "description": isPlatinum
       ? "Servicio profesional de detallado automotriz a domicilio en Querétaro: tratamientos cerámicos Gyeon®, pulido de pintura, interiores a vapor y paquetes express."
@@ -326,13 +355,15 @@ export default async function BusinessPage({ params }: Props) {
         ? "Estudio profesional de detailing en Neuquén: polarizados nano cerámicos, protección PPF, tratamientos cerámicos 9H y estética vehicular completa."
         : isJds
           ? "Taller de estética del automotor en Villa Ballester: tratamientos cerámicos, pulido de pintura, PPF brillante, restauración de ópticas y limpieza de motor a vapor."
-          : `Detailing profesional y estética automotriz en ${biz.ciudad}.`,
+          : isDiLorenzo
+            ? "Estudio profesional de detailing y estética vehicular en Haedo: tratamientos cerámicos 9H, corrección de laca, limpieza de interiores y PPF."
+            : `Detailing profesional y estética automotriz en ${biz.ciudad}.`,
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": isJds ? "Lynch Pueyrredón 4386" : (biz.direccion || (isMcDetail ? "Gdor. Anaya 614, Barrio La Sirena" : "Servicio a Domicilio")),
-      "addressLocality": isJds ? "Villa Ballester" : (biz.ciudad || (isMcDetail ? "Neuquén" : "Querétaro")),
-      "addressRegion": isJds ? "Buenos Aires" : (isPlatinum ? "Querétaro" : (isMcDetail ? "Neuquén" : (biz.ciudad || ""))),
-      "postalCode": isJds ? "B1653" : undefined,
+      "streetAddress": isJds ? "Lynch Pueyrredón 4386" : isDiLorenzo ? "Orense 711" : (biz.direccion || (isMcDetail ? "Gdor. Anaya 614, Barrio La Sirena" : "Servicio a Domicilio")),
+      "addressLocality": isJds ? "Villa Ballester" : isDiLorenzo ? "Haedo" : (biz.ciudad || (isMcDetail ? "Neuquén" : "Querétaro")),
+      "addressRegion": isJds ? "Buenos Aires" : isDiLorenzo ? "Buenos Aires" : (isPlatinum ? "Querétaro" : (isMcDetail ? "Neuquén" : (biz.ciudad || ""))),
+      "postalCode": isJds ? "B1653" : isDiLorenzo ? "B1706" : undefined,
       "addressCountry": biz.pais || (isMcDetail ? "AR" : (isPlatinum ? "MX" : "AR")),
     },
     ...(isPlatinum
@@ -383,7 +414,23 @@ export default async function BusinessPage({ params }: Props) {
                 { "@type": "AdministrativeArea", "name": "Zona Norte Gran Buenos Aires" },
               ],
             }
-          : {}),
+          : isDiLorenzo
+            ? {
+                "geo": {
+                  "@type": "GeoCoordinates",
+                  "latitude": -34.6272522,
+                  "longitude": -58.5827838,
+                },
+                "areaServed": [
+                  { "@type": "City", "name": "Haedo" },
+                  { "@type": "AdministrativeArea", "name": "Morón" },
+                  { "@type": "AdministrativeArea", "name": "Ramos Mejía" },
+                  { "@type": "AdministrativeArea", "name": "El Palomar" },
+                  { "@type": "AdministrativeArea", "name": "Castelar" },
+                  { "@type": "AdministrativeArea", "name": "Zona Oeste Gran Buenos Aires" },
+                ],
+              }
+            : {}),
     "openingHoursSpecification": isJds
       ? [
           {
