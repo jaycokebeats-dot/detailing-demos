@@ -8,11 +8,10 @@ import {
   LuSun,
   LuCheck,
   LuPlus,
-  LuInfo,
-  LuRotateCcw,
   LuClock,
-  LuLayers,
   LuEye,
+  LuTrash2,
+  LuInfo,
 } from "react-icons/lu";
 import type { Business } from "@/data/business-helpers";
 import { waHref } from "@/data/business-helpers";
@@ -61,6 +60,16 @@ export const TIPOS_VEHICULO_SHALOM: TipoVehiculoShalom[] = [
 
 export type CategoriaShalomId = "polarizado" | "detallado" | "ppf" | "mantenimiento";
 
+export interface ItemPresupuestoShalom {
+  id: "polarizado" | "detallado" | "ppf" | "encerado" | "motor" | "faros";
+  categoriaId: CategoriaShalomId;
+  titulo: string;
+  detalle: string;
+  precio: number;
+  tiempo: string;
+  garantia?: string;
+}
+
 interface CotizadorShalomProps {
   biz: Business;
   onCotizacionChange?: (activa: boolean) => void;
@@ -71,8 +80,15 @@ export default function CotizadorShalom({ biz, onCotizacionChange }: CotizadorSh
   const [vehiculo, setVehiculo] = useState<VehiculoShalomId>("sedan");
   const [categoria, setCategoria] = useState<CategoriaShalomId>("polarizado");
 
+  // === SERVICIOS ACTIVOS EN EL PRESUPUESTO (CARRITO MULTI-SERVICIO) ===
+  const [polarizadoActivo, setPolarizadoActivo] = useState(true); // Inicia con polarizado por defecto
+  const [detalladoActivo, setDetalladoActivo] = useState(false);
+  const [ppfActivo, setPpfActivo] = useState(false);
+  const [enceradoActivo, setEnceradoActivo] = useState(false);
+  const [motorActivo, setMotorActivo] = useState(false);
+  const [farosActivo, setFarosActivo] = useState(false);
+
   // === SUB-OPCIONES POLARIZADO ===
-  // Paquetes: protec, baby, llumar35, llumarTonos, 3m
   const [polarizadoMarca, setPolarizadoMarca] = useState<"protec" | "baby" | "llumar35" | "llumarTonos" | "3m">("llumar35");
   const [polarizadoTono, setPolarizadoTono] = useState<"5%" | "20%" | "35%" | "50%">("35%");
   const [incluirParabrisas, setIncluirParabrisas] = useState(false);
@@ -81,340 +97,406 @@ export default function CotizadorShalom({ biz, onCotizacionChange }: CotizadorSh
   const [retiroMaterial, setRetiroMaterial] = useState<"ninguno" | "completo" | "laterales" | "medallon" | "parabrisas">("ninguno");
 
   // === SUB-OPCIONES DETALLADO ===
-  // Tipo: full-detail, vestiduras, ceramico
   const [detalladoTipo, setDetalladoTipo] = useState<"full-detail" | "vestiduras" | "ceramico">("full-detail");
   const [desmontarAlfombra, setDesmontarAlfombra] = useState(false);
 
   // === SUB-OPCIONES PPF ===
-  // Marca: dgnr (1 año) vs llumar (8 años)
   const [ppfMarca, setPpfMarca] = useState<"dgnr" | "llumar">("llumar");
   const [ppfCobertura, setPpfCobertura] = useState<"frente" | "completo">("frente");
   const [ppfInteriores, setPpfInteriores] = useState<"ninguno" | "cluster-pantalla" | "completo-puertas">("ninguno");
 
-  // === SUB-OPCIONES MANTENIMIENTO ===
-  const [mantenimientoTipo, setMantenimientoTipo] = useState<"motor-carroceria" | "lavado-encerado">("lavado-encerado");
-  const [incluirFaros, setIncluirFaros] = useState(false);
-
   // Escuchar eventos globales para saltar de servicio directo desde las tarjetas de resultados
   useEffect(() => {
-    onCotizacionChange?.(true);
-
     const handleSelectCategory = (e: any) => {
       const cat = e?.detail?.categoria;
       if (cat && ["polarizado", "detallado", "ppf", "mantenimiento"].includes(cat)) {
         setCategoria(cat);
+        // Si no está activo aún, activarlo para comodidad del usuario
+        if (cat === "polarizado") setPolarizadoActivo(true);
+        if (cat === "detallado") setDetalladoActivo(true);
+        if (cat === "ppf") setPpfActivo(true);
+        if (cat === "mantenimiento") setEnceradoActivo(true);
       }
     };
     window.addEventListener("shalom:set-categoria", handleSelectCategory);
     return () => window.removeEventListener("shalom:set-categoria", handleSelectCategory);
-  }, [onCotizacionChange]);
+  }, []);
 
-  // CÁLCULO DE PRECIO TOTAL Y DESGLOSE DINÁMICO
-  const cotizacion = useMemo(() => {
-    let subtotal = 0;
-    const items: { label: string; precio: number; detalle?: string }[] = [];
-    let tiempoEstimado = "Mismo día (Cita previa)";
-    let garantiaTexto = "";
+  // 1. CÁLCULO DINÁMICO DE COSTOS POR SERVICIO INDIVIDUAL (SEGÚN VEHÍCULO)
 
-    if (categoria === "polarizado") {
-      // 1. Paquete Base (Laterales y Medallón)
-      const preciosBase: Record<string, Record<VehiculoShalomId, number>> = {
-        protec: { sedan: 1500, suv: 1800, pickup: 1800, suburban: 2200 },
-        baby: { sedan: 1900, suv: 2200, pickup: 2200, suburban: 2600 },
-        llumar35: { sedan: 3300, suv: 3500, pickup: 3500, suburban: 4000 },
-        llumarTonos: { sedan: 3600, suv: 3800, pickup: 3800, suburban: 4500 },
-        "3m": { sedan: 5500, suv: 5800, pickup: 6000, suburban: 6200 },
+  // Costo actual configurado de Polarizado
+  const costoPolarizado = useMemo(() => {
+    const preciosBase: Record<string, Record<VehiculoShalomId, number>> = {
+      protec: { sedan: 1500, suv: 1800, pickup: 1800, suburban: 2200 },
+      baby: { sedan: 1900, suv: 2200, pickup: 2200, suburban: 2600 },
+      llumar35: { sedan: 3300, suv: 3500, pickup: 3500, suburban: 4000 },
+      llumarTonos: { sedan: 3600, suv: 3800, pickup: 3800, suburban: 4500 },
+      "3m": { sedan: 5500, suv: 5800, pickup: 6000, suburban: 6200 },
+    };
+
+    const nombresMarca: Record<string, string> = {
+      protec: "Protec Sun",
+      baby: "Baby Blue / Baby Green",
+      llumar35: "Llumar 35%",
+      llumarTonos: `Llumar Tono ${polarizadoTono}`,
+      "3m": "3M LUMAR Protec-Sun",
+    };
+
+    let total = preciosBase[polarizadoMarca][vehiculo];
+    const detallesArr: string[] = [`Tono: ${polarizadoTono}`];
+
+    if (incluirParabrisas) {
+      if (tipoParabrisas === "marca") {
+        const preciosParabrisas: Record<string, number> = {
+          protec: 1100,
+          baby: 1200,
+          llumar35: 2100,
+          llumarTonos: 2100,
+          "3m": 3600,
+        };
+        const pPrice = preciosParabrisas[polarizadoMarca];
+        total += pPrice;
+        detallesArr.push(`Parabrisas ${polarizadoMarca === "protec" ? "Protec Sun" : polarizadoMarca === "3m" ? "3M" : "Llumar"}`);
+      } else if (tipoParabrisas === "inteligente80") {
+        total += 2500;
+        detallesArr.push("Parabrisas Inteligente Azul 80% UV");
+      } else if (tipoParabrisas === "inteligente90") {
+        total += 3000;
+        detallesArr.push("Parabrisas Inteligente Transparente 90% UV");
+      } else if (tipoParabrisas === "inteligente99") {
+        total += 3300;
+        detallesArr.push("Parabrisas Inteligente Transparente 99.9% UV");
+      } else if (tipoParabrisas === "nanocenter") {
+        total += 3000;
+        detallesArr.push("Parabrisas Nanocerámico Colores");
+      }
+    }
+
+    if (incluirFranja) {
+      total += 450;
+      detallesArr.push("Franja parasol");
+    }
+
+    if (retiroMaterial !== "ninguno") {
+      const retiroPrecios: Record<string, { label: string; precio: number }> = {
+        completo: { label: "Retiro completo", precio: 600 },
+        laterales: { label: "Retiro laterales", precio: 400 },
+        medallon: { label: "Retiro medallón", precio: 400 },
+        parabrisas: { label: "Retiro parabrisas", precio: 400 },
       };
-
-      const nombresMarca: Record<string, string> = {
-        protec: "Protec Sun (Económica)",
-        baby: "Baby Blue / Baby Green",
-        llumar35: "Llumar 35% (Intermedio Oficial)",
-        llumarTonos: `Llumar Tono Especial (${polarizadoTono})`,
-        "3m": "3M LUMAR Protec-Sun (Alta Gama)",
-      };
-
-      const basePrice = preciosBase[polarizadoMarca][vehiculo];
-      subtotal += basePrice;
-      items.push({
-        label: `Película Antiasalto ${nombresMarca[polarizadoMarca]} (Laterales + Medallón)`,
-        precio: basePrice,
-        detalle: `Tono seleccionado: ${polarizadoTono} • Bloqueo UV y control térmico`,
-      });
-
-      // 2. Parabrisas adicional
-      if (incluirParabrisas) {
-        if (tipoParabrisas === "marca") {
-          const preciosParabrisas: Record<string, number> = {
-            protec: 1100,
-            baby: 1200,
-            llumar35: 2100,
-            llumarTonos: 2100,
-            "3m": 3600,
-          };
-          const pPrice = preciosParabrisas[polarizadoMarca];
-          subtotal += pPrice;
-          items.push({
-            label: `Parabrisas Completo en ${polarizadoMarca === "protec" ? "Protec Sun" : polarizadoMarca === "3m" ? "3M" : "Llumar"}`,
-            precio: pPrice,
-            detalle: "Instalación térmica en parabrisas delantero completo",
-          });
-        } else if (tipoParabrisas === "inteligente80") {
-          subtotal += 2500;
-          items.push({
-            label: "Parabrisas Inteligente Tono Azul (80% Rechazo UV)",
-            precio: 2500,
-            detalle: "Película inteligente atérmica de alta reducción de calor",
-          });
-        } else if (tipoParabrisas === "inteligente90") {
-          subtotal += 3000;
-          items.push({
-            label: "Parabrisas Inteligente Transparente (90% Rechazo UV)",
-            precio: 3000,
-            detalle: "Máxima transparencia con ultra rechazo solar de rayos UV",
-          });
-        } else if (tipoParabrisas === "inteligente99") {
-          subtotal += 3300;
-          items.push({
-            label: "Parabrisas Inteligente Transparente (99.9% Rechazo UV)",
-            precio: 3300,
-            detalle: "Grado óptico superior con rechazo total del 99.9% UV",
-          });
-        } else if (tipoParabrisas === "nanocenter") {
-          subtotal += 3000;
-          items.push({
-            label: "Parabrisas Nanocerámico en Colores",
-            precio: 3000,
-            detalle: "Nanocerámica reflectiva en color personalizado",
-          });
-        }
-      }
-
-      // 3. Franja parasol
-      if (incluirFranja) {
-        subtotal += 450;
-        items.push({
-          label: "Franja Parasol Superior en Parabrisas",
-          precio: 450,
-        });
-      }
-
-      // 4. Retiro de película anterior
-      if (retiroMaterial !== "ninguno") {
-        const retiroPrecios: Record<string, { label: string; precio: number }> = {
-          completo: { label: "Retiro de película vieja (Laterales + Medallón)", precio: 600 },
-          laterales: { label: "Retiro de película vieja en laterales", precio: 400 },
-          medallon: { label: "Retiro de película vieja en medallón trasero", precio: 400 },
-          parabrisas: { label: "Retiro de película vieja en parabrisas", precio: 400 },
-        };
-        const rItem = retiroPrecios[retiroMaterial];
-        subtotal += rItem.precio;
-        items.push({
-          label: rItem.label,
-          precio: rItem.precio,
-          detalle: "Limpieza profunda de residuos de adhesivo sin dañar las líneas térmicas",
-        });
-      }
-
-      tiempoEstimado = "3 a 5 horas (mismo día con cita)";
-      garantiaTexto = "Garantía por escrito contra desprendimiento o burbujas";
-    } else if (categoria === "detallado") {
-      if (detalladoTipo === "full-detail") {
-        const preciosFull: Record<VehiculoShalomId, number> = {
-          sedan: 7000,
-          suv: 9000,
-          pickup: 9000,
-          suburban: 11000,
-        };
-        const tiemposFull: Record<VehiculoShalomId, string> = {
-          sedan: "5 días hábiles aprox.",
-          suv: "7 días hábiles aprox.",
-          pickup: "7 días hábiles aprox.",
-          suburban: "8 días hábiles aprox.",
-        };
-
-        const price = preciosFull[vehiculo];
-        subtotal += price;
-        tiempoEstimado = tiemposFull[vehiculo];
-        items.push({
-          label: "Paquete Todo Incluido | Detallado Automotriz Profesional",
-          precio: price,
-          detalle:
-            "Lavado de motor, carrocería, descontaminado total 360°, interior a vapor, toldo, ductos, alfombra, cajuela, corrección de pintura en etapas y cerámico de 6 meses.",
-        });
-        garantiaTexto = "Cerámico 9H garantizado por 6 meses + Acabado espejo";
-      } else if (detalladoTipo === "vestiduras") {
-        const preciosVest: Record<VehiculoShalomId, { base: number; conAlfombra: number }> = {
-          sedan: { base: 2000, conAlfombra: 3000 },
-          suv: { base: 2500, conAlfombra: 3500 },
-          pickup: { base: 2500, conAlfombra: 3500 },
-          suburban: { base: 3000, conAlfombra: 4500 },
-        };
-        const pVest = preciosVest[vehiculo];
-        const finalPrice = desmontarAlfombra ? pVest.conAlfombra : pVest.base;
-        subtotal += finalPrice;
-        items.push({
-          label: `Lavado Profundo de Vestiduras & Interior ${desmontarAlfombra ? "(Con desmonte de alfombra)" : ""}`,
-          precio: finalPrice,
-          detalle: desmontarAlfombra
-            ? "Desinfección con vapor seco, asientos, toldo, plásticos, ductos y desmonte total de alfombra"
-            : "Desinfección con vapor seco, lavado de asientos (tela/piel), toldo, ductos y plásticos",
-        });
-        tiempoEstimado = desmontarAlfombra ? "24 a 48 horas (secado profundo)" : "1 día hábil";
-        garantiaTexto = "Garantía de sanitización antibacteriana sin humedad residual";
-      } else if (detalladoTipo === "ceramico") {
-        const preciosCeramico: Record<VehiculoShalomId, number> = {
-          sedan: 4500,
-          suv: 6500,
-          pickup: 6500,
-          suburban: 8500,
-        };
-        const cPrice = preciosCeramico[vehiculo];
-        subtotal += cPrice;
-        items.push({
-          label: "Corrección de Pintura & Recubrimiento Cerámico",
-          precio: cPrice,
-          detalle: "Pulido en etapas para eliminar microrrayones + abrillantado fino y sellado cerámico",
-        });
-        tiempoEstimado = "2 a 3 días hábiles";
-        garantiaTexto = "Garantía por escrito de brillo espejo y repelencia hidrofóbica";
-      }
-    } else if (categoria === "ppf") {
-      const preciosPPF: Record<
-        "dgnr" | "llumar",
-        Record<"frente" | "completo", Record<VehiculoShalomId, number>>
-      > = {
-        dgnr: {
-          frente: { sedan: 15000, suv: 18000, pickup: 20000, suburban: 23000 },
-          completo: { sedan: 40000, suv: 45000, pickup: 47000, suburban: 50000 },
-        },
-        llumar: {
-          frente: { sedan: 20000, suv: 25000, pickup: 25000, suburban: 28000 },
-          completo: { sedan: 48000, suv: 50000, pickup: 52000, suburban: 59000 },
-        },
-      };
-
-      const ppfPrice = preciosPPF[ppfMarca][ppfCobertura][vehiculo];
-      subtotal += ppfPrice;
-      const marcaNombre = ppfMarca === "llumar" ? "Llumar (8 Años de Garantía)" : "DGNR (1 Año de Garantía)";
-      items.push({
-        label: `Blindaje PPF ${marcaNombre} — ${ppfCobertura === "frente" ? "Paquete Frente Protegido" : "Carrocería Completa"}`,
-        precio: ppfPrice,
-        detalle:
-          ppfCobertura === "frente"
-            ? "Cofre completo, facia delantera, salpicaderas frontales y carcasas de espejos"
-            : "Blindaje de poliuretano autorregenerable en el 100% de paneles exteriores",
-      });
-
-      if (ppfInteriores === "cluster-pantalla") {
-        subtotal += 2800;
-        items.push({
-          label: "PPF en Interiores (Clúster Digital + Pantalla + Contorno de Palanca)",
-          precio: 2800,
-          detalle: "Corte milimétrico contra rayones en piano black y pantallas táctiles",
-        });
-      } else if (ppfInteriores === "completo-puertas") {
-        subtotal += 3000;
-        items.push({
-          label: "PPF Interior Completo (+ Molduras y Puertas Interiores)",
-          precio: 3000,
-          detalle: "Clúster, pantallas, consola central y molduras de puertas",
-        });
-      }
-
-      tiempoEstimado = ppfCobertura === "completo" ? "4 a 6 días hábiles" : "2 a 3 días hábiles";
-      garantiaTexto =
-        ppfMarca === "llumar"
-          ? "🛡️ 8 AÑOS DE GARANTÍA POR ESCRITO (Contra amarillamiento, craquelado y desprendimiento)"
-          : "🛡️ 1 AÑO DE GARANTÍA POR ESCRITO";
-    } else if (categoria === "mantenimiento") {
-      if (mantenimientoTipo === "motor-carroceria") {
-        const preciosMotor: Record<VehiculoShalomId, number> = {
-          sedan: 800,
-          suv: 1000,
-          pickup: 1200,
-          suburban: 1400,
-        };
-        const pM = preciosMotor[vehiculo];
-        subtotal += pM;
-        items.push({
-          label: "Lavado Técnico de Motor con Vapor & Carrocería",
-          precio: pM,
-          detalle: "Limpieza dieléctrica de motor con hidratación satinada de plásticos + baño exterior",
-        });
-      } else {
-        const preciosEncerado: Record<VehiculoShalomId, number> = {
-          sedan: 700,
-          suv: 900,
-          pickup: 1000,
-          suburban: 1200,
-        };
-        const pE = preciosEncerado[vehiculo];
-        subtotal += pE;
-        items.push({
-          label: "Lavado y Encerado Protector + Humectante Interior",
-          precio: pE,
-          detalle: "Cera líquida de alta protección UV + hidratación de pieles y plásticos en cabina",
-        });
-      }
-
-      if (incluirFaros) {
-        subtotal += 600;
-        items.push({
-          label: "Restauración y Pulido de Faros y Calaveras con Polímero",
-          precio: 600,
-          detalle: "Elimina la capa opaca y amarillenta devolviendo 100% de transparencia",
-        });
-      }
-
-      tiempoEstimado = "2 a 4 horas (mismo día)";
-      garantiaTexto = "Garantía de servicio artesanal a mano sin micro-rayones";
+      const rItem = retiroPrecios[retiroMaterial];
+      total += rItem.precio;
+      detallesArr.push(rItem.label);
     }
 
     return {
-      subtotal,
-      items,
-      tiempoEstimado,
-      garantiaTexto,
+      precio: total,
+      titulo: `Película Antiasalto ${nombresMarca[polarizadoMarca]} (Laterales + Medallón)`,
+      detalle: detallesArr.join(" • "),
+      tiempo: "3 a 5 horas (mismo día con cita)",
+      garantia: "Garantía por escrito contra desprendimiento o burbujas",
     };
+  }, [polarizadoMarca, vehiculo, polarizadoTono, incluirParabrisas, tipoParabrisas, incluirFranja, retiroMaterial]);
+
+  // Costo actual configurado de Detallado
+  const costoDetallado = useMemo(() => {
+    if (detalladoTipo === "full-detail") {
+      const preciosFull: Record<VehiculoShalomId, number> = {
+        sedan: 7000,
+        suv: 9000,
+        pickup: 9000,
+        suburban: 11000,
+      };
+      const tiemposFull: Record<VehiculoShalomId, string> = {
+        sedan: "5 días hábiles aprox.",
+        suv: "7 días hábiles aprox.",
+        pickup: "7 días hábiles aprox.",
+        suburban: "8 días hábiles aprox.",
+      };
+      return {
+        precio: preciosFull[vehiculo],
+        titulo: "Paquete Todo Incluido | Detallado Profesional",
+        detalle: "Motor, carrocería, descontaminado 360°, interiores a vapor, toldo, alfombra, corrección en etapas y cerámico de 6 meses.",
+        tiempo: tiemposFull[vehiculo],
+        garantia: "Cerámico 9H garantizado por 6 meses + Acabado espejo",
+      };
+    } else if (detalladoTipo === "vestiduras") {
+      const preciosVest: Record<VehiculoShalomId, { base: number; conAlfombra: number }> = {
+        sedan: { base: 2000, conAlfombra: 3000 },
+        suv: { base: 2500, conAlfombra: 3500 },
+        pickup: { base: 2500, conAlfombra: 3500 },
+        suburban: { base: 3000, conAlfombra: 4500 },
+      };
+      const pVest = preciosVest[vehiculo];
+      const precioFinal = desmontarAlfombra ? pVest.conAlfombra : pVest.base;
+      return {
+        precio: precioFinal,
+        titulo: `Lavado Profundo de Vestiduras & Interior ${desmontarAlfombra ? "(Con desmonte de alfombra)" : ""}`,
+        detalle: desmontarAlfombra
+          ? "Desinfección con vapor seco, asientos (tela/piel), toldo, ductos, plásticos y desmonte total de alfombra"
+          : "Desinfección con vapor seco, asientos (tela/piel), toldo, ductos y plásticos",
+        tiempo: desmontarAlfombra ? "24 a 48 horas (secado profundo)" : "1 día hábil",
+        garantia: "Garantía de sanitización antibacteriana sin humedad residual",
+      };
+    } else {
+      const preciosCeramico: Record<VehiculoShalomId, number> = {
+        sedan: 4500,
+        suv: 6500,
+        pickup: 6500,
+        suburban: 8500,
+      };
+      return {
+        precio: preciosCeramico[vehiculo],
+        titulo: "Corrección de Pintura & Recubrimiento Cerámico",
+        detalle: "Pulido en etapas para eliminar microrrayones + abrillantado fino y sellado nanocerámico",
+        tiempo: "2 a 3 días hábiles",
+        garantia: "Garantía por escrito de brillo espejo y repelencia hidrofóbica",
+      };
+    }
+  }, [detalladoTipo, vehiculo, desmontarAlfombra]);
+
+  // Costo actual configurado de PPF
+  const costoPPF = useMemo(() => {
+    const preciosPPF: Record<
+      "dgnr" | "llumar",
+      Record<"frente" | "completo", Record<VehiculoShalomId, number>>
+    > = {
+      dgnr: {
+        frente: { sedan: 15000, suv: 18000, pickup: 20000, suburban: 23000 },
+        completo: { sedan: 40000, suv: 45000, pickup: 47000, suburban: 50000 },
+      },
+      llumar: {
+        frente: { sedan: 20000, suv: 25000, pickup: 25000, suburban: 28000 },
+        completo: { sedan: 48000, suv: 50000, pickup: 52000, suburban: 59000 },
+      },
+    };
+
+    let total = preciosPPF[ppfMarca][ppfCobertura][vehiculo];
+    const detallesArr: string[] = [
+      ppfCobertura === "frente"
+        ? "Cofre, facia delantera, salpicaderas y espejos"
+        : "Carrocería completa 360° en todos los paneles exteriores",
+    ];
+
+    if (ppfInteriores === "cluster-pantalla") {
+      total += 2800;
+      detallesArr.push("PPF en Clúster y Pantalla");
+    } else if (ppfInteriores === "completo-puertas") {
+      total += 3000;
+      detallesArr.push("PPF en Interiores Completo y Molduras de Puertas");
+    }
+
+    const marcaLabel = ppfMarca === "llumar" ? "Llumar (8 Años de Garantía)" : "DGNR (1 Año de Garantía)";
+
+    return {
+      precio: total,
+      titulo: `Blindaje PPF ${marcaLabel} — ${ppfCobertura === "frente" ? "Frente Protegido" : "Carrocería Completa"}`,
+      detalle: detallesArr.join(" • "),
+      tiempo: ppfCobertura === "completo" ? "4 a 6 días hábiles" : "2 a 3 días hábiles",
+      garantia:
+        ppfMarca === "llumar"
+          ? "🛡️ 8 AÑOS DE GARANTÍA POR ESCRITO (Contra amarillamiento y craquelado)"
+          : "🛡️ 1 AÑO DE GARANTÍA POR ESCRITO",
+    };
+  }, [ppfMarca, ppfCobertura, vehiculo, ppfInteriores]);
+
+  // Costos de Mantenimiento Express
+  const costoEncerado = useMemo(() => {
+    const precios: Record<VehiculoShalomId, number> = {
+      sedan: 700,
+      suv: 900,
+      pickup: 1000,
+      suburban: 1200,
+    };
+    return {
+      precio: precios[vehiculo],
+      titulo: "Lavado y Encerado Protector + Humectante Interior",
+      detalle: "Cera líquida protectora UV + nutrición de plásticos y pieles",
+      tiempo: "2 horas",
+    };
+  }, [vehiculo]);
+
+  const costoMotor = useMemo(() => {
+    const precios: Record<VehiculoShalomId, number> = {
+      sedan: 800,
+      suv: 1000,
+      pickup: 1200,
+      suburban: 1400,
+    };
+    return {
+      precio: precios[vehiculo],
+      titulo: "Lavado Técnico de Motor con Vapor & Carrocería",
+      detalle: "Limpieza dieléctrica profunda con hidratación satinada de plásticos + baño exterior",
+      tiempo: "2 a 3 horas",
+    };
+  }, [vehiculo]);
+
+  const costoFaros = useMemo(() => {
+    return {
+      precio: 600,
+      titulo: "Restauración y Pulido de Faros y Calaveras con Polímero",
+      detalle: "Elimina la capa opaca amarilla devolviendo 100% de transparencia",
+      tiempo: "1 a 2 horas",
+    };
+  }, []);
+
+  // 2. CONSTRUCCIÓN DEL TICKET INTEGRADO (SUMA DE TODOS LOS SERVICIOS ACTIVOS)
+  const itemsPresupuesto = useMemo<ItemPresupuestoShalom[]>(() => {
+    const list: ItemPresupuestoShalom[] = [];
+
+    if (polarizadoActivo) {
+      list.push({
+        id: "polarizado",
+        categoriaId: "polarizado",
+        titulo: costoPolarizado.titulo,
+        detalle: costoPolarizado.detalle,
+        precio: costoPolarizado.precio,
+        tiempo: costoPolarizado.tiempo,
+        garantia: costoPolarizado.garantia,
+      });
+    }
+
+    if (detalladoActivo) {
+      list.push({
+        id: "detallado",
+        categoriaId: "detallado",
+        titulo: costoDetallado.titulo,
+        detalle: costoDetallado.detalle,
+        precio: costoDetallado.precio,
+        tiempo: costoDetallado.tiempo,
+        garantia: costoDetallado.garantia,
+      });
+    }
+
+    if (ppfActivo) {
+      list.push({
+        id: "ppf",
+        categoriaId: "ppf",
+        titulo: costoPPF.titulo,
+        detalle: costoPPF.detalle,
+        precio: costoPPF.precio,
+        tiempo: costoPPF.tiempo,
+        garantia: costoPPF.garantia,
+      });
+    }
+
+    if (enceradoActivo) {
+      list.push({
+        id: "encerado",
+        categoriaId: "mantenimiento",
+        titulo: costoEncerado.titulo,
+        detalle: costoEncerado.detalle,
+        precio: costoEncerado.precio,
+        tiempo: costoEncerado.tiempo,
+      });
+    }
+
+    if (motorActivo) {
+      list.push({
+        id: "motor",
+        categoriaId: "mantenimiento",
+        titulo: costoMotor.titulo,
+        detalle: costoMotor.detalle,
+        precio: costoMotor.precio,
+        tiempo: costoMotor.tiempo,
+      });
+    }
+
+    if (farosActivo) {
+      list.push({
+        id: "faros",
+        categoriaId: "mantenimiento",
+        titulo: costoFaros.titulo,
+        detalle: costoFaros.detalle,
+        precio: costoFaros.precio,
+        tiempo: costoFaros.tiempo,
+      });
+    }
+
+    return list;
   }, [
-    categoria,
-    vehiculo,
-    polarizadoMarca,
-    polarizadoTono,
-    incluirParabrisas,
-    tipoParabrisas,
-    incluirFranja,
-    retiroMaterial,
-    detalladoTipo,
-    desmontarAlfombra,
-    ppfMarca,
-    ppfCobertura,
-    ppfInteriores,
-    mantenimientoTipo,
-    incluirFaros,
+    polarizadoActivo,
+    costoPolarizado,
+    detalladoActivo,
+    costoDetallado,
+    ppfActivo,
+    costoPPF,
+    enceradoActivo,
+    costoEncerado,
+    motorActivo,
+    costoMotor,
+    farosActivo,
+    costoFaros,
   ]);
 
-  // Mensaje para enviar a WhatsApp
+  // Total acumulado
+  const subtotalPresupuesto = useMemo(() => {
+    return itemsPresupuesto.reduce((acc, it) => acc + it.precio, 0);
+  }, [itemsPresupuesto]);
+
+  // Tiempo estimado combinado
+  const tiempoEstimadoGlobal = useMemo(() => {
+    if (itemsPresupuesto.length === 0) return "Selecciona un servicio";
+    if (ppfActivo && ppfCobertura === "completo") return "4 a 6 días hábiles";
+    if (detalladoActivo && detalladoTipo === "full-detail") {
+      return vehiculo === "suburban" ? "8 días hábiles" : vehiculo === "sedan" ? "5 días hábiles" : "7 días hábiles";
+    }
+    if (ppfActivo && ppfCobertura === "frente") return "2 a 3 días hábiles";
+    if (detalladoActivo && detalladoTipo === "ceramico") return "2 a 3 días hábiles";
+    if (detalladoActivo && detalladoTipo === "vestiduras") return desmontarAlfombra ? "24 a 48 horas" : "1 día hábil";
+    if (polarizadoActivo) return "3 a 5 horas (mismo día)";
+    return "Mismo día (Cita previa)";
+  }, [itemsPresupuesto, ppfActivo, ppfCobertura, detalladoActivo, detalladoTipo, vehiculo, desmontarAlfombra, polarizadoActivo]);
+
+  // Garantías combinadas
+  const garantiasGlobales = useMemo(() => {
+    const setG = new Set<string>();
+    itemsPresupuesto.forEach((it) => {
+      if (it.garantia) setG.add(it.garantia);
+    });
+    return Array.from(setG);
+  }, [itemsPresupuesto]);
+
+  // Notificar al padre de cotización activa
+  useEffect(() => {
+    onCotizacionChange?.(itemsPresupuesto.length > 0);
+  }, [itemsPresupuesto.length, onCotizacionChange]);
+
+  // Función para eliminar un servicio del carrito
+  const eliminarServicio = (id: ItemPresupuestoShalom["id"]) => {
+    if (id === "polarizado") setPolarizadoActivo(false);
+    if (id === "detallado") setDetalladoActivo(false);
+    if (id === "ppf") setPpfActivo(false);
+    if (id === "encerado") setEnceradoActivo(false);
+    if (id === "motor") setMotorActivo(false);
+    if (id === "faros") setFarosActivo(false);
+  };
+
+  // Mensaje para enviar a WhatsApp con TODOS los servicios sumados
   const mensajeWhatsApp = useMemo(() => {
     const vLabel = TIPOS_VEHICULO_SHALOM.find((v) => v.id === vehiculo)?.label || "Auto";
     let msg = `🇲🇽 *HOLA SHALOM ESTÉTICA AUTOMOTRIZ*\n`;
-    msg += `Quisiera agendar una cita con la siguiente cotización generada en su web:\n\n`;
+    msg += `Quisiera agendar una cita con los siguientes servicios cotizados en su web:\n\n`;
     msg += `🚗 *Vehículo:* ${vLabel}\n`;
-    msg += `📋 *Servicios Seleccionados:*\n`;
+    msg += `📋 *SERVICIOS INCLUIDOS (${itemsPresupuesto.length}):*\n`;
 
-    cotizacion.items.forEach((it, i) => {
-      msg += `  ${i + 1}. ${it.label}: $${it.precio.toLocaleString("es-MX")} MXN\n`;
+    itemsPresupuesto.forEach((it, i) => {
+      msg += `\n  ${i + 1}. *${it.titulo}*\n`;
+      msg += `     • Detalle: ${it.detalle}\n`;
+      msg += `     • Subtotal: $${it.precio.toLocaleString("es-MX")} MXN\n`;
     });
 
-    msg += `\n💰 *TOTAL ESTIMADO:* $${cotizacion.subtotal.toLocaleString("es-MX")} MXN\n`;
-    msg += `⏱️ *Tiempo Estimado:* ${cotizacion.tiempoEstimado}\n`;
-    if (cotizacion.garantiaTexto) {
-      msg += `🛡️ *Garantía:* ${cotizacion.garantiaTexto}\n`;
+    msg += `\n💰 *TOTAL ESTIMADO:* $${subtotalPresupuesto.toLocaleString("es-MX")} MXN\n`;
+    msg += `⏱️ *Tiempo Estimado:* ${tiempoEstimadoGlobal}\n`;
+    if (garantiasGlobales.length > 0) {
+      msg += `🛡️ *Garantías Incluidas:*\n`;
+      garantiasGlobales.forEach((g) => {
+        msg += `   - ${g}\n`;
+      });
     }
     msg += `\n¿Tienen citas disponibles para estos días en Toluca? ¡Muchas gracias!`;
     return msg;
-  }, [vehiculo, cotizacion]);
+  }, [vehiculo, itemsPresupuesto, subtotalPresupuesto, tiempoEstimadoGlobal, garantiasGlobales]);
 
   return (
     <section id="cotizador" className="relative px-3 sm:px-6 py-16 sm:py-24 bg-[#0a0e0c] text-white overflow-hidden">
@@ -448,9 +530,9 @@ export default function CotizadorShalom({ biz, onCotizacionChange }: CotizadorSh
           </div>
 
           <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-3">
-            Cotiza tu Servicio en Vivo{" "}
+            Arma tu Paquete en Vivo{" "}
             <span className="block mt-1 bg-gradient-to-r from-emerald-400 via-slate-100 to-rose-400 bg-clip-text text-transparent">
-              con Precios Transparentes
+              Suma Servicios y Precios Reales
             </span>
           </h2>
 
@@ -458,7 +540,7 @@ export default function CotizadorShalom({ biz, onCotizacionChange }: CotizadorSh
           <div className="w-40 sm:w-56 h-[3px] mx-auto my-4 rounded-full bg-gradient-to-r from-emerald-500 via-white to-rose-500 shadow-[0_0_12px_rgba(255,255,255,0.4)]" />
 
           <p className="text-xs sm:text-sm text-slate-300 font-light leading-relaxed max-w-2xl mx-auto">
-            Elige tu vehículo y personaliza tu paquete de polarizado, detallado o blindaje PPF. El sistema calculará tu cotización exacta al instante con garantía oficial por escrito.
+            Puedes sumar una película antiasalto, agregar detallado cerámico, blindaje PPF o mantenimiento. El sistema acumula todo en tu ticket en tiempo real y te da el presupuesto exacto con garantía por escrito.
           </p>
         </div>
 
@@ -469,7 +551,7 @@ export default function CotizadorShalom({ biz, onCotizacionChange }: CotizadorSh
               <span className="size-5 rounded-full bg-emerald-500 text-black flex items-center justify-center text-xs font-extrabold">1</span>
               <span>Selecciona tu Tipo de Vehículo</span>
             </h3>
-            <span className="text-[11px] text-emerald-400 font-medium hidden sm:inline">Tarifas calibradas para México ($ MXN)</span>
+            <span className="text-[11px] text-emerald-400 font-medium hidden sm:inline">Actualiza automáticamente todas las tarifas ($ MXN)</span>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4">
@@ -505,37 +587,70 @@ export default function CotizadorShalom({ biz, onCotizacionChange }: CotizadorSh
           </div>
         </div>
 
-        {/* PASO 2: TABS DE CATEGORÍA DE SERVICIO */}
+        {/* PASO 2: TABS DE CATEGORÍA DE SERVICIO CON INDICADOR DE SERVICIO INCLUIDO */}
         <div className="mb-8">
           <div className="flex items-center justify-between mb-3">
             <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-300 flex items-center gap-2">
               <span className="size-5 rounded-full bg-emerald-500 text-black flex items-center justify-center text-xs font-extrabold">2</span>
-              <span>Elige el Servicio o Tratamiento</span>
+              <span>Personaliza y Suma Servicios a tu Cotización</span>
             </h3>
+            <span className="text-xs text-slate-400">
+              {itemsPresupuesto.length === 0 ? "Sin servicios aún" : `${itemsPresupuesto.length} servicio${itemsPresupuesto.length > 1 ? "s" : ""} en tu lista`}
+            </span>
           </div>
 
           <div className="flex flex-wrap gap-2 p-1.5 rounded-2xl bg-neutral-950 border border-white/10">
             {[
-              { id: "polarizado", label: "🛡️ Películas Antiasalto", desc: "Protec Sun, Llumar y 3M" },
-              { id: "detallado", label: "💎 Detallado Profesional", desc: "Integral, Vestiduras o Cerámico" },
-              { id: "ppf", label: "🛡️ Protección PPF", desc: "DGNR y Llumar 8 años" },
-              { id: "mantenimiento", label: "✨ Mantenimiento Express", desc: "Motor, Encerado y Faros" },
+              {
+                id: "polarizado",
+                label: "🛡️ Películas Antiasalto",
+                desc: "Protec Sun, Llumar y 3M",
+                activoEnCarrito: polarizadoActivo,
+              },
+              {
+                id: "detallado",
+                label: "💎 Detallado Profesional",
+                desc: "Integral, Vestiduras o Cerámico",
+                activoEnCarrito: detalladoActivo,
+              },
+              {
+                id: "ppf",
+                label: "🛡️ Protección PPF",
+                desc: "DGNR y Llumar 8 años",
+                activoEnCarrito: ppfActivo,
+              },
+              {
+                id: "mantenimiento",
+                label: "✨ Mantenimiento Express",
+                desc: "Motor, Encerado y Faros",
+                activoEnCarrito: enceradoActivo || motorActivo || farosActivo,
+              },
             ].map((cat) => {
-              const activo = categoria === cat.id;
+              const tabSeleccionado = categoria === cat.id;
               return (
                 <button
                   key={cat.id}
                   onClick={() => setCategoria(cat.id as CategoriaShalomId)}
-                  className={`flex-1 min-w-[140px] px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl text-left transition-all cursor-pointer ${
-                    activo
+                  className={`flex-1 min-w-[140px] px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl text-left transition-all cursor-pointer relative ${
+                    tabSeleccionado
                       ? "bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 text-black font-extrabold shadow-[0_4px_20px_rgba(16,185,129,0.35)]"
                       : "text-slate-300 hover:text-white hover:bg-white/5"
                   }`}
                 >
-                  <span className={`block text-xs sm:text-sm font-bold ${activo ? "text-neutral-950 font-black" : "text-white"}`}>
-                    {cat.label}
-                  </span>
-                  <span className={`block text-[10px] ${activo ? "text-emerald-950 font-medium" : "text-slate-300 font-light"}`}>
+                  <div className="flex items-center justify-between">
+                    <span className={`block text-xs sm:text-sm font-bold ${tabSeleccionado ? "text-neutral-950 font-black" : "text-white"}`}>
+                      {cat.label}
+                    </span>
+                    {cat.activoEnCarrito && (
+                      <span className={`text-[10px] font-extrabold px-1.5 py-0.5 rounded-md flex items-center gap-1 ${
+                        tabSeleccionado ? "bg-black/20 text-neutral-950" : "bg-emerald-500/20 text-emerald-300 border border-emerald-500/30"
+                      }`}>
+                        <LuCheck className="size-2.5 stroke-[3]" />
+                        <span>Sumado</span>
+                      </span>
+                    )}
+                  </div>
+                  <span className={`block text-[10px] ${tabSeleccionado ? "text-emerald-950 font-medium" : "text-slate-300 font-light"}`}>
                     {cat.desc}
                   </span>
                 </button>
@@ -552,10 +667,13 @@ export default function CotizadorShalom({ biz, onCotizacionChange }: CotizadorSh
             {categoria === "polarizado" && (
               <div className="space-y-6 rounded-3xl p-5 sm:p-7 border border-white/10 bg-neutral-950/70">
                 <div>
-                  <h4 className="text-sm font-bold text-white mb-2 flex items-center gap-2">
-                    <LuSun className="size-4 text-emerald-400" />
-                    <span>Selecciona Marca y Gama de Película (Laterales + Medallón)</span>
-                  </h4>
+                  <div className="flex items-center justify-between mb-2">
+                    <h4 className="text-sm font-bold text-white flex items-center gap-2">
+                      <LuSun className="size-4 text-emerald-400" />
+                      <span>1. Elige Marca de Película Antiasalto (Laterales + Medallón)</span>
+                    </h4>
+                    <span className="text-[11px] text-slate-400">1 kit por auto</span>
+                  </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {[
                       { id: "protec", label: "Protec Sun", badge: "Económica", desc: "Filtro solar standard y seguridad antiasalto." },
@@ -592,7 +710,7 @@ export default function CotizadorShalom({ biz, onCotizacionChange }: CotizadorSh
                 <div>
                   <h4 className="text-sm font-bold text-white mb-2 flex items-center gap-2">
                     <LuEye className="size-4 text-emerald-400" />
-                    <span>Tono de Privacidad Deseado</span>
+                    <span>2. Tono de Privacidad Deseado</span>
                   </h4>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                     {[
@@ -702,6 +820,37 @@ export default function CotizadorShalom({ biz, onCotizacionChange }: CotizadorSh
                     </select>
                   </div>
                 </div>
+
+                {/* BOTÓN DE ACCIÓN PARA POLARIZADO EN EL PRESUPUESTO */}
+                <div className="border-t border-white/10 pt-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+                  <div>
+                    <span className="text-xs text-slate-400 block">Total de este servicio de polarizado:</span>
+                    <span className="text-lg font-black text-emerald-400">${costoPolarizado.precio.toLocaleString("es-MX")} MXN</span>
+                  </div>
+
+                  {polarizadoActivo ? (
+                    <div className="flex items-center gap-2 w-full sm:w-auto">
+                      <div className="px-3 py-2 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-bold flex items-center gap-1.5 flex-1 sm:flex-initial">
+                        <LuCheck className="size-4 text-emerald-400" />
+                        <span>En tu presupuesto</span>
+                      </div>
+                      <button
+                        onClick={() => setPolarizadoActivo(false)}
+                        className="px-3 py-2 rounded-xl border border-rose-500/40 text-rose-300 hover:bg-rose-950/40 text-xs font-semibold cursor-pointer transition-colors"
+                      >
+                        Quitar
+                      </button>
+                    </div>
+                  ) : (
+                    <button
+                      onClick={() => setPolarizadoActivo(true)}
+                      className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-neutral-950 font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_20px_rgba(16,185,129,0.3)] transition-all active:scale-95"
+                    >
+                      <LuPlus className="size-4 stroke-[3]" />
+                      <span>Agregar Película al Presupuesto</span>
+                    </button>
+                  )}
+                </div>
               </div>
             )}
 
@@ -778,6 +927,37 @@ export default function CotizadorShalom({ biz, onCotizacionChange }: CotizadorSh
                     </span>
                   </div>
                 )}
+
+                {/* BOTÓN DE ACCIÓN PARA DETALLADO EN EL PRESUPUESTO */}
+                <div className="border-t border-white/10 pt-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+                  <div>
+                    <span className="text-xs text-slate-400 block">Total de este detallado:</span>
+                    <span className="text-lg font-black text-emerald-400">${costoDetallado.precio.toLocaleString("es-MX")} MXN</span>
+                  </div>
+
+                  {detalladoActivo ? (
+                    <div className="flex items-center gap-2 w-full sm:w-auto">
+                      <div className="px-3 py-2 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-bold flex items-center gap-1.5 flex-1 sm:flex-initial">
+                        <LuCheck className="size-4 text-emerald-400" />
+                        <span>En tu presupuesto</span>
+                      </div>
+                      <button
+                        onClick={() => setDetalladoActivo(false)}
+                        className="px-3 py-2 rounded-xl border border-rose-500/40 text-rose-300 hover:bg-rose-950/40 text-xs font-semibold cursor-pointer transition-colors"
+                      >
+                        Quitar
+                      </button>
+                    </div>
+                  ) : (
+                    <button
+                      onClick={() => setDetalladoActivo(true)}
+                      className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-neutral-950 font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_20px_rgba(16,185,129,0.3)] transition-all active:scale-95"
+                    >
+                      <LuPlus className="size-4 stroke-[3]" />
+                      <span>Sumar Detallado al Presupuesto</span>
+                    </button>
+                  )}
+                </div>
               </div>
             )}
 
@@ -885,70 +1065,150 @@ export default function CotizadorShalom({ biz, onCotizacionChange }: CotizadorSh
                     })}
                   </div>
                 </div>
+
+                {/* BOTÓN DE ACCIÓN PARA PPF EN EL PRESUPUESTO */}
+                <div className="border-t border-white/10 pt-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+                  <div>
+                    <span className="text-xs text-slate-400 block">Total de este blindaje PPF:</span>
+                    <span className="text-lg font-black text-emerald-400">${costoPPF.precio.toLocaleString("es-MX")} MXN</span>
+                  </div>
+
+                  {ppfActivo ? (
+                    <div className="flex items-center gap-2 w-full sm:w-auto">
+                      <div className="px-3 py-2 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-bold flex items-center gap-1.5 flex-1 sm:flex-initial">
+                        <LuCheck className="size-4 text-emerald-400" />
+                        <span>En tu presupuesto</span>
+                      </div>
+                      <button
+                        onClick={() => setPpfActivo(false)}
+                        className="px-3 py-2 rounded-xl border border-rose-500/40 text-rose-300 hover:bg-rose-950/40 text-xs font-semibold cursor-pointer transition-colors"
+                      >
+                        Quitar
+                      </button>
+                    </div>
+                  ) : (
+                    <button
+                      onClick={() => setPpfActivo(true)}
+                      className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-neutral-950 font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_20px_rgba(16,185,129,0.3)] transition-all active:scale-95"
+                    >
+                      <LuPlus className="size-4 stroke-[3]" />
+                      <span>Sumar Blindaje PPF al Presupuesto</span>
+                    </button>
+                  )}
+                </div>
               </div>
             )}
 
-            {/* === CATEGORÍA 4: MANTENIMIENTO === */}
+            {/* === CATEGORÍA 4: MANTENIMIENTO EXPRESS === */}
             {categoria === "mantenimiento" && (
-              <div className="space-y-6 rounded-3xl p-5 sm:p-7 border border-white/10 bg-neutral-950/70">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <div
-                    onClick={() => setMantenimientoTipo("lavado-encerado")}
-                    className={`p-4 rounded-2xl border cursor-pointer ${
-                      mantenimientoTipo === "lavado-encerado"
-                        ? "border-emerald-500 bg-emerald-950/40 ring-1 ring-emerald-500/50"
-                        : "border-white/10 bg-black/40"
-                    }`}
-                  >
-                    <span className="text-sm font-bold text-white block mb-1">Lavado y Encerado Protector</span>
-                    <p className="text-xs text-slate-300 leading-relaxed font-light">
-                      Lavado exterior a mano, encerado protector UV y humectación de pieles y plásticos en interiores.
-                    </p>
-                  </div>
+              <div className="space-y-4 rounded-3xl p-5 sm:p-7 border border-white/10 bg-neutral-950/70">
+                <p className="text-xs text-slate-300 font-light mb-2">
+                  Puedes sumar uno o varios de estos tratamientos rápidos a tu visita:
+                </p>
 
-                  <div
-                    onClick={() => setMantenimientoTipo("motor-carroceria")}
-                    className={`p-4 rounded-2xl border cursor-pointer ${
-                      mantenimientoTipo === "motor-carroceria"
-                        ? "border-emerald-500 bg-emerald-950/40 ring-1 ring-emerald-500/50"
-                        : "border-white/10 bg-black/40"
-                    }`}
-                  >
-                    <span className="text-sm font-bold text-white block mb-1">Lavado de Motor y Carrocería</span>
-                    <p className="text-xs text-slate-300 leading-relaxed font-light">
-                      Lavado técnico de motor con vapor y productos dieléctricos sin riesgo para sensores, más baño exterior.
-                    </p>
+                {/* 1. Lavado y Encerado */}
+                <div
+                  className={`p-4 rounded-2xl border transition-all ${
+                    enceradoActivo
+                      ? "border-emerald-500 bg-emerald-950/30 ring-1 ring-emerald-500/50"
+                      : "border-white/10 bg-black/40 hover:border-white/20"
+                  }`}
+                >
+                  <div className="flex items-start justify-between gap-3 mb-2">
+                    <div>
+                      <span className="text-sm font-bold text-white block">Lavado y Encerado Protector + Humectante</span>
+                      <p className="text-xs text-slate-300 leading-relaxed font-light mt-0.5">
+                        Lavado exterior a mano, encerado protector UV y humectación de pieles y plásticos en cabina.
+                      </p>
+                    </div>
+                    <span className="text-sm font-black text-emerald-400 shrink-0">
+                      ${costoEncerado.precio.toLocaleString("es-MX")} MXN
+                    </span>
+                  </div>
+                  <div className="flex justify-end pt-2 border-t border-white/5">
+                    <button
+                      onClick={() => setEnceradoActivo(!enceradoActivo)}
+                      className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                        enceradoActivo
+                          ? "bg-rose-500/20 text-rose-300 border border-rose-500/30 hover:bg-rose-950/40"
+                          : "bg-emerald-500 text-black hover:bg-emerald-400"
+                      }`}
+                    >
+                      {enceradoActivo ? "✕ Quitar del presupuesto" : "+ Sumar al Presupuesto"}
+                    </button>
                   </div>
                 </div>
 
-                {/* Adicional Faros */}
+                {/* 2. Lavado de Motor */}
                 <div
-                  onClick={() => setIncluirFaros(!incluirFaros)}
-                  className={`p-3.5 rounded-2xl border cursor-pointer flex items-center justify-between transition-all ${
-                    incluirFaros ? "border-emerald-500 bg-emerald-950/30" : "border-white/10 bg-black/30"
+                  className={`p-4 rounded-2xl border transition-all ${
+                    motorActivo
+                      ? "border-emerald-500 bg-emerald-950/30 ring-1 ring-emerald-500/50"
+                      : "border-white/10 bg-black/40 hover:border-white/20"
                   }`}
                 >
-                  <div>
-                    <span className="text-xs sm:text-sm font-bold text-white block">
-                      Restauración y Pulido de Faros y Calaveras
-                    </span>
-                    <span className="text-xs text-slate-300 font-light">
-                      +$600 MXN • Remueve la capa opaca amarilla y sella contra rayos solares
+                  <div className="flex items-start justify-between gap-3 mb-2">
+                    <div>
+                      <span className="text-sm font-bold text-white block">Lavado Técnico de Motor con Vapor & Carrocería</span>
+                      <p className="text-xs text-slate-300 leading-relaxed font-light mt-0.5">
+                        Lavado técnico de bahía de motor con vapor y productos dieléctricos sin riesgo para sensores, más baño exterior.
+                      </p>
+                    </div>
+                    <span className="text-sm font-black text-emerald-400 shrink-0">
+                      ${costoMotor.precio.toLocaleString("es-MX")} MXN
                     </span>
                   </div>
-                  <span
-                    className={`size-6 rounded-full flex items-center justify-center font-bold text-xs ${
-                      incluirFaros ? "bg-emerald-500 text-black" : "bg-white/10 text-white"
-                    }`}
-                  >
-                    {incluirFaros ? "✓" : "+"}
-                  </span>
+                  <div className="flex justify-end pt-2 border-t border-white/5">
+                    <button
+                      onClick={() => setMotorActivo(!motorActivo)}
+                      className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                        motorActivo
+                          ? "bg-rose-500/20 text-rose-300 border border-rose-500/30 hover:bg-rose-950/40"
+                          : "bg-emerald-500 text-black hover:bg-emerald-400"
+                      }`}
+                    >
+                      {motorActivo ? "✕ Quitar del presupuesto" : "+ Sumar al Presupuesto"}
+                    </button>
+                  </div>
+                </div>
+
+                {/* 3. Pulido de Faros */}
+                <div
+                  className={`p-4 rounded-2xl border transition-all ${
+                    farosActivo
+                      ? "border-emerald-500 bg-emerald-950/30 ring-1 ring-emerald-500/50"
+                      : "border-white/10 bg-black/40 hover:border-white/20"
+                  }`}
+                >
+                  <div className="flex items-start justify-between gap-3 mb-2">
+                    <div>
+                      <span className="text-sm font-bold text-white block">Restauración y Pulido de Faros y Calaveras</span>
+                      <p className="text-xs text-slate-300 leading-relaxed font-light mt-0.5">
+                        Remueve la capa amarilla y opaca con polímero vaporizado. Deja óptica 100% clara.
+                      </p>
+                    </div>
+                    <span className="text-sm font-black text-emerald-400 shrink-0">
+                      $600 MXN
+                    </span>
+                  </div>
+                  <div className="flex justify-end pt-2 border-t border-white/5">
+                    <button
+                      onClick={() => setFarosActivo(!farosActivo)}
+                      className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                        farosActivo
+                          ? "bg-rose-500/20 text-rose-300 border border-rose-500/30 hover:bg-rose-950/40"
+                          : "bg-emerald-500 text-black hover:bg-emerald-400"
+                      }`}
+                    >
+                      {farosActivo ? "✕ Quitar del presupuesto" : "+ Sumar al Presupuesto"}
+                    </button>
+                  </div>
                 </div>
               </div>
             )}
           </div>
 
-          {/* PANEL DERECHO: TICKET / RESUMEN EN VIVO (ESTILO TRICOLOR MEXICANO) */}
+          {/* PANEL DERECHO: TICKET / RESUMEN EN VIVO (CARRITO CON BOTÓN DE ELIMINAR) */}
           <div className="sticky top-24 rounded-3xl p-6 sm:p-7 border border-emerald-500/30 bg-gradient-to-b from-neutral-900 via-neutral-950 to-neutral-950 shadow-[0_15px_40px_rgba(0,0,0,0.7)] space-y-5">
             {/* Cabecera del ticket */}
             <div className="border-b border-white/10 pb-4">
@@ -963,57 +1223,95 @@ export default function CotizadorShalom({ biz, onCotizacionChange }: CotizadorSh
               </p>
             </div>
 
-            {/* Lista de Conceptos incluidos */}
-            <div className="space-y-3 min-h-[140px] max-h-[300px] overflow-y-auto pr-1">
-              {cotizacion.items.map((it, idx) => (
-                <div key={idx} className="flex items-start justify-between gap-3 text-xs border-b border-white/5 pb-2.5">
-                  <div className="space-y-0.5">
-                    <span className="text-slate-200 font-medium block leading-tight">{it.label}</span>
-                    {it.detalle && <span className="text-[10px] text-slate-300 block leading-tight font-light">{it.detalle}</span>}
-                  </div>
-                  <span className="font-bold text-white shrink-0">${it.precio.toLocaleString("es-MX")}</span>
+            {/* Lista de Servicios Sumados en el Presupuesto (Con botón para eliminar) */}
+            <div className="space-y-2.5 min-h-[140px] max-h-[340px] overflow-y-auto pr-1">
+              {itemsPresupuesto.length === 0 ? (
+                <div className="p-4 rounded-2xl bg-black/40 border border-dashed border-white/10 text-center space-y-2">
+                  <LuInfo className="size-6 text-slate-400 mx-auto" />
+                  <p className="text-xs text-slate-300 font-medium">Aún no tienes servicios sumados</p>
+                  <p className="text-[11px] text-slate-400 font-light leading-relaxed">
+                    Navega por las categorías de la izquierda y haz clic en <strong>"+ Sumar al Presupuesto"</strong> para cotizar lo que necesitas.
+                  </p>
                 </div>
-              ))}
+              ) : (
+                itemsPresupuesto.map((it) => (
+                  <div
+                    key={it.id}
+                    className="p-3 rounded-2xl bg-black/40 border border-white/10 hover:border-emerald-500/40 transition-colors flex items-start justify-between gap-3 group"
+                  >
+                    <div className="space-y-1 flex-1 pr-1">
+                      <span className="text-xs font-bold text-white block leading-tight">{it.titulo}</span>
+                      <p className="text-[11px] text-slate-300 font-light leading-tight line-clamp-2">{it.detalle}</p>
+                      <span className="text-xs font-black text-emerald-400 block">${it.precio.toLocaleString("es-MX")} MXN</span>
+                    </div>
+
+                    {/* Botón para eliminar servicio de la lista */}
+                    <button
+                      onClick={() => eliminarServicio(it.id)}
+                      title="Eliminar este servicio del presupuesto"
+                      aria-label={`Eliminar ${it.titulo}`}
+                      className="p-1.5 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-rose-950/40 transition-all shrink-0 cursor-pointer"
+                    >
+                      <LuTrash2 className="size-4" />
+                    </button>
+                  </div>
+                ))
+              )}
             </div>
 
             {/* Garantía y Tiempos */}
             <div className="p-3 rounded-xl bg-black/50 border border-white/10 space-y-1.5 text-[11px]">
               <div className="flex items-center gap-2 text-slate-300">
                 <LuClock className="size-3.5 text-emerald-400 shrink-0" />
-                <span>Tiempo de trabajo: <strong className="text-white">{cotizacion.tiempoEstimado}</strong></span>
+                <span>Tiempo de trabajo: <strong className="text-white">{tiempoEstimadoGlobal}</strong></span>
               </div>
-              {cotizacion.garantiaTexto && (
-                <div className="flex items-start gap-2 text-rose-300">
-                  <LuShieldCheck className="size-3.5 text-rose-400 shrink-0 mt-0.5" />
-                  <span className="leading-snug">{cotizacion.garantiaTexto}</span>
+              {garantiasGlobales.length > 0 && (
+                <div className="space-y-1 pt-1 border-t border-white/5">
+                  {garantiasGlobales.map((g, idx) => (
+                    <div key={idx} className="flex items-start gap-2 text-rose-300">
+                      <LuShieldCheck className="size-3.5 text-rose-400 shrink-0 mt-0.5" />
+                      <span className="leading-snug">{g}</span>
+                    </div>
+                  ))}
                 </div>
               )}
             </div>
 
-            {/* TOTAL */}
+            {/* TOTAL ACUMULADO */}
             <div className="pt-2 border-t border-white/10">
               <div className="flex items-baseline justify-between mb-4">
-                <span className="text-xs uppercase tracking-wider text-slate-400 font-bold">Total Estimado</span>
+                <div>
+                  <span className="text-xs uppercase tracking-wider text-slate-400 font-bold block">Total Estimado</span>
+                  <span className="text-[11px] text-slate-400">
+                    {itemsPresupuesto.length} servicio{itemsPresupuesto.length !== 1 ? "s" : ""}
+                  </span>
+                </div>
                 <div className="text-right">
                   <span className="text-2xl sm:text-3xl font-black text-emerald-400 tracking-tight">
-                    ${cotizacion.subtotal.toLocaleString("es-MX")}
+                    ${subtotalPresupuesto.toLocaleString("es-MX")}
                   </span>
                   <span className="text-[11px] text-slate-400 block font-normal">Pesos Mexicanos ($ MXN)</span>
                 </div>
               </div>
 
               {/* BOTÓN WHATSAPP TRICOLOR MEXICANO */}
-              <a
-                href={waHref(biz, mensajeWhatsApp)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-neutral-950 font-black text-sm uppercase tracking-wider active:scale-95 transition-all flex items-center justify-center gap-2.5 shadow-[0_8px_30px_rgba(16,185,129,0.45)] hover:shadow-[0_12px_40px_rgba(16,185,129,0.6)] cursor-pointer"
-              >
-                <FaWhatsapp className="size-5 text-neutral-950" />
-                <span>Apartar Cita por WhatsApp</span>
-              </a>
+              {itemsPresupuesto.length > 0 ? (
+                <a
+                  href={waHref(biz, mensajeWhatsApp)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-neutral-950 font-black text-sm uppercase tracking-wider active:scale-95 transition-all flex items-center justify-center gap-2.5 shadow-[0_8px_30px_rgba(16,185,129,0.45)] hover:shadow-[0_12px_40px_rgba(16,185,129,0.6)] cursor-pointer"
+                >
+                  <FaWhatsapp className="size-5 text-neutral-950" />
+                  <span>Apartar Cita por WhatsApp</span>
+                </a>
+              ) : (
+                <div className="w-full py-3.5 px-4 rounded-2xl bg-white/5 border border-white/10 text-slate-500 font-bold text-xs uppercase tracking-wider text-center select-none">
+                  Suma al menos un servicio para cotizar
+                </div>
+              )}
               <p className="text-[10px] text-slate-300 text-center mt-2.5">
-                Envía tu configuración directamente a Héctor en Shalom Toluca sin compromiso.
+                Envía tu paquete completo directamente a Héctor en Shalom Toluca sin compromiso.
               </p>
             </div>
           </div>
