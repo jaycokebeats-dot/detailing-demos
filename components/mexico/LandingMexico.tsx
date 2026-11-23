@@ -1007,7 +1007,7 @@ export default function LandingMexico({ biz }: { biz: Business }) {
       </footer>
 
       {/* 10. BOTÓN FLOTANTE DE WHATSAPP */}
-      {(!isPlatinum || !hasCotizacionActiva) && (
+      {((!isPlatinum && !isShalom) || !hasCotizacionActiva) && (
         <div className="fixed bottom-6 right-6 z-50 animate-fade-in">
         <a
           href={waHref(biz, "¡Hola! Vi su página web y quería hacerles una consulta.")}
