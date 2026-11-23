@@ -1,11 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { FaWhatsapp, FaMapMarkerAlt, FaStar, FaClock, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { HiOutlineCheckCircle, HiOutlineSparkles, HiShieldCheck } from "react-icons/hi2";
 import type { Business, ServiceItem } from "@/data/business-helpers";
 import { waHref, mapsHref } from "@/data/business-helpers";
-import CompareSlider from "@/components/CompareSlider";
 import PpfColorVisualizer from "@/components/PpfColorVisualizer";
 import { DI_LORENZO_SERVICIOS } from "@/data/di-lorenzo-data";
 
@@ -17,6 +16,161 @@ const ITEMS_PROBLEMA_ARGENTINA = [
   "Plásticos interiores, torpedo y molduras resecas o blanquecinas por el sol",
   "Butacas de cuero resecas, agrietadas o con brillo grasoso por acumulación de suciedad",
 ];
+
+// Comparador Antes/Después optimizado para carrusel táctil (con touchAction: none y stopPropagation para no trabar el scroll)
+function CarouselCompareSlider({
+  before,
+  after,
+  alt,
+}: {
+  before: string;
+  after: string;
+  alt: string;
+}) {
+  const [pos, setPos] = useState(50);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const draggingRef = useRef(false);
+
+  const updateFromClientX = useCallback((clientX: number) => {
+    const el = containerRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    if (rect.width <= 0) return;
+    const pct = ((clientX - rect.left) / rect.width) * 100;
+    setPos(Math.min(100, Math.max(0, pct)));
+  }, []);
+
+  const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    draggingRef.current = true;
+    try {
+      e.currentTarget.setPointerCapture(e.pointerId);
+    } catch {}
+    updateFromClientX(e.clientX);
+  };
+
+  const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!draggingRef.current) return;
+    e.stopPropagation();
+    updateFromClientX(e.clientX);
+  };
+
+  const stopDragging = (e?: React.PointerEvent<HTMLDivElement>) => {
+    if (draggingRef.current && e) {
+      try {
+        e.currentTarget.releasePointerCapture(e.pointerId);
+      } catch {}
+    }
+    draggingRef.current = false;
+  };
+
+  const onTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    if (e.touches.length > 0) {
+      draggingRef.current = true;
+      updateFromClientX(e.touches[0].clientX);
+    }
+  };
+
+  const onTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (draggingRef.current && e.touches.length > 0) {
+      e.stopPropagation();
+      updateFromClientX(e.touches[0].clientX);
+    }
+  };
+
+  const onTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    draggingRef.current = false;
+  };
+
+  const clipStyle: React.CSSProperties = {
+    clipPath: `inset(0 ${100 - pos}% 0 0)`,
+    WebkitClipPath: `inset(0 ${100 - pos}% 0 0)`,
+  };
+
+  return (
+    <div
+      ref={containerRef}
+      className="relative w-full h-full overflow-hidden select-none cursor-ew-resize bg-[#0d0d0d] group"
+      style={{ touchAction: "none" }}
+      onPointerDown={onPointerDown}
+      onPointerMove={onPointerMove}
+      onPointerUp={stopDragging}
+      onPointerCancel={stopDragging}
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
+      onTouchCancel={onTouchEnd}
+    >
+      {/* Img Después (fondo) */}
+      <img
+        src={after}
+        alt={`Después — ${alt}`}
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+        draggable={false}
+        loading="lazy"
+      />
+
+      {/* Img Antes (recortada) */}
+      <img
+        src={before}
+        alt={`Antes — ${alt}`}
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+        style={clipStyle}
+        draggable={false}
+        loading="lazy"
+      />
+
+      {/* Botones de acceso rápido para alternar antes / después sin necesidad de arrastre milimétrico */}
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          setPos(100);
+        }}
+        className="absolute top-2.5 left-2.5 text-[10px] px-2.5 py-1 rounded-full bg-black/85 hover:bg-black text-white uppercase tracking-wider font-semibold z-20 border border-white/15 shadow-sm transition active:scale-95"
+      >
+        Antes
+      </button>
+
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          setPos(0);
+        }}
+        className="absolute top-2.5 right-2.5 text-[10px] px-2.5 py-1 rounded-full bg-[#b8c2cc] hover:bg-white text-black uppercase tracking-wider font-extrabold z-20 shadow-md transition active:scale-95"
+      >
+        Después
+      </button>
+
+      {/* Línea divisoria */}
+      <div
+        className="absolute top-0 bottom-0 w-0.5 pointer-events-none z-10"
+        style={{
+          left: `${pos}%`,
+          background: "rgba(255, 255, 255, 0.95)",
+          boxShadow: "0 0 10px rgba(0,0,0,0.8)",
+        }}
+      />
+
+      {/* Manija central de arrastre */}
+      <div
+        className="absolute top-1/2 w-8 h-8 rounded-full flex items-center justify-center -translate-y-1/2 -translate-x-1/2 shadow-lg pointer-events-none z-20 transition-transform group-hover:scale-105"
+        style={{
+          left: `${pos}%`,
+          background: "#b8c2cc",
+          boxShadow: "0 4px 12px rgba(0,0,0,0.7)",
+        }}
+      >
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2.5">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M8 9l-4 3 4 3m8-6l4 3-4 3" />
+        </svg>
+      </div>
+    </div>
+  );
+}
 
 export default function LandingDiLorenzo({ biz }: { biz: Business }) {
   const [scrolled, setScrolled] = useState(false);
@@ -43,34 +197,55 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
     video.play().catch(() => {});
   }, []);
 
-  // Track active slide on carousel scroll
+  // Detección exacta de la tarjeta centrada al hacer scroll
   const handleCarouselScroll = () => {
     if (!carouselRef.current) return;
     const container = carouselRef.current;
-    const cardWidth = container.clientWidth > 640 ? 460 : container.clientWidth * 0.88;
-    const newIndex = Math.round(container.scrollLeft / cardWidth);
-    setActiveSlide(Math.max(0, Math.min(newIndex, serviciosList.length - 1)));
+    const cards = container.querySelectorAll<HTMLElement>(".service-card");
+    if (!cards.length) return;
+
+    const containerCenter = container.scrollLeft + container.clientWidth / 2;
+    let closestIndex = 0;
+    let minDiff = Infinity;
+
+    cards.forEach((card, i) => {
+      const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+      const diff = Math.abs(containerCenter - cardCenter);
+      if (diff < minDiff) {
+        minDiff = diff;
+        closestIndex = i;
+      }
+    });
+
+    setActiveSlide(closestIndex);
+  };
+
+  // Navegación exacta de tarjeta a tarjeta (centrando cada una sin quedar a mitad de camino)
+  const scrollToCardIndex = (index: number) => {
+    if (!carouselRef.current) return;
+    const container = carouselRef.current;
+    const cards = container.querySelectorAll<HTMLElement>(".service-card");
+    if (!cards.length) return;
+
+    const clampedIndex = Math.max(0, Math.min(index, cards.length - 1));
+    const targetCard = cards[clampedIndex];
+    if (!targetCard) return;
+
+    const containerWidth = container.clientWidth;
+    const cardLeft = targetCard.offsetLeft;
+    const cardWidth = targetCard.offsetWidth;
+    const scrollTarget = cardLeft - (containerWidth - cardWidth) / 2;
+
+    container.scrollTo({
+      left: scrollTarget,
+      behavior: "smooth",
+    });
+    setActiveSlide(clampedIndex);
   };
 
   const scrollCarousel = (direction: "left" | "right") => {
-    if (!carouselRef.current) return;
-    const container = carouselRef.current;
-    const cardWidth = container.clientWidth > 640 ? 460 : container.clientWidth * 0.88;
-    container.scrollBy({
-      left: direction === "right" ? cardWidth : -cardWidth,
-      behavior: "smooth",
-    });
-  };
-
-  const scrollToSlide = (index: number) => {
-    if (!carouselRef.current) return;
-    const container = carouselRef.current;
-    const cardWidth = container.clientWidth > 640 ? 460 : container.clientWidth * 0.88;
-    container.scrollTo({
-      left: index * cardWidth,
-      behavior: "smooth",
-    });
-    setActiveSlide(index);
+    const nextIndex = direction === "right" ? activeSlide + 1 : activeSlide - 1;
+    scrollToCardIndex(nextIndex);
   };
 
   const msgPresupuesto = `Hola! Quisiera pedir información o presupuesto para mi auto en ${biz.nombre}.`;
@@ -267,7 +442,7 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
         </div>
       </section>
 
-      {/* 3. PROBLEMA VS SOLUCIÓN (Sin el divisor asimétrico que no le gustó) */}
+      {/* 3. PROBLEMA VS SOLUCIÓN (Sin divisor asimétrico) */}
       <section className="relative px-5 sm:px-8 py-20 border-t border-b border-white/5" style={{ background: "#101010" }}>
         <div className="max-w-3xl mx-auto text-center">
           <span className="section-badge mb-5">El problema real</span>
@@ -288,18 +463,18 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
         </div>
       </section>
 
-      {/* 4. NUESTROS SERVICIOS — CARRUSEL MANUAL PREMIUM */}
-      <section id="servicios" className="px-4 sm:px-8 py-24 bg-black relative">
+      {/* 4. NUESTROS SERVICIOS — CARRUSEL MANUAL PREMIUM OPTIMIZADO */}
+      <section id="servicios" className="px-4 sm:px-8 py-20 bg-black relative">
         <div className="max-w-7xl mx-auto">
           {/* Header con título y controles de navegación del carrusel */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-6">
             <div>
-              <span className="section-badge mb-4">Nuestros servicios</span>
-              <h2 className="text-3xl md:text-5xl font-medium text-gold mb-3">
+              <span className="section-badge mb-3">Nuestros servicios</span>
+              <h2 className="text-2xl sm:text-4xl font-medium text-gold mb-2">
                 Servicios & Tarifas en Haedo
               </h2>
-              <p className="text-slate-400 text-sm sm:text-base max-w-2xl">
-                Deslizá manualmente para conocer cada trabajo en detalle, comparar los resultados reales antes/después y consultar por WhatsApp.
+              <p className="text-slate-400 text-xs sm:text-sm max-w-xl">
+                Deslizá manualmente para conocer cada trabajo en detalle, comparar los resultados antes y después, y pedir presupuesto directo.
               </p>
             </div>
 
@@ -308,25 +483,25 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
               <button
                 onClick={() => scrollCarousel("left")}
                 aria-label="Servicio anterior"
-                className="w-11 h-11 rounded-full bg-[#141414] hover:bg-[#202020] text-white border border-white/10 hover:border-white/30 flex items-center justify-center transition-all active:scale-95 shadow-lg"
+                className="w-10 h-10 rounded-full bg-[#141414] hover:bg-[#202020] text-white border border-white/10 hover:border-white/30 flex items-center justify-center transition-all active:scale-95 shadow-lg"
               >
-                <FaChevronLeft className="text-sm" />
+                <FaChevronLeft className="text-xs" />
               </button>
               <button
                 onClick={() => scrollCarousel("right")}
                 aria-label="Siguiente servicio"
-                className="w-11 h-11 rounded-full bg-[#141414] hover:bg-[#202020] text-white border border-white/10 hover:border-white/30 flex items-center justify-center transition-all active:scale-95 shadow-lg"
+                className="w-10 h-10 rounded-full bg-[#141414] hover:bg-[#202020] text-white border border-white/10 hover:border-white/30 flex items-center justify-center transition-all active:scale-95 shadow-lg"
               >
-                <FaChevronRight className="text-sm" />
+                <FaChevronRight className="text-xs" />
               </button>
             </div>
           </div>
 
-          {/* Carrusel horizontal deslizante manual con snap suave */}
+          {/* Carrusel horizontal deslizante manual con snap suave y medidas armónicas */}
           <div
             ref={carouselRef}
             onScroll={handleCarouselScroll}
-            className="flex gap-6 overflow-x-auto pb-6 pt-2 scroll-smooth snap-x snap-mandatory scrollbar-none"
+            className="flex gap-5 overflow-x-auto pb-6 pt-2 scroll-smooth snap-x snap-mandatory scrollbar-none"
             style={{
               scrollSnapType: "x mandatory",
               WebkitOverflowScrolling: "touch",
@@ -336,24 +511,23 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
               const reservaMsg = `Hola! Me gustaría pedir información o presupuesto para el servicio: ${s.nombre} en ${biz.nombre}.`;
               const imgSource = s.img ?? "/servicios/exterior.jpg";
               const isPpfColor = s.nombre.toLowerCase().includes("ppf color") || s.nombre.toLowerCase().includes("ppf | paint protection film");
+              const hasCompare = (s.modo_foto === "before_after" ? Boolean(s.antes_img || s.despues_img) : Boolean(s.antes_img && s.despues_img));
 
               return (
                 <div
                   key={`${s.nombre}-${idx}`}
-                  className="product-card rounded-[24px] overflow-hidden flex flex-col justify-between relative border border-white/10 hover:border-white/25 transition duration-300 w-[88vw] sm:w-[420px] md:w-[460px] shrink-0 snap-center shadow-2xl"
+                  className="service-card product-card rounded-[22px] overflow-hidden flex flex-col justify-between relative border border-white/10 hover:border-white/25 transition-all duration-300 w-[84vw] xs:w-[320px] sm:w-[330px] md:w-[340px] lg:w-[350px] shrink-0 snap-center shadow-xl"
                   style={{ background: "#101010" }}
                 >
-                  {/* Media / Slider */}
-                  <div className="aspect-[4/3] overflow-hidden relative" style={{ background: "#141414" }}>
+                  {/* Media / Slider (Proporción 16/10 compacta y elegante) */}
+                  <div className="aspect-[16/10] overflow-hidden relative bg-[#141414]">
                     {isPpfColor ? (
                       <PpfColorVisualizer biz={biz} />
-                    ) : (s.modo_foto === "before_after" ? (s.antes_img || s.despues_img) : (s.antes_img && s.despues_img)) ? (
-                      <CompareSlider
+                    ) : hasCompare ? (
+                      <CarouselCompareSlider
                         before={s.antes_img || s.despues_img || imgSource}
                         after={s.despues_img || s.antes_img || imgSource}
                         alt={s.nombre}
-                        real
-                        fit={s.foto_fit}
                       />
                     ) : (
                       <div className="relative w-full h-full bg-[#0d0d0d] overflow-hidden">
@@ -367,31 +541,31 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
 
                     {s.proteccion && !isPpfColor && (
                       <div
-                        className="absolute bottom-2 left-2 right-2 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/15 text-[11px] font-semibold text-white/95 flex items-center gap-1.5 shadow-lg z-20 pointer-events-none"
+                        className="absolute bottom-2 left-2 right-2 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/15 text-[10px] font-semibold text-white/95 flex items-center gap-1.5 shadow-lg z-20 pointer-events-none"
                         style={{ background: "rgba(10,10,10,0.85)" }}
                       >
                         <span className="size-1.5 rounded-full bg-emerald-400 shrink-0" />
-                        <span>{s.proteccion}</span>
+                        <span className="truncate">{s.proteccion}</span>
                       </div>
                     )}
                   </div>
 
                   {/* Info Card */}
-                  <div className="p-5 flex flex-col gap-2 flex-1 justify-between">
-                    <div className="space-y-2">
+                  <div className="p-4 sm:p-5 flex flex-col gap-2 flex-1 justify-between">
+                    <div className="space-y-1.5">
                       <h3
-                        className="font-bold text-lg text-white leading-tight"
+                        className="font-bold text-base sm:text-lg text-white leading-snug line-clamp-2"
                         style={{ textTransform: "none", fontFamily: "inherit" }}
                       >
                         {s.nombre}
                       </h3>
                       {s.precio && s.precio.trim() ? (
-                        <p className="text-base font-extrabold text-gold">{s.precio}</p>
+                        <p className="text-sm sm:text-base font-extrabold text-gold">{s.precio}</p>
                       ) : null}
-                      <p className="text-xs text-slate-300 leading-relaxed">{s.descripcion}</p>
+                      <p className="text-xs text-slate-300 leading-relaxed line-clamp-3">{s.descripcion}</p>
 
                       {s.ideal_si && (
-                        <p className="text-[11px] text-slate-400 pt-1">
+                        <p className="text-[11px] text-slate-400 pt-1 line-clamp-2">
                           <span className="font-semibold text-slate-300">Detalles:</span> {s.ideal_si}
                         </p>
                       )}
@@ -401,10 +575,10 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
                       href={waHref(biz, reservaMsg)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn-outline-gold mt-4 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider"
+                      className="btn-outline-gold mt-3 inline-flex items-center justify-center gap-2 px-3 py-2 rounded-full text-xs font-semibold uppercase tracking-wider active:scale-95 transition-transform"
                     >
                       <FaWhatsapp aria-hidden className="size-3.5 text-emerald-400" />
-                      Pedir Presupuesto por WhatsApp
+                      Pedir Presupuesto
                     </a>
                   </div>
                 </div>
@@ -413,29 +587,29 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
           </div>
 
           {/* Dots Indicator */}
-          <div className="flex items-center justify-center gap-2 pt-6">
+          <div className="flex items-center justify-center gap-1.5 pt-5">
             {serviciosList.map((_, i) => (
               <button
                 key={i}
-                onClick={() => scrollToSlide(i)}
+                onClick={() => scrollToCardIndex(i)}
                 aria-label={`Ir al servicio ${i + 1}`}
                 className={`transition-all duration-300 rounded-full ${
                   activeSlide === i
-                    ? "w-8 h-2 bg-amber-400"
-                    : "w-2 h-2 bg-white/20 hover:bg-white/40"
+                    ? "w-6 h-1.5 bg-amber-400"
+                    : "w-1.5 h-1.5 bg-white/20 hover:bg-white/40"
                 }`}
               />
             ))}
           </div>
 
           {/* Banner de fotos y asesoramiento */}
-          <div className="glass-panel rounded-[28px] mt-12 p-8 md:p-10 flex flex-col md:flex-row items-center gap-6 justify-between border border-white/10" style={{ background: "#101010" }}>
+          <div className="glass-panel rounded-[24px] mt-10 p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 justify-between border border-white/10" style={{ background: "#101010" }}>
             <div>
-              <span className="section-badge mb-3">¿Dudas sobre qué necesita tu auto?</span>
-              <h3 className="font-semibold text-xl md:text-2xl mb-2 text-white" style={{ textTransform: "none", fontFamily: "inherit" }}>
+              <span className="section-badge mb-2">¿Dudas sobre qué necesita tu auto?</span>
+              <h3 className="font-semibold text-lg md:text-xl mb-1 text-white" style={{ textTransform: "none", fontFamily: "inherit" }}>
                 Mandanos 3 Fotos por WhatsApp y te Asesoramos
               </h3>
-              <p className="text-sm text-slate-400 max-w-xl">
+              <p className="text-xs sm:text-sm text-slate-400 max-w-xl">
                 Sacale fotos al capot, los laterales y el interior con buena luz. En {biz.nombre} te orientamos sin costo ni compromiso para elegir el tratamiento ideal.
               </p>
             </div>
@@ -443,7 +617,7 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
               href={waHref(biz, msgFotos)}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-gold shrink-0 inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold uppercase tracking-wide whitespace-nowrap"
+              className="btn-gold shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wide whitespace-nowrap active:scale-95 transition-transform"
             >
               <FaWhatsapp aria-hidden className="size-4" />
               Enviar Fotos por WhatsApp
@@ -452,23 +626,23 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
         </div>
       </section>
 
-      {/* 5. GARANTÍA & COMPROMISO (Sin el divisor asimétrico que no le gustó) */}
-      <section id="garantia" className="relative px-5 sm:px-8 py-24 border-t border-b border-white/5" style={{ background: "#101010" }}>
+      {/* 5. GARANTÍA & COMPROMISO */}
+      <section id="garantia" className="relative px-5 sm:px-8 py-20 border-t border-b border-white/5" style={{ background: "#101010" }}>
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-14 max-w-2xl mx-auto">
-            <span className="section-badge mb-5">Compromiso de calidad</span>
-            <h2 className="text-3xl md:text-4xl font-medium text-gold mb-4">Tratamientos con Garantía Escrita</h2>
-            <p className="text-slate-400 max-w-xl mx-auto text-sm">
+          <div className="text-center mb-12 max-w-2xl mx-auto">
+            <span className="section-badge mb-4">Compromiso de calidad</span>
+            <h2 className="text-2xl sm:text-4xl font-medium text-gold mb-3">Tratamientos con Garantía Escrita</h2>
+            <p className="text-slate-400 max-w-xl mx-auto text-xs sm:text-sm">
               Cada vehículo se atiende de forma individual, dedicando el tiempo necesario para alcanzar el estándar más exigente.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 text-left">
-            <div className="glass-panel rounded-[24px] p-7 space-y-3 border border-white/10" style={{ background: "#141414" }}>
-              <div className="w-11 h-11 rounded-full flex items-center justify-center mb-5" style={{ background: "rgba(184,194,204,0.1)" }}>
+          <div className="grid md:grid-cols-3 gap-5 text-left">
+            <div className="glass-panel rounded-[20px] p-6 space-y-2.5 border border-white/10" style={{ background: "#141414" }}>
+              <div className="w-10 h-10 rounded-full flex items-center justify-center mb-4" style={{ background: "rgba(184,194,204,0.1)" }}>
                 <HiShieldCheck className="size-5" style={{ color: "#b8c2cc" }} />
               </div>
-              <h3 className="font-semibold text-white text-base" style={{ textTransform: "none", fontFamily: "inherit" }}>
+              <h3 className="font-semibold text-white text-sm sm:text-base" style={{ textTransform: "none", fontFamily: "inherit" }}>
                 Marcas Premium Mundiales
               </h3>
               <p className="text-xs text-slate-300 leading-relaxed">
@@ -476,11 +650,11 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
               </p>
             </div>
 
-            <div className="glass-panel rounded-[24px] p-7 space-y-3 border border-white/10" style={{ background: "#141414" }}>
-              <div className="w-11 h-11 rounded-full flex items-center justify-center mb-5" style={{ background: "rgba(184,194,204,0.1)" }}>
+            <div className="glass-panel rounded-[20px] p-6 space-y-2.5 border border-white/10" style={{ background: "#141414" }}>
+              <div className="w-10 h-10 rounded-full flex items-center justify-center mb-4" style={{ background: "rgba(184,194,204,0.1)" }}>
                 <HiOutlineSparkles className="size-5" style={{ color: "#b8c2cc" }} />
               </div>
-              <h3 className="font-semibold text-white text-base" style={{ textTransform: "none", fontFamily: "inherit" }}>
+              <h3 className="font-semibold text-white text-sm sm:text-base" style={{ textTransform: "none", fontFamily: "inherit" }}>
                 Técnica Segura y Precisa
               </h3>
               <p className="text-xs text-slate-300 leading-relaxed">
@@ -488,11 +662,11 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
               </p>
             </div>
 
-            <div className="glass-panel rounded-[24px] p-7 space-y-3 border border-white/10" style={{ background: "#141414" }}>
-              <div className="w-11 h-11 rounded-full flex items-center justify-center mb-5" style={{ background: "rgba(184,194,204,0.1)" }}>
+            <div className="glass-panel rounded-[20px] p-6 space-y-2.5 border border-white/10" style={{ background: "#141414" }}>
+              <div className="w-10 h-10 rounded-full flex items-center justify-center mb-4" style={{ background: "rgba(184,194,204,0.1)" }}>
                 <HiOutlineCheckCircle className="size-5" style={{ color: "#b8c2cc" }} />
               </div>
-              <h3 className="font-semibold text-white text-base" style={{ textTransform: "none", fontFamily: "inherit" }}>
+              <h3 className="font-semibold text-white text-sm sm:text-base" style={{ textTransform: "none", fontFamily: "inherit" }}>
                 Garantía y Seguimiento
               </h3>
               <p className="text-xs text-slate-300 leading-relaxed">
@@ -506,14 +680,14 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
       {/* 6. UBICACIÓN, HORARIOS Y MAPA */}
       <section id="ubicacion" className="px-5 sm:px-8 py-20 bg-black">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-12">
-            <span className="section-badge mb-4">Ubicación</span>
-            <h2 className="text-3xl md:text-4xl font-medium text-gold mb-3">Dónde Encontrarnos</h2>
-            <p className="text-slate-400 text-sm">Atención con turno previo en nuestro estudio de Haedo.</p>
+          <div className="text-center mb-10">
+            <span className="section-badge mb-3">Ubicación</span>
+            <h2 className="text-2xl sm:text-4xl font-medium text-gold mb-2">Dónde Encontrarnos</h2>
+            <p className="text-slate-400 text-xs sm:text-sm">Atención con turno previo en nuestro estudio de Haedo.</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 items-center">
-            <div className="glass-panel rounded-[24px] p-7 space-y-4 border border-white/10" style={{ background: "#101010" }}>
+            <div className="glass-panel rounded-[20px] p-6 space-y-4 border border-white/10" style={{ background: "#101010" }}>
               <div className="flex items-start gap-4">
                 <FaMapMarkerAlt className="size-5 text-gold shrink-0 mt-1" />
                 <div>
@@ -533,12 +707,12 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
                 </div>
               )}
 
-              <div className="pt-4">
+              <div className="pt-3">
                 <a
                   href={mapsHref(biz)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-outline-gold inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider"
+                  className="btn-outline-gold inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider"
                 >
                   <FaMapMarkerAlt className="size-3.5" />
                   Abrir en Google Maps
@@ -547,7 +721,7 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
             </div>
 
             {/* Mapa Embebido */}
-            <div className="aspect-[4/3] rounded-[24px] overflow-hidden border border-white/10 relative" style={{ background: "#141414" }}>
+            <div className="aspect-[4/3] rounded-[20px] overflow-hidden border border-white/10 relative" style={{ background: "#141414" }}>
               <iframe
                 title={`Ubicación de ${biz.nombre}`}
                 src="https://maps.google.com/maps?q=Orense%20711,%20Haedo,%20Buenos%20Aires&t=&z=15&ie=UTF8&iwloc=&output=embed"
@@ -560,7 +734,7 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
       </section>
 
       {/* 7. FOOTER */}
-      <footer className="px-5 sm:px-8 py-12 border-t border-white/10 text-center text-xs text-slate-500" style={{ background: "#080808" }}>
+      <footer className="px-5 sm:px-8 py-10 border-t border-white/10 text-center text-xs text-slate-500" style={{ background: "#080808" }}>
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <p>© {new Date().getFullYear()} {biz.nombre}. Todos los derechos reservados.</p>
           <div className="flex items-center gap-6">
