@@ -500,14 +500,14 @@ export default function CotizadorShalom({ biz, onCotizacionChange }: CotizadorSh
 
   return (
     <section id="cotizador" className="relative px-3 sm:px-6 py-16 sm:py-24 bg-[#0a0e0c] text-white overflow-hidden">
-      {/* Halo y brillo ambiental con los colores de México */}
+      {/* Halo y brillo ambiental unificado esmeralda y platino */}
       <div
         className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[400px] rounded-full pointer-events-none opacity-20 blur-[130px]"
         style={{ background: "radial-gradient(circle, #059669 0%, #10b981 40%, transparent 70%)" }}
       />
       <div
-        className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-[500px] h-[400px] rounded-full pointer-events-none opacity-15 blur-[130px]"
-        style={{ background: "radial-gradient(circle, #dc2626 0%, #ef4444 40%, transparent 70%)" }}
+        className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-[500px] h-[400px] rounded-full pointer-events-none opacity-10 blur-[140px]"
+        style={{ background: "radial-gradient(circle, #047857 0%, #064e3b 50%, transparent 70%)" }}
       />
 
       {/* Marca de agua sutil del águila de Shalom */}
@@ -521,23 +521,23 @@ export default function CotizadorShalom({ biz, onCotizacionChange }: CotizadorSh
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto">
-        {/* ENCABEZADO DEL COTIZADOR TRICOLOR */}
+        {/* ENCABEZADO DEL COTIZADOR */}
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
           {/* Badge Bandera de México */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gradient-to-r from-emerald-950/80 via-neutral-900 to-rose-950/80 border border-emerald-500/40 text-emerald-300 text-xs font-semibold tracking-wider uppercase mb-4 shadow-[0_0_20px_rgba(16,185,129,0.2)]">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gradient-to-r from-emerald-950/80 via-neutral-900 to-neutral-900 border border-emerald-500/40 text-emerald-300 text-xs font-semibold tracking-wider uppercase mb-4 shadow-[0_0_20px_rgba(16,185,129,0.2)]">
             <span className="text-sm">🇲🇽</span>
             <span>Cotizador Oficial Shalom • Toluca, Edo. Méx.</span>
           </div>
 
           <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-3">
             Arma tu Paquete en Vivo{" "}
-            <span className="block mt-1 bg-gradient-to-r from-emerald-400 via-slate-100 to-rose-400 bg-clip-text text-transparent">
+            <span className="block mt-1 bg-gradient-to-r from-emerald-400 via-white to-emerald-200 bg-clip-text text-transparent">
               Suma Servicios y Precios Reales
             </span>
           </h2>
 
-          {/* Barrita Tricolor Hairline */}
-          <div className="w-40 sm:w-56 h-[3px] mx-auto my-4 rounded-full bg-gradient-to-r from-emerald-500 via-white to-rose-500 shadow-[0_0_12px_rgba(255,255,255,0.4)]" />
+          {/* Barrita Divisora Refinada */}
+          <div className="w-40 sm:w-56 h-[3px] mx-auto my-4 rounded-full bg-gradient-to-r from-emerald-500 via-white to-emerald-500 shadow-[0_0_12px_rgba(255,255,255,0.4)]" />
 
           <p className="text-xs sm:text-sm text-slate-300 font-light leading-relaxed max-w-2xl mx-auto">
             Puedes sumar una película antiasalto, agregar detallado cerámico, blindaje PPF o mantenimiento. El sistema acumula todo en tu ticket en tiempo real y te da el presupuesto exacto con garantía por escrito.
@@ -836,7 +836,7 @@ export default function CotizadorShalom({ biz, onCotizacionChange }: CotizadorSh
                       </div>
                       <button
                         onClick={() => setPolarizadoActivo(false)}
-                        className="px-3 py-2 rounded-xl border border-rose-500/40 text-rose-300 hover:bg-rose-950/40 text-xs font-semibold cursor-pointer transition-colors"
+                        className="px-3 py-2 rounded-xl border border-white/20 bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 text-xs font-semibold cursor-pointer transition-colors"
                       >
                         Quitar
                       </button>
@@ -943,7 +943,7 @@ export default function CotizadorShalom({ biz, onCotizacionChange }: CotizadorSh
                       </div>
                       <button
                         onClick={() => setDetalladoActivo(false)}
-                        className="px-3 py-2 rounded-xl border border-rose-500/40 text-rose-300 hover:bg-rose-950/40 text-xs font-semibold cursor-pointer transition-colors"
+                        className="px-3 py-2 rounded-xl border border-white/20 bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 text-xs font-semibold cursor-pointer transition-colors"
                       >
                         Quitar
                       </button>
@@ -975,13 +975,13 @@ export default function CotizadorShalom({ biz, onCotizacionChange }: CotizadorSh
                       onClick={() => setPpfMarca("llumar")}
                       className={`p-4 rounded-2xl border cursor-pointer transition-all ${
                         ppfMarca === "llumar"
-                          ? "border-rose-500/80 bg-gradient-to-b from-rose-950/30 to-neutral-950 ring-1 ring-rose-500/60"
+                          ? "border-emerald-500 bg-emerald-950/40 ring-1 ring-emerald-500/50 shadow-[0_0_20px_rgba(16,185,129,0.25)]"
                           : "border-white/10 bg-black/40 hover:border-white/25"
                       }`}
                     >
                       <div className="flex items-center justify-between mb-1">
                         <span className="text-sm font-bold text-white">PPF Llumar</span>
-                        <span className="text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/40 uppercase">
+                        <span className="text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-amber-400/20 text-amber-300 border border-amber-400/40 uppercase">
                           8 Años por Escrito
                         </span>
                       </div>
@@ -994,7 +994,7 @@ export default function CotizadorShalom({ biz, onCotizacionChange }: CotizadorSh
                       onClick={() => setPpfMarca("dgnr")}
                       className={`p-4 rounded-2xl border cursor-pointer transition-all ${
                         ppfMarca === "dgnr"
-                          ? "border-emerald-500 bg-emerald-950/30 ring-1 ring-emerald-500/50"
+                          ? "border-emerald-500 bg-emerald-950/40 ring-1 ring-emerald-500/50 shadow-[0_0_20px_rgba(16,185,129,0.25)]"
                           : "border-white/10 bg-black/40 hover:border-white/25"
                       }`}
                     >
@@ -1081,7 +1081,7 @@ export default function CotizadorShalom({ biz, onCotizacionChange }: CotizadorSh
                       </div>
                       <button
                         onClick={() => setPpfActivo(false)}
-                        className="px-3 py-2 rounded-xl border border-rose-500/40 text-rose-300 hover:bg-rose-950/40 text-xs font-semibold cursor-pointer transition-colors"
+                        className="px-3 py-2 rounded-xl border border-white/20 bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 text-xs font-semibold cursor-pointer transition-colors"
                       >
                         Quitar
                       </button>
@@ -1130,11 +1130,11 @@ export default function CotizadorShalom({ biz, onCotizacionChange }: CotizadorSh
                       onClick={() => setEnceradoActivo(!enceradoActivo)}
                       className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
                         enceradoActivo
-                          ? "bg-rose-500/20 text-rose-300 border border-rose-500/30 hover:bg-rose-950/40"
-                          : "bg-emerald-500 text-black hover:bg-emerald-400"
+                          ? "bg-white/10 text-white border border-white/20 hover:bg-white/15"
+                          : "bg-emerald-500 text-black hover:bg-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.25)]"
                       }`}
                     >
-                      {enceradoActivo ? "✕ Quitar del presupuesto" : "+ Sumar al Presupuesto"}
+                      {enceradoActivo ? "✓ En tu presupuesto (Quitar)" : "+ Sumar al Presupuesto"}
                     </button>
                   </div>
                 </div>
@@ -1163,11 +1163,11 @@ export default function CotizadorShalom({ biz, onCotizacionChange }: CotizadorSh
                       onClick={() => setMotorActivo(!motorActivo)}
                       className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
                         motorActivo
-                          ? "bg-rose-500/20 text-rose-300 border border-rose-500/30 hover:bg-rose-950/40"
-                          : "bg-emerald-500 text-black hover:bg-emerald-400"
+                          ? "bg-white/10 text-white border border-white/20 hover:bg-white/15"
+                          : "bg-emerald-500 text-black hover:bg-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.25)]"
                       }`}
                     >
-                      {motorActivo ? "✕ Quitar del presupuesto" : "+ Sumar al Presupuesto"}
+                      {motorActivo ? "✓ En tu presupuesto (Quitar)" : "+ Sumar al Presupuesto"}
                     </button>
                   </div>
                 </div>
@@ -1196,11 +1196,11 @@ export default function CotizadorShalom({ biz, onCotizacionChange }: CotizadorSh
                       onClick={() => setFarosActivo(!farosActivo)}
                       className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
                         farosActivo
-                          ? "bg-rose-500/20 text-rose-300 border border-rose-500/30 hover:bg-rose-950/40"
-                          : "bg-emerald-500 text-black hover:bg-emerald-400"
+                          ? "bg-white/10 text-white border border-white/20 hover:bg-white/15"
+                          : "bg-emerald-500 text-black hover:bg-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.25)]"
                       }`}
                     >
-                      {farosActivo ? "✕ Quitar del presupuesto" : "+ Sumar al Presupuesto"}
+                      {farosActivo ? "✓ En tu presupuesto (Quitar)" : "+ Sumar al Presupuesto"}
                     </button>
                   </div>
                 </div>
@@ -1212,7 +1212,7 @@ export default function CotizadorShalom({ biz, onCotizacionChange }: CotizadorSh
           <div className="sticky top-24 rounded-3xl p-6 sm:p-7 border border-emerald-500/30 bg-gradient-to-b from-neutral-900 via-neutral-950 to-neutral-950 shadow-[0_15px_40px_rgba(0,0,0,0.7)] space-y-5">
             {/* Cabecera del ticket */}
             <div className="border-b border-white/10 pb-4">
-              <div className="h-[2.5px] w-full rounded-full bg-gradient-to-r from-emerald-500 via-white to-rose-500 mb-3 shadow-[0_0_8px_rgba(255,255,255,0.4)]" />
+              <div className="h-[2.5px] w-full rounded-full bg-gradient-to-r from-emerald-500 via-white to-emerald-400 mb-3 shadow-[0_0_8px_rgba(16,185,129,0.3)]" />
               <div className="flex items-center justify-between mb-1">
                 <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-400">Resumen en Tiempo Real</span>
                 <span className="text-[10px] text-slate-300">🇲🇽 Toluca, MX</span>
@@ -1250,7 +1250,7 @@ export default function CotizadorShalom({ biz, onCotizacionChange }: CotizadorSh
                       onClick={() => eliminarServicio(it.id)}
                       title="Eliminar este servicio del presupuesto"
                       aria-label={`Eliminar ${it.titulo}`}
-                      className="p-1.5 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-rose-950/40 transition-all shrink-0 cursor-pointer"
+                      className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-all shrink-0 cursor-pointer"
                     >
                       <LuTrash2 className="size-4" />
                     </button>
@@ -1266,11 +1266,11 @@ export default function CotizadorShalom({ biz, onCotizacionChange }: CotizadorSh
                 <span>Tiempo de trabajo: <strong className="text-white">{tiempoEstimadoGlobal}</strong></span>
               </div>
               {garantiasGlobales.length > 0 && (
-                <div className="space-y-1 pt-1 border-t border-white/5">
+                <div className="space-y-1.5 pt-1.5 border-t border-white/5">
                   {garantiasGlobales.map((g, idx) => (
-                    <div key={idx} className="flex items-start gap-2 text-rose-300">
-                      <LuShieldCheck className="size-3.5 text-rose-400 shrink-0 mt-0.5" />
-                      <span className="leading-snug">{g}</span>
+                    <div key={idx} className="flex items-start gap-2 text-slate-100">
+                      <LuShieldCheck className="size-3.5 text-emerald-400 shrink-0 mt-0.5" />
+                      <span className="leading-snug text-white font-medium">{g}</span>
                     </div>
                   ))}
                 </div>
