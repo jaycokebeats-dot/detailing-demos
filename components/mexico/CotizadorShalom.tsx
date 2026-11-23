@@ -98,7 +98,7 @@ export default function CotizadorShalom({ biz, onCotizacionChange }: CotizadorSh
   }, []);
 
   // === SERVICIOS ACTIVOS EN EL PRESUPUESTO (CARRITO MULTI-SERVICIO) ===
-  const [polarizadoActivo, setPolarizadoActivo] = useState(true); // Inicia con polarizado por defecto
+  const [polarizadoActivo, setPolarizadoActivo] = useState(false); // Inicia limpio en 0 para que el usuario arme su paquete
   const [detalladoActivo, setDetalladoActivo] = useState(false);
   const [ppfActivo, setPpfActivo] = useState(false);
   const [enceradoActivo, setEnceradoActivo] = useState(false);
