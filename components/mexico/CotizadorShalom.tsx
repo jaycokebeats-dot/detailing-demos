@@ -58,6 +58,34 @@ export const TIPOS_VEHICULO_SHALOM: TipoVehiculoShalom[] = [
   },
 ];
 
+export const PRECIOS_POLARIZADO_BASE: Record<string, Record<VehiculoShalomId, number>> = {
+  protec: { sedan: 1500, suv: 1800, pickup: 1800, suburban: 2200 },
+  baby: { sedan: 1900, suv: 2200, pickup: 2200, suburban: 2600 },
+  llumar35: { sedan: 3300, suv: 3500, pickup: 3500, suburban: 4000 },
+  llumarTonos: { sedan: 3600, suv: 3800, pickup: 3800, suburban: 4500 },
+  "3m": { sedan: 5500, suv: 5800, pickup: 6000, suburban: 6200 },
+};
+
+export const PRECIOS_DETALLADO_BASE: Record<string, Record<VehiculoShalomId, number>> = {
+  "full-detail": { sedan: 7000, suv: 9000, pickup: 9000, suburban: 11000 },
+  vestiduras: { sedan: 2000, suv: 2500, pickup: 2500, suburban: 3000 },
+  ceramico: { sedan: 4500, suv: 6500, pickup: 6500, suburban: 8500 },
+};
+
+export const PRECIOS_PPF_BASE: Record<
+  "dgnr" | "llumar",
+  Record<"frente" | "completo", Record<VehiculoShalomId, number>>
+> = {
+  dgnr: {
+    frente: { sedan: 15000, suv: 18000, pickup: 20000, suburban: 23000 },
+    completo: { sedan: 40000, suv: 45000, pickup: 47000, suburban: 50000 },
+  },
+  llumar: {
+    frente: { sedan: 20000, suv: 25000, pickup: 25000, suburban: 28000 },
+    completo: { sedan: 48000, suv: 50000, pickup: 52000, suburban: 59000 },
+  },
+};
+
 export type CategoriaShalomId = "polarizado" | "detallado" | "ppf" | "mantenimiento";
 
 export interface ItemPresupuestoShalom {
@@ -154,14 +182,6 @@ export default function CotizadorShalom({ biz, onCotizacionChange }: CotizadorSh
 
   // Costo actual configurado de Polarizado (Héctor: 40-60 min + decoloración incluida)
   const costoPolarizado = useMemo(() => {
-    const preciosBase: Record<string, Record<VehiculoShalomId, number>> = {
-      protec: { sedan: 1500, suv: 1800, pickup: 1800, suburban: 2200 },
-      baby: { sedan: 1900, suv: 2200, pickup: 2200, suburban: 2600 },
-      llumar35: { sedan: 3300, suv: 3500, pickup: 3500, suburban: 4000 },
-      llumarTonos: { sedan: 3600, suv: 3800, pickup: 3800, suburban: 4500 },
-      "3m": { sedan: 5500, suv: 5800, pickup: 6000, suburban: 6200 },
-    };
-
     const nombresMarca: Record<string, string> = {
       protec: "Protec Sun",
       baby: "Baby Blue / Baby Green",
@@ -170,7 +190,7 @@ export default function CotizadorShalom({ biz, onCotizacionChange }: CotizadorSh
       "3m": "3M LUMAR Protec-Sun",
     };
 
-    let total = preciosBase[polarizadoMarca][vehiculo];
+    let total = PRECIOS_POLARIZADO_BASE[polarizadoMarca][vehiculo];
     const detallesArr: string[] = [`Tono: ${polarizadoTono}`];
 
     if (incluirParabrisas) {
@@ -229,12 +249,6 @@ export default function CotizadorShalom({ biz, onCotizacionChange }: CotizadorSh
   // Costo actual configurado de Detallado
   const costoDetallado = useMemo(() => {
     if (detalladoTipo === "full-detail") {
-      const preciosFull: Record<VehiculoShalomId, number> = {
-        sedan: 7000,
-        suv: 9000,
-        pickup: 9000,
-        suburban: 11000,
-      };
       const tiemposFull: Record<VehiculoShalomId, string> = {
         sedan: "5 días hábiles aprox.",
         suv: "7 días hábiles aprox.",
@@ -242,21 +256,16 @@ export default function CotizadorShalom({ biz, onCotizacionChange }: CotizadorSh
         suburban: "8 días hábiles aprox.",
       };
       return {
-        precio: preciosFull[vehiculo],
+        precio: PRECIOS_DETALLADO_BASE["full-detail"][vehiculo],
         titulo: "Paquete Todo Incluido | Detallado Profesional",
         detalle: "Motor, carrocería, descontaminado 360°, interiores a vapor, toldo, alfombra, corrección en etapas y cerámico de 6 meses.",
         tiempo: tiemposFull[vehiculo],
         garantia: "Cerámico 9H garantizado por 6 meses + Acabado espejo",
       };
     } else if (detalladoTipo === "vestiduras") {
-      const preciosVest: Record<VehiculoShalomId, { base: number; conAlfombra: number }> = {
-        sedan: { base: 2000, conAlfombra: 3000 },
-        suv: { base: 2500, conAlfombra: 3500 },
-        pickup: { base: 2500, conAlfombra: 3500 },
-        suburban: { base: 3000, conAlfombra: 4500 },
-      };
-      const pVest = preciosVest[vehiculo];
-      const precioFinal = desmontarAlfombra ? pVest.conAlfombra : pVest.base;
+      const pVestBase = PRECIOS_DETALLADO_BASE["vestiduras"][vehiculo];
+      const extraAlfombra = vehiculo === "suburban" ? 1500 : 1000;
+      const precioFinal = desmontarAlfombra ? pVestBase + extraAlfombra : pVestBase;
       return {
         precio: precioFinal,
         titulo: `Lavado Profundo de Vestiduras & Interior ${desmontarAlfombra ? "(Con desmonte de alfombra)" : ""}`,
@@ -267,14 +276,8 @@ export default function CotizadorShalom({ biz, onCotizacionChange }: CotizadorSh
         garantia: "Garantía de sanitización antibacteriana sin humedad residual",
       };
     } else {
-      const preciosCeramico: Record<VehiculoShalomId, number> = {
-        sedan: 4500,
-        suv: 6500,
-        pickup: 6500,
-        suburban: 8500,
-      };
       return {
-        precio: preciosCeramico[vehiculo],
+        precio: PRECIOS_DETALLADO_BASE["ceramico"][vehiculo],
         titulo: "Corrección de Pintura & Recubrimiento Cerámico",
         detalle: "Pulido en etapas para eliminar microrrayones + abrillantado fino y sellado nanocerámico",
         tiempo: "2 a 3 días hábiles",
@@ -285,21 +288,7 @@ export default function CotizadorShalom({ biz, onCotizacionChange }: CotizadorSh
 
   // Costo actual configurado de PPF
   const costoPPF = useMemo(() => {
-    const preciosPPF: Record<
-      "dgnr" | "llumar",
-      Record<"frente" | "completo", Record<VehiculoShalomId, number>>
-    > = {
-      dgnr: {
-        frente: { sedan: 15000, suv: 18000, pickup: 20000, suburban: 23000 },
-        completo: { sedan: 40000, suv: 45000, pickup: 47000, suburban: 50000 },
-      },
-      llumar: {
-        frente: { sedan: 20000, suv: 25000, pickup: 25000, suburban: 28000 },
-        completo: { sedan: 48000, suv: 50000, pickup: 52000, suburban: 59000 },
-      },
-    };
-
-    let total = preciosPPF[ppfMarca][ppfCobertura][vehiculo];
+    let total = PRECIOS_PPF_BASE[ppfMarca][ppfCobertura][vehiculo];
     const detallesArr: string[] = [
       ppfCobertura === "frente"
         ? "Cofre, facia delantera, salpicaderas y espejos"
@@ -716,24 +705,53 @@ export default function CotizadorShalom({ biz, onCotizacionChange }: CotizadorSh
                       { id: "llumarTonos", label: "Llumar Tonos Especiales", badge: "5%, 20%, 50%", desc: "Elige entre privacidad total (5%) o intermedio oscuro (20%)." },
                       { id: "3m", label: "3M LUMAR Protec-Sun", badge: "Alta Gama", desc: "Máxima tecnología de rechazo térmico y blindaje antiasalto." },
                     ].map((m) => {
-                      const activo = polarizadoMarca === m.id;
+                      const isSumado = polarizadoActivo && polarizadoMarca === m.id;
+                      const pBase = PRECIOS_POLARIZADO_BASE[m.id][vehiculo];
                       return (
                         <div
                           key={m.id}
-                          onClick={() => setPolarizadoMarca(m.id as any)}
-                          className={`p-3 rounded-2xl border cursor-pointer transition-all ${
-                            activo
-                              ? "border-emerald-500 bg-emerald-950/30 ring-1 ring-emerald-500/50"
-                              : "border-white/10 bg-black/40 hover:border-white/20"
+                          onClick={() => {
+                            if (isSumado) {
+                              setPolarizadoActivo(false);
+                            } else {
+                              setPolarizadoMarca(m.id as any);
+                              setPolarizadoActivo(true);
+                            }
+                          }}
+                          className={`p-3.5 rounded-2xl border cursor-pointer active:scale-[0.98] transition-colors duration-100 flex flex-col justify-between ${
+                            isSumado
+                              ? "border-emerald-400 bg-emerald-950/60 ring-1 ring-emerald-400/60 shadow-sm"
+                              : "border-white/10 bg-black/40 hover:border-white/20 text-neutral-300"
                           }`}
                         >
-                          <div className="flex items-center justify-between mb-1">
-                            <span className="font-bold text-xs sm:text-sm text-white">{m.label}</span>
-                            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-                              {m.badge}
+                          <div>
+                            <div className="flex items-center justify-between mb-1.5">
+                              <span className="font-bold text-xs sm:text-sm text-white">{m.label}</span>
+                              <div className="flex items-center gap-1.5">
+                                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-white/5 text-emerald-300 border border-emerald-500/20">
+                                  {m.badge}
+                                </span>
+                                <span
+                                  className={`text-[10px] font-extrabold px-2 py-0.5 rounded-full flex items-center gap-1 transition-colors ${
+                                    isSumado
+                                      ? "bg-emerald-500 text-black font-black"
+                                      : "bg-white/5 text-slate-400 border border-white/10"
+                                  }`}
+                                >
+                                  {isSumado ? "✓ Sumado" : "+ Sumar"}
+                                </span>
+                              </div>
+                            </div>
+                            <p className="text-[11px] text-slate-300 leading-snug">{m.desc}</p>
+                          </div>
+
+                          <div className="mt-3 pt-2.5 border-t border-white/10 flex items-baseline justify-between">
+                            <span className="text-[10px] text-slate-400">Laterales + Medallón:</span>
+                            <span className="text-sm sm:text-base font-black text-emerald-400">
+                              ${pBase.toLocaleString("es-MX")}{" "}
+                              <span className="text-[10px] text-slate-400 font-bold">MXN</span>
                             </span>
                           </div>
-                          <p className="text-[11px] text-slate-300 leading-snug">{m.desc}</p>
                         </div>
                       );
                     })}
@@ -855,34 +873,24 @@ export default function CotizadorShalom({ biz, onCotizacionChange }: CotizadorSh
                   </div>
                 </div>
 
-                {/* BOTÓN DE ACCIÓN PARA POLARIZADO EN EL PRESUPUESTO */}
+                {/* Resumen del servicio de polarizado */}
                 <div className="border-t border-white/10 pt-3.5 flex flex-col sm:flex-row items-center justify-between gap-2.5">
                   <div>
-                    <span className="text-[11px] text-slate-400 block">Total de este servicio de polarizado:</span>
+                    <span className="text-[11px] text-slate-400 block">Total con adicionales (parabrisas/franja/retiro):</span>
                     <span className="text-base sm:text-lg font-black text-emerald-400">${costoPolarizado.precio.toLocaleString("es-MX")} MXN</span>
                   </div>
 
                   {polarizadoActivo ? (
-                    <div className="flex items-center gap-2 w-full sm:w-auto">
-                      <div className="px-3 py-1.5 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-bold flex items-center gap-1.5 flex-1 sm:flex-initial">
-                        <LuCheck className="size-3.5 text-emerald-400" />
-                        <span>En tu presupuesto</span>
-                      </div>
-                      <button
-                        onClick={() => setPolarizadoActivo(false)}
-                        className="px-3 py-1.5 rounded-xl border border-white/20 bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 text-xs font-semibold cursor-pointer transition-colors"
-                      >
-                        Quitar
-                      </button>
-                    </div>
-                  ) : (
                     <button
-                      onClick={() => setPolarizadoActivo(true)}
-                      className="w-full sm:w-auto px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-neutral-950 font-black text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 cursor-pointer shadow-[0_0_20px_rgba(16,185,129,0.3)] transition-all active:scale-95"
+                      onClick={() => setPolarizadoActivo(false)}
+                      type="button"
+                      className="px-3.5 py-1.5 rounded-xl border border-white/20 bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 text-xs font-semibold cursor-pointer transition-colors flex items-center gap-1.5"
                     >
-                      <LuPlus className="size-4 stroke-[3]" />
-                      <span>Agregar Película al Presupuesto</span>
+                      <LuCheck className="size-3.5 text-emerald-400" />
+                      <span>✓ En tu presupuesto (Quitar)</span>
                     </button>
+                  ) : (
+                    <span className="text-xs text-slate-400 font-medium">Toca una marca arriba para sumarla</span>
                   )}
                 </div>
               </div>
@@ -890,8 +898,16 @@ export default function CotizadorShalom({ biz, onCotizacionChange }: CotizadorSh
 
             {/* === CATEGORÍA 2: DETALLADO Y TRATAMIENTOS === */}
             {categoria === "detallado" && (
-              <div className="space-y-5 rounded-3xl p-4 sm:p-6 border border-white/10 bg-neutral-950/70">
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+              <div className="space-y-4 rounded-3xl p-4 sm:p-6 border border-white/10 bg-neutral-950/70">
+                <div className="flex items-center justify-between">
+                  <h4 className="text-xs sm:text-sm font-bold text-white flex items-center gap-2">
+                    <LuSparkles className="size-4 text-emerald-400" />
+                    <span>Selecciona el Tratamiento de Detallado para tu Auto</span>
+                  </h4>
+                  <span className="text-[11px] text-slate-400 hidden sm:inline">Toca para sumar o quitar en vivo</span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   {[
                     {
                       id: "full-detail",
@@ -912,32 +928,83 @@ export default function CotizadorShalom({ biz, onCotizacionChange }: CotizadorSh
                       desc: "Pulido en etapas para eliminar rayones circulares + sellador nanocerámico.",
                     },
                   ].map((pkg) => {
-                    const activo = detalladoTipo === pkg.id;
+                    const isSumado = detalladoActivo && detalladoTipo === pkg.id;
+                    const precioPkg =
+                      pkg.id === "vestiduras" && desmontarAlfombra
+                        ? (vehiculo === "suburban" ? 4500 : vehiculo === "sedan" ? 3000 : 3500)
+                        : PRECIOS_DETALLADO_BASE[pkg.id][vehiculo];
+
                     return (
                       <div
                         key={pkg.id}
-                        onClick={() => setDetalladoTipo(pkg.id as any)}
-                        className={`p-3.5 rounded-2xl border cursor-pointer transition-all ${
-                          activo
-                            ? "border-emerald-500 bg-gradient-to-b from-emerald-950/50 to-neutral-950 shadow-[0_0_20px_rgba(16,185,129,0.25)] ring-1 ring-emerald-500/50"
-                            : "border-white/10 bg-black/40 hover:border-white/25"
+                        onClick={() => {
+                          if (isSumado) {
+                            setDetalladoActivo(false);
+                          } else {
+                            setDetalladoTipo(pkg.id as any);
+                            setDetalladoActivo(true);
+                          }
+                        }}
+                        className={`p-4 rounded-2xl border cursor-pointer active:scale-[0.98] transition-colors duration-100 flex flex-col justify-between ${
+                          isSumado
+                            ? "border-emerald-400 bg-emerald-950/60 shadow-sm ring-1 ring-emerald-400/60"
+                            : "border-white/10 bg-black/40 hover:border-white/25 text-neutral-300"
                         }`}
                       >
-                        <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 uppercase tracking-wider inline-block mb-1.5">
-                          {pkg.tag}
-                        </span>
-                        <h4 className="text-xs sm:text-sm font-bold text-white mb-1">{pkg.titulo}</h4>
-                        <p className="text-[11px] text-slate-300 leading-relaxed font-light">{pkg.desc}</p>
+                        <div>
+                          <div className="flex items-center justify-between mb-2">
+                            <span className={`text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider ${
+                              isSumado
+                                ? "bg-emerald-400/20 text-emerald-300 border border-emerald-400/40"
+                                : "bg-white/5 text-slate-400 border border-white/10"
+                            }`}>
+                              {pkg.tag}
+                            </span>
+
+                            {/* Badge de estado directo */}
+                            <span
+                              className={`text-[10px] font-extrabold px-2.5 py-0.5 rounded-full flex items-center gap-1 transition-colors ${
+                                isSumado
+                                  ? "bg-emerald-500 text-black shadow-sm font-black"
+                                  : "bg-white/5 text-slate-400 border border-white/10 hover:text-white"
+                              }`}
+                            >
+                              {isSumado ? (
+                                <>
+                                  <LuCheck className="size-3 stroke-[3]" />
+                                  <span>Sumado</span>
+                                </>
+                              ) : (
+                                <>
+                                  <LuPlus className="size-3 stroke-[3]" />
+                                  <span>Sumar</span>
+                                </>
+                              )}
+                            </span>
+                          </div>
+
+                          <h4 className="text-xs sm:text-sm font-bold text-white mb-1.5">{pkg.titulo}</h4>
+                          <p className="text-[11px] text-slate-300 leading-relaxed font-light">{pkg.desc}</p>
+                        </div>
+
+                        {/* Precio en grande en la card */}
+                        <div className="mt-4 pt-3 border-t border-white/10 flex items-baseline justify-between">
+                          <span className="text-[10px] font-medium text-slate-400">Precio estimado:</span>
+                          <span className="text-base sm:text-lg font-black text-emerald-400">
+                            ${precioPkg.toLocaleString("es-MX")}{" "}
+                            <span className="text-[10px] font-bold text-slate-400">MXN</span>
+                          </span>
+                        </div>
                       </div>
                     );
                   })}
                 </div>
 
-                {/* OPCIÓN ADICIONAL: DESMONTE DE ALFOMBRA SI ELIGE VESTIDURAS */}
+                {/* OPCIÓN ADICIONAL: DESMONTE DE ALFOMBRA SI VESTIDURAS ESTÁ SELECCIONADO */}
                 {detalladoTipo === "vestiduras" && (
                   <div
                     onClick={() => setDesmontarAlfombra(!desmontarAlfombra)}
-                    className={`p-3.5 rounded-2xl border cursor-pointer flex items-center justify-between transition-all ${
+                    className={`p-3.5 rounded-2xl border cursor-pointer active:scale-[0.99] transition-colors duration-100 flex items-center justify-between ${
                       desmontarAlfombra
                         ? "border-emerald-500 bg-emerald-950/30 ring-1 ring-emerald-500/50"
                         : "border-white/15 bg-black/40"
@@ -961,37 +1028,6 @@ export default function CotizadorShalom({ biz, onCotizacionChange }: CotizadorSh
                     </span>
                   </div>
                 )}
-
-                {/* BOTÓN DE ACCIÓN PARA DETALLADO EN EL PRESUPUESTO */}
-                <div className="border-t border-white/10 pt-3.5 flex flex-col sm:flex-row items-center justify-between gap-2.5">
-                  <div>
-                    <span className="text-[11px] text-slate-400 block">Total de este detallado:</span>
-                    <span className="text-base sm:text-lg font-black text-emerald-400">${costoDetallado.precio.toLocaleString("es-MX")} MXN</span>
-                  </div>
-
-                  {detalladoActivo ? (
-                    <div className="flex items-center gap-2 w-full sm:w-auto">
-                      <div className="px-3 py-1.5 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-bold flex items-center gap-1.5 flex-1 sm:flex-initial">
-                        <LuCheck className="size-3.5 text-emerald-400" />
-                        <span>En tu presupuesto</span>
-                      </div>
-                      <button
-                        onClick={() => setDetalladoActivo(false)}
-                        className="px-3 py-1.5 rounded-xl border border-white/20 bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 text-xs font-semibold cursor-pointer transition-colors"
-                      >
-                        Quitar
-                      </button>
-                    </div>
-                  ) : (
-                    <button
-                      onClick={() => setDetalladoActivo(true)}
-                      className="w-full sm:w-auto px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-neutral-950 font-black text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 cursor-pointer shadow-[0_0_20px_rgba(16,185,129,0.3)] transition-all active:scale-95"
-                    >
-                      <LuPlus className="size-4 stroke-[3]" />
-                      <span>Sumar Detallado al Presupuesto</span>
-                    </button>
-                  )}
-                </div>
               </div>
             )}
 
@@ -1004,44 +1040,76 @@ export default function CotizadorShalom({ biz, onCotizacionChange }: CotizadorSh
                     <LuShieldCheck className="size-4 text-emerald-400" />
                     <span>Selecciona la Calidad y Garantía de tu PPF</span>
                   </h4>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                    <div
-                      onClick={() => setPpfMarca("llumar")}
-                      className={`p-3.5 rounded-2xl border cursor-pointer transition-all ${
-                        ppfMarca === "llumar"
-                          ? "border-emerald-500 bg-emerald-950/40 ring-1 ring-emerald-500/50 shadow-[0_0_20px_rgba(16,185,129,0.25)]"
-                          : "border-white/10 bg-black/40 hover:border-white/25"
-                      }`}
-                    >
-                      <div className="flex items-center justify-between mb-1">
-                        <span className="text-xs sm:text-sm font-bold text-white">PPF Llumar</span>
-                        <span className="text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-amber-400/20 text-amber-300 border border-amber-400/40 uppercase">
-                          8 Años por Escrito
-                        </span>
-                      </div>
-                      <p className="text-[11px] text-slate-300 leading-relaxed">
-                        Gama Platinum mundial. Poliuretano autorregenerable con resistencia balística a piedras y 8 años de garantía por escrito contra amarilleo.
-                      </p>
-                    </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {[
+                      {
+                        id: "llumar",
+                        titulo: "PPF Llumar",
+                        garantiaBadge: "8 Años por Escrito",
+                        badgeStyle: "bg-amber-400/20 text-amber-300 border-amber-400/40",
+                        desc: "Gama Platinum mundial. Poliuretano autorregenerable con resistencia balística a piedras y 8 años de garantía por escrito contra amarilleo.",
+                      },
+                      {
+                        id: "dgnr",
+                        titulo: "PPF DGNR",
+                        garantiaBadge: "1 Año de Garantía",
+                        badgeStyle: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30",
+                        desc: "Protección económica autorregenerable contra impactos frontales y arañazos de uso diario.",
+                      },
+                    ].map((m) => {
+                      const isSumado = ppfActivo && ppfMarca === m.id;
+                      const precioBase = PRECIOS_PPF_BASE[m.id as "dgnr" | "llumar"][ppfCobertura][vehiculo];
 
-                    <div
-                      onClick={() => setPpfMarca("dgnr")}
-                      className={`p-3.5 rounded-2xl border cursor-pointer transition-all ${
-                        ppfMarca === "dgnr"
-                          ? "border-emerald-500 bg-emerald-950/40 ring-1 ring-emerald-500/50 shadow-[0_0_20px_rgba(16,185,129,0.25)]"
-                          : "border-white/10 bg-black/40 hover:border-white/25"
-                      }`}
-                    >
-                      <div className="flex items-center justify-between mb-1">
-                        <span className="text-xs sm:text-sm font-bold text-white">PPF DGNR</span>
-                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 uppercase">
-                          1 Año de Garantía
-                        </span>
-                      </div>
-                      <p className="text-[11px] text-slate-300 leading-relaxed">
-                        Protección económica autorregenerable contra impactos frontales y arañazos de uso diario.
-                      </p>
-                    </div>
+                      return (
+                        <div
+                          key={m.id}
+                          onClick={() => {
+                            if (isSumado) {
+                              setPpfActivo(false);
+                            } else {
+                              setPpfMarca(m.id as any);
+                              setPpfActivo(true);
+                            }
+                          }}
+                          className={`p-4 rounded-2xl border cursor-pointer active:scale-[0.98] transition-colors duration-100 flex flex-col justify-between ${
+                            isSumado
+                              ? "border-emerald-400 bg-emerald-950/60 ring-1 ring-emerald-400/60 shadow-sm"
+                              : "border-white/10 bg-black/40 hover:border-white/25 text-neutral-300"
+                          }`}
+                        >
+                          <div>
+                            <div className="flex items-center justify-between mb-2">
+                              <span className="text-xs sm:text-sm font-bold text-white">{m.titulo}</span>
+                              <div className="flex items-center gap-1.5">
+                                <span className={`text-[10px] font-extrabold px-2 py-0.5 rounded-full border uppercase ${m.badgeStyle}`}>
+                                  {m.garantiaBadge}
+                                </span>
+                                <span
+                                  className={`text-[10px] font-extrabold px-2 py-0.5 rounded-full flex items-center gap-1 transition-colors ${
+                                    isSumado
+                                      ? "bg-emerald-500 text-black font-black"
+                                      : "bg-white/5 text-slate-400 border border-white/10"
+                                  }`}
+                                >
+                                  {isSumado ? "✓ Sumado" : "+ Sumar"}
+                                </span>
+                              </div>
+                            </div>
+                            <p className="text-[11px] text-slate-300 leading-relaxed">{m.desc}</p>
+                          </div>
+
+                          <div className="mt-3.5 pt-2.5 border-t border-white/10 flex items-baseline justify-between">
+                            <span className="text-[10px] text-slate-400">
+                              {ppfCobertura === "frente" ? "Frente Protegido:" : "Carrocería Completa:"}
+                            </span>
+                            <span className="text-base sm:text-lg font-black text-emerald-400">
+                              ${precioBase.toLocaleString("es-MX")}{" "}
+                              <span className="text-[10px] text-slate-400 font-bold">MXN</span>
+                            </span>
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
 
@@ -1100,34 +1168,24 @@ export default function CotizadorShalom({ biz, onCotizacionChange }: CotizadorSh
                   </div>
                 </div>
 
-                {/* BOTÓN DE ACCIÓN PARA PPF EN EL PRESUPUESTO */}
+                {/* Resumen del servicio de PPF */}
                 <div className="border-t border-white/10 pt-3.5 flex flex-col sm:flex-row items-center justify-between gap-2.5">
                   <div>
-                    <span className="text-[11px] text-slate-400 block">Total de este blindaje PPF:</span>
+                    <span className="text-[11px] text-slate-400 block">Total con cobertura exterior e interior:</span>
                     <span className="text-base sm:text-lg font-black text-emerald-400">${costoPPF.precio.toLocaleString("es-MX")} MXN</span>
                   </div>
 
                   {ppfActivo ? (
-                    <div className="flex items-center gap-2 w-full sm:w-auto">
-                      <div className="px-3 py-1.5 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-bold flex items-center gap-1.5 flex-1 sm:flex-initial">
-                        <LuCheck className="size-3.5 text-emerald-400" />
-                        <span>En tu presupuesto</span>
-                      </div>
-                      <button
-                        onClick={() => setPpfActivo(false)}
-                        className="px-3 py-1.5 rounded-xl border border-white/20 bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 text-xs font-semibold cursor-pointer transition-colors"
-                      >
-                        Quitar
-                      </button>
-                    </div>
-                  ) : (
                     <button
-                      onClick={() => setPpfActivo(true)}
-                      className="w-full sm:w-auto px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-neutral-950 font-black text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 cursor-pointer shadow-[0_0_20px_rgba(16,185,129,0.3)] transition-all active:scale-95"
+                      onClick={() => setPpfActivo(false)}
+                      type="button"
+                      className="px-3.5 py-1.5 rounded-xl border border-white/20 bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 text-xs font-semibold cursor-pointer transition-colors flex items-center gap-1.5"
                     >
-                      <LuPlus className="size-4 stroke-[3]" />
-                      <span>Sumar Blindaje PPF al Presupuesto</span>
+                      <LuCheck className="size-3.5 text-emerald-400" />
+                      <span>✓ En tu presupuesto (Quitar)</span>
                     </button>
+                  ) : (
+                    <span className="text-xs text-slate-400 font-medium">Toca una opción de PPF arriba para sumarla</span>
                   )}
                 </div>
               </div>
@@ -1142,76 +1200,80 @@ export default function CotizadorShalom({ biz, onCotizacionChange }: CotizadorSh
 
                 {/* 1. Lavado y Encerado */}
                 <div
-                  className={`p-3.5 rounded-2xl border transition-all ${
+                  onClick={() => setEnceradoActivo(!enceradoActivo)}
+                  className={`p-4 rounded-2xl border cursor-pointer active:scale-[0.98] transition-colors duration-100 flex flex-col justify-between ${
                     enceradoActivo
-                      ? "border-emerald-500 bg-emerald-950/30 ring-1 ring-emerald-500/50"
-                      : "border-white/10 bg-black/40 hover:border-white/20"
+                      ? "border-emerald-400 bg-emerald-950/60 ring-1 ring-emerald-400/60 shadow-sm"
+                      : "border-white/10 bg-black/40 hover:border-white/20 text-neutral-300"
                   }`}
                 >
-                  <div className="flex items-start justify-between gap-3 mb-1.5">
+                  <div className="flex items-start justify-between gap-3 mb-2">
                     <div>
                       <span className="text-xs sm:text-sm font-bold text-white block">Lavado y Encerado Protector + Humectante</span>
                       <p className="text-[11px] text-slate-300 leading-relaxed font-light mt-0.5">
                         Lavado exterior a mano, encerado protector UV y humectación de pieles y plásticos en cabina.
                       </p>
                     </div>
-                    <span className="text-sm font-black text-emerald-400 shrink-0">
-                      ${costoEncerado.precio.toLocaleString("es-MX")} MXN
-                    </span>
-                  </div>
-                  <div className="flex justify-end pt-2 border-t border-white/5">
-                    <button
-                      onClick={() => setEnceradoActivo(!enceradoActivo)}
-                      className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                    <span
+                      className={`text-[10px] font-extrabold px-2.5 py-0.5 rounded-full flex items-center gap-1 shrink-0 ${
                         enceradoActivo
-                          ? "bg-white/10 text-white border border-white/20 hover:bg-white/15"
-                          : "bg-emerald-500 text-black hover:bg-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.25)]"
+                          ? "bg-emerald-500 text-black font-black"
+                          : "bg-white/5 text-slate-400 border border-white/10"
                       }`}
                     >
-                      {enceradoActivo ? "✓ En tu presupuesto (Quitar)" : "+ Sumar al Presupuesto"}
-                    </button>
+                      {enceradoActivo ? "✓ Sumado" : "+ Sumar"}
+                    </span>
+                  </div>
+                  <div className="pt-2 border-t border-white/10 flex items-baseline justify-between">
+                    <span className="text-[10px] text-slate-400">Precio estimado:</span>
+                    <span className="text-sm sm:text-base font-black text-emerald-400">
+                      ${costoEncerado.precio.toLocaleString("es-MX")}{" "}
+                      <span className="text-[10px] text-slate-400 font-bold">MXN</span>
+                    </span>
                   </div>
                 </div>
 
                 {/* 2. Lavado de Motor */}
                 <div
-                  className={`p-3.5 rounded-2xl border transition-all ${
+                  onClick={() => setMotorActivo(!motorActivo)}
+                  className={`p-4 rounded-2xl border cursor-pointer active:scale-[0.98] transition-colors duration-100 flex flex-col justify-between ${
                     motorActivo
-                      ? "border-emerald-500 bg-emerald-950/30 ring-1 ring-emerald-500/50"
-                      : "border-white/10 bg-black/40 hover:border-white/20"
+                      ? "border-emerald-400 bg-emerald-950/60 ring-1 ring-emerald-400/60 shadow-sm"
+                      : "border-white/10 bg-black/40 hover:border-white/20 text-neutral-300"
                   }`}
                 >
-                  <div className="flex items-start justify-between gap-3 mb-1.5">
+                  <div className="flex items-start justify-between gap-3 mb-2">
                     <div>
                       <span className="text-xs sm:text-sm font-bold text-white block">Lavado Técnico de Motor con Vapor & Carrocería</span>
                       <p className="text-[11px] text-slate-300 leading-relaxed font-light mt-0.5">
                         Lavado técnico de bahía de motor con vapor y productos dieléctricos sin riesgo para sensores, más baño exterior.
                       </p>
                     </div>
-                    <span className="text-sm font-black text-emerald-400 shrink-0">
-                      ${costoMotor.precio.toLocaleString("es-MX")} MXN
-                    </span>
-                  </div>
-                  <div className="flex justify-end pt-2 border-t border-white/5">
-                    <button
-                      onClick={() => setMotorActivo(!motorActivo)}
-                      className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                    <span
+                      className={`text-[10px] font-extrabold px-2.5 py-0.5 rounded-full flex items-center gap-1 shrink-0 ${
                         motorActivo
-                          ? "bg-white/10 text-white border border-white/20 hover:bg-white/15"
-                          : "bg-emerald-500 text-black hover:bg-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.25)]"
+                          ? "bg-emerald-500 text-black font-black"
+                          : "bg-white/5 text-slate-400 border border-white/10"
                       }`}
                     >
-                      {motorActivo ? "✓ En tu presupuesto (Quitar)" : "+ Sumar al Presupuesto"}
-                    </button>
+                      {motorActivo ? "✓ Sumado" : "+ Sumar"}
+                    </span>
+                  </div>
+                  <div className="pt-2 border-t border-white/10 flex items-baseline justify-between">
+                    <span className="text-[10px] text-slate-400">Precio estimado:</span>
+                    <span className="text-sm sm:text-base font-black text-emerald-400">
+                      ${costoMotor.precio.toLocaleString("es-MX")}{" "}
+                      <span className="text-[10px] text-slate-400 font-bold">MXN</span>
+                    </span>
                   </div>
                 </div>
 
                 {/* 3. Pulido de Faros (Héctor: solo faros $700 / faros y calaveras $1000) */}
                 <div
-                  className={`p-3.5 rounded-2xl border transition-all ${
+                  className={`p-4 rounded-2xl border transition-colors duration-100 flex flex-col justify-between ${
                     farosActivo
-                      ? "border-emerald-500 bg-emerald-950/30 ring-1 ring-emerald-500/50"
-                      : "border-white/10 bg-black/40 hover:border-white/20"
+                      ? "border-emerald-400 bg-emerald-950/60 ring-1 ring-emerald-400/60 shadow-sm"
+                      : "border-white/10 bg-black/40 hover:border-white/20 text-neutral-300"
                   }`}
                 >
                   <div className="flex items-start justify-between gap-3 mb-2">
@@ -1221,16 +1283,28 @@ export default function CotizadorShalom({ biz, onCotizacionChange }: CotizadorSh
                         Remueve la capa amarilla y opaca con polímero vaporizado devolviendo 100% de transparencia.
                       </p>
                     </div>
-                    <span className="text-sm font-black text-emerald-400 shrink-0">
-                      ${costoFaros.precio.toLocaleString("es-MX")} MXN
-                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setFarosActivo(!farosActivo)}
+                      className={`text-[10px] font-extrabold px-2.5 py-0.5 rounded-full flex items-center gap-1 shrink-0 cursor-pointer ${
+                        farosActivo
+                          ? "bg-emerald-500 text-black font-black"
+                          : "bg-white/5 text-slate-400 border border-white/10 hover:text-white"
+                      }`}
+                    >
+                      {farosActivo ? "✓ Sumado" : "+ Sumar"}
+                    </button>
                   </div>
 
                   {/* Selector: solo faros ($700) vs faros y calaveras ($1,000) */}
                   <div className="grid grid-cols-2 gap-2 pt-2 border-t border-white/10 mb-2">
                     <button
-                      onClick={() => setFarosTipo("solo-faros")}
-                      className={`p-2 rounded-xl border text-left cursor-pointer text-xs ${
+                      onClick={() => {
+                        setFarosTipo("solo-faros");
+                        if (!farosActivo) setFarosActivo(true);
+                      }}
+                      type="button"
+                      className={`p-2 rounded-xl border text-left cursor-pointer active:scale-[0.98] transition-colors duration-100 text-xs ${
                         farosTipo === "solo-faros"
                           ? "border-emerald-500 bg-emerald-500/20 text-white font-bold"
                           : "border-white/10 bg-black/30 text-slate-400 hover:text-white"
@@ -1240,8 +1314,12 @@ export default function CotizadorShalom({ biz, onCotizacionChange }: CotizadorSh
                       <span className="block text-[10px] text-slate-400">Delanteros</span>
                     </button>
                     <button
-                      onClick={() => setFarosTipo("faros-calaveras")}
-                      className={`p-2 rounded-xl border text-left cursor-pointer text-xs ${
+                      onClick={() => {
+                        setFarosTipo("faros-calaveras");
+                        if (!farosActivo) setFarosActivo(true);
+                      }}
+                      type="button"
+                      className={`p-2 rounded-xl border text-left cursor-pointer active:scale-[0.98] transition-colors duration-100 text-xs ${
                         farosTipo === "faros-calaveras"
                           ? "border-emerald-500 bg-emerald-500/20 text-white font-bold"
                           : "border-white/10 bg-black/30 text-slate-400 hover:text-white"
@@ -1252,17 +1330,12 @@ export default function CotizadorShalom({ biz, onCotizacionChange }: CotizadorSh
                     </button>
                   </div>
 
-                  <div className="flex justify-end pt-1">
-                    <button
-                      onClick={() => setFarosActivo(!farosActivo)}
-                      className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
-                        farosActivo
-                          ? "bg-white/10 text-white border border-white/20 hover:bg-white/15"
-                          : "bg-emerald-500 text-black hover:bg-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.25)]"
-                      }`}
-                    >
-                      {farosActivo ? "✓ En tu presupuesto (Quitar)" : "+ Sumar al Presupuesto"}
-                    </button>
+                  <div className="pt-2 border-t border-white/10 flex items-baseline justify-between">
+                    <span className="text-[10px] text-slate-400">Total ópticas:</span>
+                    <span className="text-sm sm:text-base font-black text-emerald-400">
+                      ${costoFaros.precio.toLocaleString("es-MX")}{" "}
+                      <span className="text-[10px] text-slate-400 font-bold">MXN</span>
+                    </span>
                   </div>
                 </div>
               </div>
