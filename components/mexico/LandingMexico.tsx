@@ -9,6 +9,7 @@ import SectionDivider from "@/components/SectionDivider";
 import CompareSlider from "@/components/CompareSlider";
 import PpfColorVisualizer from "@/components/PpfColorVisualizer";
 import CotizadorPlatinum from "./CotizadorPlatinum";
+import CotizadorShalom from "./CotizadorShalom";
 import { LuSparkles } from "react-icons/lu";
 
 // Servicios estándar para México con precios de referencia en Pesos Mexicanos ($ MXN) y modismos de México
@@ -302,6 +303,12 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                   Cotizador
                 </a>
               )}
+              {isShalom && (
+                <a href="#cotizador" className="text-emerald-400 font-bold hover:text-emerald-300 transition-colors flex items-center gap-1.5">
+                  <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  Cotizador
+                </a>
+              )}
               <a href="#servicios" className="hover:text-white transition-colors">{isPlatinum ? "Resultados" : "Servicios"}</a>
               <a href="#garantia" className="hover:text-white transition-colors">Compromiso</a>
               <a href="#nosotros" className="hover:text-white transition-colors">Nosotros</a>
@@ -313,6 +320,13 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                 className="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-amber-400 text-black hover:bg-amber-300 text-xs font-bold uppercase tracking-wider transition-all shadow-sm active:scale-95 shrink-0"
               >
                 <span>Agendar Cita</span>
+              </a>
+            ) : isShalom ? (
+              <a
+                href="#cotizador"
+                className="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-gradient-to-r from-emerald-500 via-emerald-400 to-teal-400 text-neutral-950 hover:brightness-110 text-xs font-extrabold uppercase tracking-wider transition-all shadow-[0_2px_12px_rgba(16,185,129,0.3)] active:scale-95 shrink-0"
+              >
+                <span>Cotizar en Vivo</span>
               </a>
             ) : (
               <a
@@ -477,6 +491,22 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                   <LuSparkles className="size-4 text-black" />
                   <span>Cotizar Servicio a Domicilio</span>
                 </a>
+              ) : isShalom ? (
+                <>
+                  <a
+                    href="#cotizador"
+                    className="w-full sm:w-auto px-7 sm:px-9 py-3 sm:py-3.5 min-h-[44px] rounded-full text-xs sm:text-sm font-black uppercase tracking-wider bg-gradient-to-r from-emerald-500 via-emerald-400 to-teal-400 hover:brightness-110 text-neutral-950 active:scale-95 transition-all flex items-center justify-center gap-2 shadow-[0_4px_25px_rgba(16,185,129,0.45)] hover:scale-105 cursor-pointer"
+                  >
+                    <LuSparkles className="size-4 text-black" />
+                    <span>Cotizar en Vivo</span>
+                  </a>
+                  <a
+                    href="#servicios"
+                    className="btn-outline-gold group flex-1 sm:flex-initial px-5 sm:px-8 py-2.5 sm:py-3.5 min-h-[40px] sm:min-h-[44px] rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider active:scale-95 flex items-center justify-center whitespace-nowrap"
+                  >
+                    <span>VER SERVICIOS</span>
+                  </a>
+                </>
               ) : (
                 <>
                   <a
@@ -557,6 +587,10 @@ export default function LandingMexico({ biz }: { biz: Business }) {
 
       {biz.slug === "platinum-detallado-automotriz-a-domicilio" && (
         <CotizadorPlatinum biz={biz} onCotizacionChange={setHasCotizacionActiva} />
+      )}
+
+      {isShalom && (
+        <CotizadorShalom biz={biz} onCotizacionChange={setHasCotizacionActiva} />
       )}
 
       {/* 4. SERVICIOS CON SLIDERS INTERACTIVOS DE ANTES Y DESPUÉS ($ MXN) */}
@@ -690,6 +724,30 @@ export default function LandingMexico({ biz }: { biz: Business }) {
                         >
                           <LuSparkles className="size-3.5 text-black" />
                           <span>Cotizar este resultado</span>
+                        </a>
+                      </div>
+                    ) : isShalom ? (
+                      <div className="mt-4">
+                        <a
+                          href="#cotizador"
+                          onClick={() => {
+                            if (typeof window !== "undefined") {
+                              let cat: "polarizado" | "detallado" | "ppf" | "mantenimiento" = "detallado";
+                              const nameLower = (s.nombre || "").toLowerCase();
+                              if (nameLower.includes("polarizado") || nameLower.includes("película") || nameLower.includes("pelicula") || nameLower.includes("antiasalto")) {
+                                cat = "polarizado";
+                              } else if (nameLower.includes("ppf") || nameLower.includes("paint protection")) {
+                                cat = "ppf";
+                              } else if (nameLower.includes("motor") || nameLower.includes("faros") || nameLower.includes("mantenimiento") || nameLower.includes("encerado") || nameLower.includes("lavado")) {
+                                cat = "mantenimiento";
+                              }
+                              window.dispatchEvent(new CustomEvent("shalom:set-categoria", { detail: { categoria: cat } }));
+                            }
+                          }}
+                          className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-xs font-black uppercase tracking-wider bg-gradient-to-r from-emerald-500 via-emerald-400 to-teal-400 hover:brightness-110 text-neutral-950 transition-all shadow-md shadow-emerald-950/40 hover:scale-[1.02] active:scale-[0.99] cursor-pointer"
+                        >
+                          <LuSparkles className="size-3.5 text-black" />
+                          <span>Cotizar este servicio</span>
                         </a>
                       </div>
                     ) : (
