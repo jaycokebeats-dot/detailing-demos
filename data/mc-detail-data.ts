@@ -1,4 +1,4 @@
-import type { Business, ServiceItem } from "./business-helpers";
+import type { Business, ServiceItem, TrabajoItem } from "./business-helpers";
 
 export const MC_DETAIL_SERVICIOS: ServiceItem[] = [
   {
@@ -93,6 +93,51 @@ export const MC_DETAIL_SERVICIOS: ServiceItem[] = [
   },
 ];
 
+export const MC_DETAIL_TRABAJOS: TrabajoItem[] = [
+  {
+    id: "trabajo-1",
+    titulo: "Tratamiento Cerámico 9H & Corrección",
+    categoria: "Cerámico",
+    descripcion: "Corrección técnica de barniz en etapas y sellado nanocerámico con acabado espejo de alta repelencia hidrofóbica.",
+    img: "/servicios/ceramico-real.jpg",
+  },
+  {
+    id: "trabajo-2",
+    titulo: "Protección PPF Frontal Completo",
+    categoria: "PPF",
+    descripcion: "Blindaje con lámina autorregenerable de alto impacto contra piedrazos de ruta y rayones mecánicos.",
+    img: "/servicios/ppf.jpg",
+  },
+  {
+    id: "trabajo-3",
+    titulo: "Polarizado Nano Cerámico Térmico",
+    categoria: "Polarizado",
+    descripcion: "Control solar y máxima reducción de calor en cabina con filtro UV del 99% y privacidad absoluta sin distorsión.",
+    img: "/servicios/polarizado.jpg",
+  },
+  {
+    id: "trabajo-4",
+    titulo: "Lavado Premium Técnico Detailing",
+    categoria: "Lavado",
+    descripcion: "Método de dos baldes con shampoo pH neutro, descontaminado, limpieza de llantas y secado sin fricción anti-swirls.",
+    img: "/servicios/exterior.jpg",
+  },
+  {
+    id: "trabajo-5",
+    titulo: "Detailing Interior Profundo & Tapizados",
+    categoria: "Interior",
+    descripcion: "Higienización y desinfección integral a vapor con extracción profunda de manchas y nutrición satinada de plásticos.",
+    img: "/servicios/interior.jpg",
+  },
+  {
+    id: "trabajo-6",
+    titulo: "Corrección de Pintura & Abrillantado",
+    categoria: "Pulido",
+    descripcion: "Eliminación de microrrayones y marcas circulares recuperando la claridad, brillo y profundidad del color original.",
+    img: "/before-after/pintura-despues.jpg",
+  },
+];
+
 export const MC_DETAIL_BUSINESS: Business = {
   slug: "mc-detail-detailing",
   nombre: "Mc Detail Detailing",
@@ -114,4 +159,5 @@ export const MC_DETAIL_BUSINESS: Business = {
   hero_titulo: "Detailing Profesional, Polarizados & PPF,",
   hero_titulo_gold: "Brillo Espejo y Cuidado Real.",
   servicios: MC_DETAIL_SERVICIOS,
+  trabajos: MC_DETAIL_TRABAJOS,
 };

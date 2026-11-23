@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useState, useMemo } from "react";
-import type { Business, ServiceItem } from "@/data/business-helpers";
+import type { Business, ServiceItem, TrabajoItem } from "@/data/business-helpers";
 import { DEFAULT_DEMO_BUSINESS } from "@/data/demo-business";
 import { SERVICIOS_MEXICO } from "@/components/mexico/LandingMexico";
 import { SERVICIOS_ESPANA } from "@/components/spain/LandingSpain";
+import { MC_DETAIL_TRABAJOS } from "@/data/mc-detail-data";
 import { getBusinessData, saveBusinessData, resetBusinessData, resolveWorkshopSlug } from "@/lib/supabase";
 import { validateWorkshopAuth, getWorkshopCredentials } from "@/lib/workshop-auth";
 import CotizadorPlatinumAdmin from "@/components/mexico/CotizadorPlatinumAdmin";
@@ -159,7 +160,7 @@ export default function AdminPage() {
   const [loginError, setLoginError] = useState("");
 
   // Pestaña inicial por defecto: Datos del Taller (general)
-  const [activeTab, setActiveTab] = useState<"general" | "services" | "cotizador">("general");
+  const [activeTab, setActiveTab] = useState<"general" | "services" | "cotizador" | "trabajos">("general");
   const [biz, setBiz] = useState<Business>(DEFAULT_DEMO_BUSINESS);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -206,6 +207,9 @@ export default function AdminPage() {
       // 1. Revisar si hay datos guardados en Supabase
       const supabaseData = await getBusinessData(norm);
       if (supabaseData && supabaseData.nombre) {
+        if ((norm === "mc-detail-detailing" || norm === "mc-detail") && (!supabaseData.trabajos || supabaseData.trabajos.length === 0)) {
+          supabaseData.trabajos = MC_DETAIL_TRABAJOS;
+        }
         setBiz(supabaseData);
         setLoading(false);
         return;
@@ -230,6 +234,9 @@ export default function AdminPage() {
           } else {
             initialData.servicios = DEFAULT_DEMO_BUSINESS.servicios;
           }
+        }
+        if ((norm === "mc-detail-detailing" || norm === "mc-detail") && (!initialData.trabajos || initialData.trabajos.length === 0)) {
+          initialData.trabajos = MC_DETAIL_TRABAJOS;
         }
         setBiz(initialData);
       } else {
@@ -489,6 +496,58 @@ export default function AdminPage() {
 
   const liveWebHref = currentSlug === "demo" ? "/d/taller-demo/" : `/d/${currentSlug}/`;
   const isPlatinum = currentSlug === "platinum-detallado-automotriz-a-domicilio" || biz?.slug === "platinum-detallado-automotriz-a-domicilio";
+  const isMcDetail = currentSlug === "mc-detail-detailing" || currentSlug === "mc-detail" || biz?.slug === "mc-detail-detailing";
+
+  // Funciones para gestión de Trabajos Realizados (Galería Mc Detail)
+  const addTrabajo = () => {
+    const currentTrabajos = biz.trabajos && biz.trabajos.length > 0 ? [...biz.trabajos] : [...MC_DETAIL_TRABAJOS];
+    const newTrabajo: TrabajoItem = {
+      id: `trabajo-${Date.now()}`,
+      titulo: "Nuevo Trabajo Detailing",
+      categoria: "Cerámico",
+      descripcion: "Descripción del trabajo realizado...",
+      img: "/servicios/ceramico-real.jpg",
+    };
+    setBiz({ ...biz, trabajos: [newTrabajo, ...currentTrabajos] });
+    showToast("Trabajo añadido a la galería");
+  };
+
+  const updateTrabajo = (index: number, patch: Partial<TrabajoItem>) => {
+    const currentTrabajos = biz.trabajos && biz.trabajos.length > 0 ? [...biz.trabajos] : [...MC_DETAIL_TRABAJOS];
+    currentTrabajos[index] = { ...currentTrabajos[index], ...patch };
+    setBiz({ ...biz, trabajos: currentTrabajos });
+  };
+
+  const removeTrabajo = (index: number) => {
+    const currentTrabajos = biz.trabajos && biz.trabajos.length > 0 ? [...biz.trabajos] : [...MC_DETAIL_TRABAJOS];
+    const item = currentTrabajos[index];
+    if (confirm(`¿Eliminar el trabajo "${item?.titulo || 'seleccionado'}" de la galería?`)) {
+      currentTrabajos.splice(index, 1);
+      setBiz({ ...biz, trabajos: currentTrabajos });
+      showToast("Trabajo eliminado");
+    }
+  };
+
+  const moveTrabajo = (index: number, direction: "up" | "down") => {
+    const currentTrabajos = biz.trabajos && biz.trabajos.length > 0 ? [...biz.trabajos] : [...MC_DETAIL_TRABAJOS];
+    const targetIndex = direction === "up" ? index - 1 : index + 1;
+    if (targetIndex < 0 || targetIndex >= currentTrabajos.length) return;
+    const [moved] = currentTrabajos.splice(index, 1);
+    currentTrabajos.splice(targetIndex, 0, moved);
+    setBiz({ ...biz, trabajos: currentTrabajos });
+  };
+
+  const handleTrabajoFotoUpload = async (index: number, file: File) => {
+    try {
+      showToast("Optimizando foto...");
+      const compressed = await resizeAndCompressImage(file);
+      updateTrabajo(index, { img: compressed });
+      showToast("Foto cargada con éxito");
+    } catch (e) {
+      console.error(e);
+      showToast("Error al cargar la foto");
+    }
+  };
 
   // --- VISTA DEL PANEL DE CONTROL ---
   return (
@@ -627,7 +686,7 @@ export default function AdminPage() {
         ) : (
           <div className="space-y-6">
             {/* Tabs de Navegación en Gris / Composé */}
-            <div className={`grid ${isPlatinum ? "grid-cols-3 max-w-xl" : "grid-cols-2 max-w-md"} gap-2 bg-[#121212] p-1.5 rounded-2xl border border-neutral-800 mx-auto`}>
+            <div className={`grid ${isPlatinum || isMcDetail ? "grid-cols-3 max-w-xl" : "grid-cols-2 max-w-md"} gap-2 bg-[#121212] p-1.5 rounded-2xl border border-neutral-800 mx-auto`}>
               <button
                 type="button"
                 onClick={() => setActiveTab("general")}
@@ -666,6 +725,21 @@ export default function AdminPage() {
                 >
                   <span>⚡</span>
                   <span className="truncate">3. Cotizador</span>
+                </button>
+              )}
+
+              {isMcDetail && (
+                <button
+                  type="button"
+                  onClick={() => setActiveTab("trabajos")}
+                  className={`py-2.5 px-2.5 sm:px-3 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center justify-center gap-1.5 sm:gap-2 ${
+                    activeTab === "trabajos"
+                      ? "bg-amber-400 text-black shadow-sm font-black border border-amber-300"
+                      : "text-amber-400 hover:text-amber-300 hover:bg-amber-400/10"
+                  }`}
+                >
+                  <span>📸</span>
+                  <span className="truncate">3. Trabajos ({biz.trabajos?.length || MC_DETAIL_TRABAJOS.length})</span>
                 </button>
               )}
             </div>
@@ -1274,6 +1348,185 @@ export default function AdminPage() {
                 onSave={handleSave}
                 saving={saving}
               />
+            )}
+
+            {/* SECCIÓN 4: CONOCER NUESTROS TRABAJOS (MC DETAIL) */}
+            {activeTab === "trabajos" && isMcDetail && (
+              <div className="space-y-6">
+                {/* Banner de encabezado */}
+                <div className="bg-[#121212] border border-neutral-800 rounded-2xl p-5 sm:p-7 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div>
+                    <div className="text-base sm:text-lg font-bold text-white flex items-center gap-2">
+                      <span>📸</span>
+                      <span>Conocer nuestros trabajos (Galería de Trabajos)</span>
+                    </div>
+                    <p className="text-xs sm:text-sm text-neutral-400 mt-1 max-w-2xl">
+                      Gestioná las tarjetas con fotos reales, títulos y descripción de los trabajos realizados que se muestran en tu web debajo de los servicios.
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={addTrabajo}
+                    className="self-start sm:self-auto bg-amber-400 hover:bg-amber-300 text-black font-black text-xs sm:text-sm px-4 py-2.5 rounded-xl transition-all shadow-md active:scale-95 flex items-center gap-2 cursor-pointer"
+                  >
+                    <span>+</span>
+                    <span>Agregar Trabajo</span>
+                  </button>
+                </div>
+
+                {/* Lista de trabajos */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                  {(biz.trabajos && biz.trabajos.length > 0 ? biz.trabajos : MC_DETAIL_TRABAJOS).map((trabajo, idx, arr) => (
+                    <div
+                      key={trabajo.id || `trabajo-${idx}`}
+                      className="bg-[#121212] border border-neutral-800 hover:border-neutral-700 rounded-2xl p-4 sm:p-5 flex flex-col justify-between space-y-4 shadow-lg transition-colors"
+                    >
+                      <div className="space-y-3.5">
+                        {/* Preview y selector de imagen */}
+                        <div className="aspect-[16/10] bg-[#1a1a1a] rounded-xl overflow-hidden relative border border-neutral-800 group">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={trabajo.img || "/servicios/exterior.jpg"}
+                            alt={trabajo.titulo}
+                            className="w-full h-full object-cover"
+                          />
+                          <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-3">
+                            <label className="bg-white/90 hover:bg-white text-black font-bold text-xs px-3 py-2 rounded-lg cursor-pointer shadow-md transition-all active:scale-95">
+                              Cambiar Foto
+                              <input
+                                type="file"
+                                accept="image/*"
+                                className="hidden"
+                                onChange={(e) => {
+                                  const file = e.target.files?.[0];
+                                  if (file) handleTrabajoFotoUpload(idx, file);
+                                }}
+                              />
+                            </label>
+                          </div>
+                          {trabajo.categoria && (
+                            <span className="absolute top-2 left-2 bg-black/80 border border-white/15 text-[10px] text-white font-bold px-2 py-0.5 rounded-full uppercase tracking-wider backdrop-blur-sm">
+                              {trabajo.categoria}
+                            </span>
+                          )}
+                        </div>
+
+                        {/* Input directo para cambiar foto */}
+                        <div className="flex items-center gap-2">
+                          <label className="flex-1 bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 text-neutral-300 text-xs font-semibold py-2 px-3 rounded-lg text-center cursor-pointer transition-colors">
+                            📁 Subir desde celular o PC
+                            <input
+                              type="file"
+                              accept="image/*"
+                              className="hidden"
+                              onChange={(e) => {
+                                const file = e.target.files?.[0];
+                                if (file) handleTrabajoFotoUpload(idx, file);
+                              }}
+                            />
+                          </label>
+                        </div>
+
+                        {/* Presets rápidos */}
+                        <div>
+                          <label className="block text-[11px] font-semibold text-neutral-400 mb-1">
+                            O elegir foto de catálogo:
+                          </label>
+                          <select
+                            value={PRESETS_SINGLE.some((p) => p.img === trabajo.img) ? trabajo.img : ""}
+                            onChange={(e) => {
+                              if (e.target.value) {
+                                updateTrabajo(idx, { img: e.target.value });
+                              }
+                            }}
+                            className="w-full bg-[#181818] border border-neutral-800 text-neutral-300 rounded-lg text-xs p-2 focus:border-amber-400 focus:outline-none"
+                          >
+                            <option value="">Seleccionar preset...</option>
+                            {PRESETS_SINGLE.map((preset) => (
+                              <option key={preset.label} value={preset.img}>
+                                {preset.label}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+
+                        {/* Título */}
+                        <div>
+                          <label className="block text-xs font-bold text-neutral-300 mb-1">
+                            Título del Trabajo / Servicio
+                          </label>
+                          <input
+                            type="text"
+                            value={trabajo.titulo}
+                            onChange={(e) => updateTrabajo(idx, { titulo: e.target.value })}
+                            placeholder="Ej: Tratamiento Cerámico en Audi A4"
+                            className="w-full bg-[#181818] border border-neutral-800 focus:border-neutral-600 rounded-lg text-xs sm:text-sm text-white px-3 py-2 outline-none"
+                          />
+                        </div>
+
+                        {/* Categoría */}
+                        <div>
+                          <label className="block text-xs font-bold text-neutral-300 mb-1">
+                            Categoría / Etiqueta (opcional)
+                          </label>
+                          <input
+                            type="text"
+                            value={trabajo.categoria || ""}
+                            onChange={(e) => updateTrabajo(idx, { categoria: e.target.value })}
+                            placeholder="Ej: Cerámico, PPF, Polarizado, Lavado..."
+                            className="w-full bg-[#181818] border border-neutral-800 focus:border-neutral-600 rounded-lg text-xs sm:text-sm text-white px-3 py-2 outline-none"
+                          />
+                        </div>
+
+                        {/* Descripción */}
+                        <div>
+                          <label className="block text-xs font-bold text-neutral-300 mb-1">
+                            Descripción del trabajo realizado
+                          </label>
+                          <textarea
+                            rows={3}
+                            value={trabajo.descripcion}
+                            onChange={(e) => updateTrabajo(idx, { descripcion: e.target.value })}
+                            placeholder="Detallá los pasos, productos aplicados o acabado obtenido..."
+                            className="w-full bg-[#181818] border border-neutral-800 focus:border-neutral-600 rounded-lg text-xs sm:text-sm text-white px-3 py-2 outline-none resize-none"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Botones de acción inferiores */}
+                      <div className="pt-3 border-t border-neutral-800 flex items-center justify-between gap-2">
+                        <div className="flex items-center gap-1">
+                          <button
+                            type="button"
+                            disabled={idx === 0}
+                            onClick={() => moveTrabajo(idx, "up")}
+                            className="p-1.5 rounded-lg bg-neutral-900 hover:bg-neutral-800 disabled:opacity-30 disabled:pointer-events-none text-neutral-300 text-xs border border-neutral-800 cursor-pointer"
+                            title="Subir de posición"
+                          >
+                            ▲
+                          </button>
+                          <button
+                            type="button"
+                            disabled={idx === arr.length - 1}
+                            onClick={() => moveTrabajo(idx, "down")}
+                            className="p-1.5 rounded-lg bg-neutral-900 hover:bg-neutral-800 disabled:opacity-30 disabled:pointer-events-none text-neutral-300 text-xs border border-neutral-800 cursor-pointer"
+                            title="Bajar de posición"
+                          >
+                            ▼
+                          </button>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => removeTrabajo(idx)}
+                          className="text-xs text-rose-400 hover:text-rose-300 hover:bg-rose-950/40 px-2.5 py-1.5 rounded-lg transition-colors cursor-pointer"
+                        >
+                          Eliminar
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             )}
           </div>
         )}

@@ -7,7 +7,8 @@ import type { Business, ServiceItem } from "@/data/business-helpers";
 import { waHref, mapsHref } from "@/data/business-helpers";
 import SectionDivider from "@/components/SectionDivider";
 import CompareSlider from "@/components/CompareSlider";
-import PpfColorVisualizer from "@/components/PpfColorVisualizer";
+import PpfColorVisualizer from "@/components/PpfColorVisualizer";
+import { MC_DETAIL_TRABAJOS } from "@/data/mc-detail-data";
 
 // Servicios estándar para Argentina con precios de referencia en Pesos Argentinos ($ ARS) y modismos locales
 const SERVICIOS_ARGENTINA: ServiceItem[] = [
@@ -104,7 +105,8 @@ const ITEMS_PROBLEMA_ARGENTINA = [
 ];
 
 export default function LandingArgentina({ biz }: { biz: Business }) {
-  const isCeleste = biz.color_theme === "celeste" || biz.slug === "am-centro-de-estetica-vehicular";
+  const isCeleste = biz.color_theme === "celeste" || biz.slug === "am-centro-de-estetica-vehicular";
+  const isMcDetail = biz.slug === "mc-detail-detailing" || biz.slug === "mc-detail";
   const [scrolled, setScrolled] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -185,7 +187,10 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
               )}
             </a>
             <div className="hidden md:flex items-center gap-7 text-xs uppercase tracking-widest text-slate-400">
-              <a href="#servicios" className="hover:text-white transition-colors">Servicios</a>
+              <a href="#servicios" className="hover:text-white transition-colors">Servicios</a>
+              {isMcDetail && (
+                <a href="#trabajos" className="hover:text-white transition-colors">Trabajos</a>
+              )}
               <a href="#garantia" className="hover:text-white transition-colors">Compromiso</a>
               <a href="#nosotros" className="hover:text-white transition-colors">Nosotros</a>
               <a href="#ubicacion" className="hover:text-white transition-colors">Ubicación</a>
@@ -482,7 +487,83 @@ export default function LandingArgentina({ biz }: { biz: Business }) {
         </div>
       </section>
 
-      {/* 5. GARANTÍA & COMPROMISO */}
+            {/* 4.1 SECCIÓN: CONOCER NUESTROS TRABAJOS (Exclusivo Mc Detail) */}
+      {isMcDetail && (
+        <section id="trabajos" className="px-5 sm:px-8 py-20 bg-[#0a0a0a] relative border-t border-white/5">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-14 max-w-2xl mx-auto">
+              <span className="section-badge mb-5">
+                Galería de Resultados
+              </span>
+              <h2 className="text-3xl md:text-5xl font-medium text-gold mb-4">
+                Conocer nuestros trabajos
+              </h2>
+              <p className="text-slate-400 text-sm sm:text-base">
+                Cada auto que ingresa a nuestro estudio en Neuquén recibe dedicación artesanal, luz de inspección técnica y un acabado de showroom real.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+              {((biz.trabajos && biz.trabajos.length > 0) ? biz.trabajos : MC_DETAIL_TRABAJOS).map((trabajo, idx) => {
+                const consultMsg = `Hola! Vi el trabajo "${trabajo.titulo}" en la web de ${biz.nombre} y me gustaría pedir presupuesto o asesoramiento para mi auto.`;
+                const consultHref = biz.whatsapp
+                  ? `https://wa.me/${biz.whatsapp}?text=${encodeURIComponent(consultMsg)}`
+                  : waHref(biz, consultMsg);
+
+                return (
+                  <div
+                    key={trabajo.id || `${trabajo.titulo}-${idx}`}
+                    className="product-card rounded-[24px] overflow-hidden flex flex-col justify-between border border-white/10 hover:border-white/25 transition duration-300 group shadow-lg"
+                    style={{ background: "#101010" }}
+                  >
+                    <div>
+                      <div className="aspect-[16/10] overflow-hidden relative bg-[#141414]">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={trabajo.img}
+                          alt={trabajo.titulo}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          loading="lazy"
+                        />
+                        {trabajo.categoria && (
+                          <div className="absolute top-3 left-3 backdrop-blur-md px-2.5 py-1 rounded-full border text-[10px] font-bold uppercase tracking-wider bg-black/75 border-white/15 text-white">
+                            {trabajo.categoria}
+                          </div>
+                        )}
+                      </div>
+
+                      <div className="p-6">
+                        <h3 className="text-lg font-bold text-white mb-2 group-hover:text-amber-400 transition-colors">
+                          {trabajo.titulo}
+                        </h3>
+                        <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
+                          {trabajo.descripcion}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="p-6 pt-0">
+                      <a
+                        href={consultHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs sm:text-sm font-semibold text-neutral-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 transition-all duration-200"
+                      >
+                        <span>Pedir Presupuesto Similar</span>
+                        <svg className="w-4 h-4 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+
+{/* 5. GARANTÍA & COMPROMISO */}
       <section id="garantia" className="relative px-5 sm:px-8 pt-24 pb-32 sm:pb-36" style={{ background: "#101010" }}>
         <SectionDivider edge="top" shape="asymmetric" mirror />
         <SectionDivider edge="bottom" />

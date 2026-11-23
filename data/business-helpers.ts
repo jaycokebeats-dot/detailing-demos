@@ -13,6 +13,14 @@ export type ServiceItem = {
   modo_foto?: "before_after" | "single";
 };
 
+export type TrabajoItem = {
+  id?: string;
+  titulo: string;
+  descripcion: string;
+  categoria?: string;
+  img: string;
+};
+
 export type VehiculoId = "auto" | "suv2" | "pickup" | "suv3" | "van";
 
 export type CotizadorPlatinumServicio = {
@@ -110,6 +118,7 @@ export type Business = {
   hero_titulo_gold?: string;
   hero_subtitulo?: string;
   cotizador_platinum?: CotizadorPlatinumConfig;
+  trabajos?: TrabajoItem[];
 };
 
 export const MSG_PRESUPUESTO = "Hola! Quiero pedir un presupuesto para mi auto.";
