@@ -309,22 +309,15 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
         </header>
       </div>
 
-      {/* 2. HERO (Plantilla argentina con las 3 categorías) */}
-      <section id="hero" className="relative min-h-[100dvh] pt-20 sm:pt-24 pb-8 sm:pb-12 px-4 sm:px-6 overflow-hidden flex items-center justify-center">
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-60 contrast-105 pointer-events-none"
-          src={biz.video_hero ?? "/videos/hero-compilado-blanco.mp4"}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/55 to-black/75" />
+      {/* 2. HERO — OPCIÓN 1 (Fondo oscuro elegante + Las 3 publicaciones donde Detailing tiene su propio video) */}
+      <section id="hero" className="relative min-h-[100dvh] pt-20 sm:pt-24 pb-12 sm:pb-16 px-4 sm:px-6 overflow-hidden flex items-center justify-center bg-[#070707]">
+        {/* Fondo oscuro limpio con halos sutiles */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-10%,rgba(212,175,55,0.09),rgba(255,255,255,0))]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(16,185,129,0.04),transparent_40%)]" />
 
-        <div className="relative z-10 max-w-4xl mx-auto w-full flex flex-col justify-center items-center text-center px-2 py-6">
+        <div className="relative z-10 max-w-5xl mx-auto w-full flex flex-col justify-center items-center text-center px-2 py-4">
           {/* Badge Haedo */}
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-white/10 bg-white/5 text-[11px] sm:text-xs font-medium text-slate-300 mb-2">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-white/10 bg-white/5 text-[11px] sm:text-xs font-medium text-slate-300 mb-3 backdrop-blur-md">
             <span className="flex size-1.5 sm:size-2 rounded-full shrink-0 animate-pulse bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
             <span>Haedo, Buenos Aires</span>
             <span className="text-slate-500">·</span>
@@ -336,105 +329,131 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
             DI LO <span className="text-gold">CENTER</span>
           </h1>
 
-          <p className="text-xs sm:text-sm text-slate-300 max-w-lg mx-auto font-light leading-relaxed mb-6">
-            Centro Integral Automotor en Haedo. Elegí el área para tu vehículo:
+          <p className="text-xs sm:text-sm text-slate-400 max-w-lg mx-auto font-light leading-relaxed mb-8">
+            Centro Integral Automotor en Haedo. Seleccioná el área para tu vehículo:
           </p>
 
-          {/* 3 CATEGORÍAS (Di Lorenzo Detailing activa, Venta y Mecánica en espera) */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full max-w-2xl mx-auto mb-6">
-            {/* 1. Di Lorenzo Detailing (ACTIVO -> baja a Nuestros Servicios) */}
+          {/* 3 PUBLICACIONES RECTANGULARES (Detailing con su propio video adentro, Venta y Mecánica con fotos temáticas) */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 w-full max-w-5xl mx-auto mb-8">
+            {/* 1. Di Lorenzo Detailing (ACTIVO CON SU PROPIO VIDEO ADENTRO) */}
             <a
               href="#servicios"
-              className="group p-4 rounded-2xl border border-amber-400/40 bg-zinc-950/80 hover:bg-zinc-900 hover:border-amber-400 transition-all text-left flex flex-col justify-between shadow-lg shadow-amber-500/10 active:scale-98"
+              className="group relative h-[360px] xs:h-[400px] sm:h-[430px] rounded-[26px] overflow-hidden border border-amber-400/50 hover:border-amber-400 transition-all duration-500 shadow-2xl shadow-amber-500/10 flex flex-col justify-between p-6 text-left active:scale-[0.99]"
             >
-              <div>
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-[10px] uppercase font-bold tracking-widest text-amber-300 px-2 py-0.5 rounded-full bg-amber-400/15 border border-amber-400/30">
-                    Activo
-                  </span>
-                  <HiOutlineSparkles className="size-4 text-amber-400 group-hover:rotate-12 transition-transform" />
+              {/* Video en loop dentro de la publicación */}
+              <video
+                ref={videoRef}
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 pointer-events-none"
+                src={biz.video_hero ?? "/videos/hero-compilado-blanco.mp4"}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/60 pointer-events-none" />
+
+              {/* Header de la card */}
+              <div className="relative z-10 flex items-center justify-between">
+                <span className="text-[11px] uppercase font-bold tracking-widest text-amber-300 px-3 py-1 rounded-full bg-black/70 backdrop-blur-md border border-amber-400/30 shadow-lg">
+                  Activo
+                </span>
+                <div className="w-8 h-8 rounded-full bg-black/60 backdrop-blur-md border border-white/15 flex items-center justify-center text-amber-400 group-hover:rotate-12 transition-transform">
+                  <HiOutlineSparkles className="size-4" />
                 </div>
-                <h2 className="font-bold text-base text-white group-hover:text-amber-300 transition-colors">
+              </div>
+
+              {/* Footer de la card */}
+              <div className="relative z-10 space-y-2">
+                <h2 className="font-extrabold text-xl sm:text-2xl text-white group-hover:text-amber-300 transition-colors leading-tight drop-shadow-md">
                   Di Lorenzo Detailing
                 </h2>
-                <p className="text-[11px] text-slate-400 mt-1 leading-snug">
-                  Tratamientos cerámicos, pulido, ópticas, tapizados y PPF.
+                <p className="text-xs text-slate-200 leading-relaxed drop-shadow-sm font-light">
+                  Tratamientos cerámicos, abrillantado, restauración de ópticas, tapizados y PPF.
                 </p>
-              </div>
-              <span className="text-[11px] text-amber-400 font-semibold inline-flex items-center gap-1 mt-3">
-                Ver Servicios →
-              </span>
-            </a>
-
-            {/* 2. Venta Automotor (Deshabilitado / Próximamente) */}
-            <div
-              className="p-4 rounded-2xl border border-white/10 bg-zinc-950/40 text-left flex flex-col justify-between opacity-60 cursor-not-allowed select-none"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-[10px] uppercase font-bold tracking-widest text-slate-400 px-2 py-0.5 rounded-full bg-white/5 border border-white/10">
-                    Próximamente
+                <div className="pt-2">
+                  <span className="btn-gold inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg group-hover:shadow-amber-400/20 transition-all">
+                    Ver Servicios →
                   </span>
                 </div>
-                <h2 className="font-bold text-base text-slate-300">
+              </div>
+            </a>
+
+            {/* 2. Venta Automotor (FOTO TEMÁTICA DE AGENCIA / PRÓXIMAMENTE) */}
+            <div
+              className="relative h-[360px] xs:h-[400px] sm:h-[430px] rounded-[26px] overflow-hidden border border-white/10 flex flex-col justify-between p-6 text-left opacity-75 select-none"
+            >
+              <img
+                src="/ec-detail/foto-1.jpg"
+                alt="Venta Automotor en Haedo"
+                className="absolute inset-0 w-full h-full object-cover filter brightness-[0.45] contrast-105 pointer-events-none"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/70 pointer-events-none" />
+
+              {/* Header */}
+              <div className="relative z-10 flex items-center justify-between">
+                <span className="text-[11px] uppercase font-bold tracking-widest text-slate-300 px-3 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/15">
+                  Próximamente
+                </span>
+              </div>
+
+              {/* Footer */}
+              <div className="relative z-10 space-y-2">
+                <h2 className="font-bold text-xl sm:text-2xl text-slate-200 leading-tight">
                   Venta Automotor
                 </h2>
-                <p className="text-[11px] text-slate-400 mt-1 leading-snug">
-                  Autos seminuevos seleccionados y consignaciones.
+                <p className="text-xs text-slate-400 leading-relaxed font-light">
+                  Vehículos seminuevos seleccionados, peritados mecánicamente y consignaciones.
                 </p>
-              </div>
-              <span className="text-[11px] text-slate-500 font-medium mt-3">
-                En preparación
-              </span>
-            </div>
-
-            {/* 3. Mecánica Ligera (Deshabilitado / Próximamente) */}
-            <div
-              className="p-4 rounded-2xl border border-white/10 bg-zinc-950/40 text-left flex flex-col justify-between opacity-60 cursor-not-allowed select-none"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-[10px] uppercase font-bold tracking-widest text-slate-400 px-2 py-0.5 rounded-full bg-white/5 border border-white/10">
-                    Próximamente
+                <div className="pt-2">
+                  <span className="inline-flex items-center px-4 py-2 rounded-full text-xs font-semibold text-slate-400 bg-white/5 border border-white/10">
+                    En preparación
                   </span>
                 </div>
-                <h2 className="font-bold text-base text-slate-300">
+              </div>
+            </div>
+
+            {/* 3. Mecánica Ligera (FOTO TEMÁTICA DE TALLER / PRÓXIMAMENTE) */}
+            <div
+              className="relative h-[360px] xs:h-[400px] sm:h-[430px] rounded-[26px] overflow-hidden border border-white/10 flex flex-col justify-between p-6 text-left opacity-75 select-none"
+            >
+              <img
+                src="/before-after/motor-despues.jpg"
+                alt="Mecánica Ligera en Haedo"
+                className="absolute inset-0 w-full h-full object-cover filter brightness-[0.45] contrast-105 pointer-events-none"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/70 pointer-events-none" />
+
+              {/* Header */}
+              <div className="relative z-10 flex items-center justify-between">
+                <span className="text-[11px] uppercase font-bold tracking-widest text-slate-300 px-3 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/15">
+                  Próximamente
+                </span>
+              </div>
+
+              {/* Footer */}
+              <div className="relative z-10 space-y-2">
+                <h2 className="font-bold text-xl sm:text-2xl text-slate-200 leading-tight">
                   Mecánica Ligera
                 </h2>
-                <p className="text-[11px] text-slate-400 mt-1 leading-snug">
-                  Service preventivo, frenos, distribución y fluidos.
+                <p className="text-xs text-slate-400 leading-relaxed font-light">
+                  Service preventivo, fluidos, frenos, distribución y mantenimiento integral.
                 </p>
+                <div className="pt-2">
+                  <span className="inline-flex items-center px-4 py-2 rounded-full text-xs font-semibold text-slate-400 bg-white/5 border border-white/10">
+                    En preparación
+                  </span>
+                </div>
               </div>
-              <span className="text-[11px] text-slate-500 font-medium mt-3">
-                En preparación
-              </span>
             </div>
           </div>
 
-          {/* Botones de acción complementarios */}
-          <div className="flex flex-row items-center justify-center gap-2 sm:gap-3 w-full max-w-sm sm:max-w-md mx-auto pt-1 px-1 mb-4">
-            <a
-              href={waHref(biz, msgPresupuesto)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-gold group flex-1 px-3 sm:px-6 py-2.5 sm:py-3 min-h-[42px] sm:min-h-[44px] rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wide active:scale-95 transition-all flex items-center justify-center gap-1.5 sm:gap-2 whitespace-nowrap text-center"
-            >
-              <FaWhatsapp aria-hidden className="size-3.5 sm:size-4 shrink-0" />
-              <span className="whitespace-nowrap">Pedir Presupuesto</span>
-            </a>
-            <a
-              href="#servicios"
-              className="btn-outline-gold group flex-1 px-3 sm:px-6 py-2.5 sm:py-3 min-h-[42px] sm:min-h-[44px] rounded-full text-xs sm:text-sm font-semibold uppercase active:scale-95 transition-all flex items-center justify-center gap-1.5 sm:gap-2 whitespace-nowrap text-center"
-            >
-              <HiOutlineSparkles aria-hidden className="size-3.5 sm:size-4 shrink-0" />
-              <span className="whitespace-nowrap">Ver Servicios</span>
-            </a>
-          </div>
-
-          <div className="flex flex-wrap items-center justify-center gap-x-3 sm:gap-x-5 gap-y-1 pt-1 text-[11px] sm:text-xs text-slate-300">
+          {/* Social Proof Stats */}
+          <div className="flex flex-wrap items-center justify-center gap-x-4 sm:gap-x-6 gap-y-1.5 pt-2 text-[11px] sm:text-xs text-slate-400">
             {stats.map((item) => (
-              <span key={item} className="inline-flex items-center gap-1">
-                <HiOutlineCheckCircle aria-hidden className="size-3.5 sm:size-4 shrink-0 text-gold" />
+              <span key={item} className="inline-flex items-center gap-1.5">
+                <HiOutlineCheckCircle aria-hidden className="size-4 shrink-0 text-gold" />
                 {item}
               </span>
             ))}
