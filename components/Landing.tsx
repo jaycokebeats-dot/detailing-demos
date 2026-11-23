@@ -13,8 +13,13 @@ import LandingSpain from "./spain/LandingSpain";
 import LandingMexico from "./mexico/LandingMexico";
 import LandingArgentina from "./argentina/LandingArgentina";
 import LandingJds from "./argentina/LandingJds";
+import LandingDiLorenzo from "./argentina/LandingDiLorenzo";
 
 export default function Landing({ biz }: { biz: Business }) {
+  if (biz.slug === "di-lorenzo-detailing" || biz.slug === "di-lorenzo" || biz.slug === "di-lo-center") {
+    return <LandingDiLorenzo biz={biz} />;
+  }
+
   if (biz.slug === "jds-detailing" || biz.slug === "jds-detailing-car-estudio") {
     return <LandingJds biz={biz} />;
   }
@@ -31,7 +36,6 @@ export default function Landing({ biz }: { biz: Business }) {
     biz.pais === "AR" ||
     biz.template === "argentina" ||
     biz.slug === "gli-stance" ||
-    biz.slug === "di-lorenzo-detailing" ||
     !biz.pais
   ) {
     return <LandingArgentina biz={biz} />;
