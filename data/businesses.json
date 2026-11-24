@@ -80828,5 +80828,480 @@
     "pais": "MX",
     "place_id": "0x85d10a08e8d28825:0xb0845dbbc8c89d82",
     "template": "mexico"
+  },
+  {
+    "slug": "perfect-paint",
+    "nombre": "Perfect Paint",
+    "ciudad": "Aguascalientes, Ags.",
+    "direccion": "Av. Aguascalientes Pte. 1203, Las Brisas, 20010 Aguascalientes, Ags., México",
+    "telefono": "44 9507 8880",
+    "whatsapp": "524495078880",
+    "instagram": null,
+    "rating": 4.7,
+    "reviews_count": 40,
+    "reviewDates": [
+      "Hace 2 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Perfect+Paint/data=!4m7!3m6!1s0x8429eeec64f887e1:0x34a76fa7025d4a9d!8m2!3d21.8956926!4d-102.316883!16s%2Fg%2F11b6p6nq6b!19sChIJ4Yf4ZOzuKYQRnUpdAqdvpzQ?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExOC4xIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x8429eeec64f887e1:0x34a76fa7025d4a9d",
+    "template": "mexico"
+  },
+  {
+    "slug": "autopaint-pro",
+    "nombre": "AUTOPAINT PRO",
+    "ciudad": "San Luis Potosí, S.L.P.",
+    "direccion": "Laguna de Términos 1014-a, San Luis Rey, 78350 San Luis Potosí, S.L.P., México",
+    "telefono": "44 4667 8888",
+    "whatsapp": "524446678888",
+    "instagram": null,
+    "rating": 4.8,
+    "reviews_count": 24,
+    "reviewDates": [
+      "Hace 4 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/AUTOPAINT+PRO/data=!4m7!3m6!1s0x842aa320d11972c3:0x87a65e530caebc74!8m2!3d22.134276!4d-100.9597235!16s%2Fg%2F11hr3qczcz!19sChIJw3IZ0SCjKoQRdLyuDFNepoc?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExOC4xIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x842aa320d11972c3:0x87a65e530caebc74",
+    "template": "mexico"
+  },
+  {
+    "slug": "detallado-credi-autos-gp",
+    "nombre": "Detallado Credi-Autos GP",
+    "ciudad": "Ciudad Juárez, Chih.",
+    "direccion": "Av. Ejército Nacional 4421, San José, 32390 Juárez, Chih., México",
+    "telefono": "65 6817 5874",
+    "whatsapp": "526568175874",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 3,
+    "reviewDates": [
+      "2 semanas atrás"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Detallado+Credi-Autos+GP/data=!4m7!3m6!1s0x86e75f7cee173749:0x84ebdffcc491ad2b!8m2!3d31.7150172!4d-106.4485706!16s%2Fg%2F11z_3h510y!19sChIJSTcX7nxf54YRK62RxPzf64Q?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExOC4xIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x86e75f7cee173749:0x84ebdffcc491ad2b",
+    "template": "mexico"
+  },
+  {
+    "slug": "grupo-impercoat",
+    "nombre": "Grupo Impercoat",
+    "ciudad": "Xalapa, Ver.",
+    "direccion": "Av. Adolfo Ruiz Cortines 1115, Francisco Ferrer Guardia, 91050 Xalapa-Enríquez, Ver., México",
+    "telefono": "22 8814 9861",
+    "whatsapp": "522288149861",
+    "instagram": null,
+    "rating": 4.6,
+    "reviews_count": 10,
+    "reviewDates": [
+      "Hace 5 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Grupo+Impercoat/data=!4m7!3m6!1s0x85db2e0958b5feab:0xefa70edb34e20a9f!8m2!3d19.5357247!4d-96.9368389!16s%2Fg%2F1tmxfxqh!19sChIJq_61WAku24URnwriNNsOp-8?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExOC4xIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85db2e0958b5feab:0xefa70edb34e20a9f",
+    "template": "mexico"
+  },
+  {
+    "slug": "spa-automotriz-racing",
+    "nombre": "Spa Automotriz Racing",
+    "ciudad": "Tlalpan, CDMX",
+    "direccion": "Calz. de las Bombas 817, Coapa, Cafetales II, Coyoacán, 04918 Ciudad de México, CDMX, México",
+    "telefono": "55 5437 6489",
+    "whatsapp": "525554376489",
+    "instagram": null,
+    "rating": 4.6,
+    "reviews_count": 93,
+    "reviewDates": [
+      "Editado Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Spa+Automotriz+Racing/data=!4m7!3m6!1s0x85ce018eb4647707:0xfd472d460ee54a18!8m2!3d19.3098101!4d-99.1071292!16s%2Fg%2F1q6qbmn1x!19sChIJB3dktI4BzoURGErlDkYtR_0?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExOC4xIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85ce018eb4647707:0xfd472d460ee54a18",
+    "template": "mexico"
+  },
+  {
+    "slug": "express-detailing-el-mejor-detallado-automotriz",
+    "nombre": "Express Detailing - El mejor detallado automotriz",
+    "ciudad": "Álvaro Obregón, CDMX",
+    "direccion": "Ricardo Castro 54-201-A, Guadalupe Inn, Álvaro Obregón, 01020 Ciudad de México, CDMX, México",
+    "telefono": "55 3259 0305",
+    "whatsapp": "525532590305",
+    "instagram": null,
+    "rating": 4.9,
+    "reviews_count": 81,
+    "reviewDates": [
+      "Hace 3 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Express+Detailing+-+El+mejor+detallado+automotriz/data=!4m7!3m6!1s0x85d1fffe727f5bf5:0x703c2d17ab764efb!8m2!3d19.3553929!4d-99.1874191!16s%2Fg%2F11syt9kqm5!19sChIJ9Vt_cv7_0YUR-052qxctPHA?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExOC4xIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85d1fffe727f5bf5:0x703c2d17ab764efb",
+    "template": "mexico"
+  },
+  {
+    "slug": "servicio-integral-spa-auto",
+    "nombre": "SERVICIO INTEGRAL SPA AUTO",
+    "ciudad": "Álvaro Obregón, CDMX",
+    "direccion": "Desierto de los Leones, Tetelpan, Álvaro Obregón, 01700 Ciudad de México, CDMX, México",
+    "telefono": "55 2520 0282",
+    "whatsapp": "525525200282",
+    "instagram": null,
+    "rating": 4.8,
+    "reviews_count": 5,
+    "reviewDates": [
+      "3 semanas atrás"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/SERVICIO+INTEGRAL+%22SPA+AUTO%22/data=!4m7!3m6!1s0x85d2015a3ab00511:0xd7bab39a7bc7a300!8m2!3d19.341411!4d-99.232051!16s%2Fg%2F11gh_2b5h6!19sChIJEQWwOloB0oURAKPHe5qzutc?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExOC4xIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85d2015a3ab00511:0xd7bab39a7bc7a300",
+    "template": "mexico"
+  },
+  {
+    "slug": "spa-cars-periferico",
+    "nombre": "Spa Cars Periférico",
+    "ciudad": "Álvaro Obregón, CDMX",
+    "direccion": "Blvd. Adolfo López Mateos 282, San Pedro de los Pinos, Álvaro Obregón, 01180 Ciudad de México, CDMX, México",
+    "telefono": "55 8370 1197",
+    "whatsapp": "525583701197",
+    "instagram": null,
+    "rating": 4.1,
+    "reviews_count": 41,
+    "reviewDates": [
+      "Hace 5 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Spa+Cars+Perif%C3%A9rico/data=!4m7!3m6!1s0x85d2038cd851cf7d:0x3427a828a9c630c4!8m2!3d19.3893205!4d-99.1899652!16s%2Fg%2F11j24g0830!19sChIJfc9R2IwD0oURxDDGqSioJzQ?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExOC4xIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85d2038cd851cf7d:0x3427a828a9c630c4",
+    "template": "mexico"
+  },
+  {
+    "slug": "autopaint-duran",
+    "nombre": "AUTOPAINT DURÁN",
+    "ciudad": "Los Reyes Acaquilpan, Méx.",
+    "direccion": "Av. Simon Bolívar 47-155, Los Reyes, 56400 Los Reyes Acaquilpan, Méx., México",
+    "telefono": "55 6562 5508",
+    "whatsapp": "525565625508",
+    "instagram": null,
+    "rating": 4.0,
+    "reviews_count": 6,
+    "reviewDates": [
+      "Hace 4 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/AUTOPAINT+DUR%C3%81N/data=!4m7!3m6!1s0x85d1e38f2a534489:0x5cccb7d1afce716!8m2!3d19.3561798!4d-98.9801393!16s%2Fg%2F11ft1ccv6n!19sChIJiURTKo_j0YURFuf8Gn3LzAU?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExOC4xIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85d1e38f2a534489:0x5cccb7d1afce716",
+    "template": "mexico"
+  },
+  {
+    "slug": "detallado-automotriz-glytter-cars-deluxe",
+    "nombre": "Detallado automotriz Glytter Cars Deluxe",
+    "ciudad": "Chalco, Méx.",
+    "direccion": "Cs1 contra esquina del CBT 5 de Cupido, C. Río Ameca Manzana 135 Lote 11, Los Héroes Chalco, 56644 Chalco de Díaz Covarrubias, Méx., México",
+    "telefono": "56 1961 6468",
+    "whatsapp": "525619616468",
+    "instagram": null,
+    "rating": 4.1,
+    "reviews_count": 13,
+    "reviewDates": [
+      "Hace 5 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Detallado+automotriz+Glytter+Cars+Deluxe/data=!4m7!3m6!1s0x85ce19b1c11d909b:0xaff8f14450f76ec7!8m2!3d19.2586497!4d-98.8404625!16s%2Fg%2F11vhqr6kds!19sChIJm5AdwbEZzoURx273UETx-K8?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExOC4xIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85ce19b1c11d909b:0xaff8f14450f76ec7",
+    "template": "mexico"
+  },
+  {
+    "slug": "pulido-truck-sucursal-filial-chalco",
+    "nombre": "Pulido truck sucursal filial chalco",
+    "ciudad": "Chalco, Méx.",
+    "direccion": "Calle Anitas 52, Casco de San Juan, 56600 Chalco de Díaz Covarrubias, Méx., México",
+    "telefono": "33 1108 8420",
+    "whatsapp": "523311088420",
+    "instagram": null,
+    "rating": 4.5,
+    "reviews_count": 2,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Pulido+truck+sucursal+filial+%22chalco%22/data=!4m7!3m6!1s0x85ce1f1a80bedbc3:0xce4ac36e975c1a8b!8m2!3d19.2710499!4d-98.8833428!16s%2Fg%2F11sckpjrwy!19sChIJw9u-gBofzoURixpcl27DSs4?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExOC4xIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85ce1f1a80bedbc3:0xce4ac36e975c1a8b",
+    "template": "mexico"
+  },
+  {
+    "slug": "estetica-super-rally-car-wash-1",
+    "nombre": "Estética super rally car wash 1",
+    "ciudad": "Temixco, Mor.",
+    "direccion": "Plutarco Elías Calles sin número, 62587 Temixco, Mor., México",
+    "telefono": "77 7441 2348",
+    "whatsapp": "527774412348",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 5,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Est%C3%A9tica+super+rally+car+wash+1/data=!4m7!3m6!1s0x85cdd9006d5cae33:0xfa554f1f79e41ce!8m2!3d18.8382776!4d-99.2322511!16s%2Fg%2F11x2h3ztn_!19sChIJM65cbQDZzYURzkGe9_FUpQ8?authuser=0&hl=es-419&g_ep=EgoyMDI2MTEyMi4wIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85cdd9006d5cae33:0xfa554f1f79e41ce",
+    "template": "mexico"
+  },
+  {
+    "slug": "estetica-ernes-en-cholula-puebla",
+    "nombre": "Estética Erne's en Cholula Puebla",
+    "ciudad": "San Pedro Cholula, Pue.",
+    "direccion": "Calle 5 Nte. 1813, Barrio de Santiago Mixquitla, 72760 San Pedro Cholula, Pue., México",
+    "telefono": "22 2325 9695",
+    "whatsapp": "522223259695",
+    "instagram": null,
+    "rating": 4.8,
+    "reviews_count": 245,
+    "reviewDates": [
+      "Hace 2 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Est%C3%A9tica+Erne%27s+en+Cholula+Puebla/data=!4m7!3m6!1s0x85cfc621d28246c3:0x5024c7ebcabecbac!8m2!3d19.0711413!4d-98.3060752!16s%2Fg%2F11b7k0vbjx!19sChIJw0aC0iHGz4URrMu-yuvHJFA?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExOC4xIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85cfc621d28246c3:0x5024c7ebcabecbac",
+    "template": "mexico"
+  },
+  {
+    "slug": "europro-autospa",
+    "nombre": "Europro. Autospa",
+    "ciudad": "San Juan del Río, Qro.",
+    "direccion": "Río Conca 102, San Cayetano, 76806 San Juan del Río, Qro., México",
+    "telefono": "42 7111 2903",
+    "whatsapp": "524271112903",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 2,
+    "reviewDates": [
+      "Hace 10 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Europro.+Autospa/data=!4m7!3m6!1s0x85d30b00524ac37b:0xea86b8f67a2ee8b2!8m2!3d20.385254!4d-99.9792526!16s%2Fg%2F11zkpfpt8w!19sChIJe8NKUgAL04URsugueva4huo?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExOC4xIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85d30b00524ac37b:0xea86b8f67a2ee8b2",
+    "template": "mexico"
+  },
+  {
+    "slug": "pulido",
+    "nombre": "Pulido",
+    "ciudad": "Veracruz, Ver.",
+    "direccion": "Av. Cuauhtémoc 3520, Centro, 91700 Veracruz, Ver., México",
+    "telefono": "22 9143 0125",
+    "whatsapp": "522291430125",
+    "instagram": null,
+    "rating": 4.5,
+    "reviews_count": 71,
+    "reviewDates": [
+      "Hace 7 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Pulido/data=!4m7!3m6!1s0x85c346adb718c4ad:0xa70f72d08afabb79!8m2!3d19.1865419!4d-96.1455853!16s%2Fg%2F11ckvl9_c_!19sChIJrcQYt61Gw4URebv6itByD6c?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExOC4xIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85c346adb718c4ad:0xa70f72d08afabb79",
+    "template": "mexico"
+  },
+  {
+    "slug": "algo-dlux-autodetallado",
+    "nombre": "ALGO D'LUX Autodetallado",
+    "ciudad": "Tepic, Nay.",
+    "direccion": "Av Insurgentes 2270, Burócrata Federal, 63156 Tepic, Nay., México",
+    "telefono": "31 1147 8737",
+    "whatsapp": "523111478737",
+    "instagram": null,
+    "rating": 4.3,
+    "reviews_count": 6,
+    "reviewDates": [
+      "2 semanas atrás"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/ALGO+D%27LUX+Autodetallado/data=!4m7!3m6!1s0x84273703158bff73:0x82b9aef837061f35!8m2!3d21.4817731!4d-104.875932!16s%2Fg%2F11j5k03g27!19sChIJc_-LFQM3J4QRNR8GN_iuuYI?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExOC4xIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x84273703158bff73:0x82b9aef837061f35",
+    "template": "mexico"
+  },
+  {
+    "slug": "pulidores-tenorio",
+    "nombre": "PULIDORES TENORIO",
+    "ciudad": "Cabo San Lucas, B.C.S.",
+    "direccion": "23473, Cerro de Los Venados, 23470 Cabo San Lucas, B.C.S., México",
+    "telefono": "62 4165 7826",
+    "whatsapp": "526241657826",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 6,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/PULIDORES+TENORIO/data=!4m7!3m6!1s0x86af4b04fdba686d:0x4f248714740f6c97!8m2!3d22.8940312!4d-109.9361386!16s%2Fg%2F11g4lzmc_y!19sChIJbWi6_QRLr4YRl2wPdBSHJE8?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExOC4xIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x86af4b04fdba686d:0x4f248714740f6c97",
+    "template": "mexico"
+  },
+  {
+    "slug": "detail-autosa",
+    "nombre": "Detail Autosa",
+    "ciudad": "Reynosa, Tamps.",
+    "direccion": "Blvd. Las Fuentes 1555, Las Fuentes, 88740 Reynosa, Tamps., México",
+    "telefono": "89 9246 3549",
+    "whatsapp": "528992463549",
+    "instagram": null,
+    "rating": 4.4,
+    "reviews_count": 7,
+    "reviewDates": [
+      "Hace 5 días"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Detail+Autosa/data=!4m7!3m6!1s0x866505ad7176b3b9:0xe67b09880a121d04!8m2!3d26.0696777!4d-98.3164563!16s%2Fg%2F11t2l9t9_l!19sChIJubN2ca0FZYYRBB0SCogJe-Y?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExOC4xIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x866505ad7176b3b9:0xe67b09880a121d04",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-spa-j-336",
+    "nombre": "Autolavado SPA J-336",
+    "ciudad": "Tuxpan, Ver.",
+    "direccion": "Victoria 4, Rosa Maria, 92860 Túxpam de Rodríguez Cano, Ver., México",
+    "telefono": "78 3116 2042",
+    "whatsapp": "527831162042",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 3,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+SPA+J-33:6/data=!4m7!3m6!1s0x85d98b001380c0cd:0x93079fe15046ba71!8m2!3d20.9545399!4d-97.4160122!16s%2Fg%2F11x716f9cr!19sChIJzcCAEwCL2YURcbpGUOGfB5M?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExOC4xIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85d98b001380c0cd:0x93079fe15046ba71",
+    "template": "mexico"
+  },
+  {
+    "slug": "motors-exclusive-detailing",
+    "nombre": "Motors Exclusive Detailing",
+    "ciudad": "Manzanillo, Col.",
+    "direccion": "Av. Manzanillo 409, 28864 Manzanillo, Col., México",
+    "telefono": "31 4144 0842",
+    "whatsapp": "523141440842",
+    "instagram": null,
+    "rating": 5.0,
+    "reviews_count": 3,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Motors+Exclusive+Detailing/data=!4m7!3m6!1s0x8424d7b7961d3e9b:0xc5d401b2a243845a!8m2!3d19.1322495!4d-104.3330737!16s%2Fg%2F11tp38vmml!19sChIJmz4dlrfXJIQRWoRDorIB1MU?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExOC4xIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x8424d7b7961d3e9b:0xc5d401b2a243845a",
+    "template": "mexico"
+  },
+  {
+    "slug": "autolavado-coesa-autodetallado",
+    "nombre": "Autolavado COESA autodetallado",
+    "ciudad": "Monclova, Coah.",
+    "direccion": "Penjamo de Hidalgo 134, Pipila, 25748 Monclova, Coah., México",
+    "telefono": "86 6277 0641",
+    "whatsapp": "528662770641",
+    "instagram": null,
+    "rating": 4.2,
+    "reviews_count": 5,
+    "reviewDates": [
+      "una semana atrás"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Autolavado+COESA+autodetallado/data=!4m7!3m6!1s0x868bcd6c3814be99:0x98e71e023ba8fd17!8m2!3d26.9194916!4d-101.4011047!16s%2Fg%2F11r3z_jr7k!19sChIJmb4UOGzNi4YRF_2oOwIe55g?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExOC4xIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x868bcd6c3814be99:0x98e71e023ba8fd17",
+    "template": "mexico"
+  },
+  {
+    "slug": "grand-lavado-detallado-pintura",
+    "nombre": "GRAND lavado detallado pintura",
+    "ciudad": "Dolores Hidalgo, Gto.",
+    "direccion": "Calle margaritas. 23 C.I.N Gto MX, Calzada de los héroes 146A, Las Flores, 37800 Dolores Hidalgo Cuna de la Independencia Nacional, Gto., México",
+    "telefono": "41 8101 1386",
+    "whatsapp": "524181011386",
+    "instagram": null,
+    "rating": 4.7,
+    "reviews_count": 3,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/GRAND+*lavado+*detallado+*pintura/data=!4m7!3m6!1s0x842b3f75415f8613:0xedf30e8f28fd7386!8m2!3d21.151904!4d-100.9123719!16s%2Fg%2F11r7gr4c89!19sChIJE4ZfQXU_K4QRhnP9KI8O8-0?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExOC4xIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x842b3f75415f8613:0xedf30e8f28fd7386",
+    "template": "mexico"
+  },
+  {
+    "slug": "splash-cars-spa",
+    "nombre": "Splash Car's Spa",
+    "ciudad": "Coyoacán, CDMX",
+    "direccion": "Av. Antonio Delfin Madrigal 139, Copilco el Alto, Coyoacán, 04360 Ciudad de México, CDMX, México",
+    "telefono": "55 5161 6316",
+    "whatsapp": "525551616316",
+    "instagram": null,
+    "rating": 4.2,
+    "reviews_count": 290,
+    "reviewDates": [
+      "Hace 4 meses"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Splash+Car%27s+Spa/data=!4m7!3m6!1s0x85ce0144b34f01f5:0x88fa1755ad739b7b!8m2!3d19.3301101!4d-99.173706!16s%2Fg%2F11h047msys!19sChIJ9QFPs0QBzoURe5tzrVUX-og?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExOC4xIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85ce0144b34f01f5:0x88fa1755ad739b7b",
+    "template": "mexico"
+  },
+  {
+    "slug": "car-wash-estetica-automotiz",
+    "nombre": "Car Wash & Estética Automotiz",
+    "ciudad": "Nezahualcóyotl, Méx.",
+    "direccion": "Calle 9 Núm 45 Col. El Sol, Nezahualcóyotl, 57200 Ciudad de México, Méx., México",
+    "telefono": "55 2578 9424",
+    "whatsapp": "525525789424",
+    "instagram": null,
+    "rating": 4.0,
+    "reviews_count": 4,
+    "reviewDates": [
+      "Hace un año"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/Car+Wash+%26+Est%C3%A9tica+Automotiz/data=!4m7!3m6!1s0x85d1fd7ec68e22e7:0xc2af7607d67c867f!8m2!3d19.4315946!4d-99.0467186!16s%2Fg%2F11lkcl894b!19sChIJ5yKOxn790YURf4Z81gd2r8I?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExOC4xIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x85d1fd7ec68e22e7:0xc2af7607d67c867f",
+    "template": "mexico"
+  },
+  {
+    "slug": "mg-detallado-profesional-automotriz",
+    "nombre": "MG Detallado Profesional Automotriz",
+    "ciudad": "Zapopan, Jal.",
+    "direccion": "Guardia Nacional 3303, El Fortín, 45066 Zapopan, Jal., México",
+    "telefono": "33 3361 3355",
+    "whatsapp": "523333613355",
+    "instagram": null,
+    "rating": 4.8,
+    "reviews_count": 152,
+    "reviewDates": [
+      "Hace un mes"
+    ],
+    "fotos": [],
+    "maps_url": "https://www.google.com/maps/place/MG+Detallado+Profesional+Automotriz/data=!4m7!3m6!1s0x8428ab8df3084fbd:0x28d638c73358aef2!8m2!3d20.627891!4d-103.4703958!16s%2Fg%2F11fp3390mm!19sChIJvU8I842rKIQR8q5YM8c41ig?authuser=0&hl=es-419&g_ep=EgoyMDI2MTExOC4xIJJjKgBIAVAD&rclk=1",
+    "pais": "MX",
+    "place_id": "0x8428ab8df3084fbd:0x28d638c73358aef2",
+    "template": "mexico"
   }
 ]
