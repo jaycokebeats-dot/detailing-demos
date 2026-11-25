@@ -180,10 +180,12 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
   const [currentView, setCurrentView] = useState<"hub" | "detailing">("hub");
   const [scrolled, setScrolled] = useState(false);
   const [activeSlide, setActiveSlide] = useState(0);
+  const [activeReviewSlide, setActiveReviewSlide] = useState(0);
 
   const hubVideoRef = useRef<HTMLVideoElement>(null);
   const detailingHeroVideoRef = useRef<HTMLVideoElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
+  const reviewsRef = useRef<HTMLDivElement>(null);
 
   const serviciosList =
     biz.servicios && biz.servicios.length > 0 ? biz.servicios : DI_LORENZO_SERVICIOS;
@@ -328,6 +330,68 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
   const scrollCarousel = (direction: "left" | "right") => {
     const nextIndex = direction === "right" ? activeSlide + 1 : activeSlide - 1;
     scrollToCardIndex(nextIndex);
+  };
+
+  const reviewsList = [
+    {
+      rating: "★★★★★",
+      comment:
+        "Excelente atención y prolijidad. Le hicieron tratamiento cerámico y las ópticas a mi auto, quedó como recién sacado de concesionaria. 100% recomendable.",
+      author: "Cliente verificado en Google",
+    },
+    {
+      rating: "★★★★★",
+      comment:
+        "Dejé la chata para limpieza profunda de tapizados y vano motor. La dedicación que le ponen al detalle es impresionante, no quedó ni un rincón sucio.",
+      author: "Cliente verificado en Google",
+    },
+    {
+      rating: "★★★★★",
+      comment:
+        "Súper cumplidores con los tiempos y muy buen trato. Te explican el paso a paso del laburo y te mandan fotos del proceso. Se nota la pasión.",
+      author: "Cliente verificado en Google",
+    },
+  ];
+
+  const handleReviewsScroll = () => {
+    if (!reviewsRef.current) return;
+    const container = reviewsRef.current;
+    const cards = container.querySelectorAll<HTMLElement>(".review-card");
+    if (!cards.length) return;
+
+    const containerCenter = container.scrollLeft + container.clientWidth / 2;
+    let closestIndex = 0;
+    let minDiff = Infinity;
+
+    cards.forEach((card, i) => {
+      const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+      const diff = Math.abs(containerCenter - cardCenter);
+      if (diff < minDiff) {
+        minDiff = diff;
+        closestIndex = i;
+      }
+    });
+
+    setActiveReviewSlide(closestIndex);
+  };
+
+  const scrollReviewTo = (index: number) => {
+    if (!reviewsRef.current) return;
+    const container = reviewsRef.current;
+    const cards = container.querySelectorAll<HTMLElement>(".review-card");
+    const targetCard = cards[index];
+    if (!targetCard) return;
+
+    const containerWidth = container.clientWidth;
+    const cardLeft = targetCard.offsetLeft;
+    const cardWidth = targetCard.offsetWidth;
+    const scrollTarget = cardLeft - (containerWidth - cardWidth) / 2;
+
+    container.scrollTo({
+      left: scrollTarget,
+      behavior: "smooth",
+    });
+    setActiveReviewSlide(index);
   };
 
   const msgPresupuesto = `Hola! Quisiera pedir información o presupuesto en ${biz.nombre}.`;
@@ -569,47 +633,62 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
             </div>
           </section>
 
-          {/* 3. RESEÑAS DE GOOGLE EN DI LO CENTER */}
-          <section id="opiniones" className="px-5 sm:px-8 py-20 border-t border-b border-white/5 bg-[#0a0a0a]">
+          {/* 3. RESEÑAS DE GOOGLE EN DI LO CENTER (CARRUSEL SLIDER EN MOBILE / GRID EN DESKTOP) */}
+          <section id="opiniones" className="px-5 sm:px-8 py-16 sm:py-20 border-t border-b border-white/5 bg-[#0a0a0a]">
             <div className="max-w-5xl mx-auto text-center">
               <span className="section-badge mb-4">Opiniones Reales</span>
               <h2 className="text-2xl sm:text-4xl font-medium text-slate-200 mb-3">
                 Calificación 4.9 ★ en Google
               </h2>
-              <p className="text-slate-400 text-xs sm:text-sm max-w-xl mx-auto mb-10">
+              <p className="text-slate-400 text-xs sm:text-sm max-w-xl mx-auto mb-8 sm:mb-10">
                 La tranquilidad de dejar tu vehículo en manos de profesionales recomendados por sus propios dueños en Zona Oeste.
               </p>
 
-              <div className="grid md:grid-cols-3 gap-5 text-left">
-                <div className="glass-panel rounded-[22px] p-6 space-y-3 border border-white/10" style={{ background: "#101010" }}>
-                  <div className="flex items-center gap-1 text-amber-400 text-sm">
-                    {"★★★★★"}
+              {/* Carrusel en mobile con scroll snap suave / Grid de 3 columnas en desktop */}
+              <div
+                ref={reviewsRef}
+                onScroll={handleReviewsScroll}
+                className="flex md:grid md:grid-cols-3 gap-4 sm:gap-5 overflow-x-auto md:overflow-visible pb-3 md:pb-0 snap-x snap-mandatory scrollbar-none text-left"
+                style={{
+                  scrollSnapType: "x mandatory",
+                  WebkitOverflowScrolling: "touch",
+                }}
+              >
+                {reviewsList.map((rev, idx) => (
+                  <div
+                    key={idx}
+                    className="review-card glass-panel rounded-[22px] p-6 space-y-4 border border-white/10 shrink-0 w-[84vw] xs:w-[320px] md:w-auto snap-center shadow-xl flex flex-col justify-between"
+                    style={{ background: "#101010" }}
+                  >
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-1 text-amber-400 text-sm">
+                        {rev.rating}
+                      </div>
+                      <p className="text-xs sm:text-sm text-slate-300 leading-relaxed italic">
+                        &ldquo;{rev.comment}&rdquo;
+                      </p>
+                    </div>
+                    <p className="text-[11px] text-slate-400 font-semibold pt-3 border-t border-white/5">
+                      — {rev.author}
+                    </p>
                   </div>
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed italic">
-                    &ldquo;Excelente atención y prolijidad. Le hicieron tratamiento cerámico y las ópticas a mi auto, quedó como recién sacado de concesionaria. 100% recomendable.&rdquo;
-                  </p>
-                  <p className="text-[11px] text-slate-400 font-semibold">— Cliente verificado en Google</p>
-                </div>
+                ))}
+              </div>
 
-                <div className="glass-panel rounded-[22px] p-6 space-y-3 border border-white/10" style={{ background: "#101010" }}>
-                  <div className="flex items-center gap-1 text-amber-400 text-sm">
-                    {"★★★★★"}
-                  </div>
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed italic">
-                    &ldquo;Dejé la chata para limpieza profunda de tapizados y vano motor. La dedicación que le ponen al detalle es impresionante, no quedó ni un rincón sucio.&rdquo;
-                  </p>
-                  <p className="text-[11px] text-slate-400 font-semibold">— Cliente verificado en Google</p>
-                </div>
-
-                <div className="glass-panel rounded-[22px] p-6 space-y-3 border border-white/10" style={{ background: "#101010" }}>
-                  <div className="flex items-center gap-1 text-amber-400 text-sm">
-                    {"★★★★★"}
-                  </div>
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed italic">
-                    &ldquo;Súper cumplidores con los tiempos y muy buen trato. Te explican el paso a paso del laburo y te mandan fotos del proceso. Se nota la pasión.&rdquo;
-                  </p>
-                  <p className="text-[11px] text-slate-400 font-semibold">— Cliente verificado en Google</p>
-                </div>
+              {/* Indicador de puntitos solo visible en pantallas móviles */}
+              <div className="flex md:hidden items-center justify-center gap-2 pt-4">
+                {reviewsList.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => scrollReviewTo(i)}
+                    aria-label={`Ver opinión ${i + 1}`}
+                    className={`transition-all duration-300 rounded-full ${
+                      activeReviewSlide === i
+                        ? "w-6 h-1.5 bg-amber-400"
+                        : "w-1.5 h-1.5 bg-white/20 hover:bg-white/40"
+                    }`}
+                  />
+                ))}
               </div>
             </div>
           </section>
@@ -800,8 +879,8 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
             </div>
           </section>
 
-          {/* 3. NUESTROS SERVICIOS — CARDS AMPLIAS Y ALTAS CON FLECHAS ABAJO THUMB-FRIENDLY */}
-          <section id="servicios" className="px-4 sm:px-8 pt-12 pb-20 bg-black relative">
+          {/* 3. NUESTROS SERVICIOS — CARDS AMPLIAS Y ALTAS CON FLECHAS LATERALES Y PUNTOS CENTRADOS */}
+          <section id="servicios" className="px-4 sm:px-8 pt-12 pb-6 sm:pb-8 bg-black relative">
             <div className="max-w-7xl mx-auto">
               {/* Header de la sección */}
               <div className="text-center mb-8 max-w-2xl mx-auto">
@@ -816,6 +895,26 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
 
               {/* Contenedor del Carrusel (ancla directa para que se vea la card entera en mobile) */}
               <div id="servicios-carrusel" className="relative pt-2">
+                {/* Flecha Izquierda lateral flotante (a mitad de altura de la card, libre de interferencias) */}
+                <button
+                  type="button"
+                  onClick={() => scrollCarousel("left")}
+                  aria-label="Servicio anterior"
+                  className="absolute left-1 xs:left-2 sm:-left-3 lg:-left-5 top-[38%] sm:top-[42%] -translate-y-1/2 z-30 size-10 sm:size-12 rounded-full bg-black/85 hover:bg-black text-white border border-white/20 hover:border-amber-400/50 flex items-center justify-center transition-all active:scale-90 shadow-[0_4px_25px_rgba(0,0,0,0.9)] backdrop-blur-md"
+                >
+                  <FaChevronLeft className="text-sm sm:text-base text-amber-300" />
+                </button>
+
+                {/* Flecha Derecha lateral flotante (alejada por completo del botón flotante de WhatsApp inferior) */}
+                <button
+                  type="button"
+                  onClick={() => scrollCarousel("right")}
+                  aria-label="Siguiente servicio"
+                  className="absolute right-1 xs:right-2 sm:-right-3 lg:-right-5 top-[38%] sm:top-[42%] -translate-y-1/2 z-30 size-10 sm:size-12 rounded-full bg-black/85 hover:bg-black text-white border border-white/20 hover:border-amber-400/50 flex items-center justify-center transition-all active:scale-90 shadow-[0_4px_25px_rgba(0,0,0,0.9)] backdrop-blur-md"
+                >
+                  <FaChevronRight className="text-sm sm:text-base text-amber-300" />
+                </button>
+
                 <div
                   ref={carouselRef}
                   onScroll={handleCarouselScroll}
@@ -911,18 +1010,9 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
                   })}
                 </div>
 
-                {/* CONTROLES DE NAVEGACIÓN UBICADOS ABAJO (FLECHAS + PUNTOS THUMB-FRIENDLY) */}
-                <div className="flex items-center justify-center gap-4 pt-6">
-                  <button
-                    onClick={() => scrollCarousel("left")}
-                    aria-label="Servicio anterior"
-                    className="w-11 h-11 rounded-full bg-[#141414] hover:bg-[#252525] text-white border border-white/15 hover:border-white/30 flex items-center justify-center transition-all active:scale-95 shadow-xl"
-                  >
-                    <FaChevronLeft className="text-sm" />
-                  </button>
-
-                  {/* Dots Indicator */}
-                  <div className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-full bg-black/60 border border-white/10 backdrop-blur-md">
+                {/* CONTROLES: PUNTOS INDICADORES 100% CENTRADOS (SIN FLECHAS ABAJO PARA EVITAR CHOQUES CON WHATSAPP) */}
+                <div className="flex items-center justify-center pt-5">
+                  <div className="flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-full bg-black/70 border border-white/10 backdrop-blur-md shadow-lg">
                     {serviciosList.map((_, i) => (
                       <button
                         key={i}
@@ -936,19 +1026,11 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
                       />
                     ))}
                   </div>
-
-                  <button
-                    onClick={() => scrollCarousel("right")}
-                    aria-label="Siguiente servicio"
-                    className="w-11 h-11 rounded-full bg-[#141414] hover:bg-[#252525] text-white border border-white/15 hover:border-white/30 flex items-center justify-center transition-all active:scale-95 shadow-xl"
-                  >
-                    <FaChevronRight className="text-sm" />
-                  </button>
                 </div>
               </div>
 
-              {/* BANNER INSTAGRAM: VER TRABAJOS REALES */}
-              <div className="rounded-[28px] p-6 sm:p-10 border border-pink-500/25 bg-gradient-to-br from-zinc-950 via-[#140e1a] to-black relative overflow-hidden my-14 shadow-2xl">
+              {/* BANNER INSTAGRAM: VER TRABAJOS REALES (SIN ESPACIO NEGRO RESIDUAL ABAJO) */}
+              <div className="rounded-[28px] p-6 sm:p-10 border border-pink-500/25 bg-gradient-to-br from-zinc-950 via-[#140e1a] to-black relative overflow-hidden mt-10 sm:mt-12 mb-0 shadow-2xl">
                 <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-br from-pink-500/10 via-purple-500/10 to-transparent rounded-full blur-3xl pointer-events-none" />
                 <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
                   <div>
@@ -977,8 +1059,8 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
             </div>
           </section>
 
-          {/* 4. UBICACIÓN DETAILING (CON BOTONES Y TEXTOS 100% CENTRADOS) */}
-          <section id="ubicacion" className="px-5 sm:px-8 py-20 bg-black border-t border-white/5">
+          {/* 4. UBICACIÓN DETAILING (CON TRANSICIÓN COMPACTA Y SIN HUECOS NEGROS) */}
+          <section id="ubicacion" className="px-5 sm:px-8 pt-10 sm:pt-14 pb-16 sm:pb-20 bg-black border-t border-white/5">
             <div className="max-w-5xl mx-auto">
               <div className="text-center mb-10">
                 <span className="section-badge mb-3">Ubicación</span>
