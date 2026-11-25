@@ -104,7 +104,7 @@ export const DI_LORENZO_BUSINESS: Business = {
   nombreCorto: "Di Lo Center",
   telefono: "011 15-3376-7004",
   whatsapp: "5491133767004",
-  instagram: null,
+  instagram: "dilorenzodetailing",
   direccion: "Orense 711, Haedo",
   ciudad: "Haedo",
   provincia: "Buenos Aires",

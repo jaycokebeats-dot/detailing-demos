@@ -1,23 +1,28 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
-import { FaWhatsapp, FaMapMarkerAlt, FaStar, FaClock, FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import { HiOutlineCheckCircle, HiOutlineSparkles, HiShieldCheck } from "react-icons/hi2";
+import {
+  FaWhatsapp,
+  FaMapMarkerAlt,
+  FaStar,
+  FaClock,
+  FaChevronLeft,
+  FaChevronRight,
+  FaInstagram,
+  FaArrowLeft,
+} from "react-icons/fa";
+import {
+  HiOutlineCheckCircle,
+  HiOutlineSparkles,
+  HiShieldCheck,
+  HiOutlineArrowRight,
+} from "react-icons/hi2";
 import type { Business, ServiceItem } from "@/data/business-helpers";
 import { waHref, mapsHref } from "@/data/business-helpers";
 import PpfColorVisualizer from "@/components/PpfColorVisualizer";
 import { DI_LORENZO_SERVICIOS } from "@/data/di-lorenzo-data";
 
-const ITEMS_PROBLEMA_ARGENTINA = [
-  "Microrrayones circulares (swirls) causados por rodillos de lavadero automático o trapos con tierra",
-  "Pintura opaca que perdió el brillo profundo y el reflejo de 0km",
-  "Marcas de lluvia ácida, sarro de agua dura, resina de árboles o heces de pájaros incrustadas",
-  "Tapizados con manchas difíciles, derrames o pérdida del tono original",
-  "Plásticos interiores, torpedo y molduras resecas o blanquecinas por el sol",
-  "Butacas de cuero resecas, agrietadas o con brillo grasoso por acumulación de suciedad",
-];
-
-// Comparador Antes/Después optimizado para carrusel táctil (con touchAction: none y stopPropagation para no trabar el scroll)
+// Comparador Antes/Después optimizado para carrusel táctil (con touchAction: none y stopPropagation para no trabar el carrusel)
 function CarouselCompareSlider({
   before,
   after,
@@ -122,14 +127,14 @@ function CarouselCompareSlider({
         loading="lazy"
       />
 
-      {/* Botones de acceso rápido para alternar antes / después sin necesidad de arrastre milimétrico */}
+      {/* Botones de alternancia rápida antes / después */}
       <button
         type="button"
         onClick={(e) => {
           e.stopPropagation();
           setPos(100);
         }}
-        className="absolute top-2.5 left-2.5 text-[10px] px-2.5 py-1 rounded-full bg-black/85 hover:bg-black text-white uppercase tracking-wider font-semibold z-20 border border-white/15 shadow-sm transition active:scale-95"
+        className="absolute top-3 left-3 text-[10px] px-3 py-1 rounded-full bg-black/85 hover:bg-black text-white uppercase tracking-wider font-semibold z-20 border border-white/20 shadow-md transition active:scale-95"
       >
         Antes
       </button>
@@ -140,7 +145,7 @@ function CarouselCompareSlider({
           e.stopPropagation();
           setPos(0);
         }}
-        className="absolute top-2.5 right-2.5 text-[10px] px-2.5 py-1 rounded-full bg-[#b8c2cc] hover:bg-white text-black uppercase tracking-wider font-extrabold z-20 shadow-md transition active:scale-95"
+        className="absolute top-3 right-3 text-[10px] px-3 py-1 rounded-full bg-[#b8c2cc] hover:bg-white text-black uppercase tracking-wider font-extrabold z-20 shadow-md transition active:scale-95"
       >
         Después
       </button>
@@ -157,14 +162,14 @@ function CarouselCompareSlider({
 
       {/* Manija central de arrastre */}
       <div
-        className="absolute top-1/2 w-8 h-8 rounded-full flex items-center justify-center -translate-y-1/2 -translate-x-1/2 shadow-lg pointer-events-none z-20 transition-transform group-hover:scale-105"
+        className="absolute top-1/2 w-9 h-9 rounded-full flex items-center justify-center -translate-y-1/2 -translate-x-1/2 shadow-xl pointer-events-none z-20 transition-transform group-hover:scale-105"
         style={{
           left: `${pos}%`,
           background: "#b8c2cc",
-          boxShadow: "0 4px 12px rgba(0,0,0,0.7)",
+          boxShadow: "0 4px 14px rgba(0,0,0,0.8)",
         }}
       >
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2.5">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2.5">
           <path strokeLinecap="round" strokeLinejoin="round" d="M8 9l-4 3 4 3m8-6l4 3-4 3" />
         </svg>
       </div>
@@ -173,13 +178,71 @@ function CarouselCompareSlider({
 }
 
 export default function LandingDiLorenzo({ biz }: { biz: Business }) {
+  // Vista actual: "hub" (Di Lo Center principal) o "detailing" (Di Lorenzo Detailing)
+  const [currentView, setCurrentView] = useState<"hub" | "detailing">("hub");
   const [scrolled, setScrolled] = useState(false);
   const [activeSlide, setActiveSlide] = useState(0);
+
   const videoRef = useRef<HTMLVideoElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
 
-  const serviciosList = (biz.servicios && biz.servicios.length > 0) ? biz.servicios : DI_LORENZO_SERVICIOS;
+  const serviciosList =
+    biz.servicios && biz.servicios.length > 0 ? biz.servicios : DI_LORENZO_SERVICIOS;
 
+  const instagramHandle = biz.instagram ? biz.instagram.replace("@", "") : "dilorenzodetailing";
+  const igUrl = `https://instagram.com/${instagramHandle}`;
+
+  // Sincronización de hash para navegación instantánea y botón volver del navegador
+  useEffect(() => {
+    const handleHash = () => {
+      const hash = window.location.hash.toLowerCase();
+      if (
+        hash === "#detailing" ||
+        hash === "#servicios" ||
+        hash.startsWith("#optica") ||
+        hash.startsWith("#moto") ||
+        hash.startsWith("#abrillanta") ||
+        hash.startsWith("#ceramico") ||
+        hash.startsWith("#acrilico") ||
+        hash.startsWith("#tapizado") ||
+        hash.startsWith("#motor") ||
+        hash.startsWith("#ppf")
+      ) {
+        setCurrentView("detailing");
+        setTimeout(() => {
+          document.getElementById("servicios")?.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 120);
+      } else {
+        setCurrentView("hub");
+      }
+    };
+
+    handleHash();
+    window.addEventListener("popstate", handleHash);
+    window.addEventListener("hashchange", handleHash);
+    return () => {
+      window.removeEventListener("popstate", handleHash);
+      window.removeEventListener("hashchange", handleHash);
+    };
+  }, []);
+
+  // Transición a la sub-web de Detailing y auto-scroll a servicios
+  const goToDetailing = () => {
+    setCurrentView("detailing");
+    window.history.pushState(null, "", "#detailing");
+    setTimeout(() => {
+      document.getElementById("servicios")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 80);
+  };
+
+  // Volver al Hub de Di Lo Center
+  const goToHub = () => {
+    setCurrentView("hub");
+    window.history.pushState(null, "", window.location.pathname);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  // Scroll detection para la navbar
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     onScroll();
@@ -187,6 +250,7 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Video autoplay helper
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -195,9 +259,9 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
     video.setAttribute("muted", "");
     video.setAttribute("playsinline", "true");
     video.play().catch(() => {});
-  }, []);
+  }, [currentView]);
 
-  // Detección exacta de la tarjeta centrada al hacer scroll
+  // Centrado y navegación exacta del carrusel
   const handleCarouselScroll = () => {
     if (!carouselRef.current) return;
     const container = carouselRef.current;
@@ -220,7 +284,6 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
     setActiveSlide(closestIndex);
   };
 
-  // Navegación exacta de tarjeta a tarjeta (centrando cada una sin quedar a mitad de camino)
   const scrollToCardIndex = (index: number) => {
     if (!carouselRef.current) return;
     const container = carouselRef.current;
@@ -248,8 +311,8 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
     scrollToCardIndex(nextIndex);
   };
 
-  const msgPresupuesto = `Hola! Quisiera pedir información o presupuesto para mi auto en ${biz.nombre}.`;
-  const msgFotos = `Hola! Les mando unas fotos de mi auto para que me asesoren sobre qué tratamiento le conviene más en ${biz.nombre}.`;
+  const msgPresupuesto = `Hola! Quisiera pedir información o presupuesto en ${biz.nombre}.`;
+  const msgFotos = `Hola! Les mando fotos de mi auto para que me asesoren en ${biz.nombre}.`;
 
   const stats = [
     biz.rating != null
@@ -261,515 +324,788 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
 
   return (
     <div className="min-h-screen bg-black text-white selection:bg-slate-500/30 selection:text-slate-200">
-      {/* 1. NAVBAR (Exacto plantilla argentina) */}
-      <div className="fixed top-0 left-0 right-0 z-50 flex justify-center px-3 pointer-events-none">
-        <header
-          className="w-full pointer-events-auto transition-[margin,border-radius,background-color,backdrop-filter,box-shadow] duration-300 ease-out"
-          style={
-            scrolled
-              ? {
-                  marginTop: "12px",
-                  maxWidth: "56rem",
-                  borderRadius: "9999px",
-                  background: "rgba(10,10,10,0.85)",
-                  backdropFilter: "blur(14px)",
-                  boxShadow: "0 8px 30px rgba(0,0,0,0.45)",
-                  border: "1px solid rgba(255,255,255,0.08)",
-                }
-              : {
-                  marginTop: "0px",
-                  maxWidth: "100%",
-                  borderRadius: "0px",
-                  background: "transparent",
-                }
-          }
-        >
-          <div className={`max-w-6xl mx-auto flex items-center justify-between px-4 sm:px-8 transition-[height] duration-300 ${scrolled ? "h-14" : "h-16"}`}>
-            <a href="#hero" className="flex items-center shrink-0 group transition-transform active:scale-95 py-1" aria-label="Ir al inicio">
-              <span className="text-base font-bold tracking-widest text-white">
-                DI LO <span className="text-gold">CENTER</span>
-              </span>
-            </a>
-            <div className="hidden md:flex items-center gap-7 text-xs uppercase tracking-widest text-slate-400">
-              <a href="#servicios" className="hover:text-white transition-colors">Servicios</a>
-              <a href="#garantia" className="hover:text-white transition-colors">Compromiso</a>
-              <a href="#nosotros" className="hover:text-white transition-colors">Nosotros</a>
-              <a href="#ubicacion" className="hover:text-white transition-colors">Ubicación</a>
-            </div>
-            <a
-              href={waHref(biz, msgPresupuesto)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-white hover:opacity-70 transition-opacity"
+      {/* ============================================================== */}
+      {/* VISTA 1: DI LO CENTER (Hub Principal)                          */}
+      {/* ============================================================== */}
+      {currentView === "hub" && (
+        <>
+          {/* 1. NAVBAR DI LO CENTER */}
+          <div className="fixed top-0 left-0 right-0 z-50 flex justify-center px-3 pointer-events-none">
+            <header
+              className="w-full pointer-events-auto transition-[margin,border-radius,background-color,backdrop-filter,box-shadow] duration-300 ease-out"
+              style={
+                scrolled
+                  ? {
+                      marginTop: "12px",
+                      maxWidth: "56rem",
+                      borderRadius: "9999px",
+                      background: "rgba(10,10,10,0.9)",
+                      backdropFilter: "blur(14px)",
+                      boxShadow: "0 8px 30px rgba(0,0,0,0.6)",
+                      border: "1px solid rgba(255,255,255,0.08)",
+                    }
+                  : {
+                      marginTop: "0px",
+                      maxWidth: "100%",
+                      borderRadius: "0px",
+                      background: "transparent",
+                    }
+              }
             >
-              <FaWhatsapp aria-hidden className="size-4 text-emerald-400" />
-              Pedir Turno
-            </a>
-          </div>
-        </header>
-      </div>
-
-      {/* 2. HERO — OPCIÓN 1 (Fondo oscuro elegante + Las 3 publicaciones donde Detailing tiene su propio video) */}
-      <section id="hero" className="relative min-h-[100dvh] pt-20 sm:pt-24 pb-12 sm:pb-16 px-4 sm:px-6 overflow-hidden flex items-center justify-center bg-[#070707]">
-        {/* Fondo oscuro limpio con halos sutiles */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-10%,rgba(212,175,55,0.09),rgba(255,255,255,0))]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(16,185,129,0.04),transparent_40%)]" />
-
-        <div className="relative z-10 max-w-5xl mx-auto w-full flex flex-col justify-center items-center text-center px-2 py-4">
-          {/* Badge Haedo */}
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-white/10 bg-white/5 text-[11px] sm:text-xs font-medium text-slate-300 mb-3 backdrop-blur-md">
-            <span className="flex size-1.5 sm:size-2 rounded-full shrink-0 animate-pulse bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
-            <span>Haedo, Buenos Aires</span>
-            <span className="text-slate-500">·</span>
-            <span>Turnos disponibles esta semana</span>
-          </div>
-
-          {/* Nombre central */}
-          <h1 className="text-3xl sm:text-5xl md:text-6xl font-semibold tracking-tight leading-tight text-white mb-2">
-            DI LO <span className="text-gold">CENTER</span>
-          </h1>
-
-          <p className="text-xs sm:text-sm text-slate-400 max-w-lg mx-auto font-light leading-relaxed mb-8">
-            Centro Integral Automotor en Haedo. Seleccioná el área para tu vehículo:
-          </p>
-
-          {/* 3 PUBLICACIONES RECTANGULARES (Detailing con su propio video adentro, Venta y Mecánica con fotos temáticas) */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 w-full max-w-5xl mx-auto mb-8">
-            {/* 1. Di Lorenzo Detailing (ACTIVO CON SU PROPIO VIDEO ADENTRO) */}
-            <a
-              href="#servicios"
-              className="group relative h-[360px] xs:h-[400px] sm:h-[430px] rounded-[26px] overflow-hidden border border-amber-400/50 hover:border-amber-400 transition-all duration-500 shadow-2xl shadow-amber-500/10 flex flex-col justify-between p-6 text-left active:scale-[0.99]"
-            >
-              {/* Video en loop dentro de la publicación */}
-              <video
-                ref={videoRef}
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 pointer-events-none"
-                src={biz.video_hero ?? "/videos/hero-compilado-blanco.mp4"}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/60 pointer-events-none" />
-
-              {/* Header de la card */}
-              <div className="relative z-10 flex items-center justify-between">
-                <span className="text-[11px] uppercase font-bold tracking-widest text-amber-300 px-3 py-1 rounded-full bg-black/70 backdrop-blur-md border border-amber-400/30 shadow-lg">
-                  Activo
-                </span>
-                <div className="w-8 h-8 rounded-full bg-black/60 backdrop-blur-md border border-white/15 flex items-center justify-center text-amber-400 group-hover:rotate-12 transition-transform">
-                  <HiOutlineSparkles className="size-4" />
-                </div>
-              </div>
-
-              {/* Footer de la card */}
-              <div className="relative z-10 space-y-2">
-                <h2 className="font-extrabold text-xl sm:text-2xl text-white group-hover:text-amber-300 transition-colors leading-tight drop-shadow-md">
-                  Di Lorenzo Detailing
-                </h2>
-                <p className="text-xs text-slate-200 leading-relaxed drop-shadow-sm font-light">
-                  Tratamientos cerámicos, abrillantado, restauración de ópticas, tapizados y PPF.
-                </p>
-                <div className="pt-2">
-                  <span className="btn-gold inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg group-hover:shadow-amber-400/20 transition-all">
-                    Ver Servicios →
+              <div className={`max-w-6xl mx-auto flex items-center justify-between px-4 sm:px-8 transition-[height] duration-300 ${scrolled ? "h-14" : "h-16"}`}>
+                <a href="#" onClick={(e) => { e.preventDefault(); goToHub(); }} className="flex items-center shrink-0 group py-1" aria-label="Inicio Di Lo Center">
+                  <span className="text-sm sm:text-base font-bold tracking-widest text-white">
+                    DI LO <span className="text-gold">CENTER</span>
                   </span>
+                </a>
+                <div className="hidden md:flex items-center gap-7 text-xs uppercase tracking-widest text-slate-400">
+                  <a href="#divisiones" className="hover:text-white transition-colors">Divisiones</a>
+                  <a href="#opiniones" className="hover:text-white transition-colors">Opiniones</a>
+                  <a href="#ubicacion" className="hover:text-white transition-colors">Ubicación</a>
+                </div>
+                <div className="flex items-center gap-3">
+                  <a
+                    href={igUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram Di Lorenzo"
+                    className="flex items-center justify-center size-8 rounded-full bg-white/5 hover:bg-white/10 text-pink-400 transition"
+                  >
+                    <FaInstagram className="size-4" />
+                  </a>
+                  <a
+                    href={waHref(biz, msgPresupuesto)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs uppercase tracking-wider text-white hover:opacity-75 transition"
+                  >
+                    <FaWhatsapp className="size-4 text-emerald-400" />
+                    <span>Contacto</span>
+                  </a>
                 </div>
               </div>
-            </a>
+            </header>
+          </div>
 
-            {/* 2. Venta Automotor (FOTO TEMÁTICA DE AGENCIA / PRÓXIMAMENTE) */}
-            <div
-              className="relative h-[360px] xs:h-[400px] sm:h-[430px] rounded-[26px] overflow-hidden border border-white/10 flex flex-col justify-between p-6 text-left opacity-75 select-none"
-            >
-              <img
-                src="/ec-detail/foto-1.jpg"
-                alt="Venta Automotor en Haedo"
-                className="absolute inset-0 w-full h-full object-cover filter brightness-[0.45] contrast-105 pointer-events-none"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/70 pointer-events-none" />
+          {/* 2. HERO DI LO CENTER — CON H1 CARTELERÍA 3D */}
+          <section id="divisiones" className="relative min-h-[95dvh] pt-24 sm:pt-28 pb-12 sm:pb-16 px-4 sm:px-6 overflow-hidden flex items-center justify-center bg-[#070707]">
+            {/* Fondo oscuro de lujo con halo cálido sutil */}
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_90%_65%_at_50%_-10%,rgba(212,175,55,0.12),transparent_75%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(16,185,129,0.04),transparent_40%)]" />
 
-              {/* Header */}
-              <div className="relative z-10 flex items-center justify-between">
-                <span className="text-[11px] uppercase font-bold tracking-widest text-slate-300 px-3 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/15">
-                  Próximamente
-                </span>
+            <div className="relative z-10 max-w-5xl mx-auto w-full flex flex-col justify-center items-center text-center px-2 py-4">
+              {/* Badge Haedo */}
+              <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full border border-amber-400/30 bg-amber-950/20 text-[11px] sm:text-xs font-semibold text-amber-200 mb-3 shadow-sm backdrop-blur-md">
+                <span className="flex size-1.5 sm:size-2 rounded-full shrink-0 animate-pulse bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
+                <span>Haedo, Buenos Aires</span>
+                <span className="text-amber-500/60">·</span>
+                <span>Centro Integral Automotor</span>
               </div>
 
-              {/* Footer */}
-              <div className="relative z-10 space-y-2">
-                <h2 className="font-bold text-xl sm:text-2xl text-slate-200 leading-tight">
-                  Venta Automotor
-                </h2>
-                <p className="text-xs text-slate-400 leading-relaxed font-light">
-                  Vehículos seminuevos seleccionados, peritados mecánicamente y consignaciones.
-                </p>
-                <div className="pt-2">
-                  <span className="inline-flex items-center px-4 py-2 rounded-full text-xs font-semibold text-slate-400 bg-white/5 border border-white/10">
-                    En preparación
+              {/* H1 CARTELERÍA 3D CORPÓREA ILUMINADA */}
+              <div className="my-3 sm:my-5 relative">
+                <h1 className="text-4xl xs:text-5xl sm:text-7xl md:text-8xl font-black tracking-[0.08em] sm:tracking-[0.14em] uppercase text-center relative select-none">
+                  <span
+                    className="relative inline-block text-transparent bg-clip-text"
+                    style={{
+                      backgroundImage:
+                        "linear-gradient(180deg, #ffffff 0%, #fef3c7 22%, #f59e0b 55%, #b45309 85%, #78350f 100%)",
+                      filter:
+                        "drop-shadow(0 4px 0 #78350f) drop-shadow(0 8px 1px #451a03) drop-shadow(0 14px 20px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 35px rgba(245, 158, 11, 0.45))",
+                      WebkitTextStroke: "1px rgba(255, 255, 255, 0.35)",
+                    }}
+                  >
+                    DI LO CENTER
                   </span>
-                </div>
-              </div>
-            </div>
-
-            {/* 3. Mecánica Ligera (FOTO TEMÁTICA DE TALLER / PRÓXIMAMENTE) */}
-            <div
-              className="relative h-[360px] xs:h-[400px] sm:h-[430px] rounded-[26px] overflow-hidden border border-white/10 flex flex-col justify-between p-6 text-left opacity-75 select-none"
-            >
-              <img
-                src="/before-after/motor-despues.jpg"
-                alt="Mecánica Ligera en Haedo"
-                className="absolute inset-0 w-full h-full object-cover filter brightness-[0.45] contrast-105 pointer-events-none"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/70 pointer-events-none" />
-
-              {/* Header */}
-              <div className="relative z-10 flex items-center justify-between">
-                <span className="text-[11px] uppercase font-bold tracking-widest text-slate-300 px-3 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/15">
-                  Próximamente
-                </span>
+                </h1>
               </div>
 
-              {/* Footer */}
-              <div className="relative z-10 space-y-2">
-                <h2 className="font-bold text-xl sm:text-2xl text-slate-200 leading-tight">
-                  Mecánica Ligera
-                </h2>
-                <p className="text-xs text-slate-400 leading-relaxed font-light">
-                  Service preventivo, fluidos, frenos, distribución y mantenimiento integral.
-                </p>
-                <div className="pt-2">
-                  <span className="inline-flex items-center px-4 py-2 rounded-full text-xs font-semibold text-slate-400 bg-white/5 border border-white/10">
-                    En preparación
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Social Proof Stats */}
-          <div className="flex flex-wrap items-center justify-center gap-x-4 sm:gap-x-6 gap-y-1.5 pt-2 text-[11px] sm:text-xs text-slate-400">
-            {stats.map((item) => (
-              <span key={item} className="inline-flex items-center gap-1.5">
-                <HiOutlineCheckCircle aria-hidden className="size-4 shrink-0 text-gold" />
-                {item}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 3. PROBLEMA VS SOLUCIÓN (Sin divisor asimétrico) */}
-      <section className="relative px-5 sm:px-8 py-20 border-t border-b border-white/5" style={{ background: "#101010" }}>
-        <div className="max-w-3xl mx-auto text-center">
-          <span className="section-badge mb-5">El problema real</span>
-          <h2 className="text-3xl md:text-4xl font-medium text-gold mb-3">
-            Lavar el Auto no es lo Mismo que un Detailing
-          </h2>
-          <p className="text-slate-400 max-w-xl mx-auto mb-10 text-sm">
-            Un auto puede salir limpio de un lavadero convencional y seguir viéndose opaco o rayado. Señales habituales:
-          </p>
-          <div className="grid sm:grid-cols-2 gap-3 text-left max-w-xl mx-auto">
-            {ITEMS_PROBLEMA_ARGENTINA.map((item) => (
-              <div key={item} className="glass-panel rounded-2xl px-4 py-3 flex items-start gap-3 border border-white/10">
-                <span className="shrink-0 w-1.5 h-1.5 rounded-full mt-2" style={{ backgroundColor: "#b8c2cc" }} />
-                <p className="text-sm text-slate-300">{item}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 4. NUESTROS SERVICIOS — CARRUSEL MANUAL PREMIUM OPTIMIZADO */}
-      <section id="servicios" className="px-4 sm:px-8 py-20 bg-black relative">
-        <div className="max-w-7xl mx-auto">
-          {/* Header con título y controles de navegación del carrusel */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-6">
-            <div>
-              <span className="section-badge mb-3">Nuestros servicios</span>
-              <h2 className="text-2xl sm:text-4xl font-medium text-gold mb-2">
-                Servicios & Tarifas en Haedo
-              </h2>
-              <p className="text-slate-400 text-xs sm:text-sm max-w-xl">
-                Deslizá manualmente para conocer cada trabajo en detalle, comparar los resultados antes y después, y pedir presupuesto directo.
+              <p className="text-xs sm:text-sm text-slate-300 max-w-lg mx-auto font-light leading-relaxed mb-8">
+                Estética vehicular artesanal, compra-venta de unidades seleccionadas y mecánica integral. Seleccioná el área para tu vehículo:
               </p>
-            </div>
 
-            {/* Flechas de navegación suave */}
-            <div className="flex items-center gap-3">
-              <button
-                onClick={() => scrollCarousel("left")}
-                aria-label="Servicio anterior"
-                className="w-10 h-10 rounded-full bg-[#141414] hover:bg-[#202020] text-white border border-white/10 hover:border-white/30 flex items-center justify-center transition-all active:scale-95 shadow-lg"
-              >
-                <FaChevronLeft className="text-xs" />
-              </button>
-              <button
-                onClick={() => scrollCarousel("right")}
-                aria-label="Siguiente servicio"
-                className="w-10 h-10 rounded-full bg-[#141414] hover:bg-[#202020] text-white border border-white/10 hover:border-white/30 flex items-center justify-center transition-all active:scale-95 shadow-lg"
-              >
-                <FaChevronRight className="text-xs" />
-              </button>
-            </div>
-          </div>
-
-          {/* Carrusel horizontal deslizante manual con snap suave y medidas armónicas */}
-          <div
-            ref={carouselRef}
-            onScroll={handleCarouselScroll}
-            className="flex gap-5 overflow-x-auto pb-6 pt-2 scroll-smooth snap-x snap-mandatory scrollbar-none"
-            style={{
-              scrollSnapType: "x mandatory",
-              WebkitOverflowScrolling: "touch",
-            }}
-          >
-            {serviciosList.map((s, idx) => {
-              const reservaMsg = `Hola! Me gustaría pedir información o presupuesto para el servicio: ${s.nombre} en ${biz.nombre}.`;
-              const imgSource = s.img ?? "/servicios/exterior.jpg";
-              const isPpfColor = s.nombre.toLowerCase().includes("ppf color") || s.nombre.toLowerCase().includes("ppf | paint protection film");
-              const hasCompare = (s.modo_foto === "before_after" ? Boolean(s.antes_img || s.despues_img) : Boolean(s.antes_img && s.despues_img));
-
-              return (
-                <div
-                  key={`${s.nombre}-${idx}`}
-                  className="service-card product-card rounded-[22px] overflow-hidden flex flex-col justify-between relative border border-white/10 hover:border-white/25 transition-all duration-300 w-[84vw] xs:w-[320px] sm:w-[330px] md:w-[340px] lg:w-[350px] shrink-0 snap-center shadow-xl"
-                  style={{ background: "#101010" }}
+              {/* 3 PUBLICACIONES RECTANGULARES */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 w-full max-w-5xl mx-auto mb-8">
+                {/* 1. Di Lorenzo Detailing (ACTIVO CON VIDEO ADENTRO -> AL CLICLEAR VA DIRECTO A SERVICIOS) */}
+                <button
+                  type="button"
+                  onClick={goToDetailing}
+                  className="group relative h-[380px] xs:h-[410px] sm:h-[440px] rounded-[28px] overflow-hidden border border-amber-400/50 hover:border-amber-400 transition-all duration-500 shadow-2xl shadow-amber-500/10 flex flex-col justify-between p-6 text-left cursor-pointer active:scale-[0.98]"
                 >
-                  {/* Media / Slider (Proporción 16/10 compacta y elegante) */}
-                  <div className="aspect-[16/10] overflow-hidden relative bg-[#141414]">
-                    {isPpfColor ? (
-                      <PpfColorVisualizer biz={biz} />
-                    ) : hasCompare ? (
-                      <CarouselCompareSlider
-                        before={s.antes_img || s.despues_img || imgSource}
-                        after={s.despues_img || s.antes_img || imgSource}
-                        alt={s.nombre}
-                      />
-                    ) : (
-                      <div className="relative w-full h-full bg-[#0d0d0d] overflow-hidden">
-                        <img
-                          src={s.img || imgSource}
-                          alt={s.nombre}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                    )}
+                  {/* Video en loop dentro de la publicación */}
+                  <video
+                    ref={videoRef}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 pointer-events-none"
+                    src={biz.video_hero ?? "/videos/hero-compilado-blanco.mp4"}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/60 pointer-events-none" />
 
-                    {s.proteccion && !isPpfColor && (
-                      <div
-                        className="absolute bottom-2 left-2 right-2 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/15 text-[10px] font-semibold text-white/95 flex items-center gap-1.5 shadow-lg z-20 pointer-events-none"
-                        style={{ background: "rgba(10,10,10,0.85)" }}
-                      >
-                        <span className="size-1.5 rounded-full bg-emerald-400 shrink-0" />
-                        <span className="truncate">{s.proteccion}</span>
-                      </div>
-                    )}
+                  {/* Header de la card */}
+                  <div className="relative z-10 flex items-center justify-between">
+                    <span className="text-[11px] uppercase font-bold tracking-widest text-amber-300 px-3 py-1 rounded-full bg-black/75 backdrop-blur-md border border-amber-400/40 shadow-lg">
+                      Activo
+                    </span>
+                    <div className="w-8 h-8 rounded-full bg-black/60 backdrop-blur-md border border-white/15 flex items-center justify-center text-amber-400 group-hover:rotate-12 transition-transform">
+                      <HiOutlineSparkles className="size-4" />
+                    </div>
                   </div>
 
-                  {/* Info Card */}
-                  <div className="p-4 sm:p-5 flex flex-col gap-2 flex-1 justify-between">
-                    <div className="space-y-1.5">
-                      <h3
-                        className="font-bold text-base sm:text-lg text-white leading-snug line-clamp-2"
-                        style={{ textTransform: "none", fontFamily: "inherit" }}
-                      >
-                        {s.nombre}
-                      </h3>
-                      {s.precio && s.precio.trim() ? (
-                        <p className="text-sm sm:text-base font-extrabold text-gold">{s.precio}</p>
-                      ) : null}
-                      <p className="text-xs text-slate-300 leading-relaxed line-clamp-3">{s.descripcion}</p>
-
-                      {s.ideal_si && (
-                        <p className="text-[11px] text-slate-400 pt-1 line-clamp-2">
-                          <span className="font-semibold text-slate-300">Detalles:</span> {s.ideal_si}
-                        </p>
-                      )}
+                  {/* Footer de la card */}
+                  <div className="relative z-10 space-y-2">
+                    <h2 className="font-extrabold text-2xl text-white group-hover:text-amber-300 transition-colors leading-tight drop-shadow-md">
+                      Di Lorenzo Detailing
+                    </h2>
+                    <p className="text-xs text-slate-200 leading-relaxed font-light">
+                      Tratamientos cerámicos, abrillantado, pulido de ópticas, tapizados y PPF.
+                    </p>
+                    <div className="pt-2">
+                      <span className="btn-gold inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg group-hover:shadow-amber-400/25 transition-all">
+                        <span>Entrar a Detailing</span>
+                        <HiOutlineArrowRight className="size-3.5" />
+                      </span>
                     </div>
+                  </div>
+                </button>
 
+                {/* 2. Venta Automotor (PRÓXIMAMENTE) */}
+                <div
+                  className="relative h-[380px] xs:h-[410px] sm:h-[440px] rounded-[28px] overflow-hidden border border-white/10 flex flex-col justify-between p-6 text-left opacity-75 select-none"
+                >
+                  <img
+                    src="/ec-detail/foto-1.jpg"
+                    alt="Venta Automotor en Haedo"
+                    className="absolute inset-0 w-full h-full object-cover filter brightness-[0.45] contrast-105 pointer-events-none"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/70 pointer-events-none" />
+
+                  <div className="relative z-10 flex items-center justify-between">
+                    <span className="text-[11px] uppercase font-bold tracking-widest text-slate-300 px-3 py-1 rounded-full bg-black/75 backdrop-blur-md border border-white/15">
+                      Próximamente
+                    </span>
+                  </div>
+
+                  <div className="relative z-10 space-y-2">
+                    <h2 className="font-bold text-2xl text-slate-200 leading-tight">
+                      Venta Automotor
+                    </h2>
+                    <p className="text-xs text-slate-400 leading-relaxed font-light">
+                      Vehículos seminuevos seleccionados, peritados mecánicamente y consignaciones.
+                    </p>
+                    <div className="pt-2">
+                      <span className="inline-flex items-center px-4 py-2 rounded-full text-xs font-semibold text-slate-400 bg-white/5 border border-white/10">
+                        En preparación
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 3. Mecánica Ligera (PRÓXIMAMENTE) */}
+                <div
+                  className="relative h-[380px] xs:h-[410px] sm:h-[440px] rounded-[28px] overflow-hidden border border-white/10 flex flex-col justify-between p-6 text-left opacity-75 select-none"
+                >
+                  <img
+                    src="/before-after/motor-despues.jpg"
+                    alt="Mecánica Ligera en Haedo"
+                    className="absolute inset-0 w-full h-full object-cover filter brightness-[0.45] contrast-105 pointer-events-none"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/70 pointer-events-none" />
+
+                  <div className="relative z-10 flex items-center justify-between">
+                    <span className="text-[11px] uppercase font-bold tracking-widest text-slate-300 px-3 py-1 rounded-full bg-black/75 backdrop-blur-md border border-white/15">
+                      Próximamente
+                    </span>
+                  </div>
+
+                  <div className="relative z-10 space-y-2">
+                    <h2 className="font-bold text-2xl text-slate-200 leading-tight">
+                      Mecánica Ligera
+                    </h2>
+                    <p className="text-xs text-slate-400 leading-relaxed font-light">
+                      Service preventivo, fluidos, frenos, distribución y mantenimiento integral.
+                    </p>
+                    <div className="pt-2">
+                      <span className="inline-flex items-center px-4 py-2 rounded-full text-xs font-semibold text-slate-400 bg-white/5 border border-white/10">
+                        En preparación
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Social Proof Stats */}
+              <div className="flex flex-wrap items-center justify-center gap-x-4 sm:gap-x-6 gap-y-1.5 pt-2 text-[11px] sm:text-xs text-slate-400">
+                {stats.map((item) => (
+                  <span key={item} className="inline-flex items-center gap-1.5">
+                    <HiOutlineCheckCircle aria-hidden className="size-4 shrink-0 text-gold" />
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* 3. RESEÑAS DE GOOGLE EN DI LO CENTER */}
+          <section id="opiniones" className="px-5 sm:px-8 py-20 border-t border-b border-white/5 bg-[#0a0a0a]">
+            <div className="max-w-5xl mx-auto text-center">
+              <span className="section-badge mb-4">Opiniones Reales</span>
+              <h2 className="text-2xl sm:text-4xl font-medium text-gold mb-3">
+                Calificación 4.9 ★ en Google
+              </h2>
+              <p className="text-slate-400 text-xs sm:text-sm max-w-xl mx-auto mb-10">
+                La tranquilidad de dejar tu vehículo en manos de profesionales recomendados por sus propios dueños en Zona Oeste.
+              </p>
+
+              <div className="grid md:grid-cols-3 gap-5 text-left">
+                <div className="glass-panel rounded-[22px] p-6 space-y-3 border border-white/10" style={{ background: "#101010" }}>
+                  <div className="flex items-center gap-1 text-amber-400 text-sm">
+                    {"★★★★★"}
+                  </div>
+                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed italic">
+                    &ldquo;Excelente atención y prolijidad. Le hicieron tratamiento cerámico y las ópticas a mi auto, quedó como recién sacado de concesionaria. 100% recomendable.&rdquo;
+                  </p>
+                  <p className="text-[11px] text-slate-400 font-semibold">— Cliente verificado en Google</p>
+                </div>
+
+                <div className="glass-panel rounded-[22px] p-6 space-y-3 border border-white/10" style={{ background: "#101010" }}>
+                  <div className="flex items-center gap-1 text-amber-400 text-sm">
+                    {"★★★★★"}
+                  </div>
+                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed italic">
+                    &ldquo;Dejé la chata para limpieza profunda de tapizados y vano motor. La dedicación que le ponen al detalle es impresionante, no quedó ni un rincón sucio.&rdquo;
+                  </p>
+                  <p className="text-[11px] text-slate-400 font-semibold">— Cliente verificado en Google</p>
+                </div>
+
+                <div className="glass-panel rounded-[22px] p-6 space-y-3 border border-white/10" style={{ background: "#101010" }}>
+                  <div className="flex items-center gap-1 text-amber-400 text-sm">
+                    {"★★★★★"}
+                  </div>
+                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed italic">
+                    &ldquo;Súper cumplidores con los tiempos y muy buen trato. Te explican el paso a paso del laburo y te mandan fotos del proceso. Se nota la pasión.&rdquo;
+                  </p>
+                  <p className="text-[11px] text-slate-400 font-semibold">— Cliente verificado en Google</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* 4. UBICACIÓN Y MAPA */}
+          <section id="ubicacion" className="px-5 sm:px-8 py-20 bg-black">
+            <div className="max-w-5xl mx-auto">
+              <div className="text-center mb-10">
+                <span className="section-badge mb-3">Ubicación</span>
+                <h2 className="text-2xl sm:text-4xl font-medium text-gold mb-2">Dónde Encontrarnos</h2>
+                <p className="text-slate-400 text-xs sm:text-sm">Atención con turno previo en nuestro estudio de Haedo.</p>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6 items-center">
+                <div className="glass-panel rounded-[22px] p-6 space-y-4 border border-white/10" style={{ background: "#101010" }}>
+                  <div className="flex items-start gap-4">
+                    <FaMapMarkerAlt className="size-5 text-gold shrink-0 mt-1" />
+                    <div>
+                      <h3 className="font-semibold text-white text-sm">Dirección</h3>
+                      <p className="text-sm text-slate-300">{biz.direccion}</p>
+                      <p className="text-xs text-slate-400">{biz.ciudad}, {biz.provincia}</p>
+                    </div>
+                  </div>
+
+                  {biz.horario && (
+                    <div className="flex items-start gap-4 pt-2 border-t border-white/5">
+                      <FaClock className="size-5 text-gold shrink-0 mt-1" />
+                      <div>
+                        <h3 className="font-semibold text-white text-sm">Horario</h3>
+                        <p className="text-xs text-slate-300">{biz.horario}</p>
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="pt-3 flex flex-wrap gap-3">
                     <a
-                      href={waHref(biz, reservaMsg)}
+                      href={mapsHref(biz)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn-outline-gold mt-3 inline-flex items-center justify-center gap-2 px-3 py-2 rounded-full text-xs font-semibold uppercase tracking-wider active:scale-95 transition-transform"
+                      className="btn-outline-gold inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider"
                     >
-                      <FaWhatsapp aria-hidden className="size-3.5 text-emerald-400" />
-                      Pedir Presupuesto
+                      <FaMapMarkerAlt className="size-3.5" />
+                      Abrir en Google Maps
+                    </a>
+                    <a
+                      href={igUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-pink-500/30 bg-pink-950/20 text-pink-300 hover:text-white text-xs font-semibold transition"
+                    >
+                      <FaInstagram className="size-3.5" />
+                      Instagram
                     </a>
                   </div>
                 </div>
-              );
-            })}
-          </div>
 
-          {/* Dots Indicator */}
-          <div className="flex items-center justify-center gap-1.5 pt-5">
-            {serviciosList.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => scrollToCardIndex(i)}
-                aria-label={`Ir al servicio ${i + 1}`}
-                className={`transition-all duration-300 rounded-full ${
-                  activeSlide === i
-                    ? "w-6 h-1.5 bg-amber-400"
-                    : "w-1.5 h-1.5 bg-white/20 hover:bg-white/40"
-                }`}
-              />
-            ))}
-          </div>
-
-          {/* Banner de fotos y asesoramiento */}
-          <div className="glass-panel rounded-[24px] mt-10 p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 justify-between border border-white/10" style={{ background: "#101010" }}>
-            <div>
-              <span className="section-badge mb-2">¿Dudas sobre qué necesita tu auto?</span>
-              <h3 className="font-semibold text-lg md:text-xl mb-1 text-white" style={{ textTransform: "none", fontFamily: "inherit" }}>
-                Mandanos 3 Fotos por WhatsApp y te Asesoramos
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-400 max-w-xl">
-                Sacale fotos al capot, los laterales y el interior con buena luz. En {biz.nombre} te orientamos sin costo ni compromiso para elegir el tratamiento ideal.
-              </p>
-            </div>
-            <a
-              href={waHref(biz, msgFotos)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-gold shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wide whitespace-nowrap active:scale-95 transition-transform"
-            >
-              <FaWhatsapp aria-hidden className="size-4" />
-              Enviar Fotos por WhatsApp
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* 5. GARANTÍA & COMPROMISO */}
-      <section id="garantia" className="relative px-5 sm:px-8 py-20 border-t border-b border-white/5" style={{ background: "#101010" }}>
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-12 max-w-2xl mx-auto">
-            <span className="section-badge mb-4">Compromiso de calidad</span>
-            <h2 className="text-2xl sm:text-4xl font-medium text-gold mb-3">Tratamientos con Garantía Escrita</h2>
-            <p className="text-slate-400 max-w-xl mx-auto text-xs sm:text-sm">
-              Cada vehículo se atiende de forma individual, dedicando el tiempo necesario para alcanzar el estándar más exigente.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-5 text-left">
-            <div className="glass-panel rounded-[20px] p-6 space-y-2.5 border border-white/10" style={{ background: "#141414" }}>
-              <div className="w-10 h-10 rounded-full flex items-center justify-center mb-4" style={{ background: "rgba(184,194,204,0.1)" }}>
-                <HiShieldCheck className="size-5" style={{ color: "#b8c2cc" }} />
-              </div>
-              <h3 className="font-semibold text-white text-sm sm:text-base" style={{ textTransform: "none", fontFamily: "inherit" }}>
-                Marcas Premium Mundiales
-              </h3>
-              <p className="text-xs text-slate-300 leading-relaxed">
-                Utilizamos recubrimientos nanocerámicos y compuestos de pulido de marcas líderes globales.
-              </p>
-            </div>
-
-            <div className="glass-panel rounded-[20px] p-6 space-y-2.5 border border-white/10" style={{ background: "#141414" }}>
-              <div className="w-10 h-10 rounded-full flex items-center justify-center mb-4" style={{ background: "rgba(184,194,204,0.1)" }}>
-                <HiOutlineSparkles className="size-5" style={{ color: "#b8c2cc" }} />
-              </div>
-              <h3 className="font-semibold text-white text-sm sm:text-base" style={{ textTransform: "none", fontFamily: "inherit" }}>
-                Técnica Segura y Precisa
-              </h3>
-              <p className="text-xs text-slate-300 leading-relaxed">
-                Inspección minuciosa bajo luz LED de alta fidelidad. Cero rodillos, cero métodos abrasivos. Cuidado total de la laca y la pintura original.
-              </p>
-            </div>
-
-            <div className="glass-panel rounded-[20px] p-6 space-y-2.5 border border-white/10" style={{ background: "#141414" }}>
-              <div className="w-10 h-10 rounded-full flex items-center justify-center mb-4" style={{ background: "rgba(184,194,204,0.1)" }}>
-                <HiOutlineCheckCircle className="size-5" style={{ color: "#b8c2cc" }} />
-              </div>
-              <h3 className="font-semibold text-white text-sm sm:text-base" style={{ textTransform: "none", fontFamily: "inherit" }}>
-                Garantía y Seguimiento
-              </h3>
-              <p className="text-xs text-slate-300 leading-relaxed">
-                Asesoramiento post-entrega para que mantengas el brillo y la protección en cada lavado posterior.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 6. UBICACIÓN, HORARIOS Y MAPA */}
-      <section id="ubicacion" className="px-5 sm:px-8 py-20 bg-black">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-10">
-            <span className="section-badge mb-3">Ubicación</span>
-            <h2 className="text-2xl sm:text-4xl font-medium text-gold mb-2">Dónde Encontrarnos</h2>
-            <p className="text-slate-400 text-xs sm:text-sm">Atención con turno previo en nuestro estudio de Haedo.</p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-6 items-center">
-            <div className="glass-panel rounded-[20px] p-6 space-y-4 border border-white/10" style={{ background: "#101010" }}>
-              <div className="flex items-start gap-4">
-                <FaMapMarkerAlt className="size-5 text-gold shrink-0 mt-1" />
-                <div>
-                  <h3 className="font-semibold text-white text-sm">Dirección</h3>
-                  <p className="text-sm text-slate-300">{biz.direccion}</p>
-                  <p className="text-xs text-slate-400">{biz.ciudad}, {biz.provincia}</p>
+                {/* Mapa Embebido */}
+                <div className="aspect-[4/3] rounded-[22px] overflow-hidden border border-white/10 relative" style={{ background: "#141414" }}>
+                  <iframe
+                    title={`Ubicación de ${biz.nombre}`}
+                    src="https://maps.google.com/maps?q=Orense%20711,%20Haedo,%20Buenos%20Aires&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                    className="w-full h-full border-0 filter grayscale invert contrast-125 opacity-80 hover:opacity-100 transition-opacity"
+                    loading="lazy"
+                  />
                 </div>
               </div>
+            </div>
+          </section>
 
-              {biz.horario && (
-                <div className="flex items-start gap-4 pt-2 border-t border-white/5">
-                  <FaClock className="size-5 text-gold shrink-0 mt-1" />
-                  <div>
-                    <h3 className="font-semibold text-white text-sm">Horario</h3>
-                    <p className="text-xs text-slate-300">{biz.horario}</p>
-                  </div>
-                </div>
-              )}
-
-              <div className="pt-3">
-                <a
-                  href={mapsHref(biz)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-outline-gold inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider"
-                >
-                  <FaMapMarkerAlt className="size-3.5" />
-                  Abrir en Google Maps
+          {/* 5. FOOTER DI LO CENTER */}
+          <footer className="px-5 sm:px-8 py-10 border-t border-white/10 text-center text-xs text-slate-500 bg-[#080808]">
+            <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+              <p>© {new Date().getFullYear()} Di Lo Center. Todos los derechos reservados.</p>
+              <div className="flex items-center gap-5 text-slate-400">
+                <a href={igUrl} target="_blank" rel="noopener noreferrer" className="hover:text-pink-400 flex items-center gap-1.5 transition">
+                  <FaInstagram className="size-3.5 text-pink-400" />
+                  <span>Instagram</span>
+                </a>
+                <span>•</span>
+                <a href={mapsHref(biz)} target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
+                  Cómo llegar
+                </a>
+                <span>•</span>
+                <a href={waHref(biz, msgPresupuesto)} target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition">
+                  WhatsApp
                 </a>
               </div>
             </div>
+          </footer>
+        </>
+      )}
 
-            {/* Mapa Embebido */}
-            <div className="aspect-[4/3] rounded-[20px] overflow-hidden border border-white/10 relative" style={{ background: "#141414" }}>
-              <iframe
-                title={`Ubicación de ${biz.nombre}`}
-                src="https://maps.google.com/maps?q=Orense%20711,%20Haedo,%20Buenos%20Aires&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                className="w-full h-full border-0 filter grayscale invert contrast-125 opacity-80 hover:opacity-100 transition-opacity"
-                loading="lazy"
-              />
+      {/* ============================================================== */}
+      {/* VISTA 2: DI LORENZO DETAILING (Sub-web / Pestaña de Detailing)  */}
+      {/* ============================================================== */}
+      {currentView === "detailing" && (
+        <>
+          {/* 1. NAVBAR DEDICADA DE DETAILING (Con botón Volver a Di Lo Center) */}
+          <div className="fixed top-0 left-0 right-0 z-50 flex justify-center px-3 pointer-events-none">
+            <header className="w-full max-w-5xl pointer-events-auto mt-3 rounded-full bg-[#0a0a0a]/90 backdrop-blur-md border border-white/10 px-4 sm:px-6 h-14 flex items-center justify-between shadow-2xl">
+              <button
+                type="button"
+                onClick={goToHub}
+                className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-400 hover:text-amber-300 transition active:scale-95 py-1 px-2.5 rounded-full bg-amber-400/10 border border-amber-400/20"
+              >
+                <FaArrowLeft className="size-3" />
+                <span>Volver a Di Lo Center</span>
+              </button>
+
+              <span className="font-bold text-xs sm:text-sm text-white hidden xs:inline tracking-wider">
+                DI LORENZO <span className="text-gold">DETAILING</span>
+              </span>
+
+              <div className="flex items-center gap-3">
+                <a
+                  href={igUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram Di Lorenzo"
+                  className="flex items-center justify-center size-8 rounded-full bg-white/5 hover:bg-white/10 text-pink-400 transition"
+                >
+                  <FaInstagram className="size-4" />
+                </a>
+                <a
+                  href={waHref(biz, "Hola! Quiero pedir presupuesto para un tratamiento de detailing en Di Lorenzo Detailing.")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs uppercase tracking-wider text-white hover:opacity-75 transition"
+                >
+                  <FaWhatsapp className="size-4 text-emerald-400" />
+                  <span className="hidden sm:inline">Pedir Turno</span>
+                </a>
+              </div>
+            </header>
+          </div>
+
+          {/* 2. HERO PRINCIPAL DE DETAILING (Presenta la división) */}
+          <section className="relative pt-24 sm:pt-28 pb-8 sm:pb-12 px-4 sm:px-6 overflow-hidden flex items-center justify-center bg-[#070707] border-b border-white/5">
+            <div className="relative z-10 max-w-4xl mx-auto w-full text-center px-2 py-4">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-amber-400/30 bg-amber-950/30 text-[11px] sm:text-xs font-semibold text-amber-200 mb-3 backdrop-blur-md">
+                <span className="flex size-1.5 rounded-full shrink-0 animate-pulse bg-emerald-400" />
+                <span>Estudio Profesional de Estética Vehicular</span>
+              </div>
+
+              <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white mb-2 leading-tight">
+                DI LORENZO <span className="text-gold">DETAILING</span>
+              </h1>
+
+              <p className="text-xs sm:text-sm text-slate-300 max-w-lg mx-auto font-light leading-relaxed mb-6">
+                Tratamientos cerámicos, abrillantado artesanal, restauración de ópticas, limpieza profunda de tapizados y film de protección PPF en Haedo.
+              </p>
+
+              <div className="flex flex-wrap items-center justify-center gap-3">
+                <a
+                  href="#servicios"
+                  className="btn-gold inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider shadow-lg active:scale-95 transition"
+                >
+                  <HiOutlineSparkles className="size-4" />
+                  <span>Ver Servicios y Tarifas</span>
+                </a>
+                <a
+                  href={waHref(biz, "Hola! Quiero consultar disponibilidad para un tratamiento en Di Lorenzo Detailing.")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-outline-gold inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider active:scale-95 transition"
+                >
+                  <FaWhatsapp className="size-4 text-emerald-400" />
+                  <span>Presupuesto WhatsApp</span>
+                </a>
+              </div>
             </div>
-          </div>
-        </div>
-      </section>
+          </section>
 
-      {/* 7. FOOTER */}
-      <footer className="px-5 sm:px-8 py-10 border-t border-white/10 text-center text-xs text-slate-500" style={{ background: "#080808" }}>
-        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p>© {new Date().getFullYear()} {biz.nombre}. Todos los derechos reservados.</p>
-          <div className="flex items-center gap-6">
-            <a href="#hero" className="hover:text-white transition-colors">Inicio</a>
-            <a href="#servicios" className="hover:text-white transition-colors">Servicios</a>
-            <a href="#garantia" className="hover:text-white transition-colors">Compromiso</a>
-            <a href={mapsHref(biz)} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-              Cómo llegar
-            </a>
-          </div>
-        </div>
-      </footer>
+          {/* 3. NUESTROS SERVICIOS — CARDS AMPLIAS Y ALTAS (Ocupan gran parte de la pantalla del celular) */}
+          <section id="servicios" className="px-4 sm:px-8 py-16 sm:py-20 bg-black relative">
+            <div className="max-w-7xl mx-auto">
+              {/* Header */}
+              <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-6">
+                <div>
+                  <span className="section-badge mb-3">Catálogo de Trabajos</span>
+                  <h2 className="text-2xl sm:text-4xl font-medium text-gold mb-2">
+                    Servicios & Tarifas en Haedo
+                  </h2>
+                  <p className="text-slate-400 text-xs sm:text-sm max-w-xl">
+                    Deslizá manualmente sobre cada trabajo para comparar los resultados de antes y después, conocer precios de referencia y pedir cotización directa.
+                  </p>
+                </div>
 
-      {/* WhatsApp Flotante */}
+                {/* Flechas de navegación suave */}
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={() => scrollCarousel("left")}
+                    aria-label="Servicio anterior"
+                    className="w-11 h-11 rounded-full bg-[#141414] hover:bg-[#222] text-white border border-white/10 hover:border-white/30 flex items-center justify-center transition-all active:scale-95 shadow-xl"
+                  >
+                    <FaChevronLeft className="text-xs" />
+                  </button>
+                  <button
+                    onClick={() => scrollCarousel("right")}
+                    aria-label="Siguiente servicio"
+                    className="w-11 h-11 rounded-full bg-[#141414] hover:bg-[#222] text-white border border-white/10 hover:border-white/30 flex items-center justify-center transition-all active:scale-95 shadow-xl"
+                  >
+                    <FaChevronRight className="text-xs" />
+                  </button>
+                </div>
+              </div>
+
+              {/* Carrusel horizontal con CARDS MÁS ALTAS Y AMPLIAS */}
+              <div
+                ref={carouselRef}
+                onScroll={handleCarouselScroll}
+                className="flex gap-5 sm:gap-6 overflow-x-auto pb-6 pt-2 scroll-smooth snap-x snap-mandatory scrollbar-none"
+                style={{
+                  scrollSnapType: "x mandatory",
+                  WebkitOverflowScrolling: "touch",
+                }}
+              >
+                {serviciosList.map((s, idx) => {
+                  const reservaMsg = `Hola! Me gustaría pedir información o presupuesto para el servicio: ${s.nombre} en Di Lorenzo Detailing.`;
+                  const imgSource = s.img ?? "/servicios/exterior.jpg";
+                  const isPpfColor =
+                    s.nombre.toLowerCase().includes("ppf color") ||
+                    s.nombre.toLowerCase().includes("ppf | paint protection film");
+                  const hasCompare =
+                    s.modo_foto === "before_after"
+                      ? Boolean(s.antes_img || s.despues_img)
+                      : Boolean(s.antes_img && s.despues_img);
+
+                  return (
+                    <div
+                      key={`${s.nombre}-${idx}`}
+                      className="service-card product-card rounded-[26px] overflow-hidden flex flex-col justify-between relative border border-white/10 hover:border-white/30 transition-all duration-300 w-[88vw] xs:w-[350px] sm:w-[380px] md:w-[400px] lg:w-[420px] min-h-[520px] sm:min-h-[560px] shrink-0 snap-center shadow-2xl"
+                      style={{ background: "#101010" }}
+                    >
+                      {/* Media más alta y amplia (aspect-[4/3] generoso) */}
+                      <div className="aspect-[4/3] overflow-hidden relative bg-[#141414]">
+                        {isPpfColor ? (
+                          <PpfColorVisualizer biz={biz} />
+                        ) : hasCompare ? (
+                          <CarouselCompareSlider
+                            before={s.antes_img || s.despues_img || imgSource}
+                            after={s.despues_img || s.antes_img || imgSource}
+                            alt={s.nombre}
+                          />
+                        ) : (
+                          <div className="relative w-full h-full bg-[#0d0d0d] overflow-hidden">
+                            <img
+                              src={s.img || imgSource}
+                              alt={s.nombre}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                        )}
+
+                        {s.proteccion && !isPpfColor && (
+                          <div
+                            className="absolute bottom-3 left-3 right-3 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/15 text-[11px] font-semibold text-white/95 flex items-center gap-1.5 shadow-lg z-20 pointer-events-none"
+                            style={{ background: "rgba(10,10,10,0.88)" }}
+                          >
+                            <span className="size-1.5 rounded-full bg-emerald-400 shrink-0" />
+                            <span className="truncate">{s.proteccion}</span>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Info Card con tipografía amplia y botón */}
+                      <div className="p-5 sm:p-6 flex flex-col gap-2 flex-1 justify-between">
+                        <div className="space-y-2">
+                          <h3
+                            className="font-bold text-lg sm:text-xl text-white leading-snug"
+                            style={{ textTransform: "none", fontFamily: "inherit" }}
+                          >
+                            {s.nombre}
+                          </h3>
+                          {s.precio && s.precio.trim() ? (
+                            <p className="text-base sm:text-lg font-extrabold text-gold">{s.precio}</p>
+                          ) : null}
+                          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">{s.descripcion}</p>
+
+                          {s.ideal_si && (
+                            <p className="text-xs text-slate-400 pt-1">
+                              <span className="font-semibold text-slate-300">Detalles:</span> {s.ideal_si}
+                            </p>
+                          )}
+                        </div>
+
+                        <a
+                          href={waHref(biz, reservaMsg)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn-outline-gold mt-4 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-full text-xs font-semibold uppercase tracking-wider active:scale-95 transition-transform"
+                        >
+                          <FaWhatsapp aria-hidden className="size-4 text-emerald-400" />
+                          Pedir Presupuesto por WhatsApp
+                        </a>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Dots Indicator */}
+              <div className="flex items-center justify-center gap-1.5 pt-5">
+                {serviciosList.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => scrollToCardIndex(i)}
+                    aria-label={`Ir al servicio ${i + 1}`}
+                    className={`transition-all duration-300 rounded-full ${
+                      activeSlide === i
+                        ? "w-7 h-1.5 bg-amber-400"
+                        : "w-1.5 h-1.5 bg-white/20 hover:bg-white/40"
+                    }`}
+                  />
+                ))}
+              </div>
+
+              {/* BANNER INSTAGRAM: VER TRABAJOS REALES */}
+              <div className="rounded-[28px] p-6 sm:p-10 border border-pink-500/25 bg-gradient-to-br from-zinc-950 via-[#140e1a] to-black relative overflow-hidden my-12 shadow-2xl">
+                <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-br from-pink-500/10 via-purple-500/10 to-transparent rounded-full blur-3xl pointer-events-none" />
+                <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+                  <div>
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pink-500/10 border border-pink-500/20 text-pink-400 text-xs font-bold uppercase tracking-wider mb-3">
+                      <FaInstagram />
+                      <span>@{instagramHandle}</span>
+                    </div>
+                    <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">
+                      Mirá Nuestros Trabajos Reales en Instagram
+                    </h3>
+                    <p className="text-xs sm:text-sm text-slate-300 max-w-xl">
+                      Seguinos para ver el proceso en vivo de cada tratamiento, reels del paso a paso de pulido y fotos en alta resolución de los autos recién entregados.
+                    </p>
+                  </div>
+                  <a
+                    href={igUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="shrink-0 inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider text-white bg-gradient-to-r from-purple-600 via-pink-600 to-amber-500 hover:opacity-90 shadow-xl shadow-pink-600/20 active:scale-95 transition-all"
+                  >
+                    <FaInstagram className="text-base" />
+                    <span>Ver Trabajos Reales</span>
+                  </a>
+                </div>
+              </div>
+
+              {/* Banner de fotos y asesoramiento */}
+              <div className="glass-panel rounded-[24px] mt-6 p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 justify-between border border-white/10" style={{ background: "#101010" }}>
+                <div>
+                  <span className="section-badge mb-2">¿Dudas sobre qué necesita tu auto?</span>
+                  <h3 className="font-semibold text-lg md:text-xl mb-1 text-white" style={{ textTransform: "none", fontFamily: "inherit" }}>
+                    Mandanos 3 Fotos por WhatsApp y te Asesoramos
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-400 max-w-xl">
+                    Sacale fotos al capot, los laterales y el interior con buena luz. Te orientamos sin costo ni compromiso para elegir el tratamiento ideal.
+                  </p>
+                </div>
+                <a
+                  href={waHref(biz, msgFotos)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-gold shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wide whitespace-nowrap active:scale-95 transition-transform"
+                >
+                  <FaWhatsapp aria-hidden className="size-4" />
+                  Enviar Fotos por WhatsApp
+                </a>
+              </div>
+            </div>
+          </section>
+
+          {/* 4. GARANTÍA & COMPROMISO DE DETAILING */}
+          <section id="garantia" className="relative px-5 sm:px-8 py-20 border-t border-b border-white/5" style={{ background: "#101010" }}>
+            <div className="max-w-5xl mx-auto">
+              <div className="text-center mb-12 max-w-2xl mx-auto">
+                <span className="section-badge mb-4">Compromiso de calidad</span>
+                <h2 className="text-2xl sm:text-4xl font-medium text-gold mb-3">Tratamientos con Garantía Escrita</h2>
+                <p className="text-slate-400 max-w-xl mx-auto text-xs sm:text-sm">
+                  Cada vehículo se atiende de forma individual, dedicando el tiempo necesario para alcanzar el estándar más exigente.
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-3 gap-5 text-left">
+                <div className="glass-panel rounded-[20px] p-6 space-y-2.5 border border-white/10" style={{ background: "#141414" }}>
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center mb-4" style={{ background: "rgba(184,194,204,0.1)" }}>
+                    <HiShieldCheck className="size-5" style={{ color: "#b8c2cc" }} />
+                  </div>
+                  <h3 className="font-semibold text-white text-sm sm:text-base" style={{ textTransform: "none", fontFamily: "inherit" }}>
+                    Marcas Premium Mundiales
+                  </h3>
+                  <p className="text-xs text-slate-300 leading-relaxed">
+                    Utilizamos recubrimientos nanocerámicos y compuestos de pulido de marcas líderes globales.
+                  </p>
+                </div>
+
+                <div className="glass-panel rounded-[20px] p-6 space-y-2.5 border border-white/10" style={{ background: "#141414" }}>
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center mb-4" style={{ background: "rgba(184,194,204,0.1)" }}>
+                    <HiOutlineSparkles className="size-5" style={{ color: "#b8c2cc" }} />
+                  </div>
+                  <h3 className="font-semibold text-white text-sm sm:text-base" style={{ textTransform: "none", fontFamily: "inherit" }}>
+                    Técnica Segura y Precisa
+                  </h3>
+                  <p className="text-xs text-slate-300 leading-relaxed">
+                    Inspección minuciosa bajo luz LED de alta fidelidad. Cero rodillos, cero métodos abrasivos. Cuidado total de la laca y la pintura original.
+                  </p>
+                </div>
+
+                <div className="glass-panel rounded-[20px] p-6 space-y-2.5 border border-white/10" style={{ background: "#141414" }}>
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center mb-4" style={{ background: "rgba(184,194,204,0.1)" }}>
+                    <HiOutlineCheckCircle className="size-5" style={{ color: "#b8c2cc" }} />
+                  </div>
+                  <h3 className="font-semibold text-white text-sm sm:text-base" style={{ textTransform: "none", fontFamily: "inherit" }}>
+                    Garantía y Seguimiento
+                  </h3>
+                  <p className="text-xs text-slate-300 leading-relaxed">
+                    Asesoramiento post-entrega para que mantengas el brillo y la protección en cada lavado posterior.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* 5. UBICACIÓN DETAILING */}
+          <section id="ubicacion" className="px-5 sm:px-8 py-20 bg-black">
+            <div className="max-w-5xl mx-auto">
+              <div className="text-center mb-10">
+                <span className="section-badge mb-3">Ubicación</span>
+                <h2 className="text-2xl sm:text-4xl font-medium text-gold mb-2">Dónde Encontrarnos</h2>
+                <p className="text-slate-400 text-xs sm:text-sm">Atención con turno previo en nuestro estudio de Haedo.</p>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6 items-center">
+                <div className="glass-panel rounded-[20px] p-6 space-y-4 border border-white/10" style={{ background: "#101010" }}>
+                  <div className="flex items-start gap-4">
+                    <FaMapMarkerAlt className="size-5 text-gold shrink-0 mt-1" />
+                    <div>
+                      <h3 className="font-semibold text-white text-sm">Dirección</h3>
+                      <p className="text-sm text-slate-300">{biz.direccion}</p>
+                      <p className="text-xs text-slate-400">{biz.ciudad}, {biz.provincia}</p>
+                    </div>
+                  </div>
+
+                  {biz.horario && (
+                    <div className="flex items-start gap-4 pt-2 border-t border-white/5">
+                      <FaClock className="size-5 text-gold shrink-0 mt-1" />
+                      <div>
+                        <h3 className="font-semibold text-white text-sm">Horario</h3>
+                        <p className="text-xs text-slate-300">{biz.horario}</p>
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="pt-3 flex flex-wrap gap-3">
+                    <a
+                      href={mapsHref(biz)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-outline-gold inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider"
+                    >
+                      <FaMapMarkerAlt className="size-3.5" />
+                      Abrir en Google Maps
+                    </a>
+                    <a
+                      href={igUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-pink-500/30 bg-pink-950/20 text-pink-300 hover:text-white text-xs font-semibold transition"
+                    >
+                      <FaInstagram className="size-3.5" />
+                      Instagram
+                    </a>
+                  </div>
+                </div>
+
+                <div className="aspect-[4/3] rounded-[20px] overflow-hidden border border-white/10 relative" style={{ background: "#141414" }}>
+                  <iframe
+                    title={`Ubicación de ${biz.nombre}`}
+                    src="https://maps.google.com/maps?q=Orense%20711,%20Haedo,%20Buenos%20Aires&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                    className="w-full h-full border-0 filter grayscale invert contrast-125 opacity-80 hover:opacity-100 transition-opacity"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* 6. FOOTER DETAILING */}
+          <footer className="px-5 sm:px-8 py-10 border-t border-white/10 text-center text-xs text-slate-500 bg-[#080808]">
+            <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+              <p>© {new Date().getFullYear()} Di Lorenzo Detailing. Todos los derechos reservados.</p>
+              <div className="flex items-center gap-5 text-slate-400">
+                <button type="button" onClick={goToHub} className="hover:text-amber-400 font-semibold transition">
+                  ← Di Lo Center
+                </button>
+                <span>•</span>
+                <a href={igUrl} target="_blank" rel="noopener noreferrer" className="hover:text-pink-400 flex items-center gap-1.5 transition">
+                  <FaInstagram className="size-3.5 text-pink-400" />
+                  <span>Instagram</span>
+                </a>
+                <span>•</span>
+                <a href={mapsHref(biz)} target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
+                  Cómo llegar
+                </a>
+              </div>
+            </div>
+          </footer>
+        </>
+      )}
+
+      {/* WhatsApp Flotante permanente */}
       <a
-        href={waHref(biz, msgPresupuesto)}
+        href={waHref(
+          biz,
+          currentView === "detailing"
+            ? "Hola! Quisiera consultar por un turno de estética vehicular en Di Lorenzo Detailing."
+            : "Hola! Me comunico desde la web de Di Lo Center para hacer una consulta."
+        )}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Contactar por WhatsApp"
