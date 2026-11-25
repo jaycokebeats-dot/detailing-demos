@@ -4,7 +4,6 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import {
   FaWhatsapp,
   FaMapMarkerAlt,
-  FaStar,
   FaClock,
   FaChevronLeft,
   FaChevronRight,
@@ -14,7 +13,6 @@ import {
 import {
   HiOutlineCheckCircle,
   HiOutlineSparkles,
-  HiShieldCheck,
   HiOutlineArrowRight,
 } from "react-icons/hi2";
 import type { Business, ServiceItem } from "@/data/business-helpers";
@@ -183,7 +181,8 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
   const [scrolled, setScrolled] = useState(false);
   const [activeSlide, setActiveSlide] = useState(0);
 
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const hubVideoRef = useRef<HTMLVideoElement>(null);
+  const detailingHeroVideoRef = useRef<HTMLVideoElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
 
   const serviciosList =
@@ -210,8 +209,8 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
       ) {
         setCurrentView("detailing");
         setTimeout(() => {
-          document.getElementById("servicios")?.scrollIntoView({ behavior: "smooth", block: "start" });
-        }, 120);
+          scrollToServicesContainer();
+        }, 150);
       } else {
         setCurrentView("hub");
       }
@@ -226,13 +225,24 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
     };
   }, []);
 
-  // Transición a la sub-web de Detailing y auto-scroll a servicios
+  // Función para posicionar la pantalla de modo que la card entera sea visible sin que la tape la barra superior
+  const scrollToServicesContainer = () => {
+    const carouselEl = document.getElementById("servicios-carrusel");
+    if (carouselEl) {
+      // Offset de 60px para dejar espacio limpio abajo de la barra flotante
+      const yOffset = -60;
+      const y = carouselEl.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
+  };
+
+  // Transición a la sub-web de Detailing y vista directa de la card entera
   const goToDetailing = () => {
     setCurrentView("detailing");
     window.history.pushState(null, "", "#detailing");
     setTimeout(() => {
-      document.getElementById("servicios")?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 80);
+      scrollToServicesContainer();
+    }, 100);
   };
 
   // Volver al Hub de Di Lo Center
@@ -250,15 +260,24 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Video autoplay helper
+  // Videos autoplay helper
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-    video.defaultMuted = true;
-    video.muted = true;
-    video.setAttribute("muted", "");
-    video.setAttribute("playsinline", "true");
-    video.play().catch(() => {});
+    const v1 = hubVideoRef.current;
+    if (v1) {
+      v1.defaultMuted = true;
+      v1.muted = true;
+      v1.setAttribute("muted", "");
+      v1.setAttribute("playsinline", "true");
+      v1.play().catch(() => {});
+    }
+    const v2 = detailingHeroVideoRef.current;
+    if (v2) {
+      v2.defaultMuted = true;
+      v2.muted = true;
+      v2.setAttribute("muted", "");
+      v2.setAttribute("playsinline", "true");
+      v2.play().catch(() => {});
+    }
   }, [currentView]);
 
   // Centrado y navegación exacta del carrusel
@@ -312,7 +331,6 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
   };
 
   const msgPresupuesto = `Hola! Quisiera pedir información o presupuesto en ${biz.nombre}.`;
-  const msgFotos = `Hola! Les mando fotos de mi auto para que me asesoren en ${biz.nombre}.`;
 
   const stats = [
     biz.rating != null
@@ -354,8 +372,8 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
             >
               <div className={`max-w-6xl mx-auto flex items-center justify-between px-4 sm:px-8 transition-[height] duration-300 ${scrolled ? "h-14" : "h-16"}`}>
                 <a href="#" onClick={(e) => { e.preventDefault(); goToHub(); }} className="flex items-center shrink-0 group py-1" aria-label="Inicio Di Lo Center">
-                  <span className="text-sm sm:text-base font-bold tracking-widest text-white">
-                    DI LO <span className="text-gold">CENTER</span>
+                  <span className="text-sm sm:text-base font-bold tracking-widest text-slate-200">
+                    DI LO <span className="text-slate-300">CENTER</span>
                   </span>
                 </a>
                 <div className="hidden md:flex items-center gap-7 text-xs uppercase tracking-widest text-slate-400">
@@ -387,32 +405,32 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
             </header>
           </div>
 
-          {/* 2. HERO DI LO CENTER — CON H1 CARTELERÍA 3D */}
+          {/* 2. HERO DI LO CENTER — CON H1 PLATEADO CORPÓREO 3D CON AIRE Y SEPARACIÓN */}
           <section id="divisiones" className="relative min-h-[95dvh] pt-24 sm:pt-28 pb-12 sm:pb-16 px-4 sm:px-6 overflow-hidden flex items-center justify-center bg-[#070707]">
-            {/* Fondo oscuro de lujo con halo cálido sutil */}
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_90%_65%_at_50%_-10%,rgba(212,175,55,0.12),transparent_75%)]" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(16,185,129,0.04),transparent_40%)]" />
+            {/* Fondo oscuro de lujo con halo plateado sutil */}
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_90%_65%_at_50%_-10%,rgba(226,232,240,0.1),transparent_75%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(16,185,129,0.03),transparent_40%)]" />
 
             <div className="relative z-10 max-w-5xl mx-auto w-full flex flex-col justify-center items-center text-center px-2 py-4">
               {/* Badge Haedo */}
-              <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full border border-amber-400/30 bg-amber-950/20 text-[11px] sm:text-xs font-semibold text-amber-200 mb-3 shadow-sm backdrop-blur-md">
+              <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full border border-slate-300/20 bg-slate-800/30 text-[11px] sm:text-xs font-semibold text-slate-300 mb-4 shadow-sm backdrop-blur-md">
                 <span className="flex size-1.5 sm:size-2 rounded-full shrink-0 animate-pulse bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
                 <span>Haedo, Buenos Aires</span>
-                <span className="text-amber-500/60">·</span>
+                <span className="text-slate-500">·</span>
                 <span>Centro Integral Automotor</span>
               </div>
 
-              {/* H1 CARTELERÍA 3D CORPÓREA ILUMINADA */}
-              <div className="my-3 sm:my-5 relative">
+              {/* H1 CARTELERÍA 3D PLATEADA / CROMO PULIDO */}
+              <div className="mt-4 sm:mt-6 mb-7 sm:mb-9 relative">
                 <h1 className="text-4xl xs:text-5xl sm:text-7xl md:text-8xl font-black tracking-[0.08em] sm:tracking-[0.14em] uppercase text-center relative select-none">
                   <span
                     className="relative inline-block text-transparent bg-clip-text"
                     style={{
                       backgroundImage:
-                        "linear-gradient(180deg, #ffffff 0%, #fef3c7 22%, #f59e0b 55%, #b45309 85%, #78350f 100%)",
+                        "linear-gradient(180deg, #ffffff 0%, #f1f5f9 20%, #e2e8f0 40%, #cbd5e1 65%, #94a3b8 85%, #64748b 100%)",
                       filter:
-                        "drop-shadow(0 4px 0 #78350f) drop-shadow(0 8px 1px #451a03) drop-shadow(0 14px 20px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 35px rgba(245, 158, 11, 0.45))",
-                      WebkitTextStroke: "1px rgba(255, 255, 255, 0.35)",
+                        "drop-shadow(0 3px 0 #475569) drop-shadow(0 6px 0 #334155) drop-shadow(0 10px 1px #1e293b) drop-shadow(0 15px 24px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 35px rgba(226, 232, 240, 0.4))",
+                      WebkitTextStroke: "1px rgba(255, 255, 255, 0.6)",
                     }}
                   >
                     DI LO CENTER
@@ -420,7 +438,8 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
                 </h1>
               </div>
 
-              <p className="text-xs sm:text-sm text-slate-300 max-w-lg mx-auto font-light leading-relaxed mb-8">
+              {/* Subtítulo con más aire y separación */}
+              <p className="text-xs sm:text-sm text-slate-300 max-w-lg mx-auto font-light leading-relaxed mb-10 sm:mb-12">
                 Estética vehicular artesanal, compra-venta de unidades seleccionadas y mecánica integral. Seleccioná el área para tu vehículo:
               </p>
 
@@ -434,7 +453,7 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
                 >
                   {/* Video en loop dentro de la publicación */}
                   <video
-                    ref={videoRef}
+                    ref={hubVideoRef}
                     autoPlay
                     muted
                     loop
@@ -542,7 +561,7 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
               <div className="flex flex-wrap items-center justify-center gap-x-4 sm:gap-x-6 gap-y-1.5 pt-2 text-[11px] sm:text-xs text-slate-400">
                 {stats.map((item) => (
                   <span key={item} className="inline-flex items-center gap-1.5">
-                    <HiOutlineCheckCircle aria-hidden className="size-4 shrink-0 text-gold" />
+                    <HiOutlineCheckCircle aria-hidden className="size-4 shrink-0 text-slate-300" />
                     {item}
                   </span>
                 ))}
@@ -554,7 +573,7 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
           <section id="opiniones" className="px-5 sm:px-8 py-20 border-t border-b border-white/5 bg-[#0a0a0a]">
             <div className="max-w-5xl mx-auto text-center">
               <span className="section-badge mb-4">Opiniones Reales</span>
-              <h2 className="text-2xl sm:text-4xl font-medium text-gold mb-3">
+              <h2 className="text-2xl sm:text-4xl font-medium text-slate-200 mb-3">
                 Calificación 4.9 ★ en Google
               </h2>
               <p className="text-slate-400 text-xs sm:text-sm max-w-xl mx-auto mb-10">
@@ -595,54 +614,57 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
             </div>
           </section>
 
-          {/* 4. UBICACIÓN Y MAPA */}
+          {/* 4. UBICACIÓN Y MAPA (CON BOTONES Y TEXTOS 100% CENTRADOS) */}
           <section id="ubicacion" className="px-5 sm:px-8 py-20 bg-black">
             <div className="max-w-5xl mx-auto">
               <div className="text-center mb-10">
                 <span className="section-badge mb-3">Ubicación</span>
-                <h2 className="text-2xl sm:text-4xl font-medium text-gold mb-2">Dónde Encontrarnos</h2>
+                <h2 className="text-2xl sm:text-4xl font-medium text-slate-200 mb-2">Dónde Encontrarnos</h2>
                 <p className="text-slate-400 text-xs sm:text-sm">Atención con turno previo en nuestro estudio de Haedo.</p>
               </div>
 
               <div className="grid md:grid-cols-2 gap-6 items-center">
-                <div className="glass-panel rounded-[22px] p-6 space-y-4 border border-white/10" style={{ background: "#101010" }}>
-                  <div className="flex items-start gap-4">
-                    <FaMapMarkerAlt className="size-5 text-gold shrink-0 mt-1" />
-                    <div>
-                      <h3 className="font-semibold text-white text-sm">Dirección</h3>
-                      <p className="text-sm text-slate-300">{biz.direccion}</p>
-                      <p className="text-xs text-slate-400">{biz.ciudad}, {biz.provincia}</p>
-                    </div>
-                  </div>
-
-                  {biz.horario && (
-                    <div className="flex items-start gap-4 pt-2 border-t border-white/5">
-                      <FaClock className="size-5 text-gold shrink-0 mt-1" />
+                <div className="glass-panel rounded-[22px] p-6 space-y-4 border border-white/10 flex flex-col justify-between" style={{ background: "#101010" }}>
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-4">
+                      <FaMapMarkerAlt className="size-5 text-slate-300 shrink-0 mt-1" />
                       <div>
-                        <h3 className="font-semibold text-white text-sm">Horario</h3>
-                        <p className="text-xs text-slate-300">{biz.horario}</p>
+                        <h3 className="font-semibold text-white text-sm">Dirección</h3>
+                        <p className="text-sm text-slate-300">{biz.direccion}</p>
+                        <p className="text-xs text-slate-400">{biz.ciudad}, {biz.provincia}</p>
                       </div>
                     </div>
-                  )}
 
-                  <div className="pt-3 flex flex-wrap gap-3">
+                    {biz.horario && (
+                      <div className="flex items-start gap-4 pt-2 border-t border-white/5">
+                        <FaClock className="size-5 text-slate-300 shrink-0 mt-1" />
+                        <div>
+                          <h3 className="font-semibold text-white text-sm">Horario</h3>
+                          <p className="text-xs text-slate-300">{biz.horario}</p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Botones de acción 100% centrados */}
+                  <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3 w-full border-t border-white/5">
                     <a
                       href={mapsHref(biz)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn-outline-gold inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider"
+                      className="btn-outline-gold inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider text-center w-full sm:w-auto"
                     >
                       <FaMapMarkerAlt className="size-3.5" />
-                      Abrir en Google Maps
+                      <span>Abrir en Google Maps</span>
                     </a>
                     <a
                       href={igUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-pink-500/30 bg-pink-950/20 text-pink-300 hover:text-white text-xs font-semibold transition"
+                      className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full border border-pink-500/30 bg-pink-950/20 text-pink-300 hover:text-white text-xs font-semibold transition text-center w-full sm:w-auto"
                     >
                       <FaInstagram className="size-3.5" />
-                      Instagram
+                      <span>Instagram</span>
                     </a>
                   </div>
                 </div>
@@ -664,7 +686,7 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
           <footer className="px-5 sm:px-8 py-10 border-t border-white/10 text-center text-xs text-slate-500 bg-[#080808]">
             <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
               <p>© {new Date().getFullYear()} Di Lo Center. Todos los derechos reservados.</p>
-              <div className="flex items-center gap-5 text-slate-400">
+              <div className="flex items-center justify-center gap-5 text-slate-400">
                 <a href={igUrl} target="_blank" rel="noopener noreferrer" className="hover:text-pink-400 flex items-center gap-1.5 transition">
                   <FaInstagram className="size-3.5 text-pink-400" />
                   <span>Instagram</span>
@@ -690,11 +712,11 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
         <>
           {/* 1. NAVBAR DEDICADA DE DETAILING (Con botón Volver a Di Lo Center) */}
           <div className="fixed top-0 left-0 right-0 z-50 flex justify-center px-3 pointer-events-none">
-            <header className="w-full max-w-5xl pointer-events-auto mt-3 rounded-full bg-[#0a0a0a]/90 backdrop-blur-md border border-white/10 px-4 sm:px-6 h-14 flex items-center justify-between shadow-2xl">
+            <header className="w-full max-w-5xl pointer-events-auto mt-3 rounded-full bg-[#0a0a0a]/92 backdrop-blur-md border border-white/10 px-4 sm:px-6 h-14 flex items-center justify-between shadow-2xl">
               <button
                 type="button"
                 onClick={goToHub}
-                className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-400 hover:text-amber-300 transition active:scale-95 py-1 px-2.5 rounded-full bg-amber-400/10 border border-amber-400/20"
+                className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-400 hover:text-amber-300 transition active:scale-95 py-1 px-3 rounded-full bg-amber-400/10 border border-amber-400/20"
               >
                 <FaArrowLeft className="size-3" />
                 <span>Volver a Di Lo Center</span>
@@ -727,8 +749,21 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
             </header>
           </div>
 
-          {/* 2. HERO PRINCIPAL DE DETAILING (Presenta la división) */}
-          <section className="relative pt-24 sm:pt-28 pb-8 sm:pb-12 px-4 sm:px-6 overflow-hidden flex items-center justify-center bg-[#070707] border-b border-white/5">
+          {/* 2. HERO PRINCIPAL DE DETAILING CON VIDEO DE FONDO CINEMATOGRÁFICO */}
+          <section className="relative min-h-[380px] sm:min-h-[440px] pt-24 sm:pt-28 pb-12 sm:pb-16 px-4 sm:px-6 overflow-hidden flex items-center justify-center bg-[#070707] border-b border-white/5">
+            {/* Video de fondo en loop para la sub-web de Detailing */}
+            <video
+              ref={detailingHeroVideoRef}
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover opacity-50 filter brightness-95 contrast-105 pointer-events-none"
+              src={biz.video_hero ?? "/videos/hero-compilado-blanco.mp4"}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/55 to-black/75 pointer-events-none" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.85)_100%)] pointer-events-none" />
+
             <div className="relative z-10 max-w-4xl mx-auto w-full text-center px-2 py-4">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-amber-400/30 bg-amber-950/30 text-[11px] sm:text-xs font-semibold text-amber-200 mb-3 backdrop-blur-md">
                 <span className="flex size-1.5 rounded-full shrink-0 animate-pulse bg-emerald-400" />
@@ -744,18 +779,19 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
               </p>
 
               <div className="flex flex-wrap items-center justify-center gap-3">
-                <a
-                  href="#servicios"
-                  className="btn-gold inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider shadow-lg active:scale-95 transition"
+                <button
+                  type="button"
+                  onClick={scrollToServicesContainer}
+                  className="btn-gold inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider shadow-lg active:scale-95 transition"
                 >
                   <HiOutlineSparkles className="size-4" />
                   <span>Ver Servicios y Tarifas</span>
-                </a>
+                </button>
                 <a
                   href={waHref(biz, "Hola! Quiero consultar disponibilidad para un tratamiento en Di Lorenzo Detailing.")}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-outline-gold inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider active:scale-95 transition"
+                  className="btn-outline-gold inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider active:scale-95 transition"
                 >
                   <FaWhatsapp className="size-4 text-emerald-400" />
                   <span>Presupuesto WhatsApp</span>
@@ -764,152 +800,155 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
             </div>
           </section>
 
-          {/* 3. NUESTROS SERVICIOS — CARDS AMPLIAS Y ALTAS (Ocupan gran parte de la pantalla del celular) */}
-          <section id="servicios" className="px-4 sm:px-8 py-16 sm:py-20 bg-black relative">
+          {/* 3. NUESTROS SERVICIOS — CARDS AMPLIAS Y ALTAS CON FLECHAS ABAJO THUMB-FRIENDLY */}
+          <section id="servicios" className="px-4 sm:px-8 pt-12 pb-20 bg-black relative">
             <div className="max-w-7xl mx-auto">
-              {/* Header */}
-              <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-6">
-                <div>
-                  <span className="section-badge mb-3">Catálogo de Trabajos</span>
-                  <h2 className="text-2xl sm:text-4xl font-medium text-gold mb-2">
-                    Servicios & Tarifas en Haedo
-                  </h2>
-                  <p className="text-slate-400 text-xs sm:text-sm max-w-xl">
-                    Deslizá manualmente sobre cada trabajo para comparar los resultados de antes y después, conocer precios de referencia y pedir cotización directa.
-                  </p>
-                </div>
-
-                {/* Flechas de navegación suave */}
-                <div className="flex items-center gap-3">
-                  <button
-                    onClick={() => scrollCarousel("left")}
-                    aria-label="Servicio anterior"
-                    className="w-11 h-11 rounded-full bg-[#141414] hover:bg-[#222] text-white border border-white/10 hover:border-white/30 flex items-center justify-center transition-all active:scale-95 shadow-xl"
-                  >
-                    <FaChevronLeft className="text-xs" />
-                  </button>
-                  <button
-                    onClick={() => scrollCarousel("right")}
-                    aria-label="Siguiente servicio"
-                    className="w-11 h-11 rounded-full bg-[#141414] hover:bg-[#222] text-white border border-white/10 hover:border-white/30 flex items-center justify-center transition-all active:scale-95 shadow-xl"
-                  >
-                    <FaChevronRight className="text-xs" />
-                  </button>
-                </div>
+              {/* Header de la sección */}
+              <div className="text-center mb-8 max-w-2xl mx-auto">
+                <span className="section-badge mb-3">Catálogo de Trabajos</span>
+                <h2 className="text-2xl sm:text-4xl font-medium text-gold mb-2">
+                  Servicios & Tarifas en Haedo
+                </h2>
+                <p className="text-slate-400 text-xs sm:text-sm">
+                  Deslizá manualmente sobre cada trabajo para comparar los resultados de antes y después, conocer precios de referencia y pedir cotización directa.
+                </p>
               </div>
 
-              {/* Carrusel horizontal con CARDS MÁS ALTAS Y AMPLIAS */}
-              <div
-                ref={carouselRef}
-                onScroll={handleCarouselScroll}
-                className="flex gap-5 sm:gap-6 overflow-x-auto pb-6 pt-2 scroll-smooth snap-x snap-mandatory scrollbar-none"
-                style={{
-                  scrollSnapType: "x mandatory",
-                  WebkitOverflowScrolling: "touch",
-                }}
-              >
-                {serviciosList.map((s, idx) => {
-                  const reservaMsg = `Hola! Me gustaría pedir información o presupuesto para el servicio: ${s.nombre} en Di Lorenzo Detailing.`;
-                  const imgSource = s.img ?? "/servicios/exterior.jpg";
-                  const isPpfColor =
-                    s.nombre.toLowerCase().includes("ppf color") ||
-                    s.nombre.toLowerCase().includes("ppf | paint protection film");
-                  const hasCompare =
-                    s.modo_foto === "before_after"
-                      ? Boolean(s.antes_img || s.despues_img)
-                      : Boolean(s.antes_img && s.despues_img);
+              {/* Contenedor del Carrusel (ancla directa para que se vea la card entera en mobile) */}
+              <div id="servicios-carrusel" className="relative pt-2">
+                <div
+                  ref={carouselRef}
+                  onScroll={handleCarouselScroll}
+                  className="flex gap-5 sm:gap-6 overflow-x-auto pb-4 pt-1 scroll-smooth snap-x snap-mandatory scrollbar-none"
+                  style={{
+                    scrollSnapType: "x mandatory",
+                    WebkitOverflowScrolling: "touch",
+                  }}
+                >
+                  {serviciosList.map((s, idx) => {
+                    const reservaMsg = `Hola! Me gustaría pedir información o presupuesto para el servicio: ${s.nombre} en Di Lorenzo Detailing.`;
+                    const imgSource = s.img ?? "/servicios/exterior.jpg";
+                    const isPpfColor =
+                      s.nombre.toLowerCase().includes("ppf color") ||
+                      s.nombre.toLowerCase().includes("ppf | paint protection film");
+                    const hasCompare =
+                      s.modo_foto === "before_after"
+                        ? Boolean(s.antes_img || s.despues_img)
+                        : Boolean(s.antes_img && s.despues_img);
 
-                  return (
-                    <div
-                      key={`${s.nombre}-${idx}`}
-                      className="service-card product-card rounded-[26px] overflow-hidden flex flex-col justify-between relative border border-white/10 hover:border-white/30 transition-all duration-300 w-[88vw] xs:w-[350px] sm:w-[380px] md:w-[400px] lg:w-[420px] min-h-[520px] sm:min-h-[560px] shrink-0 snap-center shadow-2xl"
-                      style={{ background: "#101010" }}
-                    >
-                      {/* Media más alta y amplia (aspect-[4/3] generoso) */}
-                      <div className="aspect-[4/3] overflow-hidden relative bg-[#141414]">
-                        {isPpfColor ? (
-                          <PpfColorVisualizer biz={biz} />
-                        ) : hasCompare ? (
-                          <CarouselCompareSlider
-                            before={s.antes_img || s.despues_img || imgSource}
-                            after={s.despues_img || s.antes_img || imgSource}
-                            alt={s.nombre}
-                          />
-                        ) : (
-                          <div className="relative w-full h-full bg-[#0d0d0d] overflow-hidden">
-                            <img
-                              src={s.img || imgSource}
+                    return (
+                      <div
+                        key={`${s.nombre}-${idx}`}
+                        className="service-card product-card rounded-[26px] overflow-hidden flex flex-col justify-between relative border border-white/10 hover:border-white/30 transition-all duration-300 w-[88vw] xs:w-[350px] sm:w-[380px] md:w-[400px] lg:w-[420px] min-h-[520px] sm:min-h-[560px] shrink-0 snap-center shadow-2xl"
+                        style={{ background: "#101010" }}
+                      >
+                        {/* Media alta y amplia (aspect-[4/3] generoso) */}
+                        <div className="aspect-[4/3] overflow-hidden relative bg-[#141414]">
+                          {isPpfColor ? (
+                            <PpfColorVisualizer biz={biz} />
+                          ) : hasCompare ? (
+                            <CarouselCompareSlider
+                              before={s.antes_img || s.despues_img || imgSource}
+                              after={s.despues_img || s.antes_img || imgSource}
                               alt={s.nombre}
-                              className="w-full h-full object-cover"
                             />
-                          </div>
-                        )}
+                          ) : (
+                            <div className="relative w-full h-full bg-[#0d0d0d] overflow-hidden">
+                              <img
+                                src={s.img || imgSource}
+                                alt={s.nombre}
+                                className="w-full h-full object-cover"
+                              />
+                            </div>
+                          )}
 
-                        {s.proteccion && !isPpfColor && (
-                          <div
-                            className="absolute bottom-3 left-3 right-3 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/15 text-[11px] font-semibold text-white/95 flex items-center gap-1.5 shadow-lg z-20 pointer-events-none"
-                            style={{ background: "rgba(10,10,10,0.88)" }}
-                          >
-                            <span className="size-1.5 rounded-full bg-emerald-400 shrink-0" />
-                            <span className="truncate">{s.proteccion}</span>
-                          </div>
-                        )}
-                      </div>
-
-                      {/* Info Card con tipografía amplia y botón */}
-                      <div className="p-5 sm:p-6 flex flex-col gap-2 flex-1 justify-between">
-                        <div className="space-y-2">
-                          <h3
-                            className="font-bold text-lg sm:text-xl text-white leading-snug"
-                            style={{ textTransform: "none", fontFamily: "inherit" }}
-                          >
-                            {s.nombre}
-                          </h3>
-                          {s.precio && s.precio.trim() ? (
-                            <p className="text-base sm:text-lg font-extrabold text-gold">{s.precio}</p>
-                          ) : null}
-                          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">{s.descripcion}</p>
-
-                          {s.ideal_si && (
-                            <p className="text-xs text-slate-400 pt-1">
-                              <span className="font-semibold text-slate-300">Detalles:</span> {s.ideal_si}
-                            </p>
+                          {s.proteccion && !isPpfColor && (
+                            <div
+                              className="absolute bottom-3 left-3 right-3 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/15 text-[11px] font-semibold text-white/95 flex items-center justify-center text-center gap-1.5 shadow-lg z-20 pointer-events-none"
+                              style={{ background: "rgba(10,10,10,0.88)" }}
+                            >
+                              <span className="size-1.5 rounded-full bg-emerald-400 shrink-0" />
+                              <span className="truncate">{s.proteccion}</span>
+                            </div>
                           )}
                         </div>
 
-                        <a
-                          href={waHref(biz, reservaMsg)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="btn-outline-gold mt-4 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-full text-xs font-semibold uppercase tracking-wider active:scale-95 transition-transform"
-                        >
-                          <FaWhatsapp aria-hidden className="size-4 text-emerald-400" />
-                          Pedir Presupuesto por WhatsApp
-                        </a>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
+                        {/* Info Card con tipografía amplia y botón 100% centrado */}
+                        <div className="p-5 sm:p-6 flex flex-col gap-2 flex-1 justify-between text-center">
+                          <div className="space-y-2">
+                            <h3
+                              className="font-bold text-lg sm:text-xl text-white leading-snug"
+                              style={{ textTransform: "none", fontFamily: "inherit" }}
+                            >
+                              {s.nombre}
+                            </h3>
+                            {s.precio && s.precio.trim() ? (
+                              <p className="text-base sm:text-lg font-extrabold text-gold">{s.precio}</p>
+                            ) : null}
+                            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">{s.descripcion}</p>
 
-              {/* Dots Indicator */}
-              <div className="flex items-center justify-center gap-1.5 pt-5">
-                {serviciosList.map((_, i) => (
+                            {s.ideal_si && (
+                              <p className="text-xs text-slate-400 pt-1">
+                                <span className="font-semibold text-slate-300">Detalles:</span> {s.ideal_si}
+                              </p>
+                            )}
+                          </div>
+
+                          <div className="pt-2 w-full flex justify-center">
+                            <a
+                              href={waHref(biz, reservaMsg)}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="btn-outline-gold mt-2 flex items-center justify-center gap-2 px-4 py-3 rounded-full text-xs font-semibold uppercase tracking-wider active:scale-95 transition-transform text-center w-full"
+                            >
+                              <FaWhatsapp aria-hidden className="size-4 text-emerald-400 shrink-0" />
+                              <span className="text-center">Pedir Presupuesto por WhatsApp</span>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* CONTROLES DE NAVEGACIÓN UBICADOS ABAJO (FLECHAS + PUNTOS THUMB-FRIENDLY) */}
+                <div className="flex items-center justify-center gap-4 pt-6">
                   <button
-                    key={i}
-                    onClick={() => scrollToCardIndex(i)}
-                    aria-label={`Ir al servicio ${i + 1}`}
-                    className={`transition-all duration-300 rounded-full ${
-                      activeSlide === i
-                        ? "w-7 h-1.5 bg-amber-400"
-                        : "w-1.5 h-1.5 bg-white/20 hover:bg-white/40"
-                    }`}
-                  />
-                ))}
+                    onClick={() => scrollCarousel("left")}
+                    aria-label="Servicio anterior"
+                    className="w-11 h-11 rounded-full bg-[#141414] hover:bg-[#252525] text-white border border-white/15 hover:border-white/30 flex items-center justify-center transition-all active:scale-95 shadow-xl"
+                  >
+                    <FaChevronLeft className="text-sm" />
+                  </button>
+
+                  {/* Dots Indicator */}
+                  <div className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-full bg-black/60 border border-white/10 backdrop-blur-md">
+                    {serviciosList.map((_, i) => (
+                      <button
+                        key={i}
+                        onClick={() => scrollToCardIndex(i)}
+                        aria-label={`Ir al servicio ${i + 1}`}
+                        className={`transition-all duration-300 rounded-full ${
+                          activeSlide === i
+                            ? "w-6 h-1.5 bg-amber-400"
+                            : "w-1.5 h-1.5 bg-white/20 hover:bg-white/40"
+                        }`}
+                      />
+                    ))}
+                  </div>
+
+                  <button
+                    onClick={() => scrollCarousel("right")}
+                    aria-label="Siguiente servicio"
+                    className="w-11 h-11 rounded-full bg-[#141414] hover:bg-[#252525] text-white border border-white/15 hover:border-white/30 flex items-center justify-center transition-all active:scale-95 shadow-xl"
+                  >
+                    <FaChevronRight className="text-sm" />
+                  </button>
+                </div>
               </div>
 
               {/* BANNER INSTAGRAM: VER TRABAJOS REALES */}
-              <div className="rounded-[28px] p-6 sm:p-10 border border-pink-500/25 bg-gradient-to-br from-zinc-950 via-[#140e1a] to-black relative overflow-hidden my-12 shadow-2xl">
+              <div className="rounded-[28px] p-6 sm:p-10 border border-pink-500/25 bg-gradient-to-br from-zinc-950 via-[#140e1a] to-black relative overflow-hidden my-14 shadow-2xl">
                 <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-br from-pink-500/10 via-purple-500/10 to-transparent rounded-full blur-3xl pointer-events-none" />
                 <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
                   <div>
@@ -928,91 +967,18 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
                     href={igUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="shrink-0 inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider text-white bg-gradient-to-r from-purple-600 via-pink-600 to-amber-500 hover:opacity-90 shadow-xl shadow-pink-600/20 active:scale-95 transition-all"
+                    className="shrink-0 inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider text-white bg-gradient-to-r from-purple-600 via-pink-600 to-amber-500 hover:opacity-90 shadow-xl shadow-pink-600/20 active:scale-95 transition-all text-center"
                   >
                     <FaInstagram className="text-base" />
                     <span>Ver Trabajos Reales</span>
                   </a>
                 </div>
               </div>
-
-              {/* Banner de fotos y asesoramiento */}
-              <div className="glass-panel rounded-[24px] mt-6 p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 justify-between border border-white/10" style={{ background: "#101010" }}>
-                <div>
-                  <span className="section-badge mb-2">¿Dudas sobre qué necesita tu auto?</span>
-                  <h3 className="font-semibold text-lg md:text-xl mb-1 text-white" style={{ textTransform: "none", fontFamily: "inherit" }}>
-                    Mandanos 3 Fotos por WhatsApp y te Asesoramos
-                  </h3>
-                  <p className="text-xs sm:text-sm text-slate-400 max-w-xl">
-                    Sacale fotos al capot, los laterales y el interior con buena luz. Te orientamos sin costo ni compromiso para elegir el tratamiento ideal.
-                  </p>
-                </div>
-                <a
-                  href={waHref(biz, msgFotos)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-gold shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wide whitespace-nowrap active:scale-95 transition-transform"
-                >
-                  <FaWhatsapp aria-hidden className="size-4" />
-                  Enviar Fotos por WhatsApp
-                </a>
-              </div>
             </div>
           </section>
 
-          {/* 4. GARANTÍA & COMPROMISO DE DETAILING */}
-          <section id="garantia" className="relative px-5 sm:px-8 py-20 border-t border-b border-white/5" style={{ background: "#101010" }}>
-            <div className="max-w-5xl mx-auto">
-              <div className="text-center mb-12 max-w-2xl mx-auto">
-                <span className="section-badge mb-4">Compromiso de calidad</span>
-                <h2 className="text-2xl sm:text-4xl font-medium text-gold mb-3">Tratamientos con Garantía Escrita</h2>
-                <p className="text-slate-400 max-w-xl mx-auto text-xs sm:text-sm">
-                  Cada vehículo se atiende de forma individual, dedicando el tiempo necesario para alcanzar el estándar más exigente.
-                </p>
-              </div>
-
-              <div className="grid md:grid-cols-3 gap-5 text-left">
-                <div className="glass-panel rounded-[20px] p-6 space-y-2.5 border border-white/10" style={{ background: "#141414" }}>
-                  <div className="w-10 h-10 rounded-full flex items-center justify-center mb-4" style={{ background: "rgba(184,194,204,0.1)" }}>
-                    <HiShieldCheck className="size-5" style={{ color: "#b8c2cc" }} />
-                  </div>
-                  <h3 className="font-semibold text-white text-sm sm:text-base" style={{ textTransform: "none", fontFamily: "inherit" }}>
-                    Marcas Premium Mundiales
-                  </h3>
-                  <p className="text-xs text-slate-300 leading-relaxed">
-                    Utilizamos recubrimientos nanocerámicos y compuestos de pulido de marcas líderes globales.
-                  </p>
-                </div>
-
-                <div className="glass-panel rounded-[20px] p-6 space-y-2.5 border border-white/10" style={{ background: "#141414" }}>
-                  <div className="w-10 h-10 rounded-full flex items-center justify-center mb-4" style={{ background: "rgba(184,194,204,0.1)" }}>
-                    <HiOutlineSparkles className="size-5" style={{ color: "#b8c2cc" }} />
-                  </div>
-                  <h3 className="font-semibold text-white text-sm sm:text-base" style={{ textTransform: "none", fontFamily: "inherit" }}>
-                    Técnica Segura y Precisa
-                  </h3>
-                  <p className="text-xs text-slate-300 leading-relaxed">
-                    Inspección minuciosa bajo luz LED de alta fidelidad. Cero rodillos, cero métodos abrasivos. Cuidado total de la laca y la pintura original.
-                  </p>
-                </div>
-
-                <div className="glass-panel rounded-[20px] p-6 space-y-2.5 border border-white/10" style={{ background: "#141414" }}>
-                  <div className="w-10 h-10 rounded-full flex items-center justify-center mb-4" style={{ background: "rgba(184,194,204,0.1)" }}>
-                    <HiOutlineCheckCircle className="size-5" style={{ color: "#b8c2cc" }} />
-                  </div>
-                  <h3 className="font-semibold text-white text-sm sm:text-base" style={{ textTransform: "none", fontFamily: "inherit" }}>
-                    Garantía y Seguimiento
-                  </h3>
-                  <p className="text-xs text-slate-300 leading-relaxed">
-                    Asesoramiento post-entrega para que mantengas el brillo y la protección en cada lavado posterior.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* 5. UBICACIÓN DETAILING */}
-          <section id="ubicacion" className="px-5 sm:px-8 py-20 bg-black">
+          {/* 4. UBICACIÓN DETAILING (CON BOTONES Y TEXTOS 100% CENTRADOS) */}
+          <section id="ubicacion" className="px-5 sm:px-8 py-20 bg-black border-t border-white/5">
             <div className="max-w-5xl mx-auto">
               <div className="text-center mb-10">
                 <span className="section-badge mb-3">Ubicación</span>
@@ -1021,49 +987,52 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
               </div>
 
               <div className="grid md:grid-cols-2 gap-6 items-center">
-                <div className="glass-panel rounded-[20px] p-6 space-y-4 border border-white/10" style={{ background: "#101010" }}>
-                  <div className="flex items-start gap-4">
-                    <FaMapMarkerAlt className="size-5 text-gold shrink-0 mt-1" />
-                    <div>
-                      <h3 className="font-semibold text-white text-sm">Dirección</h3>
-                      <p className="text-sm text-slate-300">{biz.direccion}</p>
-                      <p className="text-xs text-slate-400">{biz.ciudad}, {biz.provincia}</p>
-                    </div>
-                  </div>
-
-                  {biz.horario && (
-                    <div className="flex items-start gap-4 pt-2 border-t border-white/5">
-                      <FaClock className="size-5 text-gold shrink-0 mt-1" />
+                <div className="glass-panel rounded-[22px] p-6 space-y-4 border border-white/10 flex flex-col justify-between" style={{ background: "#101010" }}>
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-4">
+                      <FaMapMarkerAlt className="size-5 text-gold shrink-0 mt-1" />
                       <div>
-                        <h3 className="font-semibold text-white text-sm">Horario</h3>
-                        <p className="text-xs text-slate-300">{biz.horario}</p>
+                        <h3 className="font-semibold text-white text-sm">Dirección</h3>
+                        <p className="text-sm text-slate-300">{biz.direccion}</p>
+                        <p className="text-xs text-slate-400">{biz.ciudad}, {biz.provincia}</p>
                       </div>
                     </div>
-                  )}
 
-                  <div className="pt-3 flex flex-wrap gap-3">
+                    {biz.horario && (
+                      <div className="flex items-start gap-4 pt-2 border-t border-white/5">
+                        <FaClock className="size-5 text-gold shrink-0 mt-1" />
+                        <div>
+                          <h3 className="font-semibold text-white text-sm">Horario</h3>
+                          <p className="text-xs text-slate-300">{biz.horario}</p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Botones de acción 100% centrados */}
+                  <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3 w-full border-t border-white/5">
                     <a
                       href={mapsHref(biz)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn-outline-gold inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider"
+                      className="btn-outline-gold inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider text-center w-full sm:w-auto"
                     >
                       <FaMapMarkerAlt className="size-3.5" />
-                      Abrir en Google Maps
+                      <span>Abrir en Google Maps</span>
                     </a>
                     <a
                       href={igUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-pink-500/30 bg-pink-950/20 text-pink-300 hover:text-white text-xs font-semibold transition"
+                      className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full border border-pink-500/30 bg-pink-950/20 text-pink-300 hover:text-white text-xs font-semibold transition text-center w-full sm:w-auto"
                     >
                       <FaInstagram className="size-3.5" />
-                      Instagram
+                      <span>Instagram</span>
                     </a>
                   </div>
                 </div>
 
-                <div className="aspect-[4/3] rounded-[20px] overflow-hidden border border-white/10 relative" style={{ background: "#141414" }}>
+                <div className="aspect-[4/3] rounded-[22px] overflow-hidden border border-white/10 relative" style={{ background: "#141414" }}>
                   <iframe
                     title={`Ubicación de ${biz.nombre}`}
                     src="https://maps.google.com/maps?q=Orense%20711,%20Haedo,%20Buenos%20Aires&t=&z=15&ie=UTF8&iwloc=&output=embed"
@@ -1075,11 +1044,11 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
             </div>
           </section>
 
-          {/* 6. FOOTER DETAILING */}
+          {/* 5. FOOTER DETAILING */}
           <footer className="px-5 sm:px-8 py-10 border-t border-white/10 text-center text-xs text-slate-500 bg-[#080808]">
             <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
               <p>© {new Date().getFullYear()} Di Lorenzo Detailing. Todos los derechos reservados.</p>
-              <div className="flex items-center gap-5 text-slate-400">
+              <div className="flex items-center justify-center gap-5 text-slate-400">
                 <button type="button" onClick={goToHub} className="hover:text-amber-400 font-semibold transition">
                   ← Di Lo Center
                 </button>
