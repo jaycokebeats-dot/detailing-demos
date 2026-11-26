@@ -46,6 +46,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ];
   }
 
+  // Si acceden desde el dominio de Shalom Detailing Toluca (Google Search Console shalomdetailing.com)
+  if (cleanHost === "shalomdetailing.com" || cleanHost === "www.shalomdetailing.com") {
+    return [
+      {
+        url: "https://shalomdetailing.com",
+        lastModified: now,
+        changeFrequency: "daily",
+        priority: 1.0,
+      },
+    ];
+  }
+
   // Si acceden desde el dominio exclusivo de JDS Detailing Car Studio
   if (cleanHost.includes("jdsdetailing") || cleanHost.includes("jdscardetail")) {
     return [

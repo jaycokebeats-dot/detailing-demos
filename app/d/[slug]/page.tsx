@@ -46,8 +46,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     titulo = "Mc Detail Detailing | Polarizados, PPF y Detailing en Neuquén";
     descripcion = "Estudio profesional de detailing en Neuquén: polarizados nano cerámicos, protección PPF, tratamientos cerámicos 9H y estética vehicular. Turnos por WhatsApp.";
   } else if (isShalom) {
-    titulo = "Shalom Estética Automotriz | Detailing Profesional en Toluca";
-    descripcion = "Estética y detallado automotriz profesional en Toluca, Edo. Méx.: corrección de pintura, protección cerámica y estética de interiores sin microrrayones ni atajos. ¡Cotiza por WhatsApp!";
+    titulo = "Shalom Estética Automotriz | Detailing, Películas Antiasalto & Cerámico en Toluca";
+    descripcion = "Estudio profesional de estética automotriz y detailing en Toluca, Estado de México: películas antiasalto 3M y Llumar con garantía por escrito, blindaje PPF, corrección de pintura y recubrimientos cerámicos. ¡Cotiza tu auto al instante!";
   } else if (isJds) {
     titulo = "JDS Detailing Car Studio | Detailing Profesional & Estética en Villa Ballester";
     descripcion = "Taller de estética del automotor en Villa Ballester: tratamientos cerámicos, pulido de pintura, PPF brillante, restauración de ópticas y limpieza de motor a vapor. Tu auto, en las mejores manos.";
@@ -67,7 +67,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     : isMcDetail
       ? "https://mcdetail.com.ar/og-mcdetail.jpg"
       : isShalom
-        ? "https://detailing-demos-three.vercel.app/logo/shalom-og.jpg"
+        ? "https://shalomdetailing.com/logo/shalom-og.jpg"
         : isJds
           ? "https://detailing-demos-three.vercel.app/og-jds.jpg"
           : (biz.fotos && biz.fotos.length > 0 && biz.fotos[0])
@@ -80,7 +80,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ? "https://platinumdetallado.com"
     : isMcDetail
       ? "https://mcdetail.com.ar"
-      : `https://detailing-demos-three.vercel.app/d/${biz.slug}`;
+      : isShalom
+        ? "https://shalomdetailing.com"
+        : `https://detailing-demos-three.vercel.app/d/${biz.slug}`;
 
   const cleanNombre = biz.nombre.replace(/[^\p{L}\p{N}\s.,&|/'-]/gu, "").replace(/\s+/g, " ").trim();
   const brandName = isAmCentro
@@ -91,6 +93,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ? "Mc Detail Detailing"
     : isPlatinum
     ? "Platinum Detallado Automotriz"
+    : isShalom
+    ? "Shalom Estética Automotriz"
     : isDiLorenzo
     ? "Di Lorenzo Detailing"
     : cleanNombre;
@@ -103,7 +107,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         ? "https://platinumdetallado.com"
         : isMcDetail
           ? "https://mcdetail.com.ar"
-          : "https://detailing-demos-three.vercel.app"
+          : isShalom
+            ? "https://shalomdetailing.com"
+            : "https://detailing-demos-three.vercel.app"
     ),
     title: {
       absolute: titulo,
@@ -195,6 +201,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             "detailing zona oeste",
             "taller de detailing moron",
           ]
+      : isShalom
+        ? [
+            "detailing toluca",
+            "estetica automotriz toluca",
+            "peliculas antiasalto toluca",
+            "polarizados toluca",
+            "ppf toluca",
+            "paint protection film toluca",
+            "tratamiento ceramico toluca",
+            "shalom estetica automotriz",
+            "shalom detailing",
+            "lavado de vestiduras toluca",
+            "pulido de autos toluca",
+            "estetica automotriz metepec",
+            "detailing metepec",
+            "detailing estado de mexico",
+          ]
       : ["detailing", "pulido de autos", "tratamiento ceramico", biz.ciudad],
     icons: isAmCentro
       ? {
@@ -239,10 +262,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       : isShalom
         ? {
             icon: [
-              { url: "/logo/shalom-logo.png", sizes: "192x192", type: "image/png" },
+              { url: "/favicon-shalom-48.png", sizes: "48x48", type: "image/png" },
+              { url: "/favicon-shalom-192.png", sizes: "192x192", type: "image/png" },
+              { url: "/favicon-shalom-512.png", sizes: "512x512", type: "image/png" },
+              { url: "/favicon-shalom.ico" },
             ],
+            shortcut: "/favicon-shalom.ico",
             apple: [
-              { url: "/logo/shalom-logo.png", sizes: "180x180", type: "image/png" },
+              { url: "/apple-touch-icon-shalom.png", sizes: "180x180", type: "image/png" },
             ],
           }
       : isJds
@@ -308,6 +335,7 @@ export default async function BusinessPage({ params }: Props) {
   if (!biz) notFound();
 
   const isPlatinum = slug === "platinum-detallado-automotriz-a-domicilio" || biz.slug === "platinum-detallado-automotriz-a-domicilio";
+  const isShalom = slug === "shalom-estetica-automotriz" || slug === "shalom" || slug === "shalom-detailing" || biz.slug === "shalom-estetica-automotriz";
   const isMcDetail = slug === "mc-detail-detailing" || slug === "mc-detail" || biz.slug === "mc-detail-detailing";
   const isJds = slug === "jds-detailing" || slug === "jds-detailing-car-estudio" || biz.slug === "jds-detailing";
   const isDiLorenzo = slug === "di-lorenzo-detailing" || slug === "di-lorenzo" || biz.slug === "di-lorenzo-detailing";
@@ -317,14 +345,18 @@ export default async function BusinessPage({ params }: Props) {
     ? "https://platinumdetallado.com"
     : isMcDetail
       ? "https://mcdetail.com.ar"
-      : `https://detailing-demos-three.vercel.app/d/${biz.slug}`;
+      : isShalom
+        ? "https://shalomdetailing.com"
+        : `https://detailing-demos-three.vercel.app/d/${biz.slug}`;
   const defaultImage = isPlatinum
     ? "https://platinumdetallado.com/og-platinum.jpg"
     : isMcDetail
       ? "https://mcdetail.com.ar/og-mcdetail.jpg"
-      : isJds
-        ? "https://detailing-demos-three.vercel.app/og-jds.jpg"
-        : "https://detailing-demos-three.vercel.app/og-detailing.jpg";
+      : isShalom
+        ? "https://shalomdetailing.com/logo/shalom-og.jpg"
+        : isJds
+          ? "https://detailing-demos-three.vercel.app/og-jds.jpg"
+          : "https://detailing-demos-three.vercel.app/og-detailing.jpg";
   const primaryImage = (biz.fotos && biz.fotos.length > 0)
     ? (biz.fotos[0].startsWith("http") ? biz.fotos[0] : `${canonicalBizUrl}${biz.fotos[0].startsWith("/") ? "" : "/"}${biz.fotos[0]}`)
     : defaultImage;
@@ -336,6 +368,8 @@ export default async function BusinessPage({ params }: Props) {
     ? "Mc Detail Detailing"
     : isPlatinum
     ? "Platinum Detallado Automotriz"
+    : isShalom
+    ? "Shalom Estética Automotriz"
     : isDiLorenzo
     ? "Di Lorenzo Detailing"
     : cleanBizNombre;
@@ -347,26 +381,44 @@ export default async function BusinessPage({ params }: Props) {
     "name": brandName,
     "image": primaryImage,
     "url": canonicalBizUrl,
-    "telephone": isJds ? "+54 9 11 5451-4393" : isDiLorenzo ? "+54 9 11 3376-7004" : (biz.telefono || (isPlatinum ? "+52-442-715-1535" : "+54 9 299 413-4806")),
+    "telephone": isShalom ? "+52 55 8031 4077" : isJds ? "+54 9 11 5451-4393" : isDiLorenzo ? "+54 9 11 3376-7004" : (biz.telefono || (isPlatinum ? "+52-442-715-1535" : "+54 9 299 413-4806")),
     "priceRange": "$$",
-    "description": isPlatinum
-      ? "Servicio profesional de detallado automotriz a domicilio en Querétaro: tratamientos cerámicos Gyeon®, pulido de pintura, interiores a vapor y paquetes express."
-      : isMcDetail
-        ? "Estudio profesional de detailing en Neuquén: polarizados nano cerámicos, protección PPF, tratamientos cerámicos 9H y estética vehicular completa."
-        : isJds
-          ? "Taller de estética del automotor en Villa Ballester: tratamientos cerámicos, pulido de pintura, PPF brillante, restauración de ópticas y limpieza de motor a vapor."
-          : isDiLorenzo
-            ? "Estudio profesional de detailing y estética vehicular en Haedo: tratamientos cerámicos 9H, corrección de laca, limpieza de interiores y PPF."
-            : `Detailing profesional y estética automotriz en ${biz.ciudad}.`,
+    "description": isShalom
+      ? "Estudio profesional de estética automotriz y detailing en Toluca, Estado de México: películas antiasalto 3M y Llumar con garantía por escrito, protección PPF, recubrimientos cerámicos y lavado de vestiduras a vapor."
+      : isPlatinum
+        ? "Servicio profesional de detallado automotriz a domicilio en Querétaro: tratamientos cerámicos Gyeon®, pulido de pintura, interiores a vapor y paquetes express."
+        : isMcDetail
+          ? "Estudio profesional de detailing en Neuquén: polarizados nano cerámicos, protección PPF, tratamientos cerámicos 9H y estética vehicular completa."
+          : isJds
+            ? "Taller de estética del automotor en Villa Ballester: tratamientos cerámicos, pulido de pintura, PPF brillante, restauración de ópticas y limpieza de motor a vapor."
+            : isDiLorenzo
+              ? "Estudio profesional de detailing y estética vehicular en Haedo: tratamientos cerámicos 9H, corrección de laca, limpieza de interiores y PPF."
+              : `Detailing profesional y estética automotriz en ${biz.ciudad}.`,
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": isJds ? "Lynch Pueyrredón 4386" : isDiLorenzo ? "Orense 711" : (biz.direccion || (isMcDetail ? "Gdor. Anaya 614, Barrio La Sirena" : "Servicio a Domicilio")),
-      "addressLocality": isJds ? "Villa Ballester" : isDiLorenzo ? "Haedo" : (biz.ciudad || (isMcDetail ? "Neuquén" : "Querétaro")),
-      "addressRegion": isJds ? "Buenos Aires" : isDiLorenzo ? "Buenos Aires" : (isPlatinum ? "Querétaro" : (isMcDetail ? "Neuquén" : (biz.ciudad || ""))),
-      "postalCode": isJds ? "B1653" : isDiLorenzo ? "B1706" : undefined,
-      "addressCountry": biz.pais || (isMcDetail ? "AR" : (isPlatinum ? "MX" : "AR")),
+      "streetAddress": isShalom ? "Toluca Centro" : isJds ? "Lynch Pueyrredón 4386" : isDiLorenzo ? "Orense 711" : (biz.direccion || (isMcDetail ? "Gdor. Anaya 614, Barrio La Sirena" : "Servicio a Domicilio")),
+      "addressLocality": isShalom ? "Toluca" : isJds ? "Villa Ballester" : isDiLorenzo ? "Haedo" : (biz.ciudad || (isMcDetail ? "Neuquén" : "Querétaro")),
+      "addressRegion": isShalom ? "Estado de México" : isJds ? "Buenos Aires" : isDiLorenzo ? "Buenos Aires" : (isPlatinum ? "Querétaro" : (isMcDetail ? "Neuquén" : (biz.ciudad || ""))),
+      "postalCode": isShalom ? "50000" : isJds ? "B1653" : isDiLorenzo ? "B1706" : undefined,
+      "addressCountry": isShalom ? "MX" : (biz.pais || (isMcDetail ? "AR" : (isPlatinum ? "MX" : "AR"))),
     },
-    ...(isPlatinum
+    ...(isShalom
+      ? {
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 19.2826,
+            "longitude": -99.6557,
+          },
+          "areaServed": [
+            { "@type": "City", "name": "Toluca" },
+            { "@type": "City", "name": "Metepec" },
+            { "@type": "City", "name": "Lerma" },
+            { "@type": "City", "name": "San Mateo Atenco" },
+            { "@type": "City", "name": "Zinacantepec" },
+            { "@type": "AdministrativeArea", "name": "Estado de México" },
+          ],
+        }
+      : isPlatinum
       ? {
           "geo": {
             "@type": "GeoCoordinates",

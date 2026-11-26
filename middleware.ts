@@ -23,6 +23,9 @@ export function middleware(request: NextRequest) {
     if (cleanHost === "platinumdetallado.com" || cleanHost === "www.platinumdetallado.com") {
       return NextResponse.rewrite(new URL("/favicon-platinum.ico", request.url));
     }
+    if (cleanHost === "shalomdetailing.com" || cleanHost === "www.shalomdetailing.com" || referer.includes("shalom") || activeSlug.includes("shalom")) {
+      return NextResponse.rewrite(new URL("/favicon-shalom.ico", request.url));
+    }
     return NextResponse.rewrite(new URL("/favicon-platinum.ico", request.url));
   }
 
@@ -68,6 +71,50 @@ export function middleware(request: NextRequest) {
       const url = new URL("/admin", request.url);
       url.searchParams.set("taller", "platinum-detallado-automotriz-a-domicilio");
       return NextResponse.rewrite(url);
+    }
+  }
+
+  // Si acceden desde el dominio exclusivo de Shalom Detailing Toluca
+  if (cleanHost === "shalomdetailing.com" || cleanHost === "www.shalomdetailing.com") {
+    const shalomSlug = "shalom-estetica-automotriz";
+    if (pathname === "/") {
+      const res = NextResponse.rewrite(
+        new URL(`/d/${shalomSlug}`, request.url)
+      );
+      res.cookies.set("black_line_active_slug", shalomSlug, { path: "/" });
+      return res;
+    }
+
+    if (pathname === "/admin") {
+      const url = new URL("/admin", request.url);
+      url.searchParams.set("taller", shalomSlug);
+      const res = NextResponse.rewrite(url);
+      res.cookies.set("black_line_active_slug", shalomSlug, { path: "/" });
+      return res;
+    }
+
+    if (pathname === "/presupuesto") {
+      const url = new URL("/presupuesto", request.url);
+      url.searchParams.set("taller", shalomSlug);
+      const res = NextResponse.rewrite(url);
+      res.cookies.set("black_line_active_slug", shalomSlug, { path: "/" });
+      return res;
+    }
+
+    if (pathname === "/checkin") {
+      const url = new URL("/checkin", request.url);
+      url.searchParams.set("taller", shalomSlug);
+      const res = NextResponse.rewrite(url);
+      res.cookies.set("black_line_active_slug", shalomSlug, { path: "/" });
+      return res;
+    }
+
+    if (pathname === "/gestion" || pathname === "/taller") {
+      const url = new URL(pathname, request.url);
+      url.searchParams.set("taller", shalomSlug);
+      const res = NextResponse.rewrite(url);
+      res.cookies.set("black_line_active_slug", shalomSlug, { path: "/" });
+      return res;
     }
   }
 
