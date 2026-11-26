@@ -285,19 +285,19 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
     }
   }, [currentView]);
 
-  // Centrado y navegación exacta del carrusel vertical
+  // Centrado y navegación exacta del carrusel horizontal
   const handleCarouselScroll = () => {
     if (!carouselRef.current) return;
     const container = carouselRef.current;
     const cards = container.querySelectorAll<HTMLElement>(".service-card");
     if (!cards.length) return;
 
-    const containerCenter = container.scrollTop + container.clientHeight / 2;
+    const containerCenter = container.scrollLeft + container.clientWidth / 2;
     let closestIndex = 0;
     let minDiff = Infinity;
 
     cards.forEach((card, i) => {
-      const cardCenter = card.offsetTop + card.offsetHeight / 2;
+      const cardCenter = card.offsetLeft + card.offsetWidth / 2;
       const diff = Math.abs(containerCenter - cardCenter);
       if (diff < minDiff) {
         minDiff = diff;
@@ -318,20 +318,20 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
     const targetCard = cards[clampedIndex];
     if (!targetCard) return;
 
-    const containerHeight = container.clientHeight;
-    const cardTop = targetCard.offsetTop;
-    const cardHeight = targetCard.offsetHeight;
-    const scrollTarget = cardTop - (containerHeight - cardHeight) / 2;
+    const containerWidth = container.clientWidth;
+    const cardLeft = targetCard.offsetLeft;
+    const cardWidth = targetCard.offsetWidth;
+    const scrollTarget = cardLeft - (containerWidth - cardWidth) / 2;
 
     container.scrollTo({
-      top: scrollTarget,
+      left: scrollTarget,
       behavior: "smooth",
     });
     setActiveSlide(clampedIndex);
   };
 
-  const scrollCarousel = (direction: "up" | "down") => {
-    const nextIndex = direction === "down" ? activeSlide + 1 : activeSlide - 1;
+  const scrollCarousel = (direction: "left" | "right") => {
+    const nextIndex = direction === "right" ? activeSlide + 1 : activeSlide - 1;
     scrollToCardIndex(nextIndex);
   };
 
@@ -1048,91 +1048,77 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
             </div>
           </section>
 
-          {/* 3. NUESTROS SERVICIOS — CARDS AMPLIAS Y ALTAS CON FLECHAS LATERALES Y PUNTOS CENTRADOS */}
-          <section id="servicios" className="px-4 sm:px-8 pt-12 pb-6 sm:pb-8 bg-black relative">
+          {/* 3. NUESTROS SERVICIOS — CARDS AMPLIAS, ALTAS Y CINEMATOGRÁFICAS EN CARRUSEL HORIZONTAL */}
+          <section id="servicios" className="px-3 sm:px-8 pt-12 pb-6 sm:pb-8 bg-black relative">
             <div className="max-w-7xl mx-auto">
               {/* Header de la sección */}
-              <div className="text-center mb-8 max-w-2xl mx-auto">
+              <div className="text-center mb-6 max-w-2xl mx-auto">
                 <span className="section-badge mb-3">Catálogo de Trabajos</span>
                 <h2 className="text-2xl sm:text-4xl font-medium text-gold mb-2">
                   Servicios & Tarifas en Haedo
                 </h2>
                 <p className="text-slate-400 text-xs sm:text-sm">
-                  Deslizá verticalmente o usá los botones para recorrer cada tratamiento, conocer tarifas de referencia y pedir cotización directa.
+                  Deslizá hacia los lados para comparar cada tratamiento, conocer valores de referencia y pedir presupuesto directo.
                 </p>
               </div>
 
-              {/* Barra superior de navegación del Carrusel Vertical */}
-              <div className="flex items-center justify-between max-w-xl mx-auto mb-3 px-3">
+              {/* Indicador de posición y contador superior */}
+              <div className="flex items-center justify-between max-w-4xl mx-auto mb-3 px-3">
                 <span className="text-xs uppercase font-bold tracking-wider text-amber-300 flex items-center gap-2">
                   <span className="size-2 rounded-full bg-emerald-400 animate-pulse" />
                   <span>Servicio {activeSlide + 1} de {serviciosList.length}</span>
                 </span>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1.5">
                   <button
                     type="button"
-                    onClick={() => scrollCarousel("up")}
+                    onClick={() => scrollCarousel("left")}
                     disabled={activeSlide === 0}
                     aria-label="Servicio anterior"
-                    className="size-9 rounded-full bg-[#141414] hover:bg-[#252525] disabled:opacity-30 disabled:cursor-not-allowed border border-white/15 flex items-center justify-center text-amber-300 transition active:scale-95 shadow-md"
+                    className="size-8 rounded-full bg-[#141414] hover:bg-[#252525] disabled:opacity-30 disabled:cursor-not-allowed border border-white/15 flex items-center justify-center text-amber-300 transition active:scale-95"
                   >
-                    <FaChevronUp className="size-3.5" />
+                    <FaChevronLeft className="size-3" />
                   </button>
                   <button
                     type="button"
-                    onClick={() => scrollCarousel("down")}
+                    onClick={() => scrollCarousel("right")}
                     disabled={activeSlide === serviciosList.length - 1}
                     aria-label="Siguiente servicio"
-                    className="size-9 rounded-full bg-[#141414] hover:bg-[#252525] disabled:opacity-30 disabled:cursor-not-allowed border border-white/15 flex items-center justify-center text-amber-300 transition active:scale-95 shadow-md"
+                    className="size-8 rounded-full bg-[#141414] hover:bg-[#252525] disabled:opacity-30 disabled:cursor-not-allowed border border-white/15 flex items-center justify-center text-amber-300 transition active:scale-95"
                   >
-                    <FaChevronDown className="size-3.5" />
+                    <FaChevronRight className="size-3" />
                   </button>
                 </div>
               </div>
 
-              {/* Contenedor del Carrusel Vertical */}
-              <div id="servicios-carrusel" className="relative max-w-xl mx-auto pt-1">
-                {/* Indicador vertical flotante lateral en desktop */}
-                <div className="hidden md:flex absolute -right-14 top-1/2 -translate-y-1/2 z-20 flex-col items-center gap-2.5 p-2 rounded-full bg-black/80 border border-white/15 backdrop-blur-md shadow-2xl">
-                  <button
-                    type="button"
-                    onClick={() => scrollCarousel("up")}
-                    disabled={activeSlide === 0}
-                    aria-label="Subir"
-                    className="size-7 rounded-full hover:bg-white/10 disabled:opacity-30 flex items-center justify-center text-amber-300 transition"
-                  >
-                    <FaChevronUp className="size-3" />
-                  </button>
-                  <div className="flex flex-col gap-1.5 py-1">
-                    {serviciosList.map((_, i) => (
-                      <button
-                        key={i}
-                        onClick={() => scrollToCardIndex(i)}
-                        aria-label={`Ir al servicio ${i + 1}`}
-                        className={`transition-all duration-300 rounded-full ${
-                          activeSlide === i ? "w-1.5 h-6 bg-amber-400" : "w-1.5 h-1.5 bg-white/20 hover:bg-white/40"
-                        }`}
-                      />
-                    ))}
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => scrollCarousel("down")}
-                    disabled={activeSlide === serviciosList.length - 1}
-                    aria-label="Bajar"
-                    className="size-7 rounded-full hover:bg-white/10 disabled:opacity-30 flex items-center justify-center text-amber-300 transition"
-                  >
-                    <FaChevronDown className="size-3" />
-                  </button>
-                </div>
+              {/* Contenedor del Carrusel Horizontal (con cards altas y amplias preparadas para video) */}
+              <div id="servicios-carrusel" className="relative pt-1">
+                {/* Flecha Izquierda lateral flotante (a media altura del video, sin chocar con nada) */}
+                <button
+                  type="button"
+                  onClick={() => scrollCarousel("left")}
+                  aria-label="Servicio anterior"
+                  className="absolute left-1 xs:left-2 sm:-left-3 lg:-left-5 top-[35%] -translate-y-1/2 z-30 size-11 sm:size-12 rounded-full bg-black/85 hover:bg-black text-white border border-white/20 hover:border-amber-400/50 flex items-center justify-center transition-all active:scale-90 shadow-[0_4px_25px_rgba(0,0,0,0.9)] backdrop-blur-md"
+                >
+                  <FaChevronLeft className="text-sm sm:text-base text-amber-300" />
+                </button>
 
-                {/* Viewport vertical con scroll-snap y tarjetas centradas */}
+                {/* Flecha Derecha lateral flotante (alejada del botón flotante inferior de WhatsApp) */}
+                <button
+                  type="button"
+                  onClick={() => scrollCarousel("right")}
+                  aria-label="Siguiente servicio"
+                  className="absolute right-1 xs:right-2 sm:-right-3 lg:-right-5 top-[35%] -translate-y-1/2 z-30 size-11 sm:size-12 rounded-full bg-black/85 hover:bg-black text-white border border-white/20 hover:border-amber-400/50 flex items-center justify-center transition-all active:scale-90 shadow-[0_4px_25px_rgba(0,0,0,0.9)] backdrop-blur-md"
+                >
+                  <FaChevronRight className="text-sm sm:text-base text-amber-300" />
+                </button>
+
+                {/* Contenedor deslizante horizontal con snap exacto */}
                 <div
                   ref={carouselRef}
                   onScroll={handleCarouselScroll}
-                  className="flex flex-col gap-6 overflow-y-auto max-h-[580px] xs:max-h-[610px] sm:max-h-[640px] snap-y snap-mandatory scroll-smooth scrollbar-none py-2 px-1"
+                  className="flex gap-4 sm:gap-6 overflow-x-auto pb-4 pt-1 scroll-smooth snap-x snap-mandatory scrollbar-none px-2 sm:px-4"
                   style={{
-                    scrollSnapType: "y mandatory",
+                    scrollSnapType: "x mandatory",
                     WebkitOverflowScrolling: "touch",
                   }}
                 >
@@ -1143,22 +1129,22 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
                     return (
                       <div
                         key={`${s.nombre}-${idx}`}
-                        className="service-card product-card rounded-[26px] overflow-hidden flex flex-col justify-between relative border border-white/10 hover:border-white/30 transition-all duration-300 w-full min-h-[520px] sm:min-h-[560px] shrink-0 snap-center shadow-2xl"
+                        className="service-card product-card rounded-[28px] overflow-hidden flex flex-col justify-between relative border border-white/10 hover:border-white/30 transition-all duration-300 w-[92vw] xs:w-[410px] sm:w-[460px] md:w-[490px] lg:w-[520px] min-h-[580px] xs:min-h-[620px] sm:min-h-[650px] shrink-0 snap-center shadow-2xl"
                         style={{ background: "#101010" }}
                       >
-                        {/* Media alta y amplia (aspect-[4/3] generoso) con foto fija */}
-                        <div className="aspect-[4/3] overflow-hidden relative bg-[#141414] group/img">
+                        {/* Media alta y cinema-wide (ideal para apreciar videos y fotos en gran formato) */}
+                        <div className="h-[280px] xs:h-[320px] sm:h-[360px] w-full overflow-hidden relative bg-[#141414] group/img shrink-0">
                           <img
                             src={s.img || imgSource}
                             alt={s.nombre}
                             className="w-full h-full object-cover transition-transform duration-700 group-hover/img:scale-105"
                             loading="lazy"
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
 
                           {s.proteccion && (
                             <div
-                              className="absolute bottom-3 left-3 right-3 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/15 text-[11px] font-semibold text-white/95 flex items-center justify-center text-center gap-1.5 shadow-lg z-20 pointer-events-none"
+                              className="absolute bottom-3 left-3 right-3 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-white/15 text-[11px] font-semibold text-white/95 flex items-center justify-center text-center gap-1.5 shadow-lg z-20 pointer-events-none"
                               style={{ background: "rgba(10,10,10,0.88)" }}
                             >
                               <span className="size-1.5 rounded-full bg-emerald-400 shrink-0" />
@@ -1167,19 +1153,19 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
                           )}
                         </div>
 
-                        {/* Info Card con tipografía amplia y botón 100% centrado */}
-                        <div className="p-5 sm:p-6 flex flex-col gap-2 flex-1 justify-between text-center">
-                          <div className="space-y-2">
+                        {/* Info Card con tipografía amplia, espaciosa y botón 100% centrado */}
+                        <div className="p-6 sm:p-7 flex flex-col gap-3 flex-1 justify-between text-center">
+                          <div className="space-y-2.5">
                             <h3
-                              className="font-bold text-lg sm:text-xl text-white leading-snug"
+                              className="font-bold text-xl sm:text-2xl text-white leading-tight"
                               style={{ textTransform: "none", fontFamily: "inherit" }}
                             >
                               {s.nombre}
                             </h3>
                             {s.precio && s.precio.trim() ? (
-                              <p className="text-base sm:text-lg font-extrabold text-gold">{s.precio}</p>
+                              <p className="text-lg sm:text-xl font-extrabold text-gold">{s.precio}</p>
                             ) : null}
-                            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">{s.descripcion}</p>
+                            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-light">{s.descripcion}</p>
 
                             {s.ideal_si && (
                               <p className="text-xs text-slate-400 pt-1">
@@ -1188,12 +1174,12 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
                             )}
                           </div>
 
-                          <div className="pt-2 w-full flex justify-center">
+                          <div className="pt-3 w-full flex justify-center">
                             <a
                               href={waHref(biz, reservaMsg)}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="btn-outline-gold mt-2 flex items-center justify-center gap-2 px-4 py-3 rounded-full text-xs font-semibold uppercase tracking-wider active:scale-95 transition-transform text-center w-full"
+                              className="btn-outline-gold mt-2 flex items-center justify-center gap-2 px-5 py-3.5 rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wider active:scale-95 transition-transform text-center w-full shadow-lg"
                             >
                               <FaWhatsapp aria-hidden className="size-4 text-emerald-400 shrink-0" />
                               <span className="text-center">Pedir Presupuesto por WhatsApp</span>
@@ -1205,38 +1191,22 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
                   })}
                 </div>
 
-                {/* Controles móviles para navegación vertical */}
-                <div className="flex md:hidden items-center justify-between max-w-xl mx-auto pt-4 px-2">
-                  <button
-                    type="button"
-                    onClick={() => scrollCarousel("up")}
-                    disabled={activeSlide === 0}
-                    className="btn-outline-gold inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider disabled:opacity-30 transition"
-                  >
-                    <FaChevronUp className="size-3" />
-                    <span>Anterior</span>
-                  </button>
-                  <div className="flex items-center gap-1.5">
+                {/* Indicador de puntitos 100% centrado abajo */}
+                <div className="flex items-center justify-center pt-5">
+                  <div className="flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-full bg-black/70 border border-white/10 backdrop-blur-md shadow-lg">
                     {serviciosList.map((_, i) => (
                       <button
                         key={i}
                         onClick={() => scrollToCardIndex(i)}
                         aria-label={`Ir al servicio ${i + 1}`}
                         className={`transition-all duration-300 rounded-full ${
-                          activeSlide === i ? "w-5 h-1.5 bg-amber-400" : "w-1.5 h-1.5 bg-white/20"
+                          activeSlide === i
+                            ? "w-6 h-1.5 bg-amber-400"
+                            : "w-1.5 h-1.5 bg-white/20 hover:bg-white/40"
                         }`}
                       />
                     ))}
                   </div>
-                  <button
-                    type="button"
-                    onClick={() => scrollCarousel("down")}
-                    disabled={activeSlide === serviciosList.length - 1}
-                    className="btn-gold inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider disabled:opacity-30 transition"
-                  >
-                    <span>Siguiente</span>
-                    <FaChevronDown className="size-3" />
-                  </button>
                 </div>
               </div>
 
