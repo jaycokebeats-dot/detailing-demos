@@ -2,15 +2,13 @@ import type { Business, ServiceItem } from "./business-helpers";
 
 export const DI_LORENZO_SERVICIOS: ServiceItem[] = [
   {
-    nombre: "Pulido y Restauración de Ópticas",
+    nombre: "Pulido Exterior de Ópticas",
     descripcion:
       "Micro-lijado progresivo multicapa y pulido óptico para eliminar la opacidad, manchas amarillentas y resecamiento por rayos UV. Sellado protector para garantizar máxima transparencia, luminosidad nocturna segura y aprobación de VTV.",
     ideal_si: "Ópticas amarillentas, opacas o con visibilidad reducida.",
     precio: "Consultar Presupuesto",
     proteccion: "Sellado UV Polimérico de Alta Duración",
-    antes_img: "/before-after/faros-polymer-antes.jpg",
-    despues_img: "/before-after/faros-polymer-despues.jpg",
-    modo_foto: "before_after",
+    img: "/ec-detail/opticas_full.jpg",
   },
   {
     nombre: "Abrillantado Premium",
@@ -19,82 +17,34 @@ export const DI_LORENZO_SERVICIOS: ServiceItem[] = [
     ideal_si: "Revivir el brillo del vehículo de forma rápida a un costo accesible.",
     precio: "Desde $165.000",
     proteccion: "Sellador Sintético / Carnauba de Alto Brillo",
-    antes_img: "/before-after/pintura-antes.jpg",
-    despues_img: "/before-after/pintura-despues.jpg",
-    modo_foto: "before_after",
+    img: "/ec-detail/abrillantado.jpg",
   },
   {
-    nombre: "Tratamientos para Motos",
+    nombre: "Servicio Pre-Venta (Particular - Agencias)",
     descripcion:
-      "Estética y protección integral para motos de todas las cilindradas y cuatriciclos. Descontaminado exhaustivo de chasis y llantas, pulido artesanal de piezas y carenados, sellado cerámico térmico y nutrición de plásticos y metales.",
-    ideal_si: "Cuidado artesanal y protección duradera para motos de calle, pista o custom.",
-    precio: "$180.000",
-    proteccion: "Sellado Cerámico Térmico & Hidrofóbico",
-    img: "/ec-detail/foto-3.jpg",
-  },
-  {
-    nombre: "Servicio Pre-Venta Integral",
-    descripcion:
-      "Acondicionamiento estético estratégico pensado para maximizar el valor de reventa de tu vehículo y venderlo mucho más rápido. Incluye abrillantado de carrocería, limpieza profunda de tapizados e interiores, vano motor y terminación de showroom.",
+      "Acondicionamiento estético estratégico pensado para maximizar el valor de reventa de tu vehículo y venderlo mucho más rápido. Incluye abrillantado de carrocería, limpieza profunda de tapizados e interiores y terminación de showroom.",
     ideal_si: "Vas a publicar tu auto para la venta y querés que se destaque de inmediato.",
     precio: "Solicitar Presupuesto",
     proteccion: "Preparación Comercial Showroom",
     img: "/ec-detail/foto-7.jpg",
   },
   {
-    nombre: "Tratamiento Cerámico (0km y Usados)",
+    nombre: "Limpieza de Tapizados",
     descripcion:
-      "Recubrimiento nanotecnológico de vidrio líquido de extrema dureza y resistencia química. Otorga un brillo cristalino y profundo tipo espejo, extrema repelencia al agua y suciedad (hidrofobia), y protección UV duradera contra marcas de agua y sol.",
-    ideal_si: "Conserva la pintura impecable, repele agua y barro, y facilita enormemente los lavados diarios.",
-    precio: "Consultar según vehículo",
-    proteccion: "Brillo Espejo & Máxima Hidrofobia",
-    antes_img: "/servicios/ceramico-antes.png",
-    despues_img: "/servicios/ceramico-despues.png",
-    modo_foto: "before_after",
-  },
-  {
-    nombre: "Tratamiento Acrílico Sellador",
-    descripcion:
-      "Corrección intermedia de pintura con pulido y sellador acrílico de alta duración. Elimina un alto porcentaje de marcas circulares (swirls), intensifica el tono del color y deja un acabado suave y protegido durante meses.",
-    ideal_si: "Excelente relación entre corrección de rayas y costo accesible.",
-    precio: "Consultar Presupuesto",
-    proteccion: "Sellado Acrílico Sintético de Larga Duración",
-    antes_img: "/before-after/pintura-antes.jpg",
-    despues_img: "/before-after/pintura-despues.jpg",
-    modo_foto: "before_after",
-  },
-  {
-    nombre: "Detailing Interior & Limpieza de Tapizados",
-    descripcion:
-      "Higienización y desinfección integral del habitáculo con inyección-extracción y vapor seco: limpieza profunda en tapizados de tela o nutrición artesanal para butacas de cuero, alfombras, techo, conductos de aire y plásticos.",
+      "Higienización y desinfección integral del habitáculo con inyección-extracción y vapor seco: limpieza profunda en tapizados de tela o nutrición artesanal para butacas de cuero, alfombras, paneles y plásticos interiores.",
     ideal_si: "Recuperar la textura, aroma y sensación de auto limpio y cuidado al detalle.",
     precio: "Desde $65.000",
-    proteccion: "Desinfección & Acondicionado",
-    antes_img: "/servicios/limpieza-tapizado-antes.png",
-    despues_img: "/servicios/limpieza-tapizado-despues.png",
-    modo_foto: "before_after",
+    proteccion: "Desinfección & Acondicionado Profundo",
+    img: "/ec-detail/tapizado.jpg",
   },
   {
-    nombre: "Detallado y Nutrición de Motor",
+    nombre: "Tratamientos de Pintura",
     descripcion:
-      "Limpieza técnica profunda del vano motor con vapor controlado y desengrasantes dieléctricos seguros. Nutrición y acondicionamiento de mangueras, plásticos y gomas con terminación satinada original, libre de siliconas grasosas.",
-    ideal_si: "Recuperar el aspecto de 0km bajo el capot y proteger plásticos y mangueras contra resecamiento.",
-    precio: "Desde $45.000",
-    proteccion: "Acondicionado Dieléctrico de Plásticos",
-    antes_img: "/before-after/motor-antes.jpg",
-    despues_img: "/before-after/motor-despues.jpg",
-    modo_foto: "before_after",
-  },
-  {
-    nombre: "PPF | Paint Protection Film",
-    descripcion:
-      "Lámina de poliuretano autorregenerable de alto impacto. Blinda la pintura original contra piedrazos en autopista o ruta, rayones de estacionamiento y rayos UV, disponible en acabado transparente brillante, mate satinado o color.",
-    ideal_si: "Film autorregenerable con calor · Cobertura para trompa / frente o carrocería completa.",
-    precio: "Consultar Presupuesto",
-    proteccion: "Protección Física de Alto Impacto",
-    antes_img: "/servicios/ppf-brilloso-antes.png",
-    despues_img: "/servicios/ppf-brilloso-despues.png",
-    modo_foto: "before_after",
+      "Corrección técnica y protección nanotecnológica para la carrocería (Acrílico, Cerámico y Vidrio Líquido). Elimina marcas circulares y microrrayones, otorgando un brillo espejo permanente y máxima hidrofobia contra el agua y la suciedad.",
+    ideal_si: "Brillo extremo espejo y protección a largo plazo contra el sol y factores climáticos.",
+    precio: "Consultar según vehículo",
+    proteccion: "Brillo Espejo & Máxima Hidrofobia",
+    img: "/servicios/ceramico-real.jpg",
   },
 ];
 
