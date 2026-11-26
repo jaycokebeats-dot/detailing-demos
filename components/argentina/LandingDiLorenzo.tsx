@@ -7,6 +7,8 @@ import {
   FaClock,
   FaChevronLeft,
   FaChevronRight,
+  FaChevronUp,
+  FaChevronDown,
   FaInstagram,
   FaArrowLeft,
   FaStar,
@@ -283,19 +285,19 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
     }
   }, [currentView]);
 
-  // Centrado y navegación exacta del carrusel
+  // Centrado y navegación exacta del carrusel vertical
   const handleCarouselScroll = () => {
     if (!carouselRef.current) return;
     const container = carouselRef.current;
     const cards = container.querySelectorAll<HTMLElement>(".service-card");
     if (!cards.length) return;
 
-    const containerCenter = container.scrollLeft + container.clientWidth / 2;
+    const containerCenter = container.scrollTop + container.clientHeight / 2;
     let closestIndex = 0;
     let minDiff = Infinity;
 
     cards.forEach((card, i) => {
-      const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+      const cardCenter = card.offsetTop + card.offsetHeight / 2;
       const diff = Math.abs(containerCenter - cardCenter);
       if (diff < minDiff) {
         minDiff = diff;
@@ -316,20 +318,20 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
     const targetCard = cards[clampedIndex];
     if (!targetCard) return;
 
-    const containerWidth = container.clientWidth;
-    const cardLeft = targetCard.offsetLeft;
-    const cardWidth = targetCard.offsetWidth;
-    const scrollTarget = cardLeft - (containerWidth - cardWidth) / 2;
+    const containerHeight = container.clientHeight;
+    const cardTop = targetCard.offsetTop;
+    const cardHeight = targetCard.offsetHeight;
+    const scrollTarget = cardTop - (containerHeight - cardHeight) / 2;
 
     container.scrollTo({
-      left: scrollTarget,
+      top: scrollTarget,
       behavior: "smooth",
     });
     setActiveSlide(clampedIndex);
   };
 
-  const scrollCarousel = (direction: "left" | "right") => {
-    const nextIndex = direction === "right" ? activeSlide + 1 : activeSlide - 1;
+  const scrollCarousel = (direction: "up" | "down") => {
+    const nextIndex = direction === "down" ? activeSlide + 1 : activeSlide - 1;
     scrollToCardIndex(nextIndex);
   };
 
@@ -471,8 +473,8 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
 
   const stats = [
     biz.rating != null
-      ? `★ ${biz.rating === 5 ? "5.0" : biz.rating.toFixed(1)} en Google${biz.reviews_count != null ? ` (${biz.reviews_count} opiniones)` : ""}`
-      : "★ 4.9 en Google (18 opiniones)",
+      ? `★ ${biz.rating === 5 ? "5.0" : biz.rating.toFixed(1)} en Google (+40 opiniones)`
+      : "★ 4.9 en Google (+40 opiniones)",
     "Garantía escrita",
     "Atención personalizada",
   ];
@@ -735,7 +737,7 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
                             <FaStar key={i} className="size-4 fill-[#fbbc04]" />
                           ))}
                         </div>
-                        <p className="text-xs text-[#9aa0a6] mt-0.5">18 opiniones en Google Maps</p>
+                        <p className="text-xs text-[#9aa0a6] mt-0.5">+40 opiniones en Google Maps</p>
                       </div>
                     </div>
                   </div>
@@ -836,15 +838,6 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
                         <p className="text-xs sm:text-sm text-[#e8eaed] leading-relaxed font-normal pt-1">
                           {rev.comment}
                         </p>
-                      </div>
-
-                      {/* Footer estilo Google Maps: reaccionar */}
-                      <div className="pt-4 mt-3 border-t border-[#3c4043]/50 flex items-center justify-between text-[11px] text-[#9aa0a6]">
-                        <span className="inline-flex items-center gap-1.5 hover:text-white transition cursor-default">
-                          <span>❤️</span>
-                          <span>Mantén presionado para reaccionar</span>
-                        </span>
-                        <span className="text-[#8ab4f8] font-medium text-xs">Google</span>
                       </div>
                     </div>
                   ))}
@@ -1065,38 +1058,81 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
                   Servicios & Tarifas en Haedo
                 </h2>
                 <p className="text-slate-400 text-xs sm:text-sm">
-                  Conocé nuestros trabajos principales, precios de referencia y solicitá tu cotización directa para tu vehículo en Haedo.
+                  Deslizá verticalmente o usá los botones para recorrer cada tratamiento, conocer tarifas de referencia y pedir cotización directa.
                 </p>
               </div>
 
-              {/* Contenedor del Carrusel (ancla directa para que se vea la card entera en mobile) */}
-              <div id="servicios-carrusel" className="relative pt-2">
-                {/* Flecha Izquierda lateral flotante (a mitad de altura de la card, libre de interferencias) */}
-                <button
-                  type="button"
-                  onClick={() => scrollCarousel("left")}
-                  aria-label="Servicio anterior"
-                  className="absolute left-1 xs:left-2 sm:-left-3 lg:-left-5 top-[38%] sm:top-[42%] -translate-y-1/2 z-30 size-10 sm:size-12 rounded-full bg-black/85 hover:bg-black text-white border border-white/20 hover:border-amber-400/50 flex items-center justify-center transition-all active:scale-90 shadow-[0_4px_25px_rgba(0,0,0,0.9)] backdrop-blur-md"
-                >
-                  <FaChevronLeft className="text-sm sm:text-base text-amber-300" />
-                </button>
+              {/* Barra superior de navegación del Carrusel Vertical */}
+              <div className="flex items-center justify-between max-w-xl mx-auto mb-3 px-3">
+                <span className="text-xs uppercase font-bold tracking-wider text-amber-300 flex items-center gap-2">
+                  <span className="size-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <span>Servicio {activeSlide + 1} de {serviciosList.length}</span>
+                </span>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => scrollCarousel("up")}
+                    disabled={activeSlide === 0}
+                    aria-label="Servicio anterior"
+                    className="size-9 rounded-full bg-[#141414] hover:bg-[#252525] disabled:opacity-30 disabled:cursor-not-allowed border border-white/15 flex items-center justify-center text-amber-300 transition active:scale-95 shadow-md"
+                  >
+                    <FaChevronUp className="size-3.5" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => scrollCarousel("down")}
+                    disabled={activeSlide === serviciosList.length - 1}
+                    aria-label="Siguiente servicio"
+                    className="size-9 rounded-full bg-[#141414] hover:bg-[#252525] disabled:opacity-30 disabled:cursor-not-allowed border border-white/15 flex items-center justify-center text-amber-300 transition active:scale-95 shadow-md"
+                  >
+                    <FaChevronDown className="size-3.5" />
+                  </button>
+                </div>
+              </div>
 
-                {/* Flecha Derecha lateral flotante (alejada por completo del botón flotante de WhatsApp inferior) */}
-                <button
-                  type="button"
-                  onClick={() => scrollCarousel("right")}
-                  aria-label="Siguiente servicio"
-                  className="absolute right-1 xs:right-2 sm:-right-3 lg:-right-5 top-[38%] sm:top-[42%] -translate-y-1/2 z-30 size-10 sm:size-12 rounded-full bg-black/85 hover:bg-black text-white border border-white/20 hover:border-amber-400/50 flex items-center justify-center transition-all active:scale-90 shadow-[0_4px_25px_rgba(0,0,0,0.9)] backdrop-blur-md"
-                >
-                  <FaChevronRight className="text-sm sm:text-base text-amber-300" />
-                </button>
+              {/* Contenedor del Carrusel Vertical */}
+              <div id="servicios-carrusel" className="relative max-w-xl mx-auto pt-1">
+                {/* Indicador vertical flotante lateral en desktop */}
+                <div className="hidden md:flex absolute -right-14 top-1/2 -translate-y-1/2 z-20 flex-col items-center gap-2.5 p-2 rounded-full bg-black/80 border border-white/15 backdrop-blur-md shadow-2xl">
+                  <button
+                    type="button"
+                    onClick={() => scrollCarousel("up")}
+                    disabled={activeSlide === 0}
+                    aria-label="Subir"
+                    className="size-7 rounded-full hover:bg-white/10 disabled:opacity-30 flex items-center justify-center text-amber-300 transition"
+                  >
+                    <FaChevronUp className="size-3" />
+                  </button>
+                  <div className="flex flex-col gap-1.5 py-1">
+                    {serviciosList.map((_, i) => (
+                      <button
+                        key={i}
+                        onClick={() => scrollToCardIndex(i)}
+                        aria-label={`Ir al servicio ${i + 1}`}
+                        className={`transition-all duration-300 rounded-full ${
+                          activeSlide === i ? "w-1.5 h-6 bg-amber-400" : "w-1.5 h-1.5 bg-white/20 hover:bg-white/40"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => scrollCarousel("down")}
+                    disabled={activeSlide === serviciosList.length - 1}
+                    aria-label="Bajar"
+                    className="size-7 rounded-full hover:bg-white/10 disabled:opacity-30 flex items-center justify-center text-amber-300 transition"
+                  >
+                    <FaChevronDown className="size-3" />
+                  </button>
+                </div>
 
+                {/* Viewport vertical con scroll-snap y tarjetas centradas */}
                 <div
                   ref={carouselRef}
                   onScroll={handleCarouselScroll}
-                  className="flex gap-5 sm:gap-6 overflow-x-auto pb-4 pt-1 scroll-smooth snap-x snap-mandatory scrollbar-none"
+                  className="flex flex-col gap-6 overflow-y-auto max-h-[580px] xs:max-h-[610px] sm:max-h-[640px] snap-y snap-mandatory scroll-smooth scrollbar-none py-2 px-1"
                   style={{
-                    scrollSnapType: "x mandatory",
+                    scrollSnapType: "y mandatory",
                     WebkitOverflowScrolling: "touch",
                   }}
                 >
@@ -1107,7 +1143,7 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
                     return (
                       <div
                         key={`${s.nombre}-${idx}`}
-                        className="service-card product-card rounded-[26px] overflow-hidden flex flex-col justify-between relative border border-white/10 hover:border-white/30 transition-all duration-300 w-[88vw] xs:w-[350px] sm:w-[380px] md:w-[400px] lg:w-[420px] min-h-[520px] sm:min-h-[560px] shrink-0 snap-center shadow-2xl"
+                        className="service-card product-card rounded-[26px] overflow-hidden flex flex-col justify-between relative border border-white/10 hover:border-white/30 transition-all duration-300 w-full min-h-[520px] sm:min-h-[560px] shrink-0 snap-center shadow-2xl"
                         style={{ background: "#101010" }}
                       >
                         {/* Media alta y amplia (aspect-[4/3] generoso) con foto fija */}
@@ -1169,22 +1205,38 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
                   })}
                 </div>
 
-                {/* CONTROLES: PUNTOS INDICADORES 100% CENTRADOS (SIN FLECHAS ABAJO PARA EVITAR CHOQUES CON WHATSAPP) */}
-                <div className="flex items-center justify-center pt-5">
-                  <div className="flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-full bg-black/70 border border-white/10 backdrop-blur-md shadow-lg">
+                {/* Controles móviles para navegación vertical */}
+                <div className="flex md:hidden items-center justify-between max-w-xl mx-auto pt-4 px-2">
+                  <button
+                    type="button"
+                    onClick={() => scrollCarousel("up")}
+                    disabled={activeSlide === 0}
+                    className="btn-outline-gold inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider disabled:opacity-30 transition"
+                  >
+                    <FaChevronUp className="size-3" />
+                    <span>Anterior</span>
+                  </button>
+                  <div className="flex items-center gap-1.5">
                     {serviciosList.map((_, i) => (
                       <button
                         key={i}
                         onClick={() => scrollToCardIndex(i)}
                         aria-label={`Ir al servicio ${i + 1}`}
                         className={`transition-all duration-300 rounded-full ${
-                          activeSlide === i
-                            ? "w-6 h-1.5 bg-amber-400"
-                            : "w-1.5 h-1.5 bg-white/20 hover:bg-white/40"
+                          activeSlide === i ? "w-5 h-1.5 bg-amber-400" : "w-1.5 h-1.5 bg-white/20"
                         }`}
                       />
                     ))}
                   </div>
+                  <button
+                    type="button"
+                    onClick={() => scrollCarousel("down")}
+                    disabled={activeSlide === serviciosList.length - 1}
+                    className="btn-gold inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider disabled:opacity-30 transition"
+                  >
+                    <span>Siguiente</span>
+                    <FaChevronDown className="size-3" />
+                  </button>
                 </div>
               </div>
 

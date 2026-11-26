@@ -46,6 +46,15 @@ export const DI_LORENZO_SERVICIOS: ServiceItem[] = [
     proteccion: "Brillo Espejo & Máxima Hidrofobia",
     img: "/servicios/ceramico-real.jpg",
   },
+  {
+    nombre: "Tratamiento Motos",
+    descripcion:
+      "Estética y protección integral para motos de todas las cilindradas y cuatriciclos. Descontaminado exhaustivo de chasis y llantas, pulido artesanal de piezas y carenados, sellado cerámico térmico y nutrición de plásticos y metales.",
+    ideal_si: "Cuidado artesanal y protección duradera para motos de calle, pista o custom.",
+    precio: "Desde $180.000",
+    proteccion: "Sellado Cerámico Térmico & Hidrofóbico",
+    img: "/ec-detail/foto-3.jpg",
+  },
 ];
 
 export const DI_LORENZO_BUSINESS: Business = {
@@ -59,7 +68,7 @@ export const DI_LORENZO_BUSINESS: Business = {
   ciudad: "Haedo",
   provincia: "Buenos Aires",
   rating: 4.9,
-  reviews_count: 18,
+  reviews_count: 40,
   horario: "Lunes a Sábado: 09:00 a 19:00 hs (Con Turno Previo)",
   fotos: [],
   maps_url:
