@@ -38,7 +38,7 @@ export const DI_LORENZO_SERVICIOS: ServiceItem[] = [
     img: "/ec-detail/tapizado.jpg",
   },
   {
-    nombre: "Tratamientos de Pintura",
+    nombre: "Tratamiento Cerámico / Acrílico",
     descripcion:
       "Corrección técnica y protección nanotecnológica para la carrocería (Acrílico, Cerámico y Vidrio Líquido). Elimina marcas circulares y microrrayones, otorgando un brillo espejo permanente y máxima hidrofobia contra el agua y la suciedad.",
     ideal_si: "Brillo extremo espejo y protección a largo plazo contra el sol y factores climáticos.",
