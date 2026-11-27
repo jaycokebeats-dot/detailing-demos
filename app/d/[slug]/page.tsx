@@ -128,6 +128,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         ? {
             google: "_PneSsBs5qthk7KOsRQyAHCjfsqCLE2nIt3Bm__STbE",
           }
+        : isShalom
+        ? {
+            google: "m5kJSl7blPgMw13V7pfZRJTbpAmH89FNQxqqFUBRzx4",
+          }
         : undefined,
     alternates: {
       canonical: canonicalUrl,
