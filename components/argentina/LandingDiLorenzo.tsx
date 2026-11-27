@@ -178,6 +178,48 @@ function CarouselCompareSlider({
   );
 }
 
+const SERVICE_SLUGS = [
+  "opticas",
+  "abrillantado",
+  "preventa",
+  "tapizados",
+  "ceramico",
+  "motos",
+];
+
+const SERVICE_SLUG_MAP: Record<string, number> = {
+  // 0: Pulido Exterior de Ópticas
+  opticas: 0,
+  optica: 0,
+  "pulido-opticas": 0,
+  "pulido-de-opticas": 0,
+  // 1: Abrillantado Premium
+  abrillantado: 1,
+  "abrillantado-premium": 1,
+  pulido: 1,
+  // 2: Servicio Pre-Venta (Particular - Agencias)
+  preventa: 2,
+  "pre-venta": 2,
+  "servicio-preventa": 2,
+  venta: 2,
+  // 3: Limpieza de Tapizados
+  tapizados: 3,
+  tapizado: 3,
+  interiores: 3,
+  "limpieza-tapizados": 3,
+  "limpieza-de-tapizados": 3,
+  // 4: Tratamiento Cerámico / Acrílico
+  ceramico: 4,
+  acrilico: 4,
+  "tratamiento-ceramico": 4,
+  "tratamiento-acrilico": 4,
+  "vidrio-liquido": 4,
+  // 5: Tratamiento Motos
+  motos: 5,
+  moto: 5,
+  "tratamiento-motos": 5,
+};
+
 export default function LandingDiLorenzo({ biz }: { biz: Business }) {
   // Vista actual: "hub" (Di Lo Center principal) o "detailing" (Di Lorenzo Detailing)
   const [currentView, setCurrentView] = useState<"hub" | "detailing">("hub");
@@ -197,42 +239,8 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
   const instagramHandle = biz.instagram ? biz.instagram.replace("@", "") : "dilorenzodetailing";
   const igUrl = `https://instagram.com/${instagramHandle}`;
 
-  // Sincronización de hash para navegación instantánea y botón volver del navegador
-  useEffect(() => {
-    const handleHash = () => {
-      const hash = window.location.hash.toLowerCase();
-      if (
-        hash === "#detailing" ||
-        hash === "#servicios" ||
-        hash.startsWith("#optica") ||
-        hash.startsWith("#moto") ||
-        hash.startsWith("#abrillanta") ||
-        hash.startsWith("#ceramico") ||
-        hash.startsWith("#acrilico") ||
-        hash.startsWith("#tapizado") ||
-        hash.startsWith("#motor") ||
-        hash.startsWith("#ppf")
-      ) {
-        setCurrentView("detailing");
-        setTimeout(() => {
-          scrollToServicesContainer();
-        }, 150);
-      } else {
-        setCurrentView("hub");
-      }
-    };
-
-    handleHash();
-    window.addEventListener("popstate", handleHash);
-    window.addEventListener("hashchange", handleHash);
-    return () => {
-      window.removeEventListener("popstate", handleHash);
-      window.removeEventListener("hashchange", handleHash);
-    };
-  }, []);
-
   // Función para posicionar la pantalla de modo que la card entera sea visible sin que la tape la barra superior
-  const scrollToServicesContainer = () => {
+  const scrollToServicesContainer = useCallback(() => {
     const carouselEl = document.getElementById("servicios-carrusel");
     if (carouselEl) {
       // Offset de 60px para dejar espacio limpio abajo de la barra flotante
@@ -240,7 +248,83 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
       const y = carouselEl.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: "smooth" });
     }
-  };
+  }, []);
+
+  const scrollToCardIndex = useCallback((index: number, behavior: ScrollBehavior = "smooth") => {
+    if (!carouselRef.current) return;
+    const container = carouselRef.current;
+    const cards = container.querySelectorAll<HTMLElement>(".service-card");
+    if (!cards.length) return;
+
+    const clampedIndex = Math.max(0, Math.min(index, cards.length - 1));
+    const targetCard = cards[clampedIndex];
+    if (!targetCard) return;
+
+    const containerWidth = container.clientWidth;
+    const cardLeft = targetCard.offsetLeft;
+    const cardWidth = targetCard.offsetWidth;
+    const scrollTarget = cardLeft - (containerWidth - cardWidth) / 2;
+
+    container.scrollTo({
+      left: scrollTarget,
+      behavior,
+    });
+    setActiveSlide(clampedIndex);
+  }, []);
+
+  // Sincronización de hash y query params para Google Ads, navegación instantánea y botón volver
+  useEffect(() => {
+    const handleHashAndQuery = () => {
+      const hash = window.location.hash.toLowerCase().replace("#", "").trim();
+      const urlParams = new URLSearchParams(window.location.search);
+      const queryParam = (
+        urlParams.get("s") ||
+        urlParams.get("servicio") ||
+        urlParams.get("service") ||
+        ""
+      ).toLowerCase().trim();
+
+      const targetKey = queryParam || hash;
+
+      if (targetKey && targetKey in SERVICE_SLUG_MAP) {
+        const targetIdx = SERVICE_SLUG_MAP[targetKey];
+        setCurrentView("detailing");
+        setActiveSlide(targetIdx);
+        setTimeout(() => {
+          scrollToServicesContainer();
+          scrollToCardIndex(targetIdx, "smooth");
+        }, 120);
+        return;
+      }
+
+      if (
+        hash === "detailing" ||
+        hash === "servicios" ||
+        hash.startsWith("optica") ||
+        hash.startsWith("moto") ||
+        hash.startsWith("abrillanta") ||
+        hash.startsWith("ceramico") ||
+        hash.startsWith("acrilico") ||
+        hash.startsWith("tapizado") ||
+        hash.startsWith("preventa")
+      ) {
+        setCurrentView("detailing");
+        setTimeout(() => {
+          scrollToServicesContainer();
+        }, 120);
+      } else if (hash === "hub" || hash === "inicio") {
+        setCurrentView("hub");
+      }
+    };
+
+    handleHashAndQuery();
+    window.addEventListener("popstate", handleHashAndQuery);
+    window.addEventListener("hashchange", handleHashAndQuery);
+    return () => {
+      window.removeEventListener("popstate", handleHashAndQuery);
+      window.removeEventListener("hashchange", handleHashAndQuery);
+    };
+  }, [scrollToServicesContainer, scrollToCardIndex]);
 
   // Transición a la sub-web de Detailing y vista directa de la card entera
   const goToDetailing = () => {
@@ -332,28 +416,6 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
     });
 
     setActiveSlide(closestIndex);
-  };
-
-  const scrollToCardIndex = (index: number) => {
-    if (!carouselRef.current) return;
-    const container = carouselRef.current;
-    const cards = container.querySelectorAll<HTMLElement>(".service-card");
-    if (!cards.length) return;
-
-    const clampedIndex = Math.max(0, Math.min(index, cards.length - 1));
-    const targetCard = cards[clampedIndex];
-    if (!targetCard) return;
-
-    const containerWidth = container.clientWidth;
-    const cardLeft = targetCard.offsetLeft;
-    const cardWidth = targetCard.offsetWidth;
-    const scrollTarget = cardLeft - (containerWidth - cardWidth) / 2;
-
-    container.scrollTo({
-      left: scrollTarget,
-      behavior: "smooth",
-    });
-    setActiveSlide(clampedIndex);
   };
 
   const scrollCarousel = (direction: "left" | "right") => {
@@ -1138,10 +1200,12 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
                     const reservaMsg = `Hola! Me gustaría pedir información o presupuesto para el servicio: ${s.nombre} en Di Lorenzo Detailing.`;
                     const imgSource = s.img ?? "/servicios/exterior.jpg";
                     const hasVideo = Boolean(s.video);
+                    const cardSlug = SERVICE_SLUGS[idx] || `servicio-${idx}`;
 
                     return (
                       <div
                         key={`${s.nombre}-${idx}`}
+                        id={cardSlug}
                         className="service-card product-card rounded-[32px] overflow-hidden flex flex-col justify-end relative border border-white/15 hover:border-amber-400/50 transition-all duration-300 w-[92vw] xs:w-[410px] sm:w-[460px] md:w-[490px] lg:w-[520px] min-h-[580px] xs:min-h-[620px] sm:min-h-[650px] shrink-0 snap-center shadow-2xl"
                         style={{ background: "#0c0c0c" }}
                       >
