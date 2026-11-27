@@ -4,25 +4,27 @@ export const DI_LORENZO_SERVICIOS: ServiceItem[] = [
   {
     nombre: "Pulido Exterior de Ópticas",
     descripcion:
-      "Micro-lijado progresivo multicapa y pulido óptico para eliminar la opacidad, manchas amarillentas y resecamiento por rayos UV. Sellado protector para garantizar máxima transparencia, luminosidad nocturna segura y aprobación de VTV.",
+      "Micro-lijado y sellado UV para eliminar opacidad y recuperar máxima transparencia y luminosidad.",
     ideal_si: "Ópticas amarillentas, opacas o con visibilidad reducida.",
     precio: "Consultar Presupuesto",
     proteccion: "Sellado UV Polimérico de Alta Duración",
     img: "/ec-detail/opticas_full.jpg",
+    video: "/videos/di-lorenzo/opticas.mp4",
   },
   {
     nombre: "Abrillantado Premium",
     descripcion:
-      "Pulido técnico en un solo paso intensivo para remover microrrayones superficiales y la película de suciedad incrustada. Devuelve la nitidez de reflejo, revive la profundidad del color y sella la laca con cera sintética de alto brillo.",
+      "Pulido en 1 paso intensivo para remover microrrayones y devolver brillo y profundidad al color.",
     ideal_si: "Revivir el brillo del vehículo de forma rápida a un costo accesible.",
     precio: "Desde $165.000",
     proteccion: "Sellador Sintético / Carnauba de Alto Brillo",
     img: "/ec-detail/abrillantado.jpg",
+    video: "/videos/di-lorenzo/abrillantado.mp4",
   },
   {
     nombre: "Servicio Pre-Venta (Particular - Agencias)",
     descripcion:
-      "Acondicionamiento estético estratégico pensado para maximizar el valor de reventa de tu vehículo y venderlo mucho más rápido. Incluye abrillantado de carrocería, limpieza profunda de tapizados e interiores y terminación de showroom.",
+      "Acondicionamiento integral de carrocería e interiores para maximizar el valor de reventa.",
     ideal_si: "Vas a publicar tu auto para la venta y querés que se destaque de inmediato.",
     precio: "Solicitar Presupuesto",
     proteccion: "Preparación Comercial Showroom",
@@ -31,29 +33,32 @@ export const DI_LORENZO_SERVICIOS: ServiceItem[] = [
   {
     nombre: "Limpieza de Tapizados",
     descripcion:
-      "Higienización y desinfección integral del habitáculo con inyección-extracción y vapor seco: limpieza profunda en tapizados de tela o nutrición artesanal para butacas de cuero, alfombras, paneles y plásticos interiores.",
+      "Higienización profunda con inyección-extracción y desinfección total del habitáculo.",
     ideal_si: "Recuperar la textura, aroma y sensación de auto limpio y cuidado al detalle.",
     precio: "Desde $65.000",
     proteccion: "Desinfección & Acondicionado Profundo",
     img: "/ec-detail/tapizado.jpg",
+    video: "/videos/di-lorenzo/tapizados.mp4",
   },
   {
     nombre: "Tratamiento Cerámico / Acrílico",
     descripcion:
-      "Corrección técnica y protección nanotecnológica para la carrocería (Acrílico, Cerámico y Vidrio Líquido). Elimina marcas circulares y microrrayones, otorgando un brillo espejo permanente y máxima hidrofobia contra el agua y la suciedad.",
+      "Corrección de laca y sellado nanotecnológico con brillo espejo permanente y máxima hidrofobia.",
     ideal_si: "Brillo extremo espejo y protección a largo plazo contra el sol y factores climáticos.",
     precio: "Consultar según vehículo",
     proteccion: "Brillo Espejo & Máxima Hidrofobia",
     img: "/servicios/ceramico-real.jpg",
+    video: "/videos/di-lorenzo/acrilico.mp4",
   },
   {
     nombre: "Tratamiento Motos",
     descripcion:
-      "Estética y protección integral para motos de todas las cilindradas y cuatriciclos. Descontaminado exhaustivo de chasis y llantas, pulido artesanal de piezas y carenados, sellado cerámico térmico y nutrición de plásticos y metales.",
+      "Cuidado artesanal, descontaminado, pulido y protección térmica para motos y cuatriciclos.",
     ideal_si: "Cuidado artesanal y protección duradera para motos de calle, pista o custom.",
     precio: "Desde $180.000",
     proteccion: "Sellado Cerámico Térmico & Hidrofóbico",
     img: "/ec-detail/foto-3.jpg",
+    video: "/videos/di-lorenzo/motos.mp4",
   },
 ];
 

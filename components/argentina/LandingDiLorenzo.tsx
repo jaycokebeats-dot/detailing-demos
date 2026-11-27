@@ -189,6 +189,7 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
   const detailingHeroVideoRef = useRef<HTMLVideoElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
   const reviewsRef = useRef<HTMLDivElement>(null);
+  const serviceVideoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
   const serviciosList =
     biz.servicios && biz.servicios.length > 0 ? biz.servicios : DI_LORENZO_SERVICIOS;
@@ -284,6 +285,31 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
       v2.play().catch(() => {});
     }
   }, [currentView]);
+
+  // Intelligent Lazy Autoplay para videos de servicios: reproduce solo la card activa y pausa todas las demás
+  useEffect(() => {
+    if (currentView !== "detailing") {
+      serviceVideoRefs.current.forEach((vid) => {
+        if (vid && !vid.paused) {
+          vid.pause();
+        }
+      });
+      return;
+    }
+
+    serviceVideoRefs.current.forEach((vid, idx) => {
+      if (!vid) return;
+      if (idx === activeSlide) {
+        vid.defaultMuted = true;
+        vid.muted = true;
+        vid.play().catch(() => {});
+      } else {
+        if (!vid.paused) {
+          vid.pause();
+        }
+      }
+    });
+  }, [activeSlide, currentView]);
 
   // Centrado y navegación exacta del carrusel horizontal
   const handleCarouselScroll = () => {
@@ -1125,64 +1151,97 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
                   {serviciosList.map((s, idx) => {
                     const reservaMsg = `Hola! Me gustaría pedir información o presupuesto para el servicio: ${s.nombre} en Di Lorenzo Detailing.`;
                     const imgSource = s.img ?? "/servicios/exterior.jpg";
+                    const hasVideo = Boolean(s.video);
 
                     return (
                       <div
                         key={`${s.nombre}-${idx}`}
-                        className="service-card product-card rounded-[28px] overflow-hidden flex flex-col justify-between relative border border-white/10 hover:border-white/30 transition-all duration-300 w-[92vw] xs:w-[410px] sm:w-[460px] md:w-[490px] lg:w-[520px] min-h-[580px] xs:min-h-[620px] sm:min-h-[650px] shrink-0 snap-center shadow-2xl"
-                        style={{ background: "#101010" }}
+                        className="service-card product-card rounded-[32px] overflow-hidden flex flex-col justify-between relative border border-white/15 hover:border-amber-400/50 transition-all duration-300 w-[92vw] xs:w-[410px] sm:w-[460px] md:w-[490px] lg:w-[520px] min-h-[580px] xs:min-h-[620px] sm:min-h-[650px] shrink-0 snap-center shadow-2xl"
+                        style={{ background: "#0c0c0c" }}
                       >
-                        {/* Media alta y cinema-wide (ideal para apreciar videos y fotos en gran formato) */}
-                        <div className="h-[280px] xs:h-[320px] sm:h-[360px] w-full overflow-hidden relative bg-[#141414] group/img shrink-0">
+                        {/* Video Reel o Foto de Fondo ocupando toda la card */}
+                        {hasVideo ? (
+                          <video
+                            ref={(el) => {
+                              serviceVideoRefs.current[idx] = el;
+                            }}
+                            src={s.video}
+                            playsInline
+                            muted
+                            loop
+                            preload="metadata"
+                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 pointer-events-none"
+                          />
+                        ) : (
                           <img
                             src={s.img || imgSource}
                             alt={s.nombre}
-                            className="w-full h-full object-cover transition-transform duration-700 group-hover/img:scale-105"
+                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 pointer-events-none"
                             loading="lazy"
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
+                        )}
 
-                          {s.proteccion && (
+                        {/* Capas de gradiente para contraste y legibilidad perfecta */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/85 via-55% to-transparent pointer-events-none z-10" />
+                        <div className="absolute top-0 left-0 right-0 h-28 bg-gradient-to-b from-black/80 to-transparent pointer-events-none z-10" />
+
+                        {/* Header superior de la card con badges */}
+                        <div className="relative z-20 p-5 flex items-center justify-between w-full pointer-events-none">
+                          {s.proteccion ? (
                             <div
-                              className="absolute bottom-3 left-3 right-3 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-white/15 text-[11px] font-semibold text-white/95 flex items-center justify-center text-center gap-1.5 shadow-lg z-20 pointer-events-none"
-                              style={{ background: "rgba(10,10,10,0.88)" }}
+                              className="backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/15 text-[11px] font-semibold text-white/95 flex items-center gap-1.5 shadow-lg"
+                              style={{ background: "rgba(10,10,10,0.8)" }}
                             >
                               <span className="size-1.5 rounded-full bg-emerald-400 shrink-0" />
-                              <span className="truncate">{s.proteccion}</span>
+                              <span className="truncate max-w-[200px] xs:max-w-none">{s.proteccion}</span>
+                            </div>
+                          ) : (
+                            <div />
+                          )}
+
+                          {hasVideo && (
+                            <div
+                              className="backdrop-blur-md px-3 py-1 rounded-full border border-amber-400/30 text-[10px] font-bold text-amber-300 uppercase tracking-wider flex items-center gap-1.5 shadow-lg"
+                              style={{ background: "rgba(10,10,10,0.8)" }}
+                            >
+                              <span className="size-1.5 rounded-full bg-amber-400 animate-pulse" />
+                              <span>Video</span>
                             </div>
                           )}
                         </div>
 
-                        {/* Info Card con tipografía amplia, espaciosa y botón 100% centrado */}
-                        <div className="p-6 sm:p-7 flex flex-col gap-3 flex-1 justify-between text-center">
-                          <div className="space-y-2.5">
+                        {/* Bloque inferior: Título, Precio, Descripción de 1 línea y Botón WhatsApp */}
+                        <div className="relative z-20 p-6 sm:p-7 flex flex-col gap-3 text-center">
+                          <div className="space-y-2">
                             <h3
-                              className="font-bold text-xl sm:text-2xl text-white leading-tight"
+                              className="font-bold text-2xl sm:text-3xl text-white leading-tight drop-shadow-md"
                               style={{ textTransform: "none", fontFamily: "inherit" }}
                             >
                               {s.nombre}
                             </h3>
                             {s.precio && s.precio.trim() ? (
-                              <p className="text-lg sm:text-xl font-extrabold text-gold">{s.precio}</p>
+                              <p className="text-xl sm:text-2xl font-black text-gold drop-shadow">{s.precio}</p>
                             ) : null}
-                            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-light">{s.descripcion}</p>
+                            <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-light drop-shadow">
+                              {s.descripcion}
+                            </p>
 
                             {s.ideal_si && (
-                              <p className="text-xs text-slate-400 pt-1">
-                                <span className="font-semibold text-slate-300">Detalles:</span> {s.ideal_si}
+                              <p className="text-[11px] sm:text-xs text-slate-400 pt-0.5">
+                                <span className="font-semibold text-slate-300">Recomendado si:</span> {s.ideal_si}
                               </p>
                             )}
                           </div>
 
-                          <div className="pt-3 w-full flex justify-center">
+                          <div className="pt-2 w-full flex justify-center">
                             <a
                               href={waHref(biz, reservaMsg)}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="btn-outline-gold mt-2 flex items-center justify-center gap-2 px-5 py-3.5 rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wider active:scale-95 transition-transform text-center w-full shadow-lg"
+                              className="btn-gold inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider shadow-2xl active:scale-95 transition text-center w-full"
                             >
-                              <FaWhatsapp aria-hidden className="size-4 text-emerald-400 shrink-0" />
-                              <span className="text-center">Pedir Presupuesto por WhatsApp</span>
+                              <FaWhatsapp aria-hidden className="size-4 text-emerald-950 shrink-0" />
+                              <span className="text-black font-extrabold text-center">Pedir Presupuesto por WhatsApp</span>
                             </a>
                           </div>
                         </div>
