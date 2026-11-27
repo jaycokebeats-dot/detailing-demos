@@ -610,44 +610,34 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
 
               {/* 3 PUBLICACIONES RECTANGULARES */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 w-full max-w-5xl mx-auto mb-8">
-                {/* 1. Di Lorenzo Detailing (ACTIVO CON VIDEO ADENTRO -> AL CLICLEAR VA DIRECTO A SERVICIOS) */}
+                {/* 1. Di Lorenzo Detailing (AL CLIQUEAR VA DIRECTO A SERVICIOS) */}
                 <button
                   type="button"
                   onClick={goToDetailing}
-                  className="group relative h-[380px] xs:h-[410px] sm:h-[440px] rounded-[28px] overflow-hidden border border-amber-400/50 hover:border-amber-400 transition-all duration-500 shadow-2xl shadow-amber-500/10 flex flex-col justify-between p-6 text-left cursor-pointer active:scale-[0.98]"
+                  className="group relative h-[380px] xs:h-[410px] sm:h-[440px] rounded-[28px] overflow-hidden border border-amber-400/50 hover:border-amber-400 transition-all duration-500 shadow-2xl shadow-amber-500/10 flex flex-col justify-end p-6 sm:p-7 text-center cursor-pointer active:scale-[0.98]"
                 >
-                  {/* Video en loop dentro de la publicación */}
+                  {/* Video en loop dentro de la publicación con brillo aumentado */}
                   <video
                     ref={hubVideoRef}
                     autoPlay
                     muted
                     loop
                     playsInline
-                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 pointer-events-none"
+                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 pointer-events-none filter brightness-110 contrast-105"
                     src={biz.video_hero ?? "/videos/hero-compilado-blanco.mp4"}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/60 pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 via-55% to-transparent pointer-events-none" />
 
-                  {/* Header de la card */}
-                  <div className="relative z-10 flex items-center justify-between">
-                    <span className="text-[11px] uppercase font-bold tracking-widest text-amber-300 px-3 py-1 rounded-full bg-black/75 backdrop-blur-md border border-amber-400/40 shadow-lg">
-                      Activo
-                    </span>
-                    <div className="w-8 h-8 rounded-full bg-black/60 backdrop-blur-md border border-white/15 flex items-center justify-center text-amber-400 group-hover:rotate-12 transition-transform">
-                      <HiOutlineSparkles className="size-4" />
-                    </div>
-                  </div>
-
-                  {/* Footer de la card */}
-                  <div className="relative z-10 space-y-2">
-                    <h2 className="font-extrabold text-2xl text-white group-hover:text-amber-300 transition-colors leading-tight drop-shadow-md">
+                  {/* Footer de la card 100% centrado (sin badge 'Activo' ni rayitos) */}
+                  <div className="relative z-10 space-y-2 text-center w-full flex flex-col items-center">
+                    <h2 className="font-extrabold text-2xl text-white group-hover:text-amber-300 transition-colors leading-tight drop-shadow-md text-center">
                       Di Lorenzo Detailing
                     </h2>
-                    <p className="text-xs text-slate-200 leading-relaxed font-light">
+                    <p className="text-xs text-slate-200 leading-relaxed font-light text-center max-w-xs mx-auto">
                       Tratamientos cerámicos, abrillantado, pulido de ópticas, tapizados y PPF.
                     </p>
-                    <div className="pt-2">
-                      <span className="btn-gold inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg group-hover:shadow-amber-400/25 transition-all">
+                    <div className="pt-2 flex justify-center w-full">
+                      <span className="btn-gold inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg group-hover:shadow-amber-400/25 transition-all text-center">
                         <span>Entrar a Detailing</span>
                         <HiOutlineArrowRight className="size-3.5" />
                       </span>
@@ -1025,17 +1015,17 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
 
           {/* 2. HERO PRINCIPAL DE DETAILING CON VIDEO DE FONDO CINEMATOGRÁFICO */}
           <section className="relative min-h-[380px] sm:min-h-[440px] pt-24 sm:pt-28 pb-12 sm:pb-16 px-4 sm:px-6 overflow-hidden flex items-center justify-center bg-[#070707] border-b border-white/5">
-            {/* Video de fondo en loop para la sub-web de Detailing */}
+            {/* Video de fondo en loop para la sub-web de Detailing con brillo aumentado */}
             <video
               ref={detailingHeroVideoRef}
               autoPlay
               muted
               loop
               playsInline
-              className="absolute inset-0 w-full h-full object-cover opacity-50 filter brightness-95 contrast-105 pointer-events-none"
+              className="absolute inset-0 w-full h-full object-cover opacity-75 filter brightness-110 contrast-105 pointer-events-none"
               src={biz.video_hero ?? "/videos/hero-compilado-blanco.mp4"}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/55 to-black/75 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-black/65 pointer-events-none" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.85)_100%)] pointer-events-none" />
 
             <div className="relative z-10 max-w-4xl mx-auto w-full text-center px-2 py-4">
@@ -1077,15 +1067,11 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
           {/* 3. NUESTROS SERVICIOS — CARDS AMPLIAS, ALTAS Y CINEMATOGRÁFICAS EN CARRUSEL HORIZONTAL */}
           <section id="servicios" className="px-3 sm:px-8 pt-12 pb-6 sm:pb-8 bg-black relative">
             <div className="max-w-7xl mx-auto">
-              {/* Header de la sección */}
-              <div className="text-center mb-6 max-w-2xl mx-auto">
-                <span className="section-badge mb-3">Catálogo de Trabajos</span>
-                <h2 className="text-2xl sm:text-4xl font-medium text-gold mb-2">
+              {/* Header de la sección limpio y sin textos redundantes */}
+              <div className="text-center mb-5 max-w-2xl mx-auto">
+                <h2 className="text-2xl sm:text-3xl font-medium text-gold">
                   Servicios & Tarifas en Haedo
                 </h2>
-                <p className="text-slate-400 text-xs sm:text-sm">
-                  Deslizá hacia los lados para comparar cada tratamiento, conocer valores de referencia y pedir presupuesto directo.
-                </p>
               </div>
 
               {/* Indicador de posición y contador superior */}
@@ -1156,10 +1142,10 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
                     return (
                       <div
                         key={`${s.nombre}-${idx}`}
-                        className="service-card product-card rounded-[32px] overflow-hidden flex flex-col justify-between relative border border-white/15 hover:border-amber-400/50 transition-all duration-300 w-[92vw] xs:w-[410px] sm:w-[460px] md:w-[490px] lg:w-[520px] min-h-[580px] xs:min-h-[620px] sm:min-h-[650px] shrink-0 snap-center shadow-2xl"
+                        className="service-card product-card rounded-[32px] overflow-hidden flex flex-col justify-end relative border border-white/15 hover:border-amber-400/50 transition-all duration-300 w-[92vw] xs:w-[410px] sm:w-[460px] md:w-[490px] lg:w-[520px] min-h-[580px] xs:min-h-[620px] sm:min-h-[650px] shrink-0 snap-center shadow-2xl"
                         style={{ background: "#0c0c0c" }}
                       >
-                        {/* Video Reel o Foto de Fondo ocupando toda la card */}
+                        {/* Video Reel o Foto de Fondo con brillo aumentado y sin oscuridad */}
                         {hasVideo ? (
                           <video
                             ref={(el) => {
@@ -1170,75 +1156,40 @@ export default function LandingDiLorenzo({ biz }: { biz: Business }) {
                             muted
                             loop
                             preload="metadata"
-                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 pointer-events-none"
+                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 pointer-events-none filter brightness-110 contrast-105"
                           />
                         ) : (
                           <img
                             src={s.img || imgSource}
                             alt={s.nombre}
-                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 pointer-events-none"
+                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 pointer-events-none filter brightness-105 contrast-105"
                             loading="lazy"
                           />
                         )}
 
-                        {/* Capas de gradiente para contraste y legibilidad perfecta */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/85 via-55% to-transparent pointer-events-none z-10" />
-                        <div className="absolute top-0 left-0 right-0 h-28 bg-gradient-to-b from-black/80 to-transparent pointer-events-none z-10" />
+                        {/* Sombra inferior suave únicamente detrás del título y botón para que no tape el video */}
+                        <div className="absolute bottom-0 left-0 right-0 h-44 bg-gradient-to-t from-black via-black/60 to-transparent pointer-events-none z-10" />
 
-                        {/* Header superior de la card con badges */}
-                        <div className="relative z-20 p-5 flex items-center justify-between w-full pointer-events-none">
-                          {s.proteccion ? (
-                            <div
-                              className="backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/15 text-[11px] font-semibold text-white/95 flex items-center gap-1.5 shadow-lg"
-                              style={{ background: "rgba(10,10,10,0.8)" }}
-                            >
-                              <span className="size-1.5 rounded-full bg-emerald-400 shrink-0" />
-                              <span className="truncate max-w-[200px] xs:max-w-none">{s.proteccion}</span>
-                            </div>
-                          ) : (
-                            <div />
-                          )}
-
-                          {hasVideo && (
-                            <div
-                              className="backdrop-blur-md px-3 py-1 rounded-full border border-amber-400/30 text-[10px] font-bold text-amber-300 uppercase tracking-wider flex items-center gap-1.5 shadow-lg"
-                              style={{ background: "rgba(10,10,10,0.8)" }}
-                            >
-                              <span className="size-1.5 rounded-full bg-amber-400 animate-pulse" />
-                              <span>Video</span>
-                            </div>
-                          )}
-                        </div>
-
-                        {/* Bloque inferior: Título, Precio, Descripción de 1 línea y Botón WhatsApp */}
-                        <div className="relative z-20 p-6 sm:p-7 flex flex-col gap-3 text-center">
-                          <div className="space-y-2">
+                        {/* Bloque inferior compacto: Título, Precio y Botón WhatsApp sin tapar el video */}
+                        <div className="relative z-20 p-5 sm:p-6 flex flex-col gap-2.5 text-center w-full">
+                          <div className="space-y-1">
                             <h3
-                              className="font-bold text-2xl sm:text-3xl text-white leading-tight drop-shadow-md"
+                              className="font-bold text-lg sm:text-xl text-white leading-tight drop-shadow-md"
                               style={{ textTransform: "none", fontFamily: "inherit" }}
                             >
                               {s.nombre}
                             </h3>
                             {s.precio && s.precio.trim() ? (
-                              <p className="text-xl sm:text-2xl font-black text-gold drop-shadow">{s.precio}</p>
+                              <p className="text-base sm:text-lg font-black text-gold drop-shadow">{s.precio}</p>
                             ) : null}
-                            <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-light drop-shadow">
-                              {s.descripcion}
-                            </p>
-
-                            {s.ideal_si && (
-                              <p className="text-[11px] sm:text-xs text-slate-400 pt-0.5">
-                                <span className="font-semibold text-slate-300">Recomendado si:</span> {s.ideal_si}
-                              </p>
-                            )}
                           </div>
 
-                          <div className="pt-2 w-full flex justify-center">
+                          <div className="pt-1.5 w-full flex justify-center">
                             <a
                               href={waHref(biz, reservaMsg)}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="btn-gold inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider shadow-2xl active:scale-95 transition text-center w-full"
+                              className="btn-gold inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider shadow-2xl active:scale-95 transition text-center w-full max-w-[340px]"
                             >
                               <FaWhatsapp aria-hidden className="size-4 text-emerald-950 shrink-0" />
                               <span className="text-black font-extrabold text-center">Pedir Presupuesto por WhatsApp</span>
